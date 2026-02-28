@@ -72,7 +72,7 @@ class ProgramCompletionScreen extends ConsumerWidget {
 
                 // Congratulations heading in gold
                 GradientText(
-                  L10nService.get('programs.program_completion.congratulations', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('programs.program_completion.congratulations', language),
                   variant: GradientTextVariant.gold,
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 32,
@@ -120,7 +120,7 @@ class ProgramCompletionScreen extends ConsumerWidget {
 
                       // Certificate title
                       GradientText(
-                        L10nService.get('programs.program_completion.certificate_of_completion', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('programs.program_completion.certificate_of_completion', language),
                         variant: GradientTextVariant.gold,
                         style: AppTypography.displayFont.copyWith(
                           fontSize: 18,
@@ -153,9 +153,9 @@ class ProgramCompletionScreen extends ConsumerWidget {
                       // Duration completed
                       _CertificateRow(
                         icon: Icons.calendar_today_rounded,
-                        label: L10nService.get('programs.program_completion.duration', isEn ? AppLanguage.en : AppLanguage.tr),
+                        label: L10nService.get('programs.program_completion.duration', language),
                         value:
-                            '$durationDays ${L10nService.get('programs.program_completion.days_of_reflection', isEn ? AppLanguage.en : AppLanguage.tr)}',
+                            '$durationDays ${L10nService.get('programs.program_completion.days_of_reflection', language)}',
                         isDark: isDark,
                       ),
                       const SizedBox(height: AppConstants.spacingMd),
@@ -163,7 +163,7 @@ class ProgramCompletionScreen extends ConsumerWidget {
                       // Days completed count
                       _CertificateRow(
                         icon: Icons.check_circle_rounded,
-                        label: L10nService.get('programs.program_completion.days_completed', isEn ? AppLanguage.en : AppLanguage.tr),
+                        label: L10nService.get('programs.program_completion.days_completed', language),
                         value: '$completedDays / $durationDays',
                         isDark: isDark,
                       ),
@@ -172,7 +172,7 @@ class ProgramCompletionScreen extends ConsumerWidget {
                       // Date of completion
                       _CertificateRow(
                         icon: Icons.today_rounded,
-                        label: L10nService.get('programs.program_completion.completed_on', isEn ? AppLanguage.en : AppLanguage.tr),
+                        label: L10nService.get('programs.program_completion.completed_on', language),
                         value: _formatDate(DateTime.now(), isEn),
                         isDark: isDark,
                       ),
@@ -188,7 +188,7 @@ class ProgramCompletionScreen extends ConsumerWidget {
 
                       // Motivational note
                       Text(
-                        L10nService.get('programs.program_completion.every_day_of_reflection_is_a_step_toward', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('programs.program_completion.every_day_of_reflection_is_a_step_toward', language),
                         textAlign: TextAlign.center,
                         style: AppTypography.decorativeScript(
                           fontSize: 13,
@@ -208,7 +208,7 @@ class ProgramCompletionScreen extends ConsumerWidget {
 
                 // Start Another Program button
                 GradientButton.gold(
-                  label: L10nService.get('programs.program_completion.start_another_program', isEn ? AppLanguage.en : AppLanguage.tr),
+                  label: L10nService.get('programs.program_completion.start_another_program', language),
                   onPressed: () => context.go(Routes.programs),
                   expanded: true,
                 ),
@@ -216,7 +216,7 @@ class ProgramCompletionScreen extends ConsumerWidget {
 
                 // Back to Home button
                 GradientOutlinedButton(
-                  label: L10nService.get('programs.program_completion.back_to_home', isEn ? AppLanguage.en : AppLanguage.tr),
+                  label: L10nService.get('programs.program_completion.back_to_home', language),
                   variant: GradientTextVariant.aurora,
                   expanded: true,
                   fontSize: 16,
@@ -236,7 +236,7 @@ class ProgramCompletionScreen extends ConsumerWidget {
     );
   }
 
-  String _formatDate(DateTime date, bool isEn) {
+  String _formatDate(DateTime date, AppLanguage language) {
     final months = isEn
         ? [
             'January',

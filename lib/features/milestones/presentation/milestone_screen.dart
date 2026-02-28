@@ -64,7 +64,7 @@ class MilestoneScreen extends ConsumerWidget {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      L10nService.get('milestones.milestone.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('milestones.milestone.retry', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -77,7 +77,7 @@ class MilestoneScreen extends ConsumerWidget {
             ),
           ),
           data: (service) =>
-              _MilestoneBody(service: service, isEn: isEn, isDark: isDark),
+              _MilestoneBody(service: service, language: language, isDark: isDark),
         ),
       ),
     );
@@ -90,12 +90,13 @@ class MilestoneScreen extends ConsumerWidget {
 
 class _MilestoneBody extends StatefulWidget {
   final MilestoneService service;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final bool isDark;
 
   const _MilestoneBody({
     required this.service,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -123,7 +124,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(title: L10nService.get('milestones.milestone.milestones', isEn ? AppLanguage.en : AppLanguage.tr)),
+          GlassSliverAppBar(title: L10nService.get('milestones.milestone.milestones', language)),
 
           // ── Progress Card ─────────────────────────────────────────────
           SliverToBoxAdapter(
@@ -171,7 +172,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: ToolEcosystemFooter(
                 currentToolId: 'milestones',
-                isEn: isEn,
+                language: language,
                 isDark: isDark,
               ),
             ),
@@ -273,7 +274,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GradientText(
-                    L10nService.get('milestones.milestone.milestones_earned', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('milestones.milestone.milestones_earned', language),
                     variant: GradientTextVariant.gold,
                     style: AppTypography.displayFont.copyWith(
                       fontSize: 17,
@@ -310,10 +311,10 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   String _getProgressMessage(int earned, int total) {
     final remaining = total - earned;
     if (earned == 0) {
-      return L10nService.get('milestones.milestone.start_tracking', isEn ? AppLanguage.en : AppLanguage.tr);
+      return L10nService.get('milestones.milestone.start_tracking', language);
     }
     if (earned >= total) {
-      return L10nService.get('milestones.milestone.you_earned_them_all', isEn ? AppLanguage.en : AppLanguage.tr);
+      return L10nService.get('milestones.milestone.you_earned_them_all', language);
     }
     return isEn
         ? '$remaining more to discover'
@@ -334,7 +335,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
         children: categories.map((cat) {
           final selected = _selectedCategory == cat;
           final label = cat == null
-              ? (L10nService.get('milestones.milestone.all', isEn ? AppLanguage.en : AppLanguage.tr))
+              ? (L10nService.get('milestones.milestone.all', language))
               : (cat.localizedName(isEn));
 
           return Padding(
@@ -344,7 +345,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                   ? (isEn
                         ? '$label filter, selected'
                         : '$label filtresi, seçili')
-                  : (L10nService.getWithParams('milestones.filter_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'label': label})),
+                  : (L10nService.getWithParams('milestones.filter_label', language, params: {'label': label})),
               button: true,
               selected: selected,
               child: FilterChip(
@@ -517,17 +518,17 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   String _getCategoryHint(MilestoneCategory category) {
     switch (category) {
       case MilestoneCategory.streak:
-        return L10nService.get('milestones.milestone.keep_logging', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('milestones.milestone.keep_logging', language);
       case MilestoneCategory.entries:
-        return L10nService.get('milestones.milestone.write_more', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('milestones.milestone.write_more', language);
       case MilestoneCategory.exploration:
-        return L10nService.get('milestones.milestone.try_new_features', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('milestones.milestone.try_new_features', language);
       case MilestoneCategory.depth:
-        return L10nService.get('milestones.milestone.go_deeper', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('milestones.milestone.go_deeper', language);
       case MilestoneCategory.social:
-        return L10nService.get('milestones.milestone.share_connect', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('milestones.milestone.share_connect', language);
       case MilestoneCategory.growth:
-        return L10nService.get('milestones.milestone.keep_growing', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('milestones.milestone.keep_growing', language);
     }
   }
 
@@ -686,7 +687,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                     // Close button
                     Semantics(
                       button: true,
-                      label: L10nService.get('milestones.milestone.close_dialog', isEn ? AppLanguage.en : AppLanguage.tr),
+                      label: L10nService.get('milestones.milestone.close_dialog', language),
                       child: SizedBox(
                         width: double.infinity,
                         height: 44,
@@ -701,7 +702,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                             ),
                           ),
                           child: Text(
-                            L10nService.get('milestones.milestone.done', isEn ? AppLanguage.en : AppLanguage.tr),
+                            L10nService.get('milestones.milestone.done', language),
                             style: AppTypography.modernAccent(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
@@ -721,7 +722,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
     );
   }
 
-  String _formatDate(DateTime date, bool isEn) {
+  String _formatDate(DateTime date, AppLanguage language) {
     final months = isEn
         ? [
             'Jan',

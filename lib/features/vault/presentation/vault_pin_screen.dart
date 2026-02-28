@@ -59,7 +59,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
 
     final language = ref.read(languageProvider);
     final isEn = language == AppLanguage.en;
-    final success = await vaultService.tryBiometricUnlock(isEn: isEn);
+    final success = await vaultService.tryBiometricUnlock(language: language);
     if (success && mounted) {
       _onVerified();
     }
@@ -123,7 +123,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
             _pin = '';
             _firstPin = '';
             _currentMode = _PinMode.setup;
-            _error = L10nService.get('vault.vault_pin.those_dont_match_no_worries_try_again', isEn ? AppLanguage.en : AppLanguage.tr);
+            _error = L10nService.get('vault.vault_pin.those_dont_match_no_worries_try_again', language);
           });
         }
         break;
@@ -142,7 +142,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
           HapticService.error();
           setState(() {
             _pin = '';
-            _error = L10nService.get('vault.vault_pin.that_pin_didnt_match_try_again', isEn ? AppLanguage.en : AppLanguage.tr);
+            _error = L10nService.get('vault.vault_pin.that_pin_didnt_match_try_again', language);
           });
         }
         break;
@@ -156,22 +156,22 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
     context.go(Routes.vault);
   }
 
-  Future<bool> _showBiometricDialog(bool isEn) async {
+  Future<bool> _showBiometricDialog(AppLanguage language) async {
     final result = await showCupertinoDialog<bool>(
       context: context,
       builder: (ctx) => CupertinoAlertDialog(
-        title: Text(L10nService.get('vault.vault_pin.enable_face_id', isEn ? AppLanguage.en : AppLanguage.tr)),
+        title: Text(L10nService.get('vault.vault_pin.enable_face_id', language)),
         content: Text(
-          L10nService.get('vault.vault_pin.use_face_id_to_quickly_access_your_vault', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('vault.vault_pin.use_face_id_to_quickly_access_your_vault', language),
         ),
         actions: [
           CupertinoDialogAction(
-            child: Text(L10nService.get('vault.vault_pin.not_now', isEn ? AppLanguage.en : AppLanguage.tr)),
+            child: Text(L10nService.get('vault.vault_pin.not_now', language)),
             onPressed: () => Navigator.pop(ctx, false),
           ),
           CupertinoDialogAction(
             isDefaultAction: true,
-            child: Text(L10nService.get('vault.vault_pin.enable', isEn ? AppLanguage.en : AppLanguage.tr)),
+            child: Text(L10nService.get('vault.vault_pin.enable', language)),
             onPressed: () => Navigator.pop(ctx, true),
           ),
         ],
@@ -190,20 +190,20 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
     String subtitle;
     switch (_currentMode) {
       case _PinMode.setup:
-        title = L10nService.get('vault.vault_pin.create_pin', isEn ? AppLanguage.en : AppLanguage.tr);
-        subtitle = L10nService.get('vault.vault_pin.choose_a_4digit_pin_for_your_vault', isEn ? AppLanguage.en : AppLanguage.tr);
+        title = L10nService.get('vault.vault_pin.create_pin', language);
+        subtitle = L10nService.get('vault.vault_pin.choose_a_4digit_pin_for_your_vault', language);
         break;
       case _PinMode.confirm:
-        title = L10nService.get('vault.vault_pin.confirm_pin', isEn ? AppLanguage.en : AppLanguage.tr);
-        subtitle = L10nService.get('vault.vault_pin.enter_the_same_pin_again', isEn ? AppLanguage.en : AppLanguage.tr);
+        title = L10nService.get('vault.vault_pin.confirm_pin', language);
+        subtitle = L10nService.get('vault.vault_pin.enter_the_same_pin_again', language);
         break;
       case _PinMode.verify:
-        title = L10nService.get('vault.vault_pin.enter_pin', isEn ? AppLanguage.en : AppLanguage.tr);
-        subtitle = L10nService.get('vault.vault_pin.enter_your_vault_pin', isEn ? AppLanguage.en : AppLanguage.tr);
+        title = L10nService.get('vault.vault_pin.enter_pin', language);
+        subtitle = L10nService.get('vault.vault_pin.enter_your_vault_pin', language);
         break;
       case _PinMode.change:
-        title = L10nService.get('vault.vault_pin.new_pin', isEn ? AppLanguage.en : AppLanguage.tr);
-        subtitle = L10nService.get('vault.vault_pin.choose_a_new_4digit_pin', isEn ? AppLanguage.en : AppLanguage.tr);
+        title = L10nService.get('vault.vault_pin.new_pin', language);
+        subtitle = L10nService.get('vault.vault_pin.choose_a_new_4digit_pin', language);
         break;
     }
 
@@ -222,7 +222,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
                       CupertinoIcons.chevron_back,
                       color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                     ),
-                    tooltip: L10nService.get('vault.vault_pin.back', isEn ? AppLanguage.en : AppLanguage.tr),
+                    tooltip: L10nService.get('vault.vault_pin.back', language),
                     onPressed: () => context.pop(),
                   ),
                 ),

@@ -18,12 +18,13 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class DailyPulseCard extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final bool isDark;
 
   const DailyPulseCard({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -132,7 +133,7 @@ class DailyPulseCard extends ConsumerWidget {
         Row(
           children: [
             GradientText(
-              L10nService.get('today.daily_pulse.focus_pulse', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('today.daily_pulse.focus_pulse', language),
               variant: GradientTextVariant.gold,
               style: AppTypography.displayFont.copyWith(
                 fontSize: 14,
@@ -143,7 +144,7 @@ class DailyPulseCard extends ConsumerWidget {
             const Spacer(),
             Semantics(
               button: true,
-              label: L10nService.get('today.daily_pulse.view_details', isEn ? AppLanguage.en : AppLanguage.tr),
+              label: L10nService.get('today.daily_pulse.view_details', language),
               child: GestureDetector(
                 onTap: () {
                   HapticService.selectionTap();
@@ -151,7 +152,7 @@ class DailyPulseCard extends ConsumerWidget {
                 },
                 behavior: HitTestBehavior.opaque,
                 child: Text(
-                  L10nService.get('today.daily_pulse.details', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('today.daily_pulse.details', language),
                   style: AppTypography.subtitle(
                     fontSize: 13,
                     color: isDark
@@ -263,7 +264,7 @@ class DailyPulseCard extends ConsumerWidget {
         text = isEn ? best.getMessageEn() : best.getMessageTr();
       }
     } else if (hasMicro) {
-      final micro = engine.detectMicroPattern(isEn: isEn);
+      final micro = engine.detectMicroPattern(language: language);
       if (micro != null) {
         text = micro;
         icon = Icons.insights_outlined;
@@ -351,7 +352,7 @@ class DailyPulseCard extends ConsumerWidget {
             ),
             const SizedBox(width: 6),
             GradientText(
-              L10nService.getWithParams('today.daily_pulse.try_for_area', isEn ? AppLanguage.en : AppLanguage.tr, params: {'area': areaLabel}),
+              L10nService.getWithParams('today.daily_pulse.try_for_area', language, params: {'area': areaLabel}),
               variant: GradientTextVariant.amethyst,
               style: AppTypography.elegantAccent(
                 fontSize: 12,
@@ -384,7 +385,7 @@ class DailyPulseCard extends ConsumerWidget {
         final history = archetypeService.getArchetypeHistory();
         if (history.isEmpty) {
           icon = Icons.auto_awesome_outlined;
-          text = L10nService.get('today.daily_pulse.each_entry_builds_your_pattern_library_s', isEn ? AppLanguage.en : AppLanguage.tr);
+          text = L10nService.get('today.daily_pulse.each_entry_builds_your_pattern_library_s', language);
         } else {
           icon = Icons.psychology_outlined;
           final latestId = history.last.archetypeId;
@@ -461,15 +462,15 @@ class DailyPulseCard extends ConsumerWidget {
   String _areaLabel(FocusArea area) {
     switch (area) {
       case FocusArea.energy:
-        return L10nService.get('today.daily_pulse.energy', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('today.daily_pulse.energy', language);
       case FocusArea.focus:
-        return L10nService.get('today.daily_pulse.focus', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('today.daily_pulse.focus', language);
       case FocusArea.emotions:
-        return L10nService.get('today.daily_pulse.emotions', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('today.daily_pulse.emotions', language);
       case FocusArea.decisions:
-        return L10nService.get('today.daily_pulse.decisions', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('today.daily_pulse.decisions', language);
       case FocusArea.social:
-        return L10nService.get('today.daily_pulse.social', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('today.daily_pulse.social', language);
     }
   }
 

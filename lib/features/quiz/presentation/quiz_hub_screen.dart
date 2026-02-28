@@ -45,7 +45,7 @@ class QuizHubScreen extends ConsumerWidget {
             ),
             slivers: [
               GlassSliverAppBar(
-                title: L10nService.get('quiz.quiz_hub.selfreflection_quizzes', isEn ? AppLanguage.en : AppLanguage.tr),
+                title: L10nService.get('quiz.quiz_hub.selfreflection_quizzes', language),
               ),
               SliverPadding(
                 padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -53,7 +53,7 @@ class QuizHubScreen extends ConsumerWidget {
                   delegate: SliverChildListDelegate([
                     // Header description
                     Text(
-                          L10nService.get('quiz.quiz_hub.explore_different_aspects_of_yourself_th', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('quiz.quiz_hub.explore_different_aspects_of_yourself_th', language),
                           style: AppTypography.decorativeScript(
                             fontSize: 15,
                             color: AppColors.textSecondary,
@@ -99,7 +99,7 @@ class QuizHubScreen extends ConsumerWidget {
                               isCompleted: isCompleted,
                               lastResultName: lastResultName,
                               isDark: isDark,
-                              isEn: isEn,
+                              language: language,
                               onTap: () => context.push(
                                 Routes.quizGeneric.replaceFirst(
                                   ':quizId',
@@ -123,7 +123,7 @@ class QuizHubScreen extends ConsumerWidget {
 
                     ToolEcosystemFooter(
                       currentToolId: 'quizHub',
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                     ),
                     const SizedBox(height: 40),
@@ -147,7 +147,8 @@ class _QuizCard extends StatelessWidget {
   final bool isCompleted;
   final String? lastResultName;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final VoidCallback onTap;
 
   const _QuizCard({
@@ -155,7 +156,7 @@ class _QuizCard extends StatelessWidget {
     required this.isCompleted,
     this.lastResultName,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onTap,
   });
 
@@ -164,7 +165,7 @@ class _QuizCard extends StatelessWidget {
     return Semantics(
       button: true,
       label: isEn ? quiz.title : quiz.titleTr,
-      hint: isCompleted ? (L10nService.get('quiz.quiz_hub.completed', isEn ? AppLanguage.en : AppLanguage.tr)) : null,
+      hint: isCompleted ? (L10nService.get('quiz.quiz_hub.completed', language)) : null,
       child: GestureDetector(
         onTap: onTap,
         child: PremiumCard(
@@ -224,7 +225,7 @@ class _QuizCard extends StatelessWidget {
                               ),
                             ),
                             child: Text(
-                              L10nService.get('quiz.quiz_hub.completed_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('quiz.quiz_hub.completed_1', language),
                               style: AppTypography.elegantAccent(
                                 fontSize: 11,
                                 color: AppColors.auroraStart,

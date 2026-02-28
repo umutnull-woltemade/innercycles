@@ -49,7 +49,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    L10nService.get('cycle_sync.cycle_sync.couldnt_load_your_cycle_data', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('cycle_sync.cycle_sync.couldnt_load_your_cycle_data', language),
                     textAlign: TextAlign.center,
                     style: AppTypography.subtitle(
                       color: isDark
@@ -64,7 +64,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      L10nService.get('cycle_sync.cycle_sync.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('cycle_sync.cycle_sync.retry', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -83,7 +83,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   ),
                   slivers: [
                     GlassSliverAppBar(
-                      title: L10nService.get('cycle_sync.cycle_sync.cycle_sync', isEn ? AppLanguage.en : AppLanguage.tr),
+                      title: L10nService.get('cycle_sync.cycle_sync.cycle_sync', language),
                     ),
                     SliverPadding(
                       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -166,7 +166,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     BuildContext context,
     dynamic cycleService,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final cycleDay = cycleService.getCurrentCycleDay();
     final cycleLength = cycleService.getAverageCycleLength();
@@ -189,7 +189,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
             ),
             const SizedBox(height: AppConstants.spacingMd),
             GradientText(
-              L10nService.get('cycle_sync.cycle_sync.start_tracking_your_cycle', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('cycle_sync.cycle_sync.start_tracking_your_cycle', language),
               variant: GradientTextVariant.aurora,
               textAlign: TextAlign.center,
               style: AppTypography.displayFont.copyWith(
@@ -199,7 +199,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
             ),
             const SizedBox(height: 8),
             Text(
-              L10nService.get('cycle_sync.cycle_sync.log_your_period_to_see_how_your_emotiona', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('cycle_sync.cycle_sync.log_your_period_to_see_how_your_emotiona', language),
               style: AppTypography.subtitle(
                 fontSize: 14,
                 color: isDark
@@ -253,7 +253,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        L10nService.get('cycle_sync.cycle_sync.day', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('cycle_sync.cycle_sync.day', language),
                         style: AppTypography.elegantAccent(
                           fontSize: 12,
                           color: isDark
@@ -270,7 +270,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                         ),
                       ),
                       Text(
-                        L10nService.getWithParams('cycle_sync.of_cycle_length', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$cycleLength'}),
+                        L10nService.getWithParams('cycle_sync.of_cycle_length', language, params: {'count': '$cycleLength'}),
                         style: AppTypography.elegantAccent(
                           fontSize: 12,
                           color: isDark
@@ -329,7 +329,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     BuildContext context,
     dynamic cycleService,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final daysUntil = cycleService.getDaysUntilNextPeriod();
 
@@ -341,7 +341,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('cycle_sync.cycle_sync.cycle_overview', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('cycle_sync.cycle_sync.cycle_overview', language),
             variant: GradientTextVariant.aurora,
             style: AppTypography.modernAccent(
               fontSize: 15,
@@ -353,7 +353,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
           _buildInfoRow(
             context,
             Icons.calendar_today_rounded,
-            L10nService.get('cycle_sync.cycle_sync.cycle_length', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('cycle_sync.cycle_sync.cycle_length', language),
             isEn
                 ? '${cycleService.getAverageCycleLength()} days'
                 : '${cycleService.getAverageCycleLength()} gün',
@@ -363,7 +363,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
           _buildInfoRow(
             context,
             Icons.water_drop_outlined,
-            L10nService.get('cycle_sync.cycle_sync.period_length', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('cycle_sync.cycle_sync.period_length', language),
             isEn
                 ? '${cycleService.getAveragePeriodLength()} days'
                 : '${cycleService.getAveragePeriodLength()} gün',
@@ -374,8 +374,8 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
             _buildInfoRow(
               context,
               Icons.schedule_rounded,
-              L10nService.get('cycle_sync.cycle_sync.next_period', isEn ? AppLanguage.en : AppLanguage.tr),
-              L10nService.getWithParams('cycle_sync.in_n_days', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$daysUntil'}),
+              L10nService.get('cycle_sync.cycle_sync.next_period', language),
+              L10nService.getWithParams('cycle_sync.in_n_days', language, params: {'count': '$daysUntil'}),
               isDark,
             ),
           ],
@@ -384,7 +384,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
             _buildInfoRow(
               context,
               Icons.insights_rounded,
-              L10nService.get('cycle_sync.cycle_sync.cycles_logged', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('cycle_sync.cycle_sync.cycles_logged', language),
               '${cycleService.getAllLogs().length}',
               isDark,
             ),
@@ -440,7 +440,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     BuildContext context,
     dynamic cycleService,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final phase = cycleService.getCurrentPhase();
     if (phase == null) return const SizedBox.shrink();
@@ -493,7 +493,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     );
   }
 
-  String _getPhasePrompt(CyclePhase phase, bool isEn) {
+  String _getPhasePrompt(CyclePhase phase, AppLanguage language) {
     // Date-rotated prompt
     final now = DateTime.now();
     final dayOfYear = now.difference(DateTime(now.year, 1, 1)).inDays;
@@ -567,7 +567,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
   // CORRELATION INSIGHT
   // ═══════════════════════════════════════════════════════════════════════
 
-  Widget _buildCorrelationCard(BuildContext context, bool isDark, bool isEn) {
+  Widget _buildCorrelationCard(BuildContext context, bool isDark, AppLanguage language) {
     final correlationAsync = ref.watch(cycleCorrelationServiceProvider);
 
     return correlationAsync.when(
@@ -592,7 +592,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    L10nService.get('cycle_sync.cycle_sync.add_more_entries_to_surface_cycleemotion', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('cycle_sync.cycle_sync.add_more_entries_to_surface_cycleemotion', language),
                     style: AppTypography.decorativeScript(
                       fontSize: 13,
                       color: isDark
@@ -625,7 +625,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   ),
                   const SizedBox(width: 8),
                   GradientText(
-                    L10nService.get('cycle_sync.cycle_sync.cycle_insight', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('cycle_sync.cycle_sync.cycle_insight', language),
                     variant: GradientTextVariant.aurora,
                     style: AppTypography.displayFont.copyWith(
                       fontSize: 12,
@@ -660,7 +660,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     BuildContext context,
     dynamic cycleService,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final cycleLength = cycleService.getAverageCycleLength() as int;
     final currentDay = cycleService.getCurrentCycleDay() as int?;
@@ -673,7 +673,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('cycle_sync.cycle_sync.phase_timeline', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('cycle_sync.cycle_sync.phase_timeline', language),
             variant: GradientTextVariant.aurora,
             style: AppTypography.modernAccent(
               fontSize: 15,
@@ -819,9 +819,9 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
   // LOG PERIOD FAB
   // ═══════════════════════════════════════════════════════════════════════
 
-  Widget _buildLogPeriodFab(BuildContext context, bool isEn) {
+  Widget _buildLogPeriodFab(BuildContext context, AppLanguage language) {
     return Semantics(
-      label: L10nService.get('cycle_sync.cycle_sync.log_period_start', isEn ? AppLanguage.en : AppLanguage.tr),
+      label: L10nService.get('cycle_sync.cycle_sync.log_period_start', language),
       button: true,
       child: FloatingActionButton.extended(
         onPressed: () => _showLogPeriodSheet(context, isEn),
@@ -829,14 +829,14 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
         foregroundColor: Colors.white,
         icon: const Icon(Icons.water_drop_rounded),
         label: Text(
-          L10nService.get('cycle_sync.cycle_sync.log_period', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('cycle_sync.cycle_sync.log_period', language),
           style: AppTypography.modernAccent(fontWeight: FontWeight.w600),
         ),
       ),
     );
   }
 
-  void _showLogPeriodSheet(BuildContext context, bool isEn) {
+  void _showLogPeriodSheet(BuildContext context, AppLanguage language) {
     HapticFeedback.lightImpact();
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
@@ -883,7 +883,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   ),
                   const SizedBox(height: 24),
                   GradientText(
-                    L10nService.get('cycle_sync.cycle_sync.log_period_start_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('cycle_sync.cycle_sync.log_period_start_1', language),
                     variant: GradientTextVariant.aurora,
                     style: AppTypography.modernAccent(
                       fontSize: 16,
@@ -892,7 +892,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    L10nService.get('cycle_sync.cycle_sync.mark_today_as_the_start_of_your_period', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('cycle_sync.cycle_sync.mark_today_as_the_start_of_your_period', language),
                     style: AppTypography.subtitle(
                       color: isDark
                           ? AppColors.textSecondary
@@ -933,7 +933,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                         ],
                       ),
                       child: Text(
-                        L10nService.get('cycle_sync.cycle_sync.period_started_today', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('cycle_sync.cycle_sync.period_started_today', language),
                         textAlign: TextAlign.center,
                         style: AppTypography.modernAccent(
                           fontSize: 16,
@@ -947,7 +947,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   TextButton(
                     onPressed: () => Navigator.pop(ctx),
                     child: Text(
-                      L10nService.get('cycle_sync.cycle_sync.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('cycle_sync.cycle_sync.cancel', language),
                       style: AppTypography.subtitle(
                         color: isDark
                             ? AppColors.textMuted
@@ -971,7 +971,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
   Widget _buildPremiumGate(
     BuildContext context,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     bool isPremium, {
     required Widget child,
     required PaywallContext paywallContext,
@@ -1004,7 +1004,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   Icon(Icons.lock_outline, size: 28, color: AppColors.starGold),
                   const SizedBox(height: 8),
                   Text(
-                    L10nService.get('cycle_sync.cycle_sync.unlock_deeper_cycle_insights', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('cycle_sync.cycle_sync.unlock_deeper_cycle_insights', language),
                     style: AppTypography.modernAccent(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
@@ -1015,7 +1015,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   ),
                   const SizedBox(height: 12),
                   GradientButton.gold(
-                    label: L10nService.get('common.upgrade_to_pro', isEn ? AppLanguage.en : AppLanguage.tr),
+                    label: L10nService.get('common.upgrade_to_pro', language),
                     onPressed: () => showContextualPaywall(
                       context,
                       ref,

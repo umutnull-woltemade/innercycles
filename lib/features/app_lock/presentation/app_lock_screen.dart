@@ -42,7 +42,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
 
     final isEn = StorageService.loadLanguage() == AppLanguage.en;
     final success = await service.authenticateWithBiometrics(
-      reason: L10nService.get('app_lock.app_lock.unlock_innercycles', isEn ? AppLanguage.en : AppLanguage.tr),
+      reason: L10nService.get('app_lock.app_lock.unlock_innercycles', language),
     );
     if (success && mounted) {
       context.go(Routes.today);
@@ -104,7 +104,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
               const SizedBox(height: 16),
 
               Text(
-                L10nService.get('app_lock.app_lock.enter_pin', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('app_lock.app_lock.enter_pin', language),
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 20,
                   color: isDark
@@ -117,7 +117,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
 
               if (_showError)
                 Text(
-                  L10nService.get('app_lock.app_lock.incorrect_pin', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('app_lock.app_lock.incorrect_pin', language),
                   style: AppTypography.subtitle(
                     color: AppColors.error,
                     fontSize: 14,
@@ -231,9 +231,9 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
     );
   }
 
-  Widget _buildDeleteButton(bool isDark, bool isEn) {
+  Widget _buildDeleteButton(bool isDark, AppLanguage language) {
     return Semantics(
-      label: L10nService.get('app_lock.app_lock.delete', isEn ? AppLanguage.en : AppLanguage.tr),
+      label: L10nService.get('app_lock.app_lock.delete', language),
       button: true,
       child: GestureDetector(
         onTap: _onDelete,
@@ -254,9 +254,9 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
     );
   }
 
-  Widget _buildBioButton(bool isDark, bool isEn) {
+  Widget _buildBioButton(bool isDark, AppLanguage language) {
     return Semantics(
-      label: L10nService.get('app_lock.app_lock.unlock_with_biometrics', isEn ? AppLanguage.en : AppLanguage.tr),
+      label: L10nService.get('app_lock.app_lock.unlock_with_biometrics', language),
       button: true,
       child: GestureDetector(
         onTap: () {

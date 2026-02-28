@@ -93,7 +93,7 @@ class LibraryHubScreen extends ConsumerWidget {
             ),
             slivers: [
               GlassSliverAppBar(
-                title: L10nService.get('library.library_hub.library', isEn ? AppLanguage.en : AppLanguage.tr),
+                title: L10nService.get('library.library_hub.library', language),
                 showBackButton: false,
               ),
               SliverPadding(
@@ -102,7 +102,7 @@ class LibraryHubScreen extends ConsumerWidget {
                   delegate: SliverChildListDelegate([
                     // Header text
                     Text(
-                      L10nService.get('library.library_hub.your_personal_data_vault', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('library.library_hub.your_personal_data_vault', language),
                       style: AppTypography.subtitle(
                         fontSize: 14,
                         color: isDark
@@ -123,7 +123,7 @@ class LibraryHubScreen extends ConsumerWidget {
                             child: _CategoryCard(
                               category: cat,
                               isDark: isDark,
-                              isEn: isEn,
+                              language: language,
                             ),
                           )
                           .animate()
@@ -141,7 +141,7 @@ class LibraryHubScreen extends ConsumerWidget {
 
                     ToolEcosystemFooter(
                       currentToolId: 'libraryHub',
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                     ),
                     const SizedBox(height: AppConstants.spacingHuge),
@@ -172,11 +172,12 @@ class _LibraryCategory {
 class _CategoryCard extends StatelessWidget {
   final _LibraryCategory category;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   const _CategoryCard({
     required this.category,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override

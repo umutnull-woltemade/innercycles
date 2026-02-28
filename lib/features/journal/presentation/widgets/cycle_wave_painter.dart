@@ -41,7 +41,8 @@ class CycleWaveChart extends StatefulWidget {
   final Map<FocusArea, List<CycleDataPoint>> areaData;
   final Set<FocusArea> visibleAreas;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final int displayDays;
   final double animationProgress;
   final ValueChanged<CycleDataPointInfo?>? onPointSelected;
@@ -51,7 +52,7 @@ class CycleWaveChart extends StatefulWidget {
     required this.areaData,
     required this.visibleAreas,
     required this.isDark,
-    this.isEn = true,
+    this.language = true,
     required this.displayDays,
     this.animationProgress = 1.0,
     this.onPointSelected,
@@ -77,7 +78,7 @@ class _CycleWaveChartState extends State<CycleWaveChart> {
         });
       },
       child: Semantics(
-        label: L10nService.get('journal.cycle_wave_painter.emotional_cycle_wave_chart', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+        label: L10nService.get('journal.cycle_wave_painter.emotional_cycle_wave_chart', widget.language),
         image: true,
         child: RepaintBoundary(
           child: CustomPaint(

@@ -758,7 +758,7 @@ class _NotFoundScreen extends StatelessWidget {
             const Icon(Icons.explore_off, size: 64, color: Colors.white38),
             const SizedBox(height: 24),
             Text(
-              L10nService.get('error.page_not_found', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('error.page_not_found', language),
               style: Theme.of(
                 context,
               ).textTheme.headlineSmall?.copyWith(color: Colors.white),
@@ -777,7 +777,7 @@ class _NotFoundScreen extends StatelessWidget {
               onPressed: () => context.go(Routes.today),
               icon: const Icon(Icons.home, color: Colors.white70),
               label: Text(
-                L10nService.get('common.home', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('common.home', language),
                 style: AppTypography.elegantAccent(color: Colors.white70),
               ),
             ),

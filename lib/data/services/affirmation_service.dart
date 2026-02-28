@@ -1,3 +1,4 @@
+import 'package:innercycles/data/providers/app_providers.dart';
 // ════════════════════════════════════════════════════════════════════════════
 // AFFIRMATION SERVICE - Daily Affirmation Engine
 // ════════════════════════════════════════════════════════════════════════════
@@ -57,7 +58,7 @@ enum AffirmationCategory {
     }
   }
 
-  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+  String localizedName(AppLanguage language) => language.isEn ? displayNameEn : displayNameTr;
 
   String get iconData {
     switch (this) {

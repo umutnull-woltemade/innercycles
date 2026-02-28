@@ -47,7 +47,7 @@ class BlindSpotScreen extends ConsumerWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    L10nService.get('blind_spot.blind_spot.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('blind_spot.blind_spot.could_not_load_your_local_data_is_unaffe', language),
                     textAlign: TextAlign.center,
                     style: AppTypography.subtitle(
                       color: isDark
@@ -61,7 +61,7 @@ class BlindSpotScreen extends ConsumerWidget {
                         ref.invalidate(blindSpotServiceProvider),
                     icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
                     label: Text(
-                      L10nService.get('blind_spot.blind_spot.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('blind_spot.blind_spot.retry', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
                       ),
@@ -77,7 +77,7 @@ class BlindSpotScreen extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      L10nService.get('blind_spot.blind_spot.could_not_load_your_local_data_is_unaffe_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('blind_spot.blind_spot.could_not_load_your_local_data_is_unaffe_1', language),
                       textAlign: TextAlign.center,
                       style: AppTypography.subtitle(
                         color: isDark
@@ -91,7 +91,7 @@ class BlindSpotScreen extends ConsumerWidget {
                           ref.invalidate(journalServiceProvider),
                       icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
                       label: Text(
-                        L10nService.get('blind_spot.blind_spot.retry_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('blind_spot.blind_spot.retry_1', language),
                         style: AppTypography.elegantAccent(
                           fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
                         ),
@@ -109,7 +109,7 @@ class BlindSpotScreen extends ConsumerWidget {
                   entries: entries,
                   hasEnough: hasEnough,
                   isDark: isDark,
-                  isEn: isEn,
+                  language: language,
                   onRefresh: () {
                     ref.invalidate(blindSpotServiceProvider);
                     ref.invalidate(journalServiceProvider);
@@ -133,7 +133,8 @@ class _BlindSpotBody extends StatefulWidget {
   final List entries;
   final bool hasEnough;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final VoidCallback onRefresh;
 
   const _BlindSpotBody({
@@ -141,7 +142,7 @@ class _BlindSpotBody extends StatefulWidget {
     required this.entries,
     required this.hasEnough,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onRefresh,
   });
 
@@ -199,14 +200,14 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
           ),
           slivers: [
             GlassSliverAppBar(
-              title: L10nService.get('blind_spot.blind_spot.what_your_journal_reveals', (widget.isEn ? AppLanguage.en : AppLanguage.tr)),
+              title: L10nService.get('blind_spot.blind_spot.what_your_journal_reveals', (widget.language)),
             ),
             if (!widget.hasEnough)
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: _NotEnoughData(
                   isDark: widget.isDark,
-                  isEn: widget.isEn,
+                  language: widget.language,
                   entryCount: widget.entries.length,
                 ),
               )
@@ -223,34 +224,34 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
                     _OverallInsightCard(
                       report: report,
                       isDark: widget.isDark,
-                      isEn: widget.isEn,
+                      language: widget.language,
                     ),
                     const SizedBox(height: 20),
                     _BlindSpotsList(
                       spots: report.blindSpots,
                       isDark: widget.isDark,
-                      isEn: widget.isEn,
+                      language: widget.language,
                     ),
                     const SizedBox(height: 20),
                     _GrowthSuggestionsCard(
                       report: report,
                       isDark: widget.isDark,
-                      isEn: widget.isEn,
+                      language: widget.language,
                     ),
                     const SizedBox(height: 24),
                     ContentDisclaimer(
-                      language: (widget.isEn ? AppLanguage.en : AppLanguage.tr),
+                      language: (widget.language),
                     ),
                     const SizedBox(height: 20),
                     _ShareInsightsButton(
                       spotCount: report.blindSpots.length,
                       isDark: widget.isDark,
-                      isEn: widget.isEn,
+                      language: widget.language,
                     ),
                     const SizedBox(height: 24),
                     ToolEcosystemFooter(
                       currentToolId: 'blindSpot',
-                      isEn: widget.isEn,
+                      language: widget.language,
                       isDark: widget.isDark,
                     ),
                     const SizedBox(height: 40),
@@ -270,12 +271,13 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
 
 class _NotEnoughData extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final int entryCount;
 
   const _NotEnoughData({
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.entryCount,
   });
 
@@ -297,7 +299,7 @@ class _NotEnoughData extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            L10nService.get('blind_spot.blind_spot.a_little_more_journaling_to_go', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('blind_spot.blind_spot.a_little_more_journaling_to_go', language),
             style: AppTypography.displayFont.copyWith(
               fontSize: 22,
               fontWeight: FontWeight.w600,
@@ -349,7 +351,7 @@ class _NotEnoughData extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  L10nService.getWithParams('blind_spot.entry_count_progress', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$entryCount'}),
+                  L10nService.getWithParams('blind_spot.entry_count_progress', language, params: {'count': '$entryCount'}),
                   style: AppTypography.modernAccent(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -372,12 +374,13 @@ class _NotEnoughData extends StatelessWidget {
 class _OverallInsightCard extends StatelessWidget {
   final BlindSpotReport report;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const _OverallInsightCard({
     required this.report,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -406,7 +409,7 @@ class _OverallInsightCard extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: GradientText(
-                  L10nService.get('blind_spot.blind_spot.your_overview', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('blind_spot.blind_spot.your_overview', language),
                   variant: GradientTextVariant.aurora,
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 17,
@@ -468,12 +471,13 @@ class _SpotCountBadge extends StatelessWidget {
 class _BlindSpotsList extends StatelessWidget {
   final List<BlindSpot> spots;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const _BlindSpotsList({
     required this.spots,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -492,7 +496,7 @@ class _BlindSpotsList extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: Text(
-                L10nService.get('blind_spot.blind_spot.no_blind_spots_detected_at_this_time_kee', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('blind_spot.blind_spot.no_blind_spots_detected_at_this_time_kee', language),
                 style: AppTypography.decorativeScript(
                   fontSize: 14,
                   color: isDark
@@ -510,7 +514,7 @@ class _BlindSpotsList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('blind_spot.blind_spot.blind_spots', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('blind_spot.blind_spot.blind_spots', language),
           variant: GradientTextVariant.amethyst,
           style: AppTypography.displayFont.copyWith(
             fontSize: 16,
@@ -521,7 +525,7 @@ class _BlindSpotsList extends StatelessWidget {
         ...List.generate(spots.length, (i) {
           return Padding(
             padding: const EdgeInsets.only(bottom: 10),
-            child: _BlindSpotCard(spot: spots[i], isDark: isDark, isEn: isEn)
+            child: _BlindSpotCard(spot: spots[i], isDark: isDark, language: language)
                 .animate()
                 .fadeIn(
                   delay: Duration(milliseconds: 100 + i * 80),
@@ -541,12 +545,13 @@ class _BlindSpotsList extends StatelessWidget {
 class _BlindSpotCard extends StatefulWidget {
   final BlindSpot spot;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const _BlindSpotCard({
     required this.spot,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -631,7 +636,7 @@ class _BlindSpotCardState extends State<_BlindSpotCard>
                           ),
                         ),
                         const SizedBox(height: 2),
-                        _SeverityIndicator(severity: spot.severity, isEn: isEn),
+                        _SeverityIndicator(severity: spot.severity, language: language),
                       ],
                     ),
                   ),
@@ -707,9 +712,10 @@ class _BlindSpotCardState extends State<_BlindSpotCard>
 
 class _SeverityIndicator extends StatelessWidget {
   final BlindSpotSeverity severity;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
-  const _SeverityIndicator({required this.severity, required this.isEn});
+  const _SeverityIndicator({required this.severity, required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -762,11 +768,11 @@ class _SeverityIndicator extends StatelessWidget {
   String get _label {
     switch (severity) {
       case BlindSpotSeverity.low:
-        return L10nService.get('blind_spot.blind_spot.subtle', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('blind_spot.blind_spot.subtle', language);
       case BlindSpotSeverity.medium:
-        return L10nService.get('blind_spot.blind_spot.notable', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('blind_spot.blind_spot.notable', language);
       case BlindSpotSeverity.high:
-        return L10nService.get('blind_spot.blind_spot.significant', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('blind_spot.blind_spot.significant', language);
     }
   }
 }
@@ -778,12 +784,13 @@ class _SeverityIndicator extends StatelessWidget {
 class _GrowthSuggestionsCard extends StatelessWidget {
   final BlindSpotReport report;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const _GrowthSuggestionsCard({
     required this.report,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -814,7 +821,7 @@ class _GrowthSuggestionsCard extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               GradientText(
-                L10nService.get('blind_spot.blind_spot.growth_suggestions', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('blind_spot.blind_spot.growth_suggestions', language),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 16,
@@ -879,18 +886,19 @@ class _GrowthSuggestionsCard extends StatelessWidget {
 class _ShareInsightsButton extends StatelessWidget {
   final int spotCount;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const _ShareInsightsButton({
     required this.spotCount,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
   Widget build(BuildContext context) {
     return GradientButton(
-      label: L10nService.get('blind_spot.blind_spot.share_your_insights', isEn ? AppLanguage.en : AppLanguage.tr),
+      label: L10nService.get('blind_spot.blind_spot.share_your_insights', language),
       icon: Icons.share_rounded,
       expanded: true,
       gradient: const LinearGradient(

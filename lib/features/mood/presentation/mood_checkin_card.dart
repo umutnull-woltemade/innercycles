@@ -44,7 +44,7 @@ class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
             todayMood: todayMood,
             weekMoods: weekMoods,
             isDark: isDark,
-            isEn: isEn,
+            language: language,
           );
         }
 
@@ -53,13 +53,13 @@ class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
             todayMood: todayMood,
             weekMoods: weekMoods,
             isDark: isDark,
-            isEn: isEn,
+            language: language,
           );
         }
 
         return _CheckinView(
           isDark: isDark,
-          isEn: isEn,
+          language: language,
           onSelect: (mood, emoji) async {
             await service.logMood(mood, emoji);
             HapticService.moodSelected();
@@ -78,12 +78,13 @@ class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
 
 class _CheckinView extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final Function(int, String) onSelect;
 
   const _CheckinView({
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onSelect,
   });
 
@@ -94,7 +95,7 @@ class _CheckinView extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            L10nService.get('mood.mood_checkin.whats_present_for_you_right_now', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('mood.mood_checkin.whats_present_for_you_right_now', language),
             style: AppTypography.displayFont.copyWith(
               fontSize: 15,
               fontWeight: FontWeight.w600,
@@ -143,13 +144,14 @@ class _LoggedView extends StatelessWidget {
   final MoodEntry todayMood;
   final List<MoodEntry?> weekMoods;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const _LoggedView({
     required this.todayMood,
     required this.weekMoods,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -169,7 +171,7 @@ class _LoggedView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      L10nService.get('mood.mood_checkin.todays_mood', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('mood.mood_checkin.todays_mood', language),
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -251,18 +253,18 @@ class _LoggedView extends StatelessWidget {
     ).animate().fadeIn(duration: 300.ms);
   }
 
-  String _moodLabel(int mood, bool isEn) {
+  String _moodLabel(int mood, AppLanguage language) {
     switch (mood) {
       case 1:
-        return L10nService.get('mood.mood_checkin.struggling', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('mood.mood_checkin.struggling', language);
       case 2:
-        return L10nService.get('mood.mood_checkin.low', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('mood.mood_checkin.low', language);
       case 3:
-        return L10nService.get('mood.mood_checkin.okay', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('mood.mood_checkin.okay', language);
       case 4:
-        return L10nService.get('mood.mood_checkin.good', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('mood.mood_checkin.good', language);
       case 5:
-        return L10nService.get('mood.mood_checkin.great', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('mood.mood_checkin.great', language);
       default:
         return '';
     }
@@ -290,13 +292,14 @@ class _ThankYouView extends StatelessWidget {
   final MoodEntry todayMood;
   final List<MoodEntry?> weekMoods;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const _ThankYouView({
     required this.todayMood,
     required this.weekMoods,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   /// Map mood level (1-5) to relevant emotion families for granular suggestion
@@ -347,7 +350,7 @@ class _ThankYouView extends StatelessWidget {
               const SizedBox(width: 14),
               Expanded(
                 child: Text(
-                  L10nService.get('mood.mood_checkin.mood_logged_get_more_specific', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('mood.mood_checkin.mood_logged_get_more_specific', language),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,

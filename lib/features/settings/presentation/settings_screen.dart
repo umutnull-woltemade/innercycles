@@ -238,7 +238,7 @@ class SettingsScreen extends ConsumerWidget {
                               _GroupedSeparator(isDark: isDark),
                               _SyncStatusTile(
                                 isDark: isDark,
-                                isEn: language == AppLanguage.en,
+                                language: language,
                               ),
                             ],
                             _GroupedSeparator(isDark: isDark),
@@ -746,7 +746,7 @@ class SettingsScreen extends ConsumerWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                L10nService.get('settings.no_active_session', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('settings.no_active_session', language),
               ),
               backgroundColor: AppColors.error,
               behavior: SnackBarBehavior.floating,
@@ -781,7 +781,7 @@ class SettingsScreen extends ConsumerWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                L10nService.get('settings.account_deleted', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('settings.account_deleted', language),
               ),
               backgroundColor: AppColors.surfaceLight,
               behavior: SnackBarBehavior.floating,
@@ -1000,13 +1000,14 @@ class _GroupedSeparator extends StatelessWidget {
 /// Sync status indicator tile for Settings → Account section
 class _SyncStatusTile extends ConsumerWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
-  const _SyncStatusTile({required this.isDark, required this.isEn});
+  const _SyncStatusTile({required this.isDark, required this.language});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = language;
     final syncAsync = ref.watch(syncStatusProvider);
     final pendingCount = ref.watch(pendingSyncCountProvider);
 
@@ -1319,8 +1320,8 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                     ),
                     Semantics(
                       label: isEnabled
-                          ? L10nService.get('settings.app_lock_enabled', isEn ? AppLanguage.en : AppLanguage.tr)
-                          : L10nService.get('settings.app_lock_disabled', isEn ? AppLanguage.en : AppLanguage.tr),
+                          ? L10nService.get('settings.app_lock_enabled', language)
+                          : L10nService.get('settings.app_lock_disabled', language),
                       toggled: isEnabled,
                       child: CupertinoSwitch(
                         value: isEnabled,

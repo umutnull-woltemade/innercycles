@@ -34,7 +34,7 @@ class ExportService {
   ExportResult export({
     required ExportFormat format,
     bool isPremium = false,
-    bool isEn = true,
+    AppLanguage language = AppLanguage.en,
   }) {
     final entries = isPremium
         ? _journalService.getAllEntries()
@@ -60,29 +60,29 @@ class ExportService {
     return _journalService.getEntriesByDateRange(weekAgo, now);
   }
 
-  ExportResult _exportText(List<JournalEntry> entries, bool isEn) {
+  ExportResult _exportText(List<JournalEntry> entries, AppLanguage language) {
     final buffer = StringBuffer();
     buffer.writeln(
-      L10nService.get('data.services.export.innercycles_journal_export', isEn ? AppLanguage.en : AppLanguage.tr),
+      L10nService.get('data.services.export.innercycles_journal_export', language),
     );
     buffer.writeln('=' * 40);
     buffer.writeln(
-      '${L10nService.get('data.services.export.exported', isEn ? AppLanguage.en : AppLanguage.tr)}: ${DateTime.now().toString().substring(0, 10)}',
+      '${L10nService.get('data.services.export.exported', language)}: ${DateTime.now().toString().substring(0, 10)}',
     );
-    buffer.writeln('${L10nService.get('data.services.export.entries', isEn ? AppLanguage.en : AppLanguage.tr)}: ${entries.length}');
+    buffer.writeln('${L10nService.get('data.services.export.entries', language)}: ${entries.length}');
     buffer.writeln('=' * 40);
     buffer.writeln();
 
     for (final entry in entries) {
-      buffer.writeln('${L10nService.get('data.services.export.date', isEn ? AppLanguage.en : AppLanguage.tr)}: ${entry.dateKey}');
+      buffer.writeln('${L10nService.get('data.services.export.date', language)}: ${entry.dateKey}');
       buffer.writeln(
-        '${L10nService.get('data.services.export.focus', isEn ? AppLanguage.en : AppLanguage.tr)}: ${entry.focusArea.localizedName(isEn)}',
+        '${L10nService.get('data.services.export.focus', language)}: ${entry.focusArea.localizedName(isEn)}',
       );
       buffer.writeln(
-        '${L10nService.get('data.services.export.rating', isEn ? AppLanguage.en : AppLanguage.tr)}: ${entry.overallRating}/5',
+        '${L10nService.get('data.services.export.rating', language)}: ${entry.overallRating}/5',
       );
       if (entry.note != null && entry.note!.isNotEmpty) {
-        buffer.writeln('${L10nService.get('data.services.export.note', isEn ? AppLanguage.en : AppLanguage.tr)}: ${entry.note}');
+        buffer.writeln('${L10nService.get('data.services.export.note', language)}: ${entry.note}');
       }
       buffer.writeln('-' * 30);
     }
@@ -95,7 +95,7 @@ class ExportService {
     );
   }
 
-  ExportResult _exportCsv(List<JournalEntry> entries, bool isEn) {
+  ExportResult _exportCsv(List<JournalEntry> entries, AppLanguage language) {
     final buffer = StringBuffer();
     buffer.writeln('date,focus_area,overall_rating,note');
 

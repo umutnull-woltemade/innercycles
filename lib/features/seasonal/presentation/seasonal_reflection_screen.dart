@@ -43,7 +43,7 @@ class SeasonalReflectionScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('seasonal.seasonal_reflection.seasonal_reflections', isEn ? AppLanguage.en : AppLanguage.tr),
+                  title: L10nService.get('seasonal.seasonal_reflection.seasonal_reflections', language),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -56,7 +56,7 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                             const CosmicLoadingIndicator(),
                             const SizedBox(height: 12),
                             Text(
-                              L10nService.get('seasonal.seasonal_reflection.loading_reflections', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('seasonal.seasonal_reflection.loading_reflections', language),
                               style: AppTypography.subtitle(
                                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                               ),
@@ -88,7 +88,7 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                                 icon: Icon(Icons.refresh_rounded,
                                     size: 16, color: AppColors.starGold),
                                 label: Text(
-                                  L10nService.get('seasonal.seasonal_reflection.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                                  L10nService.get('seasonal.seasonal_reflection.retry', language),
                                   style: AppTypography.elegantAccent(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
@@ -113,7 +113,7 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                             module: module,
                             completion: completion,
                             isDark: isDark,
-                            isEn: isEn,
+                            language: language,
                           ),
                           const SizedBox(height: 20),
 
@@ -125,7 +125,7 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                               prompt: prompt,
                               isCompleted: isCompleted,
                               isDark: isDark,
-                              isEn: isEn,
+                              language: language,
                               onComplete: () async {
                                 await service.completePrompt(prompt.index);
                                 if (!context.mounted) return;
@@ -140,12 +140,12 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                           const SizedBox(height: 24),
 
                           // All seasons overview
-                          _AllSeasonsRow(isDark: isDark, isEn: isEn),
+                          _AllSeasonsRow(isDark: isDark, language: language),
                           const SizedBox(height: 24),
                           ContentDisclaimer(language: language),
                           ToolEcosystemFooter(
                             currentToolId: 'seasonalReflection',
-                            isEn: isEn,
+                            language: language,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 40),
@@ -169,13 +169,14 @@ class _SeasonHeader extends StatelessWidget {
   final SeasonalModule module;
   final double completion;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const _SeasonHeader({
     required this.module,
     required this.completion,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -220,7 +221,7 @@ class _SeasonHeader extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '${(completion * 100).round()}% ${L10nService.get('seasonal.seasonal_reflection.complete', isEn ? AppLanguage.en : AppLanguage.tr)}',
+            '${(completion * 100).round()}% ${L10nService.get('seasonal.seasonal_reflection.complete', language)}',
             style: AppTypography.modernAccent(
               fontSize: 12,
               fontWeight: FontWeight.w600,
@@ -250,14 +251,15 @@ class _PromptCard extends StatelessWidget {
   final SeasonalPrompt prompt;
   final bool isCompleted;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final VoidCallback onComplete;
 
   const _PromptCard({
     required this.prompt,
     required this.isCompleted,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onComplete,
   });
 
@@ -335,7 +337,7 @@ class _PromptCard extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: GradientOutlinedButton(
-                  label: L10nService.get('seasonal.seasonal_reflection.mark_complete', isEn ? AppLanguage.en : AppLanguage.tr),
+                  label: L10nService.get('seasonal.seasonal_reflection.mark_complete', language),
                   icon: Icons.check_rounded,
                   variant: GradientTextVariant.aurora,
                   fontSize: 13,
@@ -352,9 +354,10 @@ class _PromptCard extends StatelessWidget {
 
 class _AllSeasonsRow extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
-  const _AllSeasonsRow({required this.isDark, required this.isEn});
+  const _AllSeasonsRow({required this.isDark, required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -368,7 +371,7 @@ class _AllSeasonsRow extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            L10nService.get('seasonal.seasonal_reflection.all_seasons', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('seasonal.seasonal_reflection.all_seasons', language),
             style: AppTypography.modernAccent(
               fontSize: 14,
               fontWeight: FontWeight.w600,

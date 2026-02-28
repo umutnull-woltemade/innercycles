@@ -228,18 +228,18 @@ class NotificationService {
     _isEn = await _readIsEn();
     final message =
         personalizedMessage ??
-        (L10nService.get('data.services.notification.take_a_moment_to_reflect_on_your_day', _isEn ? AppLanguage.en : AppLanguage.tr));
+        (L10nService.get('data.services.notification.take_a_moment_to_reflect_on_your_day', _language));
 
     await _notifications.zonedSchedule(
       id: dailyReflectionId,
-      title: L10nService.get('data.services.notification._your_daily_reflection', _isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('data.services.notification._your_daily_reflection', _language),
       body: message,
       scheduledDate: _nextInstanceOfTime(hour, minute),
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'daily_reflection',
-          L10nService.get('data.services.notification.daily_reflection', _isEn ? AppLanguage.en : AppLanguage.tr),
-          channelDescription: L10nService.get('data.services.notification.daily_journal_reflection_reminders', _isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('data.services.notification.daily_reflection', _language),
+          channelDescription: L10nService.get('data.services.notification.daily_journal_reflection_reminders', _language),
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',
@@ -292,14 +292,14 @@ class NotificationService {
     _isEn = await _readIsEn();
     await _notifications.zonedSchedule(
       id: eveningReflectionId,
-      title: L10nService.get('data.services.notification.evening_reflection', _isEn ? AppLanguage.en : AppLanguage.tr),
-      body: L10nService.get('data.services.notification.how_was_your_day_take_a_moment_to_journa', _isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('data.services.notification.evening_reflection', _language),
+      body: L10nService.get('data.services.notification.how_was_your_day_take_a_moment_to_journa', _language),
       scheduledDate: _nextInstanceOfTime(hour, minute),
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'evening_reflection',
-          L10nService.get('data.services.notification.evening_reflection_1', _isEn ? AppLanguage.en : AppLanguage.tr),
-          channelDescription: L10nService.get('data.services.notification.evening_journal_reflection_reminders', _isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('data.services.notification.evening_reflection_1', _language),
+          channelDescription: L10nService.get('data.services.notification.evening_journal_reflection_reminders', _language),
           importance: Importance.defaultImportance,
           priority: Priority.defaultPriority,
           icon: '@mipmap/ic_launcher',
@@ -345,14 +345,14 @@ class NotificationService {
 
     await _notifications.zonedSchedule(
       id: journalPromptId,
-      title: L10nService.get('data.services.notification.todays_journal_prompt', _isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('data.services.notification.todays_journal_prompt', _language),
       body: body,
       scheduledDate: _nextInstanceOfTime(hour, minute),
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'journal_prompt',
-          L10nService.get('data.services.notification.journal_prompts', _isEn ? AppLanguage.en : AppLanguage.tr),
-          channelDescription: L10nService.get('data.services.notification.daily_journaling_prompt_to_inspire_your', _isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('data.services.notification.journal_prompts', _language),
+          channelDescription: L10nService.get('data.services.notification.daily_journaling_prompt_to_inspire_your', _language),
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',
@@ -424,13 +424,13 @@ class NotificationService {
       title: _isEn
           ? '🔥 Your $currentStreak-day streak is at risk'
           : '🔥 $currentStreak günlük serin risk altında',
-      body: L10nService.get('data.services.notification.a_quick_checkin_keeps_your_momentum_goin', _isEn ? AppLanguage.en : AppLanguage.tr),
+      body: L10nService.get('data.services.notification.a_quick_checkin_keeps_your_momentum_goin', _language),
       scheduledDate: scheduledTime,
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'streak_risk',
-          L10nService.get('data.services.notification.streak_reminders', _isEn ? AppLanguage.en : AppLanguage.tr),
-          channelDescription: L10nService.get('data.services.notification.alerts_when_your_journaling_streak_is_ab', _isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('data.services.notification.streak_reminders', _language),
+          channelDescription: L10nService.get('data.services.notification.alerts_when_your_journaling_streak_is_ab', _language),
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',
@@ -473,7 +473,7 @@ class NotificationService {
 
     await _notifications.zonedSchedule(
       id: streakRecoveryId,
-      title: L10nService.get('data.services.notification.every_streak_starts_at_day_1', _isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('data.services.notification.every_streak_starts_at_day_1', _language),
       body: _isEn
           ? 'Your $lostStreak-day streak ended, but a fresh start is one entry away.'
           : '$lostStreak günlük serin sona erdi ama yeni bir başlangıç bir kayıt uzağında.',
@@ -481,8 +481,8 @@ class NotificationService {
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'streak_recovery',
-          L10nService.get('data.services.notification.streak_recovery', _isEn ? AppLanguage.en : AppLanguage.tr),
-          channelDescription: L10nService.get('data.services.notification.encouragement_to_start_a_new_streak', _isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('data.services.notification.streak_recovery', _language),
+          channelDescription: L10nService.get('data.services.notification.encouragement_to_start_a_new_streak', _language),
           importance: Importance.defaultImportance,
           priority: Priority.defaultPriority,
           icon: '@mipmap/ic_launcher',
@@ -522,13 +522,13 @@ class NotificationService {
       title: _isEn
           ? '📖 A memory from $yearsAgo year${yearsAgo == 1 ? '' : 's'} ago'
           : '📖 $yearsAgo yıl önceki bir anı',
-      body: L10nService.get('data.services.notification.see_what_you_wrote_on_this_day_your_past', _isEn ? AppLanguage.en : AppLanguage.tr),
+      body: L10nService.get('data.services.notification.see_what_you_wrote_on_this_day_your_past', _language),
       scheduledDate: scheduledTime,
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'on_this_day',
-          L10nService.get('data.services.notification.on_this_day', _isEn ? AppLanguage.en : AppLanguage.tr),
-          channelDescription: L10nService.get('data.services.notification.memories_from_past_journal_entries', _isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('data.services.notification.on_this_day', _language),
+          channelDescription: L10nService.get('data.services.notification.memories_from_past_journal_entries', _language),
           importance: Importance.defaultImportance,
           priority: Priority.defaultPriority,
           icon: '@mipmap/ic_launcher',
@@ -557,16 +557,16 @@ class NotificationService {
     String body;
 
     if (totalReferrals >= 10) {
-      title = L10nService.get('data.services.notification.u1f48e_lifetime_premium_unlocked', _isEn ? AppLanguage.en : AppLanguage.tr);
-      body = L10nService.get('data.services.notification.10_friends_joined_youve_earned_lifetime', _isEn ? AppLanguage.en : AppLanguage.tr);
+      title = L10nService.get('data.services.notification.u1f48e_lifetime_premium_unlocked', _language);
+      body = L10nService.get('data.services.notification.10_friends_joined_youve_earned_lifetime', _language);
     } else if (totalReferrals >= 3) {
-      title = L10nService.get('data.services.notification.u2b50_1_month_free_premium', _isEn ? AppLanguage.en : AppLanguage.tr);
+      title = L10nService.get('data.services.notification.u2b50_1_month_free_premium', _language);
       body = _isEn
           ? '$totalReferrals friends joined! You\'ve earned 1 month of free Premium.'
           : '$totalReferrals arkadaş katıldı! 1 ay ücretsiz Premium kazandın.';
     } else {
-      title = L10nService.get('data.services.notification.u1f381_referral_reward_7_days_premium', _isEn ? AppLanguage.en : AppLanguage.tr);
-      body = L10nService.get('data.services.notification.a_friend_joined_with_your_code_you_both', _isEn ? AppLanguage.en : AppLanguage.tr);
+      title = L10nService.get('data.services.notification.u1f381_referral_reward_7_days_premium', _language);
+      body = L10nService.get('data.services.notification.a_friend_joined_with_your_code_you_both', _language);
     }
 
     await _notifications.show(
@@ -576,8 +576,8 @@ class NotificationService {
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'referral_rewards',
-          L10nService.get('data.services.notification.referral_rewards', _isEn ? AppLanguage.en : AppLanguage.tr),
-          channelDescription: L10nService.get('data.services.notification.notifications_when_friends_join_with_you', _isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('data.services.notification.referral_rewards', _language),
+          channelDescription: L10nService.get('data.services.notification.notifications_when_friends_join_with_you', _language),
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',
@@ -600,14 +600,14 @@ class NotificationService {
     _isEn = await _readIsEn();
     await _notifications.zonedSchedule(
       id: moonCycleId,
-      title: L10nService.get('data.services.notification.moon_cycle_awareness', _isEn ? AppLanguage.en : AppLanguage.tr),
-      body: L10nService.get('data.services.notification.a_new_moon_phase_is_here_a_good_time_for', _isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('data.services.notification.moon_cycle_awareness', _language),
+      body: L10nService.get('data.services.notification.a_new_moon_phase_is_here_a_good_time_for', _language),
       scheduledDate: _nextInstanceOfTime(20, 0),
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'moon_cycle',
-          L10nService.get('data.services.notification.moon_cycle_awareness_1', _isEn ? AppLanguage.en : AppLanguage.tr),
-          channelDescription: L10nService.get('data.services.notification.moon_cycle_mindfulness_reminders', _isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('data.services.notification.moon_cycle_awareness_1', _language),
+          channelDescription: L10nService.get('data.services.notification.moon_cycle_mindfulness_reminders', _language),
           importance: Importance.defaultImportance,
           priority: Priority.defaultPriority,
           icon: '@mipmap/ic_launcher',
@@ -627,14 +627,14 @@ class NotificationService {
     _isEn = await _readIsEn();
     await _notifications.show(
       id: newMoonId,
-      title: L10nService.get('data.services.notification._new_moon', _isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('data.services.notification._new_moon', _language),
       body: message ??
-          (L10nService.get('data.services.notification.a_time_for_new_beginnings_and_setting_in', _isEn ? AppLanguage.en : AppLanguage.tr)),
+          (L10nService.get('data.services.notification.a_time_for_new_beginnings_and_setting_in', _language)),
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'moon_cycle',
-          L10nService.get('data.services.notification.moon_cycle_awareness_2', _isEn ? AppLanguage.en : AppLanguage.tr),
-          channelDescription: L10nService.get('data.services.notification.moon_cycle_mindfulness_reminders_1', _isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('data.services.notification.moon_cycle_awareness_2', _language),
+          channelDescription: L10nService.get('data.services.notification.moon_cycle_mindfulness_reminders_1', _language),
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',
@@ -655,14 +655,14 @@ class NotificationService {
     _isEn = await _readIsEn();
     await _notifications.show(
       id: fullMoonId,
-      title: L10nService.get('data.services.notification._full_moon', _isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('data.services.notification._full_moon', _language),
       body: message ??
-          (L10nService.get('data.services.notification.a_time_for_reflection_and_gratitude', _isEn ? AppLanguage.en : AppLanguage.tr)),
+          (L10nService.get('data.services.notification.a_time_for_reflection_and_gratitude', _language)),
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'moon_cycle',
-          L10nService.get('data.services.notification.moon_cycle_awareness_3', _isEn ? AppLanguage.en : AppLanguage.tr),
-          channelDescription: L10nService.get('data.services.notification.moon_cycle_mindfulness_reminders_2', _isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('data.services.notification.moon_cycle_awareness_3', _language),
+          channelDescription: L10nService.get('data.services.notification.moon_cycle_mindfulness_reminders_2', _language),
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',
@@ -713,7 +713,7 @@ class NotificationService {
     if (kIsWeb) return;
     _isEn = await _readIsEn();
 
-    final title = L10nService.get('data.services.notification.note_reminder', _isEn ? AppLanguage.en : AppLanguage.tr);
+    final title = L10nService.get('data.services.notification.note_reminder', _language);
     final body = message ?? noteTitle;
 
     final scheduledTz = tz.TZDateTime.from(scheduledAt, tz.local);
@@ -742,8 +742,8 @@ class NotificationService {
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'note_reminders',
-          L10nService.get('data.services.notification.note_reminders', _isEn ? AppLanguage.en : AppLanguage.tr),
-          channelDescription: L10nService.get('data.services.notification.reminders_for_your_personal_notes', _isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('data.services.notification.note_reminders', _language),
+          channelDescription: L10nService.get('data.services.notification.reminders_for_your_personal_notes', _language),
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',
@@ -823,8 +823,8 @@ class NotificationService {
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'birthday_reminders',
-          L10nService.get('data.services.notification.birthday_reminders', _isEn ? AppLanguage.en : AppLanguage.tr),
-          channelDescription: L10nService.get('data.services.notification.birthday_reminder_notifications', _isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('data.services.notification.birthday_reminders', _language),
+          channelDescription: L10nService.get('data.services.notification.birthday_reminder_notifications', _language),
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',
@@ -859,8 +859,8 @@ class NotificationService {
           notificationDetails: NotificationDetails(
             android: AndroidNotificationDetails(
               'birthday_reminders',
-              L10nService.get('data.services.notification.birthday_reminders_1', _isEn ? AppLanguage.en : AppLanguage.tr),
-              channelDescription: L10nService.get('data.services.notification.birthday_reminder_notifications_1', _isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('data.services.notification.birthday_reminders_1', _language),
+              channelDescription: L10nService.get('data.services.notification.birthday_reminder_notifications_1', _language),
               importance: Importance.defaultImportance,
               priority: Priority.defaultPriority,
               icon: '@mipmap/ic_launcher',

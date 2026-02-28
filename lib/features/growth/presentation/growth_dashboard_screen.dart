@@ -105,7 +105,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                       icon: Icon(Icons.refresh_rounded,
                           size: 16, color: AppColors.starGold),
                       label: Text(
-                        L10nService.get('growth.growth_dashboard.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('growth.growth_dashboard.retry', language),
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -144,7 +144,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     GrowthChallengeService? challengeService,
     GratitudeService? gratitudeService,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final now = DateTime.now();
     final entries = journalService.getAllEntries();
@@ -176,7 +176,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(title: L10nService.get('growth.growth_dashboard.your_growth', isEn ? AppLanguage.en : AppLanguage.tr)),
+          GlassSliverAppBar(title: L10nService.get('growth.growth_dashboard.your_growth', language)),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
@@ -261,11 +261,11 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                   isEn,
                 ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
                 ContentDisclaimer(
-                  language: isEn ? AppLanguage.en : AppLanguage.tr,
+                  language: language,
                 ),
                 ToolEcosystemFooter(
                   currentToolId: 'growthDashboard',
-                  isEn: isEn,
+                  language: language,
                   isDark: isDark,
                 ),
                 const SizedBox(height: 40),
@@ -320,7 +320,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     BuildContext context,
     int score,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingXl),
@@ -400,7 +400,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          L10nService.get('growth.growth_dashboard.growth_score', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('growth.growth_dashboard.growth_score', language),
                           style: AppTypography.elegantAccent(
                             fontSize: 13,
                             color: Colors.white.withValues(alpha: 0.85),
@@ -430,15 +430,15 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     );
   }
 
-  String _getScoreMessage(int score, bool isEn) {
+  String _getScoreMessage(int score, AppLanguage language) {
     if (score >= 80) {
-      return L10nService.get('growth.growth_dashboard.outstanding_you_are_deeply_committed_to', isEn ? AppLanguage.en : AppLanguage.tr);
+      return L10nService.get('growth.growth_dashboard.outstanding_you_are_deeply_committed_to', language);
     } else if (score >= 60) {
-      return L10nService.get('growth.growth_dashboard.great_progress_keep_building_your_habits', isEn ? AppLanguage.en : AppLanguage.tr);
+      return L10nService.get('growth.growth_dashboard.great_progress_keep_building_your_habits', language);
     } else if (score >= 30) {
-      return L10nService.get('growth.growth_dashboard.good_start_every_entry_brings_you_closer', isEn ? AppLanguage.en : AppLanguage.tr);
+      return L10nService.get('growth.growth_dashboard.good_start_every_entry_brings_you_closer', language);
     } else {
-      return L10nService.get('growth.growth_dashboard.begin_your_progress_one_entry_at_a_time', isEn ? AppLanguage.en : AppLanguage.tr);
+      return L10nService.get('growth.growth_dashboard.begin_your_progress_one_entry_at_a_time', language);
     }
   }
 
@@ -453,7 +453,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     int currentStreak,
     int longestStreak,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     return PremiumCard(
       style: PremiumCardStyle.subtle,
@@ -479,7 +479,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
               ),
               const SizedBox(width: 8),
               Text(
-                L10nService.get('growth.growth_dashboard.days', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('growth.growth_dashboard.days', language),
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
@@ -493,7 +493,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           const SizedBox(height: 8),
           // Longest streak
           Text(
-            L10nService.getWithParams('growth.best_streak_days', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$longestStreak'}),
+            L10nService.getWithParams('growth.best_streak_days', language, params: {'count': '$longestStreak'}),
             style: AppTypography.elegantAccent(
               fontSize: 14,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -588,7 +588,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     int completedChallenges,
     int gratitudeCount,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final milestones = _buildMilestoneData(
       entries: entries,
@@ -598,14 +598,14 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       focusAreasCoveredThisMonth: focusAreasCoveredThisMonth,
       completedChallenges: completedChallenges,
       gratitudeCount: gratitudeCount,
-      isEn: isEn,
+      language: language,
     );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('growth.growth_dashboard.milestones', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('growth.growth_dashboard.milestones', language),
           variant: GradientTextVariant.gold,
           style: AppTypography.modernAccent(
             fontSize: 15,
@@ -637,7 +637,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     BuildContext context,
     _Milestone milestone,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     int index,
   ) {
     final unlocked = milestone.unlocked;
@@ -753,20 +753,20 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     required int focusAreasCoveredThisMonth,
     required int completedChallenges,
     required int gratitudeCount,
-    required bool isEn,
+    required AppLanguage language,
   }) {
     final maxStreak = math.max(currentStreak, longestStreak);
 
     return [
       _Milestone(
         icon: Icons.edit_note,
-        title: L10nService.get('growth.growth_dashboard.first_entry', isEn ? AppLanguage.en : AppLanguage.tr),
+        title: L10nService.get('growth.growth_dashboard.first_entry', language),
         unlocked: entries.isNotEmpty,
-        progressHint: L10nService.get('growth.growth_dashboard.1_entry_to_activate', isEn ? AppLanguage.en : AppLanguage.tr),
+        progressHint: L10nService.get('growth.growth_dashboard.1_entry_to_activate', language),
       ),
       _Milestone(
         icon: Icons.local_fire_department,
-        title: L10nService.get('growth.growth_dashboard.7day_observer', isEn ? AppLanguage.en : AppLanguage.tr),
+        title: L10nService.get('growth.growth_dashboard.7day_observer', language),
         unlocked: maxStreak >= 7,
         progressHint: maxStreak < 7
             ? isEn
@@ -776,7 +776,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.auto_graph,
-        title: L10nService.get('growth.growth_dashboard.pattern_seeker', isEn ? AppLanguage.en : AppLanguage.tr),
+        title: L10nService.get('growth.growth_dashboard.pattern_seeker', language),
         unlocked: entries.length >= 7,
         progressHint: entries.length < 7
             ? isEn
@@ -786,7 +786,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.nights_stay,
-        title: L10nService.get('growth.growth_dashboard.dream_logger', isEn ? AppLanguage.en : AppLanguage.tr),
+        title: L10nService.get('growth.growth_dashboard.dream_logger', language),
         unlocked: dreamCount >= 3,
         progressHint: dreamCount < 3
             ? isEn
@@ -796,7 +796,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.emoji_events,
-        title: L10nService.get('growth.growth_dashboard.challenge_completer', isEn ? AppLanguage.en : AppLanguage.tr),
+        title: L10nService.get('growth.growth_dashboard.challenge_completer', language),
         unlocked: completedChallenges >= 3,
         progressHint: completedChallenges < 3
             ? isEn
@@ -806,7 +806,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.favorite,
-        title: L10nService.get('growth.growth_dashboard.gratitude_streak', isEn ? AppLanguage.en : AppLanguage.tr),
+        title: L10nService.get('growth.growth_dashboard.gratitude_streak', language),
         unlocked: gratitudeCount >= 7,
         progressHint: gratitudeCount < 7
             ? isEn
@@ -816,7 +816,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.emoji_events,
-        title: L10nService.get('growth.growth_dashboard.30day_streak', isEn ? AppLanguage.en : AppLanguage.tr),
+        title: L10nService.get('growth.growth_dashboard.30day_streak', language),
         unlocked: maxStreak >= 30,
         progressHint: maxStreak < 30
             ? isEn
@@ -826,7 +826,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.psychology,
-        title: L10nService.get('growth.growth_dashboard.self_aware', isEn ? AppLanguage.en : AppLanguage.tr),
+        title: L10nService.get('growth.growth_dashboard.self_aware', language),
         unlocked: focusAreasCoveredThisMonth >= 5,
         progressHint: focusAreasCoveredThisMonth < 5
             ? isEn
@@ -836,9 +836,9 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.share,
-        title: L10nService.get('growth.growth_dashboard.story_teller', isEn ? AppLanguage.en : AppLanguage.tr),
+        title: L10nService.get('growth.growth_dashboard.story_teller', language),
         unlocked: false,
-        progressHint: L10nService.get('growth.growth_dashboard.share_your_progress', isEn ? AppLanguage.en : AppLanguage.tr),
+        progressHint: L10nService.get('growth.growth_dashboard.share_your_progress', language),
       ),
     ];
   }
@@ -847,41 +847,41 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
   // EXPLORE GROWTH TOOLS
   // ══════════════════════════════════════════════════════════════════════════
 
-  Widget _buildExploreSection(BuildContext context, bool isDark, bool isEn) {
+  Widget _buildExploreSection(BuildContext context, bool isDark, AppLanguage language) {
     final tools = [
       _GrowthTool(
         icon: Icons.fingerprint_outlined,
-        title: L10nService.get('growth.growth_dashboard.your_archetype', isEn ? AppLanguage.en : AppLanguage.tr),
-        subtitle: L10nService.get('growth.growth_dashboard.emotional_profile', isEn ? AppLanguage.en : AppLanguage.tr),
+        title: L10nService.get('growth.growth_dashboard.your_archetype', language),
+        subtitle: L10nService.get('growth.growth_dashboard.emotional_profile', language),
         route: Routes.archetype,
         color: AppColors.amethyst,
       ),
       _GrowthTool(
         icon: Icons.visibility_off_outlined,
-        title: L10nService.get('growth.growth_dashboard.blind_spots', isEn ? AppLanguage.en : AppLanguage.tr),
-        subtitle: L10nService.get('growth.growth_dashboard.hidden_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
+        title: L10nService.get('growth.growth_dashboard.blind_spots', language),
+        subtitle: L10nService.get('growth.growth_dashboard.hidden_patterns', language),
         route: Routes.blindSpot,
         color: AppColors.brandPink,
       ),
       // compatibility/relationship reflection removed (killed feature)
       _GrowthTool(
         icon: Icons.military_tech_outlined,
-        title: L10nService.get('growth.growth_dashboard.milestones_1', isEn ? AppLanguage.en : AppLanguage.tr),
-        subtitle: L10nService.get('growth.growth_dashboard.achievements', isEn ? AppLanguage.en : AppLanguage.tr),
+        title: L10nService.get('growth.growth_dashboard.milestones_1', language),
+        subtitle: L10nService.get('growth.growth_dashboard.achievements', language),
         route: Routes.milestones,
         color: AppColors.starGold,
       ),
       _GrowthTool(
         icon: Icons.lightbulb_outline_rounded,
-        title: L10nService.get('growth.growth_dashboard.microhabits', isEn ? AppLanguage.en : AppLanguage.tr),
-        subtitle: L10nService.get('growth.growth_dashboard.56_habits_to_try', isEn ? AppLanguage.en : AppLanguage.tr),
+        title: L10nService.get('growth.growth_dashboard.microhabits', language),
+        subtitle: L10nService.get('growth.growth_dashboard.56_habits_to_try', language),
         route: Routes.habitSuggestions,
         color: AppColors.success,
       ),
       _GrowthTool(
         icon: Icons.psychology_alt_outlined,
-        title: L10nService.get('growth.growth_dashboard.insights', isEn ? AppLanguage.en : AppLanguage.tr),
-        subtitle: L10nService.get('growth.growth_dashboard.36_modules', isEn ? AppLanguage.en : AppLanguage.tr),
+        title: L10nService.get('growth.growth_dashboard.insights', language),
+        subtitle: L10nService.get('growth.growth_dashboard.36_modules', language),
         route: Routes.insightsDiscovery,
         color: AppColors.auroraEnd,
       ),
@@ -891,7 +891,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('growth.growth_dashboard.explore_growth_tools', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('growth.growth_dashboard.explore_growth_tools', language),
           variant: GradientTextVariant.aurora,
           style: AppTypography.modernAccent(
             fontSize: 15,
@@ -995,7 +995,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     int completedChallenges,
     int gratitudeCount,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     // Most tracked focus area this month
     final areaCount = <FocusArea, int>{};
@@ -1025,7 +1025,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('growth.growth_dashboard.this_month', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('growth.growth_dashboard.this_month', language),
             variant: GradientTextVariant.gold,
             style: AppTypography.modernAccent(
               fontSize: 15,
@@ -1036,7 +1036,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           const SizedBox(height: AppConstants.spacingLg),
           _buildSummaryRow(
             icon: Icons.edit_note,
-            label: L10nService.get('growth.growth_dashboard.entries_this_month', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('growth.growth_dashboard.entries_this_month', language),
             value: '${monthEntries.length}',
             color: AppColors.auroraStart,
             isDark: isDark,
@@ -1044,27 +1044,27 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           const SizedBox(height: AppConstants.spacingMd),
           _buildSummaryRow(
             icon: Icons.category,
-            label: L10nService.get('growth.growth_dashboard.most_tracked_area', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('growth.growth_dashboard.most_tracked_area', language),
             value: mostTracked != null
                 ? (mostTracked.localizedName(isEn))
-                : (L10nService.get('growth.growth_dashboard.none_yet', isEn ? AppLanguage.en : AppLanguage.tr)),
+                : (L10nService.get('growth.growth_dashboard.none_yet', language)),
             color: AppColors.starGold,
             isDark: isDark,
           ),
           const SizedBox(height: AppConstants.spacingMd),
           _buildSummaryRow(
             icon: Icons.sentiment_satisfied_alt,
-            label: L10nService.get('growth.growth_dashboard.average_mood', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('growth.growth_dashboard.average_mood', language),
             value: monthEntries.isNotEmpty
                 ? '${avgRating.toStringAsFixed(1)} / 5'
-                : (L10nService.get('growth.growth_dashboard.na', isEn ? AppLanguage.en : AppLanguage.tr)),
+                : (L10nService.get('growth.growth_dashboard.na', language)),
             color: AppColors.success,
             isDark: isDark,
           ),
           const SizedBox(height: AppConstants.spacingMd),
           _buildSummaryRow(
             icon: Icons.nights_stay,
-            label: L10nService.get('growth.growth_dashboard.dreams_logged', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('growth.growth_dashboard.dreams_logged', language),
             value: '$dreamCount',
             color: AppColors.amethyst,
             isDark: isDark,
@@ -1072,7 +1072,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           const SizedBox(height: AppConstants.spacingMd),
           _buildSummaryRow(
             icon: Icons.emoji_events,
-            label: L10nService.get('growth.growth_dashboard.challenges_completed', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('growth.growth_dashboard.challenges_completed', language),
             value: '$completedChallenges',
             color: AppColors.celestialGold,
             isDark: isDark,
@@ -1080,7 +1080,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           const SizedBox(height: AppConstants.spacingMd),
           _buildSummaryRow(
             icon: Icons.favorite,
-            label: L10nService.get('growth.growth_dashboard.gratitude_entries', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('growth.growth_dashboard.gratitude_entries', language),
             value: '$gratitudeCount',
             color: AppColors.softCoral,
             isDark: isDark,
@@ -1134,17 +1134,17 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     int streak,
     int totalEntries,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     return GradientButton.gold(
-      label: L10nService.get('growth.growth_dashboard.share_your_progress_1', isEn ? AppLanguage.en : AppLanguage.tr),
+      label: L10nService.get('growth.growth_dashboard.share_your_progress_1', language),
       icon: Icons.share,
       onPressed: () => _shareProgress(score, streak, totalEntries, isEn),
       expanded: true,
     );
   }
 
-  void _shareProgress(int score, int streak, int totalEntries, bool isEn) {
+  void _shareProgress(int score, int streak, int totalEntries, AppLanguage language) {
     final text = isEn
         ? 'My InnerCycles Growth Score: $score/100\n'
               'Current streak: $streak days\n'

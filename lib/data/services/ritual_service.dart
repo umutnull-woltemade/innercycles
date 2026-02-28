@@ -1,3 +1,4 @@
+import 'package:innercycles/data/providers/app_providers.dart';
 // ════════════════════════════════════════════════════════════════════════════
 // RITUAL SERVICE - InnerCycles Habit Stacking Tracker
 // ════════════════════════════════════════════════════════════════════════════
@@ -34,7 +35,7 @@ extension RitualTimeExtension on RitualTime {
     }
   }
 
-  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+  String localizedName(AppLanguage language) => language.isEn ? displayNameEn : displayNameTr;
 
   String get icon {
     switch (this) {

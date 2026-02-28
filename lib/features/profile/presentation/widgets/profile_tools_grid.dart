@@ -22,12 +22,13 @@ import '../../../../data/providers/app_providers.dart';
 
 class ProfileToolsGrid extends ConsumerStatefulWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const ProfileToolsGrid({
     super.key,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -81,7 +82,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
       children: [
         // Section header
         GradientText(
-          L10nService.get('profile.profile_tools_grid.tools', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('profile.profile_tools_grid.tools', widget.language),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 17,
@@ -127,7 +128,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('profile.profile_tools_grid.suggested_for_you', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('profile.profile_tools_grid.suggested_for_you', widget.language),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 15,
@@ -238,7 +239,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
               : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: L10nService.get('profile.profile_tools_grid.search_by_name_or_category', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+          hintText: L10nService.get('profile.profile_tools_grid.search_by_name_or_category', widget.language),
           hintStyle: AppTypography.subtitle(
             color: widget.isDark
                 ? AppColors.textMuted
@@ -253,7 +254,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
           ),
           suffixIcon: _searchController.text.isNotEmpty
               ? IconButton(
-                  tooltip: L10nService.get('profile.profile_tools_grid.clear_search', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+                  tooltip: L10nService.get('profile.profile_tools_grid.clear_search', widget.language),
                   onPressed: () {
                     _searchController.clear();
                     setState(() => _searchQuery = '');
@@ -290,7 +291,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
       child: Row(
         children: [
           _buildChip(
-            L10nService.get('profile.profile_tools_grid.all', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('profile.profile_tools_grid.all', widget.language),
             isActive: isAll,
             onTap: () => setState(() {
               _selectedCategory = null;
@@ -299,7 +300,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
           ),
           const SizedBox(width: AppConstants.spacingSm),
           _buildChip(
-            L10nService.get('profile.profile_tools_grid.favorites_u2b50', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('profile.profile_tools_grid.favorites_u2b50', widget.language),
             isActive: _isFavoritesFilter,
             onTap: () => setState(() {
               _isFavoritesFilter = true;
@@ -391,7 +392,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
                     child: _ProfileToolCard(
                       tool: left,
                       isDark: widget.isDark,
-                      isEn: widget.isEn,
+                      language: widget.language,
                       isPremium: isPremium,
                       smartRouterAsync: smartRouterAsync,
                       onFavoriteToggle: () => _toggleFavorite(left),
@@ -408,7 +409,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
                         ? _ProfileToolCard(
                             tool: right,
                             isDark: widget.isDark,
-                            isEn: widget.isEn,
+                            language: widget.language,
                             isPremium: isPremium,
                             smartRouterAsync: smartRouterAsync,
                             onFavoriteToggle: () => _toggleFavorite(right),
@@ -456,8 +457,8 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
           const SizedBox(height: AppConstants.spacingLg),
           Text(
             _isFavoritesFilter
-                ? (L10nService.get('profile.profile_tools_grid.no_favorites_yet', widget.isEn ? AppLanguage.en : AppLanguage.tr))
-                : (L10nService.get('profile.profile_tools_grid.no_tools_found', widget.isEn ? AppLanguage.en : AppLanguage.tr)),
+                ? (L10nService.get('profile.profile_tools_grid.no_favorites_yet', widget.language))
+                : (L10nService.get('profile.profile_tools_grid.no_tools_found', widget.language)),
             style: AppTypography.displayFont.copyWith(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -486,17 +487,17 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
   String _categoryLabel(ToolCategory category) {
     switch (category) {
       case ToolCategory.journal:
-        return L10nService.get('profile.profile_tools_grid.journal', widget.isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('profile.profile_tools_grid.journal', widget.language);
       case ToolCategory.analysis:
-        return L10nService.get('profile.profile_tools_grid.analysis', widget.isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('profile.profile_tools_grid.analysis', widget.language);
       case ToolCategory.discovery:
-        return L10nService.get('profile.profile_tools_grid.discovery', widget.isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('profile.profile_tools_grid.discovery', widget.language);
       case ToolCategory.support:
-        return L10nService.get('profile.profile_tools_grid.support', widget.isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('profile.profile_tools_grid.support', widget.language);
       case ToolCategory.reference:
-        return L10nService.get('profile.profile_tools_grid.reference', widget.isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('profile.profile_tools_grid.reference', widget.language);
       case ToolCategory.data:
-        return L10nService.get('profile.profile_tools_grid.data', widget.isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('profile.profile_tools_grid.data', widget.language);
     }
   }
 }
@@ -548,7 +549,8 @@ PaywallContext _paywallContextForTool(String toolId) {
 class _ProfileToolCard extends StatelessWidget {
   final ToolManifest tool;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final bool isPremium;
   final AsyncValue<SmartRouterService> smartRouterAsync;
   final VoidCallback onFavoriteToggle;
@@ -557,7 +559,7 @@ class _ProfileToolCard extends StatelessWidget {
   const _ProfileToolCard({
     required this.tool,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.isPremium,
     required this.smartRouterAsync,
     required this.onFavoriteToggle,
@@ -641,8 +643,8 @@ class _ProfileToolCard extends StatelessWidget {
                             Semantics(
                               button: true,
                               label: isFavorite
-                                  ? (L10nService.get('profile.profile_tools_grid.remove_from_favorites', isEn ? AppLanguage.en : AppLanguage.tr))
-                                  : (L10nService.get('profile.profile_tools_grid.add_to_favorites', isEn ? AppLanguage.en : AppLanguage.tr)),
+                                  ? (L10nService.get('profile.profile_tools_grid.remove_from_favorites', language))
+                                  : (L10nService.get('profile.profile_tools_grid.add_to_favorites', language)),
                               child: GestureDetector(
                                 onTap: onFavoriteToggle,
                                 behavior: HitTestBehavior.opaque,

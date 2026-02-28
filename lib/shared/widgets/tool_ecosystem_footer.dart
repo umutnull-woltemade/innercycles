@@ -22,13 +22,14 @@ import '../../data/providers/app_providers.dart';
 
 class ToolEcosystemFooter extends ConsumerWidget {
   final String currentToolId;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final bool isDark;
 
   const ToolEcosystemFooter({
     super.key,
     required this.currentToolId,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -66,7 +67,7 @@ class ToolEcosystemFooter extends ConsumerWidget {
         ),
         const SizedBox(height: AppConstants.spacingLg),
         Text(
-          L10nService.get('shared.tool_ecosystem_footer.related_tools', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('shared.tool_ecosystem_footer.related_tools', language),
           style: AppTypography.displayFont.copyWith(
             fontSize: 15,
             fontWeight: FontWeight.w600,

@@ -55,7 +55,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
   // SHARE ACTION
   // ==========================================================================
 
-  Future<void> _shareDigest(bool isEn) async {
+  Future<void> _shareDigest(AppLanguage language) async {
     final boundary =
         _repaintKey.currentContext?.findRenderObject()
             as RenderRepaintBoundary?;
@@ -77,7 +77,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
       final file = File('${tempDir.path}/innercycles_weekly_digest.png');
       await file.writeAsBytes(bytes);
 
-      final shareText = L10nService.get('digest.weekly_digest.my_weekly_debrief_from_innercycles_inner', isEn ? AppLanguage.en : AppLanguage.tr);
+      final shareText = L10nService.get('digest.weekly_digest.my_weekly_debrief_from_innercycles_inner', language);
 
       await SharePlus.instance.share(
         ShareParams(files: [XFile(file.path)], text: shareText),
@@ -93,7 +93,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
   // HELPERS
   // ==========================================================================
 
-  String _weekdayNameFull(int weekday, bool isEn) {
+  String _weekdayNameFull(int weekday, AppLanguage language) {
     const enDays = [
       '',
       'Monday',
@@ -215,7 +215,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
   // EMPTY STATE
   // ==========================================================================
 
-  Widget _buildEmptyState(BuildContext context, bool isDark, bool isEn) {
+  Widget _buildEmptyState(BuildContext context, bool isDark, AppLanguage language) {
     return CupertinoScrollbar(
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(
@@ -223,15 +223,15 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: L10nService.get('digest.weekly_digest.weekly_debrief', isEn ? AppLanguage.en : AppLanguage.tr),
+            title: L10nService.get('digest.weekly_digest.weekly_debrief', language),
           ),
           SliverFillRemaining(
             hasScrollBody: false,
             child: Center(
               child: PremiumEmptyState(
                 icon: Icons.calendar_view_week_outlined,
-                title: L10nService.get('digest.weekly_digest.no_entries_this_week_yet', isEn ? AppLanguage.en : AppLanguage.tr),
-                description: L10nService.get('digest.weekly_digest.start_journaling_to_see_your_weekly_dige', isEn ? AppLanguage.en : AppLanguage.tr),
+                title: L10nService.get('digest.weekly_digest.no_entries_this_week_yet', language),
+                description: L10nService.get('digest.weekly_digest.start_journaling_to_see_your_weekly_dige', language),
                 gradientVariant: GradientTextVariant.gold,
               ),
             ),
@@ -249,7 +249,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     BuildContext context,
     WeeklyDigestData data,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     return CupertinoScrollbar(
       child: CustomScrollView(
@@ -258,17 +258,17 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: L10nService.get('digest.weekly_digest.weekly_debrief_1', isEn ? AppLanguage.en : AppLanguage.tr),
+            title: L10nService.get('digest.weekly_digest.weekly_debrief_1', language),
             actions: [
               Semantics(
                 button: true,
-                label: L10nService.get('digest.weekly_digest.share_weekly_debrief', isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('digest.weekly_digest.share_weekly_debrief', language),
                 child: IconButton(
                   onPressed: _isSharing ? null : () => _shareDigest(isEn),
                   icon: _isSharing
                       ? const CupertinoActivityIndicator(radius: 10)
                       : const Icon(Icons.ios_share, color: AppColors.starGold),
-                  tooltip: L10nService.get('digest.weekly_digest.share', isEn ? AppLanguage.en : AppLanguage.tr),
+                  tooltip: L10nService.get('digest.weekly_digest.share', language),
                 ),
               ),
             ],
@@ -401,7 +401,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
 
                 // Disclaimer (outside RepaintBoundary)
                 ContentDisclaimer(
-                  language: isEn ? AppLanguage.en : AppLanguage.tr,
+                  language: language,
                 ),
                 const SizedBox(height: 40),
               ]),
@@ -419,7 +419,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
   Widget _buildMonthlyWrappedLink(
     BuildContext context,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     return GestureDetector(
       onTap: () => context.push(Routes.monthlyWrapped),
@@ -436,7 +436,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
             const SizedBox(width: 12),
             Expanded(
               child: Text(
-                L10nService.get('digest.weekly_digest.view_monthly_wrapped', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('digest.weekly_digest.view_monthly_wrapped', language),
                 style: AppTypography.modernAccent(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -463,14 +463,14 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     BuildContext context,
     WeeklyDigestData data,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final dateFormat = DateFormat('MMM d');
     final range =
         '${dateFormat.format(data.weekStart)} - ${dateFormat.format(data.weekEnd)}';
 
     return Semantics(
-      label: L10nService.getWithParams('digest.week_of_range', isEn ? AppLanguage.en : AppLanguage.tr, params: {'range': range}),
+      label: L10nService.getWithParams('digest.week_of_range', language, params: {'range': range}),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(AppConstants.spacingXl),
@@ -489,7 +489,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         child: Column(
           children: [
             Text(
-              L10nService.get('digest.weekly_digest.week_of', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('digest.weekly_digest.week_of', language),
               style: AppTypography.elegantAccent(
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
@@ -522,7 +522,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     BuildContext context,
     WeeklyDigestData data,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final diff = data.entriesThisWeek - data.entriesLastWeek;
     final hasComparison = data.entriesLastWeek > 0;
@@ -532,7 +532,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     IconData comparisonIcon;
 
     if (!hasComparison) {
-      comparisonText = L10nService.get('digest.weekly_digest.first_week_tracked', isEn ? AppLanguage.en : AppLanguage.tr);
+      comparisonText = L10nService.get('digest.weekly_digest.first_week_tracked', language);
       comparisonColor = AppColors.starGold;
       comparisonIcon = Icons.star_outline;
     } else if (diff > 0) {
@@ -548,7 +548,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
       comparisonColor = AppColors.warning;
       comparisonIcon = Icons.arrow_downward;
     } else {
-      comparisonText = L10nService.get('digest.weekly_digest.same_as_last_week', isEn ? AppLanguage.en : AppLanguage.tr);
+      comparisonText = L10nService.get('digest.weekly_digest.same_as_last_week', language);
       comparisonColor = AppColors.starGold;
       comparisonIcon = Icons.horizontal_rule;
     }
@@ -599,7 +599,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GradientText(
-                    L10nService.get('digest.weekly_digest.entries_this_week', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('digest.weekly_digest.entries_this_week', language),
                     variant: GradientTextVariant.gold,
                     style: AppTypography.elegantAccent(
                       fontSize: 15,
@@ -639,7 +639,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     BuildContext context,
     WeeklyDigestData data,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     return Row(
       children: [
@@ -647,7 +647,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         Expanded(
           child: _StatCard(
             value: data.avgMoodRating.toStringAsFixed(1),
-            label: L10nService.get('digest.weekly_digest.avg_rating', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('digest.weekly_digest.avg_rating', language),
             sublabel: '/5',
             icon: Icons.mood,
             color: _moodColor(data.avgMoodRating),
@@ -659,8 +659,8 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         Expanded(
           child: _StatCard(
             value: '${data.streakDays}',
-            label: L10nService.get('digest.weekly_digest.day_streak', isEn ? AppLanguage.en : AppLanguage.tr),
-            sublabel: L10nService.get('digest.weekly_digest.days', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('digest.weekly_digest.day_streak', language),
+            sublabel: L10nService.get('digest.weekly_digest.days', language),
             icon: Icons.local_fire_department,
             color: AppColors.streakOrange,
             isDark: isDark,
@@ -678,7 +678,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     BuildContext context,
     WeeklyDigestData data,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final area = data.topFocusArea!;
     final areaName = area.localizedName(isEn);
@@ -716,7 +716,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    L10nService.get('digest.weekly_digest.top_focus_area', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('digest.weekly_digest.top_focus_area', language),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w500,
@@ -768,7 +768,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     BuildContext context,
     WeeklyDigestData data,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final icon = _moodTrendIcon(data.moodTrend);
     final color = _moodTrendColor(data.moodTrend);
@@ -809,7 +809,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                   Row(
                     children: [
                       GradientText(
-                        L10nService.get('digest.weekly_digest.mood_trend', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('digest.weekly_digest.mood_trend', language),
                         variant: GradientTextVariant.gold,
                         style: AppTypography.elegantAccent(
                           fontSize: 15,
@@ -856,7 +856,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     BuildContext context,
     WeeklyDigestData data,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final bestDate = data.bestDay!;
     final dayName = _weekdayNameFull(bestDate.weekday, isEn);
@@ -904,7 +904,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    L10nService.get('digest.weekly_digest.best_day', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('digest.weekly_digest.best_day', language),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w500,
@@ -952,7 +952,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     BuildContext context,
     WeeklyDigestData data,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -971,7 +971,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            L10nService.get('digest.weekly_digest.focus_area_breakdown', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('digest.weekly_digest.focus_area_breakdown', language),
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,
               color: isDark
@@ -1070,7 +1070,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     BuildContext context,
     WeeklyDigestData data,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     return Semantics(
       label: isEn
@@ -1102,7 +1102,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
             ),
             const SizedBox(height: 12),
             Text(
-              L10nService.get('digest.weekly_digest.weekly_insight', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('digest.weekly_digest.weekly_insight', language),
               style: AppTypography.elegantAccent(
                 fontSize: 13,
                 fontWeight: FontWeight.w600,

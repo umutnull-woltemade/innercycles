@@ -122,7 +122,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  L10nService.get('today.today_feed.welcome_back', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('today.today_feed.welcome_back', language),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 22,
                     fontWeight: FontWeight.w700,
@@ -159,7 +159,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        L10nService.get('today.today_feed.write_an_entry', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('today.today_feed.write_an_entry', language),
                         style: AppTypography.modernAccent(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -173,7 +173,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 GestureDetector(
                   onTap: () => Navigator.pop(ctx),
                   child: Text(
-                    L10nService.get('today.today_feed.maybe_later', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('today.today_feed.maybe_later', language),
                     style: AppTypography.elegantAccent(
                       fontSize: 14,
                       color: isDark
@@ -220,12 +220,12 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     final label = milestone >= 365
-        ? (L10nService.get('today.today_feed.1_year', isEn ? AppLanguage.en : AppLanguage.tr))
+        ? (L10nService.get('today.today_feed.1_year', language))
         : milestone >= 180
-            ? (L10nService.get('today.today_feed.6_months', isEn ? AppLanguage.en : AppLanguage.tr))
+            ? (L10nService.get('today.today_feed.6_months', language))
             : milestone >= 90
-                ? (L10nService.get('today.today_feed.3_months', isEn ? AppLanguage.en : AppLanguage.tr))
-                : (L10nService.get('today.today_feed.1_month', isEn ? AppLanguage.en : AppLanguage.tr));
+                ? (L10nService.get('today.today_feed.3_months', language))
+                : (L10nService.get('today.today_feed.1_month', language));
 
     final emoji = milestone >= 365
         ? '\u{1F389}'
@@ -339,7 +339,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                           ),
                           child: Center(
                             child: Text(
-                              L10nService.get('today.today_feed.continue', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('today.today_feed.continue', language),
                               style: AppTypography.modernAccent(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
@@ -394,14 +394,14 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   SliverToBoxAdapter(
                     child: HomeHeader(
                       userName: userName,
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                     ).glassEntrance(context: context),
                   ),
 
                   // 2. Hero Journal Card (promoted to #2)
                   SliverToBoxAdapter(
-                    child: HeroJournalCard(isEn: isEn, isDark: isDark),
+                    child: HeroJournalCard(language: language, isDark: isDark),
                   ),
 
                   const SliverToBoxAdapter(child: SizedBox(height: 12)),
@@ -409,7 +409,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 3. Mood + Stats Strip
                   SliverToBoxAdapter(
                     child: MoodStatsStrip(
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                     ).glassEntrance(context: context, delay: 180.ms),
                   ),
@@ -434,7 +434,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 5. Daily Pulse Card
                   SliverToBoxAdapter(
                     child: DailyPulseCard(
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                     ).glassReveal(context: context, delay: 280.ms),
                   ),
@@ -442,7 +442,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 5b. Weekly Focus Progress
                   SliverToBoxAdapter(
                     child: WeeklyFocusProgress(
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                     ).animate().fadeIn(delay: 320.ms, duration: 400.ms),
                   ),
@@ -455,26 +455,26 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 6. Recent Entries
                   SliverToBoxAdapter(
                     child: RecentEntriesSection(
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                     ).glassEntrance(context: context, delay: 400.ms),
                   ),
 
                   // 7. Today's Birthdays (conditional)
                   SliverToBoxAdapter(
-                    child: TodayBirthdayBanner(isEn: isEn, isDark: isDark),
+                    child: TodayBirthdayBanner(language: language, isDark: isDark),
                   ),
 
                   // 7b. On This Day — Anniversary memories
                   SliverToBoxAdapter(
-                    child: OnThisDayBanner(isEn: isEn, isDark: isDark),
+                    child: OnThisDayBanner(language: language, isDark: isDark),
                   ),
 
                   const SliverToBoxAdapter(child: SizedBox(height: 8)),
 
                   // 8. Recent Life Events
                   SliverToBoxAdapter(
-                    child: RecentLifeEventsSection(isEn: isEn, isDark: isDark),
+                    child: RecentLifeEventsSection(language: language, isDark: isDark),
                   ),
 
                   // 9. Streak Card
@@ -499,12 +499,12 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
                   // 10. Promotional Banner Stack
                   SliverToBoxAdapter(
-                    child: PromotionalBannerStack(isEn: isEn, isDark: isDark),
+                    child: PromotionalBannerStack(language: language, isDark: isDark),
                   ),
 
                   // 11. Social Proof Strip
                   SliverToBoxAdapter(
-                    child: SocialProofStrip(isEn: isEn, isDark: isDark),
+                    child: SocialProofStrip(language: language, isDark: isDark),
                   ),
 
                   // 12. Bottom padding
