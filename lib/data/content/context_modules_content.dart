@@ -446,9 +446,9 @@ const List<ContextModule> allContextModules = [
     summaryTr:
         'Çoğu insanın hafta boyunca hiç fark etmediği tekrar eden duygusal örüntüleri vardır.',
     bodyEn:
-        'Large-scale mood research using Twitter data from millions of users found that positive affect peaks on weekends and dips midweek, with Tuesday and Wednesday showing the lowest mood for most people. However, your personal pattern may differ entirely — and that is the point. By tracking your entries over several weeks, you begin to see YOUR rhythm. Maybe you feel creative on Thursdays. Maybe Sunday evenings bring anxiety. These are not problems to fix — they are patterns to work with. Schedule demanding tasks for your high-energy days. Protect your low days with gentler routines.',
+        'A large-scale study analyzing social media data found that positive affect peaks on weekends and dips midweek, with Tuesday and Wednesday showing the lowest mood for most people. However, your personal pattern may differ entirely — and that is the point. By tracking your entries over several weeks, you begin to see YOUR rhythm. Maybe you feel creative on Thursdays. Maybe Sunday evenings bring anxiety. These are not problems to fix — they are patterns to work with. Schedule demanding tasks for your high-energy days. Protect your low days with gentler routines.',
     bodyTr:
-        'Milyonlarca kullanıcının Twitter verilerini kullanan büyük ölçekli ruh hali araştırması, pozitif etkinin hafta sonları zirve yaptığını ve hafta ortasında düştüğünü, Salı ve Çarşamba gününün çoğu insan için en düşük ruh halini gösterdiğini buldu. Ancak kişisel örüntünüz tamamen farklı olabilir — ve mesele de bu. Birkaç hafta boyunca kayıtlarınızı takip ederek SİZİN ritminizi görmeye başlarsınız.',
+        'Büyük ölçekli bir sosyal medya araştırması, pozitif etkinin hafta sonları zirve yaptığını ve hafta ortasında düştüğünü, Salı ve Çarşamba gününün çoğu insan için en düşük ruh halini gösterdiğini buldu. Ancak kişisel örüntünüz tamamen farklı olabilir — ve mesele de bu. Birkaç hafta boyunca kayıtlarınızı takip ederek SİZİN ritminizi görmeye başlarsınız.',
     whyItMattersEn:
         'Knowing your weekly rhythm lets you plan ahead instead of being surprised by recurring dips.',
     whyItMattersTr:

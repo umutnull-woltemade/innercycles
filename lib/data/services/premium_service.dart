@@ -36,6 +36,7 @@ extension PremiumTierExtension on PremiumTier {
     }
   }
 
+  // TODO: Replace hardcoded prices with RevenueCat getProductPrice() values
   String get price {
     switch (this) {
       case PremiumTier.free:

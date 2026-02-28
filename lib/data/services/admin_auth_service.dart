@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 /// Admin authentication service with PIN-based access and rate limiting
-/// PIN is read from environment or defaults to 4848
+/// PIN is read from ADMIN_PIN environment variable at compile time (no default)
 class AdminAuthService {
   static const String _adminBoxName = 'admin_box';
   static const String _sessionKey = 'admin_session';

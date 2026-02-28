@@ -517,7 +517,7 @@ class ToolManifestRegistry {
       id: 'insightsDiscovery',
       nameEn: 'Insights',
       nameTr: '\u0130\u00e7g\u00f6r\u00fcler',
-      valuePropositionEn: 'AI-surfaced insights from your journal data.',
+      valuePropositionEn: 'Pattern-based insights from your journal data.',
       valuePropositionTr:
           'G\u00fcnl\u00fck verilerinden ke\u015ffedilen i\u00e7g\u00f6r\u00fcler.',
       route: Routes.insightsDiscovery,
@@ -782,7 +782,7 @@ class ToolManifestRegistry {
       nameEn: 'Reflection Chat',
       nameTr: 'Yans\u0131ma Sohbeti',
       valuePropositionEn:
-          'Talk through your thoughts with a reflective AI companion.',
+          'Explore your thoughts with guided reflection prompts.',
       valuePropositionTr:
           'D\u00fc\u015f\u00fcncelerini yans\u0131t\u0131c\u0131 bir AI ile konu\u015f.',
       route: Routes.insight,
