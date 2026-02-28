@@ -421,9 +421,7 @@ class NotificationService {
 
     await _notifications.zonedSchedule(
       id: journalStreakId,
-      title: _isEn
-          ? '🔥 Your $currentStreak-day streak is at risk'
-          : '🔥 $currentStreak günlük serin risk altında',
+      title: L10nService.getWithParams('data.services.notification.streak_at_risk_title', _isEn ? AppLanguage.en : AppLanguage.tr, params: {'streak': '$currentStreak'}),
       body: L10nService.get('data.services.notification.a_quick_checkin_keeps_your_momentum_goin', _isEn ? AppLanguage.en : AppLanguage.tr),
       scheduledDate: scheduledTime,
       notificationDetails: NotificationDetails(
@@ -474,9 +472,7 @@ class NotificationService {
     await _notifications.zonedSchedule(
       id: streakRecoveryId,
       title: L10nService.get('data.services.notification.every_streak_starts_at_day_1', _isEn ? AppLanguage.en : AppLanguage.tr),
-      body: _isEn
-          ? 'Your $lostStreak-day streak ended, but a fresh start is one entry away.'
-          : '$lostStreak günlük serin sona erdi ama yeni bir başlangıç bir kayıt uzağında.',
+      body: L10nService.getWithParams('data.services.notification.streak_recovery_body', _isEn ? AppLanguage.en : AppLanguage.tr, params: {'streak': '$lostStreak'}),
       scheduledDate: tomorrow,
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
@@ -519,9 +515,7 @@ class NotificationService {
 
     await _notifications.zonedSchedule(
       id: onThisDayId,
-      title: _isEn
-          ? '📖 A memory from $yearsAgo year${yearsAgo == 1 ? '' : 's'} ago'
-          : '📖 $yearsAgo yıl önceki bir anı',
+      title: L10nService.getWithParams(yearsAgo == 1 ? 'data.services.notification.on_this_day_title_singular' : 'data.services.notification.on_this_day_title_plural', _isEn ? AppLanguage.en : AppLanguage.tr, params: {'years': '$yearsAgo'}),
       body: L10nService.get('data.services.notification.see_what_you_wrote_on_this_day_your_past', _isEn ? AppLanguage.en : AppLanguage.tr),
       scheduledDate: scheduledTime,
       notificationDetails: NotificationDetails(
@@ -561,9 +555,7 @@ class NotificationService {
       body = L10nService.get('data.services.notification.10_friends_joined_youve_earned_lifetime', _isEn ? AppLanguage.en : AppLanguage.tr);
     } else if (totalReferrals >= 3) {
       title = L10nService.get('data.services.notification.u2b50_1_month_free_premium', _isEn ? AppLanguage.en : AppLanguage.tr);
-      body = _isEn
-          ? '$totalReferrals friends joined! You\'ve earned 1 month of free Premium.'
-          : '$totalReferrals arkadaş katıldı! 1 ay ücretsiz Premium kazandın.';
+      body = L10nService.getWithParams('data.services.notification.referral_body_month', _isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$totalReferrals'});
     } else {
       title = L10nService.get('data.services.notification.u1f381_referral_reward_7_days_premium', _isEn ? AppLanguage.en : AppLanguage.tr);
       body = L10nService.get('data.services.notification.a_friend_joined_with_your_code_you_both', _isEn ? AppLanguage.en : AppLanguage.tr);
@@ -813,12 +805,8 @@ class NotificationService {
 
     await _notifications.zonedSchedule(
       id: notifId,
-      title: _isEn
-          ? '\u{1F382} ${contact.name}\'s Birthday!'
-          : '\u{1F382} ${contact.name} Do\u{011F}um G\u{00FC}n\u{00FC}!',
-      body: _isEn
-          ? 'Today is ${contact.name}\'s birthday!'
-          : 'Bug\u{00FC}n ${contact.name}\'in do\u{011F}um g\u{00FC}n\u{00FC}!',
+      title: L10nService.getWithParams('data.services.notification.birthday_today_title', _isEn ? AppLanguage.en : AppLanguage.tr, params: {'name': contact.name}),
+      body: L10nService.getWithParams('data.services.notification.birthday_today_body', _isEn ? AppLanguage.en : AppLanguage.tr, params: {'name': contact.name}),
       scheduledDate: scheduledTz,
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
@@ -849,12 +837,8 @@ class NotificationService {
         final dayBeforeTz = tz.TZDateTime.from(dayBefore, tz.local);
         await _notifications.zonedSchedule(
           id: dayBeforeId,
-          title: _isEn
-              ? '\u{1F389} Tomorrow: ${contact.name}\'s Birthday'
-              : '\u{1F389} Yar\u{0131}n: ${contact.name} Do\u{011F}um G\u{00FC}n\u{00FC}',
-          body: _isEn
-              ? '${contact.name}\'s birthday is tomorrow!'
-              : '${contact.name}\'in do\u{011F}um g\u{00FC}n\u{00FC} yar\u{0131}n!',
+          title: L10nService.getWithParams('data.services.notification.birthday_tomorrow_title', _isEn ? AppLanguage.en : AppLanguage.tr, params: {'name': contact.name}),
+          body: L10nService.getWithParams('data.services.notification.birthday_tomorrow_body', _isEn ? AppLanguage.en : AppLanguage.tr, params: {'name': contact.name}),
           scheduledDate: dayBeforeTz,
           notificationDetails: NotificationDetails(
             android: AndroidNotificationDetails(

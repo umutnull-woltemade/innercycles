@@ -8,6 +8,7 @@
 
 import 'dart:math' as math;
 import '../models/journal_entry.dart';
+import '../providers/app_providers.dart';
 import 'journal_service.dart';
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -54,6 +55,9 @@ enum CyclePhase {
         return 'Dinlenme';
     }
   }
+
+  String label(AppLanguage language) =>
+      language == AppLanguage.en ? labelEn() : labelTr();
 }
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -170,6 +174,15 @@ enum EmotionalPhase {
         return 'Küçük, yönetilebilir adımlar bu dönemde iyi çalışma eğiliminde';
     }
   }
+
+  String label(AppLanguage language) =>
+      language == AppLanguage.en ? labelEn() : labelTr();
+
+  String description(AppLanguage language) =>
+      language == AppLanguage.en ? descriptionEn() : descriptionTr();
+
+  String action(AppLanguage language) =>
+      language == AppLanguage.en ? actionEn() : actionTr();
 }
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -210,6 +223,9 @@ enum EmotionalArc {
         return 'Plato';
     }
   }
+
+  String label(AppLanguage language) =>
+      language == AppLanguage.en ? labelEn() : labelTr();
 }
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -258,6 +274,9 @@ enum CycleTrend {
         return 'Geriliyor';
     }
   }
+
+  String label(AppLanguage language) =>
+      language == AppLanguage.en ? labelEn() : labelTr();
 }
 
 /// Summary of one focus area's cycle analysis

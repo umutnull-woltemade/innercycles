@@ -8,6 +8,7 @@
 
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../providers/app_providers.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // MODELS
@@ -57,6 +58,9 @@ enum MilestoneCategory {
   }
 
   String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+
+  String displayName(AppLanguage language) =>
+      language == AppLanguage.en ? displayNameEn : displayNameTr;
 }
 
 /// A single milestone definition
@@ -80,6 +84,12 @@ class Milestone {
     required this.category,
     required this.requirement,
   });
+
+  String localizedName(AppLanguage language) =>
+      language == AppLanguage.en ? nameEn : nameTr;
+
+  String localizedDescription(AppLanguage language) =>
+      language == AppLanguage.en ? descriptionEn : descriptionTr;
 }
 
 /// An earned milestone with the date it was unlocked

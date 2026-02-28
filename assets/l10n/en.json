@@ -4374,7 +4374,16 @@
         "todays_journal_prompt": "Today\\'s Journal Prompt",
         "u1f381_referral_reward_7_days_premium": "\\u{1F381} Referral Reward: +7 Days Premium!",
         "u1f48e_lifetime_premium_unlocked": "\\u{1F48E} Lifetime Premium Unlocked!",
-        "u2b50_1_month_free_premium": "\\u{2B50} 1 Month Free Premium!"
+        "u2b50_1_month_free_premium": "\\u{2B50} 1 Month Free Premium!",
+        "streak_at_risk_title": "\ud83d\udd25 Your {streak}-day streak is at risk",
+        "streak_recovery_body": "Your {streak}-day streak ended, but a fresh start is one entry away.",
+        "on_this_day_title_singular": "\ud83d\udcd6 A memory from {years} year ago",
+        "on_this_day_title_plural": "\ud83d\udcd6 A memory from {years} years ago",
+        "referral_body_month": "{count} friends joined! You've earned 1 month of free Premium.",
+        "birthday_today_title": "\ud83c\udf82 {name}'s Birthday!",
+        "birthday_today_body": "Today is {name}'s birthday!",
+        "birthday_tomorrow_title": "\ud83c\udf89 Tomorrow: {name}'s Birthday",
+        "birthday_tomorrow_body": "{name}'s birthday is tomorrow!"
       },
       "notification_lifecycle": {
         "a_new_correlation_emerged_in_your_journa": "A new correlation emerged in your journal entries.",
@@ -4405,7 +4414,10 @@
         "your_monthly_recap_is_ready_to_review_se": "Your monthly recap is ready to review — see your patterns at a glance.",
         "your_patterns_are_still_here_ready_when": "Your patterns are still here, ready when you are.",
         "your_streak_is_waiting": "Your Streak is Waiting",
-        "your_weekly_reflection_is_ready_to_revie": "Your weekly reflection is ready to review."
+        "your_weekly_reflection_is_ready_to_revie": "Your weekly reflection is ready to review.",
+        "streak_reminder_body": "Your {streak}-day streak is waiting! A quick entry keeps it going.",
+        "milestone_body": "You've journaled {total} days! Your patterns are getting really interesting.",
+        "wrapped_title": "Your {year} Wrapped is Ready!"
       },
       "pattern_engine": {
         "decisions": "Decisions",
@@ -4668,7 +4680,8 @@
       "your_journal_entries_will_appear_here_as": "Your journal entries will appear here as you build your personal cycle map.",
       "your_journal_is_a_blank_page_ready_when": "Your journal is a blank page — ready when you are",
       "filter_label": "Filter: {label}",
-      "word_count": "{count} words"
+      "word_count": "{count} words",
+      "entry_semantics_label": "{area} entry, {date}"
     },
     "cycle_summary": {
       "current_avg": "Current avg"

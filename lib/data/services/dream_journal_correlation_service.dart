@@ -45,6 +45,9 @@ enum CorrelationDirection {
         return 'ruh halin sabit kalıyor';
     }
   }
+
+  String label(AppLanguage language) =>
+      language == AppLanguage.en ? labelEn() : labelTr();
 }
 
 /// A single correlation between a dream theme and journal mood.

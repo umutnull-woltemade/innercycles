@@ -413,7 +413,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
       padding: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       child: Semantics(
         button: true,
-        label: isEn ? '$areaLabel entry, $dateStr' : '$areaLabel kaydı, $dateStr',
+        label: L10nService.getWithParams('journal.archive.entry_semantics_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'area': areaLabel, 'date': dateStr}),
         child: GestureDetector(
           onTap: () {
             HapticFeedback.lightImpact();

@@ -2,6 +2,8 @@
 /// Apple App Store 4.3(b) compliant. No medical claims. Actionable and specific.
 library;
 
+import '../providers/app_providers.dart';
+
 class HabitSuggestion {
   final String id;
   final String
@@ -21,6 +23,12 @@ class HabitSuggestion {
     required this.descriptionTr,
     required this.durationMinutes,
   });
+
+  String localizedTitle(AppLanguage language) =>
+      language == AppLanguage.en ? titleEn : titleTr;
+
+  String localizedDescription(AppLanguage language) =>
+      language == AppLanguage.en ? descriptionEn : descriptionTr;
 }
 
 const List<HabitSuggestion> allHabitSuggestions = [

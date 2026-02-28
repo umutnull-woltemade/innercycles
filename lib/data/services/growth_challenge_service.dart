@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../providers/app_providers.dart';
 
 enum ChallengeDuration { daily, weekly, monthly }
 
@@ -32,6 +33,12 @@ class GrowthChallenge {
     required this.targetCount,
     this.isPremium = false,
   });
+
+  String localizedTitle(AppLanguage language) =>
+      language == AppLanguage.en ? titleEn : titleTr;
+
+  String localizedDescription(AppLanguage language) =>
+      language == AppLanguage.en ? descriptionEn : descriptionTr;
 }
 
 class ChallengeProgress {

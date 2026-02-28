@@ -11,6 +11,7 @@ import 'dart:convert';
 import 'dart:math' as math;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/journal_entry.dart';
+import '../providers/app_providers.dart';
 import 'journal_service.dart';
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -44,6 +45,9 @@ enum ReinforcementType {
         return 'Nötr';
     }
   }
+
+  String label(AppLanguage language) =>
+      language == AppLanguage.en ? labelEn() : labelTr();
 }
 
 /// A single stage in the behavioral loop
@@ -77,6 +81,12 @@ class LoopStage {
     descriptionEn: json['descriptionEn'] as String?,
     descriptionTr: json['descriptionTr'] as String?,
   );
+
+  String localizedLabel(AppLanguage language) =>
+      language == AppLanguage.en ? labelEn : labelTr;
+
+  String? localizedDescription(AppLanguage language) =>
+      language == AppLanguage.en ? descriptionEn : descriptionTr;
 }
 
 /// A detected behavioral reinforcement loop
@@ -184,6 +194,12 @@ class PatternLoop {
     actionEn: json['actionEn'] as String?,
     actionTr: json['actionTr'] as String?,
   );
+
+  String localizedInsight(AppLanguage language) =>
+      language == AppLanguage.en ? insightEn : insightTr;
+
+  String? localizedAction(AppLanguage language) =>
+      language == AppLanguage.en ? actionEn : actionTr;
 }
 
 /// Result of pattern loop analysis

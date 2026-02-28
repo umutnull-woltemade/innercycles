@@ -561,9 +561,7 @@ class NotificationLifecycleService {
         final streak = journalService.getCurrentStreak();
         return _NotificationContent(
           title: L10nService.get('data.services.notification_lifecycle.your_streak_is_waiting', isEn ? AppLanguage.en : AppLanguage.tr),
-          body: isEn
-              ? 'Your $streak-day streak is waiting! A quick entry keeps it going.'
-              : '$streak günlük seri devam ediyor! Kısa bir kayıt yeterli.',
+          body: L10nService.getWithParams('data.services.notification_lifecycle.streak_reminder_body', isEn ? AppLanguage.en : AppLanguage.tr, params: {'streak': '$streak'}),
         );
 
       case LifecycleNotificationType.insightTeaser:
@@ -582,9 +580,7 @@ class NotificationLifecycleService {
         final total = journalService.entryCount;
         return _NotificationContent(
           title: L10nService.get('data.services.notification_lifecycle.milestone_reached', isEn ? AppLanguage.en : AppLanguage.tr),
-          body: isEn
-              ? 'You\'ve journaled $total days! Your patterns are getting really interesting.'
-              : '$total gün günlük tuttun! Kalıpların gerçekten ilginçleşiyor.',
+          body: L10nService.getWithParams('data.services.notification_lifecycle.milestone_body', isEn ? AppLanguage.en : AppLanguage.tr, params: {'total': '$total'}),
         );
 
       case LifecycleNotificationType.seasonalTrigger:
@@ -656,9 +652,7 @@ class NotificationLifecycleService {
       case LifecycleNotificationType.wrappedReady:
         final year = DateTime.now().year;
         return _NotificationContent(
-          title: isEn
-              ? 'Your $year Wrapped is Ready!'
-              : '$year Wrapped\'ın Hazır!',
+          title: L10nService.getWithParams('data.services.notification_lifecycle.wrapped_title', isEn ? AppLanguage.en : AppLanguage.tr, params: {'year': '$year'}),
           body: L10nService.get('data.services.notification_lifecycle.see_your_year_in_patterns_your_personal', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 

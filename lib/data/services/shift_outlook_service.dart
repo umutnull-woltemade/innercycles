@@ -9,6 +9,7 @@
 
 import 'dart:math' as math;
 import '../models/journal_entry.dart';
+import '../providers/app_providers.dart';
 import 'journal_service.dart';
 import 'emotional_cycle_service.dart';
 
@@ -43,6 +44,9 @@ enum OutlookConfidence {
         return 'Yüksek';
     }
   }
+
+  String label(AppLanguage language) =>
+      language == AppLanguage.en ? labelEn() : labelTr();
 }
 
 /// A detected micro-signal that may indicate an upcoming shift
@@ -62,6 +66,9 @@ class MicroSignal {
     required this.magnitude,
     required this.detectedAt,
   });
+
+  String localizedSignal(AppLanguage language) =>
+      language == AppLanguage.en ? signalEn : signalTr;
 }
 
 /// A shift window — a period where a phase transition may occur
@@ -91,6 +98,12 @@ class ShiftWindow {
     required this.actionEn,
     required this.actionTr,
   });
+
+  String localizedDescription(AppLanguage language) =>
+      language == AppLanguage.en ? descriptionEn : descriptionTr;
+
+  String localizedAction(AppLanguage language) =>
+      language == AppLanguage.en ? actionEn : actionTr;
 }
 
 /// Full shift outlook result

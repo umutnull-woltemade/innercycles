@@ -4374,7 +4374,16 @@
         "todays_journal_prompt": "Bugünkü Günlük Sorusu",
         "u1f381_referral_reward_7_days_premium": "\\u{1F381} Davet Ödülü: +7 Gün Premium!",
         "u1f48e_lifetime_premium_unlocked": "\\u{1F48E} Ömür Boyu Premium Açıldı!",
-        "u2b50_1_month_free_premium": "\\u{2B50} 1 Ay Ücretsiz Premium!"
+        "u2b50_1_month_free_premium": "\\u{2B50} 1 Ay Ücretsiz Premium!",
+        "streak_at_risk_title": "\ud83d\udd25 {streak} günlük serin risk altında",
+        "streak_recovery_body": "{streak} günlük serin sona erdi ama yeni bir başlangıç bir kayıt uzağında.",
+        "on_this_day_title_singular": "\ud83d\udcd6 {years} yıl önceki bir anı",
+        "on_this_day_title_plural": "\ud83d\udcd6 {years} yıl önceki bir anı",
+        "referral_body_month": "{count} arkadaş katıldı! 1 ay ücretsiz Premium kazandın.",
+        "birthday_today_title": "\ud83c\udf82 {name} Doğum Günü!",
+        "birthday_today_body": "Bugün {name}'in doğum günü!",
+        "birthday_tomorrow_title": "\ud83c\udf89 Yarın: {name} Doğum Günü",
+        "birthday_tomorrow_body": "{name}'in doğum günü yarın!"
       },
       "notification_lifecycle": {
         "a_new_correlation_emerged_in_your_journa": "Günlük kayıtlarında yeni bir korelasyon ortaya çıktı.",
@@ -4405,7 +4414,10 @@
         "your_monthly_recap_is_ready_to_review_se": "Aylık özetin incelemeye hazır — örüntülerine bir göz at.",
         "your_patterns_are_still_here_ready_when": "Kalıpların hâlâ burada, hazır olduğunda seni bekliyor.",
         "your_streak_is_waiting": "Serin Seni Bekliyor!",
-        "your_weekly_reflection_is_ready_to_revie": "Haftalık yansıtman incelemeye hazır."
+        "your_weekly_reflection_is_ready_to_revie": "Haftalık yansıtman incelemeye hazır.",
+        "streak_reminder_body": "{streak} günlük seri devam ediyor! Kısa bir kayıt yeterli.",
+        "milestone_body": "{total} gün günlük tuttun! Kalıpların gerçekten ilginçleşiyor.",
+        "wrapped_title": "{year} Wrapped'ın Hazır!"
       },
       "pattern_engine": {
         "decisions": "Kararlar",
@@ -4668,7 +4680,8 @@
       "your_journal_entries_will_appear_here_as": "Kişisel döngü haritanı oluşturdukça günlük kayıtların burada görünecek.",
       "your_journal_is_a_blank_page_ready_when": "Günlüğün boş bir sayfa — hazır olduğunda burada",
       "filter_label": "Filtre: {label}",
-      "word_count": "{count} kelime"
+      "word_count": "{count} kelime",
+      "entry_semantics_label": "{area} kaydı, {date}"
     },
     "cycle_summary": {
       "current_avg": "Ort."

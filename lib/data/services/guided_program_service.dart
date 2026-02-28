@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../providers/app_providers.dart';
 
 /// A single day's prompt in a program
 class ProgramDay {
@@ -23,6 +24,12 @@ class ProgramDay {
     required this.promptEn,
     required this.promptTr,
   });
+
+  String localizedTitle(AppLanguage language) =>
+      language == AppLanguage.en ? titleEn : titleTr;
+
+  String localizedPrompt(AppLanguage language) =>
+      language == AppLanguage.en ? promptEn : promptTr;
 }
 
 /// A guided reflection program
@@ -48,6 +55,12 @@ class GuidedProgram {
     required this.days,
     this.isPremium = false,
   });
+
+  String localizedTitle(AppLanguage language) =>
+      language == AppLanguage.en ? titleEn : titleTr;
+
+  String localizedDescription(AppLanguage language) =>
+      language == AppLanguage.en ? descriptionEn : descriptionTr;
 }
 
 /// User's progress in a program
