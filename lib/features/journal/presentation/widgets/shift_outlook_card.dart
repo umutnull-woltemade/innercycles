@@ -98,7 +98,7 @@ class ShiftOutlookCard extends StatelessWidget {
                   border: Border.all(color: phaseColor.withValues(alpha: 0.3)),
                 ),
                 child: Text(
-                  '~${window.estimatedDaysUntilShift}${isEn ? 'd' : 'g'}',
+                  '~${window.estimatedDaysUntilShift}${L10nService.get('common.unit.days_abbr', isEn ? AppLanguage.en : AppLanguage.tr)}',
                   style: AppTypography.modernAccent(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,

@@ -67,7 +67,22 @@
     "try_again": "Tekrar dene",
     "could_not_share_try_again": "Şu an paylaşılamadı. Lütfen tekrar dene.",
     "error_loading_program": "Program yüklenemedi",
-    "upgrade_to_pro": "Pro'ya Yükselt"
+    "upgrade_to_pro": "Pro'ya Yükselt",
+    "week_abbr": "H",
+    "time": {
+      "in_minutes": "{count}dk içinde",
+      "in_hours": "{count}sa içinde",
+      "in_days": "{count}g içinde",
+      "minutes_short": "{count}dk",
+      "hours_short": "{count}sa",
+      "days_short": "{count}g"
+    },
+    "date_format": {
+      "mdy": "{day}.{month}.{year}"
+    },
+    "unit": {
+      "days_abbr": "g"
+    }
   },
   "greetings": {
     "night": "Hâlâ ayakta mısın? Yazmak için iyi bir zaman.",
@@ -842,7 +857,11 @@
     },
     "entry_count": "{count} kayıt",
     "day_streak": "{count} gün seri",
-    "dream_count": "{count} rüya"
+    "dream_count": "{count} rüya",
+    "pricing": {
+      "monthly": "$7,99/ay",
+      "yearly_monthly": "$2,50/ay"
+    }
   },
   "progressive_unlock": {
     "dream_journal": "Rüya Günlüğü",

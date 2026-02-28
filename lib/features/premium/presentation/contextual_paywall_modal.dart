@@ -377,10 +377,10 @@ class _ContextualPaywallSheetState
     final monthlyLabel =
         experiment?.monthlyPriceLabel ??
         dynamicMonthly ??
-        (isEn ? '\$7.99/mo' : '\$7,99/ay');
+        L10nService.get('premium.pricing.monthly', isEn ? AppLanguage.en : AppLanguage.tr);
     final yearlyLabel =
         experiment?.yearlyMonthlyEquivalent ??
-        (isEn ? '\$2.50/mo' : '\$2,50/ay');
+        L10nService.get('premium.pricing.yearly_monthly', isEn ? AppLanguage.en : AppLanguage.tr);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

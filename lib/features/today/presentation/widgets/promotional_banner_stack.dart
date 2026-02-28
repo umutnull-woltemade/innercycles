@@ -679,12 +679,12 @@ class _PromotionalBannerStackState
     final diff = dt.difference(now);
     if (diff.isNegative) return L10nService.get('today.promotional_stack.now', isEn ? AppLanguage.en : AppLanguage.tr);
     if (diff.inMinutes < 60) {
-      return isEn ? 'in ${diff.inMinutes}m' : '${diff.inMinutes}dk içinde';
+      return L10nService.getWithParams('common.time.in_minutes', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '${diff.inMinutes}'});
     }
     if (diff.inHours < 24) {
-      return isEn ? 'in ${diff.inHours}h' : '${diff.inHours}sa içinde';
+      return L10nService.getWithParams('common.time.in_hours', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '${diff.inHours}'});
     }
-    return isEn ? 'in ${diff.inDays}d' : '${diff.inDays}g içinde';
+    return L10nService.getWithParams('common.time.in_days', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '${diff.inDays}'});
   }
 }
 

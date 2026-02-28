@@ -889,13 +889,13 @@ class _NoteCard extends StatelessWidget {
       return L10nService.get('notes.notes_list.now', isEn ? AppLanguage.en : AppLanguage.tr);
     }
     if (diff.inMinutes < 60) {
-      return isEn ? '${diff.inMinutes}m' : '${diff.inMinutes}dk';
+      return L10nService.getWithParams('common.time.minutes_short', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '${diff.inMinutes}'});
     }
     if (diff.inHours < 24) {
-      return isEn ? '${diff.inHours}h' : '${diff.inHours}sa';
+      return L10nService.getWithParams('common.time.hours_short', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '${diff.inHours}'});
     }
     if (diff.inDays < 7) {
-      return isEn ? '${diff.inDays}d' : '${diff.inDays}g';
+      return L10nService.getWithParams('common.time.days_short', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '${diff.inDays}'});
     }
     final months = isEn
         ? CommonStrings.monthsShortEn

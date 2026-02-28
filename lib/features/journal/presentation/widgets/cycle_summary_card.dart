@@ -112,7 +112,7 @@ class CycleSummaryCard extends StatelessWidget {
                   _buildStatChip(
                     context,
                     icon: Icons.waves,
-                    label: '~${summary.cycleLengthDays}${isEn ? 'd' : 'g'}',
+                    label: '~${summary.cycleLengthDays}${L10nService.get('common.unit.days_abbr', isEn ? AppLanguage.en : AppLanguage.tr)}',
                     color: color,
                   ),
 

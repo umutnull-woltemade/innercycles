@@ -129,7 +129,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
     final day = date.day.toString().padLeft(2, '0');
     final month = date.month.toString().padLeft(2, '0');
     final year = date.year;
-    return isEn ? '$month/$day/$year' : '$day.$month.$year';
+    return L10nService.getWithParams('common.date_format.mdy', isEn ? AppLanguage.en : AppLanguage.tr, params: {'month': month, 'day': day, 'year': '$year'});
   }
 
   @override

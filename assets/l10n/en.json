@@ -67,7 +67,22 @@
     "try_again": "Try again",
     "could_not_share_try_again": "Couldn't share right now. Please try again.",
     "error_loading_program": "Couldn't load this program",
-    "upgrade_to_pro": "Upgrade to Pro"
+    "upgrade_to_pro": "Upgrade to Pro",
+    "week_abbr": "W",
+    "time": {
+      "in_minutes": "in {count}m",
+      "in_hours": "in {count}h",
+      "in_days": "in {count}d",
+      "minutes_short": "{count}m",
+      "hours_short": "{count}h",
+      "days_short": "{count}d"
+    },
+    "date_format": {
+      "mdy": "{month}/{day}/{year}"
+    },
+    "unit": {
+      "days_abbr": "d"
+    }
   },
   "greetings": {
     "night": "Still up? Good time to write.",
@@ -842,7 +857,11 @@
     },
     "entry_count": "{count} entries",
     "day_streak": "{count}-day streak",
-    "dream_count": "{count} dreams"
+    "dream_count": "{count} dreams",
+    "pricing": {
+      "monthly": "$7.99/mo",
+      "yearly_monthly": "$2.50/mo"
+    }
   },
   "progressive_unlock": {
     "dream_journal": "Dream Journal",

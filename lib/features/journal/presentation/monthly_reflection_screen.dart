@@ -625,7 +625,7 @@ class _MonthlyReflectionScreenState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${isEn ? 'W' : 'H'}${i + 1}',
+                    '${L10nService.get('common.week_abbr', isEn ? AppLanguage.en : AppLanguage.tr)}${i + 1}',
                     style: AppTypography.modernAccent(
                       fontSize: 11,
                       fontWeight: FontWeight.w700,
