@@ -142,13 +142,14 @@ class JournalService with SupabaseSyncMixin {
   /// Check if user has logged today
   bool hasLoggedToday() => getTodayEntry() != null;
 
-  /// Get total entry count
-  int get entryCount => _entries.length;
+  /// Get total entry count (excludes private)
+  int get entryCount => _entries.where((e) => !e.isPrivate).length;
 
-  /// Get entries for a specific month
+  /// Get entries for a specific month (excludes private)
   List<JournalEntry> getEntriesForMonth(int year, int month) {
     return _entries
-        .where((e) => e.date.year == year && e.date.month == month)
+        .where((e) =>
+            !e.isPrivate && e.date.year == year && e.date.month == month)
         .toList()
       ..sort((a, b) => a.date.compareTo(b.date));
   }
@@ -163,44 +164,46 @@ class JournalService with SupabaseSyncMixin {
   // SEARCH & TAGS
   // ══════════════════════════════════════════════════════════════════════════
 
-  /// Full-text search across note content, tags, and focus area display names
+  /// Full-text search across note content, tags, and focus area display names (excludes private)
   List<JournalEntry> searchEntries(String query) {
     final q = query.toLowerCase();
     return _entries
         .where(
           (e) =>
-              (e.note?.toLowerCase().contains(q) ?? false) ||
+              !e.isPrivate &&
+              ((e.note?.toLowerCase().contains(q) ?? false) ||
               e.tags.any((t) => t.toLowerCase().contains(q)) ||
               e.focusArea.displayNameEn.toLowerCase().contains(q) ||
               e.focusArea.displayNameTr.toLowerCase().contains(q) ||
-              e.focusArea.name.toLowerCase().contains(q),
+              e.focusArea.name.toLowerCase().contains(q)),
         )
         .toList()
       ..sort((a, b) => b.date.compareTo(a.date));
   }
 
-  /// Get all unique tags across all journal entries
+  /// Get all unique tags across all journal entries (excludes private)
   List<String> getAllTags() {
     final tagSet = <String>{};
-    for (final entry in _entries) {
+    for (final entry in _entries.where((e) => !e.isPrivate)) {
       tagSet.addAll(entry.tags);
     }
     return tagSet.toList()..sort();
   }
 
-  /// Get entries by specific tag
+  /// Get entries by specific tag (excludes private)
   List<JournalEntry> getEntriesByTag(String tag) {
     final t = tag.toLowerCase();
     return _entries
-        .where((e) => e.tags.any((et) => et.toLowerCase() == t))
+        .where((e) =>
+            !e.isPrivate && e.tags.any((et) => et.toLowerCase() == t))
         .toList()
       ..sort((a, b) => b.date.compareTo(a.date));
   }
 
-  /// Get most frequently used tags (for suggestions)
+  /// Get most frequently used tags (for suggestions, excludes private)
   List<String> getFrequentTags({int limit = 10}) {
     final tagCounts = <String, int>{};
-    for (final entry in _entries) {
+    for (final entry in _entries.where((e) => !e.isPrivate)) {
       for (final tag in entry.tags) {
         tagCounts[tag] = (tagCounts[tag] ?? 0) + 1;
       }

@@ -81,6 +81,8 @@ class DataMigrationService {
                 'sub_ratings': e.subRatings,
                 'note': e.note,
                 'image_path': e.imagePath,
+                'tags': e.tags,
+                'is_private': e.isPrivate,
               },
             )
             .toList();

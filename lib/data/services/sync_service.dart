@@ -13,11 +13,12 @@ class SyncService {
   static const String _syncQueueBoxName = 'sync_queue_box';
   static const _uuid = Uuid();
   static Box? _syncBox;
-  static bool _isSyncing = false;
+  static Completer<SyncResult>? _syncCompleter;
   static StreamSubscription<List<ConnectivityResult>>? _connectivitySub;
 
   /// Stream controller for sync status updates
-  static final _statusController = StreamController<SyncStatus>.broadcast();
+  static StreamController<SyncStatus> _statusController =
+      StreamController<SyncStatus>.broadcast();
 
   /// Stream of sync status changes
   static Stream<SyncStatus> get statusStream => _statusController.stream;
@@ -64,7 +65,15 @@ class SyncService {
     }
 
     try {
+      // Recreate stream controller if previously closed
+      if (_statusController.isClosed) {
+        _statusController = StreamController<SyncStatus>.broadcast();
+      }
+
       _syncBox = await Hive.openBox(_syncQueueBoxName);
+
+      // Purge stale queue items (older than 30 days)
+      await purgeStaleQueueItems();
 
       // Listen for connectivity changes (cancel previous if re-initialized)
       _connectivitySub?.cancel();
@@ -98,12 +107,13 @@ class SyncService {
     }
   }
 
-  /// Dispose resources (cancel connectivity listener and periodic timer)
+  /// Dispose resources (cancel connectivity listener, timer, and stream)
   static void dispose() {
     _connectivitySub?.cancel();
     _connectivitySub = null;
     _periodicSyncTimer?.cancel();
     _periodicSyncTimer = null;
+    _statusController.close();
   }
 
   /// Called when app resumes from background — triggers full sync
@@ -277,14 +287,11 @@ class SyncService {
   // SYNC PENDING OPERATIONS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  /// Sync all pending operations
+  /// Sync all pending operations (uses Completer to prevent race conditions)
   static Future<SyncResult> syncPendingOperations() async {
-    if (_isSyncing) {
-      return SyncResult(
-        synced: 0,
-        failed: 0,
-        message: 'Sync already in progress',
-      );
+    // If sync is already in progress, await the same result
+    if (_syncCompleter != null) {
+      return _syncCompleter!.future;
     }
 
     final box = _syncBox;
@@ -297,7 +304,8 @@ class SyncService {
       return SyncResult(synced: 0, failed: 0, message: 'Offline');
     }
 
-    _isSyncing = true;
+    final completer = Completer<SyncResult>();
+    _syncCompleter = completer;
     _updateStatus(SyncStatus.syncing);
     int synced = 0;
     int failed = 0;
@@ -344,16 +352,27 @@ class SyncService {
           }
         }
       }
-    } finally {
-      _isSyncing = false;
+
       _updateStatus(failed > 0 ? SyncStatus.error : SyncStatus.synced);
-    }
+      final result =
+          SyncResult(synced: synced, failed: failed, message: 'Sync complete');
 
-    if (kDebugMode) {
-      debugPrint('SyncService: Sync complete - $synced synced, $failed failed');
-    }
+      if (kDebugMode) {
+        debugPrint(
+            'SyncService: Sync complete - $synced synced, $failed failed');
+      }
 
-    return SyncResult(synced: synced, failed: failed, message: 'Sync complete');
+      completer.complete(result);
+      return result;
+    } catch (e) {
+      _updateStatus(SyncStatus.error);
+      final result = SyncResult(
+          synced: synced, failed: failed, message: 'Sync error: $e');
+      completer.complete(result);
+      return result;
+    } finally {
+      _syncCompleter = null;
+    }
   }
 
   /// Execute a single sync operation
@@ -395,7 +414,46 @@ class SyncService {
 
   static void _updateStatus(SyncStatus status) {
     _currentStatus = status;
-    _statusController.add(status);
+    if (!_statusController.isClosed) {
+      _statusController.add(status);
+    }
+  }
+
+  /// Purge stale queue items older than 30 days
+  static Future<int> purgeStaleQueueItems() async {
+    final box = _syncBox;
+    if (box == null) return 0;
+
+    final cutoff = DateTime.now().subtract(const Duration(days: 30));
+    int purged = 0;
+    final keysToDelete = <dynamic>[];
+
+    for (final key in box.keys) {
+      try {
+        final json = box.get(key) as String?;
+        if (json == null) {
+          keysToDelete.add(key);
+          continue;
+        }
+        final item = SyncQueueItem.fromJson(jsonDecode(json));
+        if (item.createdAt.isBefore(cutoff)) {
+          keysToDelete.add(key);
+        }
+      } catch (_) {
+        // Corrupted entry — remove it
+        keysToDelete.add(key);
+      }
+    }
+
+    for (final key in keysToDelete) {
+      await box.delete(key);
+      purged++;
+    }
+
+    if (kDebugMode && purged > 0) {
+      debugPrint('SyncService: Purged $purged stale queue items');
+    }
+    return purged;
   }
 }
 
