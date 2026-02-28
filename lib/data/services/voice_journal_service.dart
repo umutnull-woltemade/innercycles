@@ -56,7 +56,7 @@ class VoiceJournalService {
     } catch (e) {
       _isInitialized = false;
       _errorController.add(
-        L10nService.get('data.services.voice_journal.failed_to_initialize_voice_input', _language),
+        L10nService.get('data.services.voice_journal.failed_to_initialize_voice_input', _isEn ? AppLanguage.en : AppLanguage.tr),
       );
     }
   }
@@ -91,7 +91,7 @@ class VoiceJournalService {
   Future<bool> startListening({String? localeId}) async {
     if (!_isInitialized) {
       _errorController.add(
-        L10nService.get('data.services.voice_journal.voice_input_is_not_available_on_this_dev', _language),
+        L10nService.get('data.services.voice_journal.voice_input_is_not_available_on_this_dev', _isEn ? AppLanguage.en : AppLanguage.tr),
       );
       return false;
     }
@@ -118,7 +118,7 @@ class VoiceJournalService {
       return true;
     } catch (e) {
       _errorController.add(
-        L10nService.get('data.services.voice_journal.could_not_start_listening', _language),
+        L10nService.get('data.services.voice_journal.could_not_start_listening', _isEn ? AppLanguage.en : AppLanguage.tr),
       );
       return false;
     }
@@ -132,7 +132,7 @@ class VoiceJournalService {
       await _speech.stop();
     } catch (e) {
       _errorController.add(
-        L10nService.get('data.services.voice_journal.error_stopping_voice_input', _language),
+        L10nService.get('data.services.voice_journal.error_stopping_voice_input', _isEn ? AppLanguage.en : AppLanguage.tr),
       );
     } finally {
       _isListening = false;

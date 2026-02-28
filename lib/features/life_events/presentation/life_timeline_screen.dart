@@ -57,7 +57,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  L10nService.get('life_events.life_timeline.couldnt_load_your_timeline', language),
+                  L10nService.get('life_events.life_timeline.couldnt_load_your_timeline', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textSecondary
@@ -73,7 +73,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
                     color: AppColors.starGold,
                   ),
                   label: Text(
-                    L10nService.get('life_events.life_timeline.retry', language),
+                    L10nService.get('life_events.life_timeline.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -89,7 +89,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
         ),
       ),
       floatingActionButton: _AnimatedFAB(
-        language: language,
+        isEn: isEn,
         onPressed: () => context.push(Routes.lifeEventNew),
       ),
     );
@@ -99,7 +99,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
     BuildContext context,
     LifeEventService service,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     bool isPremium,
   ) {
     var events = _filter != null
@@ -134,7 +134,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
           ),
           slivers: [
             GlassSliverAppBar(
-              title: L10nService.get('life_events.life_timeline.life_timeline', language),
+              title: L10nService.get('life_events.life_timeline.life_timeline', isEn ? AppLanguage.en : AppLanguage.tr),
             ),
             SliverPadding(
               padding: const EdgeInsets.all(16),
@@ -168,7 +168,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
                     _buildPremiumGate(context, isDark, isEn),
 
                   ContentDisclaimer(
-                    language: language,
+                    language: isEn ? AppLanguage.en : AppLanguage.tr,
                   ),
                   const SizedBox(height: 80),
                 ]),
@@ -180,21 +180,21 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
     );
   }
 
-  Widget _buildFilterChips(bool isDark, AppLanguage language) {
+  Widget _buildFilterChips(bool isDark, bool isEn) {
     return Row(
       children: [
-        _filterChip(null, L10nService.get('life_events.life_timeline.all', language), AppColors.auroraStart, isDark),
+        _filterChip(null, L10nService.get('life_events.life_timeline.all', isEn ? AppLanguage.en : AppLanguage.tr), AppColors.auroraStart, isDark),
         const SizedBox(width: 8),
         _filterChip(
           LifeEventType.positive,
-          L10nService.get('life_events.life_timeline.positive', language),
+          L10nService.get('life_events.life_timeline.positive', isEn ? AppLanguage.en : AppLanguage.tr),
           AppColors.starGold,
           isDark,
         ),
         const SizedBox(width: 8),
         _filterChip(
           LifeEventType.challenging,
-          L10nService.get('life_events.life_timeline.challenging', language),
+          L10nService.get('life_events.life_timeline.challenging', isEn ? AppLanguage.en : AppLanguage.tr),
           AppColors.amethyst,
           isDark,
         ),
@@ -244,7 +244,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
     );
   }
 
-  Widget _buildMonthHeader(String monthKey, int count, bool isDark, AppLanguage language) {
+  Widget _buildMonthHeader(String monthKey, int count, bool isDark, bool isEn) {
     final parts = monthKey.split('-');
     final year = parts[0];
     final monthIndex = int.tryParse(parts[1]) ?? 1;
@@ -286,7 +286,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
     BuildContext context,
     LifeEvent event,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final isPositive = event.type == LifeEventType.positive;
     final accentColor = isPositive ? AppColors.starGold : AppColors.amethyst;
@@ -392,7 +392,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
                       width: 40,
                       height: 40,
                       fit: BoxFit.cover,
-                      semanticLabel: L10nService.get('life_events.life_timeline.event_photo', language),
+                      semanticLabel: L10nService.get('life_events.life_timeline.event_photo', isEn ? AppLanguage.en : AppLanguage.tr),
                       errorBuilder: (_, _, _) => const SizedBox.shrink(),
                     ),
                   ),
@@ -412,18 +412,18 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
     );
   }
 
-  Widget _buildEmptyState(bool isDark, AppLanguage language) {
+  Widget _buildEmptyState(bool isDark, bool isEn) {
     return PremiumEmptyState(
       icon: Icons.auto_awesome_rounded,
-      title: L10nService.get('life_events.life_timeline.your_timeline_awaits_its_first_chapter', language),
-      description: L10nService.get('life_events.life_timeline.start_recording_the_moments_that_shape_y', language),
+      title: L10nService.get('life_events.life_timeline.your_timeline_awaits_its_first_chapter', isEn ? AppLanguage.en : AppLanguage.tr),
+      description: L10nService.get('life_events.life_timeline.start_recording_the_moments_that_shape_y', isEn ? AppLanguage.en : AppLanguage.tr),
       gradientVariant: GradientTextVariant.gold,
-      ctaLabel: L10nService.get('life_events.life_timeline.add_life_event', language),
+      ctaLabel: L10nService.get('life_events.life_timeline.add_life_event', isEn ? AppLanguage.en : AppLanguage.tr),
       onCtaPressed: () => context.push(Routes.lifeEventNew),
     );
   }
 
-  Widget _buildPremiumGate(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildPremiumGate(BuildContext context, bool isDark, bool isEn) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: PremiumCard(
@@ -439,7 +439,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
             ),
             const SizedBox(height: 8),
             GradientText(
-              L10nService.get('life_events.life_timeline.unlock_your_full_timeline_with_pro', language),
+              L10nService.get('life_events.life_timeline.unlock_your_full_timeline_with_pro', isEn ? AppLanguage.en : AppLanguage.tr),
               variant: GradientTextVariant.gold,
               textAlign: TextAlign.center,
               style: AppTypography.displayFont.copyWith(
@@ -449,7 +449,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
             ),
             const SizedBox(height: 12),
             GradientButton.gold(
-              label: L10nService.get('life_events.life_timeline.upgrade_to_pro', language),
+              label: L10nService.get('life_events.life_timeline.upgrade_to_pro', isEn ? AppLanguage.en : AppLanguage.tr),
               onPressed: () => showContextualPaywall(
                 context,
                 ref,
@@ -464,16 +464,15 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
 }
 
 class _AnimatedFAB extends StatelessWidget {
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final VoidCallback onPressed;
 
-  const _AnimatedFAB({required this.language, required this.onPressed});
+  const _AnimatedFAB({required this.isEn, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-          message: L10nService.get('life_events.life_timeline.add_life_event_1', language),
+          message: L10nService.get('life_events.life_timeline.add_life_event_1', isEn ? AppLanguage.en : AppLanguage.tr),
           child: GestureDetector(
             onTap: onPressed,
             child: Container(
@@ -498,7 +497,7 @@ class _AnimatedFAB extends StatelessWidget {
                   Icon(Icons.add_rounded, size: 20, color: AppColors.deepSpace),
                   const SizedBox(width: 8),
                   Text(
-                    L10nService.get('life_events.life_timeline.new_event', language),
+                    L10nService.get('life_events.life_timeline.new_event', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.displayFont.copyWith(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,

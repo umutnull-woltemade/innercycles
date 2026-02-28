@@ -148,7 +148,7 @@ class _NotificationScheduleScreenState
                   ),
                   slivers: [
                     GlassSliverAppBar(
-                      title: L10nService.get('settings.notification_schedule.notifications', language),
+                      title: L10nService.get('settings.notification_schedule.notifications', isEn ? AppLanguage.en : AppLanguage.tr),
                     ),
                     SliverPadding(
                       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -162,7 +162,7 @@ class _NotificationScheduleScreenState
                           _buildNotificationCard(
                             context: context,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                             icon: Icons.wb_sunny_outlined,
                             iconColor: AppColors.starGold,
                             titleEn: 'Daily Reflection',
@@ -184,7 +184,7 @@ class _NotificationScheduleScreenState
                           _buildNotificationCard(
                             context: context,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                             icon: Icons.nightlight_round_outlined,
                             iconColor: AppColors.auroraStart,
                             titleEn: 'Evening Reflection',
@@ -203,7 +203,7 @@ class _NotificationScheduleScreenState
                           _buildNotificationCard(
                             context: context,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                             icon: Icons.auto_awesome_outlined,
                             iconColor: AppColors.auroraEnd,
                             titleEn: 'Daily Journal Prompt',
@@ -224,7 +224,7 @@ class _NotificationScheduleScreenState
                           _buildNotificationCard(
                             context: context,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                             icon: Icons.spa_outlined,
                             iconColor: AppColors.auroraEnd,
                             titleEn: 'Wellness Reminders',
@@ -241,7 +241,7 @@ class _NotificationScheduleScreenState
 
                           // Info text
                           Text(
-                            L10nService.get('settings.notification_schedule.notifications_help_you_build_a_consisten', language),
+                            L10nService.get('settings.notification_schedule.notifications_help_you_build_a_consisten', isEn ? AppLanguage.en : AppLanguage.tr),
                             style: AppTypography.decorativeScript(
                               fontSize: 13,
                               color: isDark
@@ -260,7 +260,7 @@ class _NotificationScheduleScreenState
     );
   }
 
-  Widget _buildPermissionBanner(bool isDark, AppLanguage language) {
+  Widget _buildPermissionBanner(bool isDark, bool isEn) {
     return Padding(
       padding: const EdgeInsets.only(bottom: AppConstants.spacingLg),
       child: GlassPanel(
@@ -277,7 +277,7 @@ class _NotificationScheduleScreenState
             ),
             const SizedBox(height: AppConstants.spacingMd),
             GradientText(
-              L10nService.get('settings.notification_schedule.notifications_are_disabled', language),
+              L10nService.get('settings.notification_schedule.notifications_are_disabled', isEn ? AppLanguage.en : AppLanguage.tr),
               variant: GradientTextVariant.gold,
               style: AppTypography.displayFont.copyWith(
                 fontSize: 18,
@@ -286,7 +286,7 @@ class _NotificationScheduleScreenState
             ),
             const SizedBox(height: AppConstants.spacingSm),
             Text(
-              L10nService.get('settings.notification_schedule.enable_notifications_to_receive_journali', language),
+              L10nService.get('settings.notification_schedule.enable_notifications_to_receive_journali', isEn ? AppLanguage.en : AppLanguage.tr),
               textAlign: TextAlign.center,
               style: AppTypography.decorativeScript(
                 fontSize: 13,
@@ -295,7 +295,7 @@ class _NotificationScheduleScreenState
             ),
             const SizedBox(height: AppConstants.spacingMd),
             GradientButton.gold(
-              label: L10nService.get('settings.notification_schedule.enable_notifications', language),
+              label: L10nService.get('settings.notification_schedule.enable_notifications', isEn ? AppLanguage.en : AppLanguage.tr),
               onPressed: _requestPermission,
               expanded: true,
             ),
@@ -308,7 +308,7 @@ class _NotificationScheduleScreenState
   Widget _buildNotificationCard({
     required BuildContext context,
     required bool isDark,
-    required AppLanguage language,
+    required bool isEn,
     required IconData icon,
     required Color iconColor,
     required String titleEn,
@@ -379,7 +379,7 @@ class _NotificationScheduleScreenState
     );
   }
 
-  Widget _buildTimePicker(bool isDark, AppLanguage language) {
+  Widget _buildTimePicker(bool isDark, bool isEn) {
     final time =
         _settings?.dailyReflectionTime ?? const TimeOfDay(hour: 9, minute: 0);
     final formatted = time.format(context);
@@ -406,7 +406,7 @@ class _NotificationScheduleScreenState
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                L10nService.get('settings.notification_schedule.reminder_time', language),
+                L10nService.get('settings.notification_schedule.reminder_time', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
                   color: isDark
@@ -435,7 +435,7 @@ class _NotificationScheduleScreenState
     );
   }
 
-  Widget _buildJournalPromptTimePicker(bool isDark, AppLanguage language) {
+  Widget _buildJournalPromptTimePicker(bool isDark, bool isEn) {
     final time =
         _settings?.journalPromptTime ?? const TimeOfDay(hour: 10, minute: 0);
     final formatted = time.format(context);
@@ -462,7 +462,7 @@ class _NotificationScheduleScreenState
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                L10nService.get('settings.notification_schedule.prompt_time', language),
+                L10nService.get('settings.notification_schedule.prompt_time', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
                   color: isDark

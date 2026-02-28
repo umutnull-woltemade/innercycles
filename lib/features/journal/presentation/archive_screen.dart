@@ -100,7 +100,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                           color: AppColors.starGold,
                         ),
                         label: Text(
-                          L10nService.get('journal.archive.retry', language),
+                          L10nService.get('journal.archive.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.elegantAccent(
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
@@ -141,7 +141,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                       parent: AlwaysScrollableScrollPhysics(),
                     ),
                     slivers: [
-                      GlassSliverAppBar(title: L10nService.get('journal.archive.archive', language)),
+                      GlassSliverAppBar(title: L10nService.get('journal.archive.archive', isEn ? AppLanguage.en : AppLanguage.tr)),
                       // Search bar
                       SliverToBoxAdapter(
                         child: Padding(
@@ -184,9 +184,9 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                           hasScrollBody: false,
                           child: PremiumEmptyState(
                             icon: Icons.book_outlined,
-                            title: L10nService.get('journal.archive.your_journal_is_a_blank_page_ready_when', language),
-                            description: L10nService.get('journal.archive.your_journal_entries_will_appear_here_as', language),
-                            ctaLabel: L10nService.get('journal.archive.write_first_entry', language),
+                            title: L10nService.get('journal.archive.your_journal_is_a_blank_page_ready_when', isEn ? AppLanguage.en : AppLanguage.tr),
+                            description: L10nService.get('journal.archive.your_journal_entries_will_appear_here_as', isEn ? AppLanguage.en : AppLanguage.tr),
+                            ctaLabel: L10nService.get('journal.archive.write_first_entry', isEn ? AppLanguage.en : AppLanguage.tr),
                             onCtaPressed: () => context.go(Routes.journal),
                           ),
                         )
@@ -205,10 +205,10 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                                 confirmDismiss: (_) async {
                                   final confirmed = await GlassDialog.confirm(
                                     context,
-                                    title: L10nService.get('journal.archive.delete_entry', language),
-                                    message: L10nService.get('journal.archive.this_journal_entry_will_be_permanently_d', language),
-                                    confirmLabel: L10nService.get('journal.archive.delete', language),
-                                    cancelLabel: L10nService.get('journal.archive.cancel', language),
+                                    title: L10nService.get('journal.archive.delete_entry', isEn ? AppLanguage.en : AppLanguage.tr),
+                                    message: L10nService.get('journal.archive.this_journal_entry_will_be_permanently_d', isEn ? AppLanguage.en : AppLanguage.tr),
+                                    confirmLabel: L10nService.get('journal.archive.delete', isEn ? AppLanguage.en : AppLanguage.tr),
+                                    cancelLabel: L10nService.get('journal.archive.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
                                     isDestructive: true,
                                   );
                                   if (confirmed == true) {
@@ -264,7 +264,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
     );
   }
 
-  Widget _buildSearchBar(bool isDark, AppLanguage language) {
+  Widget _buildSearchBar(bool isDark, bool isEn) {
     return Container(
       decoration: BoxDecoration(
         color: isDark
@@ -290,7 +290,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: L10nService.get('journal.archive.search_by_date_mood_or_text', language),
+          hintText: L10nService.get('journal.archive.search_by_date_mood_or_text', isEn ? AppLanguage.en : AppLanguage.tr),
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -300,7 +300,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
           ),
           suffixIcon: _searchQuery.isNotEmpty
               ? IconButton(
-                  tooltip: L10nService.get('journal.archive.clear_search', language),
+                  tooltip: L10nService.get('journal.archive.clear_search', isEn ? AppLanguage.en : AppLanguage.tr),
                   icon: Icon(
                     Icons.cancel,
                     color: isDark
@@ -324,17 +324,17 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
     );
   }
 
-  Widget _buildFilterChips(bool isDark, AppLanguage language) {
+  Widget _buildFilterChips(bool isDark, bool isEn) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
           _buildChip(
-            L10nService.get('journal.archive.all', language),
+            L10nService.get('journal.archive.all', isEn ? AppLanguage.en : AppLanguage.tr),
             _filterArea == null,
             () => setState(() => _filterArea = null),
             isDark,
-            language: language,
+            isEn: isEn,
           ),
           ...FocusArea.values.map((area) {
             final label = area.localizedName(isEn);
@@ -343,7 +343,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
               _filterArea == area,
               () => setState(() => _filterArea = area),
               isDark,
-              language: language,
+              isEn: isEn,
             );
           }),
         ],
@@ -356,13 +356,13 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
     bool isSelected,
     VoidCallback onTap,
     bool isDark, {
-    AppLanguage language = AppLanguage.en,
+    bool isEn = true,
   }) {
     return Padding(
       padding: const EdgeInsets.only(right: 8),
       child: Semantics(
         button: true,
-        label: L10nService.getWithParams('journal.archive.filter_label', language, params: {'label': label}),
+        label: L10nService.getWithParams('journal.archive.filter_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'label': label}),
         child: GestureDetector(
           onTap: onTap,
           child: ConstrainedBox(
@@ -404,7 +404,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
     BuildContext context,
     JournalEntry entry,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final areaLabel = entry.focusArea.localizedName(isEn);
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
@@ -491,7 +491,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                         Text(
                           () {
                             final words = entry.note!.trim().split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
-                            return L10nService.getWithParams('journal.archive.word_count', language, params: {'count': '$words'});
+                            return L10nService.getWithParams('journal.archive.word_count', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$words'});
                           }(),
                           style: AppTypography.elegantAccent(
                             fontSize: 11,

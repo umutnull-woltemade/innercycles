@@ -62,7 +62,7 @@ class StreakStatsScreen extends ConsumerWidget {
                       color: AppColors.starGold,
                     ),
                     label: Text(
-                      L10nService.get('streak.streak_stats.retry', language),
+                      L10nService.get('streak.streak_stats.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -100,7 +100,7 @@ class StreakStatsScreen extends ConsumerWidget {
     StreakStats stats,
     Map<DateTime, bool> weekCalendar,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     bool isPremium,
   ) {
     return CupertinoScrollbar(
@@ -109,7 +109,7 @@ class StreakStatsScreen extends ConsumerWidget {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(title: L10nService.get('streak.streak_stats.streak_engine', language)),
+          GlassSliverAppBar(title: L10nService.get('streak.streak_stats.streak_engine', isEn ? AppLanguage.en : AppLanguage.tr)),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
@@ -157,7 +157,7 @@ class StreakStatsScreen extends ConsumerWidget {
     BuildContext context,
     StreakStats stats,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     return GlassPanel(
       elevation: GlassElevation.g3,
@@ -175,7 +175,7 @@ class StreakStatsScreen extends ConsumerWidget {
             ),
           ),
           Text(
-            L10nService.get('streak.streak_stats.day_streak', language),
+            L10nService.get('streak.streak_stats.day_streak', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.modernAccent(
               fontSize: 16,
               fontWeight: FontWeight.w300,
@@ -239,7 +239,7 @@ class StreakStatsScreen extends ConsumerWidget {
                   ),
                   const SizedBox(width: 6),
                   Text(
-                    L10nService.get('streak.streak_stats.share_your_streak', language),
+                    L10nService.get('streak.streak_stats.share_your_streak', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       color: AppColors.starGold.withValues(alpha: 0.8),
@@ -259,13 +259,13 @@ class StreakStatsScreen extends ConsumerWidget {
     BuildContext context,
     StreakStats stats,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     return Row(
       children: [
         Expanded(
           child: _StatTile(
-            label: L10nService.get('streak.streak_stats.longest', language),
+            label: L10nService.get('streak.streak_stats.longest', isEn ? AppLanguage.en : AppLanguage.tr),
             value: '${stats.longestStreak}',
             icon: Icons.emoji_events_outlined,
             isDark: isDark,
@@ -274,7 +274,7 @@ class StreakStatsScreen extends ConsumerWidget {
         const SizedBox(width: AppConstants.spacingMd),
         Expanded(
           child: _StatTile(
-            label: L10nService.get('streak.streak_stats.total_entries', language),
+            label: L10nService.get('streak.streak_stats.total_entries', isEn ? AppLanguage.en : AppLanguage.tr),
             value: '${stats.totalEntries}',
             icon: Icons.edit_note,
             isDark: isDark,
@@ -283,7 +283,7 @@ class StreakStatsScreen extends ConsumerWidget {
         const SizedBox(width: AppConstants.spacingMd),
         Expanded(
           child: _StatTile(
-            label: L10nService.get('streak.streak_stats.milestones', language),
+            label: L10nService.get('streak.streak_stats.milestones', isEn ? AppLanguage.en : AppLanguage.tr),
             value: '${stats.celebratedMilestones.length}',
             icon: Icons.stars_outlined,
             isDark: isDark,
@@ -297,7 +297,7 @@ class StreakStatsScreen extends ConsumerWidget {
     BuildContext context,
     Map<DateTime, bool> weekCalendar,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final dayLabels = isEn
         ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -312,7 +312,7 @@ class StreakStatsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('streak.streak_stats.this_week', language),
+            L10nService.get('streak.streak_stats.this_week', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 14,
@@ -398,7 +398,7 @@ class StreakStatsScreen extends ConsumerWidget {
     StreakService service,
     StreakStats stats,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     bool isPremium,
   ) {
     return GlassPanel(
@@ -413,7 +413,7 @@ class StreakStatsScreen extends ConsumerWidget {
               Icon(Icons.ac_unit, color: AppColors.auroraStart, size: 20),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('streak.streak_stats.streak_freeze', language),
+                L10nService.get('streak.streak_stats.streak_freeze', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.aurora,
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
@@ -447,7 +447,7 @@ class StreakStatsScreen extends ConsumerWidget {
                     ref.invalidate(streakStatsProvider);
                   },
                   child: Text(
-                    L10nService.get('streak.streak_stats.use_freeze', language),
+                    L10nService.get('streak.streak_stats.use_freeze', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.modernAccent(
                       fontSize: 14,
                       color: AppColors.auroraStart,
@@ -459,7 +459,7 @@ class StreakStatsScreen extends ConsumerWidget {
           if (!isPremium) ...[
             const SizedBox(height: 8),
             Text(
-              L10nService.get('streak.streak_stats.premium_3_freezes_per_week', language),
+              L10nService.get('streak.streak_stats.premium_3_freezes_per_week', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.decorativeScript(
                 fontSize: 12,
                 color: AppColors.starGold.withValues(alpha: 0.7),
@@ -475,7 +475,7 @@ class StreakStatsScreen extends ConsumerWidget {
     BuildContext context,
     StreakStats stats,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     return GlassPanel(
       elevation: GlassElevation.g2,
@@ -485,7 +485,7 @@ class StreakStatsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('streak.streak_stats.milestones_1', language),
+            L10nService.get('streak.streak_stats.milestones_1', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 14,
@@ -546,7 +546,7 @@ class StreakStatsScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    L10nService.getWithParams('streak.milestone_days_short', language, params: {'count': '$milestone'}),
+                    L10nService.getWithParams('streak.milestone_days_short', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$milestone'}),
                     style: AppTypography.elegantAccent(
                       fontSize: 10,
                       color: reached
@@ -567,9 +567,9 @@ class StreakStatsScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildQuickAction(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildQuickAction(BuildContext context, bool isDark, bool isEn) {
     return GradientOutlinedButton(
-      label: L10nService.get('streak.streak_stats.log_todays_entry', language),
+      label: L10nService.get('streak.streak_stats.log_todays_entry', isEn ? AppLanguage.en : AppLanguage.tr),
       icon: Icons.edit_note,
       variant: GradientTextVariant.gold,
       expanded: true,

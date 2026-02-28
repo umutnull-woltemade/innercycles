@@ -113,7 +113,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    L10nService.get('notes.notes_list.couldnt_load_your_notes', language),
+                    L10nService.get('notes.notes_list.couldnt_load_your_notes', isEn ? AppLanguage.en : AppLanguage.tr),
                     textAlign: TextAlign.center,
                     style: AppTypography.decorativeScript(
                       color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -126,7 +126,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      L10nService.get('notes.notes_list.retry', language),
+                      L10nService.get('notes.notes_list.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -160,7 +160,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                   ),
                   slivers: [
                     GlassSliverAppBar(
-                      title: L10nService.get('notes.notes_list.notes', language),
+                      title: L10nService.get('notes.notes_list.notes', isEn ? AppLanguage.en : AppLanguage.tr),
                       showBackButton: false,
                     ),
 
@@ -174,7 +174,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                           pinnedCount: allNotes.where((n) => n.isPinned).length,
                           tagCount: allTags.length,
                           isDark: isDark,
-                          language: language,
+                          isEn: isEn,
                         ).animate().fadeIn(duration: 400.ms),
                       ),
 
@@ -208,7 +208,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                               color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                             ),
                             decoration: InputDecoration(
-                              hintText: L10nService.get('notes.notes_list.search_notes', language),
+                              hintText: L10nService.get('notes.notes_list.search_notes', isEn ? AppLanguage.en : AppLanguage.tr),
                               hintStyle: AppTypography.subtitle(
                                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                               ),
@@ -230,7 +230,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                                             ? AppColors.textMuted
                                             : AppColors.lightTextMuted,
                                       ),
-                                      tooltip: L10nService.get('notes.notes_list.clear_search', language),
+                                      tooltip: L10nService.get('notes.notes_list.clear_search', isEn ? AppLanguage.en : AppLanguage.tr),
                                       onPressed: _clearSearch,
                                     )
                                   : null,
@@ -260,7 +260,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                               scrollDirection: Axis.horizontal,
                               children: [
                                 _TagChip(
-                                  label: L10nService.get('notes.notes_list.all', language),
+                                  label: L10nService.get('notes.notes_list.all', isEn ? AppLanguage.en : AppLanguage.tr),
                                   isSelected: _selectedTag == null,
                                   isDark: isDark,
                                   onTap: () =>
@@ -298,7 +298,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                         hasScrollBody: false,
                         child: _EmptyState(
                           hasNotes: allNotes.isNotEmpty,
-                          language: language,
+                          isEn: isEn,
                           isDark: isDark,
                           onCreate: () {
                             HapticService.buttonPress();
@@ -315,7 +315,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                         child: _SectionHeader(
                           icon: CupertinoIcons.pin_fill,
                           iconColor: AppColors.starGold,
-                          label: L10nService.get('notes.notes_list.pinned', language),
+                          label: L10nService.get('notes.notes_list.pinned', isEn ? AppLanguage.en : AppLanguage.tr),
                           isDark: isDark,
                         ).animate().fadeIn(duration: 300.ms, delay: 120.ms),
                       ),
@@ -324,7 +324,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                           (context, index) =>
                               _NoteCard(
                                     note: pinned[index],
-                                    language: language,
+                                    isEn: isEn,
                                     isDark: isDark,
                                     onTap: () => _openNote(pinned[index].id),
                                     onDelete: () =>
@@ -354,7 +354,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                             _SectionHeader(
                               icon: CupertinoIcons.clock,
                               iconColor: AppColors.auroraStart,
-                              label: L10nService.get('notes.notes_list.recent', language),
+                              label: L10nService.get('notes.notes_list.recent', isEn ? AppLanguage.en : AppLanguage.tr),
                               isDark: isDark,
                             ).animate().fadeIn(
                               duration: 300.ms,
@@ -366,7 +366,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                           (context, index) =>
                               _NoteCard(
                                     note: unpinned[index],
-                                    language: language,
+                                    isEn: isEn,
                                     isDark: isDark,
                                     onTap: () => _openNote(unpinned[index].id),
                                     onDelete: () =>
@@ -399,7 +399,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
         ),
       ),
       floatingActionButton: _AnimatedFAB(
-        language: language,
+        isEn: isEn,
         isDark: isDark,
         onPressed: () {
           HapticService.buttonPress();
@@ -419,10 +419,10 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
 
     final confirmed = await GlassDialog.confirm(
       context,
-      title: L10nService.get('notes.notes_list.delete_note', language),
-      message: L10nService.get('notes.notes_list.this_note_will_be_permanently_deleted', language),
-      cancelLabel: L10nService.get('notes.notes_list.cancel', language),
-      confirmLabel: L10nService.get('notes.notes_list.delete', language),
+      title: L10nService.get('notes.notes_list.delete_note', isEn ? AppLanguage.en : AppLanguage.tr),
+      message: L10nService.get('notes.notes_list.this_note_will_be_permanently_deleted', isEn ? AppLanguage.en : AppLanguage.tr),
+      cancelLabel: L10nService.get('notes.notes_list.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
+      confirmLabel: L10nService.get('notes.notes_list.delete', isEn ? AppLanguage.en : AppLanguage.tr),
       isDestructive: true,
     );
 
@@ -446,15 +446,14 @@ class _NotesStatsBar extends StatelessWidget {
   final int pinnedCount;
   final int tagCount;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _NotesStatsBar({
     required this.total,
     required this.pinnedCount,
     required this.tagCount,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -466,7 +465,7 @@ class _NotesStatsBar extends StatelessWidget {
           _StatPill(
             icon: CupertinoIcons.doc_text,
             value: '$total',
-            label: L10nService.get('notes.notes_list.notes_1', language),
+            label: L10nService.get('notes.notes_list.notes_1', isEn ? AppLanguage.en : AppLanguage.tr),
             isDark: isDark,
           ),
           const SizedBox(width: 10),
@@ -474,7 +473,7 @@ class _NotesStatsBar extends StatelessWidget {
             _StatPill(
               icon: CupertinoIcons.pin_fill,
               value: '$pinnedCount',
-              label: L10nService.get('notes.notes_list.pinned_1', language),
+              label: L10nService.get('notes.notes_list.pinned_1', isEn ? AppLanguage.en : AppLanguage.tr),
               isDark: isDark,
               accentColor: AppColors.starGold,
             ),
@@ -484,7 +483,7 @@ class _NotesStatsBar extends StatelessWidget {
             _StatPill(
               icon: CupertinoIcons.tag,
               value: '$tagCount',
-              label: L10nService.get('notes.notes_list.tags', language),
+              label: L10nService.get('notes.notes_list.tags', isEn ? AppLanguage.en : AppLanguage.tr),
               isDark: isDark,
               accentColor: AppColors.amethyst,
             ),
@@ -578,14 +577,13 @@ class _SectionHeader extends StatelessWidget {
 
 class _EmptyState extends StatelessWidget {
   final bool hasNotes;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
   final VoidCallback onCreate;
 
   const _EmptyState({
     required this.hasNotes,
-    required this.language,
+    required this.isEn,
     required this.isDark,
     required this.onCreate,
   });
@@ -596,8 +594,8 @@ class _EmptyState extends StatelessWidget {
       // Filtered empty
       return PremiumEmptyState(
         icon: CupertinoIcons.search,
-        title: L10nService.get('notes.notes_list.no_notes_matched_your_search', language),
-        description: L10nService.get('notes.notes_list.try_a_different_search_term', language),
+        title: L10nService.get('notes.notes_list.no_notes_matched_your_search', isEn ? AppLanguage.en : AppLanguage.tr),
+        description: L10nService.get('notes.notes_list.try_a_different_search_term', isEn ? AppLanguage.en : AppLanguage.tr),
         gradientVariant: GradientTextVariant.aurora,
       );
     }
@@ -647,7 +645,7 @@ class _EmptyState extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              L10nService.get('notes.notes_list.capture_your_thoughts', language),
+              L10nService.get('notes.notes_list.capture_your_thoughts', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.displayFont.copyWith(
                 fontSize: 24,
                 fontWeight: FontWeight.w600,
@@ -659,7 +657,7 @@ class _EmptyState extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              L10nService.get('notes.notes_list.quick_notes_reminders_ideas_neverything', language),
+              L10nService.get('notes.notes_list.quick_notes_reminders_ideas_neverything', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.decorativeScript(
                 fontSize: 14,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -697,7 +695,7 @@ class _EmptyState extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          L10nService.get('notes.notes_list.write_your_first_note', language),
+                          L10nService.get('notes.notes_list.write_your_first_note', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.displayFont.copyWith(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
@@ -724,15 +722,14 @@ class _EmptyState extends StatelessWidget {
 
 class _NoteCard extends StatelessWidget {
   final NoteToSelf note;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
   final VoidCallback onTap;
   final VoidCallback onDelete;
 
   const _NoteCard({
     required this.note,
-    required this.language,
+    required this.isEn,
     required this.isDark,
     required this.onTap,
     required this.onDelete,
@@ -787,7 +784,7 @@ class _NoteCard extends StatelessWidget {
                     Expanded(
                       child: Text(
                         note.title.isEmpty
-                            ? (L10nService.get('notes.notes_list.untitled', language))
+                            ? (L10nService.get('notes.notes_list.untitled', isEn ? AppLanguage.en : AppLanguage.tr))
                             : note.title,
                         style: AppTypography.displayFont.copyWith(
                           fontSize: 15,
@@ -885,20 +882,20 @@ class _NoteCard extends StatelessWidget {
     );
   }
 
-  String _formatDate(DateTime dt, AppLanguage language) {
+  String _formatDate(DateTime dt, bool isEn) {
     final now = DateTime.now();
     final diff = now.difference(dt);
     if (diff.inMinutes < 1) {
-      return L10nService.get('notes.notes_list.now', language);
+      return L10nService.get('notes.notes_list.now', isEn ? AppLanguage.en : AppLanguage.tr);
     }
     if (diff.inMinutes < 60) {
-      return L10nService.getWithParams('common.time.minutes_short', language, params: {'count': '${diff.inMinutes}'});
+      return L10nService.getWithParams('common.time.minutes_short', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '${diff.inMinutes}'});
     }
     if (diff.inHours < 24) {
-      return L10nService.getWithParams('common.time.hours_short', language, params: {'count': '${diff.inHours}'});
+      return L10nService.getWithParams('common.time.hours_short', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '${diff.inHours}'});
     }
     if (diff.inDays < 7) {
-      return L10nService.getWithParams('common.time.days_short', language, params: {'count': '${diff.inDays}'});
+      return L10nService.getWithParams('common.time.days_short', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '${diff.inDays}'});
     }
     final months = isEn
         ? CommonStrings.monthsShortEn
@@ -970,13 +967,12 @@ class _TagChip extends StatelessWidget {
 // ═══════════════════════════════════════════════════════════════════════
 
 class _AnimatedFAB extends StatelessWidget {
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
   final VoidCallback onPressed;
 
   const _AnimatedFAB({
-    required this.language,
+    required this.isEn,
     required this.isDark,
     required this.onPressed,
   });
@@ -1007,7 +1003,7 @@ class _AnimatedFAB extends StatelessWidget {
                 const Icon(CupertinoIcons.plus, size: 20, color: Colors.white),
                 const SizedBox(width: 8),
                 Text(
-                  L10nService.get('notes.notes_list.new_note', language),
+                  L10nService.get('notes.notes_list.new_note', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,

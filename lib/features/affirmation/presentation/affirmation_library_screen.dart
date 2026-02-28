@@ -83,7 +83,7 @@ class _AffirmationLibraryScreenState
                       color: AppColors.starGold,
                     ),
                     label: Text(
-                      L10nService.get('affirmation.affirmation_library.retry', language),
+                      L10nService.get('affirmation.affirmation_library.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -105,7 +105,7 @@ class _AffirmationLibraryScreenState
     BuildContext context,
     AffirmationService service,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     // Get filtered affirmations
     List<Affirmation> affirmations;
@@ -125,7 +125,7 @@ class _AffirmationLibraryScreenState
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(title: L10nService.get('affirmation.affirmation_library.affirmations', language)),
+          GlassSliverAppBar(title: L10nService.get('affirmation.affirmation_library.affirmations', isEn ? AppLanguage.en : AppLanguage.tr)),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
@@ -148,7 +148,7 @@ class _AffirmationLibraryScreenState
                       affirmation: a,
                       isFavorite: service.isFavorite(a.id),
                       isDark: isDark,
-                      language: language,
+                      isEn: isEn,
                       onToggleFavorite: () async {
                         await service.toggleFavorite(a.id);
                         if (!mounted) return;
@@ -174,7 +174,7 @@ class _AffirmationLibraryScreenState
                           ),
                           const SizedBox(height: 12),
                           Text(
-                            L10nService.get('affirmation.affirmation_library.no_favorites_yet', language),
+                            L10nService.get('affirmation.affirmation_library.no_favorites_yet', isEn ? AppLanguage.en : AppLanguage.tr),
                             style: AppTypography.decorativeScript(
                               fontSize: 14,
                               color: isDark
@@ -188,7 +188,7 @@ class _AffirmationLibraryScreenState
                   ),
                 ToolEcosystemFooter(
                   currentToolId: 'affirmations',
-                  language: language,
+                  isEn: isEn,
                   isDark: isDark,
                 ),
                 const SizedBox(height: 40),
@@ -200,7 +200,7 @@ class _AffirmationLibraryScreenState
     ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms);
   }
 
-  Widget _buildTodayHero(AffirmationService service, bool isDark, AppLanguage language) {
+  Widget _buildTodayHero(AffirmationService service, bool isDark, bool isEn) {
     final today = service.getDailyAffirmation();
 
     return GlassPanel(
@@ -213,7 +213,7 @@ class _AffirmationLibraryScreenState
           Icon(Icons.auto_awesome, size: 28, color: AppColors.starGold),
           const SizedBox(height: AppConstants.spacingMd),
           GradientText(
-            L10nService.get('affirmation.todays_affirmation', language),
+            L10nService.get('affirmation.todays_affirmation', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 13,
@@ -254,7 +254,7 @@ class _AffirmationLibraryScreenState
     );
   }
 
-  Widget _buildFilterChips(AffirmationService service, bool isDark, AppLanguage language) {
+  Widget _buildFilterChips(AffirmationService service, bool isDark, bool isEn) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       physics: const BouncingScrollPhysics(),
@@ -262,10 +262,10 @@ class _AffirmationLibraryScreenState
         children: [
           // All chip
           _FilterChip(
-            label: L10nService.get('affirmation.affirmation_library.all', language),
+            label: L10nService.get('affirmation.affirmation_library.all', isEn ? AppLanguage.en : AppLanguage.tr),
             isSelected: _selectedCategory == null && !_showFavoritesOnly,
             isDark: isDark,
-            language: language,
+            isEn: isEn,
             onTap: () => setState(() {
               _selectedCategory = null;
               _showFavoritesOnly = false;
@@ -275,10 +275,10 @@ class _AffirmationLibraryScreenState
 
           // Favorites chip
           _FilterChip(
-            label: L10nService.get('affirmation.affirmation_library.favorites', language),
+            label: L10nService.get('affirmation.affirmation_library.favorites', isEn ? AppLanguage.en : AppLanguage.tr),
             isSelected: _showFavoritesOnly,
             isDark: isDark,
-            language: language,
+            isEn: isEn,
             icon: Icons.favorite,
             onTap: () => setState(() {
               _showFavoritesOnly = !_showFavoritesOnly;
@@ -295,7 +295,7 @@ class _AffirmationLibraryScreenState
                 label: cat.localizedName(isEn),
                 isSelected: _selectedCategory == cat && !_showFavoritesOnly,
                 isDark: isDark,
-                language: language,
+                isEn: isEn,
                 onTap: () => setState(() {
                   _selectedCategory = cat;
                   _showFavoritesOnly = false;
@@ -313,8 +313,7 @@ class _FilterChip extends StatelessWidget {
   final String label;
   final bool isSelected;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final IconData? icon;
   final VoidCallback onTap;
 
@@ -322,7 +321,7 @@ class _FilterChip extends StatelessWidget {
     required this.label,
     required this.isSelected,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     this.icon,
     required this.onTap,
   });
@@ -331,7 +330,7 @@ class _FilterChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       button: true,
-      label: L10nService.getWithParams('affirmation.library.filter_label', language, params: {'label': label}),
+      label: L10nService.getWithParams('affirmation.library.filter_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'label': label}),
       child: GestureDetector(
         onTap: onTap,
         child: Container(
@@ -391,15 +390,14 @@ class _AffirmationTile extends StatelessWidget {
   final Affirmation affirmation;
   final bool isFavorite;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final VoidCallback onToggleFavorite;
 
   const _AffirmationTile({
     required this.affirmation,
     required this.isFavorite,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onToggleFavorite,
   });
 
@@ -429,7 +427,7 @@ class _AffirmationTile extends StatelessWidget {
         HapticService.buttonPress();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(L10nService.get('affirmation.affirmation_library.affirmation_copied', language)),
+            content: Text(L10nService.get('affirmation.affirmation_library.affirmation_copied', isEn ? AppLanguage.en : AppLanguage.tr)),
             duration: const Duration(seconds: 1),
             backgroundColor: AppColors.success,
           ),
@@ -478,8 +476,8 @@ class _AffirmationTile extends StatelessWidget {
           Semantics(
             button: true,
             label: isFavorite
-                ? (L10nService.get('affirmation.affirmation_library.remove_from_favorites', language))
-                : (L10nService.get('affirmation.affirmation_library.add_to_favorites', language)),
+                ? (L10nService.get('affirmation.affirmation_library.remove_from_favorites', isEn ? AppLanguage.en : AppLanguage.tr))
+                : (L10nService.get('affirmation.affirmation_library.add_to_favorites', isEn ? AppLanguage.en : AppLanguage.tr)),
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: onToggleFavorite,

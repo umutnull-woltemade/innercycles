@@ -111,7 +111,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
     return entries;
   }
 
-  String _formatMonthHeader(String key, AppLanguage language) {
+  String _formatMonthHeader(String key, bool isEn) {
     final parts = key.split('-');
     if (parts.length < 2) return key;
     final year = parts[0];
@@ -125,11 +125,11 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
     return '$monthName $year';
   }
 
-  String _formatDate(DateTime date, AppLanguage language) {
+  String _formatDate(DateTime date, bool isEn) {
     final day = date.day.toString().padLeft(2, '0');
     final month = date.month.toString().padLeft(2, '0');
     final year = date.year;
-    return L10nService.getWithParams('common.date_format.mdy', language, params: {'month': month, 'day': day, 'year': '$year'});
+    return L10nService.getWithParams('common.date_format.mdy', isEn ? AppLanguage.en : AppLanguage.tr, params: {'month': month, 'day': day, 'year': '$year'});
   }
 
   @override
@@ -151,7 +151,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    L10nService.get('dreams.dream_archive.failed_to_load_dreams', language),
+                    L10nService.get('dreams.dream_archive.failed_to_load_dreams', isEn ? AppLanguage.en : AppLanguage.tr),
                     textAlign: TextAlign.center,
                     style: AppTypography.decorativeScript(
                       color: isDark
@@ -166,7 +166,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      L10nService.get('dreams.dream_archive.retry', language),
+                      L10nService.get('dreams.dream_archive.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -207,7 +207,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                     ),
                     slivers: [
                       GlassSliverAppBar(
-                        title: L10nService.get('dreams.dream_archive.dream_archive', language),
+                        title: L10nService.get('dreams.dream_archive.dream_archive', isEn ? AppLanguage.en : AppLanguage.tr),
                       ),
 
                       // Stats row
@@ -223,7 +223,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                             children: [
                               Expanded(
                                 child: _StatTile(
-                                  label: L10nService.get('dreams.dream_archive.total', language),
+                                  label: L10nService.get('dreams.dream_archive.total', isEn ? AppLanguage.en : AppLanguage.tr),
                                   value: '$totalDreams',
                                   isDark: isDark,
                                 ),
@@ -231,7 +231,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                               const SizedBox(width: AppConstants.spacingSm),
                               Expanded(
                                 child: _StatTile(
-                                  label: L10nService.get('dreams.dream_archive.recurring', language),
+                                  label: L10nService.get('dreams.dream_archive.recurring', isEn ? AppLanguage.en : AppLanguage.tr),
                                   value: '$recurringCount',
                                   isDark: isDark,
                                 ),
@@ -239,7 +239,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                               const SizedBox(width: AppConstants.spacingSm),
                               Expanded(
                                 child: _StatTile(
-                                  label: L10nService.get('dreams.dream_archive.lucid', language),
+                                  label: L10nService.get('dreams.dream_archive.lucid', isEn ? AppLanguage.en : AppLanguage.tr),
                                   value: '$lucidCount',
                                   isDark: isDark,
                                 ),
@@ -304,7 +304,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                                 'Rüyalarını kaydetmeye başla — sözlük hazır olduğunda burada.',
                             onStartTemplate: () =>
                                 context.push(Routes.dreamInterpretation),
-                            language: language,
+                            isEn: isEn,
                             isDark: isDark,
                           ),
                         )
@@ -357,10 +357,10 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                                         confirmDismiss: (_) async {
                                           final confirmed = await GlassDialog.confirm(
                                             context,
-                                            title: L10nService.get('dreams.dream_archive.delete_dream', language),
-                                            message: L10nService.get('dreams.dream_archive.this_dream_entry_will_be_permanently_del', language),
-                                            confirmLabel: L10nService.get('dreams.dream_archive.delete', language),
-                                            cancelLabel: L10nService.get('dreams.dream_archive.cancel', language),
+                                            title: L10nService.get('dreams.dream_archive.delete_dream', isEn ? AppLanguage.en : AppLanguage.tr),
+                                            message: L10nService.get('dreams.dream_archive.this_dream_entry_will_be_permanently_del', isEn ? AppLanguage.en : AppLanguage.tr),
+                                            confirmLabel: L10nService.get('dreams.dream_archive.delete', isEn ? AppLanguage.en : AppLanguage.tr),
+                                            cancelLabel: L10nService.get('dreams.dream_archive.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
                                             isDestructive: true,
                                           );
                                           if (confirmed == true) {
@@ -400,7 +400,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                                         child: _DreamCard(
                                           dream: dream,
                                           isDark: isDark,
-                                          language: language,
+                                          isEn: isEn,
                                           formatDate: _formatDate,
                                         ),
                                       ),
@@ -420,7 +420,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                           ),
                           child: ToolEcosystemFooter(
                             currentToolId: 'dreamArchive',
-                            language: language,
+                            isEn: isEn,
                             isDark: isDark,
                           ),
                         ),
@@ -455,7 +455,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
     });
   }
 
-  Widget _buildSearchBar(bool isDark, AppLanguage language) {
+  Widget _buildSearchBar(bool isDark, bool isEn) {
     return Container(
       decoration: BoxDecoration(
         color: isDark
@@ -476,7 +476,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: L10nService.get('dreams.dream_archive.search_by_symbol_or_theme', language),
+          hintText: L10nService.get('dreams.dream_archive.search_by_symbol_or_theme', isEn ? AppLanguage.en : AppLanguage.tr),
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -486,7 +486,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
           ),
           suffixIcon: _searchQuery.isNotEmpty
               ? IconButton(
-                  tooltip: L10nService.get('dreams.dream_archive.clear_search', language),
+                  tooltip: L10nService.get('dreams.dream_archive.clear_search', isEn ? AppLanguage.en : AppLanguage.tr),
                   icon: Icon(
                     Icons.cancel,
                     color: isDark
@@ -568,14 +568,13 @@ class _StatTile extends StatelessWidget {
 class _DreamCard extends StatelessWidget {
   final DreamEntry dream;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final String Function(DateTime, bool) formatDate;
 
   const _DreamCard({
     required this.dream,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.formatDate,
   });
 

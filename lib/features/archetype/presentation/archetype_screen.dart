@@ -54,7 +54,7 @@ class ArchetypeScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('archetype.archetype.your_archetype', language),
+                  title: L10nService.get('archetype.archetype.your_archetype', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -69,7 +69,7 @@ class ArchetypeScreen extends ConsumerWidget {
                           children: [
                             const SizedBox(height: 40),
                             Text(
-                              L10nService.get('archetype.archetype.could_not_load_your_local_data_is_unaffe', language),
+                              L10nService.get('archetype.archetype.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
                               textAlign: TextAlign.center,
                               style: AppTypography.decorativeScript(
                                 fontSize: 14,
@@ -83,7 +83,7 @@ class ArchetypeScreen extends ConsumerWidget {
                               onPressed: () => ref.invalidate(archetypeServiceProvider),
                               icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
                               label: Text(
-                                L10nService.get('archetype.archetype.retry', language),
+                                L10nService.get('archetype.archetype.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
                                 ),
@@ -105,7 +105,7 @@ class ArchetypeScreen extends ConsumerWidget {
                               children: [
                                 const SizedBox(height: 40),
                                 Text(
-                                  L10nService.get('archetype.archetype.could_not_load_your_local_data_is_unaffe_1', language),
+                                  L10nService.get('archetype.archetype.could_not_load_your_local_data_is_unaffe_1', isEn ? AppLanguage.en : AppLanguage.tr),
                                   textAlign: TextAlign.center,
                                   style: AppTypography.decorativeScript(
                                     fontSize: 14,
@@ -119,7 +119,7 @@ class ArchetypeScreen extends ConsumerWidget {
                                   onPressed: () => ref.invalidate(journalServiceProvider),
                                   icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
                                   label: Text(
-                                    L10nService.get('archetype.archetype.retry_1', language),
+                                    L10nService.get('archetype.archetype.retry_1', isEn ? AppLanguage.en : AppLanguage.tr),
                                     style: AppTypography.elegantAccent(
                                       fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
                                     ),
@@ -134,7 +134,7 @@ class ArchetypeScreen extends ConsumerWidget {
 
                           if (!archetypeService.hasEnoughData(entries)) {
                             return SliverToBoxAdapter(
-                              child: _EmptyState(isDark: isDark, language: language),
+                              child: _EmptyState(isDark: isDark, isEn: isEn),
                             );
                           }
 
@@ -146,7 +146,7 @@ class ArchetypeScreen extends ConsumerWidget {
                           );
                           if (result == null) {
                             return SliverToBoxAdapter(
-                              child: _EmptyState(isDark: isDark, language: language),
+                              child: _EmptyState(isDark: isDark, isEn: isEn),
                             );
                           }
 
@@ -159,47 +159,47 @@ class ArchetypeScreen extends ConsumerWidget {
                               _DominantArchetypeCard(
                                 result: result,
                                 isDark: isDark,
-                                language: language,
+                                isEn: isEn,
                               ),
                               const SizedBox(height: 20),
                               _StrengthsShadowSection(
                                 archetype: result.dominant,
                                 isDark: isDark,
-                                language: language,
+                                isEn: isEn,
                               ),
                               const SizedBox(height: 20),
                               _GrowthTipCard(
                                 archetype: result.dominant,
                                 isDark: isDark,
-                                language: language,
+                                isEn: isEn,
                               ),
                               const SizedBox(height: 24),
                               if (history.isNotEmpty) ...[
                                 _EvolutionTimeline(
                                   snapshots: history,
                                   isDark: isDark,
-                                  language: language,
+                                  isEn: isEn,
                                 ),
                                 const SizedBox(height: 24),
                               ],
                               _BreakdownChart(
                                 breakdown: result.breakdown,
                                 isDark: isDark,
-                                language: language,
+                                isEn: isEn,
                               ),
                               const SizedBox(height: 20),
-                              _DisclaimerCard(isDark: isDark, language: language),
+                              _DisclaimerCard(isDark: isDark, isEn: isEn),
                               const SizedBox(height: 20),
                               _ShareArchetypeButton(
                                 archetype: result.dominant,
                                 isDark: isDark,
-                                language: language,
+                                isEn: isEn,
                               ),
                               const SizedBox(height: 20),
                               ContentDisclaimer(language: language),
                               ToolEcosystemFooter(
                                 currentToolId: 'archetype',
-                                language: language,
+                                isEn: isEn,
                                 isDark: isDark,
                               ),
                               const SizedBox(height: 40),
@@ -226,13 +226,12 @@ class ArchetypeScreen extends ConsumerWidget {
 class _DominantArchetypeCard extends StatelessWidget {
   final ArchetypeResult result;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _DominantArchetypeCard({
     required this.result,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -267,7 +266,7 @@ class _DominantArchetypeCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(
-              L10nService.getWithParams('archetype.alignment_pct', language, params: {'pct': confidencePct}),
+              L10nService.getWithParams('archetype.alignment_pct', isEn ? AppLanguage.en : AppLanguage.tr, params: {'pct': confidencePct}),
               style: AppTypography.elegantAccent(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
@@ -300,13 +299,12 @@ class _DominantArchetypeCard extends StatelessWidget {
 class _StrengthsShadowSection extends StatelessWidget {
   final Archetype archetype;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _StrengthsShadowSection({
     required this.archetype,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -326,7 +324,7 @@ class _StrengthsShadowSection extends StatelessWidget {
               Icon(Icons.auto_awesome, size: 18, color: AppColors.starGold),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('archetype.archetype.strengths', language),
+                L10nService.get('archetype.archetype.strengths', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.elegantAccent(
                   fontSize: 16,
@@ -356,7 +354,7 @@ class _StrengthsShadowSection extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('archetype.archetype.shadow_side', language),
+                L10nService.get('archetype.archetype.shadow_side', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.amethyst,
                 style: AppTypography.elegantAccent(
                   fontSize: 16,
@@ -415,13 +413,12 @@ class _StrengthChip extends StatelessWidget {
 class _GrowthTipCard extends StatelessWidget {
   final Archetype archetype;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _GrowthTipCard({
     required this.archetype,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -443,7 +440,7 @@ class _GrowthTipCard extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('archetype.archetype.growth_insight', language),
+                L10nService.get('archetype.archetype.growth_insight', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.elegantAccent(
                   fontSize: 16,
@@ -475,13 +472,12 @@ class _GrowthTipCard extends StatelessWidget {
 class _EvolutionTimeline extends StatelessWidget {
   final List<ArchetypeSnapshot> snapshots;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _EvolutionTimeline({
     required this.snapshots,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -502,7 +498,7 @@ class _EvolutionTimeline extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('archetype.archetype.evolution_timeline', language),
+                L10nService.get('archetype.archetype.evolution_timeline', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.aurora,
                 style: AppTypography.elegantAccent(
                   fontSize: 16,
@@ -574,7 +570,7 @@ class _EvolutionTimeline extends StatelessWidget {
     ).animate().fadeIn(delay: 250.ms, duration: 300.ms);
   }
 
-  String _monthLabel(int month, AppLanguage language) {
+  String _monthLabel(int month, bool isEn) {
     const en = [
       'Jan',
       'Feb',
@@ -614,13 +610,12 @@ class _EvolutionTimeline extends StatelessWidget {
 class _BreakdownChart extends StatelessWidget {
   final Map<String, double> breakdown;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _BreakdownChart({
     required this.breakdown,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -645,7 +640,7 @@ class _BreakdownChart extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                L10nService.get('archetype.archetype.full_archetype_breakdown', language),
+                L10nService.get('archetype.archetype.full_archetype_breakdown', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -669,7 +664,7 @@ class _BreakdownChart extends StatelessWidget {
                 percentage: pct,
                 isTop: isTop,
                 isDark: isDark,
-                language: language,
+                isEn: isEn,
               ),
             );
           }),
@@ -684,15 +679,14 @@ class _BreakdownRow extends StatelessWidget {
   final double percentage;
   final bool isTop;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _BreakdownRow({
     required this.archetype,
     required this.percentage,
     required this.isTop,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -785,10 +779,9 @@ class _BreakdownRow extends StatelessWidget {
 
 class _DisclaimerCard extends StatelessWidget {
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
-  const _DisclaimerCard({required this.isDark, required this.language});
+  const _DisclaimerCard({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
@@ -836,19 +829,18 @@ class _DisclaimerCard extends StatelessWidget {
 
 class _EmptyState extends StatelessWidget {
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
-  const _EmptyState({required this.isDark, required this.language});
+  const _EmptyState({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.psychology_outlined,
-      title: L10nService.get('archetype.archetype.your_archetype_is_waiting_to_emerge', language),
-      description: L10nService.get('archetype.archetype.add_at_least_3_entries_to_surface_your_d', language),
+      title: L10nService.get('archetype.archetype.your_archetype_is_waiting_to_emerge', isEn ? AppLanguage.en : AppLanguage.tr),
+      description: L10nService.get('archetype.archetype.add_at_least_3_entries_to_surface_your_d', isEn ? AppLanguage.en : AppLanguage.tr),
       gradientVariant: GradientTextVariant.amethyst,
-      ctaLabel: L10nService.get('archetype.archetype.write_first_entry', language),
+      ctaLabel: L10nService.get('archetype.archetype.write_first_entry', isEn ? AppLanguage.en : AppLanguage.tr),
       onCtaPressed: () => context.go(Routes.journal),
     );
   }
@@ -861,19 +853,18 @@ class _EmptyState extends StatelessWidget {
 class _ShareArchetypeButton extends StatelessWidget {
   final Archetype archetype;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _ShareArchetypeButton({
     required this.archetype,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
   Widget build(BuildContext context) {
     return GradientButton(
-      label: L10nService.get('archetype.archetype.share_your_archetype', language),
+      label: L10nService.get('archetype.archetype.share_your_archetype', isEn ? AppLanguage.en : AppLanguage.tr),
       icon: Icons.share_rounded,
       expanded: true,
       gradient: const LinearGradient(

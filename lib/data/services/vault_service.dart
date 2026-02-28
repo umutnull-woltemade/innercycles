@@ -1,4 +1,3 @@
-import 'package:innercycles/data/providers/app_providers.dart';
 // ════════════════════════════════════════════════════════════════════════════
 // VAULT SERVICE - Private Content Management (PIN + Biometric)
 // ════════════════════════════════════════════════════════════════════════════
@@ -157,7 +156,7 @@ class VaultService {
   Future<bool> authenticateWithBiometrics({
     String reason = 'Authenticate to access your private vault',
     String reasonTr = 'Gizli kasana erişmek için kimliğini doğrula',
-    AppLanguage language = AppLanguage.en,
+    bool isEn = true,
   }) async {
     try {
       return await _localAuth.authenticate(
@@ -172,14 +171,14 @@ class VaultService {
 
   /// Full vault unlock flow: biometric first if enabled, then PIN fallback
   /// Returns true if biometric succeeded, false if PIN input needed
-  Future<bool> tryBiometricUnlock({AppLanguage language = AppLanguage.en}) async {
+  Future<bool> tryBiometricUnlock({bool isEn = true}) async {
     if (!isVaultSetUp) return false;
     if (!isBiometricEnabled) return false;
 
     final canBio = await canUseBiometrics();
     if (!canBio) return false;
 
-    return authenticateWithBiometrics(language: language);
+    return authenticateWithBiometrics(isEn: isEn);
   }
 
   // ══════════════════════════════════════════════════════════════════════════

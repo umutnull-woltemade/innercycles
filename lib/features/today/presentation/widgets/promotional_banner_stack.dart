@@ -19,13 +19,12 @@ import '../../../../data/services/introductory_offer_service.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class PromotionalBannerStack extends ConsumerStatefulWidget {
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
 
   const PromotionalBannerStack({
     super.key,
-    required this.language,
+    required this.isEn,
     required this.isDark,
   });
 
@@ -117,7 +116,7 @@ class _PromotionalBannerStackState
 
         return Semantics(
           button: true,
-          label: L10nService.get('today.promotional_stack.limited_time_offer', language),
+          label: L10nService.get('today.promotional_stack.limited_time_offer', isEn ? AppLanguage.en : AppLanguage.tr),
           child: TapScale(
             onTap: () {
               HapticService.buttonPress();
@@ -136,7 +135,7 @@ class _PromotionalBannerStackState
                       const SizedBox(width: 6),
                       Expanded(
                         child: GradientText(
-                          L10nService.get('today.promotional_stack.50_off_new_user_offer', language),
+                          L10nService.get('today.promotional_stack.50_off_new_user_offer', isEn ? AppLanguage.en : AppLanguage.tr),
                           variant: GradientTextVariant.gold,
                           style: AppTypography.displayFont.copyWith(
                             fontSize: 15,
@@ -157,7 +156,7 @@ class _PromotionalBannerStackState
                       _CountdownDigit(parts.seconds),
                       const Spacer(),
                       GradientButton.gold(
-                        label: L10nService.get('today.promotional_stack.claim', language),
+                        label: L10nService.get('today.promotional_stack.claim', isEn ? AppLanguage.en : AppLanguage.tr),
                         onPressed: () => context.push(Routes.premium),
                       ),
                     ],
@@ -186,7 +185,7 @@ class _PromotionalBannerStackState
 
             return Semantics(
               button: true,
-              label: L10nService.get('today.promotional_stack.view_upcoming_reminders', language),
+              label: L10nService.get('today.promotional_stack.view_upcoming_reminders', isEn ? AppLanguage.en : AppLanguage.tr),
               child: TapScale(
                 onTap: () => context.push(Routes.notesList),
                 child: PremiumCard(
@@ -202,7 +201,7 @@ class _PromotionalBannerStackState
                           const SizedBox(width: 6),
                           Flexible(
                             child: GradientText(
-                              L10nService.get('today.promotional_stack.upcoming_reminders', language),
+                              L10nService.get('today.promotional_stack.upcoming_reminders', isEn ? AppLanguage.en : AppLanguage.tr),
                               variant: GradientTextVariant.gold,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -214,7 +213,7 @@ class _PromotionalBannerStackState
                           ),
                           const SizedBox(width: 8),
                           Text(
-                            L10nService.get('today.promotional_stack.see_all', language),
+                            L10nService.get('today.promotional_stack.see_all', isEn ? AppLanguage.en : AppLanguage.tr),
                             style: AppTypography.elegantAccent(
                               fontSize: 13,
                               color: isDark
@@ -241,7 +240,7 @@ class _PromotionalBannerStackState
                               const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
-                                  note?.title ?? (L10nService.get('today.promotional_stack.note', language)),
+                                  note?.title ?? (L10nService.get('today.promotional_stack.note', isEn ? AppLanguage.en : AppLanguage.tr)),
                                   style: AppTypography.subtitle(
                                     fontSize: 14,
                                     color: isDark
@@ -298,7 +297,7 @@ class _PromotionalBannerStackState
 
     return Semantics(
       button: true,
-      label: L10nService.get('today.promotional_stack.add_retrospective_entries', language),
+      label: L10nService.get('today.promotional_stack.add_retrospective_entries', isEn ? AppLanguage.en : AppLanguage.tr),
       child: TapScale(
         onTap: () {
           HapticService.buttonPress();
@@ -321,7 +320,7 @@ class _PromotionalBannerStackState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      L10nService.get('today.promotional_stack.add_entries_for_your_most_meaningful_day', language),
+                      L10nService.get('today.promotional_stack.add_entries_for_your_most_meaningful_day', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -332,7 +331,7 @@ class _PromotionalBannerStackState
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      L10nService.get('today.promotional_stack.your_story_didnt_start_today', language),
+                      L10nService.get('today.promotional_stack.your_story_didnt_start_today', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 14,
                         color: isDark
@@ -367,7 +366,7 @@ class _PromotionalBannerStackState
 
     return Semantics(
       button: true,
-      label: L10nService.get('today.promotional_stack.view_year_wrapped', language),
+      label: L10nService.get('today.promotional_stack.view_year_wrapped', isEn ? AppLanguage.en : AppLanguage.tr),
       child: TapScale(
         onTap: () {
           HapticService.buttonPress();
@@ -397,7 +396,7 @@ class _PromotionalBannerStackState
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      L10nService.get('today.promotional_stack.see_your_year_in_patterns', language),
+                      L10nService.get('today.promotional_stack.see_your_year_in_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 14,
                         color: isDark
@@ -436,7 +435,7 @@ class _PromotionalBannerStackState
 
     return Semantics(
       button: true,
-      label: L10nService.get('today.promotional_stack.view_monthly_wrapped', language),
+      label: L10nService.get('today.promotional_stack.view_monthly_wrapped', isEn ? AppLanguage.en : AppLanguage.tr),
       child: TapScale(
         onTap: () {
           HapticService.buttonPress();
@@ -466,7 +465,7 @@ class _PromotionalBannerStackState
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      L10nService.get('today.promotional_stack.see_your_month_at_a_glance_share_it', language),
+                      L10nService.get('today.promotional_stack.see_your_month_at_a_glance_share_it', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 14,
                         color: isDark
@@ -532,7 +531,7 @@ class _PromotionalBannerStackState
 
     return Semantics(
       button: true,
-      label: L10nService.get('today.promotional_stack.share_weekly_insights', language),
+      label: L10nService.get('today.promotional_stack.share_weekly_insights', isEn ? AppLanguage.en : AppLanguage.tr),
       child: TapScale(
         onTap: () {
           HapticService.buttonPress();
@@ -557,7 +556,7 @@ class _PromotionalBannerStackState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     GradientText(
-                      L10nService.get('today.promotional_stack.your_latest_pattern_card_is_ready', language),
+                      L10nService.get('today.promotional_stack.your_latest_pattern_card_is_ready', isEn ? AppLanguage.en : AppLanguage.tr),
                       variant: GradientTextVariant.aurora,
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 16,
@@ -566,7 +565,7 @@ class _PromotionalBannerStackState
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      L10nService.get('today.promotional_stack.share_your_weeks_insights', language),
+                      L10nService.get('today.promotional_stack.share_your_weeks_insights', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 14,
                         color: isDark
@@ -623,7 +622,7 @@ class _PromotionalBannerStackState
                   const SizedBox(width: 10),
                   Expanded(
                     child: GradientText(
-                      L10nService.get('today.promotional_stack.enjoying_innercycles', language),
+                      L10nService.get('today.promotional_stack.enjoying_innercycles', isEn ? AppLanguage.en : AppLanguage.tr),
                       variant: GradientTextVariant.gold,
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 16,
@@ -647,7 +646,7 @@ class _PromotionalBannerStackState
               Padding(
                 padding: const EdgeInsets.only(left: 32),
                 child: Text(
-                  L10nService.get('today.promotional_stack.share_it_with_a_friend_who_would_love_it', language),
+                  L10nService.get('today.promotional_stack.share_it_with_a_friend_who_would_love_it', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.elegantAccent(
                     fontSize: 14,
                     color: isDark
@@ -660,7 +659,7 @@ class _PromotionalBannerStackState
               Padding(
                 padding: const EdgeInsets.only(left: 32),
                 child: GradientButton.gold(
-                  label: L10nService.get('today.promotional_stack.invite_earn_premium', language),
+                  label: L10nService.get('today.promotional_stack.invite_earn_premium', isEn ? AppLanguage.en : AppLanguage.tr),
                   icon: Icons.card_giftcard_rounded,
                   onPressed: () {
                     HapticService.buttonPress();
@@ -678,14 +677,14 @@ class _PromotionalBannerStackState
   String _formatTimeLeft(DateTime dt) {
     final now = DateTime.now();
     final diff = dt.difference(now);
-    if (diff.isNegative) return L10nService.get('today.promotional_stack.now', language);
+    if (diff.isNegative) return L10nService.get('today.promotional_stack.now', isEn ? AppLanguage.en : AppLanguage.tr);
     if (diff.inMinutes < 60) {
-      return L10nService.getWithParams('common.time.in_minutes', language, params: {'count': '${diff.inMinutes}'});
+      return L10nService.getWithParams('common.time.in_minutes', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '${diff.inMinutes}'});
     }
     if (diff.inHours < 24) {
-      return L10nService.getWithParams('common.time.in_hours', language, params: {'count': '${diff.inHours}'});
+      return L10nService.getWithParams('common.time.in_hours', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '${diff.inHours}'});
     }
-    return L10nService.getWithParams('common.time.in_days', language, params: {'count': '${diff.inDays}'});
+    return L10nService.getWithParams('common.time.in_days', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '${diff.inDays}'});
   }
 }
 

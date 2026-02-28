@@ -89,7 +89,7 @@ class DisclaimerScreen extends ConsumerWidget {
 
                 // ── Title ──
                 GradientText(
-                  L10nService.get('disclaimer.disclaimer.welcome_to_innercycles', language),
+                  L10nService.get('disclaimer.disclaimer.welcome_to_innercycles', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 30,
                     fontWeight: FontWeight.w600,
@@ -106,7 +106,7 @@ class DisclaimerScreen extends ConsumerWidget {
 
                 // ── Subtitle ──
                 Text(
-                  L10nService.get('disclaimer.disclaimer.a_private_space_for_reflection_not_predi', language),
+                  L10nService.get('disclaimer.disclaimer.a_private_space_for_reflection_not_predi', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.decorativeScript(
                     fontSize: 15,
                     color: textColor,
@@ -130,7 +130,7 @@ class DisclaimerScreen extends ConsumerWidget {
                         child: Text(
                           isEn
                               ? 'InnerCycles is a personal journaling tool for self-reflection and pattern awareness.'
-                              : L10nService.get('disclaimer.text_1', language),
+                              : L10nService.get('disclaimer.text_1', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.subtitle(
                             fontSize: 15,
                             color: textColor,
@@ -161,7 +161,7 @@ class DisclaimerScreen extends ConsumerWidget {
                         child: Text(
                           isEn
                               ? 'All insights are based solely on your own journal entries. This app does not make predictions about your future.'
-                              : L10nService.get('disclaimer.text_2', language),
+                              : L10nService.get('disclaimer.text_2', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.subtitle(
                             fontSize: 15,
                             color: textColor,
@@ -192,7 +192,7 @@ class DisclaimerScreen extends ConsumerWidget {
                         child: Text(
                           isEn
                               ? 'This is for personal reflection only. It is not medical, psychological, or professional advice.'
-                              : L10nService.get('disclaimer.text_3', language),
+                              : L10nService.get('disclaimer.text_3', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.subtitle(
                             fontSize: 15,
                             color: textColor,
@@ -211,7 +211,7 @@ class DisclaimerScreen extends ConsumerWidget {
 
                 // ── CTA Button ──
                 GradientButton.gold(
-                  label: L10nService.get('common.continue', language),
+                  label: L10nService.get('common.continue', isEn ? AppLanguage.en : AppLanguage.tr),
                   icon: Icons.arrow_forward,
                   width: double.infinity,
                   onPressed: () async {
@@ -246,7 +246,7 @@ class DisclaimerScreen extends ConsumerWidget {
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      L10nService.get('disclaimer.disclaimer.your_data_stays_on_your_device', language),
+                      L10nService.get('disclaimer.disclaimer.your_data_stays_on_your_device', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: AppColors.textMuted,

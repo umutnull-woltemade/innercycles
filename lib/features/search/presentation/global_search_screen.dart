@@ -183,7 +183,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                                   : AppColors.lightTextPrimary,
                             ),
                             decoration: InputDecoration(
-                              hintText: L10nService.get('search.global_search.search_entries_notes_dreams', language),
+                              hintText: L10nService.get('search.global_search.search_entries_notes_dreams', isEn ? AppLanguage.en : AppLanguage.tr),
                               hintStyle: AppTypography.subtitle(
                                 color: isDark
                                     ? AppColors.textMuted
@@ -204,7 +204,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                                             ? AppColors.textMuted
                                             : AppColors.lightTextMuted,
                                       ),
-                                      tooltip: L10nService.get('search.global_search.clear_search', language),
+                                      tooltip: L10nService.get('search.global_search.clear_search', isEn ? AppLanguage.en : AppLanguage.tr),
                                       onPressed: () {
                                         _searchController.clear();
                                         setState(() {
@@ -231,7 +231,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                       ),
                       const SizedBox(width: AppConstants.spacingSm),
                       IconButton(
-                        tooltip: L10nService.get('search.global_search.close_search', language),
+                        tooltip: L10nService.get('search.global_search.close_search', isEn ? AppLanguage.en : AppLanguage.tr),
                         onPressed: () => Navigator.of(context).pop(),
                         icon: Icon(
                           Icons.close_rounded,
@@ -263,26 +263,26 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
     );
   }
 
-  Widget _buildTabBar(bool isDark, AppLanguage language) {
+  Widget _buildTabBar(bool isDark, bool isEn) {
     final tabs = [
       (
         _SearchTab.all,
-        L10nService.get('search.global_search.all', language),
+        L10nService.get('search.global_search.all', isEn ? AppLanguage.en : AppLanguage.tr),
         _totalResults,
       ),
       (
         _SearchTab.journal,
-        L10nService.get('search.global_search.journal', language),
+        L10nService.get('search.global_search.journal', isEn ? AppLanguage.en : AppLanguage.tr),
         _journalResults.length,
       ),
       (
         _SearchTab.notes,
-        L10nService.get('search.global_search.notes', language),
+        L10nService.get('search.global_search.notes', isEn ? AppLanguage.en : AppLanguage.tr),
         _noteResults.length,
       ),
       (
         _SearchTab.dreams,
-        L10nService.get('search.global_search.dreams', language),
+        L10nService.get('search.global_search.dreams', isEn ? AppLanguage.en : AppLanguage.tr),
         _dreamResults.length,
       ),
     ];
@@ -334,7 +334,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
     ).animate().fadeIn(duration: 200.ms);
   }
 
-  Widget _buildEmptyState(bool isDark, AppLanguage language) {
+  Widget _buildEmptyState(bool isDark, bool isEn) {
     return SingleChildScrollView(
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -342,7 +342,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Tag cloud
-          _TagCloudSection(isDark: isDark, language: language, onTagTapped: (tag) {
+          _TagCloudSection(isDark: isDark, isEn: isEn, onTagTapped: (tag) {
             _searchController.text = tag;
             _onQueryChanged(tag);
           }),
@@ -351,7 +351,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
           if (_recentSearches.isNotEmpty) ...[
             const SizedBox(height: 24),
             GradientText(
-              L10nService.get('search.global_search.recent_searches', language),
+              L10nService.get('search.global_search.recent_searches', isEn ? AppLanguage.en : AppLanguage.tr),
               variant: GradientTextVariant.gold,
               style: AppTypography.elegantAccent(
                 fontSize: 14,
@@ -396,7 +396,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
           // Quick actions
           const SizedBox(height: 24),
           GradientText(
-            L10nService.get('search.global_search.quick_actions', language),
+            L10nService.get('search.global_search.quick_actions', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.elegantAccent(
               fontSize: 14,
@@ -408,7 +408,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             final tool = entry.value;
             return Padding(
               padding: const EdgeInsets.only(bottom: 4),
-              child: _ToolResultTile(tool: tool, isDark: isDark, language: language)
+              child: _ToolResultTile(tool: tool, isDark: isDark, isEn: isEn)
                   .animate()
                   .fadeIn(
                     delay: Duration(milliseconds: 150 + entry.key * 40),
@@ -421,7 +421,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
     );
   }
 
-  Widget _buildSearchResults(bool isDark, AppLanguage language) {
+  Widget _buildSearchResults(bool isDark, bool isEn) {
     return ListView(
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -431,7 +431,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             _journalResults.isNotEmpty) ...[
           _buildSectionHeader(
             isDark,
-            L10nService.get('search.global_search.journal_entries', language),
+            L10nService.get('search.global_search.journal_entries', isEn ? AppLanguage.en : AppLanguage.tr),
             _journalResults.length,
             GradientTextVariant.gold,
           ),
@@ -440,7 +440,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             final e = entry.value;
             return Padding(
               padding: const EdgeInsets.only(bottom: 6),
-              child: _JournalResultTile(entry: e, isDark: isDark, language: language)
+              child: _JournalResultTile(entry: e, isDark: isDark, isEn: isEn)
                   .animate()
                   .fadeIn(
                     delay: Duration(milliseconds: entry.key * 30),
@@ -456,7 +456,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             _noteResults.isNotEmpty) ...[
           _buildSectionHeader(
             isDark,
-            L10nService.get('search.global_search.notes_1', language),
+            L10nService.get('search.global_search.notes_1', isEn ? AppLanguage.en : AppLanguage.tr),
             _noteResults.length,
             GradientTextVariant.amethyst,
           ),
@@ -465,7 +465,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             final n = entry.value;
             return Padding(
               padding: const EdgeInsets.only(bottom: 6),
-              child: _NoteResultTile(note: n, isDark: isDark, language: language)
+              child: _NoteResultTile(note: n, isDark: isDark, isEn: isEn)
                   .animate()
                   .fadeIn(
                     delay: Duration(milliseconds: entry.key * 30),
@@ -481,7 +481,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             _dreamResults.isNotEmpty) ...[
           _buildSectionHeader(
             isDark,
-            L10nService.get('search.global_search.dreams_1', language),
+            L10nService.get('search.global_search.dreams_1', isEn ? AppLanguage.en : AppLanguage.tr),
             _dreamResults.length,
             GradientTextVariant.cosmic,
           ),
@@ -490,7 +490,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             final d = entry.value;
             return Padding(
               padding: const EdgeInsets.only(bottom: 6),
-              child: _DreamResultTile(dream: d, isDark: isDark, language: language)
+              child: _DreamResultTile(dream: d, isDark: isDark, isEn: isEn)
                   .animate()
                   .fadeIn(
                     delay: Duration(milliseconds: entry.key * 30),
@@ -505,7 +505,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
         if (_activeTab == _SearchTab.all && _toolResults.isNotEmpty) ...[
           _buildSectionHeader(
             isDark,
-            L10nService.get('search.global_search.tools', language),
+            L10nService.get('search.global_search.tools', isEn ? AppLanguage.en : AppLanguage.tr),
             _toolResults.length,
             GradientTextVariant.aurora,
           ),
@@ -514,7 +514,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                 (tool) => Padding(
                   padding: const EdgeInsets.only(bottom: 4),
                   child:
-                      _ToolResultTile(tool: tool, isDark: isDark, language: language),
+                      _ToolResultTile(tool: tool, isDark: isDark, isEn: isEn),
                 ),
               ),
         ],
@@ -551,7 +551,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
     );
   }
 
-  Widget _buildNoResults(bool isDark, AppLanguage language) {
+  Widget _buildNoResults(bool isDark, bool isEn) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -565,7 +565,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Text(
-            L10nService.get('search.global_search.nothing_matched_try_different_words', language),
+            L10nService.get('search.global_search.nothing_matched_try_different_words', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.subtitle(
               fontSize: 16,
               color: isDark
@@ -602,13 +602,12 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
 
 class _TagCloudSection extends ConsumerWidget {
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final ValueChanged<String> onTagTapped;
 
   const _TagCloudSection({
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onTagTapped,
   });
 
@@ -628,7 +627,7 @@ class _TagCloudSection extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('search.global_search.tags', language),
+          L10nService.get('search.global_search.tags', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 14,
@@ -678,13 +677,12 @@ class _TagCloudSection extends ConsumerWidget {
 class _JournalResultTile extends StatelessWidget {
   final JournalEntry entry;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _JournalResultTile({
     required this.entry,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -812,13 +810,12 @@ class _JournalResultTile extends StatelessWidget {
 class _NoteResultTile extends StatelessWidget {
   final NoteToSelf note;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _NoteResultTile({
     required this.note,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -913,13 +910,12 @@ class _NoteResultTile extends StatelessWidget {
 class _DreamResultTile extends StatelessWidget {
   final DreamEntry dream;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _DreamResultTile({
     required this.dream,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -1029,20 +1025,19 @@ class _DreamResultTile extends StatelessWidget {
 class _ToolResultTile extends StatelessWidget {
   final ToolManifest tool;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _ToolResultTile({
     required this.tool,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
   Widget build(BuildContext context) {
     return Semantics(
       label: isEn ? tool.nameEn : tool.nameTr,
-      hint: L10nService.get('search.global_search.double_tap_to_open', language),
+      hint: L10nService.get('search.global_search.double_tap_to_open', isEn ? AppLanguage.en : AppLanguage.tr),
       button: true,
       child: GestureDetector(
         onTap: () => context.go(tool.route),

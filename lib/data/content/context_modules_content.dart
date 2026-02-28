@@ -1,4 +1,3 @@
-import 'package:innercycles/data/providers/app_providers.dart';
 /// Context Injection Modules — 36 educational insight modules
 /// Psychological context, myth vs reality, pattern recognition,
 /// self-awareness checklists, and "why this matters" education layers.
@@ -51,7 +50,7 @@ enum ContextModuleCategory {
     }
   }
 
-  String localizedName(AppLanguage language) => language.isEn ? displayNameEn : displayNameTr;
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 }
 
 enum ContextModuleDepth {
@@ -81,7 +80,7 @@ enum ContextModuleDepth {
     }
   }
 
-  String localizedName(AppLanguage language) => language.isEn ? displayNameEn : displayNameTr;
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

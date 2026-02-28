@@ -84,7 +84,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                 ),
                 slivers: [
                   GlassSliverAppBar(
-                    title: L10nService.get('gratitude.gratitude.gratitude_journal', language),
+                    title: L10nService.get('gratitude.gratitude.gratitude_journal', isEn ? AppLanguage.en : AppLanguage.tr),
                   ),
                   SliverPadding(
                     padding: const EdgeInsets.all(16),
@@ -115,7 +115,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                                   icon: Icon(Icons.refresh_rounded,
                                       size: 16, color: AppColors.starGold),
                                   label: Text(
-                                    L10nService.get('gratitude.gratitude.retry', language),
+                                    L10nService.get('gratitude.gratitude.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                                     style: AppTypography.elegantAccent(
                                       fontSize: 13,
                                       fontWeight: FontWeight.w600,
@@ -154,7 +154,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                             _WeeklyStats(
                               summary: summary,
                               isDark: isDark,
-                              language: language,
+                              isEn: isEn,
                             ),
                             const SizedBox(height: 20),
 
@@ -163,7 +163,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                               controllers: _controllers,
                               hasEntry: today != null,
                               isDark: isDark,
-                              language: language,
+                              isEn: isEn,
                               onSave: () async {
                                 final items = _controllers
                                     .map((c) => c.text.trim())
@@ -200,7 +200,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                               _ThemeCloud(
                                 themes: summary.topThemes,
                                 isDark: isDark,
-                                language: language,
+                                isEn: isEn,
                               ),
                               const SizedBox(height: 24),
                             ],
@@ -208,7 +208,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                             // History
                             if (allEntries.isNotEmpty) ...[
                               GradientText(
-                                L10nService.get('gratitude.gratitude.history', language),
+                                L10nService.get('gratitude.gratitude.history', isEn ? AppLanguage.en : AppLanguage.tr),
                                 variant: GradientTextVariant.gold,
                                 style: AppTypography.displayFont.copyWith(
                                   fontSize: 18,
@@ -228,7 +228,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
 
                             ToolEcosystemFooter(
                               currentToolId: 'gratitude',
-                              language: language,
+                              isEn: isEn,
                               isDark: isDark,
                             ),
                             const SizedBox(height: 40),
@@ -250,13 +250,12 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
 class _WeeklyStats extends StatelessWidget {
   final GratitudeSummary summary;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _WeeklyStats({
     required this.summary,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -270,19 +269,19 @@ class _WeeklyStats extends StatelessWidget {
         children: [
           _Stat(
             value: '${summary.daysWithGratitude}',
-            label: L10nService.get('gratitude.gratitude.days', language),
+            label: L10nService.get('gratitude.gratitude.days', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.starGold,
             isDark: isDark,
           ),
           _Stat(
             value: '${summary.totalItems}',
-            label: L10nService.get('gratitude.gratitude.items', language),
+            label: L10nService.get('gratitude.gratitude.items', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.success,
             isDark: isDark,
           ),
           _Stat(
             value: '${summary.topThemes.length}',
-            label: L10nService.get('gratitude.gratitude.themes', language),
+            label: L10nService.get('gratitude.gratitude.themes', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.auroraStart,
             isDark: isDark,
           ),
@@ -333,15 +332,14 @@ class _TodaySection extends StatelessWidget {
   final List<TextEditingController> controllers;
   final bool hasEntry;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final VoidCallback onSave;
 
   const _TodaySection({
     required this.controllers,
     required this.hasEntry,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onSave,
   });
 
@@ -371,7 +369,7 @@ class _TodaySection extends StatelessWidget {
               Icon(Icons.favorite_outline, size: 18, color: AppColors.starGold),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('gratitude.todays_gratitude', language),
+                L10nService.get('gratitude.todays_gratitude', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 17,
@@ -434,8 +432,8 @@ class _TodaySection extends StatelessWidget {
           const SizedBox(height: 4),
           GradientButton.gold(
             label: hasEntry
-                ? (L10nService.get('gratitude.gratitude.update', language))
-                : (L10nService.get('gratitude.gratitude.save_gratitude', language)),
+                ? (L10nService.get('gratitude.gratitude.update', isEn ? AppLanguage.en : AppLanguage.tr))
+                : (L10nService.get('gratitude.gratitude.save_gratitude', isEn ? AppLanguage.en : AppLanguage.tr)),
             onPressed: onSave,
             expanded: true,
           ),
@@ -448,13 +446,12 @@ class _TodaySection extends StatelessWidget {
 class _ThemeCloud extends StatelessWidget {
   final Map<String, int> themes;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _ThemeCloud({
     required this.themes,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -467,7 +464,7 @@ class _ThemeCloud extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('gratitude.gratitude.this_weeks_themes', language),
+            L10nService.get('gratitude.gratitude.this_weeks_themes', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,

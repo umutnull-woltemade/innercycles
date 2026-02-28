@@ -15,27 +15,26 @@ import '../../../../data/providers/app_providers.dart';
 
 class HomeHeader extends StatelessWidget {
   final String userName;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
 
   const HomeHeader({
     super.key,
     required this.userName,
-    required this.language,
+    required this.isEn,
     required this.isDark,
   });
 
   String _getGreeting() {
     final hour = DateTime.now().hour;
-    if (hour < 12) return L10nService.get('today.home_header.good_morning', language);
-    if (hour < 18) return L10nService.get('today.home_header.good_afternoon', language);
-    return L10nService.get('today.home_header.good_evening', language);
+    if (hour < 12) return L10nService.get('today.home_header.good_morning', isEn ? AppLanguage.en : AppLanguage.tr);
+    if (hour < 18) return L10nService.get('today.home_header.good_afternoon', isEn ? AppLanguage.en : AppLanguage.tr);
+    return L10nService.get('today.home_header.good_evening', isEn ? AppLanguage.en : AppLanguage.tr);
   }
 
   String _getFormattedDate() {
     final now = DateTime.now();
-    final lang = language;
+    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
     final dayKeys = ['common.date.day_mon', 'common.date.day_tue', 'common.date.day_wed', 'common.date.day_thu', 'common.date.day_fri', 'common.date.day_sat', 'common.date.day_sun'];
     final dayName = L10nService.get(dayKeys[now.weekday - 1], lang);
     final months = isEn ? CommonStrings.monthsShortEn : CommonStrings.monthsShortTr;
@@ -142,7 +141,7 @@ class HomeHeader extends StatelessWidget {
               const SizedBox(width: 8),
               // Search icon
               Semantics(
-                label: L10nService.get('today.home_header.search', language),
+                label: L10nService.get('today.home_header.search', isEn ? AppLanguage.en : AppLanguage.tr),
                 button: true,
                 child: TapScale(
                   onTap: () {
@@ -174,7 +173,7 @@ class HomeHeader extends StatelessWidget {
               const SizedBox(width: 8),
               // Avatar circle -> Settings
               Semantics(
-                label: L10nService.get('today.home_header.profile_settings', language),
+                label: L10nService.get('today.home_header.profile_settings', isEn ? AppLanguage.en : AppLanguage.tr),
                 button: true,
                 child: TapScale(
                   onTap: () {

@@ -95,34 +95,34 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen>
     );
   }
 
-  Widget _buildBottomBar(bool isDark, AppLanguage language) {
+  Widget _buildBottomBar(bool isDark, bool isEn) {
     final currentIndex = widget.navigationShell.currentIndex;
 
     final tabs = [
       _TabItem(
         icon: CupertinoIcons.house,
         activeIcon: CupertinoIcons.house_fill,
-        label: L10nService.get('shared.main_shell.home', language),
+        label: L10nService.get('shared.main_shell.home', isEn ? AppLanguage.en : AppLanguage.tr),
       ),
       _TabItem(
         icon: CupertinoIcons.book,
         activeIcon: CupertinoIcons.book_fill,
-        label: L10nService.get('shared.main_shell.journal', language),
+        label: L10nService.get('shared.main_shell.journal', isEn ? AppLanguage.en : AppLanguage.tr),
       ),
       _TabItem(
         icon: CupertinoIcons.chart_bar,
         activeIcon: CupertinoIcons.chart_bar_fill,
-        label: L10nService.get('shared.main_shell.insights', language),
+        label: L10nService.get('shared.main_shell.insights', isEn ? AppLanguage.en : AppLanguage.tr),
       ),
       _TabItem(
         icon: CupertinoIcons.doc_text,
         activeIcon: CupertinoIcons.doc_text_fill,
-        label: L10nService.get('shared.main_shell.notes', language),
+        label: L10nService.get('shared.main_shell.notes', isEn ? AppLanguage.en : AppLanguage.tr),
       ),
       _TabItem(
         icon: CupertinoIcons.person,
         activeIcon: CupertinoIcons.person_fill,
-        label: L10nService.get('shared.main_shell.profile', language),
+        label: L10nService.get('shared.main_shell.profile', isEn ? AppLanguage.en : AppLanguage.tr),
       ),
     ];
 

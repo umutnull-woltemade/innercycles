@@ -1,4 +1,3 @@
-import 'package:innercycles/data/providers/app_providers.dart';
 // ════════════════════════════════════════════════════════════════════════════
 // ATTACHMENT STYLE MODEL - InnerCycles Self-Reflection Quiz
 // ════════════════════════════════════════════════════════════════════════════
@@ -48,7 +47,7 @@ enum AttachmentStyle {
 
   }
 
-  String localizedName(AppLanguage language) => language.isEn ? displayNameEn : displayNameTr;
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 
   // ══════════════════════════════════════════════════════════════════════════
   // DESCRIPTIONS

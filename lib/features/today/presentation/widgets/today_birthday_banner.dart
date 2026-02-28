@@ -12,13 +12,12 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class TodayBirthdayBanner extends ConsumerWidget {
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
 
   const TodayBirthdayBanner({
     super.key,
-    required this.language,
+    required this.isEn,
     required this.isDark,
   });
 
@@ -35,7 +34,7 @@ class TodayBirthdayBanner extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Semantics(
             button: true,
-            label: L10nService.get('today.today_birthday.view_birthday_agenda', language),
+            label: L10nService.get('today.today_birthday.view_birthday_agenda', isEn ? AppLanguage.en : AppLanguage.tr),
             child: TapScale(
               onTap: () => context.push(Routes.birthdayAgenda),
               child: PremiumCard(
@@ -87,7 +86,7 @@ class TodayBirthdayBanner extends ConsumerWidget {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            L10nService.get('today.today_birthday.u1f382_birthday_today', language),
+                            L10nService.get('today.today_birthday.u1f382_birthday_today', isEn ? AppLanguage.en : AppLanguage.tr),
                             style: AppTypography.subtitle(
                               fontSize: 14,
                               color: AppColors.starGold,

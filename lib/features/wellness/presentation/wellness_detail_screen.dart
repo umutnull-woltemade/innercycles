@@ -42,7 +42,7 @@ class WellnessDetailScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('wellness.wellness_detail.wellness_score', language),
+                  title: L10nService.get('wellness.wellness_detail.wellness_score', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -59,7 +59,7 @@ class WellnessDetailScreen extends ConsumerWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  L10nService.get('wellness.wellness_detail.could_not_load_your_local_data_is_unaffe', language),
+                                  L10nService.get('wellness.wellness_detail.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
                                   textAlign: TextAlign.center,
                                   style: AppTypography.decorativeScript(
                                     fontSize: 14,
@@ -78,7 +78,7 @@ class WellnessDetailScreen extends ConsumerWidget {
                                     color: AppColors.starGold,
                                   ),
                                   label: Text(
-                                    L10nService.get('wellness.wellness_detail.retry', language),
+                                    L10nService.get('wellness.wellness_detail.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                                     style: AppTypography.elegantAccent(
                                       fontSize: 13,
                                       fontWeight: FontWeight.w600,
@@ -97,7 +97,7 @@ class WellnessDetailScreen extends ConsumerWidget {
                           return _ScoreHero(
                             score: score,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           );
                         },
                       ),
@@ -113,7 +113,7 @@ class WellnessDetailScreen extends ConsumerWidget {
                           return _BreakdownDetail(
                             breakdown: score.breakdown,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           );
                         },
                       ),
@@ -131,7 +131,7 @@ class WellnessDetailScreen extends ConsumerWidget {
                           return _WeeklyTrendChart(
                             trend: trend,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                             isPremium: isPremium,
                           );
                         },
@@ -146,7 +146,7 @@ class WellnessDetailScreen extends ConsumerWidget {
                       ContentDisclaimer(language: language),
                       ToolEcosystemFooter(
                         currentToolId: 'wellnessDetail',
-                        language: language,
+                        isEn: isEn,
                         isDark: isDark,
                       ),
                       const SizedBox(height: 40),
@@ -161,18 +161,18 @@ class WellnessDetailScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildEmptyState(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildEmptyState(BuildContext context, bool isDark, bool isEn) {
     return PremiumEmptyState(
       icon: Icons.favorite_outline,
-      title: L10nService.get('wellness.wellness_detail.your_wellness_score_is_building', language),
-      description: L10nService.get('wellness.wellness_detail.log_a_cycle_entry_gratitude_or_sleep_to', language),
+      title: L10nService.get('wellness.wellness_detail.your_wellness_score_is_building', isEn ? AppLanguage.en : AppLanguage.tr),
+      description: L10nService.get('wellness.wellness_detail.log_a_cycle_entry_gratitude_or_sleep_to', isEn ? AppLanguage.en : AppLanguage.tr),
       gradientVariant: GradientTextVariant.aurora,
-      ctaLabel: L10nService.get('wellness.wellness_detail.write_journal_entry', language),
+      ctaLabel: L10nService.get('wellness.wellness_detail.write_journal_entry', isEn ? AppLanguage.en : AppLanguage.tr),
       onCtaPressed: () => context.go(Routes.journal),
     );
   }
 
-  Widget _buildTips(bool isDark, AppLanguage language) {
+  Widget _buildTips(bool isDark, bool isEn) {
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
@@ -180,7 +180,7 @@ class WellnessDetailScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('wellness.wellness_detail.how_your_score_works', language),
+            L10nService.get('wellness.wellness_detail.how_your_score_works', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 17,
@@ -190,27 +190,27 @@ class WellnessDetailScreen extends ConsumerWidget {
           const SizedBox(height: 10),
           _TipRow(
             icon: Icons.edit_note,
-            text: L10nService.get('wellness.wellness_detail.journal_rating_40_of_score', language),
+            text: L10nService.get('wellness.wellness_detail.journal_rating_40_of_score', isEn ? AppLanguage.en : AppLanguage.tr),
             isDark: isDark,
           ),
           _TipRow(
             icon: Icons.favorite_border,
-            text: L10nService.get('wellness.wellness_detail.gratitude_items_15', language),
+            text: L10nService.get('wellness.wellness_detail.gratitude_items_15', isEn ? AppLanguage.en : AppLanguage.tr),
             isDark: isDark,
           ),
           _TipRow(
             icon: Icons.playlist_add_check,
-            text: L10nService.get('wellness.wellness_detail.ritual_completion_15', language),
+            text: L10nService.get('wellness.wellness_detail.ritual_completion_15', isEn ? AppLanguage.en : AppLanguage.tr),
             isDark: isDark,
           ),
           _TipRow(
             icon: Icons.local_fire_department,
-            text: L10nService.get('wellness.wellness_detail.streak_consistency_15', language),
+            text: L10nService.get('wellness.wellness_detail.streak_consistency_15', isEn ? AppLanguage.en : AppLanguage.tr),
             isDark: isDark,
           ),
           _TipRow(
             icon: Icons.bedtime_outlined,
-            text: L10nService.get('wellness.wellness_detail.sleep_quality_15', language),
+            text: L10nService.get('wellness.wellness_detail.sleep_quality_15', isEn ? AppLanguage.en : AppLanguage.tr),
             isDark: isDark,
           ),
         ],
@@ -222,13 +222,12 @@ class WellnessDetailScreen extends ConsumerWidget {
 class _ScoreHero extends StatelessWidget {
   final WellnessScore score;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _ScoreHero({
     required this.score,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -284,7 +283,7 @@ class _ScoreHero extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            L10nService.get('wellness.wellness_detail.out_of_100', language),
+            L10nService.get('wellness.wellness_detail.out_of_100', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.elegantAccent(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -303,25 +302,24 @@ class _ScoreHero extends StatelessWidget {
     return AppColors.error;
   }
 
-  String _scoreLabel(int score, AppLanguage language) {
-    if (score >= 80) return L10nService.get('wellness.wellness_detail.thriving', language);
-    if (score >= 60) return L10nService.get('wellness.wellness_detail.good_balance', language);
-    if (score >= 40) return L10nService.get('wellness.wellness_detail.room_to_grow', language);
-    if (score >= 20) return L10nService.get('wellness.wellness_detail.getting_started', language);
-    return L10nService.get('wellness.wellness_detail.get_started', language);
+  String _scoreLabel(int score, bool isEn) {
+    if (score >= 80) return L10nService.get('wellness.wellness_detail.thriving', isEn ? AppLanguage.en : AppLanguage.tr);
+    if (score >= 60) return L10nService.get('wellness.wellness_detail.good_balance', isEn ? AppLanguage.en : AppLanguage.tr);
+    if (score >= 40) return L10nService.get('wellness.wellness_detail.room_to_grow', isEn ? AppLanguage.en : AppLanguage.tr);
+    if (score >= 20) return L10nService.get('wellness.wellness_detail.getting_started', isEn ? AppLanguage.en : AppLanguage.tr);
+    return L10nService.get('wellness.wellness_detail.get_started', isEn ? AppLanguage.en : AppLanguage.tr);
   }
 }
 
 class _BreakdownDetail extends StatelessWidget {
   final List<WellnessBreakdown> breakdown;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _BreakdownDetail({
     required this.breakdown,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -333,7 +331,7 @@ class _BreakdownDetail extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            L10nService.get('wellness.wellness_detail.score_breakdown', language),
+            L10nService.get('wellness.wellness_detail.score_breakdown', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.displayFont.copyWith(
               fontSize: 17,
               fontWeight: FontWeight.w600,
@@ -431,18 +429,18 @@ class _BreakdownDetail extends StatelessWidget {
     }
   }
 
-  String _categoryLabel(String category, AppLanguage language) {
+  String _categoryLabel(String category, bool isEn) {
     switch (category) {
       case 'journal':
-        return L10nService.get('wellness.wellness_detail.journal_rating', language);
+        return L10nService.get('wellness.wellness_detail.journal_rating', isEn ? AppLanguage.en : AppLanguage.tr);
       case 'gratitude':
-        return L10nService.get('wellness.wellness_detail.gratitude_practice', language);
+        return L10nService.get('wellness.wellness_detail.gratitude_practice', isEn ? AppLanguage.en : AppLanguage.tr);
       case 'rituals':
-        return L10nService.get('wellness.wellness_detail.ritual_completion', language);
+        return L10nService.get('wellness.wellness_detail.ritual_completion', isEn ? AppLanguage.en : AppLanguage.tr);
       case 'streak':
-        return L10nService.get('wellness.wellness_detail.streak_consistency', language);
+        return L10nService.get('wellness.wellness_detail.streak_consistency', isEn ? AppLanguage.en : AppLanguage.tr);
       case 'sleep':
-        return L10nService.get('wellness.wellness_detail.sleep_quality', language);
+        return L10nService.get('wellness.wellness_detail.sleep_quality', isEn ? AppLanguage.en : AppLanguage.tr);
       default:
         return category;
     }
@@ -460,14 +458,13 @@ class _BreakdownDetail extends StatelessWidget {
 class _WeeklyTrendChart extends StatelessWidget {
   final WellnessTrend trend;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isPremium;
 
   const _WeeklyTrendChart({
     required this.trend,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.isPremium,
   });
 
@@ -482,7 +479,7 @@ class _WeeklyTrendChart extends StatelessWidget {
           Row(
             children: [
               Text(
-                L10nService.get('wellness.wellness_detail.weekly_trend', language),
+                L10nService.get('wellness.wellness_detail.weekly_trend', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
@@ -582,14 +579,14 @@ class _WeeklyTrendChart extends StatelessWidget {
     );
   }
 
-  String _trendLabel(String direction, AppLanguage language) {
+  String _trendLabel(String direction, bool isEn) {
     switch (direction) {
       case 'up':
-        return L10nService.get('wellness.wellness_detail.improving', language);
+        return L10nService.get('wellness.wellness_detail.improving', isEn ? AppLanguage.en : AppLanguage.tr);
       case 'down':
-        return L10nService.get('wellness.wellness_detail.declining', language);
+        return L10nService.get('wellness.wellness_detail.declining', isEn ? AppLanguage.en : AppLanguage.tr);
       default:
-        return L10nService.get('wellness.wellness_detail.stable', language);
+        return L10nService.get('wellness.wellness_detail.stable', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 

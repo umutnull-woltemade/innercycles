@@ -31,7 +31,7 @@ class ShareInsightButton extends ConsumerWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Semantics(
-      label: L10nService.get('shared.share_insight_button.share_this_insight', language),
+      label: L10nService.get('shared.share_insight_button.share_this_insight', isEn ? AppLanguage.en : AppLanguage.tr),
       button: true,
       child: GestureDetector(
         onTap: () {
@@ -39,14 +39,14 @@ class ShareInsightButton extends ConsumerWidget {
           final template = ShareCardTemplates.patternWisdom;
           final cardData = ShareCardTemplates.buildData(
             template: template,
-            language: language,
+            isEn: isEn,
             patternInsightText: insightText,
           );
           ShareCardSheet.show(
             context,
             template: template,
             data: cardData,
-            language: language,
+            isEn: isEn,
           );
         },
         child: ConstrainedBox(

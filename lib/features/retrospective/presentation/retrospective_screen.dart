@@ -76,19 +76,19 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
           child: Column(
             children: [
               // Step indicator
-              _StepIndicator(currentStep: _currentStep, isDark: isDark, language: language),
+              _StepIndicator(currentStep: _currentStep, isDark: isDark, isEn: isEn),
               Expanded(
                 child: PageView(
                   controller: _pageController,
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
                     _WelcomeStep(
-                      language: language,
+                      isEn: isEn,
                       isDark: isDark,
                       onContinue: () => _goToStep(1),
                     ),
                     _DaySelectionStep(
-                      language: language,
+                      isEn: isEn,
                       isDark: isDark,
                       selectedPresets: _selectedPresets,
                       onToggle: (key) {
@@ -103,7 +103,7 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
                       onContinue: () => _goToStep(2),
                     ),
                     _DateEntryStep(
-                      language: language,
+                      isEn: isEn,
                       isDark: isDark,
                       selectedPresets: _selectedPresets,
                       presetDates: _presetDates,
@@ -114,7 +114,7 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
                       onJournalTap: _openJournal,
                     ),
                     _SummaryStep(
-                      language: language,
+                      isEn: isEn,
                       isDark: isDark,
                       savedCount: _savedIds.length,
                       journalCount: _journalsSaved,
@@ -181,15 +181,14 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
 class _StepIndicator extends StatelessWidget {
   final int currentStep;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
-  const _StepIndicator({required this.currentStep, required this.isDark, this.language = true});
+  const _StepIndicator({required this.currentStep, required this.isDark, this.isEn = true});
 
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: L10nService.getWithParams('retrospective.step_indicator', language, params: {'current': '${currentStep + 1}', 'total': '4'}),
+      label: L10nService.getWithParams('retrospective.step_indicator', isEn ? AppLanguage.en : AppLanguage.tr, params: {'current': '${currentStep + 1}', 'total': '4'}),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
         child: Row(
@@ -221,13 +220,12 @@ class _StepIndicator extends StatelessWidget {
 // ════════════════════════════════════════════════════════════════════════════
 
 class _WelcomeStep extends StatelessWidget {
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
   final VoidCallback onContinue;
 
   const _WelcomeStep({
-    required this.language,
+    required this.isEn,
     required this.isDark,
     required this.onContinue,
   });
@@ -247,7 +245,7 @@ class _WelcomeStep extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           GradientText(
-            L10nService.get('retrospective.retrospective.your_story_didnt_start_today', language),
+            L10nService.get('retrospective.retrospective.your_story_didnt_start_today', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             textAlign: TextAlign.center,
             style: AppTypography.displayFont.copyWith(
@@ -257,7 +255,7 @@ class _WelcomeStep extends StatelessWidget {
           ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
           const SizedBox(height: 16),
           Text(
-            L10nService.get('retrospective.retrospective.add_journal_entries_for_the_most_meaning', language),
+            L10nService.get('retrospective.retrospective.add_journal_entries_for_the_most_meaning', isEn ? AppLanguage.en : AppLanguage.tr),
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 16,
@@ -268,7 +266,7 @@ class _WelcomeStep extends StatelessWidget {
           ).animate().fadeIn(delay: 350.ms, duration: 400.ms),
           const SizedBox(height: 48),
           GradientButton.gold(
-            label: L10nService.get('retrospective.retrospective.lets_begin', language),
+            label: L10nService.get('retrospective.retrospective.lets_begin', isEn ? AppLanguage.en : AppLanguage.tr),
             onPressed: () {
               HapticService.buttonPress();
               onContinue();
@@ -286,15 +284,14 @@ class _WelcomeStep extends StatelessWidget {
 // ════════════════════════════════════════════════════════════════════════════
 
 class _DaySelectionStep extends StatelessWidget {
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
   final Set<String> selectedPresets;
   final ValueChanged<String> onToggle;
   final VoidCallback onContinue;
 
   const _DaySelectionStep({
-    required this.language,
+    required this.isEn,
     required this.isDark,
     required this.selectedPresets,
     required this.onToggle,
@@ -308,7 +305,7 @@ class _DaySelectionStep extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 4),
           child: GradientText(
-            L10nService.get('retrospective.retrospective.choose_the_days_that_matter_to_you', language),
+            L10nService.get('retrospective.retrospective.choose_the_days_that_matter_to_you', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 18,
@@ -344,7 +341,7 @@ class _DaySelectionStep extends StatelessWidget {
                       final selected = selectedPresets.contains(preset.key);
                       return Semantics(
                         label:
-                            '${preset.name(isEn)}, ${selected ? (L10nService.get('retrospective.retrospective.selected', language)) : (L10nService.get('retrospective.retrospective.not_selected', language))}',
+                            '${preset.name(isEn)}, ${selected ? (L10nService.get('retrospective.retrospective.selected', isEn ? AppLanguage.en : AppLanguage.tr)) : (L10nService.get('retrospective.retrospective.not_selected', isEn ? AppLanguage.en : AppLanguage.tr))}',
                         button: true,
                         selected: selected,
                         child: GestureDetector(
@@ -437,8 +434,7 @@ class _DaySelectionStep extends StatelessWidget {
 // ════════════════════════════════════════════════════════════════════════════
 
 class _DateEntryStep extends StatelessWidget {
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
   final Set<String> selectedPresets;
   final Map<String, DateTime> presetDates;
@@ -447,7 +443,7 @@ class _DateEntryStep extends StatelessWidget {
   final ValueChanged<String> onJournalTap;
 
   const _DateEntryStep({
-    required this.language,
+    required this.isEn,
     required this.isDark,
     required this.selectedPresets,
     required this.presetDates,
@@ -469,7 +465,7 @@ class _DateEntryStep extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 4),
           child: GradientText(
-            L10nService.get('retrospective.retrospective.when_did_these_happen', language),
+            L10nService.get('retrospective.retrospective.when_did_these_happen', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 18,
@@ -530,7 +526,7 @@ class _DateEntryStep extends StatelessWidget {
                             child: GradientOutlinedButton(
                               label: date != null
                                   ? '${date.day}.${date.month}.${date.year}'
-                                  : (L10nService.get('retrospective.retrospective.pick_a_date', language)),
+                                  : (L10nService.get('retrospective.retrospective.pick_a_date', isEn ? AppLanguage.en : AppLanguage.tr)),
                               icon: Icons.calendar_today,
                               variant: GradientTextVariant.gold,
                               expanded: true,
@@ -585,15 +581,14 @@ class _DateEntryStep extends StatelessWidget {
 // ════════════════════════════════════════════════════════════════════════════
 
 class _SummaryStep extends StatelessWidget {
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
   final int savedCount;
   final int journalCount;
   final VoidCallback onDone;
 
   const _SummaryStep({
-    required this.language,
+    required this.isEn,
     required this.isDark,
     required this.savedCount,
     required this.journalCount,
@@ -615,7 +610,7 @@ class _SummaryStep extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           GradientText(
-            L10nService.getWithParams('retrospective.memories_saved', language, params: {'count': '$savedCount'}),
+            L10nService.getWithParams('retrospective.memories_saved', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$savedCount'}),
             variant: GradientTextVariant.aurora,
             textAlign: TextAlign.center,
             style: AppTypography.displayFont.copyWith(
@@ -625,7 +620,7 @@ class _SummaryStep extends StatelessWidget {
           ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
           const SizedBox(height: 16),
           Text(
-            L10nService.get('retrospective.retrospective.your_past_is_now_part_of_your_journey_co', language),
+            L10nService.get('retrospective.retrospective.your_past_is_now_part_of_your_journey_co', isEn ? AppLanguage.en : AppLanguage.tr),
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 16,
@@ -636,7 +631,7 @@ class _SummaryStep extends StatelessWidget {
           ).animate().fadeIn(delay: 350.ms, duration: 400.ms),
           const SizedBox(height: 48),
           GradientButton.gold(
-            label: L10nService.get('retrospective.retrospective.back_to_home', language),
+            label: L10nService.get('retrospective.retrospective.back_to_home', isEn ? AppLanguage.en : AppLanguage.tr),
             onPressed: () {
               HapticService.buttonPress();
               onDone();

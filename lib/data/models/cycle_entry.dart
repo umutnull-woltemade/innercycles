@@ -1,4 +1,3 @@
-import 'package:innercycles/data/providers/app_providers.dart';
 // ════════════════════════════════════════════════════════════════════════════
 // CYCLE ENTRY MODEL - InnerCycles Hormonal Cycle Tracking
 // ════════════════════════════════════════════════════════════════════════════
@@ -41,7 +40,7 @@ enum CyclePhase {
 
   }
 
-  String localizedName(AppLanguage language) => language.isEn ? displayNameEn : displayNameTr;
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 
   String get descriptionEn {
     switch (this) {

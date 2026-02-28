@@ -30,7 +30,7 @@ class StreakCard extends ConsumerWidget {
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (stats) =>
-          _StreakCardContent(stats: stats, isDark: isDark, language: language),
+          _StreakCardContent(stats: stats, isDark: isDark, isEn: isEn),
     );
   }
 }
@@ -38,13 +38,12 @@ class StreakCard extends ConsumerWidget {
 class _StreakCardContent extends StatelessWidget {
   final StreakStats stats;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _StreakCardContent({
     required this.stats,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -87,7 +86,7 @@ class _StreakCardContent extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          L10nService.get('streak.streak.reflection_streak', language),
+                          L10nService.get('streak.streak.reflection_streak', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.displayFont.copyWith(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -161,12 +160,12 @@ class _StreakCardContent extends StatelessWidget {
               const SizedBox(height: 16),
 
               // Weekly mini-calendar
-              _WeekCalendar(isDark: isDark, language: language),
+              _WeekCalendar(isDark: isDark, isEn: isEn),
 
               // 14-day chain visualization
               if (stats.currentStreak > 0) ...[
                 const SizedBox(height: 14),
-                _StreakChain(isDark: isDark, language: language),
+                _StreakChain(isDark: isDark, isEn: isEn),
               ],
 
               // Share streak button (show when streak >= 3)
@@ -175,7 +174,7 @@ class _StreakCardContent extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Semantics(
-                    label: L10nService.get('streak.streak.share_your_streak', language),
+                    label: L10nService.get('streak.streak.share_your_streak', isEn ? AppLanguage.en : AppLanguage.tr),
                     button: true,
                     child: GestureDetector(
                     onTap: () {
@@ -196,7 +195,7 @@ class _StreakCardContent extends StatelessWidget {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          L10nService.get('streak.streak.share_streak', language),
+                          L10nService.get('streak.streak.share_streak', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.elegantAccent(
                             fontSize: 13,
                             color: AppColors.starGold.withValues(alpha: 0.7),
@@ -216,7 +215,7 @@ class _StreakCardContent extends StatelessWidget {
                   current: stats.currentStreak,
                   target: stats.nextMilestone!,
                   isDark: isDark,
-                  language: language,
+                  isEn: isEn,
                 ),
               ],
             ],
@@ -230,10 +229,9 @@ class _StreakCardContent extends StatelessWidget {
 /// Weekly mini-calendar showing check marks for each day
 class _WeekCalendar extends ConsumerWidget {
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
-  const _WeekCalendar({required this.isDark, required this.language});
+  const _WeekCalendar({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -331,14 +329,13 @@ class _MilestoneProgress extends StatelessWidget {
   final int current;
   final int target;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _MilestoneProgress({
     required this.current,
     required this.target,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -395,10 +392,9 @@ class _MilestoneProgress extends StatelessWidget {
 /// 14-day "Don't Break the Chain" visualization
 class _StreakChain extends ConsumerWidget {
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
-  const _StreakChain({required this.isDark, required this.language});
+  const _StreakChain({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -431,7 +427,7 @@ class _StreakChain extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              L10nService.get('streak.streak.14day_chain', language),
+              L10nService.get('streak.streak.14day_chain', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.elegantAccent(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
@@ -546,7 +542,7 @@ class StreakMilestoneCelebration {
   static Future<void> show(
     BuildContext context, {
     required int milestone,
-    required AppLanguage language,
+    required bool isEn,
   }) async {
     HapticFeedback.heavyImpact();
     final message = isEn
@@ -623,7 +619,7 @@ class StreakMilestoneCelebration {
 
                   // Milestone number
                   Text(
-                        '$milestone ${L10nService.get('streak.streak.days', language)}',
+                        '$milestone ${L10nService.get('streak.streak.days', isEn ? AppLanguage.en : AppLanguage.tr)}',
                         style: AppTypography.displayFont.copyWith(
                           fontSize: 32,
                           fontWeight: FontWeight.w800,
@@ -637,7 +633,7 @@ class StreakMilestoneCelebration {
                   const SizedBox(height: 4),
 
                   Text(
-                    L10nService.get('streak.streak.milestone_reached', language),
+                    L10nService.get('streak.streak.milestone_reached', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -679,7 +675,7 @@ class StreakMilestoneCelebration {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          L10nService.get('streak.streak.share_achievement', language),
+                          L10nService.get('streak.streak.share_achievement', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.elegantAccent(
                             fontSize: 15,
                             color: AppColors.starGold.withValues(alpha: 0.7),
@@ -692,7 +688,7 @@ class StreakMilestoneCelebration {
 
                   // CTA
                   GradientButton.gold(
-                    label: L10nService.get('streak.streak.keep_going', language),
+                    label: L10nService.get('streak.streak.keep_going', isEn ? AppLanguage.en : AppLanguage.tr),
                     onPressed: () => Navigator.pop(ctx),
                     expanded: true,
                   ).animate().fadeIn(delay: 600.ms, duration: 400.ms),

@@ -53,7 +53,7 @@ class SleepTrendsScreen extends ConsumerWidget {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      L10nService.get('sleep.sleep_trends.retry', language),
+                      L10nService.get('sleep.sleep_trends.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -75,7 +75,7 @@ class SleepTrendsScreen extends ConsumerWidget {
     BuildContext context,
     SleepService service,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final allEntries = service.getAllEntries();
     final summary = service.getWeeklySummary();
@@ -86,7 +86,7 @@ class SleepTrendsScreen extends ConsumerWidget {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(title: L10nService.get('sleep.sleep_trends.sleep_trends', language)),
+          GlassSliverAppBar(title: L10nService.get('sleep.sleep_trends.sleep_trends', isEn ? AppLanguage.en : AppLanguage.tr)),
           SliverFillRemaining(
             hasScrollBody: false,
             child: Center(
@@ -104,7 +104,7 @@ class SleepTrendsScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: 16),
                     GradientText(
-                      L10nService.get('sleep.sleep_trends.no_sleep_data_yet', language),
+                      L10nService.get('sleep.sleep_trends.no_sleep_data_yet', isEn ? AppLanguage.en : AppLanguage.tr),
                       variant: GradientTextVariant.aurora,
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 18,
@@ -113,7 +113,7 @@ class SleepTrendsScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      L10nService.get('sleep.sleep_trends.log_your_first_nights_sleep_to_see_trend', language),
+                      L10nService.get('sleep.sleep_trends.log_your_first_nights_sleep_to_see_trend', isEn ? AppLanguage.en : AppLanguage.tr),
                       textAlign: TextAlign.center,
                       style: AppTypography.decorativeScript(
                         fontSize: 14,
@@ -152,7 +152,7 @@ class SleepTrendsScreen extends ConsumerWidget {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(title: L10nService.get('sleep.sleep_trends.sleep_trends_1', language)),
+          GlassSliverAppBar(title: L10nService.get('sleep.sleep_trends.sleep_trends_1', isEn ? AppLanguage.en : AppLanguage.tr)),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
@@ -197,12 +197,12 @@ class SleepTrendsScreen extends ConsumerWidget {
                       .toList(),
                 ),
                 ContentDisclaimer(
-                  language: language,
+                  language: isEn ? AppLanguage.en : AppLanguage.tr,
                 ),
                 const SizedBox(height: 16),
                 ToolEcosystemFooter(
                   currentToolId: 'sleepTrends',
-                  language: language,
+                  isEn: isEn,
                   isDark: isDark,
                 ),
                 const SizedBox(height: 40),
@@ -217,7 +217,7 @@ class SleepTrendsScreen extends ConsumerWidget {
   Widget _buildStatsRow(
     BuildContext context,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     SleepSummary summary,
     int total,
   ) {
@@ -225,7 +225,7 @@ class SleepTrendsScreen extends ConsumerWidget {
       children: [
         Expanded(
           child: _StatTile(
-            label: L10nService.get('sleep.sleep_trends.week_avg', language),
+            label: L10nService.get('sleep.sleep_trends.week_avg', isEn ? AppLanguage.en : AppLanguage.tr),
             value: summary.averageQuality > 0
                 ? summary.averageQuality.toStringAsFixed(1)
                 : '-',
@@ -235,7 +235,7 @@ class SleepTrendsScreen extends ConsumerWidget {
         const SizedBox(width: AppConstants.spacingMd),
         Expanded(
           child: _StatTile(
-            label: L10nService.get('sleep.sleep_trends.best', language),
+            label: L10nService.get('sleep.sleep_trends.best', isEn ? AppLanguage.en : AppLanguage.tr),
             value: summary.bestNightQuality > 0
                 ? '${summary.bestNightQuality}/5'
                 : '-',
@@ -245,7 +245,7 @@ class SleepTrendsScreen extends ConsumerWidget {
         const SizedBox(width: AppConstants.spacingMd),
         Expanded(
           child: _StatTile(
-            label: L10nService.get('sleep.sleep_trends.nights', language),
+            label: L10nService.get('sleep.sleep_trends.nights', isEn ? AppLanguage.en : AppLanguage.tr),
             value: '$total',
             isDark: isDark,
           ),
@@ -257,7 +257,7 @@ class SleepTrendsScreen extends ConsumerWidget {
   Widget _buildTrendCard(
     BuildContext context,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     String trend,
   ) {
     final IconData icon;
@@ -268,15 +268,15 @@ class SleepTrendsScreen extends ConsumerWidget {
       case 'improving':
         icon = Icons.trending_up;
         color = AppColors.auroraStart;
-        text = L10nService.get('sleep.sleep_trends.your_sleep_quality_is_improving', language);
+        text = L10nService.get('sleep.sleep_trends.your_sleep_quality_is_improving', isEn ? AppLanguage.en : AppLanguage.tr);
       case 'declining':
         icon = Icons.trending_down;
         color = AppColors.chartOrange;
-        text = L10nService.get('sleep.sleep_trends.your_sleep_quality_has_dipped_recently', language);
+        text = L10nService.get('sleep.sleep_trends.your_sleep_quality_has_dipped_recently', isEn ? AppLanguage.en : AppLanguage.tr);
       default:
         icon = Icons.trending_flat;
         color = AppColors.starGold;
-        text = L10nService.get('sleep.sleep_trends.your_sleep_quality_is_stable', language);
+        text = L10nService.get('sleep.sleep_trends.your_sleep_quality_is_stable', isEn ? AppLanguage.en : AppLanguage.tr);
     }
 
     return GlassPanel(
@@ -307,7 +307,7 @@ class SleepTrendsScreen extends ConsumerWidget {
   Widget _buildBarChart(
     BuildContext context,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     List<_DayQuality> days,
   ) {
     return GlassPanel(
@@ -318,7 +318,7 @@ class SleepTrendsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('sleep.sleep_trends.last_14_nights', language),
+            L10nService.get('sleep.sleep_trends.last_14_nights', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -387,15 +387,15 @@ class SleepTrendsScreen extends ConsumerWidget {
   Widget _buildDistributionCard(
     BuildContext context,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     Map<int, int> distribution,
   ) {
     final labels = [
-      (1, L10nService.get('sleep.sleep_trends.poor', language)),
-      (2, L10nService.get('sleep.sleep_trends.fair', language)),
-      (3, L10nService.get('sleep.sleep_trends.okay', language)),
-      (4, L10nService.get('sleep.sleep_trends.good', language)),
-      (5, L10nService.get('sleep.sleep_trends.great', language)),
+      (1, L10nService.get('sleep.sleep_trends.poor', isEn ? AppLanguage.en : AppLanguage.tr)),
+      (2, L10nService.get('sleep.sleep_trends.fair', isEn ? AppLanguage.en : AppLanguage.tr)),
+      (3, L10nService.get('sleep.sleep_trends.okay', isEn ? AppLanguage.en : AppLanguage.tr)),
+      (4, L10nService.get('sleep.sleep_trends.good', isEn ? AppLanguage.en : AppLanguage.tr)),
+      (5, L10nService.get('sleep.sleep_trends.great', isEn ? AppLanguage.en : AppLanguage.tr)),
     ];
     final total = distribution.values.fold(0, (a, b) => a + b);
 
@@ -407,7 +407,7 @@ class SleepTrendsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('sleep.sleep_trends.quality_distribution', language),
+            L10nService.get('sleep.sleep_trends.quality_distribution', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -489,7 +489,7 @@ class SleepTrendsScreen extends ConsumerWidget {
   Widget _buildRecentCard(
     BuildContext context,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     List<SleepEntry> entries,
   ) {
     if (entries.isEmpty) return const SizedBox.shrink();
@@ -502,7 +502,7 @@ class SleepTrendsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('sleep.sleep_trends.notes', language),
+            L10nService.get('sleep.sleep_trends.notes', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,

@@ -1,4 +1,3 @@
-import 'package:innercycles/data/providers/app_providers.dart';
 // ════════════════════════════════════════════════════════════════════════════
 // JOURNAL ENTRY MODEL - InnerCycles Personal Cycle Tracking
 // ════════════════════════════════════════════════════════════════════════════
@@ -42,7 +41,7 @@ enum FocusArea {
 
   }
 
-  String localizedName(AppLanguage language) => language.isEn ? displayNameEn : displayNameTr;
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 
   /// Sub-rating keys for this focus area
   List<String> get subRatingKeys {

@@ -278,7 +278,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
     );
   }
 
-  Widget _buildQuestion(bool isDark, AppLanguage language) {
+  Widget _buildQuestion(bool isDark, bool isEn) {
     final question = _questions[_currentQuestion];
     final progress = (_currentQuestion + 1) / _questions.length;
 
@@ -293,7 +293,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
             child: TextButton(
               onPressed: _skipQuiz,
               child: Text(
-                L10nService.get('onboarding.archetype_quiz.skip', language),
+                L10nService.get('onboarding.archetype_quiz.skip', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
                   color: AppColors.textMuted.withValues(alpha: 0.7),
@@ -378,7 +378,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
     );
   }
 
-  Widget _buildResult(bool isDark, AppLanguage language) {
+  Widget _buildResult(bool isDark, bool isEn) {
     if (_result == null) {
       return Center(
         child: Column(
@@ -387,7 +387,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
             const CosmicLoadingIndicator(),
             const SizedBox(height: 12),
             Text(
-              L10nService.get('onboarding.archetype_quiz.discovering_your_archetype', language),
+              L10nService.get('onboarding.archetype_quiz.discovering_your_archetype', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.subtitle(
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
@@ -412,7 +412,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
 
           // Title
           Text(
-            L10nService.get('onboarding.archetype_quiz.your_inner_archetype', language),
+            L10nService.get('onboarding.archetype_quiz.your_inner_archetype', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.elegantAccent(
               fontSize: 14,
               color: AppColors.starGold,
@@ -466,7 +466,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GradientText(
-                  L10nService.get('onboarding.archetype_quiz.your_strengths', language),
+                  L10nService.get('onboarding.archetype_quiz.your_strengths', isEn ? AppLanguage.en : AppLanguage.tr),
                   variant: GradientTextVariant.gold,
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 14,
@@ -522,7 +522,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GradientText(
-                  L10nService.get('onboarding.archetype_quiz.growth_tip', language),
+                  L10nService.get('onboarding.archetype_quiz.growth_tip', isEn ? AppLanguage.en : AppLanguage.tr),
                   variant: GradientTextVariant.amethyst,
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 14,
@@ -550,7 +550,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
 
           // Continue button
           GradientButton.gold(
-            label: L10nService.get('onboarding.archetype_quiz.get_started', language),
+            label: L10nService.get('onboarding.archetype_quiz.get_started', isEn ? AppLanguage.en : AppLanguage.tr),
             onPressed: _goHome,
             expanded: true,
           ).glassEntrance(
@@ -563,7 +563,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
           TextButton(
             onPressed: _goHome,
             child: Text(
-              L10nService.get('onboarding.archetype_quiz.skip_for_now', language),
+              L10nService.get('onboarding.archetype_quiz.skip_for_now', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.elegantAccent(
                 fontSize: 14,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,

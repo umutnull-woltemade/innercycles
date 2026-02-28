@@ -76,7 +76,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                 ),
                 slivers: [
                   GlassSliverAppBar(
-                    title: L10nService.get('rituals.ritual_create.create_ritual', language),
+                    title: L10nService.get('rituals.ritual_create.create_ritual', isEn ? AppLanguage.en : AppLanguage.tr),
                   ),
                   SliverPadding(
                     padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -84,7 +84,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                       delegate: SliverChildListDelegate([
                         // Time selector
                         Text(
-                          L10nService.get('rituals.ritual_create.when', language),
+                          L10nService.get('rituals.ritual_create.when', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.elegantAccent(
                             fontSize: 14,
                             color: isDark
@@ -175,7 +175,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
 
                         // Name field
                         Text(
-                          L10nService.get('rituals.ritual_create.name', language),
+                          L10nService.get('rituals.ritual_create.name', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.elegantAccent(
                             fontSize: 14,
                             color: isDark
@@ -198,7 +198,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                                   : AppColors.lightTextPrimary,
                             ),
                             decoration: InputDecoration(
-                              hintText: L10nService.get('rituals.ritual_create.eg_morning_routine', language),
+                              hintText: L10nService.get('rituals.ritual_create.eg_morning_routine', isEn ? AppLanguage.en : AppLanguage.tr),
                               hintStyle: AppTypography.subtitle(
                                 color: isDark
                                     ? AppColors.textMuted
@@ -230,7 +230,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                             ),
                             if (_itemControllers.length < maxItems)
                               IconButton(
-                                tooltip: L10nService.get('rituals.ritual_create.add_step', language),
+                                tooltip: L10nService.get('rituals.ritual_create.add_step', isEn ? AppLanguage.en : AppLanguage.tr),
                                 onPressed: () {
                                   setState(() {
                                     _itemControllers.add(
@@ -312,7 +312,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                                       ),
                                       if (_itemControllers.length > 1)
                                         IconButton(
-                                          tooltip: L10nService.get('rituals.ritual_create.remove_step', language),
+                                          tooltip: L10nService.get('rituals.ritual_create.remove_step', isEn ? AppLanguage.en : AppLanguage.tr),
                                           onPressed: () {
                                             setState(() {
                                               _itemControllers[i].dispose();
@@ -340,7 +340,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
 
                         // Save button
                         GradientButton.gold(
-                          label: L10nService.get('rituals.ritual_create.create_ritual_1', language),
+                          label: L10nService.get('rituals.ritual_create.create_ritual_1', isEn ? AppLanguage.en : AppLanguage.tr),
                           onPressed: _isSaving ? null : _save,
                           isLoading: _isSaving,
                           expanded: true,
@@ -370,7 +370,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
     }
   }
 
-  Widget _buildHabitSuggestions(bool isDark, AppLanguage language) {
+  Widget _buildHabitSuggestions(bool isDark, bool isEn) {
     final categories = _categoriesForTime(_selectedTime);
     final suggestions = allHabitSuggestions
         .where((h) => categories.contains(h.category))
@@ -383,7 +383,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          L10nService.get('rituals.ritual_create.suggestions', language),
+          L10nService.get('rituals.ritual_create.suggestions', isEn ? AppLanguage.en : AppLanguage.tr),
           style: AppTypography.elegantAccent(
             fontSize: 12,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -451,7 +451,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
     );
   }
 
-  String _getPlaceholder(int index, AppLanguage language) {
+  String _getPlaceholder(int index, bool isEn) {
     final enPlaceholders = [
       'e.g. Drink water',
       'e.g. Stretch for 5 min',
@@ -481,7 +481,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            L10nService.get('rituals.ritual_create.add_at_least_one_ritual_item', language),
+            L10nService.get('rituals.ritual_create.add_at_least_one_ritual_item', isEn ? AppLanguage.en : AppLanguage.tr),
           ),
           backgroundColor: AppColors.warning,
           behavior: SnackBarBehavior.floating,

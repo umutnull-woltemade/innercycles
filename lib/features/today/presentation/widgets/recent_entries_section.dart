@@ -15,13 +15,12 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class RecentEntriesSection extends ConsumerWidget {
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
 
   const RecentEntriesSection({
     super.key,
-    required this.language,
+    required this.isEn,
     required this.isDark,
   });
 
@@ -54,7 +53,7 @@ class RecentEntriesSection extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GradientText(
-                      L10nService.get('today.recent_entries.recent_entries', language),
+                      L10nService.get('today.recent_entries.recent_entries', isEn ? AppLanguage.en : AppLanguage.tr),
                       variant: GradientTextVariant.aurora,
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 17,
@@ -63,7 +62,7 @@ class RecentEntriesSection extends ConsumerWidget {
                       ),
                     ),
                     Semantics(
-                      label: L10nService.get('today.recent_entries.see_all_entries', language),
+                      label: L10nService.get('today.recent_entries.see_all_entries', isEn ? AppLanguage.en : AppLanguage.tr),
                       button: true,
                       child: GestureDetector(
                         onTap: () {
@@ -76,7 +75,7 @@ class RecentEntriesSection extends ConsumerWidget {
                           child: Align(
                             alignment: Alignment.centerRight,
                             child: Text(
-                              L10nService.get('today.recent_entries.see_all', language),
+                              L10nService.get('today.recent_entries.see_all', isEn ? AppLanguage.en : AppLanguage.tr),
                               style: AppTypography.subtitle(
                                 fontSize: 14,
                                 color: isDark
@@ -266,15 +265,15 @@ class RecentEntriesSection extends ConsumerWidget {
   String _focusAreaLabel(FocusArea area) {
     switch (area) {
       case FocusArea.energy:
-        return L10nService.get('today.recent_entries.energy', language);
+        return L10nService.get('today.recent_entries.energy', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.focus:
-        return L10nService.get('today.recent_entries.focus', language);
+        return L10nService.get('today.recent_entries.focus', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.emotions:
-        return L10nService.get('today.recent_entries.emotions', language);
+        return L10nService.get('today.recent_entries.emotions', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.decisions:
-        return L10nService.get('today.recent_entries.decisions', language);
+        return L10nService.get('today.recent_entries.decisions', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.social:
-        return L10nService.get('today.recent_entries.social', language);
+        return L10nService.get('today.recent_entries.social', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 }

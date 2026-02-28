@@ -109,7 +109,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
     super.dispose();
   }
 
-  List<ToolManifest> _filterTools(List<ToolManifest> tools, AppLanguage language) {
+  List<ToolManifest> _filterTools(List<ToolManifest> tools, bool isEn) {
     if (_searchQuery.isEmpty) return tools;
     return tools.where((tool) {
       final name = isEn ? tool.nameEn.toLowerCase() : tool.nameTr.toLowerCase();
@@ -141,7 +141,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('tools.tool_catalog.tools', language),
+                  title: L10nService.get('tools.tool_catalog.tools', isEn ? AppLanguage.en : AppLanguage.tr),
                   showBackButton: false,
                 ),
                 SliverPadding(
@@ -192,7 +192,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
     );
   }
 
-  Widget _buildSearchBar(bool isDark, AppLanguage language) {
+  Widget _buildSearchBar(bool isDark, bool isEn) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
@@ -213,7 +213,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: L10nService.get('tools.tool_catalog.search_by_name_or_category', language),
+          hintText: L10nService.get('tools.tool_catalog.search_by_name_or_category', isEn ? AppLanguage.en : AppLanguage.tr),
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -224,7 +224,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
           ),
           suffixIcon: _searchController.text.isNotEmpty
               ? IconButton(
-                  tooltip: L10nService.get('tools.tool_catalog.clear_search', language),
+                  tooltip: L10nService.get('tools.tool_catalog.clear_search', isEn ? AppLanguage.en : AppLanguage.tr),
                   onPressed: () {
                     _searchController.clear();
                     setState(() => _searchQuery = '');
@@ -248,7 +248,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
     );
   }
 
-  Widget _buildEmptySearch(bool isDark, AppLanguage language) {
+  Widget _buildEmptySearch(bool isDark, bool isEn) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: AppConstants.spacingHuge),
       child: Column(
@@ -262,7 +262,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Text(
-            L10nService.get('tools.tool_catalog.no_tools_found', language),
+            L10nService.get('tools.tool_catalog.no_tools_found', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.displayFont.copyWith(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -278,7 +278,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
 
   List<Widget> _buildCategorySections(
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     AsyncValue<SmartRouterService> smartRouterAsync,
     bool isPremium,
   ) {
@@ -325,7 +325,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
     return widgets;
   }
 
-  Widget _buildCategoryHeader(_CategoryInfo info, bool isDark, AppLanguage language) {
+  Widget _buildCategoryHeader(_CategoryInfo info, bool isDark, bool isEn) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: AppConstants.spacingSm),
       decoration: BoxDecoration(
@@ -374,7 +374,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
   Widget _buildToolGrid(
     List<ToolManifest> tools,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     AsyncValue<SmartRouterService> smartRouterAsync,
     int baseDelay,
     bool isPremium,
@@ -394,7 +394,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
                     child: _ToolCard(
                       tool: left,
                       isDark: isDark,
-                      language: language,
+                      isEn: isEn,
                       smartRouterAsync: smartRouterAsync,
                       isPremium: isPremium,
                       onFavoriteToggle: () => _toggleFavorite(left),
@@ -411,7 +411,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
                         ? _ToolCard(
                             tool: right,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                             smartRouterAsync: smartRouterAsync,
                             isPremium: isPremium,
                             onFavoriteToggle: () => _toggleFavorite(right),
@@ -454,8 +454,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
 class _ToolCard extends StatelessWidget {
   final ToolManifest tool;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isPremium;
   final AsyncValue<SmartRouterService> smartRouterAsync;
   final VoidCallback onFavoriteToggle;
@@ -464,7 +463,7 @@ class _ToolCard extends StatelessWidget {
   const _ToolCard({
     required this.tool,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.smartRouterAsync,
     required this.isPremium,
     required this.onFavoriteToggle,
@@ -529,8 +528,8 @@ class _ToolCard extends StatelessWidget {
                   Semantics(
                     button: true,
                     label: isFavorite
-                        ? (L10nService.get('tools.tool_catalog.remove_from_favorites', language))
-                        : (L10nService.get('tools.tool_catalog.add_to_favorites', language)),
+                        ? (L10nService.get('tools.tool_catalog.remove_from_favorites', isEn ? AppLanguage.en : AppLanguage.tr))
+                        : (L10nService.get('tools.tool_catalog.add_to_favorites', isEn ? AppLanguage.en : AppLanguage.tr)),
                     child: GestureDetector(
                       onTap: onFavoriteToggle,
                       behavior: HitTestBehavior.opaque,

@@ -46,7 +46,7 @@ class EnergyMapScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('energy.energy_map.energy_profile', language),
+                  title: L10nService.get('energy.energy_map.energy_profile', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -61,7 +61,7 @@ class EnergyMapScreen extends ConsumerWidget {
                           children: [
                             const SizedBox(height: 40),
                             Text(
-                              L10nService.get('energy.energy_map.could_not_load_your_local_data_is_unaffe', language),
+                              L10nService.get('energy.energy_map.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
                               textAlign: TextAlign.center,
                               style: AppTypography.subtitle(
                                 fontSize: 14,
@@ -80,7 +80,7 @@ class EnergyMapScreen extends ConsumerWidget {
                                 color: AppColors.starGold,
                               ),
                               label: Text(
-                                L10nService.get('energy.energy_map.retry', language),
+                                L10nService.get('energy.energy_map.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,
@@ -95,7 +95,7 @@ class EnergyMapScreen extends ConsumerWidget {
                     data: (data) {
                       if (data == null) {
                         return SliverToBoxAdapter(
-                          child: _EmptyState(isDark: isDark, language: language),
+                          child: _EmptyState(isDark: isDark, isEn: isEn),
                         );
                       }
                       return SliverList(
@@ -103,19 +103,19 @@ class EnergyMapScreen extends ConsumerWidget {
                           _SummaryHeader(
                             data: data,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           ),
                           const SizedBox(height: 20),
-                          _HeatmapGrid(data: data, isDark: isDark, language: language),
+                          _HeatmapGrid(data: data, isDark: isDark, isEn: isEn),
                           const SizedBox(height: 24),
-                          _DailyChart(data: data, isDark: isDark, language: language),
+                          _DailyChart(data: data, isDark: isDark, isEn: isEn),
                           const SizedBox(height: 24),
-                          _InsightTips(data: data, isDark: isDark, language: language),
+                          _InsightTips(data: data, isDark: isDark, isEn: isEn),
                           const SizedBox(height: 24),
                           ContentDisclaimer(language: language),
                           ToolEcosystemFooter(
                             currentToolId: 'energyMap',
-                            language: language,
+                            isEn: isEn,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 40),
@@ -140,13 +140,12 @@ class EnergyMapScreen extends ConsumerWidget {
 class _SummaryHeader extends StatelessWidget {
   final EnergyMapData data;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _SummaryHeader({
     required this.data,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -157,7 +156,7 @@ class _SummaryHeader extends StatelessWidget {
       child: Row(
         children: [
           _StatChip(
-            label: L10nService.get('energy.energy_map.average', language),
+            label: L10nService.get('energy.energy_map.average', isEn ? AppLanguage.en : AppLanguage.tr),
             value: data.overallAverage > 0
                 ? data.overallAverage.toStringAsFixed(1)
                 : '-',
@@ -166,14 +165,14 @@ class _SummaryHeader extends StatelessWidget {
           ),
           const SizedBox(width: 12),
           _StatChip(
-            label: L10nService.get('energy.energy_map.best_day', language),
+            label: L10nService.get('energy.energy_map.best_day', isEn ? AppLanguage.en : AppLanguage.tr),
             value: _dayLabel(data.bestDay, isEn),
             color: AppColors.success,
             isDark: isDark,
           ),
           const SizedBox(width: 12),
           _StatChip(
-            label: L10nService.get('energy.energy_map.strongest', language),
+            label: L10nService.get('energy.energy_map.strongest', isEn ? AppLanguage.en : AppLanguage.tr),
             value: data.strongestArea != null
                 ? (isEn
                       ? data.strongestArea!.displayNameEn
@@ -187,7 +186,7 @@ class _SummaryHeader extends StatelessWidget {
     ).animate().fadeIn(duration: 300.ms);
   }
 
-  String _dayLabel(int weekday, AppLanguage language) {
+  String _dayLabel(int weekday, bool isEn) {
     final en = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     final tr = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
     return isEn ? en[weekday - 1] : tr[weekday - 1];
@@ -243,13 +242,12 @@ class _StatChip extends StatelessWidget {
 class _HeatmapGrid extends StatelessWidget {
   final EnergyMapData data;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _HeatmapGrid({
     required this.data,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -266,7 +264,7 @@ class _HeatmapGrid extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('energy.energy_map.energy_by_day_area', language),
+            L10nService.get('energy.energy_map.energy_by_day_area', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -346,7 +344,7 @@ class _HeatmapGrid extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                L10nService.get('energy.energy_map.low', language),
+                L10nService.get('energy.energy_map.low', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.subtitle(
                   fontSize: 10,
                   color: isDark
@@ -369,7 +367,7 @@ class _HeatmapGrid extends StatelessWidget {
               ),
               const SizedBox(width: 4),
               Text(
-                L10nService.get('energy.energy_map.high', language),
+                L10nService.get('energy.energy_map.high', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.subtitle(
                   fontSize: 10,
                   color: isDark
@@ -425,13 +423,12 @@ class _HeatCell extends StatelessWidget {
 class _DailyChart extends StatelessWidget {
   final EnergyMapData data;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _DailyChart({
     required this.data,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -444,7 +441,7 @@ class _DailyChart extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('energy.energy_map.last_28_days', language),
+            L10nService.get('energy.energy_map.last_28_days', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -486,7 +483,7 @@ class _DailyChart extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                L10nService.get('energy.energy_map.4_weeks_ago', language),
+                L10nService.get('energy.energy_map.4_weeks_ago', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.subtitle(
                   fontSize: 10,
                   color: isDark
@@ -495,7 +492,7 @@ class _DailyChart extends StatelessWidget {
                 ),
               ),
               Text(
-                L10nService.get('energy.energy_map.today', language),
+                L10nService.get('energy.energy_map.today', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.subtitle(
                   fontSize: 10,
                   color: isDark
@@ -525,13 +522,12 @@ class _DailyChart extends StatelessWidget {
 class _InsightTips extends StatelessWidget {
   final EnergyMapData data;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _InsightTips({
     required this.data,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -579,7 +575,7 @@ class _InsightTips extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('energy.energy_map.observations', language),
+                L10nService.get('energy.energy_map.observations', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 14,
@@ -655,19 +651,18 @@ class _InsightTips extends StatelessWidget {
 
 class _EmptyState extends StatelessWidget {
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
-  const _EmptyState({required this.isDark, required this.language});
+  const _EmptyState({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.grid_view_rounded,
-      title: L10nService.get('energy.energy_map.your_energy_map_is_taking_shape', language),
-      description: L10nService.get('energy.energy_map.add_at_least_5_entries_to_see_your_energ', language),
+      title: L10nService.get('energy.energy_map.your_energy_map_is_taking_shape', isEn ? AppLanguage.en : AppLanguage.tr),
+      description: L10nService.get('energy.energy_map.add_at_least_5_entries_to_see_your_energ', isEn ? AppLanguage.en : AppLanguage.tr),
       gradientVariant: GradientTextVariant.aurora,
-      ctaLabel: L10nService.get('energy.energy_map.write_first_entry', language),
+      ctaLabel: L10nService.get('energy.energy_map.write_first_entry', isEn ? AppLanguage.en : AppLanguage.tr),
       onCtaPressed: () => context.go(Routes.journal),
     );
   }

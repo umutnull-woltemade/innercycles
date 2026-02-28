@@ -1,4 +1,3 @@
-import 'package:innercycles/data/providers/app_providers.dart';
 /// Emotional Vocabulary — 36 granular emotion labels
 /// Organized by 6 core emotion families (joy, sadness, anger, fear, surprise, calm).
 /// Each emotion has bilingual names, descriptions, intensity levels,
@@ -52,7 +51,7 @@ enum EmotionFamily {
     }
   }
 
-  String localizedName(AppLanguage language) => language.isEn ? displayNameEn : displayNameTr;
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 
   String get emoji {
     switch (this) {
@@ -99,7 +98,7 @@ enum EmotionIntensity {
     }
   }
 
-  String localizedName(AppLanguage language) => language.isEn ? displayNameEn : displayNameTr;
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

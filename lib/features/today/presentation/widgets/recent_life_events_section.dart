@@ -16,13 +16,12 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class RecentLifeEventsSection extends ConsumerWidget {
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
 
   const RecentLifeEventsSection({
     super.key,
-    required this.language,
+    required this.isEn,
     required this.isDark,
   });
 
@@ -56,7 +55,7 @@ class RecentLifeEventsSection extends ConsumerWidget {
                 children: [
                   Flexible(
                     child: GradientText(
-                      L10nService.get('today.recent_life_events.recent_life_events', language),
+                      L10nService.get('today.recent_life_events.recent_life_events', isEn ? AppLanguage.en : AppLanguage.tr),
                       variant: GradientTextVariant.amethyst,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -70,11 +69,11 @@ class RecentLifeEventsSection extends ConsumerWidget {
                   const SizedBox(width: 8),
                   Semantics(
                     button: true,
-                    label: L10nService.get('today.recent_life_events.see_all_life_events', language),
+                    label: L10nService.get('today.recent_life_events.see_all_life_events', isEn ? AppLanguage.en : AppLanguage.tr),
                     child: GestureDetector(
                       onTap: () => context.push(Routes.lifeTimeline),
                       child: Text(
-                        L10nService.get('today.recent_life_events.see_all', language),
+                        L10nService.get('today.recent_life_events.see_all', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.subtitle(
                           fontSize: 14,
                           color: isDark
@@ -201,7 +200,7 @@ class RecentLifeEventsSection extends ConsumerWidget {
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
       child: Semantics(
         button: true,
-        label: L10nService.get('today.recent_life_events.record_a_life_event', language),
+        label: L10nService.get('today.recent_life_events.record_a_life_event', isEn ? AppLanguage.en : AppLanguage.tr),
         child: TapScale(
           onTap: () {
             HapticService.buttonPress();
@@ -228,7 +227,7 @@ class RecentLifeEventsSection extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        L10nService.get('today.recent_life_events.any_big_moments_this_week', language),
+                        L10nService.get('today.recent_life_events.any_big_moments_this_week', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.displayFont.copyWith(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -238,7 +237,7 @@ class RecentLifeEventsSection extends ConsumerWidget {
                         ),
                       ),
                       Text(
-                        L10nService.get('today.recent_life_events.record_a_life_event_1', language),
+                        L10nService.get('today.recent_life_events.record_a_life_event_1', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.elegantAccent(
                           fontSize: 14,
                           color: isDark

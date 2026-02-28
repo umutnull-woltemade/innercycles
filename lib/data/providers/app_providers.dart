@@ -215,8 +215,6 @@ extension AppLanguageExtension on AppLanguage {
     }
   }
 
-  bool get isEn => this == AppLanguage.en;
-
   bool get isRTL => this == AppLanguage.ar;
 
   /// Languages with complete translations and strict isolation support

@@ -18,14 +18,13 @@ import '../../../../data/providers/app_providers.dart';
 
 class ProfileSettingsSection extends StatelessWidget {
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isPremium;
 
   const ProfileSettingsSection({
     super.key,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.isPremium,
   });
 
@@ -35,7 +34,7 @@ class ProfileSettingsSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('profile.profile_settings.settings', language),
+          L10nService.get('profile.profile_settings.settings', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 17,
@@ -60,7 +59,7 @@ class ProfileSettingsSection extends StatelessWidget {
                     child: Column(
                       children: [
                         GradientText(
-                          L10nService.get('profile.profile_settings.unlock_full_potential', language),
+                          L10nService.get('profile.profile_settings.unlock_full_potential', isEn ? AppLanguage.en : AppLanguage.tr),
                           variant: GradientTextVariant.gold,
                           style: AppTypography.displayFont.copyWith(
                             fontSize: 16,
@@ -69,7 +68,7 @@ class ProfileSettingsSection extends StatelessWidget {
                         ),
                         const SizedBox(height: AppConstants.spacingMd),
                         GradientButton.gold(
-                          label: L10nService.get('profile.profile_settings.go_premium', language),
+                          label: L10nService.get('profile.profile_settings.go_premium', isEn ? AppLanguage.en : AppLanguage.tr),
                           expanded: true,
                           onPressed: () => context.push(Routes.premium),
                         ),
@@ -83,28 +82,28 @@ class ProfileSettingsSection extends StatelessWidget {
               // Setting rows
               _SettingRow(
                 emoji: '\u{1F514}',
-                label: L10nService.get('profile.profile_settings.notifications', language),
+                label: L10nService.get('profile.profile_settings.notifications', isEn ? AppLanguage.en : AppLanguage.tr),
                 isDark: isDark,
                 onTap: () => context.push(Routes.notifications),
               ),
               _buildDivider(),
               _SettingRow(
                 emoji: '\u{2699}\u{FE0F}',
-                label: L10nService.get('profile.profile_settings.settings_1', language),
+                label: L10nService.get('profile.profile_settings.settings_1', isEn ? AppLanguage.en : AppLanguage.tr),
                 isDark: isDark,
                 onTap: () => context.push(Routes.settings),
               ),
               _buildDivider(),
               _SettingRow(
                 emoji: '\u{1F4E4}',
-                label: L10nService.get('profile.profile_settings.export_data', language),
+                label: L10nService.get('profile.profile_settings.export_data', isEn ? AppLanguage.en : AppLanguage.tr),
                 isDark: isDark,
                 onTap: () => context.push(Routes.exportData),
               ),
               _buildDivider(),
               _SettingRow(
                 emoji: '\u{1F464}',
-                label: L10nService.get('profile.profile_settings.edit_profile', language),
+                label: L10nService.get('profile.profile_settings.edit_profile', isEn ? AppLanguage.en : AppLanguage.tr),
                 isDark: isDark,
                 onTap: () => context.push(Routes.profile),
               ),
