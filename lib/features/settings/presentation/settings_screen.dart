@@ -356,12 +356,8 @@ class SettingsScreen extends ConsumerWidget {
                                     SnackBar(
                                       content: Text(
                                         restored
-                                            ? (language == AppLanguage.en
-                                                  ? 'All set! Your purchases are restored.'
-                                                  : 'Hazırsın! Satın alımların geri yüklendi.')
-                                            : (language == AppLanguage.en
-                                                  ? 'No purchases found — try again if you recently subscribed.'
-                                                  : 'Satın alım bulunamadı — yakın zamanda abone olduysanız tekrar deneyin.'),
+                                            ? L10nService.get('settings.purchases_restored', language)
+                                            : L10nService.get('settings.no_purchases_found', language),
                                       ),
                                       backgroundColor: restored
                                           ? AppColors.success
@@ -750,9 +746,7 @@ class SettingsScreen extends ConsumerWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                isEn
-                    ? 'No active session. Please sign in first.'
-                    : 'Aktif oturum yok. Lütfen önce giriş yapın.',
+                L10nService.get('settings.no_active_session', isEn ? AppLanguage.en : AppLanguage.tr),
               ),
               backgroundColor: AppColors.error,
               behavior: SnackBarBehavior.floating,
@@ -787,9 +781,7 @@ class SettingsScreen extends ConsumerWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                isEn
-                    ? 'Account and all data permanently deleted.'
-                    : 'Hesabın ve tüm verilerin kalıcı olarak silindi.',
+                L10nService.get('settings.account_deleted', isEn ? AppLanguage.en : AppLanguage.tr),
               ),
               backgroundColor: AppColors.surfaceLight,
               behavior: SnackBarBehavior.floating,

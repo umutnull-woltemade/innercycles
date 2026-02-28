@@ -552,9 +552,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     int value,
     ValueChanged<int> onChanged,
   ) {
-    final labels = isEn
-        ? ['Low', 'Below Avg', 'Average', 'Good', 'Excellent']
-        : ['Düşük', 'Ortanın Altı', 'Orta', 'İyi', 'Mükemmel'];
+    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
+    final labels = L10nService.getList('journal.daily_entry.rating_labels', lang);
 
     return GlassPanel(
       elevation: GlassElevation.g2,
@@ -1326,9 +1325,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              ref.read(languageProvider) == AppLanguage.en
-                  ? 'Entry not saved. Try again — your text is preserved.'
-                  : 'Giriş kaydedilemedi. Tekrar dene — yazın korunuyor.',
+              L10nService.get('journal.daily_entry.save_error', ref.read(languageProvider)),
             ),
             backgroundColor: AppColors.error,
             behavior: SnackBarBehavior.floating,
@@ -1486,15 +1483,11 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     GestureDetector(
                       onTap: () {
                         HapticFeedback.lightImpact();
-                        final text = isEn
-                            ? 'Just started my journaling journey with InnerCycles! '
-                              '\u{1F31F}\n\nEvery great story starts with a single page.\n\n'
-                              '${AppConstants.appStoreUrl}\n'
-                              '#InnerCycles #Journaling #DayOne'
-                            : 'InnerCycles ile günlük yolculuğuma başladım! '
-                              '\u{1F31F}\n\nHer büyük hikaye tek bir sayfayla başlar.\n\n'
-                              '${AppConstants.appStoreUrl}\n'
-                              '#InnerCycles #Günlük #İlkGün';
+                        final lang = isEn ? AppLanguage.en : AppLanguage.tr;
+                        final text = '${L10nService.get('journal.daily_entry.first_entry_share', lang)} '
+                            '\u{1F31F}\n\n${L10nService.get('journal.daily_entry.first_entry_subtitle', lang)}\n\n'
+                            '${AppConstants.appStoreUrl}\n'
+                            '${L10nService.get('journal.daily_entry.first_entry_hashtags', lang)}';
                         SharePlus.instance.share(ShareParams(text: text));
                       },
                       child: Container(
@@ -1568,17 +1561,11 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 ? '\u{2B50}' // star
                 : '\u{1F4D6}'; // open book
 
-    final title = isEn
-        ? '$count Entries!'
-        : '$count Kayıt!';
-
-    final message = isEn
-        ? count >= 100
-            ? 'You\'ve built an incredible reflection practice.\nYour journal is a treasure.'
-            : 'Every entry adds depth to your story.\nKeep going — your patterns are emerging.'
-        : count >= 100
-            ? 'İnanılmaz bir yansıma pratiği oluşturdun.\nGünlüğün bir hazine.'
-            : 'Her kayıt hikayene derinlik katıyor.\nDevam et — kalıpların ortaya çıkıyor.';
+    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
+    final title = L10nService.getWithParams('journal.daily_entry.milestone_title', lang, params: {'count': '$count'});
+    final message = count >= 100
+        ? L10nService.get('journal.daily_entry.milestone_message_100', lang)
+        : L10nService.get('journal.daily_entry.milestone_message', lang);
 
     await showDialog(
       context: context,
@@ -1649,15 +1636,11 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     GestureDetector(
                       onTap: () {
                         HapticFeedback.lightImpact();
-                        final text = isEn
-                            ? 'Just wrote my ${count}th journal entry with InnerCycles! '
-                              '$emoji\n\nBuilding a reflection practice, one entry at a time.\n\n'
-                              '${AppConstants.appStoreUrl}\n'
-                              '#InnerCycles #Journaling #Milestone'
-                            : 'InnerCycles ile $count. günlük kaydımı yazdım! '
-                              '$emoji\n\nBir yansıma pratiği oluşturuyorum.\n\n'
-                              '${AppConstants.appStoreUrl}\n'
-                              '#InnerCycles #Günlük #Kilometre Taşı';
+                        final lang = isEn ? AppLanguage.en : AppLanguage.tr;
+                        final text = '${L10nService.getWithParams('journal.daily_entry.milestone_share', lang, params: {'count': '$count'})} '
+                            '$emoji\n\n${L10nService.get('journal.daily_entry.milestone_share_sub', lang)}\n\n'
+                            '${AppConstants.appStoreUrl}\n'
+                            '${L10nService.get('journal.daily_entry.milestone_hashtags', lang)}';
                         SharePlus.instance.share(ShareParams(text: text));
                       },
                       child: Container(
@@ -1851,9 +1834,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            isEn
-                ? '$streak-day streak! Share your progress?'
-                : '$streak günlük seri! İlerlemeni paylaş?',
+            L10nService.getWithParams('journal.daily_entry.streak_nudge', isEn ? AppLanguage.en : AppLanguage.tr, params: {'streak': '$streak'}),
           ),
           behavior: SnackBarBehavior.floating,
           action: SnackBarAction(
@@ -1952,25 +1933,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     if (diff == 0) return L10nService.get('journal.daily_entry.today', isEn ? AppLanguage.en : AppLanguage.tr);
     if (diff == 1) return L10nService.get('journal.daily_entry.yesterday', isEn ? AppLanguage.en : AppLanguage.tr);
 
-    final days = isEn
-        ? [
-            'Monday',
-            'Tuesday',
-            'Wednesday',
-            'Thursday',
-            'Friday',
-            'Saturday',
-            'Sunday',
-          ]
-        : [
-            'Pazartesi',
-            'Salı',
-            'Çarşamba',
-            'Perşembe',
-            'Cuma',
-            'Cumartesi',
-            'Pazar',
-          ];
+    final days = L10nService.getList('journal.daily_entry.day_names', isEn ? AppLanguage.en : AppLanguage.tr);
     return days[date.weekday - 1];
   }
 }
