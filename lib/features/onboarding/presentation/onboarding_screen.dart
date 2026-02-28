@@ -1933,7 +1933,7 @@ class _FeatureHighlight extends StatelessWidget {
   final Color color;
   final String labelEn;
   final String labelTr;
-  final AppLanguage language;  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _FeatureHighlight({
     required this.icon,

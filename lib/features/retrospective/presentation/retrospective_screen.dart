@@ -181,7 +181,7 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
 class _StepIndicator extends StatelessWidget {
   final int currentStep;
   final bool isDark;
-  final AppLanguage language;  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _StepIndicator({required this.currentStep, required this.isDark, this.isEn = true});
 
@@ -220,7 +220,7 @@ class _StepIndicator extends StatelessWidget {
 // ════════════════════════════════════════════════════════════════════════════
 
 class _WelcomeStep extends StatelessWidget {
-  final AppLanguage language;  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
   final VoidCallback onContinue;
 
@@ -284,7 +284,7 @@ class _WelcomeStep extends StatelessWidget {
 // ════════════════════════════════════════════════════════════════════════════
 
 class _DaySelectionStep extends StatelessWidget {
-  final AppLanguage language;  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
   final Set<String> selectedPresets;
   final ValueChanged<String> onToggle;
@@ -434,7 +434,7 @@ class _DaySelectionStep extends StatelessWidget {
 // ════════════════════════════════════════════════════════════════════════════
 
 class _DateEntryStep extends StatelessWidget {
-  final AppLanguage language;  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
   final Set<String> selectedPresets;
   final Map<String, DateTime> presetDates;
@@ -581,7 +581,7 @@ class _DateEntryStep extends StatelessWidget {
 // ════════════════════════════════════════════════════════════════════════════
 
 class _SummaryStep extends StatelessWidget {
-  final AppLanguage language;  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
   final int savedCount;
   final int journalCount;

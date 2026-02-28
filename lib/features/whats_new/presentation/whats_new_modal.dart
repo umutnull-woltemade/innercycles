@@ -157,7 +157,7 @@ class WhatsNewModal {
 // ---------------------------------------------------------------------------
 
 class _WhatsNewSheet extends StatelessWidget {
-  final AppLanguage language;  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
 
   const _WhatsNewSheet({required this.isEn, required this.isDark});

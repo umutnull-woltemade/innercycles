@@ -1008,7 +1008,7 @@ class _GroupedSeparator extends StatelessWidget {
 /// Sync status indicator tile for Settings → Account section
 class _SyncStatusTile extends ConsumerWidget {
   final bool isDark;
-  final AppLanguage language;  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _SyncStatusTile({required this.isDark, required this.isEn});
 

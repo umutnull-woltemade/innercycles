@@ -250,7 +250,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
 class _WeeklyStats extends StatelessWidget {
   final GratitudeSummary summary;
   final bool isDark;
-  final AppLanguage language;  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _WeeklyStats({
     required this.summary,
@@ -332,7 +332,7 @@ class _TodaySection extends StatelessWidget {
   final List<TextEditingController> controllers;
   final bool hasEntry;
   final bool isDark;
-  final AppLanguage language;  bool get isEn => language.isEn;
+  final bool isEn;
   final VoidCallback onSave;
 
   const _TodaySection({
@@ -446,7 +446,7 @@ class _TodaySection extends StatelessWidget {
 class _ThemeCloud extends StatelessWidget {
   final Map<String, int> themes;
   final bool isDark;
-  final AppLanguage language;  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _ThemeCloud({
     required this.themes,

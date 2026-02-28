@@ -34,7 +34,7 @@ class ShareCardRenderer extends StatelessWidget {
   final bool isPremium;
 
   /// Whether the current language is English (false = Turkish)
-  final AppLanguage language;  bool get isEn => language.isEn;
+  final bool isEn;
 
   /// Display size on screen (will be captured at 3x for 1080x1080)
   final double displaySize;
@@ -803,7 +803,7 @@ class _StatPill extends StatelessWidget {
 class _BottomWatermark extends StatelessWidget {
   final Color accent;
   final bool isPremium;
-  final AppLanguage language;  bool get isEn => language.isEn;
+  final bool isEn;
   const _BottomWatermark({required this.accent, this.isPremium = false, this.isEn = true});
 
   @override
@@ -893,7 +893,7 @@ class _CyclePositionLayout extends StatelessWidget {
   final ShareCardData data;
   final Color accent;
   final double cardWidth;
-  final AppLanguage language;  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _CyclePositionLayout({
     required this.template,
