@@ -19,6 +19,7 @@ import '../models/vault_photo.dart';
 
 class VaultService {
   static const String _pinHashKey = 'inner_cycles_vault_pin_hash';
+  static const String _pinSaltKey = 'inner_cycles_vault_pin_salt';
   static const String _vaultEnabledKey = 'inner_cycles_vault_enabled';
   static const String _biometricEnabledKey = 'inner_cycles_vault_biometric';
   static const String _photosKey = 'inner_cycles_vault_photos';
@@ -50,15 +51,20 @@ class VaultService {
   /// Whether biometric unlock is enabled for vault
   bool get isBiometricEnabled => _prefs.getBool(_biometricEnabledKey) ?? false;
 
-  /// Hash a PIN using SHA-256 for storage
-  String _hashPin(String pin) {
-    final bytes = utf8.encode(pin);
+  /// Generate a random salt for PIN hashing
+  String _generateSalt() => _uuid.v4();
+
+  /// Hash a PIN with salt using SHA-256
+  String _hashPin(String pin, String salt) {
+    final bytes = utf8.encode(salt + pin);
     return sha256.convert(bytes).toString();
   }
 
   /// Set up the vault PIN (first time or change)
   Future<void> setPin(String pin) async {
-    final hash = _hashPin(pin);
+    final salt = _generateSalt();
+    final hash = _hashPin(pin, salt);
+    await _prefs.setString(_pinSaltKey, salt);
     await _prefs.setString(_pinHashKey, hash);
     await _prefs.setBool(_vaultEnabledKey, true);
   }
@@ -92,12 +98,22 @@ class VaultService {
     if (isLockedOut) return false;
 
     final storedHash = _prefs.getString(_pinHashKey);
+    final storedSalt = _prefs.getString(_pinSaltKey);
     if (storedHash == null) return false;
 
-    if (_hashPin(pin) == storedHash) {
+    // Support legacy unsalted hashes (migrate on success)
+    final hash = storedSalt != null
+        ? _hashPin(pin, storedSalt)
+        : sha256.convert(utf8.encode(pin)).toString();
+
+    if (hash == storedHash) {
       // Success — reset attempts
       _prefs.remove(_attemptCountKey);
       _prefs.remove(_lockoutUntilKey);
+      // Migrate legacy unsalted hash to salted
+      if (storedSalt == null) {
+        setPin(pin);
+      }
       return true;
     }
 
@@ -128,6 +144,7 @@ class VaultService {
   /// Remove vault PIN and disable vault
   Future<void> removeVault() async {
     await _prefs.remove(_pinHashKey);
+    await _prefs.remove(_pinSaltKey);
     await _prefs.setBool(_vaultEnabledKey, false);
     await _prefs.setBool(_biometricEnabledKey, false);
   }
@@ -200,7 +217,7 @@ class VaultService {
     String? caption,
   }) async {
     // Copy to vault directory
-    final appDir = await getApplicationDocumentsDirectory();
+    final appDir = await getApplicationSupportDirectory();
     final vaultDir = Directory('${appDir.path}/vault_photos');
     if (!await vaultDir.exists()) {
       await vaultDir.create(recursive: true);
