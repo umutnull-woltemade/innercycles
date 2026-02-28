@@ -43,6 +43,7 @@ import '../../../data/services/premium_service.dart';
 import '../../gratitude/presentation/gratitude_section.dart';
 import '../../sleep/presentation/sleep_section.dart';
 import '../../../shared/widgets/private_toggle.dart';
+import '../../../shared/widgets/glass_dialog.dart';
 import 'widgets/post_save_engagement_sheet.dart';
 import 'widgets/voice_input_button.dart';
 import '../../../data/services/l10n_service.dart';
@@ -75,6 +76,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   final List<String> _tags = [];
   bool _isSaving = false;
   bool _isPrivate = false;
+  bool _hasChanges = false;
   String? _selectedImagePath;
   Timer? _autosaveTimer;
 
@@ -151,6 +153,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     _initSubRatings();
     _loadDraft();
     _noteController.addListener(_scheduleDraftSave);
+    _noteController.addListener(_markChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
           .read(smartRouterServiceProvider)
@@ -173,6 +176,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     _autosaveTimer?.cancel();
     _saveDraft();
     _noteController.removeListener(_scheduleDraftSave);
+    _noteController.removeListener(_markChanged);
     _noteController.dispose();
     _tagController.dispose();
     super.dispose();
@@ -243,20 +247,48 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     }
   }
 
+  void _markChanged() {
+    if (!_hasChanges) {
+      setState(() => _hasChanges = true);
+    }
+  }
+
+  void _showDiscardDialog() async {
+    final language = ref.read(languageProvider);
+    final isEn = language == AppLanguage.en;
+    final confirmed = await GlassDialog.confirm(
+      context,
+      title: L10nService.get('journal.daily_entry.discard_changes', isEn ? AppLanguage.en : AppLanguage.tr),
+      message: L10nService.get('journal.daily_entry.you_have_unsaved_changes_are_you_sure_yo', isEn ? AppLanguage.en : AppLanguage.tr),
+      cancelLabel: L10nService.get('journal.daily_entry.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
+      confirmLabel: L10nService.get('journal.daily_entry.discard', isEn ? AppLanguage.en : AppLanguage.tr),
+      isDestructive: true,
+    );
+    if (confirmed == true && mounted) {
+      if (context.canPop()) context.pop();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
 
-    return Scaffold(
-      body: CosmicBackground(
-        child: GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          behavior: HitTestBehavior.opaque,
-          child: SafeArea(
-            child: CupertinoScrollbar(
-              child: CustomScrollView(
+    return PopScope(
+      canPop: !_hasChanges,
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) return;
+        _showDiscardDialog();
+      },
+      child: Scaffold(
+        body: CosmicBackground(
+          child: GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            behavior: HitTestBehavior.opaque,
+            child: SafeArea(
+              child: CupertinoScrollbar(
+                child: CustomScrollView(
                 keyboardDismissBehavior:
                     ScrollViewKeyboardDismissBehavior.onDrag,
                 physics: const BouncingScrollPhysics(
@@ -294,7 +326,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                         ),
                         const SizedBox(height: AppConstants.spacingMd),
                         _buildRatingSlider(isDark, isEn, _overallRating, (v) {
-                          setState(() => _overallRating = v);
+                          setState(() {
+                            _overallRating = v;
+                            _hasChanges = true;
+                          });
                           _scheduleDraftSave();
                         }),
                         const SizedBox(height: AppConstants.spacingXl),
@@ -351,7 +386,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                         if (!kIsWeb)
                           PrivateToggle(
                             isPrivate: _isPrivate,
-                            onChanged: (v) => setState(() => _isPrivate = v),
+                            onChanged: (v) => setState(() {
+                              _isPrivate = v;
+                              _hasChanges = true;
+                            }),
                             isEn: isEn,
                             isDark: isDark,
                           ),
@@ -367,6 +405,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 ],
               ),
             ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms),
+          ),
           ),
         ),
       ),
@@ -396,7 +435,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
             lastDate: now,
           );
           if (picked != null && mounted) {
-            setState(() => _selectedDate = picked);
+            setState(() {
+              _selectedDate = picked;
+              _hasChanges = true;
+            });
             _scheduleDraftSave();
           }
         },
@@ -476,6 +518,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
               setState(() {
                 _selectedArea = area;
                 _initSubRatings();
+                _hasChanges = true;
               });
               _scheduleDraftSave();
             },
@@ -722,7 +765,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                       semanticFormatterCallback: (v) => '$label: ${v.round()}',
                       onChanged: (v) {
                         HapticService.ratingChanged();
-                        setState(() => _subRatings[key] = v.round());
+                        setState(() {
+                          _subRatings[key] = v.round();
+                          _hasChanges = true;
+                        });
                         _scheduleDraftSave();
                       },
                     ),
@@ -876,7 +922,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     final tag = _tagController.text.trim();
     if (tag.isNotEmpty && !_tags.contains(tag)) {
       HapticService.buttonPress();
-      setState(() => _tags.add(tag));
+      setState(() {
+        _tags.add(tag);
+        _hasChanges = true;
+      });
       _tagController.clear();
       _scheduleDraftSave();
     }
@@ -921,7 +970,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                           const SizedBox(width: 4),
                           GestureDetector(
                             onTap: () {
-                              setState(() => _tags.remove(tag));
+                              setState(() {
+                                _tags.remove(tag);
+                                _hasChanges = true;
+                              });
                               _scheduleDraftSave();
                             },
                             child: Icon(
@@ -1000,7 +1052,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
             onTagSelected: (tag) {
               if (!_tags.contains(tag)) {
                 HapticService.buttonPress();
-                setState(() => _tags.add(tag));
+                setState(() {
+                  _tags.add(tag);
+                  _hasChanges = true;
+                });
                 _scheduleDraftSave();
               }
             },
@@ -1052,7 +1107,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 ),
                 TextButton.icon(
                   onPressed: () {
-                    setState(() => _selectedImagePath = null);
+                    setState(() {
+                      _selectedImagePath = null;
+                      _hasChanges = true;
+                    });
                     _scheduleDraftSave();
                   },
                   icon: Icon(
@@ -1137,7 +1195,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
             '${journalDir.path}/${DateTime.now().millisecondsSinceEpoch}$ext';
         await File(picked.path).copy(savedPath);
         if (!mounted) return;
-        setState(() => _selectedImagePath = savedPath);
+        setState(() {
+          _selectedImagePath = savedPath;
+          _hasChanges = true;
+        });
         _scheduleDraftSave();
       } catch (_) {
         // File copy failed (disk full, permission denied, etc.)
@@ -1310,6 +1371,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       await _checkStreakShareNudge();
 
       if (mounted) {
+        _hasChanges = false;
         HapticService.entryCompleted();
         final streak = service.getCurrentStreak();
 

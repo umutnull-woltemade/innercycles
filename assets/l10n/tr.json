@@ -3107,7 +3107,11 @@
       "copy": "Kopyala",
       "psychological_perspectivennyour": "Psikolojik Perspektif\\n━━━━━━━━━━━━━━━━━\\nBilinaltınız ortaya koyuyor...",
       "see_your_dream_through_every_lens": "Rüyanızı her açıdan görün",
-      "send_message": "Mesaj gönder"
+      "send_message": "Mesaj gönder",
+      "discard": "At",
+      "leave_conversation": "Konuşmadan Ayrıl?",
+      "you_have_an_active_dream_session_are_you": "Aktif bir rüya oturumunuz var. Geri dönmek istediğinizden emin misiniz?",
+      "cancel": "İptal"
     }
   },
   "months": {
@@ -4737,7 +4741,11 @@
       "milestone_share": "InnerCycles ile {count}. günlük kaydımı yazdım!",
       "milestone_share_sub": "Bir yansıma pratiği oluşturuyorum.",
       "milestone_hashtags": "#InnerCycles #Günlük #KilometreTaşı",
-      "streak_nudge": "{streak} günlük seri! İlerlemeni paylaş?"
+      "streak_nudge": "{streak} günlük seri! İlerlemeni paylaş?",
+      "discard": "At",
+      "discard_changes": "Değişiklikleri At?",
+      "you_have_unsaved_changes_are_you_sure_yo": "Kaydedilmemiş değişiklikleriniz var. Geri dönmek istediğinizden emin misiniz?",
+      "cancel": "İptal"
     },
     "emotional_cycle": {
       "access_full_30day_view": "Tam 30 Günlük Görünüme Eriş",

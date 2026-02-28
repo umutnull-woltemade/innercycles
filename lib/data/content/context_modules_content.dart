@@ -192,9 +192,9 @@ const List<ContextModule> allContextModules = [
     summaryTr:
         'Duygularınızı ne kadar kesin etiketleyebilirseniz, beyniniz onları o kadar iyi düzenleyebilir. Buna duygusal ayrıntı düzeyi denir.',
     bodyEn:
-        'Neuroscientist Lisa Feldman Barrett found that people who distinguish between "irritated," "frustrated," and "disappointed" — rather than just saying "I feel bad" — show measurably better emotional regulation. The act of finding the precise word activates your prefrontal cortex, which naturally dampens the amygdala response. This is not about being poetic. It is about giving your brain specific enough information to choose the right response. "I feel anxious" and "I feel overwhelmed" point to very different needs.',
+        'Psychologist Lisa Feldman Barrett found that people who distinguish between "irritated," "frustrated," and "disappointed" — rather than just saying "I feel bad" — tend to show better emotional regulation. The act of finding the precise word seems to engage the reflective parts of the mind, which may help ease the intensity of the emotional reaction. This is not about being poetic. It is about giving yourself specific enough language to choose the right response. "I feel anxious" and "I feel overwhelmed" point to very different needs.',
     bodyTr:
-        'Nörobilimci Lisa Feldman Barrett, sadece "kötü hissediyorum" demek yerine "sinirli," "hayal kırıklığına uğramış" ve "hayal kırıklığına uğramış" arasında ayrım yapan kişilerin ölçülebilir şekilde daha iyi duygusal düzenleme gösterdiğini buldu. Doğru kelimeyi bulma eylemi prefrontal korteksinizi aktive eder ve bu da doğal olarak amigdala yanıtını azaltır. Bu şiirsel olmakla ilgili değil. Beyninize doğru yanıtı seçmesi için yeterince spesifik bilgi vermekle ilgili.',
+        'Psikolog Lisa Feldman Barrett, sadece "kötü hissediyorum" demek yerine "sinirli," "hayal kırıklığına uğramış" ve "üzgün" arasında ayrım yapan kişilerin daha iyi duygusal düzenleme eğilimi gösterdiğini buldu. Doğru kelimeyi bulma eylemi zihninizin yansıtıcı kısımlarını harekete geçirir ve bu da duygusal tepkinin yoğunluğunu hafifletmeye yardımcı olabilir. Bu şiirsel olmakla ilgili değil. Kendinize doğru yanıtı seçmeniz için yeterince spesifik bir dil vermekle ilgili.',
     whyItMattersEn:
         'Your journal entries become more useful over time when you practice granularity — patterns emerge that "good" and "bad" alone could never reveal.',
     whyItMattersTr:
@@ -217,9 +217,9 @@ const List<ContextModule> allContextModules = [
     summaryTr:
         'Bedeniniz genellikle duyguları bilinçli zihninizden önce kaydeder. Fiziksel sinyalleri okumayı öğrenmek duygusal farkındalık oluşturur.',
     bodyEn:
-        'Before you consciously realize you are stressed, your shoulders may have already tensed. Before you recognize anger, your jaw may have clenched. This body-first pattern exists because emotional processing starts in the limbic system, which responds faster than the analytical prefrontal cortex. A body scan practice — pausing to notice tension, temperature, tightness, or heaviness — can reveal emotions that you have not yet named. Many people find that tracking physical sensations alongside mood entries reveals connections they had missed for years.',
+        'Before you consciously realize you are stressed, your shoulders may have already tensed. Before you recognize anger, your jaw may have clenched. This body-first pattern exists because your body often responds to situations faster than your conscious awareness can catch up. A body scan practice — pausing to notice tension, temperature, tightness, or heaviness — can reveal emotions that you have not yet named. Many people find that tracking physical sensations alongside mood entries reveals connections they had missed for years.',
     bodyTr:
-        'Stresli olduğunuzu bilinçli olarak fark etmeden önce omuzlarınız çoktan gerilmiş olabilir. Öfkeyi tanımadan önce çeneniz sıkılmış olabilir. Bu beden-önce örüntüsü, duygusal işlemenin analitik prefrontal korteksten daha hızlı yanıt veren limbik sistemde başlaması nedeniyle vardır. Beden tarama pratiği — gerginlik, sıcaklık, sıkılık veya ağırlığı fark etmek için duraklama — henüz adlandırmadığınız duyguları ortaya çıkarabilir. Birçok kişi fiziksel duyumları ruh hali kayıtlarıyla birlikte takip etmenin yıllardır kaçırdıkları bağlantıları ortaya çıkardığını fark eder.',
+        'Stresli olduğunuzu bilinçli olarak fark etmeden önce omuzlarınız çoktan gerilmiş olabilir. Öfkeyi tanımadan önce çeneniz sıkılmış olabilir. Bu beden-önce örüntüsü, bedeninizin durumları genellikle bilinçli farkındalığınızın yetişebileceğinden daha hızlı yanıtlaması nedeniyle vardır. Beden tarama pratiği — gerginlik, sıcaklık, sıkılık veya ağırlığı fark etmek için duraklama — henüz adlandırmadığınız duyguları ortaya çıkarabilir. Birçok kişi fiziksel duyumları ruh hali kayıtlarıyla birlikte takip etmenin yıllardır kaçırdıkları bağlantıları ortaya çıkardığını fark eder.',
     whyItMattersEn:
         'Connecting body sensations to emotions creates an early warning system that helps you respond before stress accumulates.',
     whyItMattersTr:
@@ -267,9 +267,9 @@ const List<ContextModule> allContextModules = [
     summaryTr:
         'Dünden kalan yoğun duygular bugüne sızarak mevcut bir tetikleyici olmadan ruh halinizi renklendirebilir.',
     bodyEn:
-        'Neuroscience research shows that strong emotional experiences create residual activation patterns that can persist for 24-48 hours. A stressful argument on Monday evening can leave you feeling irritable on Tuesday morning, even if nothing went wrong. This is not weakness — it is your nervous system processing the event. Recognizing an emotional hangover prevents misattribution: you do not blame Tuesday for Monday feelings. Tracking your entries across consecutive days often reveals these carry-over patterns clearly.',
+        'Many people notice that strong emotional experiences can leave a residue that persists for a day or two. A stressful argument on Monday evening can leave you feeling irritable on Tuesday morning, even if nothing went wrong. This is not weakness — it is your mind still processing the event. Recognizing an emotional hangover prevents misattribution: you do not blame Tuesday for Monday feelings. Tracking your entries across consecutive days often reveals these carry-over patterns clearly.',
     bodyTr:
-        'Nörobilim araştırmaları, güçlü duygusal deneyimlerin 24-48 saat boyunca devam edebilen artık aktivasyon örüntüleri yarattığını göstermektedir. Pazartesi akşamki stresli bir tartışma, hiçbir şey yanlış gitmese bile Salı sabahı sizi sinirli bırakabilir. Bu zayıflık değil — sinir sisteminizin olayı işlemesidir. Duygusal akşamdan kalmayı tanımak yanlış atıfı önler: Pazartesi duygularını Salı gününe yüklemezsiniz.',
+        'Birçok kişi güçlü duygusal deneyimlerin bir iki gün sürebilen bir kalıntı bıraktığını fark eder. Pazartesi akşamki stresli bir tartışma, hiçbir şey yanlış gitmese bile Salı sabahı sizi sinirli bırakabilir. Bu zayıflık değil — zihniniz hala olayı işlemektedir. Duygusal akşamdan kalmayı tanımak yanlış atıfı önler: Pazartesi duygularını Salı gününe yüklemezsiniz.',
     whyItMattersEn:
         'When you see a low-mood entry that lacks a clear trigger, check the previous day. Context from yesterday often explains today.',
     whyItMattersTr:
@@ -343,13 +343,13 @@ const List<ContextModule> allContextModules = [
     summaryTr:
         'Stres hakkındaki inancınız, stresin kendisi kadar önemlidir. Stresi bir meydan okuma yanıtı olarak yeniden çerçevelemek fiziksel etkilerini değiştirebilir.',
     bodyEn:
-        'Stanford psychologist Alia Crum found that people who view stress as enhancing — rather than debilitating — show different hormonal responses: more DHEA (which aids growth) and less cortisol. Health psychologist Kelly McGonigal demonstrated that the belief "stress is harmful" increased mortality risk by 43%, while stress itself did not. This does not mean you should seek out stress. It means that when stress arrives, how you frame it changes what it does to your body. Journaling about stressful events with a "what am I learning" lens activates this reframing naturally.',
+        'Stanford psychologist Alia Crum found that people who view stress as enhancing — rather than debilitating — tend to respond differently to challenging situations. Health psychologist Kelly McGonigal suggests that our beliefs about stress may matter as much as the stress itself — people who see stress as a growth signal often handle it more constructively. This does not mean you should seek out stress. It means that when stress arrives, how you frame it may influence how you experience it. Journaling about stressful events with a "what am I learning" lens supports this reframing naturally.',
     bodyTr:
-        'Stanford psikoloğu Alia Crum, stresi zayıflatıcı yerine güçlendirici olarak gören kişilerin farklı hormonal yanıtlar gösterdiğini buldu: daha fazla DHEA (büyümeye yardımcı olan) ve daha az kortizol. Sağlık psikoloğu Kelly McGonigal, "stres zararlıdır" inancının ölüm riskini %43 artırdığını, stresin kendisinin artırmadığını gösterdi. Bu stres aramanız gerektiği anlamına gelmiyor. Stres geldiğinde onu nasıl çerçevelediğiniz, bedeninize ne yaptığını değiştirir.',
+        'Stanford psikoloğu Alia Crum, stresi zayıflatıcı yerine güçlendirici olarak gören kişilerin zorlu durumlara farklı yanıt verme eğiliminde olduğunu buldu. Sağlık psikoloğu Kelly McGonigal, stres hakkındaki inançlarımızın stresin kendisi kadar önemli olabileceğini öne sürmektedir — stresi bir büyüme sinyali olarak gören insanlar genellikle onu daha yapıcı bir şekilde ele alır. Bu stres aramanız gerektiği anlamına gelmiyor. Stres geldiğinde onu nasıl çerçevelediğiniz, onu nasıl deneyimlediğinizi etkileyebilir.',
     whyItMattersEn:
-        'Rewriting your stress narrative in your journal is not just venting — it is actively changing your physiological stress response.',
+        'Rewriting your stress narrative in your journal is not just venting — it is actively shifting how you relate to stressful experiences.',
     whyItMattersTr:
-        'Stres anlatınızı günlüğünüzde yeniden yazmak sadece dert dökmek değil — fizyolojik stres yanıtınızı aktif olarak değiştirmektir.',
+        'Stres anlatınızı günlüğünüzde yeniden yazmak sadece dert dökmek değil — stresli deneyimlerle ilişkinizi aktif olarak dönüştürmektir.',
     screenshotLineEn:
         'Stress is not the enemy. Your story about stress might be.',
     screenshotLineTr:
@@ -418,9 +418,9 @@ const List<ContextModule> allContextModules = [
     summaryTr:
         'Çoklu görev gibi hissedilen şey aslında hızlı görev değiştirmedir, bu da kaliteyi düşürür ve stresi artırır.',
     bodyEn:
-        'Neuroscience is clear: the human brain cannot truly perform two cognitive tasks simultaneously. What we call "multitasking" is actually rapid switching between tasks, and each switch costs 15-25 minutes of refocusing time. Research from the University of London found that multitasking during cognitive tasks reduces effective IQ by 10-15 points. When you journal about your productivity patterns, look for days where you attempted many things versus days where you focused deeply on fewer. The difference in satisfaction is often dramatic.',
+        'Research suggests the human brain cannot truly perform two cognitive tasks simultaneously. What we call "multitasking" is actually rapid switching between tasks, and each switch can cost significant refocusing time. Studies suggest that multitasking during cognitive tasks can noticeably reduce the quality of your thinking. When you journal about your productivity patterns, look for days where you attempted many things versus days where you focused deeply on fewer. The difference in satisfaction is often dramatic.',
     bodyTr:
-        'Nörobilim açık: insan beyni gerçekten iki bilişsel görevi aynı anda yapamaz. "Çoklu görev" dediğimiz şey aslında görevler arasında hızlı geçiştir ve her geçiş 15-25 dakikalık yeniden odaklanma süresine mal olur. Londra Üniversitesi araştırması, bilişsel görevler sırasında çoklu görev yapmanın efektif IQ\'yu 10-15 puan düşürdüğünü buldu.',
+        'Araştırmalar, insan beyninin gerçekten iki bilişsel görevi aynı anda yapamayacağını göstermektedir. "Çoklu görev" dediğimiz şey aslında görevler arasında hızlı geçiştir ve her geçiş önemli miktarda yeniden odaklanma süresine mal olabilir. Çalışmalar, bilişsel görevler sırasında çoklu görev yapmanın düşünce kalitenizi fark edilir şekilde düşürebildiğini ortaya koymaktadır.',
     whyItMattersEn:
         'Tracking your focus patterns reveals that your most satisfying days usually involve depth, not breadth.',
     whyItMattersTr:
@@ -471,9 +471,9 @@ const List<ContextModule> allContextModules = [
     summaryTr:
         'Uyku kalitesi ertesi gün ruh halinin en güçlü tek belirleyicisidir, ancak çoğu insan etkisini hafife alır.',
     bodyEn:
-        'Matthew Walker\'s research at UC Berkeley demonstrates that even one night of poor sleep reduces the prefrontal cortex\'s ability to regulate the amygdala by up to 60%. This means you are literally less able to manage emotions after bad sleep — not because you are weak, but because the brain region responsible for regulation is offline. Tracking sleep quality alongside mood creates one of the most actionable patterns in personal data. Most people discover after 2-3 weeks of tracking that their "unexplained" bad moods correlate almost perfectly with poor sleep.',
+        'Matthew Walker\'s research at UC Berkeley suggests that even one night of poor sleep can significantly reduce your ability to manage emotions the next day — not because you are weak, but because the parts of the mind responsible for reflection and self-regulation may not be functioning at their best. Tracking sleep quality alongside mood creates one of the most actionable patterns in personal data. Most people discover after 2-3 weeks of tracking that their "unexplained" bad moods correlate closely with poor sleep.',
     bodyTr:
-        'UC Berkeley\'deki Matthew Walker araştırması, tek bir gece kötü uykunun bile prefrontal korteksin amigdalayı düzenleme yeteneğini %60\'a kadar azalttığını göstermektedir. Bu, kötü uykudan sonra duyguları yönetmede gerçekten daha az yetenekli olduğunuz anlamına gelir — zayıf olduğunuz için değil, düzenlemeden sorumlu beyin bölgesi çevrimdışı olduğu için. Uyku kalitesini ruh haliyle birlikte takip etmek, kişisel verilerdeki en eyleme geçirilebilir örüntülerden birini oluşturur.',
+        'UC Berkeley\'deki Matthew Walker araştırması, tek bir gece kötü uykunun bile ertesi gün duyguları yönetme yeteneğinizi önemli ölçüde azaltabileceğini göstermektedir — zayıf olduğunuz için değil, yansıtma ve öz düzenlemeden sorumlu zihinsel süreçler en iyi şekilde çalışmıyor olabileceği için. Uyku kalitesini ruh haliyle birlikte takip etmek, kişisel verilerdeki en eyleme geçirilebilir örüntülerden birini oluşturur.',
     whyItMattersEn:
         'When you see the sleep-mood correlation in your own data, protecting your sleep becomes a clear priority rather than a vague "should."',
     whyItMattersTr:
@@ -542,13 +542,13 @@ const List<ContextModule> allContextModules = [
     titleEn: 'Seasonal Emotional Shifts',
     titleTr: 'Mevsimsel Duygusal Değişimler',
     summaryEn:
-        'Seasonal patterns in mood and energy affect most people to some degree, not just those with seasonal affective disorder.',
+        'Seasonal patterns in mood and energy affect most people to some degree — this is a common human experience.',
     summaryTr:
-        'Ruh hali ve enerjideki mevsimsel örüntüler sadece mevsimsel duygulanım bozukluğu olanları değil, çoğu insanı bir dereceye kadar etkiler.',
+        'Ruh hali ve enerjideki mevsimsel örüntüler çoğu insanı bir dereceye kadar etkiler — bu yaygın bir insan deneyimidir.',
     bodyEn:
-        'Research shows that serotonin production varies with daylight exposure, melatonin cycles shift with season length, and vitamin D levels fluctuate throughout the year — all affecting mood and energy. A full year of emotional pattern tracking often reveals cycles invisible to monthly views: winter introspection, spring restlessness, summer sociability, autumn creativity. These are not universal — they are personal. But they are remarkably consistent year to year once you identify your own.',
+        'Many people notice that daylight exposure, season length, and time spent outdoors all seem to influence how they feel throughout the year. A full year of emotional pattern tracking often reveals cycles invisible to monthly views: winter introspection, spring restlessness, summer sociability, autumn creativity. These are not universal — they are personal. But they are remarkably consistent year to year once you identify your own.',
     bodyTr:
-        'Araştırmalar serotonin üretiminin gün ışığı maruziyetiyle değiştiğini, melatonin döngülerinin mevsim uzunluğuyla kaydığını ve D vitamini seviyelerinin yıl boyunca dalgalandığını göstermektedir — bunların hepsi ruh halini ve enerjiyi etkiler. Tam bir yıllık ruh hali takibi, aylık görünümlere görünmez olan örüntüleri sıklıkla ortaya çıkarır.',
+        'Birçok kişi gün ışığı maruziyetinin, mevsim uzunluğunun ve açık havada geçirilen zamanın yıl boyunca nasıl hissettiklerini etkilediğini fark eder. Tam bir yıllık duygusal örüntü takibi, aylık görünümlere görünmez olan döngüleri sıklıkla ortaya çıkarır.',
     whyItMattersEn:
         'Long-term tracking transforms seasonal shifts from surprises into familiar phases you can prepare for.',
     whyItMattersTr:
@@ -575,9 +575,9 @@ const List<ContextModule> allContextModules = [
     bodyTr:
         'Viktor Frankl yazdı: "Uyaran ile yanıt arasında bir alan vardır. O alanda yanıtımızı seçme özgürlüğümüz ve gücümüz yatar." Günlük tutmak bu alanı genişletmenin en etkili yollarından biridir. Tetikleyici bir olay hakkında sonradan yazdığınızda, doğal olarak yavaşlar ve diziyi incelersiniz: ne oldu, ne hissettiniz, ne yaptınız ve neyi farklı yapabilirdiniz.',
     whyItMattersEn:
-        'Regular journaling about trigger-response sequences measurably increases the pause between stimulus and reaction.',
+        'Regular journaling about trigger-response sequences can help expand the pause between stimulus and reaction over time.',
     whyItMattersTr:
-        'Tetikleyici-yanıt dizileri hakkında düzenli günlük tutmak, uyaran ile tepki arasındaki duraklamayı ölçülebilir şekilde artırır.',
+        'Tetikleyici-yanıt dizileri hakkında düzenli günlük tutmak, zamanla uyaran ile tepki arasındaki duraklamayı genişletmeye yardımcı olabilir.',
     screenshotLineEn:
         'The pause between trigger and response is where growth lives.',
     screenshotLineTr:
@@ -600,7 +600,7 @@ const List<ContextModule> allContextModules = [
     summaryTr:
         'Kendi düşüncelerinizi ve duygularınızı onlara kapılmadan izleyebilen bir parçanız var.',
     bodyEn:
-        'Acceptance and Commitment Training (ACT) calls this the "observing self" — the perspective that notices you are thinking without becoming the thought. When you write "I feel anxious," something interesting happens: the part of you doing the writing is not anxious. It is observing anxiety. This distinction matters because it creates distance between you and your experience. You are not your mood. You are the one noticing your mood. Journaling naturally strengthens this observer perspective, which is why it consistently shows benefits in psychological research.',
+        'Acceptance and Commitment Training (ACT) calls this the "observing self" — the perspective that notices you are thinking without becoming the thought. When you write "I feel anxious," something interesting happens: the part of you doing the writing is not anxious. It is observing anxiety. This distinction matters because it creates distance between you and your experience. You are not your mood. You are the one noticing your mood. Journaling naturally strengthens this observer perspective, which many people find to be one of its most valuable benefits.',
     bodyTr:
         'Kabul ve Kararlılık Eğitimi (ACT) buna "gözlemleyen benlik" der — düşünce olmadan düşündüğünüzü fark eden bakış açısı. "Kaygılı hissediyorum" yazdığınızda ilginç bir şey olur: yazan parçanız kaygılı değildir. Kaygıyı gözlemlemektedir. Bu ayrım önemlidir çünkü siz ile deneyiminiz arasında mesafe yaratır. Siz ruh haliniz değilsiniz. Siz ruh halinizi fark edensiniz.',
     whyItMattersEn:
@@ -625,7 +625,7 @@ const List<ContextModule> allContextModules = [
     bodyEn:
         'A goal is "run a marathon." A value is "take care of my physical health." The difference matters because goals end — and when they do, people often feel lost. Values never end. They provide continuous direction regardless of whether any specific goal has been met or missed. When your journal entries consistently reflect dissatisfaction despite achieving goals, it often signals a values misalignment. You may be climbing a ladder leaned against the wrong wall. Periodic values reflection in journaling helps ensure your daily actions align with what actually matters to you.',
     bodyTr:
-        'Hedef "maraton koşmak"tır. Değer "fiziksel sağlığıma özen göstermek"tir. Fark önemlidir çünkü hedefler biter — ve bittiğinde insanlar çoğu zaman kendilerini kaybolmuş hisseder. Değerler asla bitmez. Herhangi bir hedefin karşılanıp karşılanmadığından bağımsız olarak sürekli yön sağlar.',
+        'Hedef "maraton koşmak"tır. Değer "fiziksel sağlığıma özen göstermek"tir. Fark önemlidir çünkü hedefler biter — ve bittiğinde insanlar çoğu zaman kendilerini kaybolmuş hisseder. Değerler asla bitmez. Herhangi bir hedefin karşılanıp karşılanmadığından bağımsız olarak sürekli yön sağlar. Günlük kayıtlarınız hedeflere ulaşmanıza rağmen sürekli memnuniyetsizlik yansıtıyorsa, bu genellikle bir değer uyumsuzluğuna işaret eder. Yanlış duvara dayalı bir merdiveni tırmanıyor olabilirsiniz. Günlük tutmada periyodik değer yansıtması, günlük eylemlerinizin sizin için gerçekten önemli olanla uyumlu olmasını sağlamaya yardımcı olur.',
     whyItMattersEn:
         'Journaling about what matters to you — not just what you did — keeps your compass calibrated over time.',
     whyItMattersTr:
@@ -649,7 +649,7 @@ const List<ContextModule> allContextModules = [
     bodyEn:
         'The inner critic speaks in absolutes: "You always fail. You are not good enough. You should have known better." The inner mentor speaks in nuance: "That was hard, and you are learning. What would you do differently next time?" Psychologist Kristin Neff\'s research on self-compassion shows that the mentor voice — not the critic — produces better outcomes: more motivation, more resilience, more willingness to try again. A journaling technique: after writing a self-critical passage, pause and rewrite it from the perspective of a wise, caring friend. This is not about ignoring problems — it is about addressing them without self-destruction.',
     bodyTr:
-        'İç eleştirmen mutlaklar kullanır: "Her zaman başarısız olursun. Yeterince iyi değilsin." İç akıl hocası nüanslarla konuşur: "Bu zordu ve öğreniyorsun. Bir dahaki sefere neyi farklı yapardın?" Psikolog Kristin Neff öz-şefkat araştırması, eleştirmen değil akıl hocası sesinin daha iyi sonuçlar ürettiğini göstermektedir.',
+        'İç eleştirmen mutlaklar kullanır: "Her zaman başarısız olursun. Yeterince iyi değilsin. Daha iyisini bilmeliydin." İç akıl hocası nüanslarla konuşur: "Bu zordu ve öğreniyorsun. Bir dahaki sefere neyi farklı yapardın?" Psikolog Kristin Neff\'in öz-şefkat araştırması, eleştirmen değil akıl hocası sesinin daha iyi sonuçlar ürettiğini göstermektedir: daha fazla motivasyon, daha fazla dayanıklılık, tekrar deneme isteği. Bir günlük tekniği: öz-eleştirel bir bölüm yazdıktan sonra durun ve onu bilge, şefkatli bir arkadaşın bakış açısından yeniden yazın. Bu, sorunları görmezden gelmekle ilgili değil — onları kendini yıkmadan ele almakla ilgili.',
     whyItMattersEn:
         'Self-compassion in journaling is not softness. Research shows it produces more accountability than self-criticism.',
     whyItMattersTr:
@@ -672,13 +672,13 @@ const List<ContextModule> allContextModules = [
     summaryTr:
         'Beyninizin öngörülebilir düşünce tuzakları vardır. Onları günlük kayıtlarınızda tanımak özgürlüğe giden ilk adımdır.',
     bodyEn:
-        'Cognitive behavioral research identifies common thinking patterns that distort reality: all-or-nothing thinking ("If it is not perfect, it is a failure"), catastrophizing ("This mistake will ruin everything"), mind-reading ("They probably think I am incompetent"), and emotional reasoning ("I feel stupid, so I must be stupid"). These are not character flaws — they are default brain shortcuts that everyone uses. The power of journaling is that these distortions become visible on the page. When you read back "everything went wrong today," you can ask: did literally everything go wrong, or are you filtering?',
+        'Psychology research has identified common thinking patterns that distort reality: all-or-nothing thinking ("If it is not perfect, it is a failure"), catastrophizing ("This mistake will ruin everything"), mind-reading ("They probably think I am incompetent"), and emotional reasoning ("I feel stupid, so I must be stupid"). These are not character flaws — they are default mental shortcuts that everyone uses. The power of journaling is that these distortions become visible on the page. When you read back "everything went wrong today," you can ask: did literally everything go wrong, or are you filtering?',
     bodyTr:
-        'Bilişsel davranışçı araştırmalar, gerçeği çarpıtan yaygın düşünce kalıplarını tanımlar: ya hep ya hiç düşüncesi, felaketleştirme, zihin okuma ve duygusal muhakeme. Bunlar karakter kusurları değil — herkesin kullandığı varsayılan beyin kısayollarıdır. Günlük tutmanın gücü, bu çarpıtmaların sayfada görünür hale gelmesidir.',
+        'Psikoloji araştırmaları, gerçeği çarpıtan yaygın düşünce kalıplarını tanımlamıştır: ya hep ya hiç düşüncesi, felaketleştirme, zihin okuma ve duygusal muhakeme. Bunlar karakter kusurları değil — herkesin kullandığı varsayılan zihinsel kısayollardır. Günlük tutmanın gücü, bu çarpıtmaların sayfada görünür hale gelmesidir.',
     whyItMattersEn:
-        'Spotting distortions in your own writing trains your brain to catch them in real-time. This is the core mechanism of CBT.',
+        'Spotting distortions in your own writing helps train your mind to catch them in real-time — a self-awareness skill that many people find transformative.',
     whyItMattersTr:
-        'Kendi yazınızdaki çarpıtmaları fark etmek beyninizi onları gerçek zamanlı yakalaması için eğitir. Bu, BDT\'nin temel mekanizmasıdır.',
+        'Kendi yazınızdaki çarpıtmaları fark etmek zihninizi onları gerçek zamanlı yakalaması için eğitmeye yardımcı olur — birçok kişinin dönüştürücü bulduğu bir öz farkındalık becerisi.',
     screenshotLineEn:
         'Your brain has thinking shortcuts that sometimes lie. Learn to spot them.',
     screenshotLineTr:
@@ -870,9 +870,9 @@ const List<ContextModule> allContextModules = [
     summaryTr:
         'Yoğun deneyimlerden sonra — olumlu veya olumsuz — zihninizin olanları entegre etmek için zamana ihtiyacı vardır. Bu sessiz faz üretkendir.',
     bodyEn:
-        'After a big project completion, a significant life event, or an emotional breakthrough, many people feel unexpectedly flat. This is not depression — it is integration. Your brain is reorganizing neural pathways, updating your mental models, and filing new experiences into long-term memory. This process requires low stimulation and feels like "nothing is happening." But it is actually one of the most productive phases of the cycle. Journaling during integration often produces the deepest insights because the conscious mind is quiet enough to hear the subconscious processing.',
+        'After a big project completion, a significant life event, or an emotional breakthrough, many people feel unexpectedly flat. This quiet period may be a natural integration phase — your mind processing and absorbing what happened. It can feel like "nothing is happening," but many people find it is actually one of the most productive phases of the cycle. Journaling during these quieter times often produces the deepest insights because the conscious mind is still enough to notice subtler thoughts and feelings.',
     bodyTr:
-        'Büyük bir proje tamamlaması, önemli bir yaşam olayı veya duygusal bir atılımdan sonra birçok kişi beklenmedik şekilde düz hisseder. Bu depresyon değildir — entegrasyondur. Beyniniz sinir yollarını yeniden organize ediyor, zihinsel modellerinizi güncelliyor ve yeni deneyimleri uzun süreli belleğe yerleştiriyor.',
+        'Büyük bir proje tamamlaması, önemli bir yaşam olayı veya duygusal bir atılımdan sonra birçok kişi beklenmedik şekilde düz hisseder. Bu sessiz dönem doğal bir entegrasyon fazı olabilir — zihniniz olanları işliyor ve özümsüyor. "Hiçbir şey olmuyor" gibi hissettirebilir, ancak birçok kişi bunun aslında döngünün en verimli fazlarından biri olduğunu keşfeder.',
     whyItMattersEn:
         'When your journal shows a "quiet" phase after intensity, trust the process. Your mind is building something.',
     whyItMattersTr:
@@ -892,20 +892,20 @@ const List<ContextModule> allContextModules = [
     id: 'js_001',
     category: ContextModuleCategory.journalScience,
     depth: ContextModuleDepth.beginner,
-    titleEn: 'Why Writing Heals',
-    titleTr: 'Yazmanın Neden İyileştirdiği',
+    titleEn: 'Why Writing Helps',
+    titleTr: 'Yazmanın Neden Yardımcı Olduğu',
     summaryEn:
-        'Expressive writing has over 200 published studies showing measurable benefits for physical and mental health.',
+        'Expressive writing has been widely studied for its potential benefits on overall well-being.',
     summaryTr:
-        'İfade edici yazmanın fiziksel ve zihinsel sağlık için ölçülebilir faydalar gösteren 200\'den fazla yayınlanmış çalışması vardır.',
+        'İfade edici yazma, genel iyi oluş üzerindeki potansiyel faydaları açısından yaygın şekilde araştırılmıştır.',
     bodyEn:
-        'James Pennebaker\'s landmark research at the University of Texas found that writing about emotional experiences for just 15-20 minutes over 3-4 days produced measurable improvements in immune function, blood pressure, liver function, and psychological well-being. The mechanism appears to be cognitive: writing forces you to organize chaotic emotional experience into a coherent narrative, which reduces the cognitive load of carrying unprocessed emotions. Your brain no longer needs to keep working on the problem because writing has done the processing work.',
+        'James Pennebaker\'s research at the University of Texas found that writing about emotional experiences for just 15-20 minutes over 3-4 days was associated with improvements in overall well-being among participants. The mechanism appears to be cognitive: writing encourages you to organize chaotic emotional experience into a coherent narrative, which may reduce the mental load of carrying unprocessed emotions. Many people report feeling lighter after writing because putting thoughts on paper can feel like the mind has processed what it was holding onto.',
     bodyTr:
-        'James Pennebaker\'ın Teksas Üniversitesi\'ndeki dönüm noktası araştırması, 3-4 gün boyunca günde sadece 15-20 dakika duygusal deneyimler hakkında yazmanın bağışıklık fonksiyonu, kan basıncı, karaciğer fonksiyonu ve psikolojik iyi oluşta ölçülebilir iyileşmeler ürettiğini buldu. Mekanizma bilişsel görünmektedir: yazma sizi kaotik duygusal deneyimi tutarlı bir anlatıya düzenlemeye zorlar.',
+        'James Pennebaker\'ın Teksas Üniversitesi\'ndeki araştırması, 3-4 gün boyunca günde sadece 15-20 dakika duygusal deneyimler hakkında yazmanın katılımcılar arasında genel iyi oluşta iyileşmelerle ilişkili olduğunu buldu. Mekanizma bilişsel görünmektedir: yazma sizi kaotik duygusal deneyimi tutarlı bir anlatıya düzenlemeye teşvik eder ve bu da işlenmemiş duyguları taşımanın zihinsel yükünü azaltabilir.',
     whyItMattersEn:
-        'Your daily journal practice is not just self-reflection — it is one of the most evidence-backed wellness practices available.',
+        'Your daily journal practice is not just self-reflection — it is a widely recognized approach to building self-awareness and processing experiences.',
     whyItMattersTr:
-        'Günlük günlük tutma pratiğiniz sadece öz yansıtma değil — mevcut en kanıt destekli sağlıklı yaşam pratiklerinden biridir.',
+        'Günlük günlük tutma pratiğiniz sadece öz yansıtma değil — öz farkındalık oluşturmanın ve deneyimleri işlemenin yaygın olarak tanınan bir yoludur.',
     screenshotLineEn:
         'Writing about emotions is not venting. It is the brain processing what happened.',
     screenshotLineTr:
@@ -944,21 +944,21 @@ const List<ContextModule> allContextModules = [
     titleEn: 'The Name-It-to-Tame-It Effect',
     titleTr: 'Adlandır ve Evcilleştir Etkisi',
     summaryEn:
-        'Putting feelings into words reduces their intensity through a well-documented neurological mechanism.',
+        'Putting feelings into words can reduce their intensity — a pattern that many people experience and researchers have studied widely.',
     summaryTr:
-        'Duyguları kelimelere dökmek, iyi belgelenmiş bir nörolojik mekanizma aracılığıyla yoğunluklarını azaltır.',
+        'Duyguları kelimelere dökmek yoğunluklarını azaltabilir — birçok kişinin deneyimlediği ve araştırmacıların yaygın olarak incelediği bir örüntü.',
     bodyEn:
-        'UCLA researcher Matthew Lieberman discovered that labeling an emotion activates the right ventrolateral prefrontal cortex, which in turn reduces activity in the amygdala — the brain\'s alarm system. This effect, called "affect labeling," works even when people do not intend to regulate their emotions. Simply writing "I feel frustrated because..." begins the regulation process automatically. This is why journaling about difficult emotions often produces relief before you have "solved" anything. The act of articulating the feeling IS the intervention.',
+        'UCLA researcher Matthew Lieberman found that labeling an emotion appears to engage the reflective parts of the mind, which in turn may ease the intensity of the emotional reaction. This effect, called "affect labeling," seems to work even when people do not intend to regulate their emotions. Simply writing "I feel frustrated because..." may begin a natural processing of the feeling. This is why journaling about difficult emotions often produces relief before you have "solved" anything. The act of articulating the feeling is itself a meaningful step.',
     bodyTr:
-        'UCLA araştırmacısı Matthew Lieberman, bir duyguyu etiketlemenin sağ ventrolateral prefrontal korteksi aktive ettiğini ve bunun da beyinin alarm sistemi olan amigdaladaki aktiviteyi azalttığını keşfetti. "Etki etiketleme" adı verilen bu etki, insanlar duygularını düzenleme niyetinde olmasalar bile çalışır. Sadece "Hayal kırıklığına uğradım çünkü..." yazmak düzenleme sürecini otomatik olarak başlatır.',
+        'UCLA araştırmacısı Matthew Lieberman, bir duyguyu etiketlemenin zihninizin yansıtıcı kısımlarını harekete geçirdiğini ve bunun da duygusal tepkinin yoğunluğunu hafifletebileceğini buldu. "Etki etiketleme" adı verilen bu etki, insanlar duygularını düzenleme niyetinde olmasalar bile işliyor görünmektedir. Sadece "Hayal kırıklığına uğradım çünkü..." yazmak duygunun doğal işlenmesini başlatabilir.',
     whyItMattersEn:
-        'Every time you name an emotion in your journal, your brain is literally calming itself down. Writing is not a metaphor for processing — it IS processing.',
+        'Every time you name an emotion in your journal, you may be helping your mind settle. Writing is not just a metaphor for processing — for many people, it genuinely feels like processing.',
     whyItMattersTr:
-        'Günlüğünüzde bir duyguyu her adlandırdığınızda, beyniniz kelimenin tam anlamıyla kendini sakinleştirmektedir. Yazma, işlemenin metaforu değildir — işlemenin kendisidir.',
+        'Günlüğünüzde bir duyguyu her adlandırdığınızda, zihninizin sakinleşmesine yardımcı olabilirsiniz. Yazma, işlemenin sadece bir metaforu değildir — birçok kişi için gerçekten işlemenin kendisi gibi hissedilir.',
     screenshotLineEn:
-        'Naming an emotion literally calms the brain. This is neuroscience, not poetry.',
+        'Naming an emotion can help ease its intensity. This is a well-studied pattern, not just poetic intuition.',
     screenshotLineTr:
-        'Bir duyguyu adlandırmak kelimenin tam anlamıyla beyni sakinleştirir. Bu nörobilim, şiir değil.',
+        'Bir duyguyu adlandırmak yoğunluğunu hafifletmeye yardımcı olabilir. Bu iyi araştırılmış bir örüntü, sadece şiirsel bir sezgi değil.',
     relatedFocusAreas: ['mood'],
     relatedModuleIds: ['el_003', 'js_001'],
   ),
@@ -998,9 +998,9 @@ const List<ContextModule> allContextModules = [
     summaryTr:
         'Zor bir deneyimin hikayesini ne kadar tutarlı anlatabilirseniz, psikolojik olarak o kadar çözülmüş olur.',
     bodyEn:
-        'Pennebaker\'s linguistic analysis of thousands of journal entries found a striking pattern: people who showed increasing use of causal words ("because," "reason," "understand") and insight words ("realize," "know," "meaning") across writing sessions showed the greatest health improvements. The mechanism is narrative coherence — turning a fragmented emotional experience into a story with causes, connections, and meaning. This does not require forcing a "positive spin." It simply means developing a clear account: this happened, then this happened, and I think it affected me because... The story does not have to be happy. It just has to be coherent.',
+        'Pennebaker\'s linguistic analysis of thousands of journal entries found a striking pattern: people who showed increasing use of causal words ("because," "reason," "understand") and insight words ("realize," "know," "meaning") across writing sessions reported the greatest sense of resolution and well-being. The mechanism is narrative coherence — turning a fragmented emotional experience into a story with causes, connections, and meaning. This does not require forcing a "positive spin." It simply means developing a clear account: this happened, then this happened, and I think it affected me because... The story does not have to be happy. It just has to be coherent.',
     bodyTr:
-        'Pennebaker\'ın binlerce günlük kaydının dilbilimsel analizi çarpıcı bir örüntü buldu: yazma seansları boyunca artan nedensel kelime kullanımı gösteren kişiler en büyük sağlık iyileşmelerini gösterdi. Mekanizma anlatısal tutarlılıktır — parçalanmış bir duygusal deneyimi nedenleri, bağlantıları ve anlamı olan bir hikayeye dönüştürmek.',
+        'Pennebaker\'ın binlerce günlük kaydının dilbilimsel analizi çarpıcı bir örüntü buldu: yazma seansları boyunca artan nedensel kelime kullanımı gösteren kişiler en büyük çözümlenme ve iyi oluş hissi bildirdi. Mekanizma anlatısal tutarlılıktır — parçalanmış bir duygusal deneyimi nedenleri, bağlantıları ve anlamı olan bir hikayeye dönüştürmek.',
     whyItMattersEn:
         'Rereading old entries and adding new understanding creates the narrative coherence that research links to recovery.',
     whyItMattersTr:

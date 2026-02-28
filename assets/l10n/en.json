@@ -3107,7 +3107,11 @@
       "copy": "Copy",
       "psychological_perspectivennyour": "Psychological Perspective\\n━━━━━━━━━━━━━━━━━\\nYour subconscious is revealing...",
       "see_your_dream_through_every_lens": "See your dream through every lens",
-      "send_message": "Send message"
+      "send_message": "Send message",
+      "discard": "Discard",
+      "leave_conversation": "Leave Conversation?",
+      "you_have_an_active_dream_session_are_you": "You have an active dream session. Are you sure you want to go back?",
+      "cancel": "Cancel"
     }
   },
   "months": {
@@ -4737,7 +4741,11 @@
       "milestone_share": "Just wrote my {count}th journal entry with InnerCycles!",
       "milestone_share_sub": "Building a reflection practice, one entry at a time.",
       "milestone_hashtags": "#InnerCycles #Journaling #Milestone",
-      "streak_nudge": "{streak}-day streak! Share your progress?"
+      "streak_nudge": "{streak}-day streak! Share your progress?",
+      "discard": "Discard",
+      "discard_changes": "Discard Changes?",
+      "you_have_unsaved_changes_are_you_sure_yo": "You have unsaved changes. Are you sure you want to go back?",
+      "cancel": "Cancel"
     },
     "emotional_cycle": {
       "access_full_30day_view": "Access Full 30-Day View",

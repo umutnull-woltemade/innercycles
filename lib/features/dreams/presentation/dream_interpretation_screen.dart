@@ -24,6 +24,7 @@ import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
+import '../../../shared/widgets/glass_dialog.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 
 /// Inner Dream Guide - Conversational Dream Reflection
@@ -44,6 +45,7 @@ class _DreamInterpretationScreenState
   final FocusNode _keyboardFocusNode = FocusNode();
   final List<ChatMessage> _messages = [];
   bool _isTyping = false;
+  bool _hasChanges = false;
   late AnimationController _pulseController;
 
   // Suggested dream prompts - i18n method
@@ -546,6 +548,7 @@ class _DreamInterpretationScreenState
         ChatMessage(text: text, isUser: true, timestamp: DateTime.now()),
       );
       _isTyping = true;
+      _hasChanges = true;
     });
 
     _dreamController.clear();
@@ -1699,21 +1702,44 @@ ${_getPersonalAdvice(sign)}''';
     });
   }
 
+  void _showDiscardDialog() async {
+    final language = ref.read(languageProvider);
+    final isEn = language == AppLanguage.en;
+    final confirmed = await GlassDialog.confirm(
+      context,
+      title: L10nService.get('dreams.dream_interpretation.leave_conversation', isEn ? AppLanguage.en : AppLanguage.tr),
+      message: L10nService.get('dreams.dream_interpretation.you_have_an_active_dream_session_are_you', isEn ? AppLanguage.en : AppLanguage.tr),
+      cancelLabel: L10nService.get('dreams.dream_interpretation.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
+      confirmLabel: L10nService.get('dreams.dream_interpretation.discard', isEn ? AppLanguage.en : AppLanguage.tr),
+      isDestructive: true,
+    );
+    if (confirmed == true && mounted) {
+      if (context.canPop()) context.pop();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return Scaffold(
-      body: CosmicBackground(
-        child: SafeArea(
-          child: Column(
-            children: [
-              _buildHeader(context, isDark),
-              Expanded(child: _buildChatArea(isDark)),
-              _buildInputArea(
-                isDark,
-                isEn: ref.watch(languageProvider) == AppLanguage.en,
-              ),
-            ],
+    return PopScope(
+      canPop: !_hasChanges,
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) return;
+        _showDiscardDialog();
+      },
+      child: Scaffold(
+        body: CosmicBackground(
+          child: SafeArea(
+            child: Column(
+              children: [
+                _buildHeader(context, isDark),
+                Expanded(child: _buildChatArea(isDark)),
+                _buildInputArea(
+                  isDark,
+                  isEn: ref.watch(languageProvider) == AppLanguage.en,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -1736,7 +1762,13 @@ ${_getPersonalAdvice(sign)}''';
       child: Row(
         children: [
           IconButton(
-            onPressed: () => context.pop(),
+            onPressed: () {
+              if (_hasChanges) {
+                _showDiscardDialog();
+              } else {
+                context.pop();
+              }
+            },
             tooltip: L10nService.get('common.back', ref.read(languageProvider)),
             icon: Icon(
               Icons.chevron_left,
