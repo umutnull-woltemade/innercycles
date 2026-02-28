@@ -1,6 +1,6 @@
 Understand yourself better, one entry at a time.
 
-InnerCycles is your personal space for daily journaling, mood tracking, and self-reflection. Discover patterns in your emotions, track your streaks, and grow with AI-powered insights — all in a beautifully designed, private journaling experience.
+InnerCycles is your personal space for daily journaling, mood tracking, and self-reflection. Discover patterns in your emotions, track your streaks, and grow with personalized insights — all in a beautifully designed, private journaling experience.
 
 Whether you journal every morning, track your moods throughout the day, or want to remember your dreams, InnerCycles adapts to your rhythm and helps you see the bigger picture of your inner life.
 
@@ -20,7 +20,7 @@ Whether you journal every morning, track your moods throughout the day, or want 
 • Track recurring themes and symbols
 • Build a searchable dream archive
 
-— AI-POWERED REFLECTIONS —
+— PERSONALIZED REFLECTIONS —
 • Receive personalized insights based on your entries
 • Discover connections you might have missed
 • Gentle, private, and never judgmental
@@ -30,7 +30,7 @@ Whether you journal every morning, track your moods throughout the day, or want 
 • iOS Widgets: See your streak and prompts at a glance
 • Apple Watch: Quick mood logging from your wrist
 • Beautiful dark and light themes with pastel aesthetics
-• Full privacy: your data stays on your device
+• Your data, your control — private by default
 • Available in English, Turkish, German, and French
 
 — WHY INNERCYCLES? —
@@ -39,7 +39,7 @@ Unlike simple diary apps, InnerCycles uses pattern recognition to help you under
 Start your journaling practice today. Your future self will thank you.
 
 — INNERCYCLES PREMIUM —
-• AI-powered reflections and insights
+• Personalized reflections and insights
 • Advanced pattern detection
 • Unlimited entries and dream logs
 • Monthly and annual reflection reports

@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -743,17 +745,46 @@ class SettingsScreen extends ConsumerWidget {
     if (doubleConfirmed != true || !context.mounted) return;
 
     try {
+      // Guard: require active session before attempting delete
+      final session = Supabase.instance.client.auth.currentSession;
+      if (session == null) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                isEn
+                    ? 'No active session. Please sign in first.'
+                    : 'Aktif oturum yok. Lütfen önce giriş yapın.',
+              ),
+              backgroundColor: AppColors.error,
+              behavior: SnackBarBehavior.floating,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+          );
+        }
+        return;
+      }
+
       // Call edge function to delete all user data + auth account
       final response = await Supabase.instance.client.functions.invoke(
         'delete-user-data',
         headers: {
-          'Authorization': 'Bearer ${Supabase.instance.client.auth.currentSession?.accessToken}',
+          'Authorization': 'Bearer ${session.accessToken}',
         },
       );
 
       if (response.status == 200) {
-        // Clear local data
+        // Clear local data + vault photos
         await Supabase.instance.client.auth.signOut();
+        try {
+          final appDir = await getApplicationDocumentsDirectory();
+          final vaultDir = Directory('${appDir.path}/vault_photos');
+          if (await vaultDir.exists()) {
+            await vaultDir.delete(recursive: true);
+          }
+        } catch (_) {}
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

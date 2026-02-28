@@ -1,6 +1,6 @@
 Verstehe dich selbst besser, Eintrag für Eintrag.
 
-InnerCycles ist dein persönlicher Raum für tägliches Journaling, Stimmungstracking und Selbstreflexion. Entdecke Muster in deinen Emotionen, verfolge deine Serien und wachse mit KI-gestützten Einsichten.
+InnerCycles ist dein persönlicher Raum für tägliches Journaling, Stimmungstracking und Selbstreflexion. Entdecke Muster in deinen Emotionen, verfolge deine Serien und wachse mit personalisierten Einsichten.
 
 — TÄGLICHES TAGEBUCH —
 • Schreibe frei mit geführten Fragen oder offenen Einträgen
@@ -18,7 +18,7 @@ InnerCycles ist dein persönlicher Raum für tägliches Journaling, Stimmungstra
 • Verfolge wiederkehrende Themen und Symbole
 • Erstelle ein durchsuchbares Traumarchiv
 
-— KI-GESTÜTZTE REFLEXIONEN —
+— PERSONALISIERTE REFLEXIONEN —
 • Erhalte personalisierte Einsichten basierend auf deinen Einträgen
 • Entdecke Verbindungen, die du übersehen hast
 • Sanft, privat und niemals wertend
@@ -28,7 +28,7 @@ InnerCycles ist dein persönlicher Raum für tägliches Journaling, Stimmungstra
 • iOS-Widgets: Streak und Fragen auf einen Blick
 • Apple Watch: Schnelle Stimmungserfassung vom Handgelenk
 • Schöne dunkle und helle Themes
-• Voller Datenschutz: Deine Daten bleiben auf deinem Gerät
+• Deine Daten, deine Kontrolle — standardmäßig privat
 • Verfügbar auf Deutsch, Englisch, Türkisch und Französisch
 
 Starte heute deine Journaling-Praxis.

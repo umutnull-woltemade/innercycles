@@ -866,8 +866,10 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final month = report.mostActiveMonth!.key;
-    final count = report.mostActiveMonth!.value;
+    final activeMonth = report.mostActiveMonth;
+    if (activeMonth == null) return const SizedBox.shrink();
+    final month = activeMonth.key;
+    final count = activeMonth.value;
 
     return PremiumCard(
       style: PremiumCardStyle.aurora,

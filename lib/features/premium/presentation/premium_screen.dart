@@ -235,6 +235,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                 ],
               ),
               const SizedBox(height: 6),
+              // TODO: Pull prices from RevenueCat package info instead of hardcoding
               Text(
                 isEn
                     ? 'Yearly plan: \$14.99/yr (normally \$29.99)'
@@ -495,7 +496,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   }
 
   // ════════════════════════════════════════════════════════════════════════════
-  // SOCIAL PROOF — Build trust before pricing
+  // TAGLINE — Factual statement before pricing
   // ════════════════════════════════════════════════════════════════════════════
 
   Widget _buildSocialProof(BuildContext context) {
@@ -507,7 +508,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(
-          Icons.people_outline_rounded,
+          Icons.auto_awesome_rounded,
           size: 16,
           color: isDark
               ? AppColors.textMuted.withValues(alpha: 0.7)
@@ -516,7 +517,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         const SizedBox(width: 6),
         Flexible(
           child: Text(
-            L10nService.get('premium.premium.trusted_by_thousands_of_journalers', isEn ? AppLanguage.en : AppLanguage.tr),
+            isEn
+                ? 'Your private journaling companion'
+                : 'Kişisel günlük arkadaşın',
             style: AppTypography.elegantAccent(
               fontSize: 14,
               color: isDark

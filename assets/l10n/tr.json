@@ -82,6 +82,16 @@
     },
     "unit": {
       "days_abbr": "g"
+    },
+    "date": {
+      "day_mon": "Pzt",
+      "day_tue": "Sal",
+      "day_wed": "Çar",
+      "day_thu": "Per",
+      "day_fri": "Cum",
+      "day_sat": "Cmt",
+      "day_sun": "Paz",
+      "format_en": "{day}, {date} {month}"
     }
   },
   "greetings": {
@@ -149,7 +159,7 @@
       "one_last_thing_stay_on_track_with_gentle": "Son bir şey — nazik hatırlatıcılarla yolda kal",
       "pattern_recognition": "Kalıp tanıma",
       "pick_your_starting_signal": "İlk Sinyalini Seç",
-      "private_secure_your_journal_stays_on_you": "Gizli ve güvenli. Günlüğün cihazında kalır.",
+      "private_secure_your_journal_stays_on_you": "Gizli ve güvenli. Verilerin senin kontrolünde.",
       "skip_for_now": "Şimdilik atla",
       "symbol_glossary": "Sembol sözlüğü",
       "theres_no_wrong_answer_follow_your_curio": "Yanlış cevap yok — merakını takip et",
@@ -168,7 +178,7 @@
     "disclaimer": {
       "a_private_space_for_reflection_not_predi": "Tahmin değil, yansıma için özel bir alan.",
       "welcome_to_innercycles": "InnerCycles\\'a Hoş Geldin",
-      "your_data_stays_on_your_device": "Verilerin cihazında kalır"
+      "your_data_stays_on_your_device": "Verilerin senin kontrolünde"
     }
   },
   "router": {
@@ -5259,7 +5269,19 @@
       "total_entries": "Toplam Kayıt",
       "use_freeze": "Kullan"
     },
-    "milestone_days_short": "{count} g"
+    "milestone_days_short": "{count} g",
+    "milestone": {
+      "title_3": "3 Günlük Seri",
+      "title_7": "Tam Bir Hafta",
+      "title_14": "İki Hafta Güçlü",
+      "title_30": "30 Günlük Pratik",
+      "title_60": "60 Gün Derinlikte",
+      "title_90": "Çeyrek Yıl",
+      "title_180": "Yarım Yıl",
+      "title_365": "Tam Bir Yıl",
+      "title_default": "{count} Gün",
+      "celebration_label": "{count} günlük seri kutlaması"
+    }
   },
   "today": {
     "daily_pulse": {
@@ -5354,7 +5376,24 @@
     "weekly_focus_progress": {
       "week": "Hafta: "
     },
-    "anniversary_label": "{label} Yıl Dönümü!"
+    "anniversary_label": "{label} Yıl Dönümü!",
+    "mood_stats": {
+      "mood_count": "{count} Ruh",
+      "mood_low": "Zor",
+      "mood_meh": "Düşük",
+      "mood_okay": "İdare",
+      "mood_good": "İyi",
+      "mood_great": "Harika"
+    },
+    "social_proof": {
+      "milestone_100": "{count} kayıt — hikayen büyümeye devam ediyor",
+      "milestone_50": "{count} kayıt — elli yansıma",
+      "milestone_30": "{count} kayıt — bir aylık içgörü",
+      "milestone_14": "{count} kayıt — iki haftalık yansıma",
+      "milestone_7": "{count} kayıt — bir hafta güçlü",
+      "milestone_3": "{count} kayıt — alışkanlık oluşuyor",
+      "milestone_1": "{count} kayıt — yolculuğun başlıyor"
+    }
   },
   "tools": {
     "tool_catalog": {
@@ -5506,5 +5545,11 @@
     },
     "my_year_summary": "{year} Özetim",
     "entries_this_year": "Bu yıl {count} kayıt"
+  },
+  "dream_correlation": {
+    "not_enough_data": "Henüz yeterli rüya ve günlük verisi yok. Rüya-ruh hali içgörüleri için kayıt yapmaya devam et.",
+    "connections_header": "Kayıtların aşağıdaki rüya-ruh hali bağlantılarını gösteriyor:",
+    "connection_item": "- Rüyalarında \"{theme}\" göründüğünde, ertesi gün {direction} ({before} -> {after}, {samples} kayda dayanarak, değişim {delta}).",
+    "patterns_note": "Bu örüntüler daha fazla kayıt ekledikçe gelişebilir."
   }
 }

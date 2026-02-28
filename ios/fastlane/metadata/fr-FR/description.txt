@@ -1,6 +1,6 @@
 Comprenez-vous mieux, une entrée à la fois.
 
-InnerCycles est votre espace personnel pour le journal quotidien, le suivi d'humeur et l'auto-réflexion. Découvrez des schémas dans vos émotions, suivez vos séries et grandissez avec des insights alimentés par l'IA.
+InnerCycles est votre espace personnel pour le journal quotidien, le suivi d'humeur et l'auto-réflexion. Découvrez des schémas dans vos émotions, suivez vos séries et grandissez avec des insights personnalisés.
 
 — JOURNAL QUOTIDIEN —
 • Écrivez librement avec des invitations guidées ou des entrées ouvertes
@@ -18,7 +18,7 @@ InnerCycles est votre espace personnel pour le journal quotidien, le suivi d'hum
 • Suivez les thèmes et symboles récurrents
 • Créez une archive de rêves consultable
 
-— RÉFLEXIONS ALIMENTÉES PAR L'IA —
+— RÉFLEXIONS PERSONNALISÉES —
 • Recevez des insights personnalisés basés sur vos entrées
 • Découvrez des connexions que vous auriez pu manquer
 • Doux, privé et jamais moralisateur
@@ -28,7 +28,7 @@ InnerCycles est votre espace personnel pour le journal quotidien, le suivi d'hum
 • Widgets iOS : Votre série et vos invitations en un coup d'œil
 • Apple Watch : Enregistrement rapide de l'humeur depuis votre poignet
 • Beaux thèmes sombres et clairs
-• Confidentialité totale : vos données restent sur votre appareil
+• Vos données, votre contrôle — privé par défaut
 • Disponible en français, anglais, turc et allemand
 
 Commencez votre pratique de journaling aujourd'hui.

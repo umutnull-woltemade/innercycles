@@ -1,6 +1,6 @@
 Kendini daha iyi anla. Her giriş bir adım.
 
-InnerCycles, günlük yazma, ruh hali takibi ve kendini keşfetme için kişisel alanın. Duygularındaki örüntüleri keşfet, serini takip et ve yapay zekâ destekli içgörülerle gelişimini gör.
+InnerCycles, günlük yazma, ruh hali takibi ve kendini keşfetme için kişisel alanın. Duygularındaki örüntüleri keşfet, serini takip et ve kişiselleştirilmiş içgörülerle gelişimini gör.
 
 Her sabah yazsan da, gün boyunca ruh halini takip etsen de, rüyalarını kaydetmek istesen de — InnerCycles senin ritmine uyum sağlar.
 
@@ -20,7 +20,7 @@ Her sabah yazsan da, gün boyunca ruh halini takip etsen de, rüyalarını kayde
 - Tekrarlayan temaları ve sembolleri takip et
 - Aranabilir rüya arşivi oluştur
 
-— YAPAY ZEKÂ DESTEKLİ YANSIMALAR —
+— KİŞİSELLEŞTİRİLMİŞ YANSIMALAR —
 - Girişlerine dayalı kişiselleştirilmiş içgörüler al
 - Kaçırmış olabileceğin bağlantıları keşfet
 - Nazik, özel ve asla yargılayıcı olmayan
@@ -30,7 +30,7 @@ Her sabah yazsan da, gün boyunca ruh halini takip etsen de, rüyalarını kayde
 - iOS Widget'ları: Serini ve sorularını bir bakışta gör
 - Apple Watch: Bileğinden hızlı ruh hali kaydı
 - Karanlık ve aydınlık tema seçenekleri
-- Tam gizlilik: verilerin cihazında kalır
+- Verilerin senin kontrolünde — varsayılan olarak gizli
 - Türkçe, İngilizce, Almanca ve Fransızca
 
 — NEDEN INNERCYCLES? —
@@ -39,7 +39,7 @@ Basit günlük uygulamalarının aksine, InnerCycles örüntü tanıma kullanara
 Günlük yazma pratiğine bugün başla.
 
 — INNERCYCLES PRO —
-- Yapay zekâ destekli yansımalar ve içgörüler
+- Kişiselleştirilmiş yansımalar ve içgörüler
 - Gelişmiş örüntü tespiti
 - Sınırsız giriş ve rüya kaydı
 - Aylık ve yıllık gelişim raporları

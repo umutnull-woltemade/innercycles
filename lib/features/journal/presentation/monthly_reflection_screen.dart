@@ -157,10 +157,11 @@ class _MonthlyReflectionScreenState
                                   ? CommonStrings.monthsShortEn
                                   : CommonStrings.monthsShortTr;
                               final monthLabel = monthNames[_selectedMonth - 1];
-                              final strongest = summary.strongestArea != null
+                              final strongestArea = summary.strongestArea;
+                              final strongest = strongestArea != null
                                   ? (isEn
-                                      ? summary.strongestArea!.displayNameEn
-                                      : summary.strongestArea!.displayNameTr)
+                                      ? strongestArea.displayNameEn
+                                      : strongestArea.displayNameTr)
                                   : null;
                               final msg = isEn
                                   ? 'My $monthLabel $_selectedYear reflection:\n${summary.totalEntries} entries${strongest != null ? '\nStrongest area: $strongest' : ''}\n\nTracking my patterns with InnerCycles.\n${AppConstants.appStoreUrl}\n#InnerCycles #MonthlyReflection'
@@ -492,8 +493,8 @@ class _MonthlyReflectionScreenState
               isDark,
               L10nService.get('journal.monthly_reflection.strongest_area', isEn ? AppLanguage.en : AppLanguage.tr),
               isEn
-                  ? summary.strongestArea!.displayNameEn
-                  : summary.strongestArea!.displayNameTr,
+                  ? (summary.strongestArea?.displayNameEn ?? '')
+                  : (summary.strongestArea?.displayNameTr ?? ''),
               Icons.star,
               AppColors.success,
             ),
@@ -506,8 +507,8 @@ class _MonthlyReflectionScreenState
               isDark,
               L10nService.get('journal.monthly_reflection.needs_attention', isEn ? AppLanguage.en : AppLanguage.tr),
               isEn
-                  ? summary.weakestArea!.displayNameEn
-                  : summary.weakestArea!.displayNameTr,
+                  ? (summary.weakestArea?.displayNameEn ?? '')
+                  : (summary.weakestArea?.displayNameTr ?? ''),
               Icons.info_outline,
               AppColors.warning,
             ),

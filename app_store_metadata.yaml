@@ -42,7 +42,7 @@ screenshot_captions:
   7: "Beautiful dark and light themes — designed to feel calm and personal"
   8: "Never forget a birthday — your personal birthday agenda, built in"
   9: "Quick mood log from your wrist — Apple Watch companion included"
-  10: "Private. Secure. Yours. — your journal stays on your device"
+  10: "Private. Secure. Yours. — your data, your control"
 
 # ── PROMOTIONAL TEXT (170 chars, can be updated without review) ──────────
 promotional_text: "New: Personalized reflections, streak tracking, and iOS widgets. Understand yourself better, one entry at a time."
@@ -82,7 +82,7 @@ description: |
   • iOS Widgets: See your streak and prompts at a glance
   • Apple Watch: Quick mood logging from your wrist
   • Beautiful dark and light themes with pastel aesthetics
-  • Full privacy: your data stays on your device
+  • Your data, your control — private by default
   • Available in English, Turkish, German, and French
 
   — WHY INNERCYCLES? —
@@ -151,13 +151,13 @@ tr:
   description: |
     Kendini daha iyi anla, her giriş bir adım.
 
-    InnerCycles, günlük yazma, ruh hali takibi ve kendini keşfetme için kişisel alanın. Duygularındaki örüntüleri keşfet, serini takip et ve yapay zeka destekli içgörülerle kendini geliştir.
+    InnerCycles, günlük yazma, ruh hali takibi ve kendini keşfetme için kişisel alanın. Duygularındaki örüntüleri keşfet, serini takip et ve kişiselleştirilmiş içgörülerle kendini geliştir.
 
     ÖZELLİKLER:
     - Rehberli sorularla günlük yazma
     - Ruh hali takibi ve duygusal örüntü tespiti
     - Rüya günlüğü ve arşivi
-    - Yapay zeka destekli yansımalar
+    - Kişiselleştirilmiş yansımalar
     - Doğum günü ajandası ve bildirimleri
     - iOS Widget'ları ve Apple Watch desteği
     - Seri takibi ve kutlama anları

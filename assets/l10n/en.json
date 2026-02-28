@@ -82,6 +82,16 @@
     },
     "unit": {
       "days_abbr": "d"
+    },
+    "date": {
+      "day_mon": "Mon",
+      "day_tue": "Tue",
+      "day_wed": "Wed",
+      "day_thu": "Thu",
+      "day_fri": "Fri",
+      "day_sat": "Sat",
+      "day_sun": "Sun",
+      "format_en": "{day}, {month} {date}"
     }
   },
   "greetings": {
@@ -149,7 +159,7 @@
       "one_last_thing_stay_on_track_with_gentle": "One last thing — stay on track with gentle reminders",
       "pattern_recognition": "Pattern recognition",
       "pick_your_starting_signal": "Pick Your Starting Signal",
-      "private_secure_your_journal_stays_on_you": "Private & secure. Your journal stays on your device.",
+      "private_secure_your_journal_stays_on_you": "Private & secure. Your data, your control.",
       "skip_for_now": "Skip for now",
       "symbol_glossary": "Symbol glossary",
       "theres_no_wrong_answer_follow_your_curio": "There\\'s no wrong answer — follow your curiosity",
@@ -168,7 +178,7 @@
     "disclaimer": {
       "a_private_space_for_reflection_not_predi": "A private space for reflection, not prediction.",
       "welcome_to_innercycles": "Welcome to InnerCycles",
-      "your_data_stays_on_your_device": "Your data stays on your device"
+      "your_data_stays_on_your_device": "Your data, your control"
     }
   },
   "router": {
@@ -5259,7 +5269,19 @@
       "total_entries": "Total Entries",
       "use_freeze": "Use Freeze"
     },
-    "milestone_days_short": "{count} d"
+    "milestone_days_short": "{count} d",
+    "milestone": {
+      "title_3": "3-Day Streak",
+      "title_7": "One Full Week",
+      "title_14": "Two Weeks Strong",
+      "title_30": "30-Day Practice",
+      "title_60": "60 Days Deep",
+      "title_90": "Quarter Year",
+      "title_180": "Half Year",
+      "title_365": "One Full Year",
+      "title_default": "{count} Days",
+      "celebration_label": "{count} day streak milestone celebration"
+    }
   },
   "today": {
     "daily_pulse": {
@@ -5354,7 +5376,24 @@
     "weekly_focus_progress": {
       "week": "Week: "
     },
-    "anniversary_label": "{label} Anniversary!"
+    "anniversary_label": "{label} Anniversary!",
+    "mood_stats": {
+      "mood_count": "{count} Mood",
+      "mood_low": "Low",
+      "mood_meh": "Meh",
+      "mood_okay": "Okay",
+      "mood_good": "Good",
+      "mood_great": "Great"
+    },
+    "social_proof": {
+      "milestone_100": "{count} entries — your story keeps growing",
+      "milestone_50": "{count} entries — half a hundred reflections",
+      "milestone_30": "{count} entries — a month of insight",
+      "milestone_14": "{count} entries — two weeks of reflection",
+      "milestone_7": "{count} entries — one week strong",
+      "milestone_3": "{count} entries — building a habit",
+      "milestone_1": "{count} entry — your journey begins"
+    }
   },
   "tools": {
     "tool_catalog": {
@@ -5506,5 +5545,11 @@
     },
     "my_year_summary": "My {year} Summary",
     "entries_this_year": "{count} entries this year"
+  },
+  "dream_correlation": {
+    "not_enough_data": "Not enough overlapping dream and journal data yet. Keep recording to activate dream-mood insights.",
+    "connections_header": "Your entries suggest the following dream-mood connections:",
+    "connection_item": "- When \"{theme}\" appears in your dreams, {direction} the next day ({before} -> {after}, based on {samples} entries, delta {delta}).",
+    "patterns_note": "These patterns may evolve as you log more entries."
   }
 }
