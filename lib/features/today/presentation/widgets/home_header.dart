@@ -10,6 +10,8 @@ import '../../../../data/services/haptic_service.dart';
 import '../../../../shared/widgets/gradient_text.dart';
 import '../../../../shared/widgets/tap_scale.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../data/services/l10n_service.dart';
+import '../../../../data/providers/app_providers.dart';
 
 class HomeHeader extends StatelessWidget {
   final String userName;
@@ -25,9 +27,9 @@ class HomeHeader extends StatelessWidget {
 
   String _getGreeting() {
     final hour = DateTime.now().hour;
-    if (hour < 12) return isEn ? 'Good morning' : 'Günaydın';
-    if (hour < 18) return isEn ? 'Good afternoon' : 'İyi günler';
-    return isEn ? 'Good evening' : 'İyi akşamlar';
+    if (hour < 12) return L10nService.get('today.home_header.good_morning', isEn ? AppLanguage.en : AppLanguage.tr);
+    if (hour < 18) return L10nService.get('today.home_header.good_afternoon', isEn ? AppLanguage.en : AppLanguage.tr);
+    return L10nService.get('today.home_header.good_evening', isEn ? AppLanguage.en : AppLanguage.tr);
   }
 
   String _getFormattedDate() {
@@ -142,7 +144,7 @@ class HomeHeader extends StatelessWidget {
               const SizedBox(width: 8),
               // Search icon
               Semantics(
-                label: isEn ? 'Search' : 'Ara',
+                label: L10nService.get('today.home_header.search', isEn ? AppLanguage.en : AppLanguage.tr),
                 button: true,
                 child: TapScale(
                   onTap: () {
@@ -174,7 +176,7 @@ class HomeHeader extends StatelessWidget {
               const SizedBox(width: 8),
               // Avatar circle -> Settings
               Semantics(
-                label: isEn ? 'Profile & Settings' : 'Profil ve Ayarlar',
+                label: L10nService.get('today.home_header.profile_settings', isEn ? AppLanguage.en : AppLanguage.tr),
                 button: true,
                 child: TapScale(
                   onTap: () {

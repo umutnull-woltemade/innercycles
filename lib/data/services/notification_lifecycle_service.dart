@@ -12,6 +12,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'notification_service.dart';
 import 'journal_service.dart';
 import 'moon_phase_service.dart';
+import 'l10n_service.dart';
+import '../providers/app_providers.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // NOTIFICATION TYPES
@@ -527,48 +529,38 @@ class NotificationLifecycleService {
     switch (type) {
       case LifecycleNotificationType.challengeCompleted:
         return _NotificationContent(
-          title: isEn ? 'Challenge Completed!' : 'Meydan Okuma Tamamlandı!',
-          body: isEn
-              ? 'You finished a challenge! Share your achievement with friends.'
-              : 'Bir meydan okumayı tamamladın! Başarını arkadaşlarınla paylaş.',
+          title: L10nService.get('data.services.notification_lifecycle.challenge_completed', isEn ? AppLanguage.en : AppLanguage.tr),
+          body: L10nService.get('data.services.notification_lifecycle.you_finished_a_challenge_share_your_achi', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case LifecycleNotificationType.archetypeEvolution:
         return _NotificationContent(
-          title: isEn ? 'Your Archetype Shifted' : 'Arketipin Değişti',
-          body: isEn
-              ? 'Your monthly archetype has evolved — check out your new pattern.'
-              : 'Aylık arketipin değişti — yeni örüntünü keşfet.',
+          title: L10nService.get('data.services.notification_lifecycle.your_archetype_shifted', isEn ? AppLanguage.en : AppLanguage.tr),
+          body: L10nService.get('data.services.notification_lifecycle.your_monthly_archetype_has_evolved_check', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case LifecycleNotificationType.patternDiscovery:
         return _NotificationContent(
-          title: isEn ? 'New Pattern Found' : 'Yeni Örüntü Bulundu',
-          body: isEn
-              ? 'A new correlation emerged in your journal entries.'
-              : 'Günlük kayıtlarında yeni bir korelasyon ortaya çıktı.',
+          title: L10nService.get('data.services.notification_lifecycle.new_pattern_found', isEn ? AppLanguage.en : AppLanguage.tr),
+          body: L10nService.get('data.services.notification_lifecycle.a_new_correlation_emerged_in_your_journa', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case LifecycleNotificationType.shareReminder:
         return _NotificationContent(
-          title: isEn ? 'Celebrate Your Progress' : 'İlerlemeni Kutla',
-          body: isEn
-              ? 'You reached a milestone recently — share it with someone who would appreciate it.'
-              : 'Yakın zamanda bir başarıya ulaştın — bunu takdir edecek biriyle paylaş.',
+          title: L10nService.get('data.services.notification_lifecycle.celebrate_your_progress', isEn ? AppLanguage.en : AppLanguage.tr),
+          body: L10nService.get('data.services.notification_lifecycle.you_reached_a_milestone_recently_share_i', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case LifecycleNotificationType.monthlyWrappedReady:
         return _NotificationContent(
-          title: isEn ? 'Monthly Wrapped Ready' : 'Aylık Özetin Hazır',
-          body: isEn
-              ? 'Your monthly recap is ready to review — see your patterns at a glance.'
-              : 'Aylık özetin incelemeye hazır — örüntülerine bir göz at.',
+          title: L10nService.get('data.services.notification_lifecycle.monthly_wrapped_ready', isEn ? AppLanguage.en : AppLanguage.tr),
+          body: L10nService.get('data.services.notification_lifecycle.your_monthly_recap_is_ready_to_review_se', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case LifecycleNotificationType.streakReminder:
         final streak = journalService.getCurrentStreak();
         return _NotificationContent(
-          title: isEn ? 'Your Streak is Waiting' : 'Serin Seni Bekliyor!',
+          title: L10nService.get('data.services.notification_lifecycle.your_streak_is_waiting', isEn ? AppLanguage.en : AppLanguage.tr),
           body: isEn
               ? 'Your $streak-day streak is waiting! A quick entry keeps it going.'
               : '$streak günlük seri devam ediyor! Kısa bir kayıt yeterli.',
@@ -576,24 +568,20 @@ class NotificationLifecycleService {
 
       case LifecycleNotificationType.insightTeaser:
         return _NotificationContent(
-          title: isEn ? 'Something Interesting' : 'İlginç Bir Şey',
-          body: isEn
-              ? 'Something interesting emerged in your patterns this week...'
-              : 'Bu hafta kalıplarında ilginç bir şey ortaya çıktı...',
+          title: L10nService.get('data.services.notification_lifecycle.something_interesting', isEn ? AppLanguage.en : AppLanguage.tr),
+          body: L10nService.get('data.services.notification_lifecycle.something_interesting_emerged_in_your_pa', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case LifecycleNotificationType.moodCheckIn:
         return _NotificationContent(
-          title: isEn ? 'Quick Check-In' : 'Hızlı Kontrol',
-          body: isEn
-              ? 'What\'s present for you right now? A quick check-in takes 30 seconds.'
-              : 'Şu an neler hissediyorsun? Hızlı bir kontrol 30 saniye sürer.',
+          title: L10nService.get('data.services.notification_lifecycle.quick_checkin', isEn ? AppLanguage.en : AppLanguage.tr),
+          body: L10nService.get('data.services.notification_lifecycle.whats_present_for_you_right_now_a_quick', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case LifecycleNotificationType.milestonesCelebration:
         final total = journalService.entryCount;
         return _NotificationContent(
-          title: isEn ? 'Milestone Reached!' : 'Kilometre Taşı!',
+          title: L10nService.get('data.services.notification_lifecycle.milestone_reached', isEn ? AppLanguage.en : AppLanguage.tr),
           body: isEn
               ? 'You\'ve journaled $total days! Your patterns are getting really interesting.'
               : '$total gün günlük tuttun! Kalıpların gerçekten ilginçleşiyor.',
@@ -603,28 +591,22 @@ class NotificationLifecycleService {
         final moonData = MoonPhaseService.today();
         if (moonData.phase == MoonPhase.newMoon) {
           return _NotificationContent(
-            title: isEn ? 'New Moon Tonight' : 'Bu Gece Yeni Ay',
-            body: isEn
-                ? 'The new moon is tonight — a perfect time for reflection.'
-                : 'Bu gece yeni ay — yansıtma için harika bir zaman.',
+            title: L10nService.get('data.services.notification_lifecycle.new_moon_tonight', isEn ? AppLanguage.en : AppLanguage.tr),
+            body: L10nService.get('data.services.notification_lifecycle.the_new_moon_is_tonight_a_perfect_time_f', isEn ? AppLanguage.en : AppLanguage.tr),
           );
         }
         if (moonData.phase == MoonPhase.fullMoon) {
           return _NotificationContent(
-            title: isEn ? 'Full Moon Tonight' : 'Bu Gece Dolunay',
-            body: isEn
-                ? 'The full moon is tonight — a wonderful moment for gratitude.'
-                : 'Bu gece dolunay — şükran için güzel bir an.',
+            title: L10nService.get('data.services.notification_lifecycle.full_moon_tonight', isEn ? AppLanguage.en : AppLanguage.tr),
+            body: L10nService.get('data.services.notification_lifecycle.the_full_moon_is_tonight_a_wonderful_mom', isEn ? AppLanguage.en : AppLanguage.tr),
           );
         }
         return null;
 
       case LifecycleNotificationType.reEngagement3Day:
         return _NotificationContent(
-          title: isEn ? 'Your Journal Awaits' : 'Günlüğün Burada',
-          body: isEn
-              ? 'Your journal is here whenever you are ready.'
-              : 'Hazır olduğunda günlüğün burada seni bekliyor.',
+          title: L10nService.get('data.services.notification_lifecycle.your_journal_awaits', isEn ? AppLanguage.en : AppLanguage.tr),
+          body: L10nService.get('data.services.notification_lifecycle.your_journal_is_here_whenever_you_are_re', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case LifecycleNotificationType.reEngagement7Day:
@@ -642,16 +624,14 @@ class NotificationLifecycleService {
         ];
         final idx7 = DateTime.now().day % pool7En.length;
         return _NotificationContent(
-          title: isEn ? 'One Sentence Counts' : 'Bir Cümle Yeter',
+          title: L10nService.get('data.services.notification_lifecycle.one_sentence_counts', isEn ? AppLanguage.en : AppLanguage.tr),
           body: isEn ? pool7En[idx7] : pool7Tr[idx7],
         );
 
       case LifecycleNotificationType.reEngagement14Day:
         return _NotificationContent(
-          title: isEn ? 'Still Here For You' : 'Hâlâ Buradayız',
-          body: isEn
-              ? 'Your patterns are still here, ready when you are.'
-              : 'Kalıpların hâlâ burada, hazır olduğunda seni bekliyor.',
+          title: L10nService.get('data.services.notification_lifecycle.still_here_for_you', isEn ? AppLanguage.en : AppLanguage.tr),
+          body: L10nService.get('data.services.notification_lifecycle.your_patterns_are_still_here_ready_when', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case LifecycleNotificationType.reEngagement30Day:
@@ -669,7 +649,7 @@ class NotificationLifecycleService {
         ];
         final idx30 = DateTime.now().day % pool30En.length;
         return _NotificationContent(
-          title: isEn ? 'Welcome Back?' : 'Tekrar Hoş Geldin?',
+          title: L10nService.get('data.services.notification_lifecycle.welcome_back', isEn ? AppLanguage.en : AppLanguage.tr),
           body: isEn ? pool30En[idx30] : pool30Tr[idx30],
         );
 
@@ -679,17 +659,13 @@ class NotificationLifecycleService {
           title: isEn
               ? 'Your $year Wrapped is Ready!'
               : '$year Wrapped\'ın Hazır!',
-          body: isEn
-              ? 'See your year in patterns — your personal recap awaits.'
-              : 'Yılını örüntülerle gör — kişisel özetin seni bekliyor.',
+          body: L10nService.get('data.services.notification_lifecycle.see_your_year_in_patterns_your_personal', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case LifecycleNotificationType.weeklyDigest:
         return _NotificationContent(
-          title: isEn ? 'Weekly Reflection' : 'Haftalık Yansıtma',
-          body: isEn
-              ? 'Your weekly reflection is ready to review.'
-              : 'Haftalık yansıtman incelemeye hazır.',
+          title: L10nService.get('data.services.notification_lifecycle.weekly_reflection', isEn ? AppLanguage.en : AppLanguage.tr),
+          body: L10nService.get('data.services.notification_lifecycle.your_weekly_reflection_is_ready_to_revie', isEn ? AppLanguage.en : AppLanguage.tr),
         );
     }
   }

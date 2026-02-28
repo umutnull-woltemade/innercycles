@@ -7,6 +7,8 @@
 // ============================================================================
 
 import 'package:flutter/material.dart';
+import '../services/l10n_service.dart';
+import '../providers/app_providers.dart';
 
 /// High-level category for share card templates
 enum ShareCardCategory {
@@ -19,15 +21,15 @@ enum ShareCardCategory {
   String label(bool isEn) {
     switch (this) {
       case ShareCardCategory.identity:
-        return isEn ? 'Identity' : 'Kimlik';
+        return L10nService.get('data.models.share_models.identity', isEn ? AppLanguage.en : AppLanguage.tr);
       case ShareCardCategory.pattern:
-        return isEn ? 'Patterns' : 'Örüntü';
+        return L10nService.get('data.models.share_models.patterns', isEn ? AppLanguage.en : AppLanguage.tr);
       case ShareCardCategory.achievement:
-        return isEn ? 'Achievements' : 'Başarı';
+        return L10nService.get('data.models.share_models.achievements', isEn ? AppLanguage.en : AppLanguage.tr);
       case ShareCardCategory.wisdom:
-        return isEn ? 'Wisdom' : 'Bilgelik';
+        return L10nService.get('data.models.share_models.wisdom', isEn ? AppLanguage.en : AppLanguage.tr);
       case ShareCardCategory.reflection:
-        return isEn ? 'Reflection' : 'Yansıma';
+        return L10nService.get('data.models.share_models.reflection', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 

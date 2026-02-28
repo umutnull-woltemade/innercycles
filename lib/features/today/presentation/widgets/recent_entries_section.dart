@@ -12,6 +12,7 @@ import '../../../../data/services/haptic_service.dart';
 import '../../../../shared/widgets/gradient_text.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/tap_scale.dart';
+import '../../../../data/services/l10n_service.dart';
 
 class RecentEntriesSection extends ConsumerWidget {
   final bool isEn;
@@ -52,7 +53,7 @@ class RecentEntriesSection extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GradientText(
-                      isEn ? 'Recent Entries' : 'Son Kayıtlar',
+                      L10nService.get('today.recent_entries.recent_entries', isEn ? AppLanguage.en : AppLanguage.tr),
                       variant: GradientTextVariant.aurora,
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 17,
@@ -61,7 +62,7 @@ class RecentEntriesSection extends ConsumerWidget {
                       ),
                     ),
                     Semantics(
-                      label: isEn ? 'See all entries' : 'Tüm kayıtları gör',
+                      label: L10nService.get('today.recent_entries.see_all_entries', isEn ? AppLanguage.en : AppLanguage.tr),
                       button: true,
                       child: GestureDetector(
                         onTap: () {
@@ -74,7 +75,7 @@ class RecentEntriesSection extends ConsumerWidget {
                           child: Align(
                             alignment: Alignment.centerRight,
                             child: Text(
-                              isEn ? 'See All' : 'Tümünü Gör',
+                              L10nService.get('today.recent_entries.see_all', isEn ? AppLanguage.en : AppLanguage.tr),
                               style: AppTypography.subtitle(
                                 fontSize: 14,
                                 color: isDark
@@ -264,15 +265,15 @@ class RecentEntriesSection extends ConsumerWidget {
   String _focusAreaLabel(FocusArea area) {
     switch (area) {
       case FocusArea.energy:
-        return isEn ? 'Energy' : 'Enerji';
+        return L10nService.get('today.recent_entries.energy', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.focus:
-        return isEn ? 'Focus' : 'Odak';
+        return L10nService.get('today.recent_entries.focus', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.emotions:
-        return isEn ? 'Emotions' : 'Duygular';
+        return L10nService.get('today.recent_entries.emotions', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.decisions:
-        return isEn ? 'Decisions' : 'Kararlar';
+        return L10nService.get('today.recent_entries.decisions', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.social:
-        return isEn ? 'Social' : 'Sosyal';
+        return L10nService.get('today.recent_entries.social', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 }

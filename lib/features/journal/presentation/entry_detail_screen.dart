@@ -21,6 +21,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../data/services/l10n_service.dart';
 
 class EntryDetailScreen extends ConsumerWidget {
   final String entryId;
@@ -64,7 +65,7 @@ class EntryDetailScreen extends ConsumerWidget {
                         color: AppColors.starGold,
                       ),
                       label: Text(
-                        isEn ? 'Retry' : 'Tekrar Dene',
+                        L10nService.get('journal.entry_detail.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -81,7 +82,7 @@ class EntryDetailScreen extends ConsumerWidget {
               if (entry == null) {
                 return Center(
                   child: Text(
-                    isEn ? 'Entry not found' : 'Kayıt bulunamadı',
+                    L10nService.get('journal.entry_detail.entry_not_found', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.subtitle(
                       color: isDark
                           ? AppColors.textPrimary
@@ -135,7 +136,7 @@ class EntryDetailScreen extends ConsumerWidget {
                       : '$areaLabel — $stars$noteSnippet\n\nInnerCycles ile yansıma yapıyorum.\n${AppConstants.appStoreUrl}\n#InnerCycles';
                   SharePlus.instance.share(ShareParams(text: msg));
                 },
-                tooltip: isEn ? 'Share entry' : 'Kaydı paylaş',
+                tooltip: L10nService.get('journal.entry_detail.share_entry', isEn ? AppLanguage.en : AppLanguage.tr),
                 icon: Icon(
                   Icons.share_rounded,
                   color: AppColors.starGold,
@@ -144,7 +145,7 @@ class EntryDetailScreen extends ConsumerWidget {
               ),
               IconButton(
                 onPressed: () => _confirmDelete(context, ref, entry.id, isEn),
-                tooltip: isEn ? 'Delete entry' : 'Kaydı sil',
+                tooltip: L10nService.get('journal.entry_detail.delete_entry', isEn ? AppLanguage.en : AppLanguage.tr),
                 icon: Icon(Icons.delete_outline, color: AppColors.error),
               ),
             ],
@@ -350,9 +351,7 @@ class EntryDetailScreen extends ConsumerWidget {
           width: double.infinity,
           fit: BoxFit.cover,
           cacheWidth: 800,
-          semanticLabel: isEn
-              ? 'Journal entry photo'
-              : 'Günlük kaydı fotoğrafı',
+          semanticLabel: L10nService.get('journal.entry_detail.journal_entry_photo', isEn ? AppLanguage.en : AppLanguage.tr),
           errorBuilder: (_, _, _) => const SizedBox.shrink(),
         ),
       ),
@@ -374,7 +373,7 @@ class EntryDetailScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            (isEn ? 'Notes' : 'Notlar').toUpperCase(),
+            (L10nService.get('journal.entry_detail.notes', isEn ? AppLanguage.en : AppLanguage.tr)).toUpperCase(),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 14,
@@ -389,7 +388,7 @@ class EntryDetailScreen extends ConsumerWidget {
               HapticService.buttonPress();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(isEn ? 'Entry copied to clipboard' : 'Kayıt panoya kopyalandı'),
+                  content: Text(L10nService.get('journal.entry_detail.entry_copied_to_clipboard', isEn ? AppLanguage.en : AppLanguage.tr)),
                   duration: const Duration(seconds: 1),
                   backgroundColor: AppColors.success,
                 ),
@@ -419,12 +418,10 @@ class EntryDetailScreen extends ConsumerWidget {
   ) async {
     final confirmed = await GlassDialog.confirm(
       context,
-      title: isEn ? 'Delete Entry?' : 'Kaydı Sil?',
-      message: isEn
-          ? 'This journal entry will be permanently deleted.'
-          : 'Bu günlük kaydı kalıcı olarak silinecek.',
-      cancelLabel: isEn ? 'Cancel' : 'İptal',
-      confirmLabel: isEn ? 'Delete' : 'Sil',
+      title: L10nService.get('journal.entry_detail.delete_entry_1', isEn ? AppLanguage.en : AppLanguage.tr),
+      message: L10nService.get('journal.entry_detail.this_journal_entry_will_be_permanently_d', isEn ? AppLanguage.en : AppLanguage.tr),
+      cancelLabel: L10nService.get('journal.entry_detail.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
+      confirmLabel: L10nService.get('journal.entry_detail.delete', isEn ? AppLanguage.en : AppLanguage.tr),
       isDestructive: true,
     );
     if (confirmed != true) return;

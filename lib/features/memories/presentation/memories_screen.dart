@@ -24,6 +24,7 @@ import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
+import '../../../data/services/l10n_service.dart';
 
 class MemoriesScreen extends ConsumerStatefulWidget {
   const MemoriesScreen({super.key});
@@ -56,7 +57,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    isEn ? 'Couldn\'t load your memories' : 'Anıların yüklenemedi',
+                    L10nService.get('memories.memories.couldnt_load_your_memories', isEn ? AppLanguage.en : AppLanguage.tr),
                     textAlign: TextAlign.center,
                     style: AppTypography.decorativeScript(
                       fontSize: 14,
@@ -72,7 +73,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      isEn ? 'Retry' : 'Tekrar Dene',
+                      L10nService.get('memories.memories.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -136,7 +137,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                     parent: AlwaysScrollableScrollPhysics(),
                   ),
                   slivers: [
-                    GlassSliverAppBar(title: isEn ? 'Memories' : 'An\u0131lar'),
+                    GlassSliverAppBar(title: L10nService.get('memories.memories.memories', isEn ? AppLanguage.en : AppLanguage.tr)),
                     // Stats header
                     SliverToBoxAdapter(
                       child: Padding(
@@ -163,9 +164,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                             bottom: AppConstants.spacingMd,
                           ),
                           child: GradientText(
-                            isEn
-                                ? 'On This Day'
-                                : 'Bug\u00fcn Ge\u00e7mi\u015fte',
+                            L10nService.get('memories.memories.on_this_day', isEn ? AppLanguage.en : AppLanguage.tr),
                             variant: GradientTextVariant.gold,
                             style: AppTypography.displayFont.copyWith(
                               fontSize: 17,
@@ -231,14 +230,10 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                       SliverToBoxAdapter(
                         child: PremiumEmptyState(
                           icon: Icons.auto_stories_rounded,
-                          title: isEn
-                              ? 'This month is a blank canvas'
-                              : 'Bu ay boş bir tuval',
-                          description: isEn
-                              ? 'Your memories from this period will appear here'
-                              : 'Bu döneme ait anıların burada görünecek',
+                          title: L10nService.get('memories.memories.this_month_is_a_blank_canvas', isEn ? AppLanguage.en : AppLanguage.tr),
+                          description: L10nService.get('memories.memories.your_memories_from_this_period_will_appe', isEn ? AppLanguage.en : AppLanguage.tr),
                           gradientVariant: GradientTextVariant.gold,
-                          ctaLabel: isEn ? 'Write an Entry' : 'Kayıt Yaz',
+                          ctaLabel: L10nService.get('memories.memories.write_an_entry', isEn ? AppLanguage.en : AppLanguage.tr),
                           onCtaPressed: () => context.go(Routes.journal),
                         ),
                       )
@@ -277,7 +272,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
   Widget _buildEmptyState(BuildContext context, bool isDark, bool isEn) {
     return CustomScrollView(
       slivers: [
-        GlassSliverAppBar(title: isEn ? 'Memories' : 'An\u0131lar'),
+        GlassSliverAppBar(title: L10nService.get('memories.memories.memories_1', isEn ? AppLanguage.en : AppLanguage.tr)),
         SliverFillRemaining(
           hasScrollBody: false,
           child: ToolEmptyState(
@@ -346,19 +341,19 @@ class _MemoriesStatsHeader extends StatelessWidget {
         children: [
           _MiniStat(
             value: '$totalEntries',
-            label: isEn ? 'Entries' : 'Kay\u0131t',
+            label: L10nService.get('memories.memories.entries', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.auroraStart,
             isDark: isDark,
           ),
           _MiniStat(
             value: '$photoEntries',
-            label: isEn ? 'Photos' : 'Foto\u011fraf',
+            label: L10nService.get('memories.memories.photos', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.starGold,
             isDark: isDark,
           ),
           _MiniStat(
             value: firstDate,
-            label: isEn ? 'Since' : '\u0130lk Kay\u0131t',
+            label: L10nService.get('memories.memories.since', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.success,
             isDark: isDark,
             isSmallValue: true,
@@ -456,7 +451,7 @@ class _OnThisDayCard extends StatelessWidget {
                   File(entry.imagePath!),
                   fit: BoxFit.cover,
                   cacheWidth: 400,
-                  semanticLabel: isEn ? 'Memory photo' : 'Anı fotoğrafı',
+                  semanticLabel: L10nService.get('memories.memories.memory_photo', isEn ? AppLanguage.en : AppLanguage.tr),
                   errorBuilder: (_, _, _) => _placeholderIcon(),
                 ),
               )
@@ -660,7 +655,7 @@ class _MemoryCard extends StatelessWidget {
                   File(entry.imagePath!),
                   fit: BoxFit.cover,
                   cacheWidth: 800,
-                  semanticLabel: isEn ? 'Memory photo' : 'Anı fotoğrafı',
+                  semanticLabel: L10nService.get('memories.memories.memory_photo_1', isEn ? AppLanguage.en : AppLanguage.tr),
                   errorBuilder: (_, _, _) => Container(
                     color: isDark
                         ? AppColors.surfaceDark

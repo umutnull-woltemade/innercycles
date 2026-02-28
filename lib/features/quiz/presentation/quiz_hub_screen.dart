@@ -24,6 +24,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../data/services/l10n_service.dart';
 
 class QuizHubScreen extends ConsumerWidget {
   const QuizHubScreen({super.key});
@@ -44,9 +45,7 @@ class QuizHubScreen extends ConsumerWidget {
             ),
             slivers: [
               GlassSliverAppBar(
-                title: isEn
-                    ? 'Self-Reflection Quizzes'
-                    : 'Öz Yansıtma Testleri',
+                title: L10nService.get('quiz.quiz_hub.selfreflection_quizzes', isEn ? AppLanguage.en : AppLanguage.tr),
               ),
               SliverPadding(
                 padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -54,9 +53,7 @@ class QuizHubScreen extends ConsumerWidget {
                   delegate: SliverChildListDelegate([
                     // Header description
                     Text(
-                          isEn
-                              ? 'Explore different aspects of yourself through thoughtful self-reflection. These are personal awareness tools, not clinical assessments.'
-                              : 'Düşünceli öz yansıtma yoluyla kendinizin farklı yönlerini keşfedin. Bunlar kişisel farkındalık araçlarıdır, klinik değerlendirmeler değildir.',
+                          L10nService.get('quiz.quiz_hub.explore_different_aspects_of_yourself_th', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.decorativeScript(
                             fontSize: 15,
                             color: AppColors.textSecondary,
@@ -167,7 +164,7 @@ class _QuizCard extends StatelessWidget {
     return Semantics(
       button: true,
       label: isEn ? quiz.title : quiz.titleTr,
-      hint: isCompleted ? (isEn ? 'Completed' : 'Tamamlandı') : null,
+      hint: isCompleted ? (L10nService.get('quiz.quiz_hub.completed', isEn ? AppLanguage.en : AppLanguage.tr)) : null,
       child: GestureDetector(
         onTap: onTap,
         child: PremiumCard(
@@ -227,7 +224,7 @@ class _QuizCard extends StatelessWidget {
                               ),
                             ),
                             child: Text(
-                              isEn ? 'Completed' : 'Tamamlandı',
+                              L10nService.get('quiz.quiz_hub.completed_1', isEn ? AppLanguage.en : AppLanguage.tr),
                               style: AppTypography.elegantAccent(
                                 fontSize: 11,
                                 color: AppColors.auroraStart,

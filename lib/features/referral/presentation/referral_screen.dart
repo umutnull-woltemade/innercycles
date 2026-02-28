@@ -17,6 +17,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../data/services/l10n_service.dart';
 
 class ReferralScreen extends ConsumerStatefulWidget {
   final String? initialCode;
@@ -62,23 +63,15 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
       _isApplying = false;
       switch (result) {
         case ReferralResult.success:
-          _applyMessage = isEn
-              ? 'Code applied! You earned 7 days of Premium.'
-              : 'Kod uygulandı! 7 gün Premium kazandın.';
+          _applyMessage = L10nService.get('referral.referral.code_applied_you_earned_7_days_of_premiu', isEn ? AppLanguage.en : AppLanguage.tr);
           _codeController.clear();
           HapticService.featureUnlocked();
         case ReferralResult.ownCode:
-          _applyMessage = isEn
-              ? 'You can\'t use your own code.'
-              : 'Kendi kodunu kullanamazsın.';
+          _applyMessage = L10nService.get('referral.referral.you_cant_use_your_own_code', isEn ? AppLanguage.en : AppLanguage.tr);
         case ReferralResult.alreadyUsed:
-          _applyMessage = isEn
-              ? 'You\'ve already used a referral code.'
-              : 'Zaten bir davet kodu kullandın.';
+          _applyMessage = L10nService.get('referral.referral.youve_already_used_a_referral_code', isEn ? AppLanguage.en : AppLanguage.tr);
         case ReferralResult.invalidCode:
-          _applyMessage = isEn
-              ? 'That code didn\'t work. Please double-check and try again.'
-              : 'Bu kod çalışmadı. Lütfen kontrol edip tekrar dene.';
+          _applyMessage = L10nService.get('referral.referral.that_code_didnt_work_please_doublecheck', isEn ? AppLanguage.en : AppLanguage.tr);
       }
     });
   }
@@ -98,7 +91,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
             ),
             slivers: [
               GlassSliverAppBar(
-                title: isEn ? 'Invite Friends' : 'Arkadaşlarını Davet Et',
+                title: L10nService.get('referral.referral.invite_friends', isEn ? AppLanguage.en : AppLanguage.tr),
               ),
               SliverPadding(
                 padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -163,7 +156,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
             .fadeIn(duration: 300.ms),
         const SizedBox(height: AppConstants.spacingMd),
         GradientText(
-          isEn ? 'Give 7 Days, Get 7 Days' : '7 Gün Ver, 7 Gün Kazan',
+          L10nService.get('referral.referral.give_7_days_get_7_days', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.displayFont.copyWith(
             fontSize: 24,
@@ -172,9 +165,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
         ).animate(delay: 100.ms).fadeIn(duration: 400.ms),
         const SizedBox(height: 8),
         Text(
-          isEn
-              ? 'Share your code with friends. When they join,\nyou both get 7 days of Premium free.'
-              : 'Kodunu arkadaşlarınla paylaş. Katıldıklarında\nikinizie de 7 gün Premium hediye.',
+          L10nService.get('referral.referral.share_your_code_with_friends_when_they_j', isEn ? AppLanguage.en : AppLanguage.tr),
           textAlign: TextAlign.center,
           style: AppTypography.decorativeScript(
             fontSize: 14,
@@ -192,7 +183,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
       child: Column(
         children: [
           Text(
-            isEn ? 'Your Invite Code' : 'Davet Kodun',
+            L10nService.get('referral.referral.your_invite_code', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.elegantAccent(
               fontSize: 12,
               letterSpacing: 2,
@@ -206,7 +197,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
               HapticFeedback.lightImpact();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(isEn ? 'Referral code copied — share it with a friend' : 'Davet kodu kopyalandı — bir arkadaşınla paylaş'),
+                  content: Text(L10nService.get('referral.referral.referral_code_copied_share_it_with_a_fri', isEn ? AppLanguage.en : AppLanguage.tr)),
                   behavior: SnackBarBehavior.floating,
                   duration: const Duration(seconds: 2),
                   shape: RoundedRectangleBorder(
@@ -240,7 +231,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
           ),
           const SizedBox(height: 8),
           Text(
-            isEn ? 'Tap to copy' : 'Kopyalamak için dokun',
+            L10nService.get('referral.referral.tap_to_copy', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.subtitle(
               fontSize: 11,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -257,7 +248,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
 
   Widget _buildShareButton(ReferralService service, bool isEn) {
     return GradientButton.gold(
-      label: isEn ? 'Share Invite Link' : 'Davet Linkini Paylaş',
+      label: L10nService.get('referral.referral.share_invite_link', isEn ? AppLanguage.en : AppLanguage.tr),
       icon: Icons.share_rounded,
       expanded: true,
       onPressed: () {
@@ -278,19 +269,19 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
         children: [
           _StatCell(
             value: '${info.referralCount}',
-            label: isEn ? 'Friends Invited' : 'Davet Edilen',
+            label: L10nService.get('referral.referral.friends_invited', isEn ? AppLanguage.en : AppLanguage.tr),
             isDark: isDark,
           ),
           _divider(isDark),
           _StatCell(
             value: '${info.rewardDaysEarned}',
-            label: isEn ? 'Days Earned' : 'Kazanılan Gün',
+            label: L10nService.get('referral.referral.days_earned', isEn ? AppLanguage.en : AppLanguage.tr),
             isDark: isDark,
           ),
           _divider(isDark),
           _StatCell(
             value: info.hasActiveReward ? '${info.daysRemaining}d' : '—',
-            label: isEn ? 'Days Left' : 'Kalan Gün',
+            label: L10nService.get('referral.referral.days_left', isEn ? AppLanguage.en : AppLanguage.tr),
             isDark: isDark,
           ),
         ],
@@ -314,7 +305,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn ? 'Milestones' : 'Kilometre Taşları',
+          L10nService.get('referral.referral.milestones', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 15,
@@ -324,16 +315,16 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
         const SizedBox(height: AppConstants.spacingMd),
         _MilestoneRow(
           emoji: '\u{2B50}',
-          title: isEn ? '3 Friends' : '3 Arkadaş',
-          subtitle: isEn ? '1 Month Free Premium' : '1 Ay Ücretsiz Premium',
+          title: L10nService.get('referral.referral.3_friends', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('referral.referral.1_month_free_premium', isEn ? AppLanguage.en : AppLanguage.tr),
           achieved: count >= 3,
           isDark: isDark,
         ),
         const SizedBox(height: 8),
         _MilestoneRow(
           emoji: '\u{1F48E}',
-          title: isEn ? '10 Friends' : '10 Arkadaş',
-          subtitle: isEn ? 'Lifetime Premium' : 'Ömür Boyu Premium',
+          title: L10nService.get('referral.referral.10_friends', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('referral.referral.lifetime_premium', isEn ? AppLanguage.en : AppLanguage.tr),
           achieved: count >= 10,
           isDark: isDark,
         ),
@@ -356,9 +347,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
             const SizedBox(width: 12),
             Expanded(
               child: Text(
-                isEn
-                    ? 'You\'ve already used a referral code.'
-                    : 'Zaten bir davet kodu kullandın.',
+                L10nService.get('referral.referral.youve_already_used_a_referral_code_1', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.subtitle(
                   fontSize: 13,
                   color: isDark
@@ -376,7 +365,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn ? 'Have a Code?' : 'Kodun Var Mı?',
+          L10nService.get('referral.referral.have_a_code', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.amethyst,
           style: AppTypography.elegantAccent(
             fontSize: 15,
@@ -403,7 +392,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
                 ),
                 decoration: InputDecoration(
                   counterText: '',
-                  hintText: isEn ? 'Paste your referral code' : 'Davet kodunu yapıştır',
+                  hintText: L10nService.get('referral.referral.paste_your_referral_code', isEn ? AppLanguage.en : AppLanguage.tr),
                   hintStyle: AppTypography.subtitle(
                     fontSize: 18,
                     color: isDark
@@ -431,8 +420,8 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
               const SizedBox(height: 12),
               GradientButton.gold(
                 label: _isApplying
-                    ? (isEn ? 'Applying...' : 'Uygulanıyor...')
-                    : (isEn ? 'Apply Code' : 'Kodu Uygula'),
+                    ? (L10nService.get('referral.referral.applying', isEn ? AppLanguage.en : AppLanguage.tr))
+                    : (L10nService.get('referral.referral.apply_code', isEn ? AppLanguage.en : AppLanguage.tr)),
                 expanded: true,
                 onPressed:
                     _isApplying ? null : () => _applyCode(service, isEn),

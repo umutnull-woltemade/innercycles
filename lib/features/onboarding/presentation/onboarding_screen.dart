@@ -305,7 +305,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       buttonLabel = L10nService.get('common.start_journey', language);
       buttonIcon = Icons.auto_awesome;
     } else if (isLastValueProp) {
-      buttonLabel = isEn ? 'Get Started' : 'Başlayalım';
+      buttonLabel = L10nService.get('onboarding.onboarding.get_started', isEn ? AppLanguage.en : AppLanguage.tr);
       buttonIcon = Icons.arrow_forward;
     } else {
       buttonLabel = L10nService.get('common.continue', language);
@@ -386,7 +386,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             GestureDetector(
               onTap: _nextPage,
               child: Text(
-                isEn ? 'Skip for now' : 'Şimdilik atla',
+                L10nService.get('onboarding.onboarding.skip_for_now', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
                   color: AppColors.textMuted,
@@ -860,7 +860,7 @@ class _FirstCyclePage extends StatelessWidget {
 
           // Title
           GradientText(
-            isEn ? 'Pick Your Starting Signal' : 'İlk Sinyalini Seç',
+            L10nService.get('onboarding.onboarding.pick_your_starting_signal', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.displayFont.copyWith(
               fontSize: 28,
               fontWeight: FontWeight.w600,
@@ -872,9 +872,7 @@ class _FirstCyclePage extends StatelessWidget {
           const SizedBox(height: 8),
 
           Text(
-            isEn
-                ? 'There\'s no wrong answer — follow your curiosity'
-                : 'Yanlış cevap yok — merakını takip et',
+            L10nService.get('onboarding.onboarding.theres_no_wrong_answer_follow_your_curio', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.decorativeScript(
               fontSize: 19,
               color: AppColors.textMuted,
@@ -1005,9 +1003,7 @@ class _FirstCyclePage extends StatelessWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    isEn
-                        ? 'All signals unlock as you journal'
-                        : 'Günlük tuttukça tüm sinyaller açılır',
+                    L10nService.get('onboarding.onboarding.all_signals_unlock_as_you_journal', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.subtitle(
                       fontSize: 14,
                       color: AppColors.textMuted,
@@ -1086,7 +1082,7 @@ class _FirstMoodPage extends StatelessWidget {
           const SizedBox(height: 20),
 
           GradientText(
-            isEn ? 'How are you feeling right now?' : 'Şu an nasıl hissediyorsun?',
+            L10nService.get('onboarding.onboarding.how_are_you_feeling_right_now', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.displayFont.copyWith(
               fontSize: 26,
               fontWeight: FontWeight.w600,
@@ -1099,9 +1095,7 @@ class _FirstMoodPage extends StatelessWidget {
           const SizedBox(height: 8),
 
           Text(
-            isEn
-                ? 'Your first check-in — this powers your mood dashboard'
-                : 'İlk check-in\'in — bu ruh hali panelini besler',
+            L10nService.get('onboarding.onboarding.your_first_checkin_this_powers_your_mood', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.decorativeScript(
               fontSize: 15,
               color: AppColors.textMuted,
@@ -1194,9 +1188,7 @@ class _FirstMoodPage extends StatelessWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    isEn
-                        ? 'Check in daily to see patterns emerge'
-                        : 'Her gün kayıt yap, kalıpların ortaya çıksın',
+                    L10nService.get('onboarding.onboarding.check_in_daily_to_see_patterns_emerge', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.subtitle(
                       fontSize: 14,
                       color: AppColors.textMuted,
@@ -1415,7 +1407,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
           const SizedBox(height: 20),
 
           GradientText(
-            isEn ? 'You\'re All Set' : 'Her Şey Hazır',
+            L10nService.get('onboarding.onboarding.youre_all_set', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.displayFont.copyWith(
               fontSize: 30,
               fontWeight: FontWeight.w600,
@@ -1427,9 +1419,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
           const SizedBox(height: 12),
 
           Text(
-            isEn
-                ? 'One last thing — stay on track with gentle reminders'
-                : 'Son bir şey — nazik hatırlatıcılarla yolda kal',
+            L10nService.get('onboarding.onboarding.one_last_thing_stay_on_track_with_gentle', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.decorativeScript(
               fontSize: 16,
               color: AppColors.textSecondary,
@@ -1475,9 +1465,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          isEn
-                              ? 'Daily Reflection Reminder'
-                              : 'Günlük Yansıma Hatırlatıcı',
+                          L10nService.get('onboarding.onboarding.daily_reflection_reminder', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.elegantAccent(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
@@ -1487,9 +1475,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          isEn
-                              ? 'A gentle nudge at 9:00 AM'
-                              : 'Sabah 9:00\'da nazik bir hatırlatma',
+                          L10nService.get('onboarding.onboarding.a_gentle_nudge_at_900_am', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.decorativeScript(
                             fontSize: 15,
                             color: AppColors.textMuted,
@@ -1500,9 +1486,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
                   ),
                   Semantics(
                     button: true,
-                    label: isEn
-                        ? 'Enable notifications'
-                        : 'Bildirimleri etkinleştir',
+                    label: L10nService.get('onboarding.onboarding.enable_notifications', isEn ? AppLanguage.en : AppLanguage.tr),
                     child: GestureDetector(
                       onTap: notificationsRequested
                           ? null
@@ -1566,7 +1550,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isEn ? 'What\'s Included' : 'Neler Dahil',
+                  L10nService.get('onboarding.onboarding.whats_included', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.elegantAccent(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -1577,21 +1561,19 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
                 const SizedBox(height: 14),
                 _FeatureRow(
                   icon: Icons.edit_note,
-                  text: isEn
-                      ? 'Daily reflection journal'
-                      : 'Günlük yansıma günlüğü',
+                  text: L10nService.get('onboarding.onboarding.daily_reflection_journal', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
                 _FeatureRow(
                   icon: Icons.nights_stay,
-                  text: isEn ? 'Dream journal' : 'Rüya günlüğü',
+                  text: L10nService.get('onboarding.onboarding.dream_journal', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
                 _FeatureRow(
                   icon: Icons.auto_graph,
-                  text: isEn ? 'Pattern recognition' : 'Kalıp tanıma',
+                  text: L10nService.get('onboarding.onboarding.pattern_recognition', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
                 _FeatureRow(
                   icon: Icons.library_books,
-                  text: isEn ? 'Symbol glossary' : 'Sembol sözlüğü',
+                  text: L10nService.get('onboarding.onboarding.symbol_glossary', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
               ],
             ),
@@ -1612,9 +1594,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  isEn
-                      ? 'Have an invite code?'
-                      : 'Davet kodun var mı?',
+                  L10nService.get('onboarding.onboarding.have_an_invite_code', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.subtitle(
                     fontSize: 14,
                     color: AppColors.starGold.withValues(alpha: 0.8),
@@ -1645,9 +1625,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
                 child: Column(
                   children: [
                     Text(
-                      isEn
-                          ? 'Enter your friend\'s code for 7 days free Premium'
-                          : 'Arkadaşının kodunu gir, 7 gün ücretsiz Premium kazan',
+                      L10nService.get('onboarding.onboarding.enter_your_friends_code_for_7_days_free', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.subtitle(
                         fontSize: 13,
                         color: AppColors.textSecondary,
@@ -1668,7 +1646,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
                           letterSpacing: 4,
                         ),
                         decoration: InputDecoration(
-                          hintText: isEn ? 'ABCD1234' : 'ABCD1234',
+                          hintText: L10nService.get('onboarding.onboarding.abcd1234', isEn ? AppLanguage.en : AppLanguage.tr),
                           hintStyle: AppTypography.subtitle(
                             fontSize: 18,
                             color: AppColors.textMuted.withValues(alpha: 0.3),
@@ -1841,9 +1819,7 @@ class _WelcomePage extends StatelessWidget {
 
           // Tagline
           Text(
-            isEn
-                ? 'Your story. Your patterns. Your clarity.'
-                : 'Senin hikayen. Senin kalıpların. Senin netliğin.',
+            L10nService.get('onboarding.onboarding.your_story_your_patterns_your_clarity', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.decorativeScript(
               fontSize: 16,
               color: AppColors.textSecondary,
@@ -1903,9 +1879,7 @@ class _WelcomePage extends StatelessWidget {
                 const SizedBox(width: 6),
                 Flexible(
                   child: Text(
-                    isEn
-                        ? 'Private & secure. Your journal stays on your device.'
-                        : 'Gizli ve güvenli. Günlüğün cihazında kalır.',
+                    L10nService.get('onboarding.onboarding.private_secure_your_journal_stays_on_you', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       color: AppColors.textMuted,

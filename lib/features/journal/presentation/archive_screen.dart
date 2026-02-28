@@ -21,6 +21,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
+import '../../../data/services/l10n_service.dart';
 
 class ArchiveScreen extends ConsumerStatefulWidget {
   const ArchiveScreen({super.key});
@@ -99,7 +100,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                           color: AppColors.starGold,
                         ),
                         label: Text(
-                          isEn ? 'Retry' : 'Tekrar Dene',
+                          L10nService.get('journal.archive.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.elegantAccent(
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
@@ -140,7 +141,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                       parent: AlwaysScrollableScrollPhysics(),
                     ),
                     slivers: [
-                      GlassSliverAppBar(title: isEn ? 'Archive' : 'Arşiv'),
+                      GlassSliverAppBar(title: L10nService.get('journal.archive.archive', isEn ? AppLanguage.en : AppLanguage.tr)),
                       // Search bar
                       SliverToBoxAdapter(
                         child: Padding(
@@ -183,11 +184,9 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                           hasScrollBody: false,
                           child: PremiumEmptyState(
                             icon: Icons.book_outlined,
-                            title: isEn ? 'Your journal is a blank page — ready when you are' : 'Günlüğün boş bir sayfa — hazır olduğunda burada',
-                            description: isEn
-                                ? 'Your journal entries will appear here as you build your personal cycle map.'
-                                : 'Kişisel döngü haritanı oluşturdukça günlük kayıtların burada görünecek.',
-                            ctaLabel: isEn ? 'Write First Entry' : 'İlk Kaydını Yaz',
+                            title: L10nService.get('journal.archive.your_journal_is_a_blank_page_ready_when', isEn ? AppLanguage.en : AppLanguage.tr),
+                            description: L10nService.get('journal.archive.your_journal_entries_will_appear_here_as', isEn ? AppLanguage.en : AppLanguage.tr),
+                            ctaLabel: L10nService.get('journal.archive.write_first_entry', isEn ? AppLanguage.en : AppLanguage.tr),
                             onCtaPressed: () => context.go(Routes.journal),
                           ),
                         )
@@ -206,12 +205,10 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                                 confirmDismiss: (_) async {
                                   final confirmed = await GlassDialog.confirm(
                                     context,
-                                    title: isEn ? 'Delete Entry?' : 'Kayıt Silinsin mi?',
-                                    message: isEn
-                                        ? 'This journal entry will be permanently deleted.'
-                                        : 'Bu günlük kaydı kalıcı olarak silinecek.',
-                                    confirmLabel: isEn ? 'Delete' : 'Sil',
-                                    cancelLabel: isEn ? 'Cancel' : 'İptal',
+                                    title: L10nService.get('journal.archive.delete_entry', isEn ? AppLanguage.en : AppLanguage.tr),
+                                    message: L10nService.get('journal.archive.this_journal_entry_will_be_permanently_d', isEn ? AppLanguage.en : AppLanguage.tr),
+                                    confirmLabel: L10nService.get('journal.archive.delete', isEn ? AppLanguage.en : AppLanguage.tr),
+                                    cancelLabel: L10nService.get('journal.archive.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
                                     isDestructive: true,
                                   );
                                   if (confirmed == true) {
@@ -293,7 +290,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: isEn ? 'Search by date, mood, or text...' : 'Tarih, ruh hali veya metne göre ara...',
+          hintText: L10nService.get('journal.archive.search_by_date_mood_or_text', isEn ? AppLanguage.en : AppLanguage.tr),
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -303,7 +300,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
           ),
           suffixIcon: _searchQuery.isNotEmpty
               ? IconButton(
-                  tooltip: isEn ? 'Clear search' : 'Aramayı temizle',
+                  tooltip: L10nService.get('journal.archive.clear_search', isEn ? AppLanguage.en : AppLanguage.tr),
                   icon: Icon(
                     Icons.cancel,
                     color: isDark
@@ -333,7 +330,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
       child: Row(
         children: [
           _buildChip(
-            isEn ? 'All' : 'Tümü',
+            L10nService.get('journal.archive.all', isEn ? AppLanguage.en : AppLanguage.tr),
             _filterArea == null,
             () => setState(() => _filterArea = null),
             isDark,

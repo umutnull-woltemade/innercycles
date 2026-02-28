@@ -8,6 +8,7 @@ import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../data/services/l10n_service.dart';
 
 /// Collapsible sleep quality section for the daily entry screen
 class SleepSection extends ConsumerStatefulWidget {
@@ -111,7 +112,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                     const SizedBox(width: 10),
                     Expanded(
                       child: GradientText(
-                        isEn ? 'Sleep Quality' : 'Uyku Kalitesi',
+                        L10nService.get('sleep.sleep.sleep_quality', isEn ? AppLanguage.en : AppLanguage.tr),
                         variant: GradientTextVariant.aurora,
                         style: AppTypography.displayFont.copyWith(
                           fontSize: 15,
@@ -169,9 +170,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    isEn
-                        ? 'How did you sleep last night?'
-                        : 'Dün gece nasıl uyudun?',
+                    L10nService.get('sleep.sleep.how_did_you_sleep_last_night', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.decorativeScript(
                       fontSize: 13,
                       color: isDark
@@ -189,7 +188,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                       final isActive = quality == _selectedQuality;
                       return Semantics(
                         label:
-                            '${isEn ? 'Sleep quality' : 'Uyku kalitesi'} $quality: ${_qualityLabel(quality, isEn)}',
+                            '${L10nService.get('sleep.sleep.sleep_quality_1', isEn ? AppLanguage.en : AppLanguage.tr)} $quality: ${_qualityLabel(quality, isEn)}',
                         button: true,
                         selected: isActive,
                         child: GestureDetector(
@@ -266,9 +265,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                             : AppColors.lightTextPrimary,
                       ),
                       decoration: InputDecoration(
-                        hintText: isEn
-                            ? 'Any sleep notes... (optional)'
-                            : 'Uyku notları... (opsiyonel)',
+                        hintText: L10nService.get('sleep.sleep.any_sleep_notes_optional', isEn ? AppLanguage.en : AppLanguage.tr),
                         hintStyle: AppTypography.subtitle(
                           fontSize: 13,
                           color: isDark
@@ -377,7 +374,7 @@ class SleepSummaryCard extends ConsumerWidget {
                   ),
                   const SizedBox(width: 8),
                   GradientText(
-                    isEn ? 'Sleep This Week' : 'Bu Hafta Uyku',
+                    L10nService.get('sleep.sleep.sleep_this_week', isEn ? AppLanguage.en : AppLanguage.tr),
                     variant: GradientTextVariant.aurora,
                     style: AppTypography.displayFont.copyWith(
                       fontSize: 14,
@@ -405,19 +402,19 @@ class SleepSummaryCard extends ConsumerWidget {
               Row(
                 children: [
                   _SleepStat(
-                    label: isEn ? 'Avg' : 'Ort',
+                    label: L10nService.get('sleep.sleep.avg', isEn ? AppLanguage.en : AppLanguage.tr),
                     value: summary.averageQuality.toStringAsFixed(1),
                     isDark: isDark,
                   ),
                   const SizedBox(width: 20),
                   _SleepStat(
-                    label: isEn ? 'Nights' : 'Gece',
+                    label: L10nService.get('sleep.sleep.nights', isEn ? AppLanguage.en : AppLanguage.tr),
                     value: '${summary.nightsLogged}/7',
                     isDark: isDark,
                   ),
                   const SizedBox(width: 20),
                   _SleepStat(
-                    label: isEn ? 'Best' : 'En İyi',
+                    label: L10nService.get('sleep.sleep.best', isEn ? AppLanguage.en : AppLanguage.tr),
                     value: '${summary.bestNightQuality}/5',
                     isDark: isDark,
                   ),

@@ -22,6 +22,7 @@ import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../streak/presentation/challenge_celebration_modal.dart';
+import '../../../data/services/l10n_service.dart';
 
 class ChallengeListScreen extends ConsumerWidget {
   const ChallengeListScreen({super.key});
@@ -44,7 +45,7 @@ class ChallengeListScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: isEn ? 'Growth Challenges' : 'Büyüme Görevleri',
+                  title: L10nService.get('challenges.challenge_list.growth_challenges', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -78,7 +79,7 @@ class ChallengeListScreen extends ConsumerWidget {
                                   color: AppColors.starGold,
                                 ),
                                 label: Text(
-                                  isEn ? 'Retry' : 'Tekrar Dene',
+                                  L10nService.get('challenges.challenge_list.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                                   style: AppTypography.elegantAccent(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
@@ -125,7 +126,7 @@ class ChallengeListScreen extends ConsumerWidget {
                           // Active challenges
                           if (active.isNotEmpty) ...[
                             _SectionTitle(
-                              title: isEn ? 'In Progress' : 'Devam Eden',
+                              title: L10nService.get('challenges.challenge_list.in_progress', isEn ? AppLanguage.en : AppLanguage.tr),
                               isDark: isDark,
                             ),
                             const SizedBox(height: 10),
@@ -160,7 +161,7 @@ class ChallengeListScreen extends ConsumerWidget {
 
                           // Available challenges
                           _SectionTitle(
-                            title: isEn ? 'Available' : 'Mevcut',
+                            title: L10nService.get('challenges.challenge_list.available', isEn ? AppLanguage.en : AppLanguage.tr),
                             isDark: isDark,
                           ),
                           const SizedBox(height: 10),
@@ -193,7 +194,7 @@ class ChallengeListScreen extends ConsumerWidget {
                           if (completed.isNotEmpty) ...[
                             const SizedBox(height: 20),
                             _SectionTitle(
-                              title: isEn ? 'Completed' : 'Tamamlanan',
+                              title: L10nService.get('challenges.challenge_list.completed', isEn ? AppLanguage.en : AppLanguage.tr),
                               isDark: isDark,
                             ),
                             const SizedBox(height: 10),
@@ -255,19 +256,19 @@ class _StatsBar extends StatelessWidget {
         children: [
           _StatItem(
             value: '$active',
-            label: isEn ? 'Active' : 'Aktif',
+            label: L10nService.get('challenges.challenge_list.active', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.starGold,
             isDark: isDark,
           ),
           _StatItem(
             value: '$completed',
-            label: isEn ? 'Completed' : 'Tamamlanan',
+            label: L10nService.get('challenges.challenge_list.completed_1', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.success,
             isDark: isDark,
           ),
           _StatItem(
             value: '$total',
-            label: isEn ? 'Total' : 'Toplam',
+            label: L10nService.get('challenges.challenge_list.total', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.auroraStart,
             isDark: isDark,
           ),
@@ -466,7 +467,7 @@ class _ChallengeCard extends StatelessWidget {
             const SizedBox(width: 8),
             if (hasProgress && onIncrement != null)
               Semantics(
-                label: isEn ? 'Increment progress' : 'İlerlemeyi artır',
+                label: L10nService.get('challenges.challenge_list.increment_progress', isEn ? AppLanguage.en : AppLanguage.tr),
                 button: true,
                 child: GestureDetector(
                   onTap: onIncrement,
@@ -494,7 +495,7 @@ class _ChallengeCard extends StatelessWidget {
               )
             else if (!isCompleted && !hasProgress && onStart != null)
               Semantics(
-                label: isEn ? 'Start challenge' : 'Görevi başlat',
+                label: L10nService.get('challenges.challenge_list.start_challenge', isEn ? AppLanguage.en : AppLanguage.tr),
                 button: true,
                 child: GestureDetector(
                   onTap: onStart,
@@ -510,7 +511,7 @@ class _ChallengeCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
-                        isEn ? 'Start' : 'Başla',
+                        L10nService.get('challenges.challenge_list.start', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.elegantAccent(
                           fontSize: 12,
                           color: AppColors.auroraStart,

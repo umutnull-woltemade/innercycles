@@ -16,6 +16,7 @@ import '../../../../core/theme/app_typography.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/haptic_service.dart';
 import '../../../../shared/widgets/gradient_text.dart';
+import '../../../../data/services/l10n_service.dart';
 
 class PostSaveEngagementSheet extends ConsumerWidget {
   final int entryCount;
@@ -110,7 +111,7 @@ class PostSaveEngagementSheet extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GradientText(
-                          isEn ? 'Saved!' : 'Kaydedildi!',
+                          L10nService.get('journal.post_save_engagement.saved', isEn ? AppLanguage.en : AppLanguage.tr),
                           variant: GradientTextVariant.gold,
                           style: AppTypography.elegantAccent(
                             fontSize: 20,
@@ -144,9 +145,7 @@ class PostSaveEngagementSheet extends ConsumerWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  isEn
-                      ? 'What else would you like to capture?'
-                      : 'Ba\u015fka ne kaydetmek istersin?',
+                  L10nService.get('journal.post_save_engagement.what_else_would_you_like_to_capture', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.subtitle(
                     fontSize: 14,
                     color: isDark
@@ -193,7 +192,7 @@ class PostSaveEngagementSheet extends ConsumerWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Text(
-                  isEn ? 'Back to Home' : 'Ana Sayfa\u0027ya D\u00f6n',
+                  L10nService.get('journal.post_save_engagement.back_to_home', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.subtitle(
                     fontSize: 14,
                     color: isDark
@@ -216,28 +215,24 @@ class PostSaveEngagementSheet extends ConsumerWidget {
     // Always suggest mood check-in (quick action)
     suggestions.add(_Suggestion(
       icon: Icons.mood_rounded,
-      title: isEn ? 'Log your mood' : 'Ruh halini kaydet',
-      subtitle: isEn ? 'Quick 1-tap check-in' : 'H\u0131zl\u0131 ruh hali kayd\u0131',
+      title: L10nService.get('journal.post_save_engagement.log_your_mood', isEn ? AppLanguage.en : AppLanguage.tr),
+      subtitle: L10nService.get('journal.post_save_engagement.quick_1tap_checkin', isEn ? AppLanguage.en : AppLanguage.tr),
       route: Routes.today,
     ));
 
     // Dream journal
     suggestions.add(_Suggestion(
       icon: Icons.nightlight_round,
-      title: isEn ? 'Record a dream' : 'R\u00fcyan\u0131 kaydet',
-      subtitle: isEn
-          ? 'Capture it before it fades'
-          : 'Unutmadan kaydet',
+      title: L10nService.get('journal.post_save_engagement.record_a_dream', isEn ? AppLanguage.en : AppLanguage.tr),
+      subtitle: L10nService.get('journal.post_save_engagement.capture_it_before_it_fades', isEn ? AppLanguage.en : AppLanguage.tr),
       route: Routes.dreamInterpretation,
     ));
 
     // Notes to self
     suggestions.add(_Suggestion(
       icon: Icons.sticky_note_2_outlined,
-      title: isEn ? 'Write a note to yourself' : 'Kendine bir not b\u0131rak',
-      subtitle: isEn
-          ? 'Thoughts, reminders, ideas'
-          : 'D\u00fc\u015f\u00fcnceler, hat\u0131rlatmalar, fikirler',
+      title: L10nService.get('journal.post_save_engagement.write_a_note_to_yourself', isEn ? AppLanguage.en : AppLanguage.tr),
+      subtitle: L10nService.get('journal.post_save_engagement.thoughts_reminders_ideas', isEn ? AppLanguage.en : AppLanguage.tr),
       route: Routes.noteCreate,
     ));
 
@@ -245,7 +240,7 @@ class PostSaveEngagementSheet extends ConsumerWidget {
     if (entryCount >= 5) {
       suggestions.add(_Suggestion(
         icon: Icons.insights_rounded,
-        title: isEn ? 'Explore your patterns' : '\u00d6r\u00fcnt\u00fclerini ke\u015ffet',
+        title: L10nService.get('journal.post_save_engagement.explore_your_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
         subtitle: isEn
             ? '$entryCount entries analyzed'
             : '$entryCount kay\u0131t analiz edildi',
@@ -257,10 +252,8 @@ class PostSaveEngagementSheet extends ConsumerWidget {
     if (entryCount >= 10) {
       suggestions.add(_Suggestion(
         icon: Icons.card_giftcard_rounded,
-        title: isEn ? 'Invite a friend' : 'Bir arkada\u015f\u0131n\u0131 davet et',
-        subtitle: isEn
-            ? 'You both get 7 days Premium free'
-            : '\u0130kiniz de 7 g\u00fcn \u00fccretsiz Premium kazan\u0131n',
+        title: L10nService.get('journal.post_save_engagement.invite_a_friend', isEn ? AppLanguage.en : AppLanguage.tr),
+        subtitle: L10nService.get('journal.post_save_engagement.you_both_get_7_days_premium_free', isEn ? AppLanguage.en : AppLanguage.tr),
         route: Routes.referralProgram,
       ));
     }
@@ -268,10 +261,8 @@ class PostSaveEngagementSheet extends ConsumerWidget {
     // Gratitude
     suggestions.add(_Suggestion(
       icon: Icons.volunteer_activism_rounded,
-      title: isEn ? 'Gratitude journal' : 'Minnettarl\u0131k g\u00fcnl\u00fc\u011f\u00fc',
-      subtitle: isEn
-          ? 'End your day with gratitude'
-          : 'G\u00fcn\u00fc minnettarl\u0131kla bitir',
+      title: L10nService.get('journal.post_save_engagement.gratitude_journal', isEn ? AppLanguage.en : AppLanguage.tr),
+      subtitle: L10nService.get('journal.post_save_engagement.end_your_day_with_gratitude', isEn ? AppLanguage.en : AppLanguage.tr),
       route: Routes.gratitudeJournal,
     ));
 

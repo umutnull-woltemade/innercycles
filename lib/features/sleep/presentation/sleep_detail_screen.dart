@@ -23,6 +23,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
+import '../../../data/services/l10n_service.dart';
 
 class SleepDetailScreen extends ConsumerWidget {
   const SleepDetailScreen({super.key});
@@ -44,7 +45,7 @@ class SleepDetailScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: isEn ? 'Sleep Quality' : 'Uyku Kalitesi',
+                  title: L10nService.get('sleep.sleep_detail.sleep_quality', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -76,7 +77,7 @@ class SleepDetailScreen extends ConsumerWidget {
                                 icon: Icon(Icons.refresh_rounded,
                                     size: 16, color: AppColors.starGold),
                                 label: Text(
-                                  isEn ? 'Retry' : 'Tekrar Dene',
+                                  L10nService.get('sleep.sleep_detail.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                                   style: AppTypography.elegantAccent(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
@@ -131,7 +132,7 @@ class SleepDetailScreen extends ConsumerWidget {
                           // Recent entries
                           if (entries.isNotEmpty) ...[
                             GradientText(
-                              isEn ? 'Recent Nights' : 'Son Geceler',
+                              L10nService.get('sleep.sleep_detail.recent_nights', isEn ? AppLanguage.en : AppLanguage.tr),
                               variant: GradientTextVariant.gold,
                               style: AppTypography.displayFont.copyWith(
                                 fontSize: 16,
@@ -205,19 +206,19 @@ class _SummaryCard extends StatelessWidget {
             value: summary.averageQuality > 0
                 ? summary.averageQuality.toStringAsFixed(1)
                 : '-',
-            label: isEn ? 'Average' : 'Ortalama',
+            label: L10nService.get('sleep.sleep_detail.average', isEn ? AppLanguage.en : AppLanguage.tr),
             color: _qualityColor(summary.averageQuality),
             isDark: isDark,
           ),
           _StatItem(
             value: '${summary.nightsLogged}',
-            label: isEn ? 'Nights' : 'Gece',
+            label: L10nService.get('sleep.sleep_detail.nights', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.auroraStart,
             isDark: isDark,
           ),
           _StatItem(
             value: '${summary.bestNightQuality}/5',
-            label: isEn ? 'Best' : 'En İyi',
+            label: L10nService.get('sleep.sleep_detail.best', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.success,
             isDark: isDark,
           ),
@@ -297,7 +298,7 @@ class _WeeklyChart extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'Last 7 Days' : 'Son 7 Gün',
+            L10nService.get('sleep.sleep_detail.last_7_days', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -473,7 +474,7 @@ class _SleepTips extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               GradientText(
-                isEn ? 'Sleep Tips' : 'Uyku İpuçları',
+                L10nService.get('sleep.sleep_detail.sleep_tips', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 14,
@@ -611,12 +612,10 @@ class _EmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.bedtime_outlined,
-      title: isEn ? 'Your sleep story is waiting to begin' : 'Uyku hikayen başlamayı bekliyor',
-      description: isEn
-          ? 'Log your sleep quality in your daily journal'
-          : 'Günlük kayıtınızda uyku kalitenizi kaydedin',
+      title: L10nService.get('sleep.sleep_detail.your_sleep_story_is_waiting_to_begin', isEn ? AppLanguage.en : AppLanguage.tr),
+      description: L10nService.get('sleep.sleep_detail.log_your_sleep_quality_in_your_daily_jou', isEn ? AppLanguage.en : AppLanguage.tr),
       gradientVariant: GradientTextVariant.amethyst,
-      ctaLabel: isEn ? 'Write Journal Entry' : 'Günlük Kaydı Yaz',
+      ctaLabel: L10nService.get('sleep.sleep_detail.write_journal_entry', isEn ? AppLanguage.en : AppLanguage.tr),
       onCtaPressed: () => context.go(Routes.journal),
     );
   }

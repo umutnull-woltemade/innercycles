@@ -23,6 +23,7 @@ import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import 'widgets/share_card_renderer.dart';
+import '../../../data/services/l10n_service.dart';
 
 // ============================================================================
 // SCREEN
@@ -113,9 +114,7 @@ class _ShareCardGalleryScreenState
 
     setState(() => _isSharing = true);
 
-    final shareText = isEn
-        ? 'Check out my InnerCycles card! #InnerCycles #SelfGrowth'
-        : 'InnerCycles kartımı keşfet! #InnerCycles #KendiniFarkEt';
+    final shareText = L10nService.get('sharing.share_gallery.check_out_my_innercycles_card_innercycle', isEn ? AppLanguage.en : AppLanguage.tr);
 
     final result = await InstagramShareService.shareCosmicContent(
       boundary: boundary,
@@ -128,7 +127,7 @@ class _ShareCardGalleryScreenState
     setState(() => _isSharing = false);
 
     if (result.success) {
-      _showSnackBar(isEn ? 'Shared successfully!' : 'Başarıyla paylaşıldı!');
+      _showSnackBar(L10nService.get('sharing.share_gallery.shared_successfully', isEn ? AppLanguage.en : AppLanguage.tr));
     } else if (result.error == ShareError.dismissed) {
       // user cancelled
     } else {
@@ -143,7 +142,7 @@ class _ShareCardGalleryScreenState
         '\n\n- InnerCycles';
     await Clipboard.setData(ClipboardData(text: text));
     if (!mounted) return;
-    _showSnackBar(isEn ? 'Copied to clipboard' : 'Panoya kopyalandı');
+    _showSnackBar(L10nService.get('sharing.share_gallery.copied_to_clipboard', isEn ? AppLanguage.en : AppLanguage.tr));
   }
 
   void _showSnackBar(String message) {
@@ -184,7 +183,7 @@ class _ShareCardGalleryScreenState
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          isEn ? 'Share Cards' : 'Paylaşım Kartları',
+          L10nService.get('sharing.share_gallery.share_cards', isEn ? AppLanguage.en : AppLanguage.tr),
           style: AppTypography.displayFont.copyWith(
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             fontWeight: FontWeight.w600,
@@ -193,7 +192,7 @@ class _ShareCardGalleryScreenState
         ),
         centerTitle: true,
         leading: IconButton(
-          tooltip: isEn ? 'Back' : 'Geri',
+          tooltip: L10nService.get('sharing.share_gallery.back', isEn ? AppLanguage.en : AppLanguage.tr),
           icon: Icon(
             Icons.chevron_left,
             size: 28,
@@ -405,7 +404,7 @@ class _ShareCardGalleryScreenState
                     : AppColors.lightTextSecondary,
               ),
               label: Text(
-                isEn ? 'Back to gallery' : 'Galeriye dön',
+                L10nService.get('sharing.share_gallery.back_to_gallery', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.subtitle(
                   fontSize: 13,
                   color: isDark
@@ -470,7 +469,7 @@ class _ShareCardGalleryScreenState
             flex: 2,
             child: _ActionButton(
               icon: Icons.share_rounded,
-              label: isEn ? 'Share' : 'Paylaş',
+              label: L10nService.get('sharing.share_gallery.share', isEn ? AppLanguage.en : AppLanguage.tr),
               isPrimary: true,
               isLoading: _isSharing,
               accentColor: accent,
@@ -484,7 +483,7 @@ class _ShareCardGalleryScreenState
           Expanded(
             child: _ActionButton(
               icon: Icons.copy_rounded,
-              label: isEn ? 'Copy' : 'Kopyala',
+              label: L10nService.get('sharing.share_gallery.copy', isEn ? AppLanguage.en : AppLanguage.tr),
               isDark: isDark,
               onTap: () => _onCopy(isEn, cardData),
             ),

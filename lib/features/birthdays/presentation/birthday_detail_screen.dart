@@ -25,6 +25,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../data/services/l10n_service.dart';
 
 class BirthdayDetailScreen extends ConsumerWidget {
   final String contactId;
@@ -47,9 +48,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  isEn
-                      ? 'Couldn\'t load this contact'
-                      : 'Bu kişi yüklenemedi',
+                  L10nService.get('birthdays.birthday_detail.couldnt_load_this_contact', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textSecondary
@@ -66,7 +65,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                     color: AppColors.starGold,
                   ),
                   label: Text(
-                    isEn ? 'Retry' : 'Tekrar Dene',
+                    L10nService.get('birthdays.birthday_detail.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -82,7 +81,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
             if (contact == null) {
               return Center(
                 child: Text(
-                  isEn ? 'Contact not found' : 'Ki\u{015F}i bulunamad\u{0131}',
+                  L10nService.get('birthdays.birthday_detail.contact_not_found', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textMuted
@@ -119,7 +118,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
             title: contact.name,
             actions: [
               IconButton(
-                tooltip: isEn ? 'Share birthday' : 'Doğum gününü paylaş',
+                tooltip: L10nService.get('birthdays.birthday_detail.share_birthday', isEn ? AppLanguage.en : AppLanguage.tr),
                 icon: Icon(
                   Icons.share_rounded,
                   color: AppColors.starGold,
@@ -136,7 +135,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                 },
               ),
               IconButton(
-                tooltip: isEn ? 'Edit birthday' : 'Doğum gününü düzenle',
+                tooltip: L10nService.get('birthdays.birthday_detail.edit_birthday', isEn ? AppLanguage.en : AppLanguage.tr),
                 icon: Icon(
                   Icons.edit_rounded,
                   color: isDark
@@ -257,7 +256,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GradientText(
-                          isEn ? 'Note' : 'Not',
+                          L10nService.get('birthdays.birthday_detail.note', isEn ? AppLanguage.en : AppLanguage.tr),
                           variant: GradientTextVariant.gold,
                           style: AppTypography.displayFont.copyWith(
                             fontSize: 14,
@@ -266,7 +265,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                         ),
                         const SizedBox(height: 8),
                         Semantics(
-                          label: isEn ? 'Long press to copy note' : 'Notu kopyalamak için basılı tut',
+                          label: L10nService.get('birthdays.birthday_detail.long_press_to_copy_note', isEn ? AppLanguage.en : AppLanguage.tr),
                           child: GestureDetector(
                           onLongPress: () {
                             Clipboard.setData(
@@ -275,7 +274,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                             HapticService.buttonPress();
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text(isEn ? 'Birthday note copied' : 'Doğum günü notu kopyalandı'),
+                                content: Text(L10nService.get('birthdays.birthday_detail.birthday_note_copied', isEn ? AppLanguage.en : AppLanguage.tr)),
                                 duration: const Duration(seconds: 1),
                                 backgroundColor: AppColors.success,
                               ),
@@ -306,9 +305,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       GradientText(
-                        isEn
-                            ? 'Reminders'
-                            : 'Hat\u{0131}rlat\u{0131}c\u{0131}lar',
+                        L10nService.get('birthdays.birthday_detail.reminders', isEn ? AppLanguage.en : AppLanguage.tr),
                         variant: GradientTextVariant.gold,
                         style: AppTypography.displayFont.copyWith(
                           fontSize: 14,
@@ -319,9 +316,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                       _toggleRow(
                         isDark,
                         icon: Icons.cake_rounded,
-                        label: isEn
-                            ? 'Birthday notification'
-                            : 'Do\u{011F}um g\u{00FC}n\u{00FC} bildirimi',
+                        label: L10nService.get('birthdays.birthday_detail.birthday_notification', isEn ? AppLanguage.en : AppLanguage.tr),
                         value: contact.notificationsEnabled,
                         onChanged: (v) => _updateNotificationSetting(
                           ref,
@@ -333,9 +328,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                       _toggleRow(
                         isDark,
                         icon: Icons.notifications_active_rounded,
-                        label: isEn
-                            ? 'Day before'
-                            : 'Bir g\u{00FC}n \u{00F6}nce',
+                        label: L10nService.get('birthdays.birthday_detail.day_before', isEn ? AppLanguage.en : AppLanguage.tr),
                         value: contact.dayBeforeReminder,
                         onChanged: (v) => _updateNotificationSetting(
                           ref,
@@ -361,7 +354,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                       size: 18,
                     ),
                     label: Text(
-                      isEn ? 'Delete Contact' : 'Ki\u{015F}iyi Sil',
+                      L10nService.get('birthdays.birthday_detail.delete_contact', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.modernAccent(
                         color: AppColors.error,
                         fontWeight: FontWeight.w500,
@@ -394,9 +387,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
           const SizedBox(height: 12),
           if (isToday) ...[
             GradientText(
-              isEn
-                  ? 'Happy Birthday!'
-                  : 'Do\u{011F}um G\u{00FC}n\u{00FC} Kutlu Olsun!',
+              L10nService.get('birthdays.birthday_detail.happy_birthday', isEn ? AppLanguage.en : AppLanguage.tr),
               variant: GradientTextVariant.gold,
               style: AppTypography.displayFont.copyWith(
                 fontSize: 22,
@@ -415,7 +406,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
               ),
             ),
             Text(
-              isEn ? 'days left' : 'g\u{00FC}n kald\u{0131}',
+              L10nService.get('birthdays.birthday_detail.days_left', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.decorativeScript(
                 fontSize: 16,
                 color: isDark
@@ -500,12 +491,12 @@ class BirthdayDetailScreen extends ConsumerWidget {
   ) {
     GlassDialog.confirm(
       context,
-      title: isEn ? 'Delete Contact?' : 'Ki\u{015F}iyi Sil?',
+      title: L10nService.get('birthdays.birthday_detail.delete_contact_1', isEn ? AppLanguage.en : AppLanguage.tr),
       message: isEn
           ? 'Are you sure you want to delete ${contact.name}?'
           : '${contact.name} ki\u{015F}isini silmek istedi\u{011F}inizden emin misiniz?',
-      cancelLabel: isEn ? 'Cancel' : '\u{0130}ptal',
-      confirmLabel: isEn ? 'Delete' : 'Sil',
+      cancelLabel: L10nService.get('birthdays.birthday_detail.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
+      confirmLabel: L10nService.get('birthdays.birthday_detail.delete', isEn ? AppLanguage.en : AppLanguage.tr),
       isDestructive: true,
       onConfirm: () async {
         try {
@@ -519,9 +510,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
-                  isEn
-                      ? 'Couldn\'t delete this contact. Please try again.'
-                      : 'Ki\u{015F}i silinemedi. L\u{00FC}tfen tekrar deneyin.',
+                  L10nService.get('birthdays.birthday_detail.couldnt_delete_this_contact_please_try_a', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
               ),
             );

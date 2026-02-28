@@ -14,6 +14,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../data/services/l10n_service.dart';
 
 enum _PinMode { setup, confirm, verify, change }
 
@@ -122,7 +123,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
             _pin = '';
             _firstPin = '';
             _currentMode = _PinMode.setup;
-            _error = isEn ? 'Those don\'t match — no worries, try again.' : 'Eşleşmedi — sorun değil, tekrar dene.';
+            _error = L10nService.get('vault.vault_pin.those_dont_match_no_worries_try_again', isEn ? AppLanguage.en : AppLanguage.tr);
           });
         }
         break;
@@ -141,7 +142,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
           HapticService.error();
           setState(() {
             _pin = '';
-            _error = isEn ? 'That PIN didn\'t match. Try again.' : 'PIN eşleşmedi. Tekrar dene.';
+            _error = L10nService.get('vault.vault_pin.that_pin_didnt_match_try_again', isEn ? AppLanguage.en : AppLanguage.tr);
           });
         }
         break;
@@ -159,20 +160,18 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
     final result = await showCupertinoDialog<bool>(
       context: context,
       builder: (ctx) => CupertinoAlertDialog(
-        title: Text(isEn ? 'Enable Face ID?' : 'Face ID Etkinleştirilsin mi?'),
+        title: Text(L10nService.get('vault.vault_pin.enable_face_id', isEn ? AppLanguage.en : AppLanguage.tr)),
         content: Text(
-          isEn
-              ? 'Use Face ID to quickly access your vault instead of entering PIN every time.'
-              : 'Her seferinde PIN girmek yerine Face ID ile kasana hızlıca eriş.',
+          L10nService.get('vault.vault_pin.use_face_id_to_quickly_access_your_vault', isEn ? AppLanguage.en : AppLanguage.tr),
         ),
         actions: [
           CupertinoDialogAction(
-            child: Text(isEn ? 'Not Now' : 'Şimdi Değil'),
+            child: Text(L10nService.get('vault.vault_pin.not_now', isEn ? AppLanguage.en : AppLanguage.tr)),
             onPressed: () => Navigator.pop(ctx, false),
           ),
           CupertinoDialogAction(
             isDefaultAction: true,
-            child: Text(isEn ? 'Enable' : 'Etkinleştir'),
+            child: Text(L10nService.get('vault.vault_pin.enable', isEn ? AppLanguage.en : AppLanguage.tr)),
             onPressed: () => Navigator.pop(ctx, true),
           ),
         ],
@@ -191,20 +190,20 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
     String subtitle;
     switch (_currentMode) {
       case _PinMode.setup:
-        title = isEn ? 'Create PIN' : 'PIN Oluştur';
-        subtitle = isEn ? 'Choose a 4-digit PIN for your vault' : 'Kasan için 4 haneli bir PIN seç';
+        title = L10nService.get('vault.vault_pin.create_pin', isEn ? AppLanguage.en : AppLanguage.tr);
+        subtitle = L10nService.get('vault.vault_pin.choose_a_4digit_pin_for_your_vault', isEn ? AppLanguage.en : AppLanguage.tr);
         break;
       case _PinMode.confirm:
-        title = isEn ? 'Confirm PIN' : 'PIN\'i Onayla';
-        subtitle = isEn ? 'Enter the same PIN again' : 'Aynı PIN\'i tekrar gir';
+        title = L10nService.get('vault.vault_pin.confirm_pin', isEn ? AppLanguage.en : AppLanguage.tr);
+        subtitle = L10nService.get('vault.vault_pin.enter_the_same_pin_again', isEn ? AppLanguage.en : AppLanguage.tr);
         break;
       case _PinMode.verify:
-        title = isEn ? 'Enter PIN' : 'PIN Gir';
-        subtitle = isEn ? 'Enter your vault PIN' : 'Kasa PIN\'ini gir';
+        title = L10nService.get('vault.vault_pin.enter_pin', isEn ? AppLanguage.en : AppLanguage.tr);
+        subtitle = L10nService.get('vault.vault_pin.enter_your_vault_pin', isEn ? AppLanguage.en : AppLanguage.tr);
         break;
       case _PinMode.change:
-        title = isEn ? 'New PIN' : 'Yeni PIN';
-        subtitle = isEn ? 'Choose a new 4-digit PIN' : 'Yeni 4 haneli PIN seç';
+        title = L10nService.get('vault.vault_pin.new_pin', isEn ? AppLanguage.en : AppLanguage.tr);
+        subtitle = L10nService.get('vault.vault_pin.choose_a_new_4digit_pin', isEn ? AppLanguage.en : AppLanguage.tr);
         break;
     }
 
@@ -223,7 +222,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
                       CupertinoIcons.chevron_back,
                       color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                     ),
-                    tooltip: isEn ? 'Back' : 'Geri',
+                    tooltip: L10nService.get('vault.vault_pin.back', isEn ? AppLanguage.en : AppLanguage.tr),
                     onPressed: () => context.pop(),
                   ),
                 ),

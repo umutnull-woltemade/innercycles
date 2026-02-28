@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:io' show Platform;
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,6 +9,7 @@ import 'package:uuid/uuid.dart';
 
 /// Analytics service for tracking events and user behavior.
 /// Buffers events locally and flushes to Supabase in batches.
+/// Device ID creation is gated behind ATT authorization on iOS.
 class AnalyticsService {
   static final AnalyticsService _instance = AnalyticsService._internal();
   factory AnalyticsService() => _instance;
@@ -23,16 +26,28 @@ class AnalyticsService {
   Timer? _flushTimer;
   bool _supabaseAvailable = false;
 
-  /// Initialize analytics
+  /// Initialize analytics — device ID gated behind ATT on iOS
   Future<void> initialize() async {
     if (_isInitialized) return;
 
     try {
       final prefs = await SharedPreferences.getInstance();
-      _deviceId = prefs.getString(_deviceIdKey);
-      if (_deviceId == null) {
-        _deviceId = const Uuid().v4();
-        await prefs.setString(_deviceIdKey, _deviceId!);
+
+      // On iOS, only create/use device ID if ATT authorized
+      bool attAuthorized = true;
+      if (!kIsWeb && Platform.isIOS) {
+        final status =
+            await AppTrackingTransparency.trackingAuthorizationStatus;
+        attAuthorized =
+            status == TrackingStatus.authorized;
+      }
+
+      if (attAuthorized) {
+        _deviceId = prefs.getString(_deviceIdKey);
+        if (_deviceId == null) {
+          _deviceId = const Uuid().v4();
+          await prefs.setString(_deviceIdKey, _deviceId!);
+        }
       }
       _sessionId = const Uuid().v4();
 
@@ -49,7 +64,7 @@ class AnalyticsService {
       _isInitialized = true;
       if (kDebugMode) {
         debugPrint(
-          'AnalyticsService: Initialized (device=$_deviceId, supabase=$_supabaseAvailable)',
+          'AnalyticsService: Initialized (device=$_deviceId, att=$attAuthorized, supabase=$_supabaseAvailable)',
         );
       }
     } catch (e) {

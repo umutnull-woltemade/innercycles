@@ -25,6 +25,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
+import '../../../data/services/l10n_service.dart';
 
 class ProgramListScreen extends ConsumerWidget {
   const ProgramListScreen({super.key});
@@ -47,7 +48,7 @@ class ProgramListScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: isEn ? 'Guided Programs' : 'Rehberli Programlar',
+                  title: L10nService.get('programs.program_list.guided_programs', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -62,9 +63,7 @@ class ProgramListScreen extends ConsumerWidget {
                           children: [
                             const SizedBox(height: 40),
                             Text(
-                              isEn
-                                  ? 'Could not load. Your local data is unaffected.'
-                                  : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                              L10nService.get('programs.program_list.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
                               textAlign: TextAlign.center,
                               style: AppTypography.subtitle(
                                 color: isDark
@@ -82,7 +81,7 @@ class ProgramListScreen extends ConsumerWidget {
                                 color: AppColors.starGold,
                               ),
                               label: Text(
-                                isEn ? 'Retry' : 'Tekrar Dene',
+                                L10nService.get('programs.program_list.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,
@@ -100,9 +99,7 @@ class ProgramListScreen extends ConsumerWidget {
                         delegate: SliverChildListDelegate([
                           // Intro text
                           Text(
-                            isEn
-                                ? 'Structured reflection journeys to deepen self-awareness'
-                                : 'Öz farkındalığı derinleştirmek için yapılandırılmış yansıma yolculukları',
+                            L10nService.get('programs.program_list.structured_reflection_journeys_to_deepen', isEn ? AppLanguage.en : AppLanguage.tr),
                             style: AppTypography.decorativeScript(
                               fontSize: 14,
                               color: isDark
@@ -115,7 +112,7 @@ class ProgramListScreen extends ConsumerWidget {
                           // Active programs section
                           if (service.activeProgramCount > 0) ...[
                             GradientText(
-                              isEn ? 'In Progress' : 'Devam Eden',
+                              L10nService.get('programs.program_list.in_progress', isEn ? AppLanguage.en : AppLanguage.tr),
                               variant: GradientTextVariant.aurora,
                               style: AppTypography.displayFont.copyWith(
                                 fontSize: 16,
@@ -147,7 +144,7 @@ class ProgramListScreen extends ConsumerWidget {
 
                           // All programs
                           GradientText(
-                            isEn ? 'All Programs' : 'Tüm Programlar',
+                            L10nService.get('programs.program_list.all_programs', isEn ? AppLanguage.en : AppLanguage.tr),
                             variant: GradientTextVariant.gold,
                             style: AppTypography.displayFont.copyWith(
                               fontSize: 16,
@@ -381,7 +378,7 @@ class _ProgramCard extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text(
-                                isEn ? 'FREE' : 'ÜCRETSİZ',
+                                L10nService.get('programs.program_list.free', isEn ? AppLanguage.en : AppLanguage.tr),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w700,
@@ -434,7 +431,7 @@ class _ProgramCard extends StatelessWidget {
                       ] else if (!isCompleted && !isLocked) ...[
                         const SizedBox(height: 4),
                         Text(
-                          '${program.durationDays} ${isEn ? 'days' : 'gün'}',
+                          '${program.durationDays} ${L10nService.get('programs.program_list.days', isEn ? AppLanguage.en : AppLanguage.tr)}',
                           style: AppTypography.elegantAccent(
                             fontSize: 11,
                             color: AppColors.auroraStart,

@@ -21,6 +21,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
+import '../../../data/services/l10n_service.dart';
 
 class CycleSyncScreen extends ConsumerStatefulWidget {
   const CycleSyncScreen({super.key});
@@ -48,7 +49,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    isEn ? 'Couldn\'t load your cycle data' : 'Döngü verilerin yüklenemedi',
+                    L10nService.get('cycle_sync.cycle_sync.couldnt_load_your_cycle_data', isEn ? AppLanguage.en : AppLanguage.tr),
                     textAlign: TextAlign.center,
                     style: AppTypography.subtitle(
                       color: isDark
@@ -63,7 +64,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      isEn ? 'Retry' : 'Tekrar Dene',
+                      L10nService.get('cycle_sync.cycle_sync.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -82,7 +83,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   ),
                   slivers: [
                     GlassSliverAppBar(
-                      title: isEn ? 'Cycle Sync' : 'Döngü Senkronu',
+                      title: L10nService.get('cycle_sync.cycle_sync.cycle_sync', isEn ? AppLanguage.en : AppLanguage.tr),
                     ),
                     SliverPadding(
                       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -188,7 +189,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
             ),
             const SizedBox(height: AppConstants.spacingMd),
             GradientText(
-              isEn ? 'Start Tracking Your Cycle' : 'Döngünü Takip Etmeye Başla',
+              L10nService.get('cycle_sync.cycle_sync.start_tracking_your_cycle', isEn ? AppLanguage.en : AppLanguage.tr),
               variant: GradientTextVariant.aurora,
               textAlign: TextAlign.center,
               style: AppTypography.displayFont.copyWith(
@@ -198,9 +199,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
             ),
             const SizedBox(height: 8),
             Text(
-              isEn
-                  ? 'Log your period to see how your emotional patterns align with your cycle.'
-                  : 'Duygusal kalıplarının döngünle nasıl uyumlandığını görmek için adetini kaydet.',
+              L10nService.get('cycle_sync.cycle_sync.log_your_period_to_see_how_your_emotiona', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.subtitle(
                 fontSize: 14,
                 color: isDark
@@ -254,7 +253,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        isEn ? 'Day' : 'Gün',
+                        L10nService.get('cycle_sync.cycle_sync.day', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.elegantAccent(
                           fontSize: 12,
                           color: isDark
@@ -342,7 +341,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'Cycle Overview' : 'Döngü Özeti',
+            L10nService.get('cycle_sync.cycle_sync.cycle_overview', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.modernAccent(
               fontSize: 15,
@@ -354,7 +353,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
           _buildInfoRow(
             context,
             Icons.calendar_today_rounded,
-            isEn ? 'Cycle length' : 'Döngü süresi',
+            L10nService.get('cycle_sync.cycle_sync.cycle_length', isEn ? AppLanguage.en : AppLanguage.tr),
             isEn
                 ? '${cycleService.getAverageCycleLength()} days'
                 : '${cycleService.getAverageCycleLength()} gün',
@@ -364,7 +363,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
           _buildInfoRow(
             context,
             Icons.water_drop_outlined,
-            isEn ? 'Period length' : 'Adet süresi',
+            L10nService.get('cycle_sync.cycle_sync.period_length', isEn ? AppLanguage.en : AppLanguage.tr),
             isEn
                 ? '${cycleService.getAveragePeriodLength()} days'
                 : '${cycleService.getAveragePeriodLength()} gün',
@@ -375,7 +374,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
             _buildInfoRow(
               context,
               Icons.schedule_rounded,
-              isEn ? 'Next period' : 'Sonraki adet',
+              L10nService.get('cycle_sync.cycle_sync.next_period', isEn ? AppLanguage.en : AppLanguage.tr),
               isEn ? 'in ~$daysUntil days' : '~$daysUntil gün sonra',
               isDark,
             ),
@@ -385,7 +384,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
             _buildInfoRow(
               context,
               Icons.insights_rounded,
-              isEn ? 'Cycles logged' : 'Kayıtlı döngü',
+              L10nService.get('cycle_sync.cycle_sync.cycles_logged', isEn ? AppLanguage.en : AppLanguage.tr),
               '${cycleService.getAllLogs().length}',
               isDark,
             ),
@@ -593,9 +592,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    isEn
-                        ? 'Add more entries to surface cycle-emotion correlations.'
-                        : 'Döngü-duygu korelasyonlarını ortaya çıkarmak için daha fazla kayıt ekle.',
+                    L10nService.get('cycle_sync.cycle_sync.add_more_entries_to_surface_cycleemotion', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.decorativeScript(
                       fontSize: 13,
                       color: isDark
@@ -628,7 +625,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   ),
                   const SizedBox(width: 8),
                   GradientText(
-                    isEn ? 'Cycle Insight' : 'Döngü İçgörüsü',
+                    L10nService.get('cycle_sync.cycle_sync.cycle_insight', isEn ? AppLanguage.en : AppLanguage.tr),
                     variant: GradientTextVariant.aurora,
                     style: AppTypography.displayFont.copyWith(
                       fontSize: 12,
@@ -676,7 +673,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'Phase Timeline' : 'Evre Zaman Çizelgesi',
+            L10nService.get('cycle_sync.cycle_sync.phase_timeline', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.modernAccent(
               fontSize: 15,
@@ -824,7 +821,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
 
   Widget _buildLogPeriodFab(BuildContext context, bool isEn) {
     return Semantics(
-      label: isEn ? 'Log period start' : 'Adet başlangıcını kaydet',
+      label: L10nService.get('cycle_sync.cycle_sync.log_period_start', isEn ? AppLanguage.en : AppLanguage.tr),
       button: true,
       child: FloatingActionButton.extended(
         onPressed: () => _showLogPeriodSheet(context, isEn),
@@ -832,7 +829,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
         foregroundColor: Colors.white,
         icon: const Icon(Icons.water_drop_rounded),
         label: Text(
-          isEn ? 'Log Period' : 'Adet Kaydet',
+          L10nService.get('cycle_sync.cycle_sync.log_period', isEn ? AppLanguage.en : AppLanguage.tr),
           style: AppTypography.modernAccent(fontWeight: FontWeight.w600),
         ),
       ),
@@ -886,7 +883,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   ),
                   const SizedBox(height: 24),
                   GradientText(
-                    isEn ? 'Log Period Start' : 'Adet Başlangıcı Kaydet',
+                    L10nService.get('cycle_sync.cycle_sync.log_period_start_1', isEn ? AppLanguage.en : AppLanguage.tr),
                     variant: GradientTextVariant.aurora,
                     style: AppTypography.modernAccent(
                       fontSize: 16,
@@ -895,9 +892,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    isEn
-                        ? 'Mark today as the start of your period.'
-                        : 'Bugünü adet başlangıcı olarak işaretle.',
+                    L10nService.get('cycle_sync.cycle_sync.mark_today_as_the_start_of_your_period', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.subtitle(
                       color: isDark
                           ? AppColors.textSecondary
@@ -938,7 +933,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                         ],
                       ),
                       child: Text(
-                        isEn ? 'Period Started Today' : 'Adet Bugün Başladı',
+                        L10nService.get('cycle_sync.cycle_sync.period_started_today', isEn ? AppLanguage.en : AppLanguage.tr),
                         textAlign: TextAlign.center,
                         style: AppTypography.modernAccent(
                           fontSize: 16,
@@ -952,7 +947,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   TextButton(
                     onPressed: () => Navigator.pop(ctx),
                     child: Text(
-                      isEn ? 'Cancel' : 'İptal',
+                      L10nService.get('cycle_sync.cycle_sync.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.subtitle(
                         color: isDark
                             ? AppColors.textMuted
@@ -1009,9 +1004,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   Icon(Icons.lock_outline, size: 28, color: AppColors.starGold),
                   const SizedBox(height: 8),
                   Text(
-                    isEn
-                        ? 'Unlock deeper cycle insights'
-                        : 'Daha derin döngü içgörülerini aç',
+                    L10nService.get('cycle_sync.cycle_sync.unlock_deeper_cycle_insights', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.modernAccent(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,

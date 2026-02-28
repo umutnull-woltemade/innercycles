@@ -117,18 +117,21 @@ class ReferralService {
       return ReferralResult.alreadyUsed;
     }
 
-    // Validate code exists on server
+    // Validate code exists on server (strict — no offline fallback)
     final valid = await _validateCodeOnSupabase(cleanCode);
     if (!valid) {
       return ReferralResult.invalidCode;
     }
 
-    // Apply: give invitee 7 days
+    // Credit inviter on server first — only grant locally if server succeeds
+    final credited = await _creditInviterOnSupabase(cleanCode);
+    if (!credited) {
+      return ReferralResult.invalidCode;
+    }
+
+    // Apply: give invitee 7 days (only after server confirmation)
     _prefs.setString(_appliedCodeKey, cleanCode);
     _addRewardDays(_rewardDaysPerReferral);
-
-    // Notify inviter on server
-    await _creditInviterOnSupabase(cleanCode);
 
     return ReferralResult.success;
   }
@@ -222,12 +225,12 @@ class ReferralService {
       return result.isNotEmpty;
     } catch (e) {
       debugPrint('ReferralService: Failed to validate code: $e');
-      // Allow offline usage — accept any 8-char code
-      return code.length == 8;
+      // Require network — don't accept unverified codes offline
+      return false;
     }
   }
 
-  Future<void> _creditInviterOnSupabase(String code) async {
+  Future<bool> _creditInviterOnSupabase(String code) async {
     try {
       final client = Supabase.instance.client;
       final userId = client.auth.currentUser?.id;
@@ -241,8 +244,10 @@ class ReferralService {
         'invitee_user_id': userId,
         'created_at': DateTime.now().toIso8601String(),
       });
+      return true;
     } catch (e) {
       debugPrint('ReferralService: Failed to credit inviter: $e');
+      return false;
     }
   }
 

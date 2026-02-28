@@ -24,6 +24,7 @@ import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../data/services/l10n_service.dart';
 
 class EnergyMapScreen extends ConsumerWidget {
   const EnergyMapScreen({super.key});
@@ -45,7 +46,7 @@ class EnergyMapScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: isEn ? 'Energy Profile' : 'Enerji Profili',
+                  title: L10nService.get('energy.energy_map.energy_profile', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -60,9 +61,7 @@ class EnergyMapScreen extends ConsumerWidget {
                           children: [
                             const SizedBox(height: 40),
                             Text(
-                              isEn
-                                  ? 'Could not load. Your local data is unaffected.'
-                                  : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                              L10nService.get('energy.energy_map.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
                               textAlign: TextAlign.center,
                               style: AppTypography.subtitle(
                                 fontSize: 14,
@@ -81,7 +80,7 @@ class EnergyMapScreen extends ConsumerWidget {
                                 color: AppColors.starGold,
                               ),
                               label: Text(
-                                isEn ? 'Retry' : 'Tekrar Dene',
+                                L10nService.get('energy.energy_map.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,
@@ -157,7 +156,7 @@ class _SummaryHeader extends StatelessWidget {
       child: Row(
         children: [
           _StatChip(
-            label: isEn ? 'Average' : 'Ortalama',
+            label: L10nService.get('energy.energy_map.average', isEn ? AppLanguage.en : AppLanguage.tr),
             value: data.overallAverage > 0
                 ? data.overallAverage.toStringAsFixed(1)
                 : '-',
@@ -166,14 +165,14 @@ class _SummaryHeader extends StatelessWidget {
           ),
           const SizedBox(width: 12),
           _StatChip(
-            label: isEn ? 'Best Day' : 'En İyi Gün',
+            label: L10nService.get('energy.energy_map.best_day', isEn ? AppLanguage.en : AppLanguage.tr),
             value: _dayLabel(data.bestDay, isEn),
             color: AppColors.success,
             isDark: isDark,
           ),
           const SizedBox(width: 12),
           _StatChip(
-            label: isEn ? 'Strongest' : 'En Güçlü',
+            label: L10nService.get('energy.energy_map.strongest', isEn ? AppLanguage.en : AppLanguage.tr),
             value: data.strongestArea != null
                 ? (isEn
                       ? data.strongestArea!.displayNameEn
@@ -265,7 +264,7 @@ class _HeatmapGrid extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'Energy by Day & Area' : 'Gün ve Alana Göre Enerji',
+            L10nService.get('energy.energy_map.energy_by_day_area', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -345,7 +344,7 @@ class _HeatmapGrid extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                isEn ? 'Low' : 'Düşük',
+                L10nService.get('energy.energy_map.low', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.subtitle(
                   fontSize: 10,
                   color: isDark
@@ -368,7 +367,7 @@ class _HeatmapGrid extends StatelessWidget {
               ),
               const SizedBox(width: 4),
               Text(
-                isEn ? 'High' : 'Yüksek',
+                L10nService.get('energy.energy_map.high', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.subtitle(
                   fontSize: 10,
                   color: isDark
@@ -442,7 +441,7 @@ class _DailyChart extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'Last 28 Days' : 'Son 28 Gün',
+            L10nService.get('energy.energy_map.last_28_days', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -484,7 +483,7 @@ class _DailyChart extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                isEn ? '4 weeks ago' : '4 hafta önce',
+                L10nService.get('energy.energy_map.4_weeks_ago', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.subtitle(
                   fontSize: 10,
                   color: isDark
@@ -493,7 +492,7 @@ class _DailyChart extends StatelessWidget {
                 ),
               ),
               Text(
-                isEn ? 'Today' : 'Bugün',
+                L10nService.get('energy.energy_map.today', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.subtitle(
                   fontSize: 10,
                   color: isDark
@@ -576,7 +575,7 @@ class _InsightTips extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               GradientText(
-                isEn ? 'Observations' : 'Gözlemler',
+                L10nService.get('energy.energy_map.observations', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 14,
@@ -660,12 +659,10 @@ class _EmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.grid_view_rounded,
-      title: isEn ? 'Your energy map is taking shape' : 'Enerji haritan şekilleniyor',
-      description: isEn
-          ? 'Add at least 5 entries to see your energy map'
-          : 'Enerji haritanı görmek için en az 5 kayıt ekle',
+      title: L10nService.get('energy.energy_map.your_energy_map_is_taking_shape', isEn ? AppLanguage.en : AppLanguage.tr),
+      description: L10nService.get('energy.energy_map.add_at_least_5_entries_to_see_your_energ', isEn ? AppLanguage.en : AppLanguage.tr),
       gradientVariant: GradientTextVariant.aurora,
-      ctaLabel: isEn ? 'Write First Entry' : 'İlk Kaydı Yaz',
+      ctaLabel: L10nService.get('energy.energy_map.write_first_entry', isEn ? AppLanguage.en : AppLanguage.tr),
       onCtaPressed: () => context.go(Routes.journal),
     );
   }

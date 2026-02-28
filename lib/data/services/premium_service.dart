@@ -537,30 +537,22 @@ class PremiumNotifier extends Notifier<PremiumState> {
       String errorMessage;
       switch (e) {
         case PurchasesErrorCode.purchaseCancelledError:
-          errorMessage = isEn
-              ? 'Purchase cancelled'
-              : 'Satın alma iptal edildi';
+          errorMessage = L10nService.get('data.services.premium.purchase_cancelled', isEn ? AppLanguage.en : AppLanguage.tr);
           break;
         case PurchasesErrorCode.purchaseNotAllowedError:
-          errorMessage = isEn
-              ? 'Purchases are not allowed on this device'
-              : 'Bu cihazda satın almaya izin verilmiyor';
+          errorMessage = L10nService.get('data.services.premium.purchases_are_not_allowed_on_this_device', isEn ? AppLanguage.en : AppLanguage.tr);
           break;
         case PurchasesErrorCode.purchaseInvalidError:
-          errorMessage = isEn ? 'This purchase couldn\'t be completed' : 'Bu satın alma tamamlanamadı';
+          errorMessage = L10nService.get('data.services.premium.this_purchase_couldnt_be_completed', isEn ? AppLanguage.en : AppLanguage.tr);
           break;
         case PurchasesErrorCode.productNotAvailableForPurchaseError:
-          errorMessage = isEn ? 'This product is not available right now' : 'Bu ürün şu anda mevcut değil';
+          errorMessage = L10nService.get('data.services.premium.this_product_is_not_available_right_now', isEn ? AppLanguage.en : AppLanguage.tr);
           break;
         case PurchasesErrorCode.networkError:
-          errorMessage = isEn
-              ? 'Could not connect. Your local data is unaffected.'
-              : 'Bağlantı kurulamadı. Yerel verileriniz etkilenmedi.';
+          errorMessage = L10nService.get('data.services.premium.could_not_connect_your_local_data_is_una', isEn ? AppLanguage.en : AppLanguage.tr);
           break;
         default:
-          errorMessage = isEn
-              ? 'Something went wrong. Your account was not charged.'
-              : 'Bir hata oluştu. Hesabınızdan ücret alınmadı.';
+          errorMessage = L10nService.get('data.services.premium.something_went_wrong_your_account_was_no', isEn ? AppLanguage.en : AppLanguage.tr);
       }
 
       state = state.copyWith(isLoading: false, errorMessage: errorMessage);
@@ -616,9 +608,7 @@ class PremiumNotifier extends Notifier<PremiumState> {
       if (!state.isPremium) {
         final isEn = StorageService.loadLanguage() == AppLanguage.en;
         state = state.copyWith(
-          errorMessage: isEn
-              ? 'No purchases found to restore'
-              : 'Geri yüklenecek satın alma bulunamadı',
+          errorMessage: L10nService.get('data.services.premium.no_purchases_found_to_restore', isEn ? AppLanguage.en : AppLanguage.tr),
         );
       }
 
@@ -630,9 +620,7 @@ class PremiumNotifier extends Notifier<PremiumState> {
       final isEn = StorageService.loadLanguage() == AppLanguage.en;
       state = state.copyWith(
         isLoading: false,
-        errorMessage: isEn
-            ? 'Couldn\'t restore purchases. Please try again.'
-            : 'Satın alımlar geri yüklenemedi. Lütfen tekrar deneyin.',
+        errorMessage: L10nService.get('data.services.premium.couldnt_restore_purchases_please_try_aga', isEn ? AppLanguage.en : AppLanguage.tr),
       );
       return false;
     }

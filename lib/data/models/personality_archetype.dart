@@ -434,13 +434,13 @@ extension ElementExtension on Element {
     final isEn = language == AppLanguage.en;
     switch (this) {
       case Element.fire:
-        return isEn ? 'Fire' : 'Ateş';
+        return L10nService.get('data.models.personality_archetype.fire', isEn ? AppLanguage.en : AppLanguage.tr);
       case Element.earth:
-        return isEn ? 'Earth' : 'Toprak';
+        return L10nService.get('data.models.personality_archetype.earth', isEn ? AppLanguage.en : AppLanguage.tr);
       case Element.air:
-        return isEn ? 'Air' : 'Hava';
+        return L10nService.get('data.models.personality_archetype.air', isEn ? AppLanguage.en : AppLanguage.tr);
       case Element.water:
-        return isEn ? 'Water' : 'Su';
+        return L10nService.get('data.models.personality_archetype.water', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 

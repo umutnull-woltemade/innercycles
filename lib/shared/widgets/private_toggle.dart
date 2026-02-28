@@ -11,6 +11,7 @@ import '../../core/constants/routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
 import '../../data/providers/app_providers.dart';
+import '../../data/services/l10n_service.dart';
 
 class PrivateToggle extends ConsumerWidget {
   final bool isPrivate;
@@ -36,20 +37,18 @@ class PrivateToggle extends ConsumerWidget {
         final shouldSetup = await showCupertinoDialog<bool>(
           context: context,
           builder: (ctx) => CupertinoAlertDialog(
-            title: Text(isEn ? 'Set Up Vault PIN' : 'Kasa PIN\'i Ayarla'),
+            title: Text(L10nService.get('shared.private_toggle.set_up_vault_pin', isEn ? AppLanguage.en : AppLanguage.tr)),
             content: Text(
-              isEn
-                  ? 'You need to create a 4-digit PIN to protect your private content.'
-                  : 'Gizli içeriklerini korumak için 4 haneli bir PIN oluşturman gerekiyor.',
+              L10nService.get('shared.private_toggle.you_need_to_create_a_4digit_pin_to_prote', isEn ? AppLanguage.en : AppLanguage.tr),
             ),
             actions: [
               CupertinoDialogAction(
-                child: Text(isEn ? 'Cancel' : 'İptal'),
+                child: Text(L10nService.get('shared.private_toggle.cancel', isEn ? AppLanguage.en : AppLanguage.tr)),
                 onPressed: () => Navigator.pop(ctx, false),
               ),
               CupertinoDialogAction(
                 isDefaultAction: true,
-                child: Text(isEn ? 'Set Up' : 'Ayarla'),
+                child: Text(L10nService.get('shared.private_toggle.set_up', isEn ? AppLanguage.en : AppLanguage.tr)),
                 onPressed: () => Navigator.pop(ctx, true),
               ),
             ],
@@ -99,7 +98,7 @@ class PrivateToggle extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    isEn ? 'Save to Vault' : 'Gizli Kaydet',
+                    L10nService.get('shared.private_toggle.save_to_vault', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.subtitle(
                       fontSize: 14,
                       color: isPrivate
@@ -108,9 +107,7 @@ class PrivateToggle extends ConsumerWidget {
                     ).copyWith(fontWeight: isPrivate ? FontWeight.w600 : FontWeight.w400),
                   ),
                   Text(
-                    isEn
-                        ? 'Protected with PIN & Face ID'
-                        : 'PIN ve Face ID ile korunur',
+                    L10nService.get('shared.private_toggle.protected_with_pin_face_id', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.subtitle(
                       fontSize: 11,
                       color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,

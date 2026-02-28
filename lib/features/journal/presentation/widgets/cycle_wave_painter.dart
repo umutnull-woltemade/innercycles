@@ -15,6 +15,8 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../data/models/journal_entry.dart';
 import '../../../../data/services/emotional_cycle_service.dart';
+import '../../../../data/services/l10n_service.dart';
+import '../../../../data/providers/app_providers.dart';
 
 /// Color palette for each focus area dimension
 const Map<FocusArea, Color> kAreaColors = {
@@ -75,9 +77,7 @@ class _CycleWaveChartState extends State<CycleWaveChart> {
         });
       },
       child: Semantics(
-        label: widget.isEn
-            ? 'Emotional cycle wave chart'
-            : 'Duygusal döngü dalga grafiği',
+        label: L10nService.get('journal.cycle_wave_painter.emotional_cycle_wave_chart', widget.isEn ? AppLanguage.en : AppLanguage.tr),
         image: true,
         child: RepaintBoundary(
           child: CustomPaint(

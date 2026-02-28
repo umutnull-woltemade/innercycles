@@ -1,13 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/services/streak_service.dart';
-import '../../../data/services/instagram_share_service.dart';
-import '../../../core/constants/app_constants.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_button.dart';
@@ -15,6 +12,7 @@ import '../../../shared/widgets/gradient_text.dart';
 import '../../../data/content/share_card_templates.dart';
 import '../../../data/models/share_card_models.dart';
 import '../../../shared/widgets/share_card_sheet.dart';
+import '../../../data/services/l10n_service.dart';
 
 /// Full-screen celebration modal for streak milestones (D3, D7, D14, etc.)
 class MilestoneCelebrationModal extends StatefulWidget {
@@ -51,7 +49,7 @@ class MilestoneCelebrationModal extends StatefulWidget {
 
 class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
   final _boundaryKey = GlobalKey();
-  bool _isSharing = false;
+  final bool _isSharing = false;
 
   int get streakDays => widget.streakDays;
   bool get isEn => widget.isEn;
@@ -69,32 +67,10 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
         headline: _title,
         subtitle: _message,
         statValue: '$streakDays',
-        statLabel: isEn ? 'day streak' : 'günlük seri',
+        statLabel: L10nService.get('streak.milestone_celebration.day_streak', isEn ? AppLanguage.en : AppLanguage.tr),
       ),
       isEn: isEn,
     );
-  }
-
-  // ignore: unused_element
-  Future<void> _shareCardLegacy() async {
-    setState(() => _isSharing = true);
-    try {
-      final boundary =
-          _boundaryKey.currentContext?.findRenderObject()
-              as RenderRepaintBoundary?;
-      if (boundary == null) return;
-
-      await InstagramShareService.shareCosmicContent(
-        boundary: boundary,
-        shareText: isEn
-            ? '$streakDays-day journaling streak! \u{1F525} — InnerCycles\n\nDiscover your patterns: ${AppConstants.appStoreUrl}'
-            : '$streakDays günlük yazma serisi! \u{1F525} — InnerCycles\n\nÖrüntülerini keşfet: ${AppConstants.appStoreUrl}',
-        hashtags: '#InnerCycles #JournalingStreak',
-        language: isEn ? AppLanguage.en : AppLanguage.tr,
-      );
-    } finally {
-      if (mounted) setState(() => _isSharing = false);
-    }
   }
 
   IconData get _milestoneIcon {
@@ -346,9 +322,7 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
                               const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
-                                  isEn
-                                      ? 'Unlock deeper insights with Premium'
-                                      : 'Premium ile daha derin içgörüler keşfet',
+                                  L10nService.get('streak.milestone_celebration.unlock_deeper_insights_with_premium', isEn ? AppLanguage.en : AppLanguage.tr),
                                   style: AppTypography.subtitle(
                                     fontSize: 12,
                                     color: isDark
@@ -370,7 +344,7 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
                               // Share button
                               Expanded(
                                 child: GradientOutlinedButton(
-                                  label: isEn ? 'Share' : 'Paylaş',
+                                  label: L10nService.get('streak.milestone_celebration.share', isEn ? AppLanguage.en : AppLanguage.tr),
                                   icon: _isSharing ? null : Icons.share_rounded,
                                   variant: GradientTextVariant.gold,
                                   expanded: true,
@@ -387,7 +361,7 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
                               // Keep Going button
                               Expanded(
                                 child: GradientButton.gold(
-                                  label: isEn ? 'Keep Going' : 'Devam Et',
+                                  label: L10nService.get('streak.milestone_celebration.keep_going', isEn ? AppLanguage.en : AppLanguage.tr),
                                   onPressed: () => Navigator.of(context).pop(),
                                   expanded: true,
                                 ),

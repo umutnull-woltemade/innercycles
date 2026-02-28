@@ -23,6 +23,7 @@ import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../data/services/l10n_service.dart';
 
 class GratitudeScreen extends ConsumerStatefulWidget {
   const GratitudeScreen({super.key});
@@ -83,7 +84,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                 ),
                 slivers: [
                   GlassSliverAppBar(
-                    title: isEn ? 'Gratitude Journal' : 'Şükran Günlüğü',
+                    title: L10nService.get('gratitude.gratitude.gratitude_journal', isEn ? AppLanguage.en : AppLanguage.tr),
                   ),
                   SliverPadding(
                     padding: const EdgeInsets.all(16),
@@ -114,7 +115,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                                   icon: Icon(Icons.refresh_rounded,
                                       size: 16, color: AppColors.starGold),
                                   label: Text(
-                                    isEn ? 'Retry' : 'Tekrar Dene',
+                                    L10nService.get('gratitude.gratitude.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                                     style: AppTypography.elegantAccent(
                                       fontSize: 13,
                                       fontWeight: FontWeight.w600,
@@ -207,7 +208,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                             // History
                             if (allEntries.isNotEmpty) ...[
                               GradientText(
-                                isEn ? 'History' : 'Geçmiş',
+                                L10nService.get('gratitude.gratitude.history', isEn ? AppLanguage.en : AppLanguage.tr),
                                 variant: GradientTextVariant.gold,
                                 style: AppTypography.displayFont.copyWith(
                                   fontSize: 18,
@@ -268,19 +269,19 @@ class _WeeklyStats extends StatelessWidget {
         children: [
           _Stat(
             value: '${summary.daysWithGratitude}',
-            label: isEn ? 'Days' : 'Gün',
+            label: L10nService.get('gratitude.gratitude.days', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.starGold,
             isDark: isDark,
           ),
           _Stat(
             value: '${summary.totalItems}',
-            label: isEn ? 'Items' : 'Madde',
+            label: L10nService.get('gratitude.gratitude.items', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.success,
             isDark: isDark,
           ),
           _Stat(
             value: '${summary.topThemes.length}',
-            label: isEn ? 'Themes' : 'Tema',
+            label: L10nService.get('gratitude.gratitude.themes', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.auroraStart,
             isDark: isDark,
           ),
@@ -431,8 +432,8 @@ class _TodaySection extends StatelessWidget {
           const SizedBox(height: 4),
           GradientButton.gold(
             label: hasEntry
-                ? (isEn ? 'Update' : 'Güncelle')
-                : (isEn ? 'Save Gratitude' : 'Şükranı Kaydet'),
+                ? (L10nService.get('gratitude.gratitude.update', isEn ? AppLanguage.en : AppLanguage.tr))
+                : (L10nService.get('gratitude.gratitude.save_gratitude', isEn ? AppLanguage.en : AppLanguage.tr)),
             onPressed: onSave,
             expanded: true,
           ),
@@ -463,7 +464,7 @@ class _ThemeCloud extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'This Week\'s Themes' : 'Bu Haftanın Temaları',
+            L10nService.get('gratitude.gratitude.this_weeks_themes', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,

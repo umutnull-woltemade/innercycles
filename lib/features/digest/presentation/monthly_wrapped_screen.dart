@@ -23,6 +23,7 @@ import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/share_card_sheet.dart';
+import '../../../data/services/l10n_service.dart';
 
 class MonthlyWrappedScreen extends ConsumerStatefulWidget {
   const MonthlyWrappedScreen({super.key});
@@ -61,7 +62,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 32),
                     child: Text(
-                      isEn ? 'Keep journaling to build your monthly story' : 'Aylık hikayeni oluşturmak için yazmaya devam et',
+                      L10nService.get('digest.monthly_wrapped.keep_journaling_to_build_your_monthly_st', isEn ? AppLanguage.en : AppLanguage.tr),
                       textAlign: TextAlign.center,
                       style: AppTypography.subtitle(
                         color: isDark
@@ -77,7 +78,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      isEn ? 'Retry' : 'Tekrar Dene',
+                      L10nService.get('digest.monthly_wrapped.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -105,9 +106,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                         AppSymbol('\u{1F4CA}', size: AppSymbolSize.xl),
                         const SizedBox(height: 16),
                         Text(
-                          isEn
-                              ? 'Keep journaling! Your monthly wrapped will be ready when you have at least 3 entries.'
-                              : 'Yazmaya devam et! Aylık özetin en az 3 kayıtla hazır olacak.',
+                          L10nService.get('digest.monthly_wrapped.keep_journaling_your_monthly_wrapped_wil', isEn ? AppLanguage.en : AppLanguage.tr),
                           textAlign: TextAlign.center,
                           style: AppTypography.decorativeScript(
                             fontSize: 16,
@@ -119,7 +118,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                         const SizedBox(height: 24),
                         TextButton(
                           onPressed: () => Navigator.of(context).pop(),
-                          child: Text(isEn ? 'Go Back' : 'Geri Dön'),
+                          child: Text(L10nService.get('digest.monthly_wrapped.go_back', isEn ? AppLanguage.en : AppLanguage.tr)),
                         ),
                       ],
                     ),
@@ -132,7 +131,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                   // Page indicator
                   Semantics(
                     label:
-                        '${isEn ? 'Slide' : 'Slayt'} ${_currentPage + 1} / 5',
+                        '${L10nService.get('digest.monthly_wrapped.slide', isEn ? AppLanguage.en : AppLanguage.tr)} ${_currentPage + 1} / 5',
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 40,
@@ -173,7 +172,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,
                         ),
-                        tooltip: isEn ? 'Close' : 'Kapat',
+                        tooltip: L10nService.get('digest.monthly_wrapped.close', isEn ? AppLanguage.en : AppLanguage.tr),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
                     ),
@@ -244,7 +243,7 @@ class _Slide2Focus extends StatelessWidget {
   });
 
   String _areaName(FocusArea? area, bool isEn) {
-    if (area == null) return isEn ? 'Balanced' : 'Dengeli';
+    if (area == null) return L10nService.get('digest.monthly_wrapped.balanced', isEn ? AppLanguage.en : AppLanguage.tr);
     return isEn ? area.displayNameEn : area.displayNameTr;
   }
 
@@ -255,9 +254,7 @@ class _Slide2Focus extends StatelessWidget {
       title: isEn
           ? 'You focused most on ${_areaName(data.dominantArea, true)}'
           : 'En çok ${_areaName(data.dominantArea, false)} odağındaydın',
-      subtitle: isEn
-          ? 'This area drew your attention more than any other'
-          : 'Bu alan dikkatini diğerlerinden daha çok çekti',
+      subtitle: L10nService.get('digest.monthly_wrapped.this_area_drew_your_attention_more_than', isEn ? AppLanguage.en : AppLanguage.tr),
       isDark: isDark,
     );
   }
@@ -305,9 +302,7 @@ class _Slide4Insight extends StatelessWidget {
     return _SlideBase(
       emoji: '\u{1F4A1}',
       title: data.personalInsight(isEn),
-      subtitle: isEn
-          ? 'Based on your monthly patterns'
-          : 'Aylık örüntülerine dayanarak',
+      subtitle: L10nService.get('digest.monthly_wrapped.based_on_your_monthly_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
       isDark: isDark,
     );
   }
@@ -339,7 +334,7 @@ class _Slide5Share extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           GradientText(
-            isEn ? 'Your month at a glance' : 'Ayına bir bakış',
+            L10nService.get('digest.monthly_wrapped.your_month_at_a_glance', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 24,
@@ -348,7 +343,7 @@ class _Slide5Share extends StatelessWidget {
           ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
           const SizedBox(height: 32),
           GradientButton.gold(
-            label: isEn ? 'Share Your Month' : 'Ayını Paylaş',
+            label: L10nService.get('digest.monthly_wrapped.share_your_month', isEn ? AppLanguage.en : AppLanguage.tr),
             icon: Icons.share_rounded,
             onPressed: () {
               final template = ShareCardTemplates.monthlyWrapped;

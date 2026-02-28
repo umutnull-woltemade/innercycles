@@ -24,6 +24,7 @@ import '../../../shared/widgets/premium_empty_state.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
+import '../../../data/services/l10n_service.dart';
 
 class DailyHabitsScreen extends ConsumerStatefulWidget {
   const DailyHabitsScreen({super.key});
@@ -77,7 +78,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
                   icon: Icon(Icons.refresh_rounded,
                       size: 16, color: AppColors.starGold),
                   label: Text(
-                    isEn ? 'Retry' : 'Tekrar Dene',
+                    L10nService.get('habits.daily_habits.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -111,7 +112,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: isEn ? 'Routine Tracker' : 'Rutin Takipçisi',
+            title: L10nService.get('habits.daily_habits.routine_tracker', isEn ? AppLanguage.en : AppLanguage.tr),
           ),
           SliverPadding(
             padding: const EdgeInsets.all(16),
@@ -168,9 +169,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
                   // Browse more habits link
                   Center(
                     child: Semantics(
-                      label: isEn
-                          ? 'Browse all habits'
-                          : 'Tüm alışkanlıkları gözat',
+                      label: L10nService.get('habits.daily_habits.browse_all_habits', isEn ? AppLanguage.en : AppLanguage.tr),
                       button: true,
                       child: GestureDetector(
                         onTap: () => context.push(Routes.habitSuggestions),
@@ -179,9 +178,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
                           constraints: const BoxConstraints(minHeight: 44),
                           child: Center(
                             child: Text(
-                              isEn
-                                  ? 'Browse all habits'
-                                  : 'Tüm alışkanlıkları gözat',
+                              L10nService.get('habits.daily_habits.browse_all_habits_1', isEn ? AppLanguage.en : AppLanguage.tr),
                               style: AppTypography.elegantAccent(
                                 fontSize: 14,
                                 color: AppColors.auroraStart,
@@ -239,7 +236,7 @@ class _ProgressHeader extends StatelessWidget {
         children: [
           allDone
               ? Text(
-                  isEn ? 'All done for today!' : 'Bugün hepsi tamamlandı!',
+                  L10nService.get('habits.daily_habits.all_done_for_today', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -247,7 +244,7 @@ class _ProgressHeader extends StatelessWidget {
                   ),
                 )
               : GradientText(
-                  isEn ? 'Today\'s Progress' : 'Bugünkü İlerleme',
+                  L10nService.get('habits.daily_habits.todays_progress', isEn ? AppLanguage.en : AppLanguage.tr),
                   variant: GradientTextVariant.gold,
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 16,
@@ -334,10 +331,8 @@ class _HabitCheckCard extends StatelessWidget {
               // Check circle
               Semantics(
                 label: isChecked
-                    ? (isEn
-                          ? 'Mark incomplete'
-                          : 'Tamamlanmadı olarak işaretle')
-                    : (isEn ? 'Mark complete' : 'Tamamlandı olarak işaretle'),
+                    ? (L10nService.get('habits.daily_habits.mark_incomplete', isEn ? AppLanguage.en : AppLanguage.tr))
+                    : (L10nService.get('habits.daily_habits.mark_complete', isEn ? AppLanguage.en : AppLanguage.tr)),
                 button: true,
                 child: GestureDetector(
                   onTap: onToggle,
@@ -401,7 +396,7 @@ class _HabitCheckCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      '${HabitSuggestionService.categoryEmoji(habit.category)} ${habit.durationMinutes} ${isEn ? 'min' : 'dk'}',
+                      '${HabitSuggestionService.categoryEmoji(habit.category)} ${habit.durationMinutes} ${L10nService.get('habits.daily_habits.min', isEn ? AppLanguage.en : AppLanguage.tr)}',
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: isDark
@@ -521,12 +516,10 @@ class _EmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.playlist_add_check_rounded,
-      title: isEn ? 'Your habit routine starts here' : 'Alışkanlık rutinin burada başlıyor',
-      description: isEn
-          ? 'Browse the habit library and adopt habits to track them daily'
-          : 'Alışkanlık kütüphanesine göz at ve günlük takip için alışkanlık benimse',
+      title: L10nService.get('habits.daily_habits.your_habit_routine_starts_here', isEn ? AppLanguage.en : AppLanguage.tr),
+      description: L10nService.get('habits.daily_habits.browse_the_habit_library_and_adopt_habit', isEn ? AppLanguage.en : AppLanguage.tr),
       gradientVariant: GradientTextVariant.gold,
-      ctaLabel: isEn ? 'Browse Habits' : 'Alışkanlıkları Gözat',
+      ctaLabel: L10nService.get('habits.daily_habits.browse_habits', isEn ? AppLanguage.en : AppLanguage.tr),
       onCtaPressed: () => context.push(Routes.habitSuggestions),
     );
   }

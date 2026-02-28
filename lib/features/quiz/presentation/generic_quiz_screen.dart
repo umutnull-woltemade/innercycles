@@ -23,6 +23,7 @@ import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../data/services/l10n_service.dart';
 
 class GenericQuizScreen extends ConsumerStatefulWidget {
   final String quizId;
@@ -207,7 +208,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
       child: Row(
         children: [
           IconButton(
-            tooltip: isEn ? 'Back' : 'Geri',
+            tooltip: L10nService.get('quiz.generic_quiz.back', isEn ? AppLanguage.en : AppLanguage.tr),
             onPressed: () {
               if (_currentPage > 0) {
                 _pageController.previousPage(
@@ -452,7 +453,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(title: isEn ? 'Your Result' : 'Sonucunuz'),
+          GlassSliverAppBar(title: L10nService.get('quiz.generic_quiz.your_result', isEn ? AppLanguage.en : AppLanguage.tr)),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
@@ -486,7 +487,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
                 if (winningDim.strengthsEn.isNotEmpty) ...[
                   _buildListSection(
                     context,
-                    title: isEn ? 'Your Strengths' : 'Güçlü Yanlarınız',
+                    title: L10nService.get('quiz.generic_quiz.your_strengths', isEn ? AppLanguage.en : AppLanguage.tr),
                     items: isEn
                         ? winningDim.strengthsEn
                         : winningDim.strengthsTr,
@@ -501,7 +502,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
                 if (winningDim.growthAreasEn.isNotEmpty) ...[
                   _buildListSection(
                     context,
-                    title: isEn ? 'Growth Areas' : 'Gelişim Alanları',
+                    title: L10nService.get('quiz.generic_quiz.growth_areas', isEn ? AppLanguage.en : AppLanguage.tr),
                     items: isEn
                         ? winningDim.growthAreasEn
                         : winningDim.growthAreasTr,
@@ -640,7 +641,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          isEn ? 'Full Breakdown' : 'Detaylı Dağılım',
+          L10nService.get('quiz.generic_quiz.full_breakdown', isEn ? AppLanguage.en : AppLanguage.tr),
           style: AppTypography.displayFont.copyWith(
             fontSize: 18,
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
@@ -798,7 +799,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
 
   Widget _buildRetakeButton(BuildContext context, bool isDark, bool isEn) {
     return GradientButton(
-      label: isEn ? 'Retake Quiz' : 'Testi Tekrarla',
+      label: L10nService.get('quiz.generic_quiz.retake_quiz', isEn ? AppLanguage.en : AppLanguage.tr),
       icon: Icons.refresh_rounded,
       onPressed: _restartQuiz,
       expanded: true,
@@ -815,7 +816,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
       child: TextButton(
         onPressed: () => context.go(Routes.quizHub),
         child: Text(
-          isEn ? 'Back to All Quizzes' : 'Tüm Testlere Dön',
+          L10nService.get('quiz.generic_quiz.back_to_all_quizzes', isEn ? AppLanguage.en : AppLanguage.tr),
           style: AppTypography.elegantAccent(
             fontSize: 15,
             color: AppColors.textSecondary,

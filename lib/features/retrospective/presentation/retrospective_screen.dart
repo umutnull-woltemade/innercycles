@@ -25,6 +25,7 @@ import '../../../shared/widgets/gradient_text.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../data/services/l10n_service.dart';
 
 class RetrospectiveScreen extends ConsumerStatefulWidget {
   const RetrospectiveScreen({super.key});
@@ -243,7 +244,7 @@ class _WelcomeStep extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           GradientText(
-            isEn ? 'Your story didn\'t start today' : 'Hikayen bugün başlamadı',
+            L10nService.get('retrospective.retrospective.your_story_didnt_start_today', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             textAlign: TextAlign.center,
             style: AppTypography.displayFont.copyWith(
@@ -253,9 +254,7 @@ class _WelcomeStep extends StatelessWidget {
           ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
           const SizedBox(height: 16),
           Text(
-            isEn
-                ? 'Add journal entries for the most meaningful days in your past. Reflect on what shaped you.'
-                : 'Geçmişindeki en anlamlı günler için günlük kayıtları ekle. Seni şekillendiren şeyleri düşün.',
+            L10nService.get('retrospective.retrospective.add_journal_entries_for_the_most_meaning', isEn ? AppLanguage.en : AppLanguage.tr),
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 16,
@@ -266,7 +265,7 @@ class _WelcomeStep extends StatelessWidget {
           ).animate().fadeIn(delay: 350.ms, duration: 400.ms),
           const SizedBox(height: 48),
           GradientButton.gold(
-            label: isEn ? 'Let\'s Begin' : 'Başlayalım',
+            label: L10nService.get('retrospective.retrospective.lets_begin', isEn ? AppLanguage.en : AppLanguage.tr),
             onPressed: () {
               HapticService.buttonPress();
               onContinue();
@@ -305,9 +304,7 @@ class _DaySelectionStep extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 4),
           child: GradientText(
-            isEn
-                ? 'Choose the days that matter to you'
-                : 'Senin için önemli günleri seç',
+            L10nService.get('retrospective.retrospective.choose_the_days_that_matter_to_you', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 18,
@@ -343,7 +340,7 @@ class _DaySelectionStep extends StatelessWidget {
                       final selected = selectedPresets.contains(preset.key);
                       return Semantics(
                         label:
-                            '${preset.name(isEn)}, ${selected ? (isEn ? 'selected' : 'seçili') : (isEn ? 'not selected' : 'seçili değil')}',
+                            '${preset.name(isEn)}, ${selected ? (L10nService.get('retrospective.retrospective.selected', isEn ? AppLanguage.en : AppLanguage.tr)) : (L10nService.get('retrospective.retrospective.not_selected', isEn ? AppLanguage.en : AppLanguage.tr))}',
                         button: true,
                         selected: selected,
                         child: GestureDetector(
@@ -467,7 +464,7 @@ class _DateEntryStep extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 4),
           child: GradientText(
-            isEn ? 'When did these happen?' : 'Bunlar ne zaman oldu?',
+            L10nService.get('retrospective.retrospective.when_did_these_happen', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 18,
@@ -528,7 +525,7 @@ class _DateEntryStep extends StatelessWidget {
                             child: GradientOutlinedButton(
                               label: date != null
                                   ? '${date.day}.${date.month}.${date.year}'
-                                  : (isEn ? 'Pick a date' : 'Tarih seç'),
+                                  : (L10nService.get('retrospective.retrospective.pick_a_date', isEn ? AppLanguage.en : AppLanguage.tr)),
                               icon: Icons.calendar_today,
                               variant: GradientTextVariant.gold,
                               expanded: true,
@@ -622,9 +619,7 @@ class _SummaryStep extends StatelessWidget {
           ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
           const SizedBox(height: 16),
           Text(
-            isEn
-                ? 'Your past is now part of your journey. Come back anytime to write about these days.'
-                : 'Geçmişin artık yolculuğunun bir parçası. Bu günler hakkında yazmak için istediğin zaman geri dön.',
+            L10nService.get('retrospective.retrospective.your_past_is_now_part_of_your_journey_co', isEn ? AppLanguage.en : AppLanguage.tr),
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 16,
@@ -635,7 +630,7 @@ class _SummaryStep extends StatelessWidget {
           ).animate().fadeIn(delay: 350.ms, duration: 400.ms),
           const SizedBox(height: 48),
           GradientButton.gold(
-            label: isEn ? 'Back to Home' : 'Ana Sayfaya Dön',
+            label: L10nService.get('retrospective.retrospective.back_to_home', isEn ? AppLanguage.en : AppLanguage.tr),
             onPressed: () {
               HapticService.buttonPress();
               onDone();

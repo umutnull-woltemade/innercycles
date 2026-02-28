@@ -15,6 +15,7 @@ import '../../../data/services/paywall_experiment_service.dart';
 import '../../../data/services/paywall_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../data/services/l10n_service.dart';
 
 /// The type of contextual paywall to show — each has unique visuals and copy.
 enum PaywallContext {
@@ -326,9 +327,7 @@ class _ContextualPaywallSheetState
 
                   // Risk reversal
                   Text(
-                    isEn
-                        ? 'Cancel anytime. Your entries are always yours.'
-                        : 'Dilediğin zaman iptal et. Kayıtların her zaman senin.',
+                    L10nService.get('premium.contextual_paywall.cancel_anytime_your_entries_are_always_y', isEn ? AppLanguage.en : AppLanguage.tr),
                     textAlign: TextAlign.center,
                     style: AppTypography.decorativeScript(
                       color: Colors.white.withValues(alpha: 0.55),
@@ -352,7 +351,7 @@ class _ContextualPaywallSheetState
                       Navigator.pop(context, false);
                     },
                     child: Text(
-                      isEn ? 'Not now' : 'Şimdi değil',
+                      L10nService.get('premium.contextual_paywall.not_now', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         color: Colors.white.withValues(alpha: 0.7),
                         fontSize: 13,
@@ -386,28 +385,36 @@ class _ContextualPaywallSheetState
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          isEn
-              ? monthlyLabel
-              : monthlyLabel.replaceAll('.', ',').replaceAll('/mo', '/ay'),
-          style:
-              AppTypography.elegantAccent(
-                color: Colors.white.withValues(alpha: 0.4),
-                fontSize: 13,
-              ).copyWith(
-                decoration: TextDecoration.lineThrough,
-                decorationColor: Colors.white.withValues(alpha: 0.4),
-              ),
+        Flexible(
+          child: Text(
+            isEn
+                ? monthlyLabel
+                : monthlyLabel.replaceAll('.', ',').replaceAll('/mo', '/ay'),
+            style:
+                AppTypography.elegantAccent(
+                  color: Colors.white.withValues(alpha: 0.4),
+                  fontSize: 13,
+                ).copyWith(
+                  decoration: TextDecoration.lineThrough,
+                  decorationColor: Colors.white.withValues(alpha: 0.4),
+                ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
         const SizedBox(width: 8),
-        Text(
-          isEn
-              ? '$yearlyLabel billed yearly'
-              : '${yearlyLabel.replaceAll('.', ',').replaceAll('/mo', '/ay')} yıllık',
-          style: AppTypography.modernAccent(
-            color: Colors.white.withValues(alpha: 0.7),
-            fontSize: 13,
-            fontWeight: FontWeight.w600,
+        Flexible(
+          child: Text(
+            isEn
+                ? '$yearlyLabel billed yearly'
+                : '${yearlyLabel.replaceAll('.', ',').replaceAll('/mo', '/ay')} yıllık',
+            style: AppTypography.modernAccent(
+              color: Colors.white.withValues(alpha: 0.7),
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
       ],
@@ -459,13 +466,15 @@ class _ContextualPaywallSheetState
           color: Colors.white.withValues(alpha: 0.5),
         ),
         const SizedBox(width: 6),
-        Text(
-          isEn
-              ? 'Surface patterns from your entries with Pro'
-              : 'Pro ile kayıtlarındaki kalıpları ortaya çıkar',
-          style: AppTypography.decorativeScript(
-            color: Colors.white.withValues(alpha: 0.5),
-            fontSize: 12,
+        Flexible(
+          child: Text(
+            L10nService.get('premium.contextual_paywall.surface_patterns_from_your_entries_with', isEn ? AppLanguage.en : AppLanguage.tr),
+            style: AppTypography.decorativeScript(
+              color: Colors.white.withValues(alpha: 0.5),
+              fontSize: 12,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
       ],
@@ -524,7 +533,7 @@ class _ContextualPaywallSheetState
       child: Column(
         children: [
           Text(
-            isEn ? 'Your investment so far' : 'Şimdiye kadarki yatırımın',
+            L10nService.get('premium.contextual_paywall.your_investment_so_far', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.elegantAccent(
               fontSize: 11,
               letterSpacing: 1.0,
@@ -536,19 +545,25 @@ class _ContextualPaywallSheetState
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: items
                 .map(
-                  (item) => Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(item.icon, size: 14, color: accentColor),
-                      const SizedBox(width: 4),
-                      Text(
-                        item.label,
-                        style: AppTypography.subtitle(
-                          color: Colors.white.withValues(alpha: 0.8),
-                          fontSize: 12,
+                  (item) => Flexible(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(item.icon, size: 14, color: accentColor),
+                        const SizedBox(width: 4),
+                        Flexible(
+                          child: Text(
+                            item.label,
+                            style: AppTypography.subtitle(
+                              color: Colors.white.withValues(alpha: 0.8),
+                              fontSize: 12,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 )
                 .toList(),
@@ -564,31 +579,23 @@ class _ContextualPaywallSheetState
         return _PaywallConfig(
           icon: Icons.psychology_outlined,
           accentColor: AppColors.starGold,
-          headline: isEn
-              ? 'Your data has more to show'
-              : 'Verilerinin gösterecekleri var',
-          subtitle: isEn
-              ? 'Your entries hold patterns you can\'t see in the moment. Pro reveals what your journal already knows.'
-              : 'Kayıtların, o anda göremediğin kalıplar barındırıyor. Pro, günlüğünün zaten bildiğini ortaya çıkarır.',
+          headline: L10nService.get('premium.contextual_paywall.your_data_has_more_to_show', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('premium.contextual_paywall.your_entries_hold_patterns_you_cant_see', isEn ? AppLanguage.en : AppLanguage.tr),
           detail: widget.entryCount != null
               ? (isEn
                     ? '${widget.entryCount} entries analyzed'
                     : '${widget.entryCount} kayıt analiz edildi')
               : null,
-          cta: isEn ? 'Discover My Patterns' : 'Kalıplarımı Keşfet',
+          cta: L10nService.get('premium.contextual_paywall.discover_my_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case PaywallContext.dreams:
         return _PaywallConfig(
           icon: Icons.nightlight_round,
           accentColor: AppColors.mediumSlateBlue,
-          headline: isEn
-              ? 'Your dream has more to say'
-              : 'Rüyanın söyleyecekleri bitmedi',
-          subtitle: isEn
-              ? '4 more interpretation perspectives available. See your dream through every lens.'
-              : '4 yorum perspektifi daha mevcut. Rüyanı her açıdan gör.',
-          cta: isEn ? 'Access All Perspectives' : 'Tüm Perspektiflere Eriş',
+          headline: L10nService.get('premium.contextual_paywall.your_dream_has_more_to_say', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('premium.contextual_paywall.4_more_interpretation_perspectives_avail', isEn ? AppLanguage.en : AppLanguage.tr),
+          cta: L10nService.get('premium.contextual_paywall.access_all_perspectives', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case PaywallContext.streakFreeze:
@@ -598,15 +605,13 @@ class _ContextualPaywallSheetState
           headline: isEn
               ? "Don't lose what you've built"
               : 'İnşa ettiğini kaybetme',
-          subtitle: isEn
-              ? 'Freeze your streak and pick up where you left off tomorrow.'
-              : 'Serini dondur ve yarın kaldığın yerden devam et.',
+          subtitle: L10nService.get('premium.contextual_paywall.freeze_your_streak_and_pick_up_where_you', isEn ? AppLanguage.en : AppLanguage.tr),
           detail: widget.streakDays != null
               ? (isEn
                     ? '${widget.streakDays}-day streak at risk'
                     : '${widget.streakDays} günlük seri risk altında')
               : null,
-          cta: isEn ? 'Protect My Streak' : 'Serimi Koru',
+          cta: L10nService.get('premium.contextual_paywall.protect_my_streak', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case PaywallContext.monthlyReport:
@@ -616,97 +621,73 @@ class _ContextualPaywallSheetState
           headline: isEn
               ? "You've done the work. See the growth."
               : 'Emeği verdin. Büyümeyi gör.',
-          subtitle: isEn
-              ? 'Your monthly reflection report distills a full month into one clear picture.'
-              : 'Aylık yansıma raporun, bir ayı tek bir net görünüme dönüştürür.',
-          cta: isEn ? 'View My Report' : 'Raporumu Gör',
+          subtitle: L10nService.get('premium.contextual_paywall.your_monthly_reflection_report_distills', isEn ? AppLanguage.en : AppLanguage.tr),
+          cta: L10nService.get('premium.contextual_paywall.view_my_report', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case PaywallContext.export:
         return _PaywallConfig(
           icon: Icons.download_rounded,
           accentColor: AppColors.exportGreen,
-          headline: isEn ? 'Your data belongs to you' : 'Verilerin sana ait',
+          headline: L10nService.get('premium.contextual_paywall.your_data_belongs_to_you', isEn ? AppLanguage.en : AppLanguage.tr),
           subtitle: isEn
               ? 'Export your complete journal history in any format. All ${widget.entryCount ?? ''} entries, yours to keep.'
               : 'Tüm günlük geçmişini istediğin formatta dışa aktar. ${widget.entryCount ?? ''} kayıt, senin.',
-          cta: isEn ? 'Export Everything' : 'Her Şeyi Dışa Aktar',
+          cta: L10nService.get('premium.contextual_paywall.export_everything', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case PaywallContext.adRemoval:
         return _PaywallConfig(
           icon: Icons.visibility_off,
           accentColor: AppColors.amethyst,
-          headline: isEn
-              ? 'Your reflection space, uninterrupted'
-              : 'Yansıma alanın, kesintisiz',
-          subtitle: isEn
-              ? 'Remove all ads and focus on what matters — your reflection time.'
-              : 'Tüm reklamları kaldır ve önemli olana odaklan — yansıma zamanın.',
-          cta: isEn ? 'Go Ad-Free' : 'Reklamsız Geç',
+          headline: L10nService.get('premium.contextual_paywall.your_reflection_space_uninterrupted', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('premium.contextual_paywall.remove_all_ads_and_focus_on_what_matters', isEn ? AppLanguage.en : AppLanguage.tr),
+          cta: L10nService.get('premium.contextual_paywall.go_adfree', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case PaywallContext.programs:
         return _PaywallConfig(
           icon: Icons.school_rounded,
           accentColor: AppColors.greenAccent,
-          headline: isEn
-              ? 'Go deeper with guided growth'
-              : 'Rehberli büyüme ile derinleş',
-          subtitle: isEn
-              ? 'Structured multi-day sequences designed to surface new dimensions of self-awareness.'
-              : 'Öz farkındalığın yeni boyutlarını ortaya çıkarmak için tasarlanmış çok günlük diziler.',
-          cta: isEn ? 'Start Program' : 'Programa Başla',
+          headline: L10nService.get('premium.contextual_paywall.go_deeper_with_guided_growth', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('premium.contextual_paywall.structured_multiday_sequences_designed_t', isEn ? AppLanguage.en : AppLanguage.tr),
+          cta: L10nService.get('premium.contextual_paywall.start_program', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case PaywallContext.challenges:
         return _PaywallConfig(
           icon: Icons.emoji_events_rounded,
           accentColor: AppColors.celestialGold,
-          headline: isEn ? 'Push your limits' : 'Sınırlarını zorla',
-          subtitle: isEn
-              ? 'Pro growth challenges that elevate your daily practice.'
-              : 'Günlük pratiğini dönüştüren premium büyüme meydan okumaları.',
-          cta: isEn ? 'Accept Challenge' : 'Meydan Okumayı Kabul Et',
+          headline: L10nService.get('premium.contextual_paywall.push_your_limits', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('premium.contextual_paywall.pro_growth_challenges_that_elevate_your', isEn ? AppLanguage.en : AppLanguage.tr),
+          cta: L10nService.get('premium.contextual_paywall.accept_challenge', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case PaywallContext.cycleSync:
         return _PaywallConfig(
           icon: Icons.favorite_rounded,
           accentColor: AppColors.amethyst,
-          headline: isEn
-              ? 'Understand your cycle patterns'
-              : 'Döngü kalıplarını anla',
-          subtitle: isEn
-              ? 'See how your emotional patterns align with your hormonal cycle. Full history and phase-aware insights.'
-              : 'Duygusal kalıplarının hormonal döngünle nasıl uyumlandığını gör. Tam geçmiş ve evreye duyarlı içgörüler.',
-          cta: isEn ? 'Access Cycle Insights' : 'Döngü İçgörülerine Eriş',
+          headline: L10nService.get('premium.contextual_paywall.understand_your_cycle_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('premium.contextual_paywall.see_how_your_emotional_patterns_align_wi', isEn ? AppLanguage.en : AppLanguage.tr),
+          cta: L10nService.get('premium.contextual_paywall.access_cycle_insights', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case PaywallContext.shadowWork:
         return _PaywallConfig(
           icon: Icons.psychology_rounded,
           accentColor: AppColors.amethyst,
-          headline: isEn
-              ? 'Explore your hidden patterns'
-              : 'Gizli kalıplarını keşfet',
-          subtitle: isEn
-              ? 'Guided shadow work helps you understand the unconscious patterns shaping your emotions and behaviors.'
-              : 'Rehberli gölge çalışması, duygularını ve davranışlarını şekillendiren bilinçdışı kalıpları anlamanı sağlar.',
-          cta: isEn ? 'Access Shadow Work' : 'Gölge Çalışmasına Eriş',
+          headline: L10nService.get('premium.contextual_paywall.explore_your_hidden_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('premium.contextual_paywall.guided_shadow_work_helps_you_understand', isEn ? AppLanguage.en : AppLanguage.tr),
+          cta: L10nService.get('premium.contextual_paywall.access_shadow_work', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case PaywallContext.general:
         return _PaywallConfig(
           icon: Icons.psychology_outlined,
           accentColor: AppColors.starGold,
-          headline: isEn
-              ? 'Your data has more to show'
-              : 'Verilerinin gösterecekleri var',
-          subtitle: isEn
-              ? 'No AI, no cloud — just your words revealing patterns you couldn\'t see before.'
-              : 'Yapay zeka yok, bulut yok — sadece senin sözlerin, daha önce göremediğin kalıpları ortaya çıkarıyor.',
-          cta: isEn ? 'Discover My Patterns' : 'Kalıplarımı Keşfet',
+          headline: L10nService.get('premium.contextual_paywall.your_data_has_more_to_show_1', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('premium.contextual_paywall.no_ai_no_cloud_just_your_words_revealing', isEn ? AppLanguage.en : AppLanguage.tr),
+          cta: L10nService.get('premium.contextual_paywall.discover_my_patterns_1', isEn ? AppLanguage.en : AppLanguage.tr),
         );
     }
   }

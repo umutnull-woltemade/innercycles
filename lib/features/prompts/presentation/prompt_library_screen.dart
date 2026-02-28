@@ -26,6 +26,7 @@ import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../data/services/l10n_service.dart';
 
 class PromptLibraryScreen extends ConsumerWidget {
   const PromptLibraryScreen({super.key});
@@ -62,7 +63,7 @@ class PromptLibraryScreen extends ConsumerWidget {
                   icon: Icon(Icons.refresh_rounded,
                       size: 16, color: AppColors.starGold),
                   label: Text(
-                    isEn ? 'Retry' : 'Tekrar Dene',
+                    L10nService.get('prompts.prompt_library.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -132,7 +133,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
           ),
           slivers: [
             GlassSliverAppBar(
-              title: isEn ? 'Prompt Library' : 'İlham Kütüphanesi',
+              title: L10nService.get('prompts.prompt_library.prompt_library', isEn ? AppLanguage.en : AppLanguage.tr),
             ),
             SliverToBoxAdapter(
               child: Padding(
@@ -222,7 +223,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GradientText(
-                isEn ? 'Your Progress' : 'İlerlemeniz',
+                L10nService.get('prompts.prompt_library.your_progress', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 16,
@@ -322,7 +323,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
           ),
           const SizedBox(height: 14),
           GradientButton.gold(
-            label: isEn ? 'Start Writing' : 'Yazmaya Başla',
+            label: L10nService.get('prompts.prompt_library.start_writing', isEn ? AppLanguage.en : AppLanguage.tr),
             onPressed: () {
               HapticFeedback.mediumImpact();
               service.markCompleted(prompt.id);
@@ -348,7 +349,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         children: [
-          _buildChip(null, isEn ? 'All' : 'Tümü'),
+          _buildChip(null, L10nService.get('prompts.prompt_library.all', isEn ? AppLanguage.en : AppLanguage.tr)),
           ...PromptCategory.values.map(
             (cat) => _buildChip(cat, _categoryLabel(cat)),
           ),
@@ -586,7 +587,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            isEn ? 'Completed' : 'Tamamlandı',
+                            L10nService.get('prompts.prompt_library.completed', isEn ? AppLanguage.en : AppLanguage.tr),
                             style: AppTypography.elegantAccent(
                               fontSize: 12,
                               color: AppColors.success,
@@ -618,7 +619,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                     // Skip button
                     Expanded(
                       child: GradientOutlinedButton(
-                        label: isEn ? 'Skip' : 'Atla',
+                        label: L10nService.get('prompts.prompt_library.skip', isEn ? AppLanguage.en : AppLanguage.tr),
                         variant: GradientTextVariant.aurora,
                         expanded: true,
                         fontSize: 15,
@@ -639,7 +640,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                     Expanded(
                       flex: 2,
                       child: GradientButton.gold(
-                        label: isEn ? 'Start Writing' : 'Yazmaya Başla',
+                        label: L10nService.get('prompts.prompt_library.start_writing_1', isEn ? AppLanguage.en : AppLanguage.tr),
                         onPressed: () {
                           HapticFeedback.mediumImpact();
                           service.markCompleted(prompt.id);
@@ -669,13 +670,13 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
     switch (depth) {
       case PromptDepth.surface:
         color = AppColors.success;
-        label = isEn ? 'Light' : 'Hafif';
+        label = L10nService.get('prompts.prompt_library.light', isEn ? AppLanguage.en : AppLanguage.tr);
       case PromptDepth.medium:
         color = AppColors.warning;
-        label = isEn ? 'Medium' : 'Orta';
+        label = L10nService.get('prompts.prompt_library.medium', isEn ? AppLanguage.en : AppLanguage.tr);
       case PromptDepth.deep:
         color = AppColors.amethyst;
-        label = isEn ? 'Deep' : 'Derin';
+        label = L10nService.get('prompts.prompt_library.deep', isEn ? AppLanguage.en : AppLanguage.tr);
     }
 
     return Container(
@@ -698,21 +699,21 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
   String _categoryLabel(PromptCategory category) {
     switch (category) {
       case PromptCategory.selfDiscovery:
-        return isEn ? 'Cycle Awareness' : 'Döngü Farkındalığı';
+        return L10nService.get('prompts.prompt_library.cycle_awareness', isEn ? AppLanguage.en : AppLanguage.tr);
       case PromptCategory.relationships:
-        return isEn ? 'Relationships' : 'İlişkiler';
+        return L10nService.get('prompts.prompt_library.relationships', isEn ? AppLanguage.en : AppLanguage.tr);
       case PromptCategory.gratitude:
-        return isEn ? 'Gratitude' : 'Minnettarlık';
+        return L10nService.get('prompts.prompt_library.gratitude', isEn ? AppLanguage.en : AppLanguage.tr);
       case PromptCategory.emotions:
-        return isEn ? 'Emotions' : 'Duygular';
+        return L10nService.get('prompts.prompt_library.emotions', isEn ? AppLanguage.en : AppLanguage.tr);
       case PromptCategory.goals:
-        return isEn ? 'Goals' : 'Hedefler';
+        return L10nService.get('prompts.prompt_library.goals', isEn ? AppLanguage.en : AppLanguage.tr);
       case PromptCategory.recovery:
-        return isEn ? 'Recovery' : 'İyileşme';
+        return L10nService.get('prompts.prompt_library.recovery', isEn ? AppLanguage.en : AppLanguage.tr);
       case PromptCategory.creativity:
-        return isEn ? 'Creativity' : 'Yaratıcılık';
+        return L10nService.get('prompts.prompt_library.creativity', isEn ? AppLanguage.en : AppLanguage.tr);
       case PromptCategory.mindfulness:
-        return isEn ? 'Mindfulness' : 'Farkındalık';
+        return L10nService.get('prompts.prompt_library.mindfulness', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 }

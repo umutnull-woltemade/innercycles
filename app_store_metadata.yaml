@@ -36,7 +36,7 @@ screenshot_captions:
   1: "Your emotions have a rhythm — see patterns you never noticed before"
   2: "Build a journaling streak — track your progress, celebrate milestones"
   3: "Dreams decoded — record, search, and understand your dreams"
-  4: "AI-powered insights — discover what your entries reveal about you"
+  4: "Pattern-based insights — discover what your entries reveal about you"
   5: "Your mood, visualized — spot trends across days, weeks, and months"
   6: "Widgets on your Home Screen — streak, prompts, and mood at a glance"
   7: "Beautiful dark and light themes — designed to feel calm and personal"
@@ -45,14 +45,14 @@ screenshot_captions:
   10: "Private. Secure. Yours. — your journal stays on your device"
 
 # ── PROMOTIONAL TEXT (170 chars, can be updated without review) ──────────
-promotional_text: "New: AI-powered reflections, streak tracking, and iOS widgets. Understand yourself better, one entry at a time."
+promotional_text: "New: Personalized reflections, streak tracking, and iOS widgets. Understand yourself better, one entry at a time."
 # 111 chars — feature-forward, benefit-driven
 
 # ── DESCRIPTION (iOS — not indexed, optimized for conversion) ────────────
 description: |
   Understand yourself better, one entry at a time.
 
-  InnerCycles is your personal space for daily journaling, mood tracking, and self-reflection. Discover patterns in your emotions, track your streaks, and grow with AI-powered insights — all in a beautifully designed, private journaling experience.
+  InnerCycles is your personal space for daily journaling, mood tracking, and self-reflection. Discover patterns in your emotions, track your streaks, and grow with personalized insights — all in a beautifully designed, private journaling experience.
 
   Whether you journal every morning, track your moods throughout the day, or want to remember your dreams, InnerCycles adapts to your rhythm and helps you see the bigger picture of your inner life.
 
@@ -72,8 +72,8 @@ description: |
   • Track recurring themes and symbols
   • Build a searchable dream archive
 
-  — AI-POWERED REFLECTIONS —
-  • Receive personalized insights based on your entries
+  — PERSONALIZED REFLECTIONS —
+  • Receive pattern-based insights drawn from your entries
   • Discover connections you might have missed
   • Gentle, private, and never judgmental
 
@@ -91,7 +91,7 @@ description: |
   Start your journaling practice today. Your future self will thank you.
 
   — INNERCYCLES PREMIUM —
-  • AI-powered reflections and insights
+  • Personalized reflections and insights
   • Advanced pattern detection
   • Unlimited entries and dream logs
   • Monthly and annual reflection reports
@@ -108,7 +108,7 @@ whats_new: |
   - First-entry celebration with animated milestone
   - iOS Home Screen and Lock Screen widgets
   - Apple Watch companion for quick mood logging
-  - AI-powered reflections for deeper insights
+  - Personalized reflections for deeper insights
   - Birthday Agenda with notifications
   - Enhanced streak tracking with milestone celebrations
   - Improved readability and pastel design refresh

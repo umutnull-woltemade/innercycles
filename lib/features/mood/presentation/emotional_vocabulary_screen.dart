@@ -11,6 +11,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../data/services/l10n_service.dart';
 
 class EmotionalVocabularyScreen extends ConsumerStatefulWidget {
   const EmotionalVocabularyScreen({super.key});
@@ -66,9 +67,7 @@ class _EmotionalVocabularyScreenState
                       ),
                       slivers: [
                         GlassSliverAppBar(
-                          title: isEn
-                              ? 'Emotional Vocabulary'
-                              : 'Duygusal Sözlük',
+                          title: L10nService.get('mood.emotional_vocabulary.emotional_vocabulary', isEn ? AppLanguage.en : AppLanguage.tr),
                         ),
                         SliverPadding(
                           padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -130,9 +129,7 @@ class _EmotionalVocabularyScreenState
                                           height: AppConstants.spacingMd,
                                         ),
                                         Text(
-                                          isEn
-                                              ? 'No emotions found'
-                                              : 'Duygu bulunamadı',
+                                          L10nService.get('mood.emotional_vocabulary.no_emotions_found', isEn ? AppLanguage.en : AppLanguage.tr),
                                           style: AppTypography.decorativeScript(
                                             fontSize: 15,
                                             color: isDark
@@ -164,7 +161,7 @@ class _EmotionalVocabularyScreenState
       child: Row(
         children: [
           _FamilyChip(
-            label: isEn ? 'All' : 'Tümü',
+            label: L10nService.get('mood.emotional_vocabulary.all', isEn ? AppLanguage.en : AppLanguage.tr),
             emoji: '🎭',
             isSelected: _selectedFamily == null,
             isDark: isDark,
@@ -208,7 +205,7 @@ class _EmotionalVocabularyScreenState
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: isEn ? 'Find a feeling...' : 'Bir duygu bul...',
+          hintText: L10nService.get('mood.emotional_vocabulary.find_a_feeling', isEn ? AppLanguage.en : AppLanguage.tr),
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -218,7 +215,7 @@ class _EmotionalVocabularyScreenState
           ),
           suffixIcon: _searchQuery.isNotEmpty
               ? IconButton(
-                  tooltip: isEn ? 'Clear search' : 'Aramayı temizle',
+                  tooltip: L10nService.get('mood.emotional_vocabulary.clear_search', isEn ? AppLanguage.en : AppLanguage.tr),
                   icon: Icon(
                     Icons.cancel,
                     color: isDark
@@ -451,7 +448,7 @@ class _EmotionCardState extends State<_EmotionCard> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              isEn ? 'Body Sensation' : 'Bedensel Duyum',
+                              L10nService.get('mood.emotional_vocabulary.body_sensation', isEn ? AppLanguage.en : AppLanguage.tr),
                               style: AppTypography.elegantAccent(
                                 fontSize: 11,
                                 color: AppColors.auroraStart,

@@ -17,6 +17,8 @@ import '../../core/theme/app_colors.dart';
 import '../../data/models/tool_manifest.dart';
 import '../../data/services/ecosystem_analytics_service.dart';
 import '../../data/services/smart_router_service.dart';
+import '../../data/services/l10n_service.dart';
+import '../../data/providers/app_providers.dart';
 
 class ToolEcosystemFooter extends ConsumerWidget {
   final String currentToolId;
@@ -64,7 +66,7 @@ class ToolEcosystemFooter extends ConsumerWidget {
         ),
         const SizedBox(height: AppConstants.spacingLg),
         Text(
-          isEn ? 'Related Tools' : 'İlgili Araçlar',
+          L10nService.get('shared.tool_ecosystem_footer.related_tools', isEn ? AppLanguage.en : AppLanguage.tr),
           style: AppTypography.displayFont.copyWith(
             fontSize: 15,
             fontWeight: FontWeight.w600,

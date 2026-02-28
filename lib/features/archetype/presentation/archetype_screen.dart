@@ -30,6 +30,7 @@ import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../data/services/l10n_service.dart';
 
 class ArchetypeScreen extends ConsumerWidget {
   const ArchetypeScreen({super.key});
@@ -53,7 +54,7 @@ class ArchetypeScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: isEn ? 'Your Archetype' : 'Arketip Profilin',
+                  title: L10nService.get('archetype.archetype.your_archetype', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -68,9 +69,7 @@ class ArchetypeScreen extends ConsumerWidget {
                           children: [
                             const SizedBox(height: 40),
                             Text(
-                              isEn
-                                  ? 'Could not load. Your local data is unaffected.'
-                                  : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                              L10nService.get('archetype.archetype.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
                               textAlign: TextAlign.center,
                               style: AppTypography.decorativeScript(
                                 fontSize: 14,
@@ -84,7 +83,7 @@ class ArchetypeScreen extends ConsumerWidget {
                               onPressed: () => ref.invalidate(archetypeServiceProvider),
                               icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
                               label: Text(
-                                isEn ? 'Retry' : 'Tekrar Dene',
+                                L10nService.get('archetype.archetype.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
                                 ),
@@ -106,9 +105,7 @@ class ArchetypeScreen extends ConsumerWidget {
                               children: [
                                 const SizedBox(height: 40),
                                 Text(
-                                  isEn
-                                      ? 'Could not load. Your local data is unaffected.'
-                                      : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                                  L10nService.get('archetype.archetype.could_not_load_your_local_data_is_unaffe_1', isEn ? AppLanguage.en : AppLanguage.tr),
                                   textAlign: TextAlign.center,
                                   style: AppTypography.decorativeScript(
                                     fontSize: 14,
@@ -122,7 +119,7 @@ class ArchetypeScreen extends ConsumerWidget {
                                   onPressed: () => ref.invalidate(journalServiceProvider),
                                   icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
                                   label: Text(
-                                    isEn ? 'Retry' : 'Tekrar Dene',
+                                    L10nService.get('archetype.archetype.retry_1', isEn ? AppLanguage.en : AppLanguage.tr),
                                     style: AppTypography.elegantAccent(
                                       fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
                                     ),
@@ -327,7 +324,7 @@ class _StrengthsShadowSection extends StatelessWidget {
               Icon(Icons.auto_awesome, size: 18, color: AppColors.starGold),
               const SizedBox(width: 8),
               GradientText(
-                isEn ? 'Strengths' : 'Güçlü Yönler',
+                L10nService.get('archetype.archetype.strengths', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.elegantAccent(
                   fontSize: 16,
@@ -357,7 +354,7 @@ class _StrengthsShadowSection extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               GradientText(
-                isEn ? 'Shadow Side' : 'Gölge Yönü',
+                L10nService.get('archetype.archetype.shadow_side', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.amethyst,
                 style: AppTypography.elegantAccent(
                   fontSize: 16,
@@ -443,7 +440,7 @@ class _GrowthTipCard extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               GradientText(
-                isEn ? 'Growth Insight' : 'Büyüme İçgörüsü',
+                L10nService.get('archetype.archetype.growth_insight', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.elegantAccent(
                   fontSize: 16,
@@ -501,7 +498,7 @@ class _EvolutionTimeline extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               GradientText(
-                isEn ? 'Evolution Timeline' : 'Gelişim Zaman Çizgisi',
+                L10nService.get('archetype.archetype.evolution_timeline', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.aurora,
                 style: AppTypography.elegantAccent(
                   fontSize: 16,
@@ -643,7 +640,7 @@ class _BreakdownChart extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                isEn ? 'Full Archetype Breakdown' : 'Tam Arketip Dağılımı',
+                L10nService.get('archetype.archetype.full_archetype_breakdown', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -840,12 +837,10 @@ class _EmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.psychology_outlined,
-      title: isEn ? 'Your archetype is waiting to emerge' : 'Arketipin ortaya çıkmayı bekliyor',
-      description: isEn
-          ? 'Add at least 3 entries to surface your dominant archetype'
-          : 'Baskın arketipini ortaya çıkarmak için en az 3 kayıt ekle',
+      title: L10nService.get('archetype.archetype.your_archetype_is_waiting_to_emerge', isEn ? AppLanguage.en : AppLanguage.tr),
+      description: L10nService.get('archetype.archetype.add_at_least_3_entries_to_surface_your_d', isEn ? AppLanguage.en : AppLanguage.tr),
       gradientVariant: GradientTextVariant.amethyst,
-      ctaLabel: isEn ? 'Write First Entry' : 'İlk Kaydı Yaz',
+      ctaLabel: L10nService.get('archetype.archetype.write_first_entry', isEn ? AppLanguage.en : AppLanguage.tr),
       onCtaPressed: () => context.go(Routes.journal),
     );
   }
@@ -869,7 +864,7 @@ class _ShareArchetypeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GradientButton(
-      label: isEn ? 'Share Your Archetype' : 'Arketipini Paylaş',
+      label: L10nService.get('archetype.archetype.share_your_archetype', isEn ? AppLanguage.en : AppLanguage.tr),
       icon: Icons.share_rounded,
       expanded: true,
       gradient: const LinearGradient(

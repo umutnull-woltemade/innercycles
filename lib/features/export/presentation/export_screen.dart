@@ -24,6 +24,7 @@ import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../data/services/l10n_service.dart';
 
 class ExportScreen extends ConsumerStatefulWidget {
   const ExportScreen({super.key});
@@ -54,7 +55,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: isEn ? 'Export Data' : 'Verileri Dışa Aktar',
+                  title: L10nService.get('export.export.export_data', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(20),
@@ -109,9 +110,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  isEn
-                                      ? 'Could not load. Your local data is unaffected.'
-                                      : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                                  L10nService.get('export.export.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
                                   textAlign: TextAlign.center,
                                   style: AppTypography.subtitle(
                                     color: isDark
@@ -125,7 +124,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                                       ref.invalidate(exportServiceProvider),
                                   icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
                                   label: Text(
-                                    isEn ? 'Retry' : 'Tekrar Dene',
+                                    L10nService.get('export.export.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                                     style: AppTypography.elegantAccent(
                                       fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
                                     ),
@@ -140,7 +139,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
 
                       // Format selector
                       Text(
-                        isEn ? 'Export Format' : 'Dışa Aktarma Formatı',
+                        L10nService.get('export.export.export_format', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.displayFont.copyWith(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
@@ -153,10 +152,8 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
 
                       _FormatOption(
                         format: ExportFormat.text,
-                        title: isEn ? 'Plain Text' : 'Düz Metin',
-                        subtitle: isEn
-                            ? 'Human-readable format'
-                            : 'Okunabilir format',
+                        title: L10nService.get('export.export.plain_text', isEn ? AppLanguage.en : AppLanguage.tr),
+                        subtitle: L10nService.get('export.export.humanreadable_format', isEn ? AppLanguage.en : AppLanguage.tr),
                         icon: Icons.text_snippet_outlined,
                         isSelected: _selectedFormat == ExportFormat.text,
                         isLocked: false,
@@ -169,9 +166,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                       _FormatOption(
                         format: ExportFormat.csv,
                         title: 'CSV',
-                        subtitle: isEn
-                            ? 'Spreadsheet compatible'
-                            : 'Tablo uyumlu',
+                        subtitle: L10nService.get('export.export.spreadsheet_compatible', isEn ? AppLanguage.en : AppLanguage.tr),
                         icon: Icons.table_chart_outlined,
                         isSelected: _selectedFormat == ExportFormat.csv,
                         isLocked: !isPremium,
@@ -193,9 +188,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                       _FormatOption(
                         format: ExportFormat.json,
                         title: 'JSON',
-                        subtitle: isEn
-                            ? 'Developer-friendly format'
-                            : 'Geliştirici dostu format',
+                        subtitle: L10nService.get('export.export.developerfriendly_format', isEn ? AppLanguage.en : AppLanguage.tr),
                         icon: Icons.data_object_outlined,
                         isSelected: _selectedFormat == ExportFormat.json,
                         isLocked: !isPremium,
@@ -217,7 +210,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
 
                       // Export button
                       GradientButton.gold(
-                        label: isEn ? 'Export & Share' : 'Dışa Aktar ve Paylaş',
+                        label: L10nService.get('export.export.export_share', isEn ? AppLanguage.en : AppLanguage.tr),
                         icon: Icons.file_download_outlined,
                         onPressed: _isExporting
                             ? null
@@ -230,7 +223,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
 
                       // Copy to clipboard button
                       GradientOutlinedButton(
-                        label: isEn ? 'Copy to Clipboard' : 'Panoya Kopyala',
+                        label: L10nService.get('export.export.copy_to_clipboard', isEn ? AppLanguage.en : AppLanguage.tr),
                         icon: Icons.copy_outlined,
                         variant: GradientTextVariant.aurora,
                         expanded: true,
@@ -325,7 +318,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(isEn ? 'Export data copied to clipboard' : 'Dışa aktarma verileri panoya kopyalandı'),
+          content: Text(L10nService.get('export.export.export_data_copied_to_clipboard', isEn ? AppLanguage.en : AppLanguage.tr)),
           backgroundColor: AppColors.success,
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(
@@ -362,12 +355,8 @@ class _InfoCard extends StatelessWidget {
           Expanded(
             child: Text(
               isPremium
-                  ? (isEn
-                        ? 'Export your full journal history in any format'
-                        : 'Tüm günlük geçmişinizi herhangi bir formatta dışa aktarın')
-                  : (isEn
-                        ? 'Free: last 7 days as text. Upgrade for full history & all formats.'
-                        : 'Ücretsiz: son 7 gün metin olarak. Tam geçmiş ve tüm formatlar için yükseltin.'),
+                  ? (L10nService.get('export.export.export_your_full_journal_history_in_any', isEn ? AppLanguage.en : AppLanguage.tr))
+                  : (L10nService.get('export.export.free_last_7_days_as_text_upgrade_for_ful', isEn ? AppLanguage.en : AppLanguage.tr)),
               style: AppTypography.decorativeScript(
                 fontSize: 13,
                 color: isDark
@@ -415,7 +404,7 @@ class _EntryCountCard extends StatelessWidget {
                 ),
               ),
               Text(
-                isEn ? 'Total Entries' : 'Toplam Kayıt',
+                L10nService.get('export.export.total_entries', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.elegantAccent(
                   fontSize: 11,
                   color: isDark
@@ -436,7 +425,7 @@ class _EntryCountCard extends StatelessWidget {
                 ),
               ),
               Text(
-                isEn ? 'Will Export' : 'Aktarılacak',
+                L10nService.get('export.export.will_export', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.elegantAccent(
                   fontSize: 11,
                   color: isDark
@@ -538,7 +527,7 @@ class _LockedEntriesCta extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Text(
-                  isEn ? 'Access' : 'Eriş',
+                  L10nService.get('export.export.access', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.modernAccent(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,

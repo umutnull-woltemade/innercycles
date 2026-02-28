@@ -28,6 +28,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../data/services/l10n_service.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // QUIZ SCREEN
@@ -192,7 +193,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
       child: Row(
         children: [
           IconButton(
-            tooltip: isEn ? 'Back' : 'Geri',
+            tooltip: L10nService.get('quiz.attachment_quiz.back', isEn ? AppLanguage.en : AppLanguage.tr),
             onPressed: () {
               if (_currentPage > 0) {
                 _pageController.previousPage(
@@ -213,7 +214,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
           ),
           Expanded(
             child: Text(
-              isEn ? 'Attachment Style' : 'Bağlanma Stili',
+              L10nService.get('quiz.attachment_quiz.attachment_style', isEn ? AppLanguage.en : AppLanguage.tr),
               textAlign: TextAlign.center,
               style: AppTypography.displayFont.copyWith(
                 fontSize: 22,
@@ -446,7 +447,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
         ),
         slivers: [
           // App bar
-          GlassSliverAppBar(title: isEn ? 'Your Reflection' : 'Yansımanız'),
+          GlassSliverAppBar(title: L10nService.get('quiz.attachment_quiz.your_reflection', isEn ? AppLanguage.en : AppLanguage.tr)),
 
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -467,7 +468,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
                 // Strengths
                 _buildListSection(
                   context,
-                  title: isEn ? 'Your Strengths' : 'Güçlü Yanlarınız',
+                  title: L10nService.get('quiz.attachment_quiz.your_strengths', isEn ? AppLanguage.en : AppLanguage.tr),
                   items: isEn ? style.strengthsEn : style.strengthsTr,
                   icon: Icons.star_rounded,
                   color: AppColors.starGold,
@@ -478,7 +479,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
                 // Growth areas
                 _buildListSection(
                   context,
-                  title: isEn ? 'Growth Areas' : 'Gelişim Alanları',
+                  title: L10nService.get('quiz.attachment_quiz.growth_areas', isEn ? AppLanguage.en : AppLanguage.tr),
                   items: isEn ? style.growthAreasEn : style.growthAreasTr,
                   icon: Icons.spa_rounded,
                   color: AppColors.amethyst,
@@ -620,7 +621,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          isEn ? 'Full Breakdown' : 'Detaylı Dağılım',
+          L10nService.get('quiz.attachment_quiz.full_breakdown', isEn ? AppLanguage.en : AppLanguage.tr),
           style: AppTypography.displayFont.copyWith(
             fontSize: 18,
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
@@ -777,7 +778,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
 
   Widget _buildShareButton(BuildContext context, bool isDark, bool isEn) {
     return GradientButton(
-      label: isEn ? 'Share Your Result' : 'Sonucunu Paylaş',
+      label: L10nService.get('quiz.attachment_quiz.share_your_result', isEn ? AppLanguage.en : AppLanguage.tr),
       icon: Icons.share_rounded,
       onPressed: () {
         if (_result == null) return;
@@ -797,7 +798,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
 
   Widget _buildGoDeeperButton(BuildContext context, bool isDark, bool isEn) {
     return GradientOutlinedButton(
-      label: isEn ? 'Go Deeper - Premium' : 'Derine İn - Premium',
+      label: L10nService.get('quiz.attachment_quiz.go_deeper_premium', isEn ? AppLanguage.en : AppLanguage.tr),
       icon: Icons.auto_awesome,
       variant: GradientTextVariant.gold,
       expanded: true,
@@ -821,7 +822,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
       child: TextButton(
         onPressed: _restartQuiz,
         child: Text(
-          isEn ? 'Retake Quiz' : 'Testi Tekrarla',
+          L10nService.get('quiz.attachment_quiz.retake_quiz', isEn ? AppLanguage.en : AppLanguage.tr),
           style: AppTypography.elegantAccent(
             fontSize: 15,
             color: AppColors.textSecondary,

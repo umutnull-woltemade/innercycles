@@ -23,6 +23,7 @@ import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../data/services/l10n_service.dart';
 
 class BlindSpotScreen extends ConsumerWidget {
   const BlindSpotScreen({super.key});
@@ -46,9 +47,7 @@ class BlindSpotScreen extends ConsumerWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    isEn
-                        ? 'Could not load. Your local data is unaffected.'
-                        : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                    L10nService.get('blind_spot.blind_spot.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
                     textAlign: TextAlign.center,
                     style: AppTypography.subtitle(
                       color: isDark
@@ -62,7 +61,7 @@ class BlindSpotScreen extends ConsumerWidget {
                         ref.invalidate(blindSpotServiceProvider),
                     icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
                     label: Text(
-                      isEn ? 'Retry' : 'Tekrar Dene',
+                      L10nService.get('blind_spot.blind_spot.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
                       ),
@@ -78,9 +77,7 @@ class BlindSpotScreen extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      isEn
-                          ? 'Could not load. Your local data is unaffected.'
-                          : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                      L10nService.get('blind_spot.blind_spot.could_not_load_your_local_data_is_unaffe_1', isEn ? AppLanguage.en : AppLanguage.tr),
                       textAlign: TextAlign.center,
                       style: AppTypography.subtitle(
                         color: isDark
@@ -94,7 +91,7 @@ class BlindSpotScreen extends ConsumerWidget {
                           ref.invalidate(journalServiceProvider),
                       icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
                       label: Text(
-                        isEn ? 'Retry' : 'Tekrar Dene',
+                        L10nService.get('blind_spot.blind_spot.retry_1', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.elegantAccent(
                           fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
                         ),
@@ -202,9 +199,7 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
           ),
           slivers: [
             GlassSliverAppBar(
-              title: widget.isEn
-                  ? 'What Your Journal Reveals'
-                  : 'Günlüğün Ne Ortaya Çıkarıyor',
+              title: L10nService.get('blind_spot.blind_spot.what_your_journal_reveals', widget.isEn ? AppLanguage.en : AppLanguage.tr),
             ),
             if (!widget.hasEnough)
               SliverFillRemaining(
@@ -302,9 +297,7 @@ class _NotEnoughData extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            isEn
-                ? 'A little more journaling to go'
-                : 'Biraz daha günlük tutmaya devam',
+            L10nService.get('blind_spot.blind_spot.a_little_more_journaling_to_go', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.displayFont.copyWith(
               fontSize: 22,
               fontWeight: FontWeight.w600,
@@ -413,7 +406,7 @@ class _OverallInsightCard extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: GradientText(
-                  isEn ? 'Your Overview' : 'Genel Bakış',
+                  L10nService.get('blind_spot.blind_spot.your_overview', isEn ? AppLanguage.en : AppLanguage.tr),
                   variant: GradientTextVariant.aurora,
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 17,
@@ -499,9 +492,7 @@ class _BlindSpotsList extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: Text(
-                isEn
-                    ? 'No blind spots detected at this time. Keep journaling!'
-                    : 'Şu anda bir kör nokta tespit edilmedi. Günlük tutmaya devam et!',
+                L10nService.get('blind_spot.blind_spot.no_blind_spots_detected_at_this_time_kee', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.decorativeScript(
                   fontSize: 14,
                   color: isDark
@@ -519,7 +510,7 @@ class _BlindSpotsList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn ? 'Blind Spots' : 'Kör Noktalar',
+          L10nService.get('blind_spot.blind_spot.blind_spots', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.amethyst,
           style: AppTypography.displayFont.copyWith(
             fontSize: 16,
@@ -771,11 +762,11 @@ class _SeverityIndicator extends StatelessWidget {
   String get _label {
     switch (severity) {
       case BlindSpotSeverity.low:
-        return isEn ? 'Subtle' : 'Hafif';
+        return L10nService.get('blind_spot.blind_spot.subtle', isEn ? AppLanguage.en : AppLanguage.tr);
       case BlindSpotSeverity.medium:
-        return isEn ? 'Notable' : 'Dikkat Çekici';
+        return L10nService.get('blind_spot.blind_spot.notable', isEn ? AppLanguage.en : AppLanguage.tr);
       case BlindSpotSeverity.high:
-        return isEn ? 'Significant' : 'Belirgin';
+        return L10nService.get('blind_spot.blind_spot.significant', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 }
@@ -823,7 +814,7 @@ class _GrowthSuggestionsCard extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               GradientText(
-                isEn ? 'Growth Suggestions' : 'Gelişim Önerileri',
+                L10nService.get('blind_spot.blind_spot.growth_suggestions', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 16,
@@ -899,7 +890,7 @@ class _ShareInsightsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GradientButton(
-      label: isEn ? 'Share Your Insights' : 'İçgörülerini Paylaş',
+      label: L10nService.get('blind_spot.blind_spot.share_your_insights', isEn ? AppLanguage.en : AppLanguage.tr),
       icon: Icons.share_rounded,
       expanded: true,
       gradient: const LinearGradient(

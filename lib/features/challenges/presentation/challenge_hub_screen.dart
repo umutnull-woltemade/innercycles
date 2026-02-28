@@ -29,6 +29,7 @@ import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../data/services/l10n_service.dart';
 
 class ChallengeHubScreen extends ConsumerStatefulWidget {
   const ChallengeHubScreen({super.key});
@@ -82,7 +83,7 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
                   icon: Icon(Icons.refresh_rounded,
                       size: 16, color: AppColors.starGold),
                   label: Text(
-                    isEn ? 'Retry' : 'Tekrar Dene',
+                    L10nService.get('challenges.challenge_hub.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -126,7 +127,7 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: isEn ? 'Challenges' : 'G\u00f6revler',
+            title: L10nService.get('challenges.challenge_hub.challenges', isEn ? AppLanguage.en : AppLanguage.tr),
             showBackButton: false,
           ),
           SliverPadding(
@@ -146,7 +147,7 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
                 // Active Challenges
                 if (activeChallenges.isNotEmpty) ...[
                   _SectionTitle(
-                    title: isEn ? 'Active Challenges' : 'Aktif G\u00f6revler',
+                    title: L10nService.get('challenges.challenge_hub.active_challenges', isEn ? AppLanguage.en : AppLanguage.tr),
                     isDark: isDark,
                   ).animate().fadeIn(duration: 400.ms, delay: 100.ms),
                   const SizedBox(height: AppConstants.spacingMd),
@@ -174,7 +175,7 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
 
                 // Available Challenges
                 _SectionTitle(
-                  title: isEn ? 'Available Challenges' : 'Mevcut G\u00f6revler',
+                  title: L10nService.get('challenges.challenge_hub.available_challenges', isEn ? AppLanguage.en : AppLanguage.tr),
                   isDark: isDark,
                 ).animate().fadeIn(duration: 400.ms, delay: 200.ms),
                 const SizedBox(height: AppConstants.spacingMd),
@@ -362,19 +363,19 @@ class _StatsBar extends StatelessWidget {
         children: [
           _StatItem(
             value: '$active',
-            label: isEn ? 'Active' : 'Aktif',
+            label: L10nService.get('challenges.challenge_hub.active', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.auroraStart,
             isDark: isDark,
           ),
           _StatItem(
             value: '$completed',
-            label: isEn ? 'Completed' : 'Tamamlanan',
+            label: L10nService.get('challenges.challenge_hub.completed', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.success,
             isDark: isDark,
           ),
           _StatItem(
             value: '$total',
-            label: isEn ? 'Total' : 'Toplam',
+            label: L10nService.get('challenges.challenge_hub.total', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.starGold,
             isDark: isDark,
           ),
@@ -598,7 +599,7 @@ class _AvailableChallengeCard extends StatelessWidget {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           GradientOutlinedButton(
-            label: isEn ? 'Start' : 'Başla',
+            label: L10nService.get('challenges.challenge_hub.start', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             expanded: true,
             fontSize: 13,

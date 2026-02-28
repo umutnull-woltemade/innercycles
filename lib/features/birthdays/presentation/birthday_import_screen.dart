@@ -23,6 +23,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../data/services/l10n_service.dart';
 
 class BirthdayImportScreen extends ConsumerStatefulWidget {
   const BirthdayImportScreen({super.key});
@@ -54,9 +55,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
             ),
             slivers: [
               GlassSliverAppBar(
-                title: isEn
-                    ? 'Import Birthdays'
-                    : 'Do\u{011F}um G\u{00FC}nlerini Aktar',
+                title: L10nService.get('birthdays.birthday_import.import_birthdays', isEn ? AppLanguage.en : AppLanguage.tr),
               ),
               SliverPadding(
                 padding: const EdgeInsets.all(16),
@@ -114,9 +113,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GradientText(
-                isEn
-                    ? 'How to Export from Facebook'
-                    : 'Facebook\'tan Nas\u{0131}l D\u{0131}\u{015F}a Aktar\u{0131}l\u{0131}r',
+                L10nService.get('birthdays.birthday_import.how_to_export_from_facebook', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 16,
@@ -200,9 +197,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          isEn
-                              ? 'Select JSON File'
-                              : 'JSON Dosyas\u{0131} Se\u{00E7}',
+                          L10nService.get('birthdays.birthday_import.select_json_file', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.modernAccent(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
@@ -242,9 +237,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              isEn
-                  ? 'No birthdays found in this file. Try a different export or add manually.'
-                  : 'Bu dosyada do\u{011F}um g\u{00FC}n\u{00FC} bulunamad\u{0131}. Farkl\u{0131} bir dosya dene veya manuel ekle.',
+              L10nService.get('birthdays.birthday_import.no_birthdays_found_in_this_file_try_a_di', isEn ? AppLanguage.en : AppLanguage.tr),
             ),
           ),
         );
@@ -265,9 +258,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              isEn
-                  ? 'Couldn\'t read this file. Make sure it\'s a valid Facebook export (.json).'
-                  : 'Dosya okunamad\u{0131}. Ge\u{00E7}erli bir Facebook d\u{0131}\u{015F}a aktar\u{0131}m\u{0131} (.json) oldu\u{011F}undan emin ol.',
+              L10nService.get('birthdays.birthday_import.couldnt_read_this_file_make_sure_its_a_v', isEn ? AppLanguage.en : AppLanguage.tr),
             ),
           ),
         );
@@ -316,12 +307,8 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
               },
               child: Text(
                 _selectedIndices.length == _parsedContacts.length
-                    ? (isEn
-                          ? 'Deselect All'
-                          : 'T\u{00FC}m\u{00FC}n\u{00FC} Kald\u{0131}r')
-                    : (isEn
-                          ? 'Select All'
-                          : 'T\u{00FC}m\u{00FC}n\u{00FC} Se\u{00E7}'),
+                    ? (L10nService.get('birthdays.birthday_import.deselect_all', isEn ? AppLanguage.en : AppLanguage.tr))
+                    : (L10nService.get('birthdays.birthday_import.select_all', isEn ? AppLanguage.en : AppLanguage.tr)),
                 style: AppTypography.modernAccent(
                   color: AppColors.starGold,
                   fontWeight: FontWeight.w600,
@@ -490,9 +477,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              isEn
-                  ? 'Birthday import failed. Please check your file and try again.'
-                  : 'Do\u{011F}um g\u{00FC}n\u{00FC} aktarma ba\u{015F}ar\u{0131}s\u{0131}z. Dosyan\u{0131} kontrol edip tekrar dene.',
+              L10nService.get('birthdays.birthday_import.birthday_import_failed_please_check_your', isEn ? AppLanguage.en : AppLanguage.tr),
             ),
           ),
         );
@@ -514,7 +499,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
               const AppSymbol.hero('\u{1F389}'),
               const SizedBox(height: 16),
               GradientText(
-                isEn ? 'Import Complete!' : 'Aktarma Tamamland\u{0131}!',
+                L10nService.get('birthdays.birthday_import.import_complete', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 20,
@@ -549,9 +534,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    isEn
-                        ? 'View Birthdays'
-                        : 'Do\u{011F}um G\u{00FC}nlerini G\u{00F6}r',
+                    L10nService.get('birthdays.birthday_import.view_birthdays', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.modernAccent(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,

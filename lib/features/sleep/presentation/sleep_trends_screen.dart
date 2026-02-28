@@ -15,6 +15,7 @@ import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../data/services/l10n_service.dart';
 
 class SleepTrendsScreen extends ConsumerWidget {
   const SleepTrendsScreen({super.key});
@@ -52,7 +53,7 @@ class SleepTrendsScreen extends ConsumerWidget {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      isEn ? 'Retry' : 'Tekrar Dene',
+                      L10nService.get('sleep.sleep_trends.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -85,7 +86,7 @@ class SleepTrendsScreen extends ConsumerWidget {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(title: isEn ? 'Sleep Trends' : 'Uyku Trendleri'),
+          GlassSliverAppBar(title: L10nService.get('sleep.sleep_trends.sleep_trends', isEn ? AppLanguage.en : AppLanguage.tr)),
           SliverFillRemaining(
             hasScrollBody: false,
             child: Center(
@@ -103,7 +104,7 @@ class SleepTrendsScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: 16),
                     GradientText(
-                      isEn ? 'No sleep data yet' : 'Henüz uyku verisi yok',
+                      L10nService.get('sleep.sleep_trends.no_sleep_data_yet', isEn ? AppLanguage.en : AppLanguage.tr),
                       variant: GradientTextVariant.aurora,
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 18,
@@ -112,9 +113,7 @@ class SleepTrendsScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      isEn
-                          ? 'Log your first night\'s sleep to see trends and patterns.'
-                          : 'Trendleri ve kalıpları görmek için ilk uyku kaydını oluştur.',
+                      L10nService.get('sleep.sleep_trends.log_your_first_nights_sleep_to_see_trend', isEn ? AppLanguage.en : AppLanguage.tr),
                       textAlign: TextAlign.center,
                       style: AppTypography.decorativeScript(
                         fontSize: 14,
@@ -153,7 +152,7 @@ class SleepTrendsScreen extends ConsumerWidget {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(title: isEn ? 'Sleep Trends' : 'Uyku Trendleri'),
+          GlassSliverAppBar(title: L10nService.get('sleep.sleep_trends.sleep_trends_1', isEn ? AppLanguage.en : AppLanguage.tr)),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
@@ -226,7 +225,7 @@ class SleepTrendsScreen extends ConsumerWidget {
       children: [
         Expanded(
           child: _StatTile(
-            label: isEn ? 'Week Avg' : 'Hafta Ort.',
+            label: L10nService.get('sleep.sleep_trends.week_avg', isEn ? AppLanguage.en : AppLanguage.tr),
             value: summary.averageQuality > 0
                 ? summary.averageQuality.toStringAsFixed(1)
                 : '-',
@@ -236,7 +235,7 @@ class SleepTrendsScreen extends ConsumerWidget {
         const SizedBox(width: AppConstants.spacingMd),
         Expanded(
           child: _StatTile(
-            label: isEn ? 'Best' : 'En İyi',
+            label: L10nService.get('sleep.sleep_trends.best', isEn ? AppLanguage.en : AppLanguage.tr),
             value: summary.bestNightQuality > 0
                 ? '${summary.bestNightQuality}/5'
                 : '-',
@@ -246,7 +245,7 @@ class SleepTrendsScreen extends ConsumerWidget {
         const SizedBox(width: AppConstants.spacingMd),
         Expanded(
           child: _StatTile(
-            label: isEn ? 'Nights' : 'Gece',
+            label: L10nService.get('sleep.sleep_trends.nights', isEn ? AppLanguage.en : AppLanguage.tr),
             value: '$total',
             isDark: isDark,
           ),
@@ -269,19 +268,15 @@ class SleepTrendsScreen extends ConsumerWidget {
       case 'improving':
         icon = Icons.trending_up;
         color = AppColors.auroraStart;
-        text = isEn
-            ? 'Your sleep quality is improving'
-            : 'Uyku kaliten iyileşiyor';
+        text = L10nService.get('sleep.sleep_trends.your_sleep_quality_is_improving', isEn ? AppLanguage.en : AppLanguage.tr);
       case 'declining':
         icon = Icons.trending_down;
         color = AppColors.chartOrange;
-        text = isEn
-            ? 'Your sleep quality has dipped recently'
-            : 'Uyku kaliten son zamanlarda düştü';
+        text = L10nService.get('sleep.sleep_trends.your_sleep_quality_has_dipped_recently', isEn ? AppLanguage.en : AppLanguage.tr);
       default:
         icon = Icons.trending_flat;
         color = AppColors.starGold;
-        text = isEn ? 'Your sleep quality is stable' : 'Uyku kaliten sabit';
+        text = L10nService.get('sleep.sleep_trends.your_sleep_quality_is_stable', isEn ? AppLanguage.en : AppLanguage.tr);
     }
 
     return GlassPanel(
@@ -323,7 +318,7 @@ class SleepTrendsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'Last 14 Nights' : 'Son 14 Gece',
+            L10nService.get('sleep.sleep_trends.last_14_nights', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -396,11 +391,11 @@ class SleepTrendsScreen extends ConsumerWidget {
     Map<int, int> distribution,
   ) {
     final labels = [
-      (1, isEn ? 'Poor' : 'Kötü'),
-      (2, isEn ? 'Fair' : 'Vasat'),
-      (3, isEn ? 'Okay' : 'İdare'),
-      (4, isEn ? 'Good' : 'İyi'),
-      (5, isEn ? 'Great' : 'Harika'),
+      (1, L10nService.get('sleep.sleep_trends.poor', isEn ? AppLanguage.en : AppLanguage.tr)),
+      (2, L10nService.get('sleep.sleep_trends.fair', isEn ? AppLanguage.en : AppLanguage.tr)),
+      (3, L10nService.get('sleep.sleep_trends.okay', isEn ? AppLanguage.en : AppLanguage.tr)),
+      (4, L10nService.get('sleep.sleep_trends.good', isEn ? AppLanguage.en : AppLanguage.tr)),
+      (5, L10nService.get('sleep.sleep_trends.great', isEn ? AppLanguage.en : AppLanguage.tr)),
     ];
     final total = distribution.values.fold(0, (a, b) => a + b);
 
@@ -412,7 +407,7 @@ class SleepTrendsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'Quality Distribution' : 'Kalite Dağılımı',
+            L10nService.get('sleep.sleep_trends.quality_distribution', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -507,7 +502,7 @@ class SleepTrendsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'Notes' : 'Notlar',
+            L10nService.get('sleep.sleep_trends.notes', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,

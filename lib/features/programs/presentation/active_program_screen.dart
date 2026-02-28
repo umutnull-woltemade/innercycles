@@ -21,6 +21,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../data/services/l10n_service.dart';
 
 class ActiveProgramScreen extends ConsumerStatefulWidget {
   final String programId;
@@ -72,7 +73,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                       icon: Icon(Icons.refresh_rounded,
                           size: 16, color: AppColors.starGold),
                       label: Text(
-                        isEn ? 'Retry' : 'Tekrar Dene',
+                        L10nService.get('programs.active_program.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -244,13 +245,13 @@ class _ProgramHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _MiniStat(
-                label: isEn ? 'Duration' : 'Süre',
-                value: '${program.durationDays} ${isEn ? 'days' : 'gün'}',
+                label: L10nService.get('programs.active_program.duration', isEn ? AppLanguage.en : AppLanguage.tr),
+                value: '${program.durationDays} ${L10nService.get('programs.active_program.days', isEn ? AppLanguage.en : AppLanguage.tr)}',
                 isDark: isDark,
               ),
               const SizedBox(width: 24),
               _MiniStat(
-                label: isEn ? 'Completed' : 'Tamamlanan',
+                label: L10nService.get('programs.active_program.completed', isEn ? AppLanguage.en : AppLanguage.tr),
                 value: '$completed / ${program.durationDays}',
                 isDark: isDark,
               ),
@@ -401,7 +402,7 @@ class _TodayPromptCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  '${isEn ? 'Day' : 'Gün'} ${day.dayNumber}',
+                  '${L10nService.get('programs.active_program.day', isEn ? AppLanguage.en : AppLanguage.tr)} ${day.dayNumber}',
                   style: AppTypography.elegantAccent(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
@@ -469,9 +470,7 @@ class _ReflectionInput extends StatelessWidget {
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: isEn
-              ? 'Write your reflection here (optional)...'
-              : 'Yansımanı buraya yaz (opsiyonel)...',
+          hintText: L10nService.get('programs.active_program.write_your_reflection_here_optional', isEn ? AppLanguage.en : AppLanguage.tr),
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -507,8 +506,8 @@ class _CompleteButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GradientButton(
       label: isAlreadyDone
-          ? (isEn ? 'Completed' : 'Tamamlandı')
-          : (isEn ? 'Complete Today' : 'Bugünü Tamamla'),
+          ? (L10nService.get('programs.active_program.completed_1', isEn ? AppLanguage.en : AppLanguage.tr))
+          : (L10nService.get('programs.active_program.complete_today', isEn ? AppLanguage.en : AppLanguage.tr)),
       onPressed: isAlreadyDone ? null : onComplete,
       expanded: true,
       gradient: LinearGradient(
@@ -549,7 +548,7 @@ class _CompletedBanner extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               GradientText(
-                isEn ? 'Program Completed!' : 'Program Tamamlandı!',
+                L10nService.get('programs.active_program.program_completed', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 18,
@@ -558,9 +557,7 @@ class _CompletedBanner extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                isEn
-                    ? 'You have finished this guided program. Well done!'
-                    : 'Bu rehberli programı tamamladın. Tebrikler!',
+                L10nService.get('programs.active_program.you_have_finished_this_guided_program_we', isEn ? AppLanguage.en : AppLanguage.tr),
                 textAlign: TextAlign.center,
                 style: AppTypography.decorativeScript(
                   fontSize: 14,
@@ -599,9 +596,7 @@ class _NotStartedBanner extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Text(
-        isEn
-            ? 'This program hasn\'t been started yet.'
-            : 'Bu program henüz başlatılmadı.',
+        L10nService.get('programs.active_program.this_program_hasnt_been_started_yet', isEn ? AppLanguage.en : AppLanguage.tr),
         textAlign: TextAlign.center,
         style: AppTypography.decorativeScript(
           fontSize: 14,

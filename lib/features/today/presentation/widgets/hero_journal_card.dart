@@ -12,6 +12,7 @@ import '../../../../data/services/haptic_service.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/share_card_sheet.dart';
 import '../../../../shared/widgets/tap_scale.dart';
+import '../../../../data/services/l10n_service.dart';
 
 class HeroJournalCard extends ConsumerWidget {
   final bool isEn;
@@ -70,7 +71,7 @@ class HeroJournalCard extends ConsumerWidget {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      isEn ? 'DAILY REFLECTION' : 'GÜNLÜK YANSIMA',
+                      L10nService.get('today.hero_journal.daily_reflection', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
@@ -84,9 +85,7 @@ class HeroJournalCard extends ConsumerWidget {
                     // Gold CTA button
                     Semantics(
                       button: true,
-                      label: isEn
-                          ? 'Start writing journal entry'
-                          : 'Günlük kaydı yazmaya başla',
+                      label: L10nService.get('today.hero_journal.start_writing_journal_entry', isEn ? AppLanguage.en : AppLanguage.tr),
                       child: TapScale(
                         onTap: () {
                           HapticService.buttonPress();
@@ -135,9 +134,7 @@ class HeroJournalCard extends ConsumerWidget {
                               ),
                               const SizedBox(width: 8),
                               Text(
-                                isEn
-                                    ? 'Start Writing'
-                                    : 'Yazmaya Başla',
+                                L10nService.get('today.hero_journal.start_writing', isEn ? AppLanguage.en : AppLanguage.tr),
                                 style: AppTypography.modernAccent(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w700,
@@ -154,7 +151,7 @@ class HeroJournalCard extends ConsumerWidget {
                     // Share link
                     Semantics(
                       button: true,
-                      label: isEn ? 'Share this question' : 'Bu soruyu paylaş',
+                      label: L10nService.get('today.hero_journal.share_this_question', isEn ? AppLanguage.en : AppLanguage.tr),
                       child: TapScale(
                         onTap: () {
                           HapticService.buttonPress();
@@ -185,9 +182,7 @@ class HeroJournalCard extends ConsumerWidget {
                               ),
                               const SizedBox(width: 4),
                               Text(
-                                isEn
-                                    ? 'Share this question'
-                                    : 'Bu soruyu paylaş',
+                                L10nService.get('today.hero_journal.share_this_question_1', isEn ? AppLanguage.en : AppLanguage.tr),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 14,
                                   color: isDark
@@ -212,7 +207,7 @@ class HeroJournalCard extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Semantics(
             button: true,
-            label: isEn ? 'Start journaling' : 'Günlüğe başla',
+            label: L10nService.get('today.hero_journal.start_journaling', isEn ? AppLanguage.en : AppLanguage.tr),
             child: GestureDetector(
               onTap: () {
                 HapticService.buttonPress();
@@ -249,7 +244,7 @@ class HeroJournalCard extends ConsumerWidget {
                     const SizedBox(width: 10),
                     Flexible(
                       child: Text(
-                        isEn ? 'Start Journaling' : 'Günlüğe Başla',
+                        L10nService.get('today.hero_journal.start_journaling_1', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.modernAccent(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,

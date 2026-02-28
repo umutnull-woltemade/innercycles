@@ -13,6 +13,8 @@ import '../../../../core/theme/app_typography.dart';
 import '../../../../data/services/shift_outlook_service.dart';
 import '../../../../data/services/emotional_cycle_service.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../data/services/l10n_service.dart';
+import '../../../../data/providers/app_providers.dart';
 
 class ShiftOutlookCard extends StatelessWidget {
   final ShiftOutlook outlook;
@@ -63,7 +65,7 @@ class ShiftOutlookCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      isEn ? 'Shift Outlook' : 'Kayma Görünümü',
+                      L10nService.get('journal.shift_outlook.shift_outlook', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 16,
                         color: isDark
@@ -73,7 +75,7 @@ class ShiftOutlookCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${isEn ? window.confidence.labelEn() : window.confidence.labelTr()} ${isEn ? 'confidence' : 'güven'}',
+                      '${isEn ? window.confidence.labelEn() : window.confidence.labelTr()} ${L10nService.get('journal.shift_outlook.confidence', isEn ? AppLanguage.en : AppLanguage.tr)}',
                       style: AppTypography.elegantAccent(
                         fontSize: 11,
                         color: _confidenceColor(window.confidence),
@@ -165,7 +167,7 @@ class ShiftOutlookCard extends StatelessWidget {
           if (outlook.activeSignals.isNotEmpty) ...[
             const SizedBox(height: AppConstants.spacingMd),
             Text(
-              isEn ? 'Supporting Signals' : 'Destekleyen Sinyaller',
+              L10nService.get('journal.shift_outlook.supporting_signals', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.modernAccent(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
@@ -286,9 +288,7 @@ class ShiftOutlookCard extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              isEn
-                  ? 'Not enough data for shift outlook yet'
-                  : 'Kayma görünümü için henüz yeterli veri yok',
+              L10nService.get('journal.shift_outlook.not_enough_data_for_shift_outlook_yet', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.decorativeScript(
                 fontSize: 14,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,

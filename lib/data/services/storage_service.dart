@@ -364,6 +364,15 @@ class StorageService {
     await box.put(_languageKey, language.index);
   }
 
+  /// Check if the user has explicitly set a language preference
+  static bool hasExplicitLanguage() {
+    if (kIsWeb) return false;
+    _warnIfNotInitialized('hasExplicitLanguage');
+    final box = _settingsBox;
+    if (box == null) return false;
+    return box.containsKey(_languageKey);
+  }
+
   /// Load selected language (uses SharedPreferences on web, Hive on mobile)
   /// Default: English (AppLanguage.en)
   static AppLanguage loadLanguage() {

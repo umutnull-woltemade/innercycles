@@ -24,6 +24,7 @@ import '../../../data/services/dream_journal_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../data/services/l10n_service.dart';
 
 enum _SearchTab { all, journal, notes, dreams }
 
@@ -182,9 +183,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                                   : AppColors.lightTextPrimary,
                             ),
                             decoration: InputDecoration(
-                              hintText: isEn
-                                  ? 'Search entries, notes, dreams...'
-                                  : 'G\u00fcnl\u00fck, not, r\u00fcya ara...',
+                              hintText: L10nService.get('search.global_search.search_entries_notes_dreams', isEn ? AppLanguage.en : AppLanguage.tr),
                               hintStyle: AppTypography.subtitle(
                                 color: isDark
                                     ? AppColors.textMuted
@@ -205,7 +204,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                                             ? AppColors.textMuted
                                             : AppColors.lightTextMuted,
                                       ),
-                                      tooltip: isEn ? 'Clear search' : 'Aramayı temizle',
+                                      tooltip: L10nService.get('search.global_search.clear_search', isEn ? AppLanguage.en : AppLanguage.tr),
                                       onPressed: () {
                                         _searchController.clear();
                                         setState(() {
@@ -232,7 +231,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                       ),
                       const SizedBox(width: AppConstants.spacingSm),
                       IconButton(
-                        tooltip: isEn ? 'Close search' : 'Aramay\u0131 kapat',
+                        tooltip: L10nService.get('search.global_search.close_search', isEn ? AppLanguage.en : AppLanguage.tr),
                         onPressed: () => Navigator.of(context).pop(),
                         icon: Icon(
                           Icons.close_rounded,
@@ -268,22 +267,22 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
     final tabs = [
       (
         _SearchTab.all,
-        isEn ? 'All' : 'T\u00fcm\u00fc',
+        L10nService.get('search.global_search.all', isEn ? AppLanguage.en : AppLanguage.tr),
         _totalResults,
       ),
       (
         _SearchTab.journal,
-        isEn ? 'Journal' : 'G\u00fcnl\u00fck',
+        L10nService.get('search.global_search.journal', isEn ? AppLanguage.en : AppLanguage.tr),
         _journalResults.length,
       ),
       (
         _SearchTab.notes,
-        isEn ? 'Notes' : 'Notlar',
+        L10nService.get('search.global_search.notes', isEn ? AppLanguage.en : AppLanguage.tr),
         _noteResults.length,
       ),
       (
         _SearchTab.dreams,
-        isEn ? 'Dreams' : 'R\u00fcyalar',
+        L10nService.get('search.global_search.dreams', isEn ? AppLanguage.en : AppLanguage.tr),
         _dreamResults.length,
       ),
     ];
@@ -337,6 +336,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
 
   Widget _buildEmptyState(bool isDark, bool isEn) {
     return SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -351,7 +351,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
           if (_recentSearches.isNotEmpty) ...[
             const SizedBox(height: 24),
             GradientText(
-              isEn ? 'Recent Searches' : 'Son Aramalar',
+              L10nService.get('search.global_search.recent_searches', isEn ? AppLanguage.en : AppLanguage.tr),
               variant: GradientTextVariant.gold,
               style: AppTypography.elegantAccent(
                 fontSize: 14,
@@ -396,7 +396,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
           // Quick actions
           const SizedBox(height: 24),
           GradientText(
-            isEn ? 'Quick Actions' : 'H\u0131zl\u0131 Eri\u015fim',
+            L10nService.get('search.global_search.quick_actions', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.elegantAccent(
               fontSize: 14,
@@ -423,6 +423,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
 
   Widget _buildSearchResults(bool isDark, bool isEn) {
     return ListView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       children: [
         // Journal results
@@ -430,7 +431,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             _journalResults.isNotEmpty) ...[
           _buildSectionHeader(
             isDark,
-            isEn ? 'Journal Entries' : 'G\u00fcnl\u00fck Kay\u0131tlar\u0131',
+            L10nService.get('search.global_search.journal_entries', isEn ? AppLanguage.en : AppLanguage.tr),
             _journalResults.length,
             GradientTextVariant.gold,
           ),
@@ -455,7 +456,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             _noteResults.isNotEmpty) ...[
           _buildSectionHeader(
             isDark,
-            isEn ? 'Notes' : 'Notlar',
+            L10nService.get('search.global_search.notes_1', isEn ? AppLanguage.en : AppLanguage.tr),
             _noteResults.length,
             GradientTextVariant.amethyst,
           ),
@@ -480,7 +481,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             _dreamResults.isNotEmpty) ...[
           _buildSectionHeader(
             isDark,
-            isEn ? 'Dreams' : 'R\u00fcyalar',
+            L10nService.get('search.global_search.dreams_1', isEn ? AppLanguage.en : AppLanguage.tr),
             _dreamResults.length,
             GradientTextVariant.cosmic,
           ),
@@ -504,7 +505,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
         if (_activeTab == _SearchTab.all && _toolResults.isNotEmpty) ...[
           _buildSectionHeader(
             isDark,
-            isEn ? 'Tools' : 'Ara\u00e7lar',
+            L10nService.get('search.global_search.tools', isEn ? AppLanguage.en : AppLanguage.tr),
             _toolResults.length,
             GradientTextVariant.aurora,
           ),
@@ -564,7 +565,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Text(
-            isEn ? 'Nothing matched — try different words' : 'Eşleşen sonuç yok — farklı kelimeler dene',
+            L10nService.get('search.global_search.nothing_matched_try_different_words', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.subtitle(
               fontSize: 16,
               color: isDark
@@ -626,7 +627,7 @@ class _TagCloudSection extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn ? 'Tags' : 'Etiketler',
+          L10nService.get('search.global_search.tags', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 14,
@@ -1036,7 +1037,7 @@ class _ToolResultTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       label: isEn ? tool.nameEn : tool.nameTr,
-      hint: isEn ? 'Double tap to open' : 'A\u00e7mak i\u00e7in \u00e7ift dokun',
+      hint: L10nService.get('search.global_search.double_tap_to_open', isEn ? AppLanguage.en : AppLanguage.tr),
       button: true,
       child: GestureDetector(
         onTap: () => context.go(tool.route),

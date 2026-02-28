@@ -11,6 +11,8 @@ import '../../../data/services/milestone_service.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../data/services/l10n_service.dart';
+import '../../../data/providers/app_providers.dart';
 
 /// Full-screen celebration modal for any badge/milestone unlock.
 /// Shows confetti particles, animated emoji, haptic feedback.
@@ -291,7 +293,7 @@ class _BadgeCelebrationModalState extends State<BadgeCelebrationModal>
                             children: [
                               Expanded(
                                 child: GradientOutlinedButton(
-                                  label: isEn ? 'Share' : 'Paylaş',
+                                  label: L10nService.get('milestones.badge_celebration.share', isEn ? AppLanguage.en : AppLanguage.tr),
                                   icon: Icons.share_rounded,
                                   variant: GradientTextVariant.gold,
                                   expanded: true,
@@ -307,7 +309,7 @@ class _BadgeCelebrationModalState extends State<BadgeCelebrationModal>
                               const SizedBox(width: 12),
                               Expanded(
                                 child: GradientButton.gold(
-                                  label: isEn ? 'Keep Going' : 'Devam Et',
+                                  label: L10nService.get('milestones.badge_celebration.keep_going', isEn ? AppLanguage.en : AppLanguage.tr),
                                   onPressed: () =>
                                       Navigator.of(context).pop(),
                                   expanded: true,

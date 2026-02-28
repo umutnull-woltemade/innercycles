@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../data/services/emotional_cycle_service.dart';
+import '../../../../data/services/l10n_service.dart';
+import '../../../../data/providers/app_providers.dart';
 
 class PhaseRing extends StatefulWidget {
   final EmotionalPhase phase;
@@ -89,9 +91,7 @@ class _PhaseRingState extends State<PhaseRing>
             children: [
               // Background ring
               Semantics(
-                label: widget.isEn
-                    ? 'Emotional phase ring'
-                    : 'Duygusal faz halkası',
+                label: L10nService.get('journal.phase_ring.emotional_phase_ring', widget.isEn ? AppLanguage.en : AppLanguage.tr),
                 image: true,
                 child: CustomPaint(
                   size: Size(widget.size, widget.size),

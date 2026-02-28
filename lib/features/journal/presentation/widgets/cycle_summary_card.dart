@@ -16,6 +16,8 @@ import '../../../../core/theme/app_typography.dart';
 import '../../../../data/services/emotional_cycle_service.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import 'cycle_wave_painter.dart';
+import '../../../../data/services/l10n_service.dart';
+import '../../../../data/providers/app_providers.dart';
 
 class CycleSummaryCard extends StatelessWidget {
   final FocusAreaCycleSummary summary;
@@ -134,7 +136,7 @@ class CycleSummaryCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  isEn ? 'Current avg' : 'Ort.',
+                  L10nService.get('journal.cycle_summary.current_avg', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.elegantAccent(
                     fontSize: 11,
                     color: isDark

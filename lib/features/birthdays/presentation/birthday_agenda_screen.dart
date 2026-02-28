@@ -22,6 +22,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../data/services/l10n_service.dart';
 
 class BirthdayAgendaScreen extends ConsumerStatefulWidget {
   const BirthdayAgendaScreen({super.key});
@@ -60,7 +61,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
         ),
         child: FloatingActionButton(
           onPressed: () => context.push(Routes.birthdayAdd),
-          tooltip: isEn ? 'Add birthday' : 'Doğum günü ekle',
+          tooltip: L10nService.get('birthdays.birthday_agenda.add_birthday', isEn ? AppLanguage.en : AppLanguage.tr),
           backgroundColor: Colors.transparent,
           elevation: 0,
           child: const Icon(
@@ -77,7 +78,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  isEn ? 'Couldn\'t load your birthdays' : 'Doğum günlerin yüklenemedi',
+                  L10nService.get('birthdays.birthday_agenda.couldnt_load_your_birthdays', isEn ? AppLanguage.en : AppLanguage.tr),
                   textAlign: TextAlign.center,
                   style: AppTypography.subtitle(
                     color: isDark
@@ -92,7 +93,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                   icon: Icon(Icons.refresh_rounded,
                       size: 16, color: AppColors.starGold),
                   label: Text(
-                    isEn ? 'Retry' : 'Tekrar Dene',
+                    L10nService.get('birthdays.birthday_agenda.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -133,9 +134,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
           ),
           slivers: [
             GlassSliverAppBar(
-              title: isEn
-                  ? 'Birthday Agenda'
-                  : 'Do\u{011F}um G\u{00FC}n\u{00FC} Ajandas\u{0131}',
+              title: L10nService.get('birthdays.birthday_agenda.birthday_agenda', isEn ? AppLanguage.en : AppLanguage.tr),
             ),
             SliverPadding(
               padding: const EdgeInsets.all(16),
@@ -250,9 +249,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                   // 5. Upcoming birthdays
                   if (upcoming.isNotEmpty) ...[
                     GradientText(
-                      isEn
-                          ? 'Upcoming Birthdays'
-                          : 'Yakla\u{015F}an Do\u{011F}um G\u{00FC}nleri',
+                      L10nService.get('birthdays.birthday_agenda.upcoming_birthdays', isEn ? AppLanguage.en : AppLanguage.tr),
                       variant: GradientTextVariant.gold,
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 16,
@@ -322,9 +319,7 @@ class _TodayBanner extends StatelessWidget {
               const AppSymbol.card('\u{1F382}'),
               const SizedBox(width: 10),
               GradientText(
-                isEn
-                    ? 'Today\'s Birthdays!'
-                    : 'Bug\u{00FC}nk\u{00FC} Do\u{011F}um G\u{00FC}nleri!',
+                L10nService.get('birthdays.birthday_agenda.todays_birthdays', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 18,
@@ -422,7 +417,7 @@ class _MonthNav extends StatelessWidget {
                 ? AppColors.textSecondary
                 : AppColors.lightTextSecondary,
           ),
-          tooltip: isEn ? 'Previous month' : 'Önceki ay',
+          tooltip: L10nService.get('birthdays.birthday_agenda.previous_month', isEn ? AppLanguage.en : AppLanguage.tr),
           onPressed: onPrevious,
         ),
         GestureDetector(
@@ -441,7 +436,7 @@ class _MonthNav extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 2),
                   child: Text(
-                    isEn ? 'Tap for today' : 'Bug\u{00FC}ne d\u{00F6}n',
+                    L10nService.get('birthdays.birthday_agenda.tap_for_today', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 10,
                       color: AppColors.starGold.withValues(alpha: 0.6),
@@ -458,7 +453,7 @@ class _MonthNav extends StatelessWidget {
                 ? AppColors.textSecondary
                 : AppColors.lightTextSecondary,
           ),
-          tooltip: isEn ? 'Next month' : 'Sonraki ay',
+          tooltip: L10nService.get('birthdays.birthday_agenda.next_month', isEn ? AppLanguage.en : AppLanguage.tr),
           onPressed: onNext,
         ),
       ],
@@ -671,9 +666,7 @@ class _SelectedDayDetail extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Center(
           child: Text(
-            isEn
-                ? 'No birthdays on this day'
-                : 'Bu g\u{00FC}nde do\u{011F}um g\u{00FC}n\u{00FC} yok',
+            L10nService.get('birthdays.birthday_agenda.no_birthdays_on_this_day', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.subtitle(
               fontSize: 14,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -834,8 +827,8 @@ class _UpcomingCard extends StatelessWidget {
                 ),
                 child: Text(
                   isToday
-                      ? (isEn ? 'Today!' : 'Bug\u{00FC}n!')
-                      : '$days ${isEn ? 'days' : 'g\u{00FC}n'}',
+                      ? (L10nService.get('birthdays.birthday_agenda.today', isEn ? AppLanguage.en : AppLanguage.tr))
+                      : '$days ${L10nService.get('birthdays.birthday_agenda.days', isEn ? AppLanguage.en : AppLanguage.tr)}',
                   style: AppTypography.elegantAccent(
                     fontSize: 12,
                     letterSpacing: 0.5,
@@ -878,9 +871,7 @@ class _EmptyState extends StatelessWidget {
           const AppSymbol.hero('\u{1F382}'),
           const SizedBox(height: 16),
           GradientText(
-            isEn
-                ? 'Never Miss a Birthday'
-                : 'Hi\u{00E7} Do\u{011F}um G\u{00FC}n\u{00FC} Ka\u{00E7}\u{0131}rma',
+            L10nService.get('birthdays.birthday_agenda.never_miss_a_birthday', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 20,
@@ -889,9 +880,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            isEn
-                ? 'Add your friends and family to get reminders on their special days.'
-                : 'Arkada\u{015F}lar\u{0131}n\u{0131} ve aileni ekleyerek \u{00F6}zel g\u{00FC}nlerinde hat\u{0131}rlat\u{0131}c\u{0131} al.',
+            L10nService.get('birthdays.birthday_agenda.add_your_friends_and_family_to_get_remin', isEn ? AppLanguage.en : AppLanguage.tr),
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 14,
@@ -963,7 +952,7 @@ class _ActionButtons extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  isEn ? 'Import from Facebook' : 'Facebook\'tan Aktar',
+                  L10nService.get('birthdays.birthday_agenda.import_from_facebook', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.modernAccent(
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
@@ -1000,7 +989,7 @@ class _ActionButtons extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  isEn ? 'Add Manually' : 'Manuel Ekle',
+                  L10nService.get('birthdays.birthday_agenda.add_manually', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.modernAccent(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,

@@ -107,14 +107,53 @@
     "feature_reflection": "Cycle-mapped journaling",
     "feature_dreams": "Dream archaeology & symbol tracking",
     "feature_patterns": "Recurrence detection engine",
-    "feature_symbols": "Archetype progression framework"
+    "feature_symbols": "Archetype progression framework",
+    "archetype_quiz": {
+      "discovering_your_archetype": "Discovering your archetype...",
+      "get_started": "Get Started",
+      "growth_tip": "Growth Tip",
+      "skip": "Skip",
+      "skip_for_now": "Skip for now",
+      "your_inner_archetype": "Your Inner Archetype",
+      "your_strengths": "Your Strengths"
+    },
+    "onboarding": {
+      "a_gentle_nudge_at_900_am": "A gentle nudge at 9:00 AM",
+      "abcd1234": "ABCD1234",
+      "all_signals_unlock_as_you_journal": "All signals unlock as you journal",
+      "check_in_daily_to_see_patterns_emerge": "Check in daily to see patterns emerge",
+      "daily_reflection_journal": "Daily reflection journal",
+      "daily_reflection_reminder": "Daily Reflection Reminder",
+      "dream_journal": "Dream journal",
+      "enable_notifications": "Enable notifications",
+      "enter_your_friends_code_for_7_days_free": "Enter your friend\\'s code for 7 days free Premium",
+      "get_started": "Get Started",
+      "have_an_invite_code": "Have an invite code?",
+      "how_are_you_feeling_right_now": "How are you feeling right now?",
+      "one_last_thing_stay_on_track_with_gentle": "One last thing — stay on track with gentle reminders",
+      "pattern_recognition": "Pattern recognition",
+      "pick_your_starting_signal": "Pick Your Starting Signal",
+      "private_secure_your_journal_stays_on_you": "Private & secure. Your journal stays on your device.",
+      "skip_for_now": "Skip for now",
+      "symbol_glossary": "Symbol glossary",
+      "theres_no_wrong_answer_follow_your_curio": "There\\'s no wrong answer — follow your curiosity",
+      "whats_included": "What\\'s Included",
+      "your_first_checkin_this_powers_your_mood": "Your first check-in — this powers your mood dashboard",
+      "your_story_your_patterns_your_clarity": "Your story. Your patterns. Your clarity.",
+      "youre_all_set": "You\\'re All Set"
+    }
   },
   "disclaimer": {
     "before_using": "Before Using",
     "text_1": "InnerCycles is a personal journaling tool for self-reflection and pattern awareness.",
     "text_2": "All insights are based solely on your own journal entries. This app does not make predictions about your future.",
     "text_3": "This is for personal reflection only. It is not medical, psychological, or professional advice.",
-    "reflection_only": "This content is for reflection and self-awareness only."
+    "reflection_only": "This content is for reflection and self-awareness only.",
+    "disclaimer": {
+      "a_private_space_for_reflection_not_predi": "A private space for reflection, not prediction.",
+      "welcome_to_innercycles": "Welcome to InnerCycles",
+      "your_data_stays_on_your_device": "Your data stays on your device"
+    }
   },
   "router": {
     "not_found_title": "Page Not Found",
@@ -183,7 +222,68 @@
     "view_insight": "View Full Insight",
     "journal_streak": "Journal Streak",
     "entries_logged": "Entries Logged",
-    "patterns_found": "Patterns Found"
+    "patterns_found": "Patterns Found",
+    "profile": {
+      "explore_your_patterns_track_your_growth": "Explore your patterns, track your growth, and discover insights from your journal entries.",
+      "view_insights": "View Insights",
+      "your_progress": "Your Progress"
+    },
+    "profile_hero": {
+      "growth_score": "GROWTH SCORE"
+    },
+    "profile_hub": {
+      "explorer": "Explorer",
+      "profile": "Profile"
+    },
+    "profile_rate": {
+      "a_quick_rating_helps_us_grow": "A quick rating helps us grow",
+      "enjoying_innercycles": "Enjoying InnerCycles?",
+      "rate": "Rate"
+    },
+    "profile_referral": {
+      "7_days_free_for_each_friend": "7 days free for each friend",
+      "invite_earn": "Invite & Earn",
+      "invite_friends_get_premium": "Invite Friends, Get Premium",
+      "open_referral_program": "Open referral program"
+    },
+    "profile_settings": {
+      "edit_profile": "Edit Profile",
+      "export_data": "Export Data",
+      "go_premium": "Go Premium",
+      "notifications": "Notifications",
+      "settings": "Settings",
+      "settings_1": "Settings",
+      "unlock_full_potential": "Unlock Full Potential"
+    },
+    "profile_stats_dashboard": {
+      "done": "DONE",
+      "entries": "ENTRIES",
+      "streak": "STREAK",
+      "words": "WORDS"
+    },
+    "profile_tools_grid": {
+      "add_to_favorites": "Add to favorites",
+      "all": "All",
+      "analysis": "Analysis",
+      "clear_search": "Clear search",
+      "data": "Data",
+      "discovery": "Discovery",
+      "favorites_u2b50": "Favorites \\u{2B50}",
+      "journal": "Journal",
+      "no_favorites_yet": "No favorites yet",
+      "no_tools_found": "No tools found",
+      "reference": "Reference",
+      "remove_from_favorites": "Remove from favorites",
+      "search_by_name_or_category": "Search by name or category...",
+      "suggested_for_you": "Suggested for You",
+      "support": "Support",
+      "tools": "Tools"
+    },
+    "profile_vault": {
+      "app_lock": "App Lock",
+      "private_vault": "Private Vault",
+      "vault_security": "Vault & Security"
+    }
   },
   "archetype": {
     "pioneer": "The Pioneer",
@@ -197,7 +297,23 @@
     "explorer": "The Explorer",
     "achiever": "The Achiever",
     "visionary": "The Visionary",
-    "dreamer": "The Dreamer"
+    "dreamer": "The Dreamer",
+    "archetype": {
+      "add_at_least_3_entries_to_surface_your_d": "Add at least 3 entries to surface your dominant archetype",
+      "could_not_load_your_local_data_is_unaffe": "Could not load. Your local data is unaffected.",
+      "could_not_load_your_local_data_is_unaffe_1": "Could not load. Your local data is unaffected.",
+      "evolution_timeline": "Evolution Timeline",
+      "full_archetype_breakdown": "Full Archetype Breakdown",
+      "growth_insight": "Growth Insight",
+      "retry": "Retry",
+      "retry_1": "Retry",
+      "shadow_side": "Shadow Side",
+      "share_your_archetype": "Share Your Archetype",
+      "strengths": "Strengths",
+      "write_first_entry": "Write First Entry",
+      "your_archetype": "Your Archetype",
+      "your_archetype_is_waiting_to_emerge": "Your archetype is waiting to emerge"
+    }
   },
   "home": {
     "greeting": "Hi, {name}!",
@@ -677,6 +793,50 @@
           "Premium programs, challenges & tools"
         ]
       }
+    },
+    "contextual_paywall": {
+      "4_more_interpretation_perspectives_avail": "4 more interpretation perspectives available. See your dream through every lens.",
+      "accept_challenge": "Accept Challenge",
+      "access_all_perspectives": "Access All Perspectives",
+      "access_cycle_insights": "Access Cycle Insights",
+      "access_shadow_work": "Access Shadow Work",
+      "cancel_anytime_your_entries_are_always_y": "Cancel anytime. Your entries are always yours.",
+      "discover_my_patterns": "Discover My Patterns",
+      "discover_my_patterns_1": "Discover My Patterns",
+      "explore_your_hidden_patterns": "Explore your hidden patterns",
+      "export_everything": "Export Everything",
+      "freeze_your_streak_and_pick_up_where_you": "Freeze your streak and pick up where you left off tomorrow.",
+      "go_adfree": "Go Ad-Free",
+      "go_deeper_with_guided_growth": "Go deeper with guided growth",
+      "guided_shadow_work_helps_you_understand": "Guided shadow work helps you understand the unconscious patterns shaping your emotions and behaviors.",
+      "no_ai_no_cloud_just_your_words_revealing": "No AI, no cloud — just your words revealing patterns you couldn\\'t see before.",
+      "not_now": "Not now",
+      "pro_growth_challenges_that_elevate_your": "Pro growth challenges that elevate your daily practice.",
+      "protect_my_streak": "Protect My Streak",
+      "push_your_limits": "Push your limits",
+      "remove_all_ads_and_focus_on_what_matters": "Remove all ads and focus on what matters — your reflection time.",
+      "see_how_your_emotional_patterns_align_wi": "See how your emotional patterns align with your hormonal cycle. Full history and phase-aware insights.",
+      "start_program": "Start Program",
+      "structured_multiday_sequences_designed_t": "Structured multi-day sequences designed to surface new dimensions of self-awareness.",
+      "surface_patterns_from_your_entries_with": "Surface patterns from your entries with Pro",
+      "understand_your_cycle_patterns": "Understand your cycle patterns",
+      "view_my_report": "View My Report",
+      "your_data_belongs_to_you": "Your data belongs to you",
+      "your_data_has_more_to_show": "Your data has more to show",
+      "your_data_has_more_to_show_1": "Your data has more to show",
+      "your_dream_has_more_to_say": "Your dream has more to say",
+      "your_entries_hold_patterns_you_cant_see": "Your entries hold patterns you can\\'t see in the moment. Pro reveals what your journal already knows.",
+      "your_investment_so_far": "Your investment so far",
+      "your_monthly_reflection_report_distills": "Your monthly reflection report distills a full month into one clear picture.",
+      "your_reflection_space_uninterrupted": "Your reflection space, uninterrupted"
+    },
+    "premium": {
+      "50_off_new_user_special": "50% OFF — New User Special",
+      "offer_expires_in": "Offer expires in ",
+      "privacy_policy": "Privacy Policy",
+      "restore_purchases": "Restore Purchases",
+      "terms_of_service": "Terms of Service",
+      "trusted_by_thousands_of_journalers": "Trusted by thousands of journalers"
     }
   },
   "progressive_unlock": {
@@ -1299,6 +1459,32 @@
       "number_patterns": "For cycle exploration only. Not suggestive.",
       "insight": "For personal cycle awareness only. Not professional advice.",
       "reflection": "This is a space for pattern recognition, not advice."
+    },
+    "attachment_quiz": {
+      "attachment_style": "Attachment Style",
+      "back": "Back",
+      "full_breakdown": "Full Breakdown",
+      "go_deeper_premium": "Go Deeper - Premium",
+      "growth_areas": "Growth Areas",
+      "retake_quiz": "Retake Quiz",
+      "share_your_result": "Share Your Result",
+      "your_reflection": "Your Reflection",
+      "your_strengths": "Your Strengths"
+    },
+    "generic_quiz": {
+      "back": "Back",
+      "back_to_all_quizzes": "Back to All Quizzes",
+      "full_breakdown": "Full Breakdown",
+      "growth_areas": "Growth Areas",
+      "retake_quiz": "Retake Quiz",
+      "your_result": "Your Result",
+      "your_strengths": "Your Strengths"
+    },
+    "quiz_hub": {
+      "completed": "Completed",
+      "completed_1": "Completed",
+      "explore_different_aspects_of_yourself_th": "Explore different aspects of yourself through thoughtful self-reflection. These are personal awareness tools, not clinical assessments.",
+      "selfreflection_quizzes": "Self-Reflection Quizzes"
     }
   },
   "insight": {
@@ -1345,6 +1531,22 @@
       "self_discovery_2": "Discovering who we are takes courage. Every experience teaches us something about ourselves.\n\nHave you ever thought about what your values - what you truly care about - are?\n\nWhat would you change in your life right now?",
       "general_1": "Thank you for sharing what's on your mind. Sometimes just putting thoughts into words can help us see them more clearly.\n\nWhat's been weighing on you the most? And how long has this been on your mind?\n\nWhat outcome would you hope for?",
       "general_2": "It sounds like you have a lot going on. Taking time to reflect is a valuable practice.\n\nIf you could change one thing about this situation, what would it be?\n\nWhat support do you need right now?"
+    },
+    "insights_discovery": {
+      "add_bookmark": "Add bookmark",
+      "all": "All",
+      "could_not_load_your_local_data_is_unaffe": "Could not load. Your local data is unaffected.",
+      "discover_insights": "Discover Insights",
+      "no_insights_found": "No insights found",
+      "reading_progress": "Reading Progress",
+      "related_insights": "Related Insights",
+      "remove_bookmark": "Remove bookmark",
+      "retry": "Retry",
+      "show_all_insights": "Show all insights",
+      "show_bookmarks": "Show bookmarks",
+      "tap_to_read": "Tap to read",
+      "todays_insight": "Today\\'s Insight",
+      "why_this_matters": "Why This Matters"
     }
   },
   "elements": {
@@ -1388,7 +1590,44 @@
     "privacy_policy": "Privacy Policy",
     "terms_of_service": "Terms of Service",
     "contact_support": "Contact Support",
-    "notifications_title": "Notifications"
+    "notifications_title": "Notifications",
+    "notification_schedule": {
+      "enable_notifications": "Enable Notifications",
+      "enable_notifications_to_receive_journali": "Enable notifications to receive journaling reminders",
+      "notifications": "Notifications",
+      "notifications_are_disabled": "Notifications are disabled",
+      "notifications_help_you_build_a_consisten": "Notifications help you build a consistent journaling habit. You can change these settings at any time.",
+      "prompt_time": "Prompt time",
+      "reminder_time": "Reminder time"
+    },
+    "settings": {
+      "4digit_pin": "4-digit PIN",
+      "account_deletion_requested_you_have_been": "Account deletion requested. You have been signed out.",
+      "all_your_cloud_data_will_be_permanently": "All your cloud data will be permanently deleted. This cannot be undone.",
+      "app_lock": "App Lock",
+      "cancel": "Cancel",
+      "cancel_1": "Cancel",
+      "change_pin": "Change PIN",
+      "change_pin_1": "Change PIN",
+      "delete_account": "Delete Account?",
+      "delete_account_1": "Delete Account",
+      "delete_your_account": "Delete your account?",
+      "keep_account": "Keep Account",
+      "offline": "Offline",
+      "pin_must_be_4_digits": "PIN must be 4 digits",
+      "pins_do_not_match": "PINs do not match",
+      "ready": "Ready",
+      "reenter_pin": "Re-enter PIN",
+      "require_pin_or_biometrics_to_open": "Require PIN or biometrics to open",
+      "save_changes": "Save Changes",
+      "set_4digit_pin": "Set 4-Digit PIN",
+      "something_went_wrong_please_contact_supp": "Something went wrong. Please contact support.",
+      "sync_error": "Sync error",
+      "synced": "Synced",
+      "syncing": "Syncing...",
+      "this_will_permanently_delete_your_accoun": "This will permanently delete your account and all synced data. Local data will remain on this device. This cannot be undone.",
+      "yes_delete": "Yes, Delete"
+    }
   },
   "reflection": {
     "title": "Insight",
@@ -2250,6 +2489,9 @@
         "when_stops_1": "When you understand the message.",
         "when_stops_2": "When you take action on the related matter.",
         "when_stops_3": "When you release the emotional burden."
+      },
+      "dream_theme": {
+        "dream_theme_not_found": "Dream theme not found"
       }
     },
     "emotional_reading": "EMOTIONAL READING",
@@ -2785,6 +3027,29 @@
       "streak_7_message": "You've recorded dreams for 7 days in a row. Your dream awareness is growing!",
       "dream_10_title": "10 Dreams Recorded!",
       "dream_10_message": "You've recorded 10 dreams. Patterns are starting to emerge!"
+    },
+    "dream_archive": {
+      "cancel": "Cancel",
+      "clear_search": "Clear search",
+      "delete": "Delete",
+      "delete_dream": "Delete Dream?",
+      "dream_archive": "Dream Archive",
+      "failed_to_load_dreams": "Failed to load dreams",
+      "lucid": "Lucid",
+      "recurring": "Recurring",
+      "retry": "Retry",
+      "search_by_symbol_or_theme": "Search by symbol or theme...",
+      "this_dream_entry_will_be_permanently_del": "This dream entry will be permanently deleted.",
+      "total": "Total"
+    },
+    "dream_interpretation": {
+      "access_all_perspectives": "Access all perspectives",
+      "access_all_perspectives_1": "Access All Perspectives",
+      "copied": "Copied",
+      "copy": "Copy",
+      "psychological_perspectivennyour": "Psychological Perspective\\n━━━━━━━━━━━━━━━━━\\nYour subconscious is revealing...",
+      "see_your_dream_through_every_lens": "See your dream through every lens",
+      "send_message": "Send message"
     }
   },
   "months": {
@@ -2976,6 +3241,30 @@
       "slow_breath": "Slow down your breathing",
       "relax_body": "Relax your body",
       "sleep_affirmation": "I sleep peacefully, I renew for tomorrow."
+    },
+    "ritual_create": {
+      "add_at_least_one_ritual_item": "Add at least one ritual item",
+      "add_step": "Add step",
+      "create_ritual": "Create Ritual",
+      "create_ritual_1": "Create Ritual",
+      "eg_morning_routine": "e.g. Morning Routine",
+      "name": "Name",
+      "remove_step": "Remove step",
+      "suggestions": "Suggestions",
+      "when": "When"
+    },
+    "rituals": {
+      "add_ritual": "Add Ritual",
+      "cancel": "Cancel",
+      "create_ritual": "Create Ritual",
+      "create_your_first_daily_ritual_to_start": "Create your first daily ritual to start tracking habits",
+      "delete": "Delete",
+      "delete_ritual": "Delete ritual",
+      "delete_ritual_1": "Delete Ritual?",
+      "items": "items",
+      "my_rituals": "My Rituals",
+      "retry": "Retry",
+      "your_ritual_practice_starts_here": "Your ritual practice starts here"
     }
   },
   "share": {
@@ -3578,6 +3867,1583 @@
       "natural_disaster": "Natural Disaster",
       "chronic_illness": "Chronic Illness Onset",
       "caregiver_burden": "Caregiver Burden"
+    },
+    "life_event": {
+      "add_a_photo": "Add a photo",
+      "cancel": "Cancel",
+      "describe_your_life_event": "Describe your life event...",
+      "discard": "Discard",
+      "discard_changes": "Discard Changes?",
+      "edit_life_event": "Edit Life Event",
+      "emotion_tags": "Emotion Tags",
+      "event_photo": "Event photo",
+      "event_title": "Event Title",
+      "event_type": "Event Type",
+      "how_did_this_event_shape_you": "How did this event shape you?",
+      "intensity": "Intensity",
+      "new_life_event": "New Life Event",
+      "photo_optional": "Photo (Optional)",
+      "reflection": "Reflection",
+      "remove_photo": "Remove photo",
+      "save_event": "Save Event",
+      "select_event": "Select Event",
+      "update_event": "Update Event",
+      "you_have_unsaved_changes_are_you_sure_yo": "You have unsaved changes. Are you sure you want to go back?"
+    },
+    "life_event_detail": {
+      "cancel": "Cancel",
+      "couldnt_load_this_event": "Couldn\\'t load this event",
+      "date": "Date",
+      "delete": "Delete",
+      "delete_event": "Delete event",
+      "delete_event_1": "Delete Event?",
+      "edit_event": "Edit event",
+      "emotions": "Emotions",
+      "event_copied_to_clipboard": "Event copied to clipboard",
+      "event_not_found": "Event not found",
+      "event_photo": "Event photo",
+      "intensity": "Intensity",
+      "life_event": "Life Event",
+      "reflection": "Reflection",
+      "retry": "Retry",
+      "share_event": "Share event",
+      "this_life_event_will_be_permanently_dele": "This life event will be permanently deleted."
+    },
+    "life_timeline": {
+      "add_life_event": "Add Life Event",
+      "add_life_event_1": "Add life event",
+      "all": "All",
+      "challenging": "Challenging",
+      "couldnt_load_your_timeline": "Couldn\\'t load your timeline",
+      "event_photo": "Event photo",
+      "life_timeline": "Life Timeline",
+      "new_event": "New Event",
+      "positive": "Positive",
+      "retry": "Retry",
+      "start_recording_the_moments_that_shape_y": "Start recording the moments that shape your story",
+      "unlock_your_full_timeline_with_pro": "Unlock your full timeline with Pro",
+      "upgrade_to_pro": "Upgrade to Pro",
+      "your_timeline_awaits_its_first_chapter": "Your timeline awaits its first chapter"
+    }
+  },
+  "affirmation": {
+    "affirmation_library": {
+      "add_to_favorites": "Add to favorites",
+      "affirmation_copied": "Affirmation copied",
+      "affirmations": "Affirmations",
+      "all": "All",
+      "favorites": "Favorites",
+      "no_favorites_yet": "No favorites yet",
+      "remove_from_favorites": "Remove from favorites",
+      "retry": "Retry"
+    }
+  },
+  "app_lock": {
+    "app_lock": {
+      "delete": "Delete",
+      "enter_pin": "Enter PIN",
+      "incorrect_pin": "Incorrect PIN",
+      "unlock_innercycles": "Unlock InnerCycles",
+      "unlock_with_biometrics": "Unlock with biometrics"
+    }
+  },
+  "birthdays": {
+    "birthday_add": {
+      "add_birthday": "Add Birthday",
+      "birthday": "Birthday",
+      "birthday_notification": "Birthday notification",
+      "cancel": "Cancel",
+      "change_photo": "Change photo",
+      "couldnt_save_this_contact_please_try_aga": "Couldn\\'t save this contact. Please try again.",
+      "day_before_reminder": "Day before reminder",
+      "discard": "Discard",
+      "discard_changes": "Discard Changes?",
+      "edit_birthday": "Edit Birthday",
+      "friends_name": "Friend\\'s name",
+      "gift_ideas_memories": "Gift ideas, memories...",
+      "name": "Name",
+      "not_specified": "Not specified",
+      "note_optional": "Note (Optional)",
+      "relationship": "Relationship",
+      "reminders": "Reminders",
+      "save_contact": "Save Contact",
+      "tap_to_change_photo": "Tap to change photo",
+      "update_contact": "Update Contact",
+      "year_optional": "Year (optional)",
+      "you_have_unsaved_changes_are_you_sure_yo": "You have unsaved changes. Are you sure you want to go back?"
+    },
+    "birthday_agenda": {
+      "add_birthday": "Add birthday",
+      "add_manually": "Add Manually",
+      "add_your_friends_and_family_to_get_remin": "Add your friends and family to get reminders on their special days.",
+      "birthday_agenda": "Birthday Agenda",
+      "couldnt_load_your_birthdays": "Couldn\\'t load your birthdays",
+      "days": "days",
+      "import_from_facebook": "Import from Facebook",
+      "never_miss_a_birthday": "Never Miss a Birthday",
+      "next_month": "Next month",
+      "no_birthdays_on_this_day": "No birthdays on this day",
+      "previous_month": "Previous month",
+      "retry": "Retry",
+      "tap_for_today": "Tap for today",
+      "today": "Today!",
+      "todays_birthdays": "Today\\'s Birthdays!",
+      "upcoming_birthdays": "Upcoming Birthdays"
+    },
+    "birthday_detail": {
+      "birthday_note_copied": "Birthday note copied",
+      "birthday_notification": "Birthday notification",
+      "cancel": "Cancel",
+      "contact_not_found": "Contact not found",
+      "couldnt_delete_this_contact_please_try_a": "Couldn\\'t delete this contact. Please try again.",
+      "couldnt_load_this_contact": "Couldn\\'t load this contact",
+      "day_before": "Day before",
+      "days_left": "days left",
+      "delete": "Delete",
+      "delete_contact": "Delete Contact",
+      "delete_contact_1": "Delete Contact?",
+      "edit_birthday": "Edit birthday",
+      "happy_birthday": "Happy Birthday!",
+      "long_press_to_copy_note": "Long press to copy note",
+      "note": "Note",
+      "reminders": "Reminders",
+      "retry": "Retry",
+      "share_birthday": "Share birthday"
+    },
+    "birthday_import": {
+      "birthday_import_failed_please_check_your": "Birthday import failed. Please check your file and try again.",
+      "couldnt_read_this_file_make_sure_its_a_v": "Couldn\\'t read this file. Make sure it\\'s a valid Facebook export (.json).",
+      "deselect_all": "Deselect All",
+      "how_to_export_from_facebook": "How to Export from Facebook",
+      "import_birthdays": "Import Birthdays",
+      "import_complete": "Import Complete!",
+      "no_birthdays_found_in_this_file_try_a_di": "No birthdays found in this file. Try a different export or add manually.",
+      "select_all": "Select All",
+      "select_json_file": "Select JSON File",
+      "view_birthdays": "View Birthdays"
+    }
+  },
+  "blind_spot": {
+    "blind_spot": {
+      "a_little_more_journaling_to_go": "A little more journaling to go",
+      "blind_spots": "Blind Spots",
+      "could_not_load_your_local_data_is_unaffe": "Could not load. Your local data is unaffected.",
+      "could_not_load_your_local_data_is_unaffe_1": "Could not load. Your local data is unaffected.",
+      "growth_suggestions": "Growth Suggestions",
+      "no_blind_spots_detected_at_this_time_kee": "No blind spots detected at this time. Keep journaling!",
+      "notable": "Notable",
+      "retry": "Retry",
+      "retry_1": "Retry",
+      "share_your_insights": "Share Your Insights",
+      "significant": "Significant",
+      "subtle": "Subtle",
+      "what_your_journal_reveals": "What Your Journal Reveals",
+      "your_overview": "Your Overview"
+    }
+  },
+  "breathing": {
+    "breathing_timer": {
+      "breathing_circle_tap_start_to_begin": "Breathing circle, tap Start to begin",
+      "guided_breathwork": "Guided Breathwork",
+      "share_session": "Share session",
+      "start_breathing": "Start Breathing",
+      "stop": "Stop"
+    }
+  },
+  "calendar": {
+    "calendar_heatmap": {
+      "_has_entry": ", has entry",
+      "_life_event": ", life event",
+      "add_life_event": "Add Life Event",
+      "challenging": "Challenging",
+      "heatmap_timeline": "Heatmap Timeline",
+      "journal": "Journal",
+      "less": "Less",
+      "log_this_day": "Log this day",
+      "more": "More",
+      "next_month": "Next month",
+      "overview": "Overview",
+      "positive": "Positive",
+      "previous_month": "Previous month",
+      "retry": "Retry",
+      "see_your_full_year_at_a_glance_with_pro": "See your full year at a glance with Pro",
+      "streak": "Streak",
+      "this_month": "This Month",
+      "total": "Total",
+      "upgrade_to_pro": "Upgrade to Pro",
+      "view_entry": "View entry",
+      "year_heatmap": "Year Heatmap"
+    }
+  },
+  "challenges": {
+    "challenge_hub": {
+      "active": "Active",
+      "active_challenges": "Active Challenges",
+      "available_challenges": "Available Challenges",
+      "challenges": "Challenges",
+      "completed": "Completed",
+      "retry": "Retry",
+      "start": "Start",
+      "total": "Total"
+    },
+    "challenge_list": {
+      "active": "Active",
+      "available": "Available",
+      "completed": "Completed",
+      "completed_1": "Completed",
+      "growth_challenges": "Growth Challenges",
+      "in_progress": "In Progress",
+      "increment_progress": "Increment progress",
+      "retry": "Retry",
+      "start": "Start",
+      "start_challenge": "Start challenge",
+      "total": "Total"
+    }
+  },
+  "core": {
+    "constants": {
+      "common_strings": {
+        "text": "..."
+      }
+    }
+  },
+  "cycle_sync": {
+    "cycle_sync": {
+      "add_more_entries_to_surface_cycleemotion": "Add more entries to surface cycle-emotion correlations.",
+      "cancel": "Cancel",
+      "couldnt_load_your_cycle_data": "Couldn\\'t load your cycle data",
+      "cycle_insight": "Cycle Insight",
+      "cycle_length": "Cycle length",
+      "cycle_overview": "Cycle Overview",
+      "cycle_sync": "Cycle Sync",
+      "cycles_logged": "Cycles logged",
+      "day": "Day",
+      "log_period": "Log Period",
+      "log_period_start": "Log period start",
+      "log_period_start_1": "Log Period Start",
+      "log_your_period_to_see_how_your_emotiona": "Log your period to see how your emotional patterns align with your cycle.",
+      "mark_today_as_the_start_of_your_period": "Mark today as the start of your period.",
+      "next_period": "Next period",
+      "period_length": "Period length",
+      "period_started_today": "Period Started Today",
+      "phase_timeline": "Phase Timeline",
+      "retry": "Retry",
+      "start_tracking_your_cycle": "Start Tracking Your Cycle",
+      "unlock_deeper_cycle_insights": "Unlock deeper cycle insights"
+    }
+  },
+  "data": {
+    "content": {
+      "important_date_presets": {
+        "challenges": "Challenges",
+        "growth": "Growth",
+        "personal_milestones": "Personal Milestones",
+        "reflective": "Reflective",
+        "relationships": "Relationships"
+      },
+      "share_templates": {
+        "a_season_for_rest_reflection_and_inner_r": "A season for rest, reflection, and inner renewal.",
+        "acceptance": "Acceptance",
+        "acceptance_is_not_giving_up_it_is_making": "Acceptance is not giving up — it is making room for what comes next.",
+        "another_milestone_of_showing_up_for_your": "Another milestone of showing up for yourself",
+        "based_on_recurring_dream_themes": "Based on recurring dream themes",
+        "based_on_your_recent_journal_entries": "Based on your recent journal entries",
+        "calm": "Calm",
+        "challenge": "Challenge",
+        "completed": "completed",
+        "consistency_builds_selfawareness": "Consistency builds self-awareness",
+        "curated_insight": "Curated Insight",
+        "cyclical_intelligence": "Cyclical Intelligence",
+        "daily_affirmation": "Daily Affirmation",
+        "daily_reflection": "Daily Reflection",
+        "day_streak": "day streak",
+        "days": "days",
+        "days_this_month": "days this month",
+        "deep_processor": "Deep Processor",
+        "dominant_this_month": "dominant this month",
+        "drawn_from_your_patterns": "Drawn from your patterns",
+        "drawn_from_your_selfreflection_quiz": "Drawn from your self-reflection quiz",
+        "dreams": "dreams",
+        "entries": "entries",
+        "every_moment_of_stillness_is_a_step_inwa": "Every moment of stillness is a step inward.",
+        "expansion": "Expansion",
+        "focus_area_balance": "Focus Area Balance",
+        "from_your_dream_journal": "From your dream journal",
+        "from_your_patterns": "From your patterns",
+        "growth_often_feels_like_confusion_before": "Growth often feels like confusion before it feels like clarity.",
+        "growth_wisdom": "Growth Wisdom",
+        "how_your_attention_spreads_across_areas": "How your attention spreads across areas",
+        "how_your_rest_has_been_this_week": "How your rest has been this week",
+        "i_trust_the_process_of_my_own_growth": "I trust the process of my own growth.",
+        "inner_voice": "Inner Voice",
+        "innercycles": "InnerCycles",
+        "my_sleep_quality": "My Sleep Quality",
+        "my_week_in_feelings": "My Week in Feelings",
+        "noticing_yourself_is_the_first_act_of_ch": "Noticing yourself is the first act of changing yourself.",
+        "pattern_wisdom": "Pattern Wisdom",
+        "patterns": "patterns",
+        "patterns_drawn_from_7day_mood_data": "Patterns drawn from 7-day mood data",
+        "patterns_drawn_from_your_daily_entries": "Patterns drawn from your daily entries",
+        "points_gained": "points gained",
+        "presence": "Presence",
+        "question_of_the_day": "Question of the Day",
+        "reflection": "Reflection",
+        "resilience": "Resilience",
+        "rest_insight": "Rest Insight",
+        "rest_is_not_the_absence_of_progress_it_i": "Rest is not the absence of progress — it is where clarity begins.",
+        "secureleaning": "Secure-Leaning",
+        "selfawareness": "Self-Awareness",
+        "selfawareness_grows_with_each_discovery": "Self-awareness grows with each discovery",
+        "showing_up_consistently_for_yourself": "Showing up consistently for yourself",
+        "steady_flow": "Steady Flow",
+        "the_present_moment_holds_more_wisdom_tha": "The present moment holds more wisdom than any plan for the future.",
+        "the_reflector": "The Reflector",
+        "the_smallest_shifts_in_awareness_often_l": "The smallest shifts in awareness often lead the biggest changes.",
+        "the_voyager": "The Voyager",
+        "what_would_you_tell_your_younger_self_to": "What would you tell your younger self today?",
+        "winter": "Winter",
+        "you_have_survived_every_difficult_day_so": "You have survived every difficult day so far. That is resilience.",
+        "you_showed_real_commitment": "You showed real commitment",
+        "you_tend_to_process_feelings_with_depth": "You tend to process feelings with depth and care",
+        "your_dream_journal_suggests_this_persona": "Your dream journal suggests this personality type",
+        "your_dream_world_keeps_revealing_insight": "Your dream world keeps revealing insights",
+        "your_dreams_may_be_pointing_toward_unres": "Your dreams may be pointing toward unresolved feelings.",
+        "your_entries_suggest_this_archetype_patt": "Your entries suggest this archetype pattern",
+        "your_entries_suggest_this_attachment_pat": "Your entries suggest this attachment pattern",
+        "your_entries_suggest_this_energy_rhythm": "Your entries suggest this energy rhythm",
+        "your_entries_suggest_you_tend_to_find_cl": "Your entries suggest you tend to find clarity after rest.",
+        "your_growth_score_has_been_rising_steadi": "Your growth score has been rising steadily",
+        "your_inner_voice_gets_clearer_when_you_g": "Your inner voice gets clearer when you give it space to speak.",
+        "your_most_frequent_emotion_this_month": "Your most frequent emotion this month",
+        "your_patterns_are_not_your_limits_they_a": "Your patterns are not your limits — they are your starting points.",
+        "your_quietest_weeks_often_hold_your_deep": "Your quietest weeks often hold your deepest shifts.",
+        "your_recent_entries_suggest_a_period_of": "Your recent entries suggest a period of openness and growth"
+      }
+    },
+    "models": {
+      "personality_archetype": {
+        "air": "Air",
+        "earth": "Earth",
+        "fire": "Fire",
+        "water": "Water"
+      },
+      "share_models": {
+        "achievements": "Achievements",
+        "identity": "Identity",
+        "patterns": "Patterns",
+        "reflection": "Reflection",
+        "wisdom": "Wisdom"
+      },
+      "wrapped_data": {
+        "rising": "Rising",
+        "steady": "Steady",
+        "transforming": "Transforming",
+        "you_maintained_a_grounded_stable_emotion": "You maintained a grounded, stable emotional rhythm",
+        "your_emotional_landscape_has_been_shifti": "Your emotional landscape has been shifting and evolving",
+        "your_emotional_trajectory_has_been_climb": "Your emotional trajectory has been climbing upward"
+      }
+    },
+    "services": {
+      "export": {
+        "date": "Date",
+        "entries": "Entries",
+        "exported": "Exported",
+        "focus": "Focus",
+        "innercycles_journal_export": "InnerCycles Journal Export",
+        "note": "Note",
+        "rating": "Rating"
+      },
+      "notification": {
+        "10_friends_joined_youve_earned_lifetime": "10 friends joined! You\\'ve earned Lifetime Premium. Thank you for spreading the word!",
+        "_full_moon": "🌕 Full Moon",
+        "_new_moon": "🌑 New Moon",
+        "_your_daily_reflection": "✨ Your Daily Reflection",
+        "a_friend_joined_with_your_code_you_both": "A friend joined with your code! You both earned 7 days of Premium.",
+        "a_new_moon_phase_is_here_a_good_time_for": "A new moon phase is here. A good time for mindful reflection.",
+        "a_quick_checkin_keeps_your_momentum_goin": "A quick check-in keeps your momentum going.",
+        "a_time_for_new_beginnings_and_setting_in": "A time for new beginnings and setting intentions.",
+        "a_time_for_reflection_and_gratitude": "A time for reflection and gratitude.",
+        "alerts_when_your_journaling_streak_is_ab": "Alerts when your journaling streak is about to reset",
+        "birthday_reminder_notifications": "Birthday reminder notifications",
+        "birthday_reminder_notifications_1": "Birthday reminder notifications",
+        "birthday_reminders": "Birthday Reminders",
+        "birthday_reminders_1": "Birthday Reminders",
+        "daily_journal_reflection_reminders": "Daily journal reflection reminders",
+        "daily_journaling_prompt_to_inspire_your": "Daily journaling prompt to inspire your writing",
+        "daily_reflection": "Daily Reflection",
+        "encouragement_to_start_a_new_streak": "Encouragement to start a new streak",
+        "evening_journal_reflection_reminders": "Evening journal reflection reminders",
+        "evening_reflection": "Evening Reflection",
+        "evening_reflection_1": "Evening Reflection",
+        "every_streak_starts_at_day_1": "Every streak starts at Day 1",
+        "how_was_your_day_take_a_moment_to_journa": "How was your day? Take a moment to journal your thoughts.",
+        "journal_prompts": "Journal Prompts",
+        "memories_from_past_journal_entries": "Memories from past journal entries",
+        "moon_cycle_awareness": "Moon Cycle Awareness",
+        "moon_cycle_awareness_1": "Moon Cycle Awareness",
+        "moon_cycle_awareness_2": "Moon Cycle Awareness",
+        "moon_cycle_awareness_3": "Moon Cycle Awareness",
+        "moon_cycle_mindfulness_reminders": "Moon cycle mindfulness reminders",
+        "moon_cycle_mindfulness_reminders_1": "Moon cycle mindfulness reminders",
+        "moon_cycle_mindfulness_reminders_2": "Moon cycle mindfulness reminders",
+        "note_reminder": "Note Reminder",
+        "note_reminders": "Note Reminders",
+        "notifications_when_friends_join_with_you": "Notifications when friends join with your code",
+        "on_this_day": "On This Day",
+        "referral_rewards": "Referral Rewards",
+        "reminders_for_your_personal_notes": "Reminders for your personal notes",
+        "see_what_you_wrote_on_this_day_your_past": "See what you wrote on this day. Your past self has a message.",
+        "streak_recovery": "Streak Recovery",
+        "streak_reminders": "Streak Reminders",
+        "take_a_moment_to_reflect_on_your_day": "Take a moment to reflect on your day.",
+        "todays_journal_prompt": "Today\\'s Journal Prompt",
+        "u1f381_referral_reward_7_days_premium": "\\u{1F381} Referral Reward: +7 Days Premium!",
+        "u1f48e_lifetime_premium_unlocked": "\\u{1F48E} Lifetime Premium Unlocked!",
+        "u2b50_1_month_free_premium": "\\u{2B50} 1 Month Free Premium!"
+      },
+      "notification_lifecycle": {
+        "a_new_correlation_emerged_in_your_journa": "A new correlation emerged in your journal entries.",
+        "celebrate_your_progress": "Celebrate Your Progress",
+        "challenge_completed": "Challenge Completed!",
+        "full_moon_tonight": "Full Moon Tonight",
+        "milestone_reached": "Milestone Reached!",
+        "monthly_wrapped_ready": "Monthly Wrapped Ready",
+        "new_moon_tonight": "New Moon Tonight",
+        "new_pattern_found": "New Pattern Found",
+        "one_sentence_counts": "One Sentence Counts",
+        "quick_checkin": "Quick Check-In",
+        "see_your_year_in_patterns_your_personal": "See your year in patterns — your personal recap awaits.",
+        "something_interesting": "Something Interesting",
+        "something_interesting_emerged_in_your_pa": "Something interesting emerged in your patterns this week...",
+        "still_here_for_you": "Still Here For You",
+        "the_full_moon_is_tonight_a_wonderful_mom": "The full moon is tonight — a wonderful moment for gratitude.",
+        "the_new_moon_is_tonight_a_perfect_time_f": "The new moon is tonight — a perfect time for reflection.",
+        "weekly_reflection": "Weekly Reflection",
+        "welcome_back": "Welcome Back?",
+        "whats_present_for_you_right_now_a_quick": "What\\'s present for you right now? A quick check-in takes 30 seconds.",
+        "you_finished_a_challenge_share_your_achi": "You finished a challenge! Share your achievement with friends.",
+        "you_reached_a_milestone_recently_share_i": "You reached a milestone recently — share it with someone who would appreciate it.",
+        "your_archetype_shifted": "Your Archetype Shifted",
+        "your_journal_awaits": "Your Journal Awaits",
+        "your_journal_is_here_whenever_you_are_re": "Your journal is here whenever you are ready.",
+        "your_monthly_archetype_has_evolved_check": "Your monthly archetype has evolved — check out your new pattern.",
+        "your_monthly_recap_is_ready_to_review_se": "Your monthly recap is ready to review — see your patterns at a glance.",
+        "your_patterns_are_still_here_ready_when": "Your patterns are still here, ready when you are.",
+        "your_streak_is_waiting": "Your Streak is Waiting",
+        "your_weekly_reflection_is_ready_to_revie": "Your weekly reflection is ready to review."
+      },
+      "pattern_engine": {
+        "decisions": "Decisions",
+        "emotions": "Emotions",
+        "energy": "Energy",
+        "focus": "Focus",
+        "social": "Social",
+        "your_last_few_entries_show_a_dip_a_good": "Your last few entries show a dip. A good moment to reflect on what changed.",
+        "your_recent_entries_show_an_upward_trend": "Your recent entries show an upward trend — your ratings are climbing."
+      },
+      "premium": {
+        "could_not_connect_your_local_data_is_una": "Could not connect. Your local data is unaffected.",
+        "couldnt_restore_purchases_please_try_aga": "Couldn\\'t restore purchases. Please try again.",
+        "no_purchases_found_to_restore": "No purchases found to restore",
+        "purchase_cancelled": "Purchase cancelled",
+        "purchases_are_not_allowed_on_this_device": "Purchases are not allowed on this device",
+        "something_went_wrong_your_account_was_no": "Something went wrong. Your account was not charged.",
+        "this_product_is_not_available_right_now": "This product is not available right now",
+        "this_purchase_couldnt_be_completed": "This purchase couldn\\'t be completed"
+      },
+      "voice_journal": {
+        "could_not_start_listening": "Could not start listening",
+        "error_stopping_voice_input": "Error stopping voice input",
+        "failed_to_initialize_voice_input": "Failed to initialize voice input",
+        "voice_input_is_not_available_on_this_dev": "Voice input is not available on this device."
+      }
+    }
+  },
+  "digest": {
+    "monthly_wrapped": {
+      "balanced": "Balanced",
+      "based_on_your_monthly_patterns": "Based on your monthly patterns",
+      "close": "Close",
+      "go_back": "Go Back",
+      "keep_journaling_to_build_your_monthly_st": "Keep journaling to build your monthly story",
+      "keep_journaling_your_monthly_wrapped_wil": "Keep journaling! Your monthly wrapped will be ready when you have at least 3 entries.",
+      "retry": "Retry",
+      "share_your_month": "Share Your Month",
+      "slide": "Slide",
+      "this_area_drew_your_attention_more_than": "This area drew your attention more than any other",
+      "your_month_at_a_glance": "Your month at a glance"
+    },
+    "weekly_digest": {
+      "avg_rating": "Avg Rating",
+      "best_day": "Best Day",
+      "day_streak": "Day Streak",
+      "days": "days",
+      "entries_this_week": "Entries This Week",
+      "first_week_tracked": "First week tracked",
+      "focus_area_breakdown": "Focus Area Breakdown",
+      "mood_trend": "Mood Trend",
+      "my_weekly_debrief_from_innercycles_inner": "My weekly debrief from InnerCycles #InnerCycles #WeeklyDebrief",
+      "no_entries_this_week_yet": "No entries this week yet",
+      "same_as_last_week": "Same as last week",
+      "share": "Share",
+      "share_weekly_debrief": "Share weekly debrief",
+      "start_journaling_to_see_your_weekly_dige": "Start journaling to see your weekly digest with mood trends, patterns, and insights.",
+      "top_focus_area": "Top Focus Area",
+      "view_monthly_wrapped": "View Monthly Wrapped",
+      "week_of": "Week of",
+      "weekly_debrief": "Weekly Debrief",
+      "weekly_debrief_1": "Weekly Debrief",
+      "weekly_insight": "Weekly Insight"
+    }
+  },
+  "energy": {
+    "energy_map": {
+      "4_weeks_ago": "4 weeks ago",
+      "add_at_least_5_entries_to_see_your_energ": "Add at least 5 entries to see your energy map",
+      "average": "Average",
+      "best_day": "Best Day",
+      "could_not_load_your_local_data_is_unaffe": "Could not load. Your local data is unaffected.",
+      "energy_by_day_area": "Energy by Day & Area",
+      "energy_profile": "Energy Profile",
+      "high": "High",
+      "last_28_days": "Last 28 Days",
+      "low": "Low",
+      "observations": "Observations",
+      "retry": "Retry",
+      "strongest": "Strongest",
+      "today": "Today",
+      "write_first_entry": "Write First Entry",
+      "your_energy_map_is_taking_shape": "Your energy map is taking shape"
+    }
+  },
+  "export": {
+    "export": {
+      "access": "Access",
+      "copy_to_clipboard": "Copy to Clipboard",
+      "could_not_load_your_local_data_is_unaffe": "Could not load. Your local data is unaffected.",
+      "developerfriendly_format": "Developer-friendly format",
+      "export_data": "Export Data",
+      "export_data_copied_to_clipboard": "Export data copied to clipboard",
+      "export_format": "Export Format",
+      "export_share": "Export & Share",
+      "export_your_full_journal_history_in_any": "Export your full journal history in any format",
+      "free_last_7_days_as_text_upgrade_for_ful": "Free: last 7 days as text. Upgrade for full history & all formats.",
+      "humanreadable_format": "Human-readable format",
+      "plain_text": "Plain Text",
+      "retry": "Retry",
+      "spreadsheet_compatible": "Spreadsheet compatible",
+      "total_entries": "Total Entries",
+      "will_export": "Will Export"
+    }
+  },
+  "gratitude": {
+    "gratitude": {
+      "add_another": "Add another",
+      "days": "Days",
+      "gratitude": "Gratitude",
+      "gratitude_journal": "Gratitude Journal",
+      "history": "History",
+      "im_grateful_for": "I\\'m grateful for...",
+      "items": "Items",
+      "premium_add_up_to_3_gratitude_items_them": "Premium: Add up to 3 gratitude items + theme analysis",
+      "retry": "Retry",
+      "save_gratitude": "Save Gratitude",
+      "themes": "Themes",
+      "this_weeks_gratitude": "This Week\\'s Gratitude",
+      "this_weeks_themes": "This Week\\'s Themes",
+      "update": "Update",
+      "what_went_well_today": "What went well today?"
+    },
+    "gratitude_archive": {
+      "gratitude_archive": "Gratitude Archive",
+      "gratitude_archive_1": "Gratitude Archive",
+      "recurring_themes": "Recurring Themes",
+      "retry": "Retry",
+      "this_week": "This Week",
+      "total_days": "Total Days",
+      "week_items": "Week Items"
+    }
+  },
+  "growth": {
+    "growth_dashboard": {
+      "1_entry_to_activate": "1 entry to activate",
+      "30day_streak": "30-Day Streak",
+      "36_modules": "36 modules",
+      "56_habits_to_try": "56 habits to try",
+      "7day_observer": "7-Day Observer",
+      "achievements": "Achievements",
+      "average_mood": "Average mood",
+      "begin_your_progress_one_entry_at_a_time": "Begin your progress. One entry at a time.",
+      "blind_spots": "Blind Spots",
+      "challenge_completer": "Challenge Completer",
+      "challenges_completed": "Challenges completed",
+      "days": "Days",
+      "dream_logger": "Dream Logger",
+      "dreams_logged": "Dreams logged",
+      "emotional_profile": "Emotional profile",
+      "entries_this_month": "Entries this month",
+      "explore_growth_tools": "Explore Growth Tools",
+      "first_entry": "First Entry",
+      "good_start_every_entry_brings_you_closer": "Good start! Every entry brings you closer.",
+      "gratitude_entries": "Gratitude entries",
+      "gratitude_streak": "Gratitude Streak",
+      "great_progress_keep_building_your_habits": "Great progress! Keep building your habits.",
+      "growth_score": "Growth Score",
+      "hidden_patterns": "Hidden patterns",
+      "insights": "Insights",
+      "microhabits": "Micro-Habits",
+      "milestones": "Milestones",
+      "milestones_1": "Milestones",
+      "most_tracked_area": "Most tracked area",
+      "na": "N/A",
+      "none_yet": "None yet",
+      "outstanding_you_are_deeply_committed_to": "Outstanding! You are deeply committed to your growth.",
+      "pattern_seeker": "Pattern Seeker",
+      "retry": "Retry",
+      "self_aware": "Self Aware",
+      "share_your_progress": "Share your progress",
+      "share_your_progress_1": "Share Your Progress",
+      "story_teller": "Story Teller",
+      "this_month": "This Month",
+      "your_archetype": "Your Archetype",
+      "your_growth": "Your Growth"
+    }
+  },
+  "habits": {
+    "daily_habits": {
+      "all_done_for_today": "All done for today!",
+      "browse_all_habits": "Browse all habits",
+      "browse_all_habits_1": "Browse all habits",
+      "browse_habits": "Browse Habits",
+      "browse_the_habit_library_and_adopt_habit": "Browse the habit library and adopt habits to track them daily",
+      "mark_complete": "Mark complete",
+      "mark_incomplete": "Mark incomplete",
+      "min": "min",
+      "retry": "Retry",
+      "routine_tracker": "Routine Tracker",
+      "todays_progress": "Today\\'s Progress",
+      "your_habit_routine_starts_here": "Your habit routine starts here"
+    },
+    "habit_suggestions": {
+      "adopt_this_habit": "Adopt this Habit",
+      "adopted": "Adopted",
+      "adopted_1": "Adopted",
+      "adopted_2": "Adopted",
+      "all": "All",
+      "bookmark": "Bookmark",
+      "habits_explored": "Habits Explored",
+      "mark_as_tried": "Mark as Tried",
+      "microhabits": "Micro-Habits",
+      "min": "min",
+      "min_1": "min",
+      "minutes": "minutes",
+      "remove_bookmark": "Remove bookmark",
+      "retry": "Retry",
+      "show_all_habits": "Show all habits",
+      "show_bookmarks": "Show bookmarks",
+      "todays_habit": "Today\\'s Habit",
+      "tried": "Tried",
+      "tried_1": "Tried",
+      "tried_2": "Tried",
+      "try_it": "Try it",
+      "try_this_habit": "Try this habit",
+      "your_bookmark_list_is_ready_for_habits": "Your bookmark list is ready for habits"
+    }
+  },
+  "journal": {
+    "annual_report": {
+      "an_extraordinary_year_of_selfreflection": "An extraordinary year of self-reflection. Your dedication to understanding yourself has been remarkable.",
+      "average_rating_by_month": "Average Rating by Month",
+      "avg_rating": "Avg Rating",
+      "couldnt_load_your_annual_report": "Couldn\\'t load your annual report",
+      "entries": "Entries",
+      "every_entry_you_wrote_was_a_step_toward": "Every entry you wrote was a step toward knowing yourself better. Your patterns tell a story worth celebrating.",
+      "longest_streak": "Longest Streak",
+      "most_active_month": "Most Active Month",
+      "my_year_in_review_with_innercycles_inner": "My year in review with InnerCycles! #InnerCycles #YearInReview",
+      "retry": "Retry",
+      "share": "Share",
+      "top_focus_areas": "Top Focus Areas",
+      "write_first_entry": "Write First Entry",
+      "year_synthesis": "Year Synthesis",
+      "year_synthesis_1": "Year Synthesis",
+      "you_began_building_selfawareness_this_ye": "You began building self-awareness this year. Each entry matters, and your data is just getting started.",
+      "you_showed_up_consistently_for_yourself": "You showed up consistently for yourself this year. Your entries reveal meaningful patterns of progress.",
+      "your_year_synthesis": "Your Year Synthesis",
+      "your_yearinreview_will_come_alive_with_e": "Your year-in-review will come alive with each entry you write."
+    },
+    "archive": {
+      "all": "All",
+      "archive": "Archive",
+      "cancel": "Cancel",
+      "clear_search": "Clear search",
+      "delete": "Delete",
+      "delete_entry": "Delete Entry?",
+      "retry": "Retry",
+      "search_by_date_mood_or_text": "Search by date, mood, or text...",
+      "this_journal_entry_will_be_permanently_d": "This journal entry will be permanently deleted.",
+      "write_first_entry": "Write First Entry",
+      "your_journal_entries_will_appear_here_as": "Your journal entries will appear here as you build your personal cycle map.",
+      "your_journal_is_a_blank_page_ready_when": "Your journal is a blank page — ready when you are"
+    },
+    "cycle_summary": {
+      "current_avg": "Current avg"
+    },
+    "cycle_wave_painter": {
+      "emotional_cycle_wave_chart": "Emotional cycle wave chart"
+    },
+    "daily_entry": {
+      "add_a_photo": "Add a photo",
+      "add_a_photo_1": "Add a photo",
+      "change": "Change",
+      "continue": "Continue",
+      "continue_1": "Continue",
+      "details": "Details",
+      "details_optional": "Details (optional)",
+      "difficult": "Difficult",
+      "eg_work_personal": "e.g. Work, Personal",
+      "en_us": "en_US",
+      "focus_area": "Focus Area",
+      "good": "Good",
+      "great": "Great",
+      "how_did_your_day_feel": "How did your day feel?",
+      "invite": "Invite",
+      "journal_photo": "Journal photo",
+      "keep_journaling_to_reveal_your_patterns": "Keep journaling to reveal your patterns",
+      "log_your_day": "Log Your Day",
+      "loving_innercycles_invite_a_friend_you_b": "Loving InnerCycles? Invite a friend — you both get 7 days Premium!",
+      "low": "Low",
+      "neutral": "Neutral",
+      "neutral_1": "Neutral",
+      "notes_optional": "Notes (optional)",
+      "overall_rating": "Overall Rating",
+      "photo_optional": "Photo (optional)",
+      "rating": "Rating",
+      "remove": "Remove",
+      "save_entry": "Save Entry",
+      "save_entry_1": "Save Entry",
+      "share": "Share",
+      "tags_optional": "Tags (optional)",
+      "tap_to_speak": "Tap to speak",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "you_just_wrote_your_first_reflectionneve": "You just wrote your first reflection.\\nEvery great story starts with a single page.",
+      "your_journey_begins": "Your Journey Begins"
+    },
+    "emotional_cycle": {
+      "access_full_30day_view": "Access Full 30-Day View",
+      "access_shift_outlook": "Access Shift Outlook",
+      "access_shift_outlook_to_see_when_your_em": "Access Shift Outlook to see when your emotional phases may shift",
+      "cycle_insights": "Cycle Insights",
+      "go_pro": "Go Pro",
+      "retry": "Retry",
+      "share_my_inner_cycles": "Share My Inner Cycles",
+      "share_my_inner_cycles_1": "Share My Inner Cycles",
+      "shift_outlook": "Shift Outlook",
+      "start_journaling": "Start Journaling",
+      "start_journaling_to_see_your_cycles": "Start journaling to see your cycles",
+      "today": "Today",
+      "unable_to_load_data": "Unable to load data",
+      "your_cycles_are_forming": "Your Cycles Are Forming",
+      "your_dimensions": "Your Dimensions",
+      "your_inner_cycles": "Your Inner Cycles",
+      "your_inner_cycles_1": "Your Inner Cycles"
+    },
+    "entry_detail": {
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "delete_entry": "Delete entry",
+      "delete_entry_1": "Delete Entry?",
+      "entry_copied_to_clipboard": "Entry copied to clipboard",
+      "entry_not_found": "Entry not found",
+      "journal_entry_photo": "Journal entry photo",
+      "notes": "Notes",
+      "retry": "Retry",
+      "share_entry": "Share entry",
+      "this_journal_entry_will_be_permanently_d": "This journal entry will be permanently deleted."
+    },
+    "monthly_reflection": {
+      "access_your_full_monthly_report": "Access your full monthly report",
+      "area_breakdown": "Area Breakdown",
+      "current_streak": "Current streak",
+      "monthly_reflection": "Monthly Reflection",
+      "needs_attention": "Needs attention",
+      "next_month": "Next month",
+      "previous_month": "Previous month",
+      "retry": "Retry",
+      "see_full_report": "See Full Report",
+      "share_monthly_summary": "Share monthly summary",
+      "strongest_area": "Strongest area",
+      "this_month_is_waiting_for_your_first_ref": "This month is waiting for your first reflection",
+      "weekly_prompts": "Weekly Prompts",
+      "write_your_first_entry": "Write your first entry →"
+    },
+    "pattern_loop_analyzer": {
+      "behavioral_patterns_detected_in_your_ent": "Behavioral patterns detected in your entries",
+      "keep_journaling_to_discover_your_behavio": "Keep journaling to discover your behavioral patterns",
+      "negative": "Negative",
+      "neutral": "Neutral",
+      "pattern_loops": "Pattern Loops",
+      "positive": "Positive",
+      "strength": "Strength"
+    },
+    "patterns": {
+      "based_on_your_personal_journal_entries_n": "Based on your personal journal entries. Not a clinical assessment.",
+      "connections": "Connections",
+      "crossdimension_insights": "Cross-Dimension Insights",
+      "focus_area_cycle_averages_chart": "Focus area cycle averages chart",
+      "gratitude_days": "Gratitude days",
+      "gratitude_mood": "Gratitude & Mood",
+      "other_days": "Other days",
+      "patterns_unlock_after_7_entries": "Patterns Unlock After 7 Entries",
+      "retry": "Retry",
+      "see_full_analysis": "See full analysis",
+      "see_full_analysis_1": "See Full Analysis",
+      "this_week_vs_last_week": "This Week vs Last Week",
+      "trends": "Trends",
+      "write_entry": "Write Entry",
+      "your_patterns": "Your Patterns"
+    },
+    "phase_ring": {
+      "emotional_phase_ring": "Emotional phase ring"
+    },
+    "post_save_engagement": {
+      "back_to_home": "Back to Home",
+      "capture_it_before_it_fades": "Capture it before it fades",
+      "end_your_day_with_gratitude": "End your day with gratitude",
+      "explore_your_patterns": "Explore your patterns",
+      "gratitude_journal": "Gratitude journal",
+      "invite_a_friend": "Invite a friend",
+      "log_your_mood": "Log your mood",
+      "quick_1tap_checkin": "Quick 1-tap check-in",
+      "record_a_dream": "Record a dream",
+      "saved": "Saved!",
+      "thoughts_reminders_ideas": "Thoughts, reminders, ideas",
+      "what_else_would_you_like_to_capture": "What else would you like to capture?",
+      "write_a_note_to_yourself": "Write a note to yourself",
+      "you_both_get_7_days_premium_free": "You both get 7 days Premium free"
+    },
+    "shift_outlook": {
+      "confidence": "confidence",
+      "not_enough_data_for_shift_outlook_yet": "Not enough data for shift outlook yet",
+      "shift_outlook": "Shift Outlook",
+      "supporting_signals": "Supporting Signals"
+    },
+    "voice_input_button": {
+      "microphone_permission_is_required_for_vo": "Microphone permission is required for voice input. Please enable it in Settings.",
+      "start_voice_input": "Start voice input",
+      "stop_voice_input": "Stop voice input",
+      "voice_input_is_not_available_on_this_dev": "Voice input is not available on this device.",
+      "voice_input_premium": "Voice input (premium)"
+    }
+  },
+  "library": {
+    "library_hub": {
+      "library": "Library",
+      "your_personal_data_vault": "Your personal data vault"
+    }
+  },
+  "meditation": {
+    "meditation_timer": {
+      "be_present": "Be present",
+      "begin_meditation": "Begin Meditation",
+      "choose_duration": "Choose Duration",
+      "focus_on_your_breath": "Focus on your breath...",
+      "meditation": "Meditation",
+      "min": "min",
+      "pause": "Pause",
+      "paused": "Paused",
+      "reset": "Reset",
+      "resume": "Resume",
+      "session_complete_well_done": "Session complete. Well done!"
+    }
+  },
+  "memories": {
+    "memories": {
+      "couldnt_load_your_memories": "Couldn\\'t load your memories",
+      "entries": "Entries",
+      "memories": "Memories",
+      "memories_1": "Memories",
+      "memory_photo": "Memory photo",
+      "memory_photo_1": "Memory photo",
+      "on_this_day": "On This Day",
+      "photos": "Photos",
+      "retry": "Retry",
+      "since": "Since",
+      "this_month_is_a_blank_canvas": "This month is a blank canvas",
+      "write_an_entry": "Write an Entry",
+      "your_memories_from_this_period_will_appe": "Your memories from this period will appear here"
+    }
+  },
+  "milestones": {
+    "badge_celebration": {
+      "keep_going": "Keep Going",
+      "share": "Share"
+    },
+    "milestone": {
+      "all": "All",
+      "close_dialog": "Close dialog",
+      "done": "Done",
+      "go_deeper": "Go deeper",
+      "keep_growing": "Keep growing",
+      "keep_logging": "Keep logging",
+      "milestones": "Milestones",
+      "milestones_earned": "Milestones Earned",
+      "retry": "Retry",
+      "share_connect": "Share & connect",
+      "start_tracking": "Start tracking!",
+      "try_new_features": "Try new features",
+      "write_more": "Write more",
+      "you_earned_them_all": "You earned them all!"
+    }
+  },
+  "mood": {
+    "emotional_vocabulary": {
+      "all": "All",
+      "body_sensation": "Body Sensation",
+      "clear_search": "Clear search",
+      "emotional_vocabulary": "Emotional Vocabulary",
+      "find_a_feeling": "Find a feeling...",
+      "no_emotions_found": "No emotions found"
+    },
+    "mood_checkin": {
+      "good": "Good",
+      "great": "Great",
+      "low": "Low",
+      "mood_logged_get_more_specific": "Mood logged! Get more specific?",
+      "okay": "Okay",
+      "struggling": "Struggling",
+      "todays_mood": "Today\\'s Mood",
+      "whats_present_for_you_right_now": "What\\'s present for you right now?"
+    },
+    "mood_trends": {
+      "30day_avg": "30-Day Avg",
+      "7day_avg": "7-Day Avg",
+      "go_deeper": "Go Deeper",
+      "good": "Good",
+      "great": "Great",
+      "how_are_you_feeling_right_now": "How are you feeling right now?",
+      "last_30_days": "Last 30 Days",
+      "low": "Low",
+      "okay": "Okay",
+      "recent_checkins": "Recent Check-ins",
+      "retry": "Retry",
+      "share_week": "Share week",
+      "signal_dashboard": "Signal Dashboard",
+      "signal_dashboard_1": "Signal Dashboard",
+      "start_your_first_checkin": "Start your first check-in",
+      "struggling": "Struggling",
+      "tap_how_you_feel_your_dashboard_lights_u": "Tap how you feel — your dashboard lights up from here",
+      "this_week": "This Week",
+      "total_logs": "Total Logs",
+      "upgrade_to_pro": "Upgrade to Pro",
+      "your_data_has_more_to_show": "Your data has more to show"
+    }
+  },
+  "notes": {
+    "note_detail": {
+      "add": "Add",
+      "cancel": "Cancel",
+      "cancel_1": "Cancel",
+      "cancel_2": "Cancel",
+      "couldnt_load_this_note": "Couldn\\'t load this note",
+      "custom_message_optional": "Custom message (optional)",
+      "delete": "Delete",
+      "delete_note": "Delete Note?",
+      "delete_note_1": "Delete Note",
+      "discard": "Discard",
+      "discard_changes": "Discard Changes?",
+      "edit_note": "Edit Note",
+      "eg_ideas_personal": "e.g. Ideas, Personal",
+      "frequency": "Frequency",
+      "give_this_note_a_title": "Give this note a title",
+      "mood_when_created": "Mood when created",
+      "new_note": "New Note",
+      "pick_date_time": "Pick date & time",
+      "remind_me": "Remind Me",
+      "retry": "Retry",
+      "save_note": "Save Note",
+      "save_note_1": "Save Note",
+      "set_a_date_time_to_get_notified_about_th": "Set a date & time to get notified about this note",
+      "set_reminder": "Set Reminder",
+      "share": "Share",
+      "tags": "Tags",
+      "this_note_will_be_permanently_deleted": "This note will be permanently deleted.",
+      "will_be_set_when_you_save": "Will be set when you save",
+      "write_your_thoughts": "Write your thoughts...",
+      "you_have_unsaved_changes_are_you_sure_yo": "You have unsaved changes. Are you sure you want to go back?"
+    },
+    "notes_list": {
+      "all": "All",
+      "cancel": "Cancel",
+      "capture_your_thoughts": "Capture your thoughts",
+      "clear_search": "Clear search",
+      "couldnt_load_your_notes": "Couldn\\'t load your notes",
+      "delete": "Delete",
+      "delete_note": "Delete Note?",
+      "new_note": "New Note",
+      "no_notes_matched_your_search": "No notes matched your search",
+      "notes": "Notes",
+      "notes_1": "notes",
+      "now": "now",
+      "pinned": "Pinned",
+      "pinned_1": "pinned",
+      "quick_notes_reminders_ideas_neverything": "Quick notes, reminders, ideas —\\neverything in one place.",
+      "recent": "Recent",
+      "retry": "Retry",
+      "search_notes": "Search notes...",
+      "tags": "tags",
+      "this_note_will_be_permanently_deleted": "This note will be permanently deleted.",
+      "try_a_different_search_term": "Try a different search term",
+      "untitled": "Untitled",
+      "write_your_first_note": "Write your first note"
+    }
+  },
+  "programs": {
+    "active_program": {
+      "complete_today": "Complete Today",
+      "completed": "Completed",
+      "completed_1": "Completed",
+      "day": "Day",
+      "days": "days",
+      "duration": "Duration",
+      "program_completed": "Program Completed!",
+      "retry": "Retry",
+      "this_program_hasnt_been_started_yet": "This program hasn\\'t been started yet.",
+      "write_your_reflection_here_optional": "Write your reflection here (optional)...",
+      "you_have_finished_this_guided_program_we": "You have finished this guided program. Well done!"
+    },
+    "program_completion": {
+      "back_to_home": "Back to Home",
+      "certificate_of_completion": "Certificate of Completion",
+      "completed_on": "Completed On",
+      "congratulations": "Congratulations!",
+      "days_completed": "Days Completed",
+      "days_of_reflection": "days of reflection",
+      "duration": "Duration",
+      "every_day_of_reflection_is_a_step_toward": "Every day of reflection is a step toward deeper self-understanding.",
+      "start_another_program": "Start Another Program"
+    },
+    "program_list": {
+      "all_programs": "All Programs",
+      "could_not_load_your_local_data_is_unaffe": "Could not load. Your local data is unaffected.",
+      "days": "days",
+      "free": "FREE",
+      "guided_programs": "Guided Programs",
+      "in_progress": "In Progress",
+      "retry": "Retry",
+      "structured_reflection_journeys_to_deepen": "Structured reflection journeys to deepen self-awareness"
+    }
+  },
+  "prompts": {
+    "daily_question": {
+      "question_of_the_day": "Question of the Day",
+      "question_of_the_day_1": "QUESTION OF THE DAY",
+      "share": "Share",
+      "write": "Write"
+    },
+    "prompt_library": {
+      "all": "All",
+      "completed": "Completed",
+      "creativity": "Creativity",
+      "cycle_awareness": "Cycle Awareness",
+      "deep": "Deep",
+      "emotions": "Emotions",
+      "goals": "Goals",
+      "gratitude": "Gratitude",
+      "light": "Light",
+      "medium": "Medium",
+      "mindfulness": "Mindfulness",
+      "prompt_library": "Prompt Library",
+      "recovery": "Recovery",
+      "relationships": "Relationships",
+      "retry": "Retry",
+      "skip": "Skip",
+      "start_writing": "Start Writing",
+      "start_writing_1": "Start Writing",
+      "your_progress": "Your Progress"
+    }
+  },
+  "referral": {
+    "referral": {
+      "10_friends": "10 Friends",
+      "1_month_free_premium": "1 Month Free Premium",
+      "3_friends": "3 Friends",
+      "apply_code": "Apply Code",
+      "applying": "Applying...",
+      "code_applied_you_earned_7_days_of_premiu": "Code applied! You earned 7 days of Premium.",
+      "days_earned": "Days Earned",
+      "days_left": "Days Left",
+      "friends_invited": "Friends Invited",
+      "give_7_days_get_7_days": "Give 7 Days, Get 7 Days",
+      "have_a_code": "Have a Code?",
+      "invite_friends": "Invite Friends",
+      "lifetime_premium": "Lifetime Premium",
+      "milestones": "Milestones",
+      "paste_your_referral_code": "Paste your referral code",
+      "referral_code_copied_share_it_with_a_fri": "Referral code copied — share it with a friend",
+      "share_invite_link": "Share Invite Link",
+      "share_your_code_with_friends_when_they_j": "Share your code with friends. When they join,\\nyou both get 7 days of Premium free.",
+      "tap_to_copy": "Tap to copy",
+      "that_code_didnt_work_please_doublecheck": "That code didn\\'t work. Please double-check and try again.",
+      "you_cant_use_your_own_code": "You can\\'t use your own code.",
+      "your_invite_code": "Your Invite Code",
+      "youve_already_used_a_referral_code": "You\\'ve already used a referral code.",
+      "youve_already_used_a_referral_code_1": "You\\'ve already used a referral code."
+    }
+  },
+  "retrospective": {
+    "retrospective": {
+      "add_journal_entries_for_the_most_meaning": "Add journal entries for the most meaningful days in your past. Reflect on what shaped you.",
+      "back_to_home": "Back to Home",
+      "choose_the_days_that_matter_to_you": "Choose the days that matter to you",
+      "lets_begin": "Let\\'s Begin",
+      "not_selected": "not selected",
+      "pick_a_date": "Pick a date",
+      "selected": "selected",
+      "when_did_these_happen": "When did these happen?",
+      "your_past_is_now_part_of_your_journey_co": "Your past is now part of your journey. Come back anytime to write about these days.",
+      "your_story_didnt_start_today": "Your story didn\\'t start today"
+    }
+  },
+  "search": {
+    "global_search": {
+      "all": "All",
+      "clear_search": "Clear search",
+      "close_search": "Close search",
+      "double_tap_to_open": "Double tap to open",
+      "dreams": "Dreams",
+      "dreams_1": "Dreams",
+      "journal": "Journal",
+      "journal_entries": "Journal Entries",
+      "notes": "Notes",
+      "notes_1": "Notes",
+      "nothing_matched_try_different_words": "Nothing matched — try different words",
+      "quick_actions": "Quick Actions",
+      "recent_searches": "Recent Searches",
+      "search_entries_notes_dreams": "Search entries, notes, dreams...",
+      "tags": "Tags",
+      "tools": "Tools"
+    }
+  },
+  "seasonal": {
+    "seasonal_reflection": {
+      "all_seasons": "All Seasons",
+      "complete": "complete",
+      "loading_reflections": "Loading reflections...",
+      "mark_complete": "Mark Complete",
+      "retry": "Retry",
+      "seasonal_reflections": "Seasonal Reflections"
+    }
+  },
+  "shadow_work": {
+    "shadow_work": {
+      "begin_writing": "Begin Writing",
+      "breakthrough_moment": "Breakthrough moment",
+      "breakthrough_moment_toggle": "Breakthrough moment toggle",
+      "cancel": "Cancel",
+      "choose_an_archetype": "Choose an Archetype",
+      "couldnt_load_your_shadow_work": "Couldn\\'t load your shadow work",
+      "discard": "Discard",
+      "discard_changes": "Discard Changes?",
+      "entries": "Entries",
+      "explore_your_inner_landscape": "Explore Your Inner Landscape",
+      "insights": "Insights",
+      "intensity_slider": "Intensity slider",
+      "recent_entries": "Recent Entries",
+      "retry": "Retry",
+      "save_entry": "Save Entry",
+      "shadow_work": "Shadow Work",
+      "shadow_work_entry_saved": "Shadow work entry saved",
+      "shadow_work_helps_you_understand_hidden": "Shadow work helps you understand hidden patterns that shape your emotions and behaviors.",
+      "streak": "Streak",
+      "this_was_a_breakthrough_moment": "This was a breakthrough moment",
+      "today": "Today",
+      "unlock_your_shadow_map": "Unlock your shadow map",
+      "write_freely_without_judgment": "Write freely, without judgment...",
+      "yesterday": "Yesterday",
+      "you_have_unsaved_text_are_you_sure_you_w": "You have unsaved text. Are you sure you want to go back?",
+      "your_shadow_map": "Your Shadow Map"
+    }
+  },
+  "shared": {
+    "ecosystems": {
+      "see_example": "See Example",
+      "start_with_template": "Start with Template"
+    },
+    "glass_sliver_app_bar": {
+      "back": "Back",
+      "back_1": "Back"
+    },
+    "main_shell": {
+      "home": "Home",
+      "insights": "Insights",
+      "journal": "Journal",
+      "notes": "Notes",
+      "profile": "Profile"
+    },
+    "private_toggle": {
+      "cancel": "Cancel",
+      "protected_with_pin_face_id": "Protected with PIN & Face ID",
+      "save_to_vault": "Save to Vault",
+      "set_up": "Set Up",
+      "set_up_vault_pin": "Set Up Vault PIN",
+      "you_need_to_create_a_4digit_pin_to_prote": "You need to create a 4-digit PIN to protect your private content."
+    },
+    "share": {
+      "share": "Share"
+    },
+    "share_insight_button": {
+      "share_this_insight": "Share this insight"
+    },
+    "tool_ecosystem_footer": {
+      "related_tools": "Related Tools"
+    }
+  },
+  "sharing": {
+    "share_gallery": {
+      "back": "Back",
+      "back_to_gallery": "Back to gallery",
+      "check_out_my_innercycles_card_innercycle": "Check out my InnerCycles card! #InnerCycles #SelfGrowth",
+      "copied_to_clipboard": "Copied to clipboard",
+      "copy": "Copy",
+      "share": "Share",
+      "share_cards": "Share Cards",
+      "shared_successfully": "Shared successfully!"
+    }
+  },
+  "sleep": {
+    "sleep": {
+      "any_sleep_notes_optional": "Any sleep notes... (optional)",
+      "avg": "Avg",
+      "best": "Best",
+      "how_did_you_sleep_last_night": "How did you sleep last night?",
+      "nights": "Nights",
+      "sleep_quality": "Sleep Quality",
+      "sleep_quality_1": "Sleep quality",
+      "sleep_this_week": "Sleep This Week"
+    },
+    "sleep_detail": {
+      "average": "Average",
+      "best": "Best",
+      "last_7_days": "Last 7 Days",
+      "log_your_sleep_quality_in_your_daily_jou": "Log your sleep quality in your daily journal",
+      "nights": "Nights",
+      "recent_nights": "Recent Nights",
+      "retry": "Retry",
+      "sleep_quality": "Sleep Quality",
+      "sleep_tips": "Sleep Tips",
+      "write_journal_entry": "Write Journal Entry",
+      "your_sleep_story_is_waiting_to_begin": "Your sleep story is waiting to begin"
+    },
+    "sleep_trends": {
+      "best": "Best",
+      "fair": "Fair",
+      "good": "Good",
+      "great": "Great",
+      "last_14_nights": "Last 14 Nights",
+      "log_your_first_nights_sleep_to_see_trend": "Log your first night\\'s sleep to see trends and patterns.",
+      "nights": "Nights",
+      "no_sleep_data_yet": "No sleep data yet",
+      "notes": "Notes",
+      "okay": "Okay",
+      "poor": "Poor",
+      "quality_distribution": "Quality Distribution",
+      "retry": "Retry",
+      "sleep_trends": "Sleep Trends",
+      "sleep_trends_1": "Sleep Trends",
+      "week_avg": "Week Avg",
+      "your_sleep_quality_has_dipped_recently": "Your sleep quality has dipped recently",
+      "your_sleep_quality_is_improving": "Your sleep quality is improving",
+      "your_sleep_quality_is_stable": "Your sleep quality is stable"
+    }
+  },
+  "streak": {
+    "challenge_celebration": {
+      "challenge_completed": "Challenge Completed!",
+      "continue": "Continue",
+      "share": "Share",
+      "you_showed_real_commitment": "You showed real commitment"
+    },
+    "milestone_celebration": {
+      "day_streak": "day streak",
+      "keep_going": "Keep Going",
+      "share": "Share",
+      "unlock_deeper_insights_with_premium": "Unlock deeper insights with Premium"
+    },
+    "streak": {
+      "14day_chain": "14-Day Chain",
+      "days": "Days",
+      "keep_going": "Keep Going",
+      "milestone_reached": "Milestone Reached",
+      "reflection_streak": "Reflection Streak",
+      "share_achievement": "Share Achievement",
+      "share_streak": "Share streak",
+      "share_your_streak": "Share your streak"
+    },
+    "streak_recovery": {
+      "access_streak_freeze": "Access streak freeze",
+      "learn_more": "Learn more",
+      "one_entry_to_start_a_new_one": "One entry to start a new one",
+      "premium_streak_freezes_could_have_saved": "Premium streak freezes could have saved this",
+      "start_a_new_streak": "Start a new streak"
+    },
+    "streak_stats": {
+      "day_streak": "day streak",
+      "log_todays_entry": "Log Today\\'s Entry",
+      "longest": "Longest",
+      "milestones": "Milestones",
+      "milestones_1": "Milestones",
+      "premium_3_freezes_per_week": "Premium: 3 freezes per week",
+      "retry": "Retry",
+      "share_your_streak": "Share your streak",
+      "streak_engine": "Streak Engine",
+      "streak_freeze": "Streak Freeze",
+      "this_week": "This Week",
+      "total_entries": "Total Entries",
+      "use_freeze": "Use Freeze"
+    }
+  },
+  "today": {
+    "daily_pulse": {
+      "decisions": "Decisions",
+      "details": "Details",
+      "each_entry_builds_your_pattern_library_s": "Each entry builds your pattern library. Start journaling to see what emerges.",
+      "emotions": "Emotions",
+      "energy": "Energy",
+      "focus": "Focus",
+      "focus_pulse": "Focus Pulse",
+      "social": "Social",
+      "view_details": "View details"
+    },
+    "hero_journal": {
+      "daily_reflection": "DAILY REFLECTION",
+      "share_this_question": "Share this question",
+      "share_this_question_1": "Share this question",
+      "start_journaling": "Start journaling",
+      "start_journaling_1": "Start Journaling",
+      "start_writing": "Start Writing",
+      "start_writing_journal_entry": "Start writing journal entry"
+    },
+    "home_header": {
+      "good_afternoon": "Good afternoon",
+      "good_evening": "Good evening",
+      "good_morning": "Good morning",
+      "profile_settings": "Profile & Settings",
+      "search": "Search"
+    },
+    "mood_stats_strip": {
+      "check_in": "Check in"
+    },
+    "on_this_day": {
+      "view_memories_from_this_day": "View memories from this day"
+    },
+    "promotional_stack": {
+      "50_off_new_user_offer": "50% Off — New User Offer",
+      "add_entries_for_your_most_meaningful_day": "Add entries for your most meaningful days",
+      "add_retrospective_entries": "Add retrospective entries",
+      "claim": "Claim",
+      "enjoying_innercycles": "Enjoying InnerCycles?",
+      "invite_earn_premium": "Invite & Earn Premium",
+      "limited_time_offer": "Limited time offer",
+      "note": "Note",
+      "now": "Now",
+      "see_all": "See all",
+      "see_your_month_at_a_glance_share_it": "See your month at a glance & share it",
+      "see_your_year_in_patterns": "See your year in patterns",
+      "share_it_with_a_friend_who_would_love_it": "Share it with a friend who would love it too.",
+      "share_weekly_insights": "Share weekly insights",
+      "share_your_weeks_insights": "Share your week\\'s insights",
+      "upcoming_reminders": "Upcoming Reminders",
+      "view_monthly_wrapped": "View monthly wrapped",
+      "view_upcoming_reminders": "View upcoming reminders",
+      "view_year_wrapped": "View year wrapped",
+      "your_latest_pattern_card_is_ready": "Your latest pattern card is ready",
+      "your_story_didnt_start_today": "Your story didn\\'t start today"
+    },
+    "recent_entries": {
+      "decisions": "Decisions",
+      "emotions": "Emotions",
+      "energy": "Energy",
+      "focus": "Focus",
+      "recent_entries": "Recent Entries",
+      "see_all": "See All",
+      "see_all_entries": "See all entries",
+      "social": "Social"
+    },
+    "recent_life_events": {
+      "any_big_moments_this_week": "Any big moments this week?",
+      "recent_life_events": "Recent Life Events",
+      "record_a_life_event": "Record a life event",
+      "record_a_life_event_1": "Record a life event",
+      "see_all": "See all",
+      "see_all_life_events": "See all life events"
+    },
+    "today_birthday": {
+      "u1f382_birthday_today": "\\u{1F382} Birthday today!",
+      "view_birthday_agenda": "View birthday agenda"
+    },
+    "today_feed": {
+      "1_month": "1 Month",
+      "1_year": "1 Year",
+      "3_months": "3 Months",
+      "6_months": "6 Months",
+      "continue": "Continue",
+      "maybe_later": "Maybe later",
+      "welcome_back": "Welcome back!",
+      "write_an_entry": "Write an Entry"
+    },
+    "weekly_focus_progress": {
+      "week": "Week: "
+    }
+  },
+  "tools": {
+    "tool_catalog": {
+      "add_to_favorites": "Add to favorites",
+      "clear_search": "Clear search",
+      "no_tools_found": "No tools found",
+      "remove_from_favorites": "Remove from favorites",
+      "search_by_name_or_category": "Search by name or category...",
+      "tools": "Tools"
+    }
+  },
+  "vault": {
+    "vault": {
+      "cancel": "Cancel",
+      "cancel_1": "Cancel",
+      "change_pin": "Change PIN",
+      "delete": "Delete",
+      "delete_photo": "Delete Photo?",
+      "disable_face_id": "Disable Face ID",
+      "enable_face_id": "Enable Face ID",
+      "mark_journals_or_notes_as_private_or_add": "Mark journals or notes as private, or add photos to your vault.",
+      "private_journals": "Private Journals",
+      "private_notes": "Private Notes",
+      "private_photos": "Private Photos",
+      "private_vault": "Private Vault",
+      "this_photo_will_be_permanently_deleted_f": "This photo will be permanently deleted from your vault.",
+      "untitled": "Untitled",
+      "vault_settings": "Vault settings",
+      "vault_settings_1": "Vault Settings",
+      "your_vault_is_empty": "Your vault is empty"
+    },
+    "vault_pin": {
+      "back": "Back",
+      "choose_a_4digit_pin_for_your_vault": "Choose a 4-digit PIN for your vault",
+      "choose_a_new_4digit_pin": "Choose a new 4-digit PIN",
+      "confirm_pin": "Confirm PIN",
+      "create_pin": "Create PIN",
+      "enable": "Enable",
+      "enable_face_id": "Enable Face ID?",
+      "enter_pin": "Enter PIN",
+      "enter_the_same_pin_again": "Enter the same PIN again",
+      "enter_your_vault_pin": "Enter your vault PIN",
+      "new_pin": "New PIN",
+      "not_now": "Not Now",
+      "that_pin_didnt_match_try_again": "That PIN didn\\'t match. Try again.",
+      "those_dont_match_no_worries_try_again": "Those don\\'t match — no worries, try again.",
+      "use_face_id_to_quickly_access_your_vault": "Use Face ID to quickly access your vault instead of entering PIN every time."
+    }
+  },
+  "wellness": {
+    "wellness_detail": {
+      "could_not_load_your_local_data_is_unaffe": "Could not load. Your local data is unaffected.",
+      "declining": "Declining",
+      "get_started": "Get Started",
+      "getting_started": "Getting Started",
+      "good_balance": "Good Balance",
+      "gratitude_items_15": "Gratitude items = 15%",
+      "gratitude_practice": "Gratitude Practice",
+      "how_your_score_works": "How your score works",
+      "improving": "Improving",
+      "journal_rating": "Journal Rating",
+      "journal_rating_40_of_score": "Journal rating = 40% of score",
+      "log_a_cycle_entry_gratitude_or_sleep_to": "Log a cycle entry, gratitude, or sleep to see your cycle score",
+      "out_of_100": "out of 100",
+      "retry": "Retry",
+      "ritual_completion": "Ritual Completion",
+      "ritual_completion_15": "Ritual completion = 15%",
+      "room_to_grow": "Room to Grow",
+      "score_breakdown": "Score Breakdown",
+      "sleep_quality": "Sleep Quality",
+      "sleep_quality_15": "Sleep quality = 15%",
+      "stable": "Stable",
+      "streak_consistency": "Streak Consistency",
+      "streak_consistency_15": "Streak consistency = 15%",
+      "thriving": "Thriving",
+      "weekly_trend": "Weekly Trend",
+      "wellness_score": "Wellness Score",
+      "write_journal_entry": "Write Journal Entry",
+      "your_wellness_score_is_building": "Your wellness score is building"
+    }
+  },
+  "whats_new": {
+    "whats_new": {
+      "got_it": "Got it",
+      "latest_features_and_improvements": "Latest features and improvements"
+    }
+  },
+  "year_review": {
+    "wrapped": {
+      "5_more_cards_with_deeper_insights_await": "5 more cards with deeper insights await you",
+      "breakthrough_moments": "Breakthrough Moments",
+      "breakthroughs": "breakthroughs",
+      "close": "Close",
+      "consistently_high_mood_average": "Consistently high mood average",
+      "days": "days",
+      "entries": "entries",
+      "every_entry_you_wrote_brought_you_closer": "Every entry you wrote brought you closer to yourself.",
+      "every_journey_has_its_rhythm": "Every journey has its rhythm",
+      "explored_multiple_focus_areas": "Explored multiple focus areas",
+      "focus_area_map": "Focus Area Map",
+      "growth_score": "Growth Score",
+      "journaled_every_single_day": "Journaled every single day",
+      "keep_journaling_to_discover_patterns": "Keep journaling to discover patterns",
+      "keep_journaling_to_unlock_your_wrapped": "Keep journaling to unlock your Wrapped!",
+      "keep_journaling_your_story_is_building": "Keep journaling — your story is building",
+      "moments_where_your_mood_lifted_and_a_pos": "Moments where your mood lifted and a positive streak began",
+      "most_intense_week": "Most Intense Week",
+      "not_enough_entries_for_your_wrapped_yet": "Not enough entries for your Wrapped yet",
+      "remarkable_growth_this_year": "Remarkable growth this year",
+      "see_you_next_year": "See You Next Year",
+      "share_your_wrapped": "Share Your Wrapped",
+      "steady_and_consistent_progress": "Steady and consistent progress",
+      "swipe_to_explore": "Swipe to explore →",
+      "this_week_had_the_widest_range_of_emotio": "This week had the widest range of emotions in your entries",
+      "throughout_the_year": "Throughout the year",
+      "unlock_your_full_wrapped": "Unlock Your Full Wrapped",
+      "write_an_entry": "Write an entry →",
+      "your_emotional_arc": "Your Emotional Arc",
+      "your_top_patterns": "Your Top Patterns",
+      "your_year_in_patterns": "Your Year in Patterns"
+    },
+    "year_review": {
+      "avg_mood": "Avg Mood",
+      "based_on_your_mood_improvement_trend": "Based on your mood improvement trend",
+      "best_streak": "Best Streak",
+      "could_not_load_your_local_data_is_unaffe": "Could not load. Your local data is unaffected.",
+      "could_not_load_your_local_data_is_unaffe_1": "Could not load. Your local data is unaffected.",
+      "days": "Days",
+      "entries": "Entries",
+      "focus_areas": "Focus Areas",
+      "growth_score": "Growth Score",
+      "highlights": "Highlights",
+      "keep_recording_to_activate_your_annual_s": "Keep recording to activate your annual summary. You need at least 7 entries in a year.",
+      "monthly_average_mood_15": "Monthly average mood (1-5)",
+      "mood_trajectory": "Mood Trajectory",
+      "not_enough_entries_for_this_year": "Not enough entries for this year",
+      "retry": "Retry",
+      "retry_1": "Retry",
+      "room_to_grow": "Room to Grow",
+      "share_summary": "Share Summary",
+      "start_journaling": "Start Journaling",
+      "steady_progress": "Steady Progress",
+      "strong_growth": "Strong Growth",
+      "time_spent_per_area": "Time spent per area",
+      "year_synthesis": "Year Synthesis",
+      "you_journaled_every_single_day": "You journaled every single day!",
+      "you_need_at_least_7_journal_entries_to_g": "You need at least 7 journal entries to generate a review.",
+      "your_year_synthesis_is_ready": "Your Year Synthesis is ready"
     }
   }
 }

@@ -17,6 +17,7 @@ import '../../../../data/services/premium_service.dart';
 import '../../../../data/services/voice_journal_service.dart';
 import '../../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../../data/services/l10n_service.dart';
 
 class VoiceInputButton extends ConsumerStatefulWidget {
   /// Called whenever new text is recognized from speech.
@@ -145,17 +146,13 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
   String _getUnavailableMessage() {
     final language = ref.read(languageProvider);
     final isEn = language == AppLanguage.en;
-    return isEn
-        ? 'Voice input is not available on this device.'
-        : 'Sesli giriş bu cihazda kullanılamıyor.';
+    return L10nService.get('journal.voice_input_button.voice_input_is_not_available_on_this_dev', isEn ? AppLanguage.en : AppLanguage.tr);
   }
 
   String _getPermissionMessage() {
     final language = ref.read(languageProvider);
     final isEn = language == AppLanguage.en;
-    return isEn
-        ? 'Microphone permission is required for voice input. Please enable it in Settings.'
-        : 'Sesli giriş için mikrofon izni gerekli. Lütfen Ayarlar\'dan etkinleştirin.';
+    return L10nService.get('journal.voice_input_button.microphone_permission_is_required_for_vo', isEn ? AppLanguage.en : AppLanguage.tr);
   }
 
   void _showError(String message) {
@@ -198,7 +195,7 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
     return GestureDetector(
       onTap: _toggleListening,
       child: Semantics(
-        label: isEn ? 'Voice input (premium)' : 'Sesli giriş (premium)',
+        label: L10nService.get('journal.voice_input_button.voice_input_premium', isEn ? AppLanguage.en : AppLanguage.tr),
         button: true,
         child: SizedBox(
           width: widget.size,
@@ -266,8 +263,8 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
       onTap: _isAvailable ? _toggleListening : null,
       child: Semantics(
         label: _isListening
-            ? (isEn ? 'Stop voice input' : 'Sesli girişi durdur')
-            : (isEn ? 'Start voice input' : 'Sesli girişi başlat'),
+            ? (L10nService.get('journal.voice_input_button.stop_voice_input', isEn ? AppLanguage.en : AppLanguage.tr))
+            : (L10nService.get('journal.voice_input_button.start_voice_input', isEn ? AppLanguage.en : AppLanguage.tr)),
         button: true,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),

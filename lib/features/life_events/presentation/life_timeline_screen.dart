@@ -28,6 +28,7 @@ import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
+import '../../../data/services/l10n_service.dart';
 
 class LifeTimelineScreen extends ConsumerStatefulWidget {
   const LifeTimelineScreen({super.key});
@@ -56,7 +57,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  isEn ? 'Couldn\'t load your timeline' : 'Zaman çizelgen yüklenemedi',
+                  L10nService.get('life_events.life_timeline.couldnt_load_your_timeline', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textSecondary
@@ -72,7 +73,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
                     color: AppColors.starGold,
                   ),
                   label: Text(
-                    isEn ? 'Retry' : 'Tekrar Dene',
+                    L10nService.get('life_events.life_timeline.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -133,7 +134,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
           ),
           slivers: [
             GlassSliverAppBar(
-              title: isEn ? 'Life Timeline' : 'Yaşam Zaman Çizelgesi',
+              title: L10nService.get('life_events.life_timeline.life_timeline', isEn ? AppLanguage.en : AppLanguage.tr),
             ),
             SliverPadding(
               padding: const EdgeInsets.all(16),
@@ -182,18 +183,18 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
   Widget _buildFilterChips(bool isDark, bool isEn) {
     return Row(
       children: [
-        _filterChip(null, isEn ? 'All' : 'Tümü', AppColors.auroraStart, isDark),
+        _filterChip(null, L10nService.get('life_events.life_timeline.all', isEn ? AppLanguage.en : AppLanguage.tr), AppColors.auroraStart, isDark),
         const SizedBox(width: 8),
         _filterChip(
           LifeEventType.positive,
-          isEn ? 'Positive' : 'Olumlu',
+          L10nService.get('life_events.life_timeline.positive', isEn ? AppLanguage.en : AppLanguage.tr),
           AppColors.starGold,
           isDark,
         ),
         const SizedBox(width: 8),
         _filterChip(
           LifeEventType.challenging,
-          isEn ? 'Challenging' : 'Zorlu',
+          L10nService.get('life_events.life_timeline.challenging', isEn ? AppLanguage.en : AppLanguage.tr),
           AppColors.amethyst,
           isDark,
         ),
@@ -391,7 +392,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
                       width: 40,
                       height: 40,
                       fit: BoxFit.cover,
-                      semanticLabel: isEn ? 'Event photo' : 'Olay fotoğrafı',
+                      semanticLabel: L10nService.get('life_events.life_timeline.event_photo', isEn ? AppLanguage.en : AppLanguage.tr),
                       errorBuilder: (_, _, _) => const SizedBox.shrink(),
                     ),
                   ),
@@ -414,12 +415,10 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
   Widget _buildEmptyState(bool isDark, bool isEn) {
     return PremiumEmptyState(
       icon: Icons.auto_awesome_rounded,
-      title: isEn ? 'Your timeline awaits its first chapter' : 'Zaman çizelgen ilk bölümünü bekliyor',
-      description: isEn
-          ? 'Start recording the moments that shape your story'
-          : 'Hikayenizi şekillendiren anları kaydetmeye başlayın',
+      title: L10nService.get('life_events.life_timeline.your_timeline_awaits_its_first_chapter', isEn ? AppLanguage.en : AppLanguage.tr),
+      description: L10nService.get('life_events.life_timeline.start_recording_the_moments_that_shape_y', isEn ? AppLanguage.en : AppLanguage.tr),
       gradientVariant: GradientTextVariant.gold,
-      ctaLabel: isEn ? 'Add Life Event' : 'Yaşam Olayı Ekle',
+      ctaLabel: L10nService.get('life_events.life_timeline.add_life_event', isEn ? AppLanguage.en : AppLanguage.tr),
       onCtaPressed: () => context.push(Routes.lifeEventNew),
     );
   }
@@ -440,9 +439,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
             ),
             const SizedBox(height: 8),
             GradientText(
-              isEn
-                  ? 'Unlock your full timeline with Pro'
-                  : 'Pro ile tüm zaman çizelgenizi açın',
+              L10nService.get('life_events.life_timeline.unlock_your_full_timeline_with_pro', isEn ? AppLanguage.en : AppLanguage.tr),
               variant: GradientTextVariant.gold,
               textAlign: TextAlign.center,
               style: AppTypography.displayFont.copyWith(
@@ -452,7 +449,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
             ),
             const SizedBox(height: 12),
             GradientButton.gold(
-              label: isEn ? 'Upgrade to Pro' : 'Pro\'ya Yükselt',
+              label: L10nService.get('life_events.life_timeline.upgrade_to_pro', isEn ? AppLanguage.en : AppLanguage.tr),
               onPressed: () => showContextualPaywall(
                 context,
                 ref,
@@ -475,7 +472,7 @@ class _AnimatedFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-          message: isEn ? 'Add life event' : 'Yaşam olayı ekle',
+          message: L10nService.get('life_events.life_timeline.add_life_event_1', isEn ? AppLanguage.en : AppLanguage.tr),
           child: GestureDetector(
             onTap: onPressed,
             child: Container(
@@ -500,7 +497,7 @@ class _AnimatedFAB extends StatelessWidget {
                   Icon(Icons.add_rounded, size: 20, color: AppColors.deepSpace),
                   const SizedBox(width: 8),
                   Text(
-                    isEn ? 'New Event' : 'Yeni Olay',
+                    L10nService.get('life_events.life_timeline.new_event', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.displayFont.copyWith(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,

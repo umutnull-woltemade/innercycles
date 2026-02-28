@@ -2,7 +2,7 @@ import '../../data/providers/app_providers.dart';
 import '../../data/services/l10n_service.dart';
 
 /// Centralized common UI strings that were previously duplicated
-/// across 20+ screens as inline `isEn ? '...' : '...'` ternaries.
+/// across 20+ screens as inline `L10nService.get('core.constants.common_strings.text', isEn ? AppLanguage.en : AppLanguage.tr)` ternaries.
 ///
 /// All keys resolve through [L10nService] so DE/FR are also covered.
 /// Usage:

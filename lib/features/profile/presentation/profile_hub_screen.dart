@@ -18,6 +18,7 @@ import 'widgets/profile_vault_section.dart';
 import 'widgets/profile_rate_section.dart';
 import 'widgets/profile_referral_section.dart';
 import 'widgets/profile_settings_section.dart';
+import '../../../data/services/l10n_service.dart';
 
 class ProfileHubScreen extends ConsumerWidget {
   const ProfileHubScreen({super.key});
@@ -57,7 +58,7 @@ class ProfileHubScreen extends ConsumerWidget {
         .round()
         .clamp(0, 100);
 
-    final name = profile?.name ?? (isEn ? 'Explorer' : 'Ka\u015fif');
+    final name = profile?.name ?? (L10nService.get('profile.profile_hub.explorer', isEn ? AppLanguage.en : AppLanguage.tr));
 
     return Scaffold(
       body: CosmicBackground(
@@ -71,7 +72,7 @@ class ProfileHubScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: isEn ? 'Profile' : 'Profil',
+                  title: L10nService.get('profile.profile_hub.profile', isEn ? AppLanguage.en : AppLanguage.tr),
                   showBackButton: false,
                   largeTitleMode: true,
                 ),

@@ -1,5 +1,3 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 class AppConstants {
   AppConstants._();
 
@@ -17,11 +15,12 @@ class AppConstants {
   static const String appStoreUrl =
       'https://apps.apple.com/app/innercycles/id6758612716';
 
-  // RevenueCat API Keys — loaded from .env at runtime
-  static String get revenueCatAppleApiKey =>
-      dotenv.env['REVENUECAT_APPLE_API_KEY'] ?? '';
-  static String get revenueCatGoogleApiKey =>
-      dotenv.env['REVENUECAT_GOOGLE_API_KEY'] ?? ''; // iOS-only release
+  // RevenueCat API Keys — loaded from --dart-define at compile time (not bundled in app)
+  // Build: flutter build ios --dart-define=REVENUECAT_APPLE_API_KEY=appl_xxx
+  static const String revenueCatAppleApiKey =
+      String.fromEnvironment('REVENUECAT_APPLE_API_KEY');
+  static const String revenueCatGoogleApiKey =
+      String.fromEnvironment('REVENUECAT_GOOGLE_API_KEY');
 
   // RevenueCat Product IDs
   static const String monthlyProductId = 'monthly';

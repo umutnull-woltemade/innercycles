@@ -329,6 +329,7 @@ class NoteToSelfService with SupabaseSyncMixin {
             [],
         linkedJournalEntryId: row['linked_journal_entry_id'] as String?,
         moodAtCreation: row['mood_at_creation'] as String?,
+        isPrivate: row['is_private'] as bool? ?? false,
       );
 
       final existingIdx = _notes.indexWhere((n) => n.id == id);

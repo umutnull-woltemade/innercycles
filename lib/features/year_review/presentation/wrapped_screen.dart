@@ -29,6 +29,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../data/services/l10n_service.dart';
 
 // ============================================================================
 // PROVIDERS
@@ -93,9 +94,7 @@ class _WrappedScreenState extends ConsumerState<WrappedScreen> {
                   Icon(Icons.auto_awesome, color: AppColors.starGold, size: 48),
                   const SizedBox(height: 16),
                   Text(
-                    isEn
-                        ? 'Not enough entries for your Wrapped yet'
-                        : 'Wrapped için henüz yeterli kayıt yok',
+                    L10nService.get('year_review.wrapped.not_enough_entries_for_your_wrapped_yet', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.subtitle(
                       color: AppColors.textSecondary,
                     ),
@@ -103,9 +102,7 @@ class _WrappedScreenState extends ConsumerState<WrappedScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    isEn
-                        ? 'Keep journaling — your story is building'
-                        : 'Yazmaya devam et — hikayen şekilleniyor',
+                    L10nService.get('year_review.wrapped.keep_journaling_your_story_is_building', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.subtitle(
                       fontSize: 13,
                       color: AppColors.textMuted,
@@ -116,7 +113,7 @@ class _WrappedScreenState extends ConsumerState<WrappedScreen> {
                   GestureDetector(
                     onTap: () => context.go(Routes.journal),
                     child: Text(
-                      isEn ? 'Write an entry →' : 'Kayıt yaz →',
+                      L10nService.get('year_review.wrapped.write_an_entry', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.modernAccent(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -141,9 +138,7 @@ class _WrappedScreenState extends ConsumerState<WrappedScreen> {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      isEn
-                          ? 'Keep journaling to unlock your Wrapped!'
-                          : 'Wrapped\'ını açmak için yazmaya devam et!',
+                      L10nService.get('year_review.wrapped.keep_journaling_to_unlock_your_wrapped', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.subtitle(
                         color: AppColors.textSecondary,
                       ),
@@ -209,7 +204,7 @@ class _WrappedScreenState extends ConsumerState<WrappedScreen> {
                         color: AppColors.textSecondary,
                         size: 24,
                       ),
-                      tooltip: isEn ? 'Close' : 'Kapat',
+                      tooltip: L10nService.get('year_review.wrapped.close', isEn ? AppLanguage.en : AppLanguage.tr),
                       onPressed: () => Navigator.of(context).pop(),
                     ),
                   ),
@@ -424,7 +419,7 @@ class _IntroCard extends StatelessWidget {
           ).animate().scale(duration: 600.ms, curve: Curves.elasticOut),
           const SizedBox(height: 24),
           GradientText(
-                isEn ? 'Your Year in Patterns' : 'Örüntülerle Geçen Yılın',
+                L10nService.get('year_review.wrapped.your_year_in_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.cosmic,
                 textAlign: TextAlign.center,
                 style: AppTypography.displayFont.copyWith(
@@ -452,17 +447,17 @@ class _IntroCard extends StatelessWidget {
             children: [
               _MiniStatColumn(
                 value: '${data.totalEntries}',
-                label: isEn ? 'entries' : 'kayıt',
+                label: L10nService.get('year_review.wrapped.entries', isEn ? AppLanguage.en : AppLanguage.tr),
               ),
               _MiniStatColumn(
                 value: '${data.totalJournalingDays}',
-                label: isEn ? 'days' : 'gün',
+                label: L10nService.get('year_review.wrapped.days', isEn ? AppLanguage.en : AppLanguage.tr),
               ),
             ],
           ).animate().fadeIn(delay: 600.ms, duration: 500.ms),
           const Spacer(flex: 3),
           Text(
-                isEn ? 'Swipe to explore →' : 'Keşfetmek için kaydır →',
+                L10nService.get('year_review.wrapped.swipe_to_explore', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.subtitle(
                   fontSize: 13,
                   color: AppColors.textMuted,
@@ -508,7 +503,7 @@ class _EmotionalArcCard extends StatelessWidget {
         children: [
           const Spacer(flex: 2),
           GradientText(
-            isEn ? 'Your Emotional Arc' : 'Duygusal Yörüngen',
+            L10nService.get('year_review.wrapped.your_emotional_arc', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.elegantAccent(
               fontSize: 16,
@@ -581,7 +576,7 @@ class _IntenseWeekCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final weekStr = data.mostIntenseWeek != null
         ? _formatWeek(data.mostIntenseWeek!, isEn)
-        : (isEn ? 'Throughout the year' : 'Yıl boyunca');
+        : (L10nService.get('year_review.wrapped.throughout_the_year', isEn ? AppLanguage.en : AppLanguage.tr));
 
     return _WrappedCardBase(
       gradientColors: [
@@ -594,7 +589,7 @@ class _IntenseWeekCard extends StatelessWidget {
         children: [
           const Spacer(flex: 2),
           GradientText(
-            isEn ? 'Most Intense Week' : 'En Yoğun Haftan',
+            L10nService.get('year_review.wrapped.most_intense_week', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.amethyst,
             style: AppTypography.elegantAccent(
               fontSize: 16,
@@ -626,9 +621,7 @@ class _IntenseWeekCard extends StatelessWidget {
           ).animate().fadeIn(delay: 400.ms, duration: 500.ms),
           const SizedBox(height: 12),
           Text(
-            isEn
-                ? 'This week had the widest range of emotions in your entries'
-                : 'Bu hafta kayıtlarında en geniş duygu yelpazesi vardı',
+            L10nService.get('year_review.wrapped.this_week_had_the_widest_range_of_emotio', isEn ? AppLanguage.en : AppLanguage.tr),
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 14,
@@ -681,7 +674,7 @@ class _FocusAreaCard extends StatelessWidget {
         children: [
           const Spacer(flex: 2),
           GradientText(
-            isEn ? 'Focus Area Map' : 'Odak Alanı Haritası',
+            L10nService.get('year_review.wrapped.focus_area_map', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 16,
@@ -806,7 +799,7 @@ class _GrowthScoreCard extends StatelessWidget {
         children: [
           const Spacer(flex: 2),
           GradientText(
-            isEn ? 'Growth Score' : 'Gelişim Puanı',
+            L10nService.get('year_review.wrapped.growth_score', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 16,
@@ -853,17 +846,11 @@ class _GrowthScoreCard extends StatelessWidget {
 
   String _growthLabel(int score, bool isEn) {
     if (score >= 70) {
-      return isEn
-          ? 'Remarkable growth this year'
-          : 'Bu yıl kayda değer bir gelişim';
+      return L10nService.get('year_review.wrapped.remarkable_growth_this_year', isEn ? AppLanguage.en : AppLanguage.tr);
     } else if (score >= 50) {
-      return isEn
-          ? 'Steady and consistent progress'
-          : 'İstikrarlı ve tutarlı bir ilerleme';
+      return L10nService.get('year_review.wrapped.steady_and_consistent_progress', isEn ? AppLanguage.en : AppLanguage.tr);
     }
-    return isEn
-        ? 'Every journey has its rhythm'
-        : 'Her yolculuğun kendi ritmi vardır';
+    return L10nService.get('year_review.wrapped.every_journey_has_its_rhythm', isEn ? AppLanguage.en : AppLanguage.tr);
   }
 }
 
@@ -895,7 +882,7 @@ class _BreakthroughCard extends StatelessWidget {
         children: [
           const Spacer(flex: 2),
           GradientText(
-            isEn ? 'Breakthrough Moments' : 'Atılım Anları',
+            L10nService.get('year_review.wrapped.breakthrough_moments', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.amethyst,
             style: AppTypography.elegantAccent(
               fontSize: 16,
@@ -911,7 +898,7 @@ class _BreakthroughCard extends StatelessWidget {
           ).animate().fadeIn(delay: 300.ms, duration: 500.ms),
           const SizedBox(height: 8),
           Text(
-            isEn ? 'breakthroughs' : 'atılım',
+            L10nService.get('year_review.wrapped.breakthroughs', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.elegantAccent(
               fontSize: 14,
               fontWeight: FontWeight.w500,
@@ -922,9 +909,7 @@ class _BreakthroughCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(
-              isEn
-                  ? 'Moments where your mood lifted and a positive streak began'
-                  : 'Ruh halin yükselip pozitif bir seri başladığı anlar',
+              L10nService.get('year_review.wrapped.moments_where_your_mood_lifted_and_a_pos', isEn ? AppLanguage.en : AppLanguage.tr),
               textAlign: TextAlign.center,
               style: AppTypography.decorativeScript(
                 fontSize: 14,
@@ -969,7 +954,7 @@ class _TopPatternsCard extends StatelessWidget {
         children: [
           const Spacer(flex: 2),
           GradientText(
-            isEn ? 'Your Top Patterns' : 'En Önemli Örüntülerin',
+            L10nService.get('year_review.wrapped.your_top_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 16,
@@ -980,9 +965,7 @@ class _TopPatternsCard extends StatelessWidget {
           const SizedBox(height: 28),
           if (patterns.isEmpty)
             Text(
-              isEn
-                  ? 'Keep journaling to discover patterns'
-                  : 'Örüntüleri keşfetmek için yazmaya devam et',
+              L10nService.get('year_review.wrapped.keep_journaling_to_discover_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.decorativeScript(
                 fontSize: 14,
                 color: AppColors.textSecondary,
@@ -1075,15 +1058,11 @@ class _TopPatternsCard extends StatelessWidget {
             ? '$days-day journaling streak'
             : '$days günlük yazma serisi';
       case 'high_average':
-        return isEn
-            ? 'Consistently high mood average'
-            : 'Tutarlı yüksek ruh hali ortalaması';
+        return L10nService.get('year_review.wrapped.consistently_high_mood_average', isEn ? AppLanguage.en : AppLanguage.tr);
       case 'diverse_explorer':
-        return isEn
-            ? 'Explored multiple focus areas'
-            : 'Birden fazla odak alanı keşfettin';
+        return L10nService.get('year_review.wrapped.explored_multiple_focus_areas', isEn ? AppLanguage.en : AppLanguage.tr);
       case 'daily_journaler':
-        return isEn ? 'Journaled every single day' : 'Her gün yazdın';
+        return L10nService.get('year_review.wrapped.journaled_every_single_day', isEn ? AppLanguage.en : AppLanguage.tr);
       case 'dedicated_journaler':
       case 'committed_journaler':
         final count = parts.length > 1 ? parts[1] : '';
@@ -1129,7 +1108,7 @@ class _ClosingCard extends StatelessWidget {
         children: [
           const Spacer(flex: 2),
           GradientText(
-                isEn ? 'See You Next Year' : 'Gelecek Yıl Görüşmek Üzere',
+                L10nService.get('year_review.wrapped.see_you_next_year', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.cosmic,
                 textAlign: TextAlign.center,
                 style: AppTypography.displayFont.copyWith(
@@ -1145,9 +1124,7 @@ class _ClosingCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(
-              isEn
-                  ? 'Every entry you wrote brought you closer to yourself.'
-                  : 'Yazdığın her kayıt seni kendine biraz daha yaklaştırdı.',
+              L10nService.get('year_review.wrapped.every_entry_you_wrote_brought_you_closer', isEn ? AppLanguage.en : AppLanguage.tr),
               textAlign: TextAlign.center,
               style: AppTypography.decorativeScript(
                 fontSize: 15,
@@ -1158,7 +1135,7 @@ class _ClosingCard extends StatelessWidget {
           const Spacer(flex: 2),
           // Share button
           GradientButton.gold(
-                label: isEn ? 'Share Your Wrapped' : 'Wrapped\'ını Paylaş',
+                label: L10nService.get('year_review.wrapped.share_your_wrapped', isEn ? AppLanguage.en : AppLanguage.tr),
                 icon: Icons.share_rounded,
                 onPressed: () {
                   HapticFeedback.selectionClick();
@@ -1221,7 +1198,7 @@ class _PremiumGateCard extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           GradientText(
-            isEn ? 'Unlock Your Full Wrapped' : 'Tam Wrapped\'ını Aç',
+            L10nService.get('year_review.wrapped.unlock_your_full_wrapped', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             textAlign: TextAlign.center,
             style: AppTypography.displayFont.copyWith(
@@ -1231,9 +1208,7 @@ class _PremiumGateCard extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            isEn
-                ? '5 more cards with deeper insights await you'
-                : '5 derin içgörü kartı seni bekliyor',
+            L10nService.get('year_review.wrapped.5_more_cards_with_deeper_insights_await', isEn ? AppLanguage.en : AppLanguage.tr),
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 14,

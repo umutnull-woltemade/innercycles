@@ -14,6 +14,7 @@ import '../../../shared/widgets/app_symbol.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/premium_service.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
+import '../../../data/services/l10n_service.dart';
 
 class StreakRecoveryBanner extends ConsumerWidget {
   const StreakRecoveryBanner({super.key});
@@ -42,7 +43,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Semantics(
-              label: isEn ? 'Start a new streak' : 'Yeni seri başlat',
+              label: L10nService.get('streak.streak_recovery.start_a_new_streak', isEn ? AppLanguage.en : AppLanguage.tr),
               button: true,
               child: GestureDetector(
                 onTap: () {
@@ -103,9 +104,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
                             ),
                             const SizedBox(height: 2),
                             Text(
-                              isEn
-                                  ? 'One entry to start a new one'
-                                  : 'Yeni bir seri başlatmak için bir kayıt yeterli',
+                              L10nService.get('streak.streak_recovery.one_entry_to_start_a_new_one', isEn ? AppLanguage.en : AppLanguage.tr),
                               style: AppTypography.decorativeScript(
                                 fontSize: 12,
                                 color: AppColors.warning,
@@ -128,7 +127,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
             // Streak freeze upsell for non-premium users
             if (!isPremium)
               Semantics(
-                label: isEn ? 'Access streak freeze' : 'Seri dondurmaya eriş',
+                label: L10nService.get('streak.streak_recovery.access_streak_freeze', isEn ? AppLanguage.en : AppLanguage.tr),
                 button: true,
                 child: GestureDetector(
                   onTap: () => showContextualPaywall(
@@ -163,9 +162,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
                         const SizedBox(width: 10),
                         Expanded(
                           child: Text(
-                            isEn
-                                ? 'Premium streak freezes could have saved this'
-                                : 'Premium seri dondurmalar bunu kurtarabilirdi',
+                            L10nService.get('streak.streak_recovery.premium_streak_freezes_could_have_saved', isEn ? AppLanguage.en : AppLanguage.tr),
                             style: AppTypography.decorativeScript(
                               fontSize: 12,
                               color: AppColors.streakOrange,
@@ -173,7 +170,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
                           ),
                         ),
                         Text(
-                          isEn ? 'Learn more' : 'Daha fazla',
+                          L10nService.get('streak.streak_recovery.learn_more', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.elegantAccent(
                             fontSize: 11,
                             color: AppColors.streakOrange.withValues(

@@ -7,6 +7,8 @@ import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../data/services/l10n_service.dart';
+import '../../../../data/providers/app_providers.dart';
 
 class ProfileStatsDashboard extends StatelessWidget {
   final int streak;
@@ -42,13 +44,13 @@ class ProfileStatsDashboard extends StatelessWidget {
           _StatColumn(
             emoji: '\u{1F525}',
             value: '$streak',
-            label: isEn ? 'STREAK' : 'SER\u0130',
+            label: L10nService.get('profile.profile_stats_dashboard.streak', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.streakOrange,
           ),
           _StatColumn(
             emoji: '\u{1F4D3}',
             value: '$entries',
-            label: isEn ? 'ENTRIES' : 'KAYITLAR',
+            label: L10nService.get('profile.profile_stats_dashboard.entries', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.auroraStart,
           ),
           _StatColumn(
@@ -56,13 +58,13 @@ class ProfileStatsDashboard extends StatelessWidget {
             value: totalWords >= 1000
                 ? '${(totalWords / 1000).toStringAsFixed(1)}K'
                 : '$totalWords',
-            label: isEn ? 'WORDS' : 'KEL\u0130ME',
+            label: L10nService.get('profile.profile_stats_dashboard.words', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.starGold,
           ),
           _StatColumn(
             emoji: '\u{1F3C6}',
             value: '$challenges',
-            label: isEn ? 'DONE' : 'B\u0130TEN',
+            label: L10nService.get('profile.profile_stats_dashboard.done', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.amethyst,
           ),
         ],

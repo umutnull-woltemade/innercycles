@@ -9,6 +9,7 @@ import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/haptic_service.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/tap_scale.dart';
+import '../../../../data/services/l10n_service.dart';
 
 class MoodStatsStrip extends ConsumerWidget {
   final bool isEn;
@@ -42,7 +43,7 @@ class MoodStatsStrip extends ConsumerWidget {
     final moodEmoji = todayMood?.emoji;
     final moodText = todayMood != null
         ? _moodLabel(todayMood.mood)
-        : (isEn ? 'Check in' : 'Kaydet');
+        : (L10nService.get('today.mood_stats_strip.check_in', isEn ? AppLanguage.en : AppLanguage.tr));
     final hasNoMood = todayMood == null;
 
     return Padding(

@@ -23,6 +23,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../data/services/l10n_service.dart';
 
 class LifeEventScreen extends ConsumerStatefulWidget {
   final String? editId;
@@ -124,8 +125,8 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                 slivers: [
                   GlassSliverAppBar(
                     title: _isEditing
-                        ? (isEn ? 'Edit Life Event' : 'Yaşam Olayını Düzenle')
-                        : (isEn ? 'New Life Event' : 'Yeni Yaşam Olayı'),
+                        ? (L10nService.get('life_events.life_event.edit_life_event', isEn ? AppLanguage.en : AppLanguage.tr))
+                        : (L10nService.get('life_events.life_event.new_life_event', isEn ? AppLanguage.en : AppLanguage.tr)),
                   ),
                   SliverPadding(
                     padding: const EdgeInsets.all(16),
@@ -182,12 +183,10 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
     final isEn = language == AppLanguage.en;
     final confirmed = await GlassDialog.confirm(
       context,
-      title: isEn ? 'Discard Changes?' : 'De\u{011F}i\u{015F}iklikleri At?',
-      message: isEn
-          ? 'You have unsaved changes. Are you sure you want to go back?'
-          : 'Kaydedilmemi\u{015F} de\u{011F}i\u{015F}iklikleriniz var. Geri d\u{00F6}nmek istedi\u{011F}inizden emin misiniz?',
-      cancelLabel: isEn ? 'Cancel' : '\u{0130}ptal',
-      confirmLabel: isEn ? 'Discard' : 'At',
+      title: L10nService.get('life_events.life_event.discard_changes', isEn ? AppLanguage.en : AppLanguage.tr),
+      message: L10nService.get('life_events.life_event.you_have_unsaved_changes_are_you_sure_yo', isEn ? AppLanguage.en : AppLanguage.tr),
+      cancelLabel: L10nService.get('life_events.life_event.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
+      confirmLabel: L10nService.get('life_events.life_event.discard', isEn ? AppLanguage.en : AppLanguage.tr),
       isDestructive: true,
     );
     if (confirmed == true && mounted) {
@@ -204,7 +203,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn ? 'Event Type' : 'Olay Türü',
+          L10nService.get('life_events.life_event.event_type', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 14,
@@ -292,7 +291,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn ? 'Select Event' : 'Olay Seçin',
+          L10nService.get('life_events.life_event.select_event', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 14,
@@ -379,7 +378,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn ? 'Event Title' : 'Olay Başlığı',
+          L10nService.get('life_events.life_event.event_title', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 14,
@@ -396,9 +395,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
             fontSize: 15,
           ),
           decoration: InputDecoration(
-            hintText: isEn
-                ? 'Describe your life event...'
-                : 'Yaşam olayınızı tanımlayın...',
+            hintText: L10nService.get('life_events.life_event.describe_your_life_event', isEn ? AppLanguage.en : AppLanguage.tr),
             hintStyle: AppTypography.subtitle(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -525,7 +522,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
         Row(
           children: [
             GradientText(
-              isEn ? 'Emotion Tags' : 'Duygu Etiketleri',
+              L10nService.get('life_events.life_event.emotion_tags', isEn ? AppLanguage.en : AppLanguage.tr),
               variant: GradientTextVariant.amethyst,
               style: AppTypography.displayFont.copyWith(
                 fontSize: 14,
@@ -614,7 +611,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
         Row(
           children: [
             GradientText(
-              isEn ? 'Intensity' : 'Yoğunluk',
+              L10nService.get('life_events.life_event.intensity', isEn ? AppLanguage.en : AppLanguage.tr),
               variant: GradientTextVariant.gold,
               style: AppTypography.displayFont.copyWith(
                 fontSize: 14,
@@ -666,7 +663,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn ? 'Reflection' : 'Düşünceler',
+          L10nService.get('life_events.life_event.reflection', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.amethyst,
           style: AppTypography.elegantAccent(
             fontSize: 14,
@@ -684,9 +681,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
             fontSize: 14,
           ),
           decoration: InputDecoration(
-            hintText: isEn
-                ? 'How did this event shape you?'
-                : 'Bu olay sizi nasıl şekillendirdi?',
+            hintText: L10nService.get('life_events.life_event.how_did_this_event_shape_you', isEn ? AppLanguage.en : AppLanguage.tr),
             hintStyle: AppTypography.subtitle(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -717,7 +712,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn ? 'Photo (Optional)' : 'Fotoğraf (İsteğe Bağlı)',
+          L10nService.get('life_events.life_event.photo_optional', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 14,
@@ -733,7 +728,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
               height: 160,
               width: double.infinity,
               fit: BoxFit.cover,
-              semanticLabel: isEn ? 'Event photo' : 'Olay fotoğrafı',
+              semanticLabel: L10nService.get('life_events.life_event.event_photo', isEn ? AppLanguage.en : AppLanguage.tr),
               errorBuilder: (_, _, _) => const SizedBox.shrink(),
             ),
           ),
@@ -744,7 +739,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: Text(
-                isEn ? 'Remove photo' : 'Fotoğrafı kaldır',
+                L10nService.get('life_events.life_event.remove_photo', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.modernAccent(
                   fontSize: 12,
                   color: AppColors.error,
@@ -781,7 +776,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    isEn ? 'Add a photo' : 'Fotoğraf ekle',
+                    L10nService.get('life_events.life_event.add_a_photo', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 12,
                       color: isDark
@@ -844,8 +839,8 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
               ? const CupertinoActivityIndicator(radius: 10)
               : Text(
                   _isEditing
-                      ? (isEn ? 'Update Event' : 'Olayı Güncelle')
-                      : (isEn ? 'Save Event' : 'Olayı Kaydet'),
+                      ? (L10nService.get('life_events.life_event.update_event', isEn ? AppLanguage.en : AppLanguage.tr))
+                      : (L10nService.get('life_events.life_event.save_event', isEn ? AppLanguage.en : AppLanguage.tr)),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,

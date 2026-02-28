@@ -12,6 +12,7 @@ import '../../data/content/share_card_templates.dart';
 import '../../data/providers/app_providers.dart';
 import '../../data/services/haptic_service.dart';
 import 'share_card_sheet.dart';
+import '../../data/services/l10n_service.dart';
 
 class ShareInsightButton extends ConsumerWidget {
   final String insightText;
@@ -30,7 +31,7 @@ class ShareInsightButton extends ConsumerWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Semantics(
-      label: isEn ? 'Share this insight' : 'Bu içgörüyü paylaş',
+      label: L10nService.get('shared.share_insight_button.share_this_insight', isEn ? AppLanguage.en : AppLanguage.tr),
       button: true,
       child: GestureDetector(
         onTap: () {

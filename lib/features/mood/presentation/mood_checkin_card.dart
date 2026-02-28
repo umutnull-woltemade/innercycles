@@ -13,6 +13,7 @@ import '../../../data/services/mood_checkin_service.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../data/services/l10n_service.dart';
 
 class MoodCheckinCard extends ConsumerStatefulWidget {
   const MoodCheckinCard({super.key});
@@ -93,7 +94,7 @@ class _CheckinView extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            isEn ? 'What\'s present for you right now?' : 'Şu an sende ne var?',
+            L10nService.get('mood.mood_checkin.whats_present_for_you_right_now', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.displayFont.copyWith(
               fontSize: 15,
               fontWeight: FontWeight.w600,
@@ -168,7 +169,7 @@ class _LoggedView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      isEn ? 'Today\'s Mood' : 'Bugünkü Ruh Halin',
+                      L10nService.get('mood.mood_checkin.todays_mood', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -253,15 +254,15 @@ class _LoggedView extends StatelessWidget {
   String _moodLabel(int mood, bool isEn) {
     switch (mood) {
       case 1:
-        return isEn ? 'Struggling' : 'Zor';
+        return L10nService.get('mood.mood_checkin.struggling', isEn ? AppLanguage.en : AppLanguage.tr);
       case 2:
-        return isEn ? 'Low' : 'Düşük';
+        return L10nService.get('mood.mood_checkin.low', isEn ? AppLanguage.en : AppLanguage.tr);
       case 3:
-        return isEn ? 'Okay' : 'İdare';
+        return L10nService.get('mood.mood_checkin.okay', isEn ? AppLanguage.en : AppLanguage.tr);
       case 4:
-        return isEn ? 'Good' : 'İyi';
+        return L10nService.get('mood.mood_checkin.good', isEn ? AppLanguage.en : AppLanguage.tr);
       case 5:
-        return isEn ? 'Great' : 'Harika';
+        return L10nService.get('mood.mood_checkin.great', isEn ? AppLanguage.en : AppLanguage.tr);
       default:
         return '';
     }
@@ -346,9 +347,7 @@ class _ThankYouView extends StatelessWidget {
               const SizedBox(width: 14),
               Expanded(
                 child: Text(
-                  isEn
-                      ? 'Mood logged! Get more specific?'
-                      : 'Ruh hali kaydedildi! Daha spesifik ol?',
+                  L10nService.get('mood.mood_checkin.mood_logged_get_more_specific', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,

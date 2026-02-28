@@ -26,6 +26,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_dialog.dart';
+import '../../../data/services/l10n_service.dart';
 
 class NotesListScreen extends ConsumerStatefulWidget {
   const NotesListScreen({super.key});
@@ -112,7 +113,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    isEn ? 'Couldn\'t load your notes' : 'Notların yüklenemedi',
+                    L10nService.get('notes.notes_list.couldnt_load_your_notes', isEn ? AppLanguage.en : AppLanguage.tr),
                     textAlign: TextAlign.center,
                     style: AppTypography.decorativeScript(
                       color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -125,7 +126,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      isEn ? 'Retry' : 'Tekrar Dene',
+                      L10nService.get('notes.notes_list.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -152,12 +153,14 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
 
               return CupertinoScrollbar(
                 child: CustomScrollView(
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
                   physics: const BouncingScrollPhysics(
                     parent: AlwaysScrollableScrollPhysics(),
                   ),
                   slivers: [
                     GlassSliverAppBar(
-                      title: isEn ? 'Notes' : 'Notlar',
+                      title: L10nService.get('notes.notes_list.notes', isEn ? AppLanguage.en : AppLanguage.tr),
                       showBackButton: false,
                     ),
 
@@ -205,9 +208,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                               color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                             ),
                             decoration: InputDecoration(
-                              hintText: isEn
-                                  ? 'Search notes...'
-                                  : 'Notlarda ara...',
+                              hintText: L10nService.get('notes.notes_list.search_notes', isEn ? AppLanguage.en : AppLanguage.tr),
                               hintStyle: AppTypography.subtitle(
                                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                               ),
@@ -229,7 +230,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                                             ? AppColors.textMuted
                                             : AppColors.lightTextMuted,
                                       ),
-                                      tooltip: isEn ? 'Clear search' : 'Aramayı temizle',
+                                      tooltip: L10nService.get('notes.notes_list.clear_search', isEn ? AppLanguage.en : AppLanguage.tr),
                                       onPressed: _clearSearch,
                                     )
                                   : null,
@@ -259,7 +260,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                               scrollDirection: Axis.horizontal,
                               children: [
                                 _TagChip(
-                                  label: isEn ? 'All' : 'T\u00fcm\u00fc',
+                                  label: L10nService.get('notes.notes_list.all', isEn ? AppLanguage.en : AppLanguage.tr),
                                   isSelected: _selectedTag == null,
                                   isDark: isDark,
                                   onTap: () =>
@@ -314,7 +315,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                         child: _SectionHeader(
                           icon: CupertinoIcons.pin_fill,
                           iconColor: AppColors.starGold,
-                          label: isEn ? 'Pinned' : 'Sabitlenmi\u015f',
+                          label: L10nService.get('notes.notes_list.pinned', isEn ? AppLanguage.en : AppLanguage.tr),
                           isDark: isDark,
                         ).animate().fadeIn(duration: 300.ms, delay: 120.ms),
                       ),
@@ -353,7 +354,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                             _SectionHeader(
                               icon: CupertinoIcons.clock,
                               iconColor: AppColors.auroraStart,
-                              label: isEn ? 'Recent' : 'Son Notlar',
+                              label: L10nService.get('notes.notes_list.recent', isEn ? AppLanguage.en : AppLanguage.tr),
                               isDark: isDark,
                             ).animate().fadeIn(
                               duration: 300.ms,
@@ -418,12 +419,10 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
 
     final confirmed = await GlassDialog.confirm(
       context,
-      title: isEn ? 'Delete Note?' : 'Not Silinsin mi?',
-      message: isEn
-          ? 'This note will be permanently deleted.'
-          : 'Bu not kalıcı olarak silinecek.',
-      cancelLabel: isEn ? 'Cancel' : 'İptal',
-      confirmLabel: isEn ? 'Delete' : 'Sil',
+      title: L10nService.get('notes.notes_list.delete_note', isEn ? AppLanguage.en : AppLanguage.tr),
+      message: L10nService.get('notes.notes_list.this_note_will_be_permanently_deleted', isEn ? AppLanguage.en : AppLanguage.tr),
+      cancelLabel: L10nService.get('notes.notes_list.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
+      confirmLabel: L10nService.get('notes.notes_list.delete', isEn ? AppLanguage.en : AppLanguage.tr),
       isDestructive: true,
     );
 
@@ -466,7 +465,7 @@ class _NotesStatsBar extends StatelessWidget {
           _StatPill(
             icon: CupertinoIcons.doc_text,
             value: '$total',
-            label: isEn ? 'notes' : 'not',
+            label: L10nService.get('notes.notes_list.notes_1', isEn ? AppLanguage.en : AppLanguage.tr),
             isDark: isDark,
           ),
           const SizedBox(width: 10),
@@ -474,7 +473,7 @@ class _NotesStatsBar extends StatelessWidget {
             _StatPill(
               icon: CupertinoIcons.pin_fill,
               value: '$pinnedCount',
-              label: isEn ? 'pinned' : 'sabit',
+              label: L10nService.get('notes.notes_list.pinned_1', isEn ? AppLanguage.en : AppLanguage.tr),
               isDark: isDark,
               accentColor: AppColors.starGold,
             ),
@@ -484,7 +483,7 @@ class _NotesStatsBar extends StatelessWidget {
             _StatPill(
               icon: CupertinoIcons.tag,
               value: '$tagCount',
-              label: isEn ? 'tags' : 'etiket',
+              label: L10nService.get('notes.notes_list.tags', isEn ? AppLanguage.en : AppLanguage.tr),
               isDark: isDark,
               accentColor: AppColors.amethyst,
             ),
@@ -595,10 +594,8 @@ class _EmptyState extends StatelessWidget {
       // Filtered empty
       return PremiumEmptyState(
         icon: CupertinoIcons.search,
-        title: isEn ? 'No notes matched your search' : 'Aramanızla eşleşen not bulunamadı',
-        description: isEn
-            ? 'Try a different search term'
-            : 'Farklı bir arama terimi deneyin',
+        title: L10nService.get('notes.notes_list.no_notes_matched_your_search', isEn ? AppLanguage.en : AppLanguage.tr),
+        description: L10nService.get('notes.notes_list.try_a_different_search_term', isEn ? AppLanguage.en : AppLanguage.tr),
         gradientVariant: GradientTextVariant.aurora,
       );
     }
@@ -648,9 +645,7 @@ class _EmptyState extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              isEn
-                  ? 'Capture your thoughts'
-                  : 'D\u00fc\u015f\u00fcncelerini kaydet',
+              L10nService.get('notes.notes_list.capture_your_thoughts', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.displayFont.copyWith(
                 fontSize: 24,
                 fontWeight: FontWeight.w600,
@@ -662,9 +657,7 @@ class _EmptyState extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              isEn
-                  ? 'Quick notes, reminders, ideas —\neverything in one place.'
-                  : 'H\u0131zl\u0131 notlar, hat\u0131rlat\u0131c\u0131lar, fikirler —\nher \u015fey tek yerde.',
+              L10nService.get('notes.notes_list.quick_notes_reminders_ideas_neverything', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.decorativeScript(
                 fontSize: 14,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -702,9 +695,7 @@ class _EmptyState extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          isEn
-                              ? 'Write your first note'
-                              : '\u0130lk notunu yaz',
+                          L10nService.get('notes.notes_list.write_your_first_note', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.displayFont.copyWith(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
@@ -793,7 +784,7 @@ class _NoteCard extends StatelessWidget {
                     Expanded(
                       child: Text(
                         note.title.isEmpty
-                            ? (isEn ? 'Untitled' : 'Ba\u015fl\u0131ks\u0131z')
+                            ? (L10nService.get('notes.notes_list.untitled', isEn ? AppLanguage.en : AppLanguage.tr))
                             : note.title,
                         style: AppTypography.displayFont.copyWith(
                           fontSize: 15,
@@ -895,7 +886,7 @@ class _NoteCard extends StatelessWidget {
     final now = DateTime.now();
     final diff = now.difference(dt);
     if (diff.inMinutes < 1) {
-      return isEn ? 'now' : '\u015fimdi';
+      return L10nService.get('notes.notes_list.now', isEn ? AppLanguage.en : AppLanguage.tr);
     }
     if (diff.inMinutes < 60) {
       return isEn ? '${diff.inMinutes}m' : '${diff.inMinutes}dk';
@@ -1012,7 +1003,7 @@ class _AnimatedFAB extends StatelessWidget {
                 const Icon(CupertinoIcons.plus, size: 20, color: Colors.white),
                 const SizedBox(width: 8),
                 Text(
-                  isEn ? 'New Note' : 'Yeni Not',
+                  L10nService.get('notes.notes_list.new_note', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,

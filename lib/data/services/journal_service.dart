@@ -118,12 +118,15 @@ class JournalService with SupabaseSyncMixin {
   // QUERIES
   // ══════════════════════════════════════════════════════════════════════════
 
-  /// Get entries within a date range (inclusive)
+  /// Get entries within a date range (inclusive), excluding private entries
   List<JournalEntry> getEntriesByDateRange(DateTime start, DateTime end) {
     final startDay = DateTime(start.year, start.month, start.day);
     final endDay = DateTime(end.year, end.month, end.day, 23, 59, 59);
     return _entries
-        .where((e) => !e.date.isBefore(startDay) && !e.date.isAfter(endDay))
+        .where((e) =>
+            !e.isPrivate &&
+            !e.date.isBefore(startDay) &&
+            !e.date.isAfter(endDay))
         .toList()
       ..sort((a, b) => b.date.compareTo(a.date));
   }
@@ -315,6 +318,7 @@ class JournalService with SupabaseSyncMixin {
                 ?.map((e) => e.toString())
                 .toList() ??
             const [],
+        isPrivate: row['is_private'] as bool? ?? false,
       );
 
       final existingIdx = _entries.indexWhere((e) => e.id == id);

@@ -16,6 +16,7 @@ import '../../../../shared/widgets/gradient_text.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/introductory_offer_service.dart';
+import '../../../../data/services/l10n_service.dart';
 
 class PromotionalBannerStack extends ConsumerStatefulWidget {
   final bool isEn;
@@ -115,7 +116,7 @@ class _PromotionalBannerStackState
 
         return Semantics(
           button: true,
-          label: isEn ? 'Limited time offer' : 'Sınırlı süre teklifi',
+          label: L10nService.get('today.promotional_stack.limited_time_offer', isEn ? AppLanguage.en : AppLanguage.tr),
           child: TapScale(
             onTap: () {
               HapticService.buttonPress();
@@ -134,9 +135,7 @@ class _PromotionalBannerStackState
                       const SizedBox(width: 6),
                       Expanded(
                         child: GradientText(
-                          isEn
-                              ? '50% Off — New User Offer'
-                              : '%50 İndirim — Yeni Kullanıcı',
+                          L10nService.get('today.promotional_stack.50_off_new_user_offer', isEn ? AppLanguage.en : AppLanguage.tr),
                           variant: GradientTextVariant.gold,
                           style: AppTypography.displayFont.copyWith(
                             fontSize: 15,
@@ -157,7 +156,7 @@ class _PromotionalBannerStackState
                       _CountdownDigit(parts.seconds),
                       const Spacer(),
                       GradientButton.gold(
-                        label: isEn ? 'Claim' : 'Al',
+                        label: L10nService.get('today.promotional_stack.claim', isEn ? AppLanguage.en : AppLanguage.tr),
                         onPressed: () => context.push(Routes.premium),
                       ),
                     ],
@@ -186,9 +185,7 @@ class _PromotionalBannerStackState
 
             return Semantics(
               button: true,
-              label: isEn
-                  ? 'View upcoming reminders'
-                  : 'Yaklaşan hatırlatıcıları gör',
+              label: L10nService.get('today.promotional_stack.view_upcoming_reminders', isEn ? AppLanguage.en : AppLanguage.tr),
               child: TapScale(
                 onTap: () => context.push(Routes.notesList),
                 child: PremiumCard(
@@ -204,9 +201,7 @@ class _PromotionalBannerStackState
                           const SizedBox(width: 6),
                           Flexible(
                             child: GradientText(
-                              isEn
-                                  ? 'Upcoming Reminders'
-                                  : 'Yaklaşan Hatırlatıcılar',
+                              L10nService.get('today.promotional_stack.upcoming_reminders', isEn ? AppLanguage.en : AppLanguage.tr),
                               variant: GradientTextVariant.gold,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -218,7 +213,7 @@ class _PromotionalBannerStackState
                           ),
                           const SizedBox(width: 8),
                           Text(
-                            isEn ? 'See all' : 'Tümünü gör',
+                            L10nService.get('today.promotional_stack.see_all', isEn ? AppLanguage.en : AppLanguage.tr),
                             style: AppTypography.elegantAccent(
                               fontSize: 13,
                               color: isDark
@@ -245,7 +240,7 @@ class _PromotionalBannerStackState
                               const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
-                                  note?.title ?? (isEn ? 'Note' : 'Not'),
+                                  note?.title ?? (L10nService.get('today.promotional_stack.note', isEn ? AppLanguage.en : AppLanguage.tr)),
                                   style: AppTypography.subtitle(
                                     fontSize: 14,
                                     color: isDark
@@ -302,9 +297,7 @@ class _PromotionalBannerStackState
 
     return Semantics(
       button: true,
-      label: isEn
-          ? 'Add retrospective entries'
-          : 'Geçmişe dönük kayıtlar ekle',
+      label: L10nService.get('today.promotional_stack.add_retrospective_entries', isEn ? AppLanguage.en : AppLanguage.tr),
       child: TapScale(
         onTap: () {
           HapticService.buttonPress();
@@ -327,9 +320,7 @@ class _PromotionalBannerStackState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      isEn
-                          ? 'Add entries for your most meaningful days'
-                          : 'Geçmişindeki önemli günleri ekle',
+                      L10nService.get('today.promotional_stack.add_entries_for_your_most_meaningful_day', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -340,9 +331,7 @@ class _PromotionalBannerStackState
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      isEn
-                          ? 'Your story didn\'t start today'
-                          : 'Hikayen bugün başlamadı',
+                      L10nService.get('today.promotional_stack.your_story_didnt_start_today', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 14,
                         color: isDark
@@ -377,7 +366,7 @@ class _PromotionalBannerStackState
 
     return Semantics(
       button: true,
-      label: isEn ? 'View year wrapped' : 'Yıllık özeti gör',
+      label: L10nService.get('today.promotional_stack.view_year_wrapped', isEn ? AppLanguage.en : AppLanguage.tr),
       child: TapScale(
         onTap: () {
           HapticService.buttonPress();
@@ -407,9 +396,7 @@ class _PromotionalBannerStackState
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      isEn
-                          ? 'See your year in patterns'
-                          : 'Yılını örüntülerle gör',
+                      L10nService.get('today.promotional_stack.see_your_year_in_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 14,
                         color: isDark
@@ -448,7 +435,7 @@ class _PromotionalBannerStackState
 
     return Semantics(
       button: true,
-      label: isEn ? 'View monthly wrapped' : 'Aylık özeti gör',
+      label: L10nService.get('today.promotional_stack.view_monthly_wrapped', isEn ? AppLanguage.en : AppLanguage.tr),
       child: TapScale(
         onTap: () {
           HapticService.buttonPress();
@@ -478,9 +465,7 @@ class _PromotionalBannerStackState
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      isEn
-                          ? 'See your month at a glance & share it'
-                          : 'Ayına bir bakış at ve paylaş',
+                      L10nService.get('today.promotional_stack.see_your_month_at_a_glance_share_it', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 14,
                         color: isDark
@@ -546,7 +531,7 @@ class _PromotionalBannerStackState
 
     return Semantics(
       button: true,
-      label: isEn ? 'Share weekly insights' : 'Haftalık içgörüleri paylaş',
+      label: L10nService.get('today.promotional_stack.share_weekly_insights', isEn ? AppLanguage.en : AppLanguage.tr),
       child: TapScale(
         onTap: () {
           HapticService.buttonPress();
@@ -571,9 +556,7 @@ class _PromotionalBannerStackState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     GradientText(
-                      isEn
-                          ? 'Your latest pattern card is ready'
-                          : 'Son örüntü kartın hazır',
+                      L10nService.get('today.promotional_stack.your_latest_pattern_card_is_ready', isEn ? AppLanguage.en : AppLanguage.tr),
                       variant: GradientTextVariant.aurora,
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 16,
@@ -582,9 +565,7 @@ class _PromotionalBannerStackState
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      isEn
-                          ? 'Share your week\'s insights'
-                          : 'Haftanın içgörülerini paylaş',
+                      L10nService.get('today.promotional_stack.share_your_weeks_insights', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 14,
                         color: isDark
@@ -641,9 +622,7 @@ class _PromotionalBannerStackState
                   const SizedBox(width: 10),
                   Expanded(
                     child: GradientText(
-                      isEn
-                          ? 'Enjoying InnerCycles?'
-                          : 'InnerCycles hoşuna gidiyor mu?',
+                      L10nService.get('today.promotional_stack.enjoying_innercycles', isEn ? AppLanguage.en : AppLanguage.tr),
                       variant: GradientTextVariant.gold,
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 16,
@@ -667,9 +646,7 @@ class _PromotionalBannerStackState
               Padding(
                 padding: const EdgeInsets.only(left: 32),
                 child: Text(
-                  isEn
-                      ? 'Share it with a friend who would love it too.'
-                      : 'Beğeneceğini düşündüğün bir arkadaşınla paylaş.',
+                  L10nService.get('today.promotional_stack.share_it_with_a_friend_who_would_love_it', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.elegantAccent(
                     fontSize: 14,
                     color: isDark
@@ -682,9 +659,7 @@ class _PromotionalBannerStackState
               Padding(
                 padding: const EdgeInsets.only(left: 32),
                 child: GradientButton.gold(
-                  label: isEn
-                      ? 'Invite & Earn Premium'
-                      : 'Davet Et, Premium Kazan',
+                  label: L10nService.get('today.promotional_stack.invite_earn_premium', isEn ? AppLanguage.en : AppLanguage.tr),
                   icon: Icons.card_giftcard_rounded,
                   onPressed: () {
                     HapticService.buttonPress();
@@ -702,7 +677,7 @@ class _PromotionalBannerStackState
   String _formatTimeLeft(DateTime dt) {
     final now = DateTime.now();
     final diff = dt.difference(now);
-    if (diff.isNegative) return isEn ? 'Now' : 'Şimdi';
+    if (diff.isNegative) return L10nService.get('today.promotional_stack.now', isEn ? AppLanguage.en : AppLanguage.tr);
     if (diff.inMinutes < 60) {
       return isEn ? 'in ${diff.inMinutes}m' : '${diff.inMinutes}dk içinde';
     }

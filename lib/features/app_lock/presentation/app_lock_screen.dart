@@ -9,6 +9,7 @@ import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/storage_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../data/services/l10n_service.dart';
 
 class AppLockScreen extends ConsumerStatefulWidget {
   const AppLockScreen({super.key});
@@ -41,7 +42,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
 
     final isEn = StorageService.loadLanguage() == AppLanguage.en;
     final success = await service.authenticateWithBiometrics(
-      reason: isEn ? 'Unlock InnerCycles' : 'InnerCycles Kilidini Aç',
+      reason: L10nService.get('app_lock.app_lock.unlock_innercycles', isEn ? AppLanguage.en : AppLanguage.tr),
     );
     if (success && mounted) {
       context.go(Routes.today);
@@ -103,7 +104,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
               const SizedBox(height: 16),
 
               Text(
-                isEn ? 'Enter PIN' : 'PIN Girin',
+                L10nService.get('app_lock.app_lock.enter_pin', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 20,
                   color: isDark
@@ -116,7 +117,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
 
               if (_showError)
                 Text(
-                  isEn ? 'Incorrect PIN' : 'Yanlış PIN',
+                  L10nService.get('app_lock.app_lock.incorrect_pin', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.subtitle(
                     color: AppColors.error,
                     fontSize: 14,
@@ -232,7 +233,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
 
   Widget _buildDeleteButton(bool isDark, bool isEn) {
     return Semantics(
-      label: isEn ? 'Delete' : 'Sil',
+      label: L10nService.get('app_lock.app_lock.delete', isEn ? AppLanguage.en : AppLanguage.tr),
       button: true,
       child: GestureDetector(
         onTap: _onDelete,
@@ -255,7 +256,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
 
   Widget _buildBioButton(bool isDark, bool isEn) {
     return Semantics(
-      label: isEn ? 'Unlock with biometrics' : 'Biyometrik ile kilidi aç',
+      label: L10nService.get('app_lock.app_lock.unlock_with_biometrics', isEn ? AppLanguage.en : AppLanguage.tr),
       button: true,
       child: GestureDetector(
         onTap: () {

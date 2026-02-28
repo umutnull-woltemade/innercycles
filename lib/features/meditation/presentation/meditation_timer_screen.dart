@@ -21,6 +21,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../data/services/l10n_service.dart';
 
 class MeditationTimerScreen extends ConsumerStatefulWidget {
   const MeditationTimerScreen({super.key});
@@ -136,9 +137,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          isEn
-              ? 'Session complete. Well done!'
-              : 'Oturum tamamlandı. Tebrikler!',
+          L10nService.get('meditation.meditation_timer.session_complete_well_done', isEn ? AppLanguage.en : AppLanguage.tr),
         ),
         backgroundColor: AppColors.success,
         duration: const Duration(seconds: 3),
@@ -171,7 +170,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                 parent: AlwaysScrollableScrollPhysics(),
               ),
               slivers: [
-                GlassSliverAppBar(title: isEn ? 'Meditation' : 'Meditasyon'),
+                GlassSliverAppBar(title: L10nService.get('meditation.meditation_timer.meditation', isEn ? AppLanguage.en : AppLanguage.tr)),
                 SliverFillRemaining(
                   hasScrollBody: false,
                   child: Padding(
@@ -181,7 +180,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                         // Duration selector
                         if (!hasStarted) ...[
                           GradientText(
-                            isEn ? 'Choose Duration' : 'Süre Seçin',
+                            L10nService.get('meditation.meditation_timer.choose_duration', isEn ? AppLanguage.en : AppLanguage.tr),
                             variant: GradientTextVariant.aurora,
                             style: AppTypography.displayFont.copyWith(
                               fontSize: 18,
@@ -326,12 +325,8 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                             ),
                                             Text(
                                               _isRunning
-                                                  ? (isEn
-                                                        ? 'Be present'
-                                                        : 'Anda kal')
-                                                  : (isEn
-                                                        ? 'Paused'
-                                                        : 'Duraklatıldı'),
+                                                  ? (L10nService.get('meditation.meditation_timer.be_present', isEn ? AppLanguage.en : AppLanguage.tr))
+                                                  : (L10nService.get('meditation.meditation_timer.paused', isEn ? AppLanguage.en : AppLanguage.tr)),
                                               style:
                                                   AppTypography.decorativeScript(
                                                     fontSize: 14,
@@ -349,7 +344,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                             ),
                                             const SizedBox(height: 8),
                                             Text(
-                                              '$_selectedMinutes ${isEn ? 'min' : 'dk'}',
+                                              '$_selectedMinutes ${L10nService.get('meditation.meditation_timer.min', isEn ? AppLanguage.en : AppLanguage.tr)}',
                                               style: AppTypography.modernAccent(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.w600,
@@ -375,9 +370,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                         // Motivational text
                         if (_isRunning)
                           Text(
-                            isEn
-                                ? 'Focus on your breath...'
-                                : 'Nefesinize odaklanın...',
+                            L10nService.get('meditation.meditation_timer.focus_on_your_breath', isEn ? AppLanguage.en : AppLanguage.tr),
                             style: AppTypography.decorativeScript(
                               fontSize: 16,
                               color: isDark
@@ -391,9 +384,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                         // Controls
                         if (!hasStarted)
                           GradientButton(
-                            label: isEn
-                                ? 'Begin Meditation'
-                                : 'Meditasyona Başla',
+                            label: L10nService.get('meditation.meditation_timer.begin_meditation', isEn ? AppLanguage.en : AppLanguage.tr),
                             onPressed: _start,
                             expanded: true,
                             gradient: const LinearGradient(
@@ -410,7 +401,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                 child: SizedBox(
                                   height: 56,
                                   child: GradientOutlinedButton(
-                                    label: isEn ? 'Reset' : 'Sıfırla',
+                                    label: L10nService.get('meditation.meditation_timer.reset', isEn ? AppLanguage.en : AppLanguage.tr),
                                     variant: GradientTextVariant.aurora,
                                     expanded: true,
                                     fontSize: 16,
@@ -423,8 +414,8 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                               Expanded(
                                 child: GradientButton(
                                   label: _isRunning
-                                      ? (isEn ? 'Pause' : 'Duraklat')
-                                      : (isEn ? 'Resume' : 'Devam'),
+                                      ? (L10nService.get('meditation.meditation_timer.pause', isEn ? AppLanguage.en : AppLanguage.tr))
+                                      : (L10nService.get('meditation.meditation_timer.resume', isEn ? AppLanguage.en : AppLanguage.tr)),
                                   onPressed: _isRunning ? _pause : _resume,
                                   expanded: true,
                                   gradient: LinearGradient(

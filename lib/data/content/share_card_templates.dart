@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/emotional_gradient.dart';
 import '../models/share_card_models.dart';
+import '../services/l10n_service.dart';
+import '../providers/app_providers.dart';
 
 /// All 20 share card templates
 class ShareCardTemplates {
@@ -565,66 +567,46 @@ class ShareCardTemplates {
       // ── Identity ──────────────────────────────────────────────────────
       case 'archetype_reveal':
         result = ShareCardData(
-          headline: archetypeName ?? (isEn ? 'The Reflector' : 'Yansıtıcı'),
-          subtitle: isEn
-              ? 'Your entries suggest this archetype pattern'
-              : 'Kayıtların bu arketip örüntüsünü gösteriyor',
-          detail: isEn
-              ? 'Based on your recent journal entries'
-              : 'Son kayıtlarına dayanarak',
+          headline: archetypeName ?? (L10nService.get('data.content.share_templates.the_reflector', isEn ? AppLanguage.en : AppLanguage.tr)),
+          subtitle: L10nService.get('data.content.share_templates.your_entries_suggest_this_archetype_patt', isEn ? AppLanguage.en : AppLanguage.tr),
+          detail: L10nService.get('data.content.share_templates.based_on_your_recent_journal_entries', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'attachment_style':
         result = ShareCardData(
           headline:
               attachmentResult ??
-              (isEn ? 'Secure-Leaning' : 'Güvenli Eğilimli'),
-          subtitle: isEn
-              ? 'Your entries suggest this attachment pattern'
-              : 'Kayıtların bu bağlanma örüntüsünü gösteriyor',
-          detail: isEn
-              ? 'Drawn from your self-reflection quiz'
-              : 'Öz-düşünce testinden çıkarıldı',
+              (L10nService.get('data.content.share_templates.secureleaning', isEn ? AppLanguage.en : AppLanguage.tr)),
+          subtitle: L10nService.get('data.content.share_templates.your_entries_suggest_this_attachment_pat', isEn ? AppLanguage.en : AppLanguage.tr),
+          detail: L10nService.get('data.content.share_templates.drawn_from_your_selfreflection_quiz', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'dream_personality':
         result = ShareCardData(
-          headline: dreamType ?? (isEn ? 'The Voyager' : 'Gezgin'),
-          subtitle: isEn
-              ? 'Your dream journal suggests this personality type'
-              : 'Rüya güncen bu kişilik tipini gösteriyor',
-          detail: isEn
-              ? 'Based on recurring dream themes'
-              : 'Tekrarlayan rüya temalarına dayanarak',
+          headline: dreamType ?? (L10nService.get('data.content.share_templates.the_voyager', isEn ? AppLanguage.en : AppLanguage.tr)),
+          subtitle: L10nService.get('data.content.share_templates.your_dream_journal_suggests_this_persona', isEn ? AppLanguage.en : AppLanguage.tr),
+          detail: L10nService.get('data.content.share_templates.based_on_recurring_dream_themes', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'energy_profile':
         result = ShareCardData(
-          headline: energyType ?? (isEn ? 'Steady Flow' : 'Düzenli Akış'),
-          subtitle: isEn
-              ? 'Your entries suggest this energy rhythm'
-              : 'Kayıtların bu enerji ritmini gösteriyor',
-          detail: isEn
-              ? 'Patterns drawn from your daily entries'
-              : 'Günlük kayıtlarından çıkarıldı',
+          headline: energyType ?? (L10nService.get('data.content.share_templates.steady_flow', isEn ? AppLanguage.en : AppLanguage.tr)),
+          subtitle: L10nService.get('data.content.share_templates.your_entries_suggest_this_energy_rhythm', isEn ? AppLanguage.en : AppLanguage.tr),
+          detail: L10nService.get('data.content.share_templates.patterns_drawn_from_your_daily_entries', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'emotional_archetype':
         result = ShareCardData(
           headline:
-              emotionalStyle ?? (isEn ? 'Deep Processor' : 'Derin İşleyici'),
-          subtitle: isEn
-              ? 'You tend to process feelings with depth and care'
-              : 'Duyguları derinlik ve özenle işleme eğiliminde olabilirsin',
+              emotionalStyle ?? (L10nService.get('data.content.share_templates.deep_processor', isEn ? AppLanguage.en : AppLanguage.tr)),
+          subtitle: L10nService.get('data.content.share_templates.you_tend_to_process_feelings_with_depth', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       // ── Pattern ───────────────────────────────────────────────────────
       case 'weekly_mood_wave':
         result = ShareCardData(
-          headline: isEn ? 'My Week in Feelings' : 'Duygularla Geçen Haftam',
-          subtitle: isEn
-              ? 'Patterns drawn from 7-day mood data'
-              : 'Son 7 günlük duygu verisinden çıkarıldı',
+          headline: L10nService.get('data.content.share_templates.my_week_in_feelings', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('data.content.share_templates.patterns_drawn_from_7day_mood_data', isEn ? AppLanguage.en : AppLanguage.tr),
           chartValues: moodValues ?? [3, 4, 3, 5, 4, 3, 4],
           chartLabels: isEn
               ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
@@ -633,10 +615,8 @@ class ShareCardTemplates {
 
       case 'focus_area_radar':
         result = ShareCardData(
-          headline: isEn ? 'Focus Area Balance' : 'Odak Alanı Dengesi',
-          subtitle: isEn
-              ? 'How your attention spreads across areas'
-              : 'Dikkatinin alanlara nasıl dağıldığını gösteriyor',
+          headline: L10nService.get('data.content.share_templates.focus_area_balance', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('data.content.share_templates.how_your_attention_spreads_across_areas', isEn ? AppLanguage.en : AppLanguage.tr),
           chartValues: focusValues ?? [4, 3, 5, 2, 4],
           chartLabels: isEn
               ? ['Mind', 'Body', 'Heart', 'Inner', 'Social']
@@ -647,29 +627,23 @@ class ShareCardTemplates {
         final streakText = streak > 0 ? '$streak' : '0';
         result = ShareCardData(
           headline: isEn ? 'Day $streakText' : '$streakText Gün',
-          subtitle: isEn
-              ? 'Consistency builds self-awareness'
-              : 'Tutarlılık öz-farkındalığın temelidir',
+          subtitle: L10nService.get('data.content.share_templates.consistency_builds_selfawareness', isEn ? AppLanguage.en : AppLanguage.tr),
           statValue: streakText,
-          statLabel: isEn ? 'day streak' : 'günlük seri',
+          statLabel: L10nService.get('data.content.share_templates.day_streak', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'top_emotion':
         result = ShareCardData(
-          headline: topEmotionName ?? (isEn ? 'Calm' : 'Sakin'),
-          subtitle: isEn
-              ? 'Your most frequent emotion this month'
-              : 'Bu ayın en sık duygusu',
+          headline: topEmotionName ?? (L10nService.get('data.content.share_templates.calm', isEn ? AppLanguage.en : AppLanguage.tr)),
+          subtitle: L10nService.get('data.content.share_templates.your_most_frequent_emotion_this_month', isEn ? AppLanguage.en : AppLanguage.tr),
           statValue: topEmotionEmoji ?? '\u{1F60C}',
-          statLabel: isEn ? 'dominant this month' : 'bu ay baskın',
+          statLabel: L10nService.get('data.content.share_templates.dominant_this_month', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'sleep_pattern':
         result = ShareCardData(
-          headline: isEn ? 'My Sleep Quality' : 'Uyku Kalitem',
-          subtitle: isEn
-              ? 'How your rest has been this week'
-              : 'Bu hafta uyku durumun nasıl geçti',
+          headline: L10nService.get('data.content.share_templates.my_sleep_quality', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('data.content.share_templates.how_your_rest_has_been_this_week', isEn ? AppLanguage.en : AppLanguage.tr),
           chartValues: sleepValues ?? [3, 4, 4, 5, 3, 4, 4],
           chartLabels: isEn
               ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
@@ -681,33 +655,27 @@ class ShareCardTemplates {
         final days = journalDays > 0 ? journalDays : 30;
         result = ShareCardData(
           headline: isEn ? '$days Days of Journaling' : '$days Gün Günlük',
-          subtitle: isEn
-              ? 'Another milestone of showing up for yourself'
-              : 'Kendin için var olduğun bir basamak daha',
+          subtitle: L10nService.get('data.content.share_templates.another_milestone_of_showing_up_for_your', isEn ? AppLanguage.en : AppLanguage.tr),
           statValue: '$days',
-          statLabel: isEn ? 'days' : 'gün',
+          statLabel: L10nService.get('data.content.share_templates.days', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'dream_explorer':
         final count = dreamCount > 0 ? dreamCount : 10;
         result = ShareCardData(
           headline: isEn ? 'Explored $count Dreams' : '$count Rüya Keşfedildi',
-          subtitle: isEn
-              ? 'Your dream world keeps revealing insights'
-              : 'Rüya dünyan içgörüler sunmaya devam ediyor',
+          subtitle: L10nService.get('data.content.share_templates.your_dream_world_keeps_revealing_insight', isEn ? AppLanguage.en : AppLanguage.tr),
           statValue: '$count',
-          statLabel: isEn ? 'dreams' : 'rüya',
+          statLabel: L10nService.get('data.content.share_templates.dreams', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'pattern_discoverer':
         final count = patternCount > 0 ? patternCount : 5;
         result = ShareCardData(
           headline: isEn ? 'Found $count Patterns' : '$count Örüntü Bulundu',
-          subtitle: isEn
-              ? 'Self-awareness grows with each discovery'
-              : 'Her keşifle öz-farkındalık büyüyor',
+          subtitle: L10nService.get('data.content.share_templates.selfawareness_grows_with_each_discovery', isEn ? AppLanguage.en : AppLanguage.tr),
           statValue: '$count',
-          statLabel: isEn ? 'patterns' : 'örüntü',
+          statLabel: L10nService.get('data.content.share_templates.patterns', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'consistency_star':
@@ -716,11 +684,9 @@ class ShareCardTemplates {
           headline: isEn
               ? 'Journaled $days Days This Month'
               : 'Bu Ay $days Gün Yazıldı',
-          subtitle: isEn
-              ? 'Showing up consistently for yourself'
-              : 'Kendin için düzenli olarak var oluyorsun',
+          subtitle: L10nService.get('data.content.share_templates.showing_up_consistently_for_yourself', isEn ? AppLanguage.en : AppLanguage.tr),
           statValue: '$days',
-          statLabel: isEn ? 'days this month' : 'gün bu ay',
+          statLabel: L10nService.get('data.content.share_templates.days_this_month', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'growth_journey':
@@ -730,11 +696,9 @@ class ShareCardTemplates {
           headline: isEn
               ? 'Growth: $from \u{2192} $to'
               : 'Gelişim: $from \u{2192} $to',
-          subtitle: isEn
-              ? 'Your growth score has been rising steadily'
-              : 'Gelişim puanın istikrarlı bir şekilde yükseliyor',
+          subtitle: L10nService.get('data.content.share_templates.your_growth_score_has_been_rising_steadi', isEn ? AppLanguage.en : AppLanguage.tr),
           statValue: '+${to - from}',
-          statLabel: isEn ? 'points gained' : 'puan kazanıldı',
+          statLabel: L10nService.get('data.content.share_templates.points_gained', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       // ── Wisdom ────────────────────────────────────────────────────────
@@ -742,65 +706,51 @@ class ShareCardTemplates {
         result = ShareCardData(
           headline:
               reflectionText ??
-              (isEn
-                  ? 'Every moment of stillness is a step inward.'
-                  : 'Her sessizlik anı, içeride atılan bir adımdır.'),
-          subtitle: isEn ? 'Daily Reflection' : 'Günlük Düşünce',
+              (L10nService.get('data.content.share_templates.every_moment_of_stillness_is_a_step_inwa', isEn ? AppLanguage.en : AppLanguage.tr)),
+          subtitle: L10nService.get('data.content.share_templates.daily_reflection', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'dream_insight':
         result = ShareCardData(
           headline:
               dreamInsightText ??
-              (isEn
-                  ? 'Your dreams may be pointing toward unresolved feelings.'
-                  : 'Rüyaların çözülmemiş duygulara işaret ediyor olabilir.'),
-          subtitle: isEn ? 'From your dream journal' : 'Rüya güncenden',
+              (L10nService.get('data.content.share_templates.your_dreams_may_be_pointing_toward_unres', isEn ? AppLanguage.en : AppLanguage.tr)),
+          subtitle: L10nService.get('data.content.share_templates.from_your_dream_journal', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'pattern_wisdom':
         result = ShareCardData(
           headline:
               patternInsightText ??
-              (isEn
-                  ? 'Your entries suggest you tend to find clarity after rest.'
-                  : 'Kayıtların, dinlendikten sonra netleştiği gösteriyor.'),
-          subtitle: isEn
-              ? 'Drawn from your patterns'
-              : 'Örüntülerinizden çıkarıldı',
+              (L10nService.get('data.content.share_templates.your_entries_suggest_you_tend_to_find_cl', isEn ? AppLanguage.en : AppLanguage.tr)),
+          subtitle: L10nService.get('data.content.share_templates.drawn_from_your_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'seasonal_message':
-        final season = seasonName ?? (isEn ? 'Winter' : 'Kış');
+        final season = seasonName ?? (L10nService.get('data.content.share_templates.winter', isEn ? AppLanguage.en : AppLanguage.tr));
         result = ShareCardData(
           headline:
               seasonMessage ??
-              (isEn
-                  ? 'A season for rest, reflection, and inner renewal.'
-                  : 'Dinlenme, düşünme ve iç yenilenme mevsimi.'),
-          subtitle: '$season ${isEn ? 'Reflection' : 'Düşüncesi'}',
+              (L10nService.get('data.content.share_templates.a_season_for_rest_reflection_and_inner_r', isEn ? AppLanguage.en : AppLanguage.tr)),
+          subtitle: '$season ${L10nService.get('data.content.share_templates.reflection', isEn ? AppLanguage.en : AppLanguage.tr)}',
         );
 
       case 'affirmation':
         result = ShareCardData(
           headline:
               affirmationText ??
-              (isEn
-                  ? 'I trust the process of my own growth.'
-                  : 'Kendi gelişim sürecime güveniyorum.'),
-          subtitle: isEn ? 'Daily Affirmation' : 'Günlük Olumlama',
+              (L10nService.get('data.content.share_templates.i_trust_the_process_of_my_own_growth', isEn ? AppLanguage.en : AppLanguage.tr)),
+          subtitle: L10nService.get('data.content.share_templates.daily_affirmation', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       // ── Cycle Position ─────────────────────────────────────────────────
       case 'cycle_position':
         final day = cycleDay > 0 ? cycleDay : 12;
         final length = cycleLength > 0 ? cycleLength : 28;
-        final phase = cyclePhaseName ?? (isEn ? 'Expansion' : 'Genişleme');
+        final phase = cyclePhaseName ?? (L10nService.get('data.content.share_templates.expansion', isEn ? AppLanguage.en : AppLanguage.tr));
         final desc =
             cyclePhaseDescription ??
-            (isEn
-                ? 'Your recent entries suggest a period of openness and growth'
-                : 'Son kayıtların açıklık ve büyüme dönemi öneriyor');
+            (L10nService.get('data.content.share_templates.your_recent_entries_suggest_a_period_of', isEn ? AppLanguage.en : AppLanguage.tr));
         result = ShareCardData(
           headline: phase,
           subtitle: desc,
@@ -813,83 +763,63 @@ class ShareCardTemplates {
       // ── Curated Wisdom Insights ────────────────────────────────────
       case 'wisdom_quiet_weeks':
         result = ShareCardData(
-          headline: isEn
-              ? 'Your quietest weeks often hold your deepest shifts.'
-              : 'En sessiz haftaların çoğu zaman en derin değişimleri barındırır.',
-          subtitle: isEn ? 'From your patterns' : 'Örüntülerinden',
+          headline: L10nService.get('data.content.share_templates.your_quietest_weeks_often_hold_your_deep', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('data.content.share_templates.from_your_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'wisdom_small_shifts':
         result = ShareCardData(
-          headline: isEn
-              ? 'The smallest shifts in awareness often lead the biggest changes.'
-              : 'Farkındalıktaki en küçük değişimler en büyük dönüşümlere yol açar.',
-          subtitle: isEn ? 'Curated Insight' : 'Seçilmiş İçgörü',
+          headline: L10nService.get('data.content.share_templates.the_smallest_shifts_in_awareness_often_l', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('data.content.share_templates.curated_insight', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'wisdom_patterns':
         result = ShareCardData(
-          headline: isEn
-              ? 'Your patterns are not your limits — they are your starting points.'
-              : 'Örüntülerin sınırların değil, başlangıç noktaların.',
-          subtitle: isEn ? 'Pattern Wisdom' : 'Örüntü Bilgeliği',
+          headline: L10nService.get('data.content.share_templates.your_patterns_are_not_your_limits_they_a', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('data.content.share_templates.pattern_wisdom', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'wisdom_rest':
         result = ShareCardData(
-          headline: isEn
-              ? 'Rest is not the absence of progress — it is where clarity begins.'
-              : 'Dinlenme ilerlemenin yokluğu değil, berraklığın başladığı yerdir.',
-          subtitle: isEn ? 'Rest Insight' : 'Dinlenme İçgörüsü',
+          headline: L10nService.get('data.content.share_templates.rest_is_not_the_absence_of_progress_it_i', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('data.content.share_templates.rest_insight', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'wisdom_growth':
         result = ShareCardData(
-          headline: isEn
-              ? 'Growth often feels like confusion before it feels like clarity.'
-              : 'Büyüme çoğu zaman berraklıktan önce kafa karışıklığı gibi hissettirir.',
-          subtitle: isEn ? 'Growth Wisdom' : 'Büyüme Bilgeliği',
+          headline: L10nService.get('data.content.share_templates.growth_often_feels_like_confusion_before', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('data.content.share_templates.growth_wisdom', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       // ── Curated Reflection Insights ─────────────────────────────────
       case 'reflection_self_awareness':
         result = ShareCardData(
-          headline: isEn
-              ? 'Noticing yourself is the first act of changing yourself.'
-              : 'Kendini fark etmek, kendini değiştirmenin ilk adımıdır.',
-          subtitle: isEn ? 'Self-Awareness' : 'Öz Farkındalık',
+          headline: L10nService.get('data.content.share_templates.noticing_yourself_is_the_first_act_of_ch', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('data.content.share_templates.selfawareness', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'reflection_presence':
         result = ShareCardData(
-          headline: isEn
-              ? 'The present moment holds more wisdom than any plan for the future.'
-              : 'Şimdiki an, geleceğe dair her plandan daha fazla bilgelik taşır.',
-          subtitle: isEn ? 'Presence' : 'Şimdiki An',
+          headline: L10nService.get('data.content.share_templates.the_present_moment_holds_more_wisdom_tha', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('data.content.share_templates.presence', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'reflection_inner_voice':
         result = ShareCardData(
-          headline: isEn
-              ? 'Your inner voice gets clearer when you give it space to speak.'
-              : 'İç sesin, konuşması için alan verdiğinde netleşir.',
-          subtitle: isEn ? 'Inner Voice' : 'İç Ses',
+          headline: L10nService.get('data.content.share_templates.your_inner_voice_gets_clearer_when_you_g', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('data.content.share_templates.inner_voice', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'reflection_resilience':
         result = ShareCardData(
-          headline: isEn
-              ? 'You have survived every difficult day so far. That is resilience.'
-              : 'Şimdiye kadar her zor günü atlattın. İşte dayanıklılık budur.',
-          subtitle: isEn ? 'Resilience' : 'Dayanıklılık',
+          headline: L10nService.get('data.content.share_templates.you_have_survived_every_difficult_day_so', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('data.content.share_templates.resilience', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       case 'reflection_acceptance':
         result = ShareCardData(
-          headline: isEn
-              ? 'Acceptance is not giving up — it is making room for what comes next.'
-              : 'Kabul, pes etmek değil — sonrasına yer açmaktır.',
-          subtitle: isEn ? 'Acceptance' : 'Kabul',
+          headline: L10nService.get('data.content.share_templates.acceptance_is_not_giving_up_it_is_making', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('data.content.share_templates.acceptance', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       // ── Monthly Wrapped ─────────────────────────────────────────
@@ -907,20 +837,18 @@ class ShareCardTemplates {
               ? 'Average rating: $avg — your month at a glance'
               : 'Ortalama puan: $avg — ayına genel bakış',
           statValue: '$entries',
-          statLabel: isEn ? 'entries' : 'kayıt',
+          statLabel: L10nService.get('data.content.share_templates.entries', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       // ── Challenge Complete ──────────────────────────────────────
       case 'challenge_complete':
         final emoji = challengeEmoji ?? '\u{1F3C6}';
-        final name = challengeName ?? (isEn ? 'Challenge' : 'Meydan Okuma');
+        final name = challengeName ?? (L10nService.get('data.content.share_templates.challenge', isEn ? AppLanguage.en : AppLanguage.tr));
         result = ShareCardData(
           headline: isEn ? '$name Completed!' : '$name Tamamlandı!',
-          subtitle: isEn
-              ? 'You showed real commitment'
-              : 'Gerçek bir kararlılık gösterdin',
+          subtitle: L10nService.get('data.content.share_templates.you_showed_real_commitment', isEn ? AppLanguage.en : AppLanguage.tr),
           statValue: emoji,
-          statLabel: isEn ? 'completed' : 'tamamlandı',
+          statLabel: L10nService.get('data.content.share_templates.completed', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       // ── Question of the Day ─────────────────────────────────────
@@ -928,16 +856,14 @@ class ShareCardTemplates {
         result = ShareCardData(
           headline:
               reflectionText ??
-              (isEn
-                  ? 'What would you tell your younger self today?'
-                  : 'Bugün daha genç haline ne söylerdin?'),
-          subtitle: isEn ? 'Question of the Day' : 'Günün Sorusu',
+              (L10nService.get('data.content.share_templates.what_would_you_tell_your_younger_self_to', isEn ? AppLanguage.en : AppLanguage.tr)),
+          subtitle: L10nService.get('data.content.share_templates.question_of_the_day', isEn ? AppLanguage.en : AppLanguage.tr),
         );
 
       default:
         result = ShareCardData(
-          headline: isEn ? 'InnerCycles' : 'InnerCycles',
-          subtitle: isEn ? 'Cyclical Intelligence' : 'Döngüsel Zeka',
+          headline: L10nService.get('data.content.share_templates.innercycles', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('data.content.share_templates.cyclical_intelligence', isEn ? AppLanguage.en : AppLanguage.tr),
         );
     }
 

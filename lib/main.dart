@@ -224,6 +224,17 @@ class _AppInitializerState extends State<AppInitializer>
     final savedOnboardingComplete = StorageService.loadOnboardingComplete();
     final savedProfile = StorageService.loadUserProfile();
 
+    // Auto-detect device language on first launch
+    if (!StorageService.hasExplicitLanguage()) {
+      final deviceLocale = PlatformDispatcher.instance.locale;
+      final detected = L10nService.supportedLanguages.firstWhere(
+        (lang) => lang.locale.languageCode == deviceLocale.languageCode,
+        orElse: () => AppLanguage.en,
+      );
+      savedLanguage = detected;
+      StorageService.saveLanguage(savedLanguage);
+    }
+
     // Ensure language is supported
     if (!L10nService.supportedLanguages.contains(savedLanguage)) {
       savedLanguage = AppLanguage.en;
@@ -298,10 +309,13 @@ class _AppInitializerState extends State<AppInitializer>
         }
       }
 
-      // Schedule streak-at-risk or streak-recovery notification
+      // Schedule streak-at-risk, streak-recovery, and "On This Day" notifications
+      // (Single JournalService.init() for all notification scheduling)
       try {
         final journalSvc = await JournalService.init();
         final notif = NotificationService();
+
+        // Streak notifications
         if (!journalSvc.hasLoggedToday()) {
           final streak = journalSvc.getCurrentStreak();
           if (streak >= 2) {
@@ -309,7 +323,6 @@ class _AppInitializerState extends State<AppInitializer>
             await notif.scheduleStreakAtRisk(currentStreak: streak);
           } else if (streak == 0 && journalSvc.entryCount >= 3) {
             // Streak just broke — gentle recovery nudge tomorrow 10 AM
-            // Use entry count as proxy for past engagement
             await notif.scheduleStreakRecovery(
               lostStreak: journalSvc.entryCount > 30 ? 7 : 3,
             );
@@ -319,16 +332,9 @@ class _AppInitializerState extends State<AppInitializer>
           await notif.cancelStreakAtRisk();
           await notif.cancelStreakRecovery();
         }
-      } catch (e) {
-        if (kDebugMode) {
-          debugPrint('⚠️ Streak notification scheduling failed: $e');
-        }
-      }
 
-      // Check for "On This Day" memory anniversary entries
-      try {
-        final journalSvc2 = await JournalService.init();
-        final allEntries = journalSvc2.getAllEntries();
+        // "On This Day" memory anniversary check
+        final allEntries = journalSvc.getAllEntries();
         final now = DateTime.now();
         int? yearsAgo;
         for (final entry in allEntries) {
@@ -340,12 +346,11 @@ class _AppInitializerState extends State<AppInitializer>
           }
         }
         if (yearsAgo != null) {
-          await NotificationService()
-              .scheduleOnThisDayMemory(yearsAgo: yearsAgo);
+          await notif.scheduleOnThisDayMemory(yearsAgo: yearsAgo);
         }
       } catch (e) {
         if (kDebugMode) {
-          debugPrint('⚠️ On This Day notification failed: $e');
+          debugPrint('⚠️ Streak/OnThisDay notification scheduling failed: $e');
         }
       }
 

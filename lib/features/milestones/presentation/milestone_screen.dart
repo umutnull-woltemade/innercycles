@@ -22,6 +22,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../data/services/l10n_service.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // MILESTONE SCREEN
@@ -63,7 +64,7 @@ class MilestoneScreen extends ConsumerWidget {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      isEn ? 'Retry' : 'Tekrar Dene',
+                      L10nService.get('milestones.milestone.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -122,7 +123,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(title: isEn ? 'Milestones' : 'Rozetler'),
+          GlassSliverAppBar(title: L10nService.get('milestones.milestone.milestones', isEn ? AppLanguage.en : AppLanguage.tr)),
 
           // ── Progress Card ─────────────────────────────────────────────
           SliverToBoxAdapter(
@@ -272,7 +273,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GradientText(
-                    isEn ? 'Milestones Earned' : 'Kazanılan Rozetler',
+                    L10nService.get('milestones.milestone.milestones_earned', isEn ? AppLanguage.en : AppLanguage.tr),
                     variant: GradientTextVariant.gold,
                     style: AppTypography.displayFont.copyWith(
                       fontSize: 17,
@@ -309,10 +310,10 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   String _getProgressMessage(int earned, int total) {
     final remaining = total - earned;
     if (earned == 0) {
-      return isEn ? 'Start tracking!' : 'Takibe başla!';
+      return L10nService.get('milestones.milestone.start_tracking', isEn ? AppLanguage.en : AppLanguage.tr);
     }
     if (earned >= total) {
-      return isEn ? 'You earned them all!' : 'Hepsini kazandın!';
+      return L10nService.get('milestones.milestone.you_earned_them_all', isEn ? AppLanguage.en : AppLanguage.tr);
     }
     return isEn
         ? '$remaining more to discover'
@@ -333,7 +334,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
         children: categories.map((cat) {
           final selected = _selectedCategory == cat;
           final label = cat == null
-              ? (isEn ? 'All' : 'Tümü')
+              ? (L10nService.get('milestones.milestone.all', isEn ? AppLanguage.en : AppLanguage.tr))
               : (isEn ? cat.displayNameEn : cat.displayNameTr);
 
           return Padding(
@@ -516,17 +517,17 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   String _getCategoryHint(MilestoneCategory category) {
     switch (category) {
       case MilestoneCategory.streak:
-        return isEn ? 'Keep logging' : 'Kayıt tutmaya devam';
+        return L10nService.get('milestones.milestone.keep_logging', isEn ? AppLanguage.en : AppLanguage.tr);
       case MilestoneCategory.entries:
-        return isEn ? 'Write more' : 'Daha fazla yaz';
+        return L10nService.get('milestones.milestone.write_more', isEn ? AppLanguage.en : AppLanguage.tr);
       case MilestoneCategory.exploration:
-        return isEn ? 'Try new features' : 'Yeni özellikleri dene';
+        return L10nService.get('milestones.milestone.try_new_features', isEn ? AppLanguage.en : AppLanguage.tr);
       case MilestoneCategory.depth:
-        return isEn ? 'Go deeper' : 'Daha derine dal';
+        return L10nService.get('milestones.milestone.go_deeper', isEn ? AppLanguage.en : AppLanguage.tr);
       case MilestoneCategory.social:
-        return isEn ? 'Share & connect' : 'Paylaş ve bağlan';
+        return L10nService.get('milestones.milestone.share_connect', isEn ? AppLanguage.en : AppLanguage.tr);
       case MilestoneCategory.growth:
-        return isEn ? 'Keep growing' : 'Gelişmeye devam';
+        return L10nService.get('milestones.milestone.keep_growing', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 
@@ -687,7 +688,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                     // Close button
                     Semantics(
                       button: true,
-                      label: isEn ? 'Close dialog' : 'Pencereyi kapat',
+                      label: L10nService.get('milestones.milestone.close_dialog', isEn ? AppLanguage.en : AppLanguage.tr),
                       child: SizedBox(
                         width: double.infinity,
                         height: 44,
@@ -702,7 +703,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                             ),
                           ),
                           child: Text(
-                            isEn ? 'Done' : 'Tamam',
+                            L10nService.get('milestones.milestone.done', isEn ? AppLanguage.en : AppLanguage.tr),
                             style: AppTypography.modernAccent(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,

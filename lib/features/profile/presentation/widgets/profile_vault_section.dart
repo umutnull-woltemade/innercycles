@@ -13,6 +13,7 @@ import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/app_symbol.dart';
 import '../../../../shared/widgets/gradient_text.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../data/services/l10n_service.dart';
 
 class ProfileVaultSection extends ConsumerWidget {
   final bool isDark;
@@ -30,7 +31,7 @@ class ProfileVaultSection extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn ? 'Vault & Security' : 'Kasa & G\u00fcvenlik',
+          L10nService.get('profile.profile_vault.vault_security', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.amethyst,
           style: AppTypography.elegantAccent(
             fontSize: 17,
@@ -47,7 +48,7 @@ class ProfileVaultSection extends ConsumerWidget {
               // Private Vault
               _VaultRow(
                 emoji: '\u{1F510}',
-                label: isEn ? 'Private Vault' : 'Gizli Kasa',
+                label: L10nService.get('profile.profile_vault.private_vault', isEn ? AppLanguage.en : AppLanguage.tr),
                 isDark: isDark,
                 onTap: () => _navigateToVault(context, ref),
               ),
@@ -70,7 +71,7 @@ class ProfileVaultSection extends ConsumerWidget {
               // App Lock
               _VaultRow(
                 emoji: '\u{1F512}',
-                label: isEn ? 'App Lock' : 'Uygulama Kilidi',
+                label: L10nService.get('profile.profile_vault.app_lock', isEn ? AppLanguage.en : AppLanguage.tr),
                 isDark: isDark,
                 onTap: () => context.push(Routes.appLock),
               ),

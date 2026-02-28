@@ -23,6 +23,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../data/services/l10n_service.dart';
 
 class BirthdayAddScreen extends ConsumerStatefulWidget {
   final String? editId;
@@ -111,12 +112,8 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                 slivers: [
                   GlassSliverAppBar(
                     title: _isEditing
-                        ? (isEn
-                              ? 'Edit Birthday'
-                              : 'Do\u{011F}um G\u{00FC}n\u{00FC} D\u{00FC}zenle')
-                        : (isEn
-                              ? 'Add Birthday'
-                              : 'Do\u{011F}um G\u{00FC}n\u{00FC} Ekle'),
+                        ? (L10nService.get('birthdays.birthday_add.edit_birthday', isEn ? AppLanguage.en : AppLanguage.tr))
+                        : (L10nService.get('birthdays.birthday_add.add_birthday', isEn ? AppLanguage.en : AppLanguage.tr)),
                   ),
                   SliverPadding(
                     padding: const EdgeInsets.all(16),
@@ -153,12 +150,10 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
     final isEn = language == AppLanguage.en;
     final confirmed = await GlassDialog.confirm(
       context,
-      title: isEn ? 'Discard Changes?' : 'De\u{011F}i\u{015F}iklikleri At?',
-      message: isEn
-          ? 'You have unsaved changes. Are you sure you want to go back?'
-          : 'Kaydedilmemi\u{015F} de\u{011F}i\u{015F}iklikleriniz var. Geri d\u{00F6}nmek istedi\u{011F}inizden emin misiniz?',
-      cancelLabel: isEn ? 'Cancel' : '\u{0130}ptal',
-      confirmLabel: isEn ? 'Discard' : 'At',
+      title: L10nService.get('birthdays.birthday_add.discard_changes', isEn ? AppLanguage.en : AppLanguage.tr),
+      message: L10nService.get('birthdays.birthday_add.you_have_unsaved_changes_are_you_sure_yo', isEn ? AppLanguage.en : AppLanguage.tr),
+      cancelLabel: L10nService.get('birthdays.birthday_add.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
+      confirmLabel: L10nService.get('birthdays.birthday_add.discard', isEn ? AppLanguage.en : AppLanguage.tr),
       isDestructive: true,
     );
     if (confirmed == true && mounted) {
@@ -174,7 +169,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
     return Center(
       child: Semantics(
         button: true,
-        label: isEn ? 'Change photo' : 'Fotoğrafı değiştir',
+        label: L10nService.get('birthdays.birthday_add.change_photo', isEn ? AppLanguage.en : AppLanguage.tr),
         child: GestureDetector(
           onTap: _pickImage,
           child: Column(
@@ -186,9 +181,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
             ),
             const SizedBox(height: 8),
             Text(
-              isEn
-                  ? 'Tap to change photo'
-                  : 'Foto\u{011F}raf\u{0131} de\u{011F}i\u{015F}tirmek i\u{00E7}in dokun',
+              L10nService.get('birthdays.birthday_add.tap_to_change_photo', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.elegantAccent(
                 fontSize: 12,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -231,7 +224,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn ? 'Name' : '\u{0130}sim',
+          L10nService.get('birthdays.birthday_add.name', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(fontSize: 14, letterSpacing: 1.5),
         ),
@@ -245,7 +238,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
           decoration: InputDecoration(
-            hintText: isEn ? 'Friend\'s name' : 'Arkada\u{015F}\u{0131}n\u{0131}n ad\u{0131}',
+            hintText: L10nService.get('birthdays.birthday_add.friends_name', isEn ? AppLanguage.en : AppLanguage.tr),
             hintStyle: AppTypography.subtitle(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -283,7 +276,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn ? 'Birthday' : 'Do\u{011F}um G\u{00FC}n\u{00FC}',
+          L10nService.get('birthdays.birthday_add.birthday', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(fontSize: 14, letterSpacing: 1.5),
         ),
@@ -386,9 +379,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                           : AppColors.lightTextPrimary,
                     ),
                     hint: Text(
-                      isEn
-                          ? 'Year (optional)'
-                          : 'Y\u{0131}l (iste\u{011F}e ba\u{011F}l\u{0131})',
+                      L10nService.get('birthdays.birthday_add.year_optional', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.subtitle(
                         color: isDark
                             ? AppColors.textMuted
@@ -399,7 +390,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                       DropdownMenuItem<int?>(
                         value: null,
                         child: Text(
-                          isEn ? 'Not specified' : 'Belirtilmemi\u{015F}',
+                          L10nService.get('birthdays.birthday_add.not_specified', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.subtitle(
                             color: isDark
                                 ? AppColors.textMuted
@@ -451,7 +442,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn ? 'Relationship' : '\u{0130}li\u{015F}ki',
+          L10nService.get('birthdays.birthday_add.relationship', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(fontSize: 14, letterSpacing: 1.5),
         ),
@@ -528,9 +519,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn
-              ? 'Note (Optional)'
-              : 'Not (\u{0130}ste\u{011F}e Ba\u{011F}l\u{0131})',
+          L10nService.get('birthdays.birthday_add.note_optional', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(fontSize: 14, letterSpacing: 1.5),
         ),
@@ -544,9 +533,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
           decoration: InputDecoration(
-            hintText: isEn
-                ? 'Gift ideas, memories...'
-                : 'Hediye fikirleri, an\u{0131}lar...',
+            hintText: L10nService.get('birthdays.birthday_add.gift_ideas_memories', isEn ? AppLanguage.en : AppLanguage.tr),
             hintStyle: AppTypography.subtitle(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -574,16 +561,14 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn ? 'Reminders' : 'Hat\u{0131}rlat\u{0131}c\u{0131}lar',
+          L10nService.get('birthdays.birthday_add.reminders', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(fontSize: 14, letterSpacing: 1.5),
         ),
         const SizedBox(height: 10),
         _toggleRow(
           isDark,
-          label: isEn
-              ? 'Birthday notification'
-              : 'Do\u{011F}um g\u{00FC}n\u{00FC} bildirimi',
+          label: L10nService.get('birthdays.birthday_add.birthday_notification', isEn ? AppLanguage.en : AppLanguage.tr),
           value: _notificationsEnabled,
           onChanged: (v) => setState(() {
             _notificationsEnabled = v;
@@ -593,9 +578,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         const SizedBox(height: 8),
         _toggleRow(
           isDark,
-          label: isEn
-              ? 'Day before reminder'
-              : 'Bir g\u{00FC}n \u{00F6}nce hat\u{0131}rlat',
+          label: L10nService.get('birthdays.birthday_add.day_before_reminder', isEn ? AppLanguage.en : AppLanguage.tr),
           value: _dayBeforeReminder,
           onChanged: (v) => setState(() {
             _dayBeforeReminder = v;
@@ -670,8 +653,8 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
               ? const CupertinoActivityIndicator(radius: 10)
               : Text(
                   _isEditing
-                      ? (isEn ? 'Update Contact' : 'Kişiyi G\u{00FC}ncelle')
-                      : (isEn ? 'Save Contact' : 'Kişiyi Kaydet'),
+                      ? (L10nService.get('birthdays.birthday_add.update_contact', isEn ? AppLanguage.en : AppLanguage.tr))
+                      : (L10nService.get('birthdays.birthday_add.save_contact', isEn ? AppLanguage.en : AppLanguage.tr)),
                   style: AppTypography.modernAccent(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
@@ -751,9 +734,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              isEn
-                  ? 'Couldn\'t save this contact. Please try again.'
-                  : 'Ki\u{015F}i kaydedilemedi. L\u{00FC}tfen tekrar deneyin.',
+              L10nService.get('birthdays.birthday_add.couldnt_save_this_contact_please_try_aga', isEn ? AppLanguage.en : AppLanguage.tr),
             ),
           ),
         );

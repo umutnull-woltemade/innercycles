@@ -17,6 +17,7 @@ import '../../data/content/share_card_templates.dart';
 import '../../data/services/instagram_share_service.dart';
 import '../../core/constants/app_constants.dart';
 import '../../data/providers/app_providers.dart';
+import '../../data/services/l10n_service.dart';
 
 class ShareCardSheet extends StatefulWidget {
   final ShareCardTemplate template;
@@ -239,7 +240,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
 
                 // Share button
                 GradientButton(
-                  label: widget.isEn ? 'Share' : 'Paylaş',
+                  label: L10nService.get('shared.share.share', widget.isEn ? AppLanguage.en : AppLanguage.tr),
                   icon: Icons.share_rounded,
                   onPressed: _isSharing ? null : _share,
                   isLoading: _isSharing,

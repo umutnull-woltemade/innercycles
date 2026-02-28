@@ -23,6 +23,7 @@ import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../data/services/l10n_service.dart';
 
 const Map<ToolCategory, _CategoryInfo> _categoryDisplayInfo = {
   ToolCategory.journal: _CategoryInfo(
@@ -140,7 +141,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: isEn ? 'Tools' : 'Ara\u00e7lar',
+                  title: L10nService.get('tools.tool_catalog.tools', isEn ? AppLanguage.en : AppLanguage.tr),
                   showBackButton: false,
                 ),
                 SliverPadding(
@@ -212,7 +213,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: isEn ? 'Search by name or category...' : 'Ad veya kategoriye g\u00f6re ara...',
+          hintText: L10nService.get('tools.tool_catalog.search_by_name_or_category', isEn ? AppLanguage.en : AppLanguage.tr),
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -223,7 +224,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
           ),
           suffixIcon: _searchController.text.isNotEmpty
               ? IconButton(
-                  tooltip: isEn ? 'Clear search' : 'Aramayı temizle',
+                  tooltip: L10nService.get('tools.tool_catalog.clear_search', isEn ? AppLanguage.en : AppLanguage.tr),
                   onPressed: () {
                     _searchController.clear();
                     setState(() => _searchQuery = '');
@@ -261,7 +262,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Text(
-            isEn ? 'No tools found' : 'Ara\u00e7 bulunamad\u0131',
+            L10nService.get('tools.tool_catalog.no_tools_found', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.displayFont.copyWith(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -527,10 +528,8 @@ class _ToolCard extends StatelessWidget {
                   Semantics(
                     button: true,
                     label: isFavorite
-                        ? (isEn
-                              ? 'Remove from favorites'
-                              : 'Favorilerden çıkar')
-                        : (isEn ? 'Add to favorites' : 'Favorilere ekle'),
+                        ? (L10nService.get('tools.tool_catalog.remove_from_favorites', isEn ? AppLanguage.en : AppLanguage.tr))
+                        : (L10nService.get('tools.tool_catalog.add_to_favorites', isEn ? AppLanguage.en : AppLanguage.tr)),
                     child: GestureDetector(
                       onTap: onFavoriteToggle,
                       behavior: HitTestBehavior.opaque,

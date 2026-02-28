@@ -4,6 +4,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../data/models/journal_entry.dart';
 import '../../../../data/providers/app_providers.dart';
+import '../../../../data/services/l10n_service.dart';
 
 /// Compact weekly focus area completion indicator.
 /// Shows which of the 5 focus areas the user has logged this week.
@@ -66,7 +67,7 @@ class WeeklyFocusProgress extends ConsumerWidget {
               Flexible(
                 flex: 0,
                 child: Text(
-                  isEn ? 'Week: ' : 'Hafta: ',
+                  L10nService.get('today.weekly_focus_progress.week', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.elegantAccent(
                     fontSize: 12,
                     color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,

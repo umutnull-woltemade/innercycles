@@ -11,6 +11,8 @@ import '../../core/theme/app_typography.dart';
 import '../../core/constants/app_constants.dart';
 import '../../core/theme/app_colors.dart';
 import '../../shared/widgets/gradient_button.dart';
+import '../../data/services/l10n_service.dart';
+import '../../data/providers/app_providers.dart';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TOOL EMPTY STATE
@@ -121,7 +123,7 @@ class ToolEmptyState extends StatelessWidget {
               const SizedBox(height: AppConstants.spacingXl),
               if (onStartTemplate != null)
                 GradientButton(
-                  label: isEn ? 'Start with Template' : 'Şablonla Başla',
+                  label: L10nService.get('shared.ecosystems.start_with_template', isEn ? AppLanguage.en : AppLanguage.tr),
                   onPressed: onStartTemplate,
                   expanded: true,
                   gradient: const LinearGradient(
@@ -133,7 +135,7 @@ class ToolEmptyState extends StatelessWidget {
                 TextButton(
                   onPressed: onSeeExample,
                   child: Text(
-                    isEn ? 'See Example' : 'Örnek Gör',
+                    L10nService.get('shared.ecosystems.see_example', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       color: isDark
                           ? AppColors.textSecondary

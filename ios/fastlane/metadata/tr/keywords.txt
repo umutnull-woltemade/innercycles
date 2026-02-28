@@ -1,1 +1,1 @@
-günlük,rüya,seri,sağlık,farkındalık,örüntü,minnettarlık,alışkanlık,duygu,içgörü,yazma,huzur,kişisel
+günlük,rüya,duygu,seri,farkındalık,minnettarlık,alışkanlık,örüntü,kendini tanı,not,kişisel,huzur

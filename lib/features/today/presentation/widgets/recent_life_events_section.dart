@@ -13,6 +13,7 @@ import '../../../../data/services/haptic_service.dart';
 import '../../../../shared/widgets/app_symbol.dart';
 import '../../../../shared/widgets/gradient_text.dart';
 import '../../../../shared/widgets/tap_scale.dart';
+import '../../../../data/services/l10n_service.dart';
 
 class RecentLifeEventsSection extends ConsumerWidget {
   final bool isEn;
@@ -54,7 +55,7 @@ class RecentLifeEventsSection extends ConsumerWidget {
                 children: [
                   Flexible(
                     child: GradientText(
-                      isEn ? 'Recent Life Events' : 'Son Yaşam Olayları',
+                      L10nService.get('today.recent_life_events.recent_life_events', isEn ? AppLanguage.en : AppLanguage.tr),
                       variant: GradientTextVariant.amethyst,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -68,13 +69,11 @@ class RecentLifeEventsSection extends ConsumerWidget {
                   const SizedBox(width: 8),
                   Semantics(
                     button: true,
-                    label: isEn
-                        ? 'See all life events'
-                        : 'Tüm yaşam olaylarını gör',
+                    label: L10nService.get('today.recent_life_events.see_all_life_events', isEn ? AppLanguage.en : AppLanguage.tr),
                     child: GestureDetector(
                       onTap: () => context.push(Routes.lifeTimeline),
                       child: Text(
-                        isEn ? 'See all' : 'Tümünü gör',
+                        L10nService.get('today.recent_life_events.see_all', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.subtitle(
                           fontSize: 14,
                           color: isDark
@@ -201,7 +200,7 @@ class RecentLifeEventsSection extends ConsumerWidget {
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
       child: Semantics(
         button: true,
-        label: isEn ? 'Record a life event' : 'Yaşam olayı kaydet',
+        label: L10nService.get('today.recent_life_events.record_a_life_event', isEn ? AppLanguage.en : AppLanguage.tr),
         child: TapScale(
           onTap: () {
             HapticService.buttonPress();
@@ -228,9 +227,7 @@ class RecentLifeEventsSection extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        isEn
-                            ? 'Any big moments this week?'
-                            : 'Bu hafta büyük anlar oldu mu?',
+                        L10nService.get('today.recent_life_events.any_big_moments_this_week', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.displayFont.copyWith(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -240,9 +237,7 @@ class RecentLifeEventsSection extends ConsumerWidget {
                         ),
                       ),
                       Text(
-                        isEn
-                            ? 'Record a life event'
-                            : 'Bir yaşam olayı kaydedin',
+                        L10nService.get('today.recent_life_events.record_a_life_event_1', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.elegantAccent(
                           fontSize: 14,
                           color: isDark

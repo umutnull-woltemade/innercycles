@@ -1,0 +1,5 @@
+CFBundleDisplayName = "InnerCycles";
+NSCameraUsageDescription = "Kasana fotoğraf eklemek için kamera erişimi gerekli.";
+NSPhotoLibraryUsageDescription = "Kasana fotoğraf eklemek için fotoğraf kütüphanesi erişimi gerekli.";
+NSMicrophoneUsageDescription = "Sesli giriş için mikrofon erişimi gerekli.";
+NSUserTrackingUsageDescription = "Deneyimini iyileştirmek için anonim kullanım verileri topluyoruz. Kişisel bilgilerin paylaşılmaz.";

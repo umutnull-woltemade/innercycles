@@ -2127,14 +2127,14 @@ ${_getPersonalAdvice(sign)}''';
                               HapticService.buttonPress();
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text(isEn ? 'Copied' : 'Kopyalandı'),
+                                  content: Text(L10nService.get('dreams.dream_interpretation.copied', isEn ? AppLanguage.en : AppLanguage.tr)),
                                   duration: const Duration(seconds: 1),
                                   backgroundColor: AppColors.success,
                                 ),
                               );
                             },
                             child: Tooltip(
-                              message: isEn ? 'Copy' : 'Kopyala',
+                              message: L10nService.get('dreams.dream_interpretation.copy', isEn ? AppLanguage.en : AppLanguage.tr),
                               child: Icon(
                                 Icons.content_copy_rounded,
                                 size: 14,
@@ -2187,9 +2187,7 @@ ${_getPersonalAdvice(sign)}''';
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      isEn
-                          ? 'Psychological Perspective\n━━━━━━━━━━━━━━━━━\nYour subconscious is revealing...'
-                          : 'Psikolojik Perspektif\n━━━━━━━━━━━━━━━━━\nBilinaltınız ortaya koyuyor...',
+                      L10nService.get('dreams.dream_interpretation.psychological_perspectivennyour', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.decorativeScript(
                         fontSize: 13,
                         color: isDark
@@ -2251,9 +2249,7 @@ ${_getPersonalAdvice(sign)}''';
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      isEn
-                          ? 'See your dream through every lens'
-                          : 'Rüyanızı her açıdan görün',
+                      L10nService.get('dreams.dream_interpretation.see_your_dream_through_every_lens', isEn ? AppLanguage.en : AppLanguage.tr),
                       textAlign: TextAlign.center,
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
@@ -2264,9 +2260,7 @@ ${_getPersonalAdvice(sign)}''';
                     ),
                     const SizedBox(height: 12),
                     Semantics(
-                      label: isEn
-                          ? 'Access all perspectives'
-                          : 'Tüm perspektiflere eriş',
+                      label: L10nService.get('dreams.dream_interpretation.access_all_perspectives', isEn ? AppLanguage.en : AppLanguage.tr),
                       button: true,
                       child: GestureDetector(
                         onTap: () => showContextualPaywall(
@@ -2298,9 +2292,7 @@ ${_getPersonalAdvice(sign)}''';
                             ],
                           ),
                           child: Text(
-                            isEn
-                                ? 'Access All Perspectives'
-                                : 'Tüm Perspektiflere Eriş',
+                            L10nService.get('dreams.dream_interpretation.access_all_perspectives_1', isEn ? AppLanguage.en : AppLanguage.tr),
                             style: AppTypography.modernAccent(
                               fontSize: 13,
                               fontWeight: FontWeight.bold,
@@ -2433,7 +2425,7 @@ ${_getPersonalAdvice(sign)}''';
               ),
               const SizedBox(width: 10),
               Semantics(
-                label: isEn ? 'Send message' : 'Mesaj gönder',
+                label: L10nService.get('dreams.dream_interpretation.send_message', isEn ? AppLanguage.en : AppLanguage.tr),
                 button: true,
                 child:
                     GestureDetector(

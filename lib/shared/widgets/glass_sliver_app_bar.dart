@@ -5,6 +5,7 @@ import '../../core/theme/app_typography.dart';
 import '../../data/providers/app_providers.dart';
 import '../../data/services/storage_service.dart';
 import 'gradient_text.dart';
+import '../../data/services/l10n_service.dart';
 
 /// iOS-native SliverAppBar with frosted glass backdrop blur.
 ///
@@ -154,10 +155,10 @@ class GlassSliverAppBar extends StatelessWidget {
   Widget _buildBackButton(BuildContext context, Color color) {
     final isEn = StorageService.loadLanguage() == AppLanguage.en;
     return Semantics(
-      label: isEn ? 'Back' : 'Geri',
+      label: L10nService.get('shared.glass_sliver_app_bar.back', isEn ? AppLanguage.en : AppLanguage.tr),
       button: true,
       child: IconButton(
-        tooltip: isEn ? 'Back' : 'Geri',
+        tooltip: L10nService.get('shared.glass_sliver_app_bar.back_1', isEn ? AppLanguage.en : AppLanguage.tr),
         onPressed: () => Navigator.of(context).pop(),
         icon: Icon(Icons.chevron_left, color: color, size: 28),
       ),

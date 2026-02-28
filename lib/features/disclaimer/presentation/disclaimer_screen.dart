@@ -89,9 +89,7 @@ class DisclaimerScreen extends ConsumerWidget {
 
                 // ── Title ──
                 GradientText(
-                  isEn
-                      ? 'Welcome to InnerCycles'
-                      : 'InnerCycles\'a Hoş Geldin',
+                  L10nService.get('disclaimer.disclaimer.welcome_to_innercycles', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 30,
                     fontWeight: FontWeight.w600,
@@ -108,9 +106,7 @@ class DisclaimerScreen extends ConsumerWidget {
 
                 // ── Subtitle ──
                 Text(
-                  isEn
-                      ? 'A private space for reflection, not prediction.'
-                      : 'Tahmin değil, yansıma için özel bir alan.',
+                  L10nService.get('disclaimer.disclaimer.a_private_space_for_reflection_not_predi', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.decorativeScript(
                     fontSize: 15,
                     color: textColor,
@@ -250,9 +246,7 @@ class DisclaimerScreen extends ConsumerWidget {
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      isEn
-                          ? 'Your data stays on your device'
-                          : 'Verilerin cihazında kalır',
+                      L10nService.get('disclaimer.disclaimer.your_data_stays_on_your_device', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: AppColors.textMuted,

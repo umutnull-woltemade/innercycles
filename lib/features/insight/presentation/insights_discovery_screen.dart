@@ -27,6 +27,7 @@ import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../../shared/widgets/share_insight_button.dart';
+import '../../../data/services/l10n_service.dart';
 
 class InsightsDiscoveryScreen extends ConsumerStatefulWidget {
   const InsightsDiscoveryScreen({super.key});
@@ -73,9 +74,7 @@ class _InsightsDiscoveryScreenState
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    isEn
-                        ? 'Could not load. Your local data is unaffected.'
-                        : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                    L10nService.get('insight.insights_discovery.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
                     textAlign: TextAlign.center,
                     style: AppTypography.decorativeScript(
                       fontSize: 14,
@@ -91,7 +90,7 @@ class _InsightsDiscoveryScreenState
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      isEn ? 'Retry' : 'Tekrar Dene',
+                      L10nService.get('insight.insights_discovery.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -126,13 +125,13 @@ class _InsightsDiscoveryScreenState
         slivers: [
           // App Bar
           GlassSliverAppBar(
-            title: isEn ? 'Discover Insights' : 'İçgörüleri Keşfet',
+            title: L10nService.get('insight.insights_discovery.discover_insights', isEn ? AppLanguage.en : AppLanguage.tr),
             actions: [
               // Bookmark filter toggle
               IconButton(
                 tooltip: _showBookmarksOnly
-                    ? (isEn ? 'Show all insights' : 'Tüm içgörüleri göster')
-                    : (isEn ? 'Show bookmarks' : 'Kaydedilenleri göster'),
+                    ? (L10nService.get('insight.insights_discovery.show_all_insights', isEn ? AppLanguage.en : AppLanguage.tr))
+                    : (L10nService.get('insight.insights_discovery.show_bookmarks', isEn ? AppLanguage.en : AppLanguage.tr)),
                 icon: Icon(
                   _showBookmarksOnly
                       ? Icons.bookmark_rounded
@@ -182,7 +181,7 @@ class _InsightsDiscoveryScreenState
                 padding: const EdgeInsets.all(40),
                 child: Center(
                   child: Text(
-                    isEn ? 'No insights found' : 'İçgörü bulunamadı',
+                    L10nService.get('insight.insights_discovery.no_insights_found', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.decorativeScript(
                       fontSize: 14,
                       color: isDark
@@ -248,7 +247,7 @@ class _InsightsDiscoveryScreenState
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              isEn ? 'Reading Progress' : 'Okuma İlerlemesi',
+              L10nService.get('insight.insights_discovery.reading_progress', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.elegantAccent(
                 fontSize: 11,
                 fontWeight: FontWeight.w600,
@@ -323,7 +322,7 @@ class _InsightsDiscoveryScreenState
                   const SizedBox(width: 10),
                   Expanded(
                     child: GradientText(
-                      isEn ? 'Today\'s Insight' : 'Bugünün İçgörüsü',
+                      L10nService.get('insight.insights_discovery.todays_insight', isEn ? AppLanguage.en : AppLanguage.tr),
                       variant: GradientTextVariant.gold,
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 13,
@@ -361,7 +360,7 @@ class _InsightsDiscoveryScreenState
                 children: [
                   _buildCategoryPill(module.category, isDark, isEn),
                   Text(
-                    isEn ? 'Tap to read' : 'Okumak için dokun',
+                    L10nService.get('insight.insights_discovery.tap_to_read', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 11,
                       fontWeight: FontWeight.w500,
@@ -390,7 +389,7 @@ class _InsightsDiscoveryScreenState
       child: Row(
         children: [
           _buildChip(
-            label: isEn ? 'All' : 'Tümü',
+            label: L10nService.get('insight.insights_discovery.all', isEn ? AppLanguage.en : AppLanguage.tr),
             isSelected: _selectedCategory == null,
             isDark: isDark,
             onTap: () => setState(() => _selectedCategory = null),
@@ -522,8 +521,8 @@ class _InsightsDiscoveryScreenState
                   Semantics(
                     button: true,
                     label: isBookmarked
-                        ? (isEn ? 'Remove bookmark' : 'Yer işaretini kaldır')
-                        : (isEn ? 'Add bookmark' : 'Yer işareti ekle'),
+                        ? (L10nService.get('insight.insights_discovery.remove_bookmark', isEn ? AppLanguage.en : AppLanguage.tr))
+                        : (L10nService.get('insight.insights_discovery.add_bookmark', isEn ? AppLanguage.en : AppLanguage.tr)),
                     child: GestureDetector(
                       onTap: () async {
                         HapticFeedback.lightImpact();
@@ -705,7 +704,7 @@ class _InsightsDiscoveryScreenState
                             ),
                             const SizedBox(width: 6),
                             GradientText(
-                              isEn ? 'Why This Matters' : 'Neden Önemli',
+                              L10nService.get('insight.insights_discovery.why_this_matters', isEn ? AppLanguage.en : AppLanguage.tr),
                               variant: GradientTextVariant.gold,
                               style: AppTypography.elegantAccent(
                                 fontSize: 13,
@@ -779,7 +778,7 @@ class _InsightsDiscoveryScreenState
                   if (module.relatedModuleIds.isNotEmpty) ...[
                     const SizedBox(height: 24),
                     GradientText(
-                      isEn ? 'Related Insights' : 'İlgili İçgörüler',
+                      L10nService.get('insight.insights_discovery.related_insights', isEn ? AppLanguage.en : AppLanguage.tr),
                       variant: GradientTextVariant.gold,
                       style: AppTypography.elegantAccent(
                         fontSize: 14,

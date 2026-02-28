@@ -99,10 +99,6 @@ class UserProfile {
     avatarEmoji: avatarEmoji ?? this.avatarEmoji,
   );
 
-  /// Check if the profile has complete birth data
-  bool get hasCompleteBirthData =>
-      birthTime != null && birthLatitude != null && birthLongitude != null;
-
   /// Get display emoji (uses avatar emoji or generic sparkle)
   String get displayEmoji => avatarEmoji ?? '✨';
 

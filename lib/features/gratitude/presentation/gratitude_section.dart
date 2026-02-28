@@ -8,6 +8,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/gratitude_service.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../data/services/l10n_service.dart';
 
 /// Collapsible gratitude section for the daily entry screen
 class GratitudeSection extends ConsumerStatefulWidget {
@@ -119,7 +120,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             GradientText(
-                              isEn ? 'Gratitude' : 'Şükran',
+                              L10nService.get('gratitude.gratitude.gratitude', isEn ? AppLanguage.en : AppLanguage.tr),
                               variant: GradientTextVariant.gold,
                               style: AppTypography.displayFont.copyWith(
                                 fontSize: 15,
@@ -127,9 +128,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                               ),
                             ),
                             Text(
-                              isEn
-                                  ? 'What went well today?'
-                                  : 'Bugün ne iyi gitti?',
+                              L10nService.get('gratitude.gratitude.what_went_well_today', isEn ? AppLanguage.en : AppLanguage.tr),
                               style: AppTypography.decorativeScript(
                                 fontSize: 12,
                                 color: isDark
@@ -205,9 +204,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                             : AppColors.lightTextPrimary,
                       ),
                       decoration: InputDecoration(
-                        hintText: isEn
-                            ? 'I\'m grateful for...'
-                            : 'Şükran duyduğum...',
+                        hintText: L10nService.get('gratitude.gratitude.im_grateful_for', isEn ? AppLanguage.en : AppLanguage.tr),
                         hintStyle: AppTypography.subtitle(
                           fontSize: 14,
                           color: isDark
@@ -237,7 +234,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
               },
               icon: Icon(Icons.add, size: 18, color: AppColors.success),
               label: Text(
-                isEn ? 'Add another' : 'Bir tane daha ekle',
+                L10nService.get('gratitude.gratitude.add_another', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.elegantAccent(
                   fontSize: 13,
                   color: AppColors.success,
@@ -259,9 +256,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      isEn
-                          ? 'Premium: Add up to 3 gratitude items + theme analysis'
-                          : 'Premium: 3 şükran maddesi + tema analizi',
+                      L10nService.get('gratitude.gratitude.premium_add_up_to_3_gratitude_items_them', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: AppColors.starGold,
@@ -340,7 +335,7 @@ class _GratitudeSummaryContent extends StatelessWidget {
               Icon(Icons.favorite_rounded, size: 18, color: AppColors.success),
               const SizedBox(width: 8),
               GradientText(
-                isEn ? 'This Week\'s Gratitude' : 'Bu Haftanın Şükranı',
+                L10nService.get('gratitude.gratitude.this_weeks_gratitude', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 14,

@@ -662,7 +662,7 @@ class DreamThemeScreen extends ConsumerWidget {
         body: CosmicBackground(
           child: Center(
             child: Text(
-              isEn ? 'Dream theme not found' : 'Rüya teması bulunamadı',
+              L10nService.get('dreams.canonical.dream_theme.dream_theme_not_found', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.subtitle(
                 color: isDark
                     ? AppColors.textMuted

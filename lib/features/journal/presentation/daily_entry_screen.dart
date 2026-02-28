@@ -45,6 +45,7 @@ import '../../sleep/presentation/sleep_section.dart';
 import '../../../shared/widgets/private_toggle.dart';
 import 'widgets/post_save_engagement_sheet.dart';
 import 'widgets/voice_input_button.dart';
+import '../../../data/services/l10n_service.dart';
 
 class DailyEntryScreen extends ConsumerStatefulWidget {
   final DateTime? initialDate;
@@ -263,7 +264,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 ),
                 slivers: [
                   GlassSliverAppBar(
-                    title: isEn ? 'Log Your Day' : 'Gününü Kaydet',
+                    title: L10nService.get('journal.daily_entry.log_your_day', isEn ? AppLanguage.en : AppLanguage.tr),
                   ),
                   SliverPadding(
                     padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -279,7 +280,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                         _buildSectionLabel(
                           context,
                           isDark,
-                          isEn ? 'Focus Area' : 'Odak Alanı',
+                          L10nService.get('journal.daily_entry.focus_area', isEn ? AppLanguage.en : AppLanguage.tr),
                         ),
                         const SizedBox(height: AppConstants.spacingMd),
                         _buildFocusAreaSelector(isDark, isEn),
@@ -289,7 +290,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                         _buildSectionLabel(
                           context,
                           isDark,
-                          isEn ? 'Overall Rating' : 'Genel Değerlendirme',
+                          L10nService.get('journal.daily_entry.overall_rating', isEn ? AppLanguage.en : AppLanguage.tr),
                         ),
                         const SizedBox(height: AppConstants.spacingMd),
                         _buildRatingSlider(isDark, isEn, _overallRating, (v) {
@@ -306,7 +307,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                         _buildSectionLabel(
                           context,
                           isDark,
-                          isEn ? 'Notes (optional)' : 'Notlar (opsiyonel)',
+                          L10nService.get('journal.daily_entry.notes_optional', isEn ? AppLanguage.en : AppLanguage.tr),
                         ),
                         const SizedBox(height: AppConstants.spacingMd),
                         _CyclePhasePromptHint(isEn: isEn, isDark: isDark),
@@ -317,7 +318,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                         _buildSectionLabel(
                           context,
                           isDark,
-                          isEn ? 'Tags (optional)' : 'Etiketler (opsiyonel)',
+                          L10nService.get('journal.daily_entry.tags_optional', isEn ? AppLanguage.en : AppLanguage.tr),
                         ),
                         const SizedBox(height: AppConstants.spacingMd),
                         _buildTagSection(isDark, isEn),
@@ -328,7 +329,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                           _buildSectionLabel(
                             context,
                             isDark,
-                            isEn ? 'Photo (optional)' : 'Fotoğraf (opsiyonel)',
+                            L10nService.get('journal.daily_entry.photo_optional', isEn ? AppLanguage.en : AppLanguage.tr),
                           ),
                           const SizedBox(height: AppConstants.spacingMd),
                           _buildPhotoPicker(isDark, isEn),
@@ -568,7 +569,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
               final isActive = rating == value;
               return Semantics(
                 button: true,
-                label: '${isEn ? 'Rating' : 'Puan'} $rating',
+                label: '${L10nService.get('journal.daily_entry.rating', isEn ? AppLanguage.en : AppLanguage.tr)} $rating',
                 selected: isActive,
                 child: GestureDetector(
                   onTap: () {
@@ -647,7 +648,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         child: ExpansionTile(
           tilePadding: EdgeInsets.zero,
           title: Text(
-            isEn ? 'Details (optional)' : 'Detaylar (opsiyonel)',
+            L10nService.get('journal.daily_entry.details_optional', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.elegantAccent(
               fontSize: 14,
               fontWeight: FontWeight.w600,
@@ -666,7 +667,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildSectionLabel(context, isDark, isEn ? 'Details' : 'Detaylar'),
+        _buildSectionLabel(context, isDark, L10nService.get('journal.daily_entry.details', isEn ? AppLanguage.en : AppLanguage.tr)),
         const SizedBox(height: AppConstants.spacingMd),
         _buildSubRatings(isDark, isEn),
       ],
@@ -797,7 +798,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 child: Row(
                   children: [
                     VoiceInputButton(
-                      localeId: isEn ? 'en_US' : 'tr_TR',
+                      localeId: L10nService.get('journal.daily_entry.en_us', isEn ? AppLanguage.en : AppLanguage.tr),
                       size: 40,
                       onListeningStateChanged: (listening) {
                         if (listening) {
@@ -829,7 +830,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     ),
                     const SizedBox(width: AppConstants.spacingSm),
                     Text(
-                      isEn ? 'Tap to speak' : 'Konuşmak için dokun',
+                      L10nService.get('journal.daily_entry.tap_to_speak', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: isDark
@@ -951,7 +952,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     color: isDark ? Colors.white : Colors.black87,
                   ),
                   decoration: InputDecoration(
-                    hintText: isEn ? 'e.g. Work, Personal' : 'ör. İş, Kişisel',
+                    hintText: L10nService.get('journal.daily_entry.eg_work_personal', isEn ? AppLanguage.en : AppLanguage.tr),
                     hintStyle: AppTypography.subtitle(
                       color: isDark
                           ? AppColors.textMuted
@@ -1027,7 +1028,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 fit: BoxFit.cover,
                 cacheWidth: 800,
                 cacheHeight: 360,
-                semanticLabel: isEn ? 'Journal photo' : 'Günlük fotoğrafı',
+                semanticLabel: L10nService.get('journal.daily_entry.journal_photo', isEn ? AppLanguage.en : AppLanguage.tr),
                 errorBuilder: (_, _, _) => const SizedBox.shrink(),
               ),
             ),
@@ -1043,7 +1044,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     color: AppColors.auroraStart,
                   ),
                   label: Text(
-                    isEn ? 'Change' : 'Değiştir',
+                    L10nService.get('journal.daily_entry.change', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.modernAccent(
                       color: AppColors.auroraStart,
                       fontSize: 13,
@@ -1063,7 +1064,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                         : AppColors.lightTextMuted,
                   ),
                   label: Text(
-                    isEn ? 'Remove' : 'Kaldır',
+                    L10nService.get('journal.daily_entry.remove', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.subtitle(
                       fontSize: 13,
                       color: isDark
@@ -1080,7 +1081,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     }
 
     return Semantics(
-      label: isEn ? 'Add a photo' : 'Fotoğraf ekle',
+      label: L10nService.get('journal.daily_entry.add_a_photo', isEn ? AppLanguage.en : AppLanguage.tr),
       button: true,
       child: GestureDetector(
         onTap: () {
@@ -1101,7 +1102,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
               ),
               const SizedBox(width: AppConstants.spacingSm),
               Text(
-                isEn ? 'Add a photo' : 'Fotoğraf ekle',
+                L10nService.get('journal.daily_entry.add_a_photo_1', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.subtitle(
                   fontSize: 14,
                   color: isDark
@@ -1148,7 +1149,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 
   Widget _buildSaveButton(bool isDark, bool isEn) {
     return Semantics(
-      label: isEn ? 'Save Entry' : 'Kaydı Kaydet',
+      label: L10nService.get('journal.daily_entry.save_entry', isEn ? AppLanguage.en : AppLanguage.tr),
       button: true,
       enabled: !_isSaving,
       child: GestureDetector(
@@ -1195,7 +1196,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      isEn ? 'Save Entry' : 'Kaydet',
+                      L10nService.get('journal.daily_entry.save_entry_1', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.modernAccent(
                         fontSize: 17,
                         fontWeight: FontWeight.w700,
@@ -1383,9 +1384,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       await widgetService.updateDailyReflection(
         moodEmoji: moodEmoji,
         moodLabel: moodLabel,
-        dailyPrompt: isEn
-            ? 'How did your day feel?'
-            : 'Günün nasıl hissettirdi?',
+        dailyPrompt: L10nService.get('journal.daily_entry.how_did_your_day_feel', isEn ? AppLanguage.en : AppLanguage.tr),
         focusArea: isEn
             ? _selectedArea.displayNameEn
             : _selectedArea.displayNameTr,
@@ -1397,9 +1396,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         currentMood: moodLabel,
         moodEmoji: moodEmoji,
         energyLevel: (_overallRating * 20).clamp(0, 100),
-        advice: isEn
-            ? 'Keep journaling to reveal your patterns'
-            : 'Kalıplarını ortaya çıkarmak için yazmaya devam et',
+        advice: L10nService.get('journal.daily_entry.keep_journaling_to_reveal_your_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
       );
 
       await widgetService.updateLockScreen(
@@ -1465,7 +1462,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     .shimmer(delay: 500.ms, duration: 1200.ms),
                 const SizedBox(height: 16),
                 GradientText(
-                  isEn ? 'Your Journey Begins' : 'Yolculuğun Başlıyor',
+                  L10nService.get('journal.daily_entry.your_journey_begins', isEn ? AppLanguage.en : AppLanguage.tr),
                   variant: GradientTextVariant.gold,
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 24,
@@ -1474,9 +1471,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
                 const SizedBox(height: 12),
                 Text(
-                  isEn
-                      ? 'You just wrote your first reflection.\nEvery great story starts with a single page.'
-                      : 'İlk yansımanı yazdın.\nHer büyük hikaye tek bir sayfayla başlar.',
+                  L10nService.get('journal.daily_entry.you_just_wrote_your_first_reflectionneve', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.decorativeScript(
                     fontSize: 16,
                     color: isDark
@@ -1525,7 +1520,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     // Continue button
                     Expanded(
                       child: GradientButton.gold(
-                        label: isEn ? 'Continue' : 'Devam Et',
+                        label: L10nService.get('journal.daily_entry.continue', isEn ? AppLanguage.en : AppLanguage.tr),
                         onPressed: () => Navigator.of(ctx).pop(),
                         expanded: true,
                       ),
@@ -1687,7 +1682,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     const SizedBox(width: 16),
                     Expanded(
                       child: GradientButton.gold(
-                        label: isEn ? 'Continue' : 'Devam Et',
+                        label: L10nService.get('journal.daily_entry.continue_1', isEn ? AppLanguage.en : AppLanguage.tr),
                         onPressed: () => Navigator.of(ctx).pop(),
                         expanded: true,
                       ),
@@ -1811,12 +1806,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            isEn
-                ? 'Loving InnerCycles? Invite a friend — you both get 7 days Premium!'
-                : 'InnerCycles\'ı beğeniyor musun? Bir arkadaşını davet et — ikiniz de 7 gün Premium kazanın!',
+            L10nService.get('journal.daily_entry.loving_innercycles_invite_a_friend_you_b', isEn ? AppLanguage.en : AppLanguage.tr),
           ),
           action: SnackBarAction(
-            label: isEn ? 'Invite' : 'Davet Et',
+            label: L10nService.get('journal.daily_entry.invite', isEn ? AppLanguage.en : AppLanguage.tr),
             textColor: AppColors.starGold,
             onPressed: () {
               if (mounted) context.push(Routes.referralProgram);
@@ -1866,7 +1859,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           ),
           behavior: SnackBarBehavior.floating,
           action: SnackBarAction(
-            label: isEn ? 'Share' : 'Paylaş',
+            label: L10nService.get('journal.daily_entry.share', isEn ? AppLanguage.en : AppLanguage.tr),
             onPressed: () {
               if (!mounted) return;
               ShareCardSheet.show(
@@ -1908,17 +1901,17 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   static String _ratingToMoodLabel(int rating, bool isEn) {
     switch (rating) {
       case 1:
-        return isEn ? 'Difficult' : 'Zor';
+        return L10nService.get('journal.daily_entry.difficult', isEn ? AppLanguage.en : AppLanguage.tr);
       case 2:
-        return isEn ? 'Low' : 'Düşük';
+        return L10nService.get('journal.daily_entry.low', isEn ? AppLanguage.en : AppLanguage.tr);
       case 3:
-        return isEn ? 'Neutral' : 'Nötr';
+        return L10nService.get('journal.daily_entry.neutral', isEn ? AppLanguage.en : AppLanguage.tr);
       case 4:
-        return isEn ? 'Good' : 'İyi';
+        return L10nService.get('journal.daily_entry.good', isEn ? AppLanguage.en : AppLanguage.tr);
       case 5:
-        return isEn ? 'Great' : 'Harika';
+        return L10nService.get('journal.daily_entry.great', isEn ? AppLanguage.en : AppLanguage.tr);
       default:
-        return isEn ? 'Neutral' : 'Nötr';
+        return L10nService.get('journal.daily_entry.neutral_1', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 
@@ -1958,8 +1951,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     final selected = DateTime(date.year, date.month, date.day);
     final diff = today.difference(selected).inDays;
 
-    if (diff == 0) return isEn ? 'Today' : 'Bugün';
-    if (diff == 1) return isEn ? 'Yesterday' : 'Dün';
+    if (diff == 0) return L10nService.get('journal.daily_entry.today', isEn ? AppLanguage.en : AppLanguage.tr);
+    if (diff == 1) return L10nService.get('journal.daily_entry.yesterday', isEn ? AppLanguage.en : AppLanguage.tr);
 
     final days = isEn
         ? [

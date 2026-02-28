@@ -12,6 +12,8 @@ import '../../../../core/theme/app_typography.dart';
 import '../../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../../shared/widgets/app_symbol.dart';
 import '../../../../shared/widgets/gradient_text.dart';
+import '../../../../data/services/l10n_service.dart';
+import '../../../../data/providers/app_providers.dart';
 
 class ProfileHeroSection extends StatefulWidget {
   final String name;
@@ -189,7 +191,7 @@ class _ProfileHeroSectionState extends State<ProfileHeroSection>
                   Positioned(
                     bottom: 4,
                     child: Text(
-                      widget.isEn ? 'GROWTH SCORE' : 'GEL\u0130\u015e\u0130M PUANI',
+                      L10nService.get('profile.profile_hero.growth_score', widget.isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,

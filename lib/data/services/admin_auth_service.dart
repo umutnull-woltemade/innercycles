@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -44,12 +45,6 @@ class AdminAuthService {
 
   /// Get PIN — empty string when not configured (admin disabled)
   static String get _pin => _envPin;
-
-  /// Hash PIN for secure comparison
-  static String _hashPin(String pin) {
-    final bytes = utf8.encode(pin);
-    return sha256.convert(bytes).toString();
-  }
 
   /// Check if currently locked out
   static bool get isLockedOut {
@@ -200,12 +195,11 @@ class AdminAuthService {
     await box.delete(_sessionKey);
   }
 
-  /// Generate secure session token
+  /// Generate cryptographically secure session token
   static String _generateSessionToken() {
-    final timestamp = DateTime.now().millisecondsSinceEpoch;
-    final random = DateTime.now().microsecondsSinceEpoch;
-    final raw = '$timestamp-$random-admin';
-    return _hashPin(raw).substring(0, 32);
+    final random = Random.secure();
+    final bytes = List<int>.generate(32, (_) => random.nextInt(256));
+    return sha256.convert(bytes).toString().substring(0, 32);
   }
 
   /// Clear all admin data (for testing/reset)

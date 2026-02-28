@@ -13,6 +13,7 @@ import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import '../providers/app_providers.dart';
 import 'storage_service.dart';
+import 'l10n_service.dart';
 
 /// Voice input service for journal entries.
 /// Wraps the speech_to_text package with a clean API for the app.
@@ -55,9 +56,7 @@ class VoiceJournalService {
     } catch (e) {
       _isInitialized = false;
       _errorController.add(
-        _isEn
-            ? 'Failed to initialize voice input'
-            : 'Sesli giriş başlatılamadı',
+        L10nService.get('data.services.voice_journal.failed_to_initialize_voice_input', _isEn ? AppLanguage.en : AppLanguage.tr),
       );
     }
   }
@@ -92,9 +91,7 @@ class VoiceJournalService {
   Future<bool> startListening({String? localeId}) async {
     if (!_isInitialized) {
       _errorController.add(
-        _isEn
-            ? 'Voice input is not available on this device.'
-            : 'Bu cihazda sesli giriş kullanılamıyor.',
+        L10nService.get('data.services.voice_journal.voice_input_is_not_available_on_this_dev', _isEn ? AppLanguage.en : AppLanguage.tr),
       );
       return false;
     }
@@ -121,7 +118,7 @@ class VoiceJournalService {
       return true;
     } catch (e) {
       _errorController.add(
-        _isEn ? 'Could not start listening' : 'Dinleme başlatılamadı',
+        L10nService.get('data.services.voice_journal.could_not_start_listening', _isEn ? AppLanguage.en : AppLanguage.tr),
       );
       return false;
     }
@@ -135,9 +132,7 @@ class VoiceJournalService {
       await _speech.stop();
     } catch (e) {
       _errorController.add(
-        _isEn
-            ? 'Error stopping voice input'
-            : 'Sesli giriş durdurulurken hata oluştu',
+        L10nService.get('data.services.voice_journal.error_stopping_voice_input', _isEn ? AppLanguage.en : AppLanguage.tr),
       );
     } finally {
       _isListening = false;

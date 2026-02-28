@@ -4,8 +4,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../data/providers/app_providers.dart';
 
-/// Subtle social proof strip: "Join 2,400+ journalers" or entry milestone.
-/// Shows based on the user's own entry count to estimate community size.
+/// Personal milestone strip showing the user's own journaling progress.
 class SocialProofStrip extends ConsumerWidget {
   final bool isEn;
   final bool isDark;
@@ -25,9 +24,7 @@ class SocialProofStrip extends ConsumerWidget {
     // Don't show until user has at least 1 entry
     if (entryCount < 1) return const SizedBox.shrink();
 
-    // Community size grows with user engagement (anchoring effect)
-    final communitySize = _estimateCommunitySize(entryCount);
-    final formatted = _formatNumber(communitySize);
+    final message = _milestoneMessage(entryCount);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
@@ -35,7 +32,7 @@ class SocialProofStrip extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
-            Icons.people_outline_rounded,
+            Icons.auto_awesome_rounded,
             size: 14,
             color: isDark
                 ? AppColors.textMuted.withValues(alpha: 0.6)
@@ -44,9 +41,7 @@ class SocialProofStrip extends ConsumerWidget {
           const SizedBox(width: 6),
           Flexible(
             child: Text(
-              isEn
-                  ? 'Join $formatted+ journalers reflecting daily'
-                  : '$formatted+ günlük tutucu ile birlikte',
+              message,
               style: AppTypography.subtitle(
                 fontSize: 12,
                 color: isDark
@@ -62,24 +57,24 @@ class SocialProofStrip extends ConsumerWidget {
     );
   }
 
-  /// Anchored community size that grows as the user engages more.
-  /// Creates a believable, growing social proof number.
-  int _estimateCommunitySize(int userEntries) {
-    if (userEntries < 3) return 1200;
-    if (userEntries < 7) return 2400;
-    if (userEntries < 14) return 4800;
-    if (userEntries < 30) return 8500;
-    if (userEntries < 60) return 12000;
-    return 18000;
-  }
-
-  String _formatNumber(int n) {
-    if (n >= 1000) {
-      final k = n / 1000;
-      return k == k.roundToDouble()
-          ? '${k.round()}K'
-          : '${k.toStringAsFixed(1)}K';
+  /// Personal milestone message based on user's own entry count.
+  String _milestoneMessage(int count) {
+    if (isEn) {
+      if (count >= 100) return '$count entries — your story keeps growing';
+      if (count >= 50) return '$count entries — half a hundred reflections';
+      if (count >= 30) return '$count entries — a month of insight';
+      if (count >= 14) return '$count entries — two weeks of reflection';
+      if (count >= 7) return '$count entries — one week strong';
+      if (count >= 3) return '$count entries — building a habit';
+      return '$count entry — your journey begins';
+    } else {
+      if (count >= 100) return '$count kayıt — hikayen büyümeye devam ediyor';
+      if (count >= 50) return '$count kayıt — elli yansıma';
+      if (count >= 30) return '$count kayıt — bir aylık içgörü';
+      if (count >= 14) return '$count kayıt — iki haftalık yansıma';
+      if (count >= 7) return '$count kayıt — bir hafta güçlü';
+      if (count >= 3) return '$count kayıt — alışkanlık oluşuyor';
+      return '$count kayıt — yolculuğun başlıyor';
     }
-    return '$n';
   }
 }

@@ -18,6 +18,7 @@ import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../data/services/l10n_service.dart';
 
 class WellnessDetailScreen extends ConsumerWidget {
   const WellnessDetailScreen({super.key});
@@ -41,7 +42,7 @@ class WellnessDetailScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: isEn ? 'Wellness Score' : 'Sağlık Skoru',
+                  title: L10nService.get('wellness.wellness_detail.wellness_score', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -58,9 +59,7 @@ class WellnessDetailScreen extends ConsumerWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  isEn
-                                      ? 'Could not load. Your local data is unaffected.'
-                                      : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                                  L10nService.get('wellness.wellness_detail.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
                                   textAlign: TextAlign.center,
                                   style: AppTypography.decorativeScript(
                                     fontSize: 14,
@@ -79,7 +78,7 @@ class WellnessDetailScreen extends ConsumerWidget {
                                     color: AppColors.starGold,
                                   ),
                                   label: Text(
-                                    isEn ? 'Retry' : 'Tekrar Dene',
+                                    L10nService.get('wellness.wellness_detail.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                                     style: AppTypography.elegantAccent(
                                       fontSize: 13,
                                       fontWeight: FontWeight.w600,
@@ -165,12 +164,10 @@ class WellnessDetailScreen extends ConsumerWidget {
   Widget _buildEmptyState(BuildContext context, bool isDark, bool isEn) {
     return PremiumEmptyState(
       icon: Icons.favorite_outline,
-      title: isEn ? 'Your wellness score is building' : 'Sağlık skorun oluşuyor',
-      description: isEn
-          ? 'Log a cycle entry, gratitude, or sleep to see your cycle score'
-          : 'Döngü skorunu görmek için döngü kaydı, şükran veya uyku kaydı oluştur',
+      title: L10nService.get('wellness.wellness_detail.your_wellness_score_is_building', isEn ? AppLanguage.en : AppLanguage.tr),
+      description: L10nService.get('wellness.wellness_detail.log_a_cycle_entry_gratitude_or_sleep_to', isEn ? AppLanguage.en : AppLanguage.tr),
       gradientVariant: GradientTextVariant.aurora,
-      ctaLabel: isEn ? 'Write Journal Entry' : 'Günlük Kaydı Yaz',
+      ctaLabel: L10nService.get('wellness.wellness_detail.write_journal_entry', isEn ? AppLanguage.en : AppLanguage.tr),
       onCtaPressed: () => context.go(Routes.journal),
     );
   }
@@ -183,7 +180,7 @@ class WellnessDetailScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'How your score works' : 'Skorun nasıl çalışır',
+            L10nService.get('wellness.wellness_detail.how_your_score_works', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 17,
@@ -193,29 +190,27 @@ class WellnessDetailScreen extends ConsumerWidget {
           const SizedBox(height: 10),
           _TipRow(
             icon: Icons.edit_note,
-            text: isEn
-                ? 'Journal rating = 40% of score'
-                : 'Günlük puanı = skorun %40\'ı',
+            text: L10nService.get('wellness.wellness_detail.journal_rating_40_of_score', isEn ? AppLanguage.en : AppLanguage.tr),
             isDark: isDark,
           ),
           _TipRow(
             icon: Icons.favorite_border,
-            text: isEn ? 'Gratitude items = 15%' : 'Şükran maddeleri = %15',
+            text: L10nService.get('wellness.wellness_detail.gratitude_items_15', isEn ? AppLanguage.en : AppLanguage.tr),
             isDark: isDark,
           ),
           _TipRow(
             icon: Icons.playlist_add_check,
-            text: isEn ? 'Ritual completion = 15%' : 'Ritüel tamamlama = %15',
+            text: L10nService.get('wellness.wellness_detail.ritual_completion_15', isEn ? AppLanguage.en : AppLanguage.tr),
             isDark: isDark,
           ),
           _TipRow(
             icon: Icons.local_fire_department,
-            text: isEn ? 'Streak consistency = 15%' : 'Tutarlılık serisi = %15',
+            text: L10nService.get('wellness.wellness_detail.streak_consistency_15', isEn ? AppLanguage.en : AppLanguage.tr),
             isDark: isDark,
           ),
           _TipRow(
             icon: Icons.bedtime_outlined,
-            text: isEn ? 'Sleep quality = 15%' : 'Uyku kalitesi = %15',
+            text: L10nService.get('wellness.wellness_detail.sleep_quality_15', isEn ? AppLanguage.en : AppLanguage.tr),
             isDark: isDark,
           ),
         ],
@@ -288,7 +283,7 @@ class _ScoreHero extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            isEn ? 'out of 100' : '100 üzerinden',
+            L10nService.get('wellness.wellness_detail.out_of_100', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.elegantAccent(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -308,11 +303,11 @@ class _ScoreHero extends StatelessWidget {
   }
 
   String _scoreLabel(int score, bool isEn) {
-    if (score >= 80) return isEn ? 'Thriving' : 'Harika';
-    if (score >= 60) return isEn ? 'Good Balance' : 'İyi Denge';
-    if (score >= 40) return isEn ? 'Room to Grow' : 'Gelişim Alanı';
-    if (score >= 20) return isEn ? 'Getting Started' : 'Başlangıç';
-    return isEn ? 'Get Started' : 'Başla';
+    if (score >= 80) return L10nService.get('wellness.wellness_detail.thriving', isEn ? AppLanguage.en : AppLanguage.tr);
+    if (score >= 60) return L10nService.get('wellness.wellness_detail.good_balance', isEn ? AppLanguage.en : AppLanguage.tr);
+    if (score >= 40) return L10nService.get('wellness.wellness_detail.room_to_grow', isEn ? AppLanguage.en : AppLanguage.tr);
+    if (score >= 20) return L10nService.get('wellness.wellness_detail.getting_started', isEn ? AppLanguage.en : AppLanguage.tr);
+    return L10nService.get('wellness.wellness_detail.get_started', isEn ? AppLanguage.en : AppLanguage.tr);
   }
 }
 
@@ -336,7 +331,7 @@ class _BreakdownDetail extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            isEn ? 'Score Breakdown' : 'Skor Dağılımı',
+            L10nService.get('wellness.wellness_detail.score_breakdown', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.displayFont.copyWith(
               fontSize: 17,
               fontWeight: FontWeight.w600,
@@ -437,15 +432,15 @@ class _BreakdownDetail extends StatelessWidget {
   String _categoryLabel(String category, bool isEn) {
     switch (category) {
       case 'journal':
-        return isEn ? 'Journal Rating' : 'Günlük Puanı';
+        return L10nService.get('wellness.wellness_detail.journal_rating', isEn ? AppLanguage.en : AppLanguage.tr);
       case 'gratitude':
-        return isEn ? 'Gratitude Practice' : 'Şükran Pratiği';
+        return L10nService.get('wellness.wellness_detail.gratitude_practice', isEn ? AppLanguage.en : AppLanguage.tr);
       case 'rituals':
-        return isEn ? 'Ritual Completion' : 'Ritüel Tamamlama';
+        return L10nService.get('wellness.wellness_detail.ritual_completion', isEn ? AppLanguage.en : AppLanguage.tr);
       case 'streak':
-        return isEn ? 'Streak Consistency' : 'Tutarlılık Serisi';
+        return L10nService.get('wellness.wellness_detail.streak_consistency', isEn ? AppLanguage.en : AppLanguage.tr);
       case 'sleep':
-        return isEn ? 'Sleep Quality' : 'Uyku Kalitesi';
+        return L10nService.get('wellness.wellness_detail.sleep_quality', isEn ? AppLanguage.en : AppLanguage.tr);
       default:
         return category;
     }
@@ -484,7 +479,7 @@ class _WeeklyTrendChart extends StatelessWidget {
           Row(
             children: [
               Text(
-                isEn ? 'Weekly Trend' : 'Haftalık Trend',
+                L10nService.get('wellness.wellness_detail.weekly_trend', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
@@ -587,11 +582,11 @@ class _WeeklyTrendChart extends StatelessWidget {
   String _trendLabel(String direction, bool isEn) {
     switch (direction) {
       case 'up':
-        return isEn ? 'Improving' : 'Yükseliyor';
+        return L10nService.get('wellness.wellness_detail.improving', isEn ? AppLanguage.en : AppLanguage.tr);
       case 'down':
-        return isEn ? 'Declining' : 'Düşüyor';
+        return L10nService.get('wellness.wellness_detail.declining', isEn ? AppLanguage.en : AppLanguage.tr);
       default:
-        return isEn ? 'Stable' : 'Sabit';
+        return L10nService.get('wellness.wellness_detail.stable', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 

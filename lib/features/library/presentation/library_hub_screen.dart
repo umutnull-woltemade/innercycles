@@ -22,6 +22,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../data/services/l10n_service.dart';
 
 class LibraryHubScreen extends ConsumerWidget {
   const LibraryHubScreen({super.key});
@@ -92,7 +93,7 @@ class LibraryHubScreen extends ConsumerWidget {
             ),
             slivers: [
               GlassSliverAppBar(
-                title: isEn ? 'Library' : 'K\u00fct\u00fcphane',
+                title: L10nService.get('library.library_hub.library', isEn ? AppLanguage.en : AppLanguage.tr),
                 showBackButton: false,
               ),
               SliverPadding(
@@ -101,9 +102,7 @@ class LibraryHubScreen extends ConsumerWidget {
                   delegate: SliverChildListDelegate([
                     // Header text
                     Text(
-                      isEn
-                          ? 'Your personal data vault'
-                          : 'Ki\u015fisel veri kasan',
+                      L10nService.get('library.library_hub.your_personal_data_vault', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.subtitle(
                         fontSize: 14,
                         color: isDark

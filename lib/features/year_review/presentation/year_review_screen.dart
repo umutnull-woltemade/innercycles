@@ -32,6 +32,7 @@ import '../../../shared/widgets/premium_empty_state.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../data/services/l10n_service.dart';
 
 // ══════════════════════════════════════════════════════════════════════════
 // SCREEN-SPECIFIC PROVIDERS
@@ -104,7 +105,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: isEn ? 'Year Synthesis' : 'Yıl Sentezi',
+                  title: L10nService.get('year_review.year_review.year_synthesis', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
                 // Year selector
                 SliverToBoxAdapter(
@@ -117,9 +118,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              isEn
-                                  ? 'Could not load. Your local data is unaffected.'
-                                  : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                              L10nService.get('year_review.year_review.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
                               textAlign: TextAlign.center,
                               style: AppTypography.subtitle(
                                 color: isDark
@@ -137,7 +136,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                                 color: AppColors.starGold,
                               ),
                               label: Text(
-                                isEn ? 'Retry' : 'Tekrar Dene',
+                                L10nService.get('year_review.year_review.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,
@@ -186,9 +185,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                isEn
-                                    ? 'Could not load. Your local data is unaffected.'
-                                    : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                                L10nService.get('year_review.year_review.could_not_load_your_local_data_is_unaffe_1', isEn ? AppLanguage.en : AppLanguage.tr),
                                 textAlign: TextAlign.center,
                                 style: AppTypography.subtitle(
                                   color: isDark
@@ -206,7 +203,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                                   color: AppColors.starGold,
                                 ),
                                 label: Text(
-                                  isEn ? 'Retry' : 'Tekrar Dene',
+                                  L10nService.get('year_review.year_review.retry_1', isEn ? AppLanguage.en : AppLanguage.tr),
                                   style: AppTypography.elegantAccent(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
@@ -390,10 +387,8 @@ class _EmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.auto_awesome,
-      title: isEn ? 'Your Year Synthesis is ready' : 'Yıl senteziniz hazır',
-      description: isEn
-          ? 'Keep recording to activate your annual summary. You need at least 7 entries in a year.'
-          : 'Yıllık sentezinizi etkinleştirmek için kayıt yapmaya devam edin. Bir yılda en az 7 kayıt gerekli.',
+      title: L10nService.get('year_review.year_review.your_year_synthesis_is_ready', isEn ? AppLanguage.en : AppLanguage.tr),
+      description: L10nService.get('year_review.year_review.keep_recording_to_activate_your_annual_s', isEn ? AppLanguage.en : AppLanguage.tr),
       gradientVariant: GradientTextVariant.gold,
     );
   }
@@ -409,14 +404,10 @@ class _NotEnoughData extends StatelessWidget {
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.lock_outline,
-      title: isEn
-          ? 'Not enough entries for this year'
-          : 'Bu yıl için yeterli kayıt yok',
-      description: isEn
-          ? 'You need at least 7 journal entries to generate a review.'
-          : 'Değerlendirme oluşturmak için en az 7 kayıt gerekli.',
+      title: L10nService.get('year_review.year_review.not_enough_entries_for_this_year', isEn ? AppLanguage.en : AppLanguage.tr),
+      description: L10nService.get('year_review.year_review.you_need_at_least_7_journal_entries_to_g', isEn ? AppLanguage.en : AppLanguage.tr),
       gradientVariant: GradientTextVariant.gold,
-      ctaLabel: isEn ? 'Start Journaling' : 'Günlük Yazmaya Başla',
+      ctaLabel: L10nService.get('year_review.year_review.start_journaling', isEn ? AppLanguage.en : AppLanguage.tr),
       onCtaPressed: () => context.go(Routes.journal),
     );
   }
@@ -475,7 +466,7 @@ class _HeroCard extends StatelessWidget {
             children: [
               _StatColumn(
                 value: '${review.totalEntries}',
-                label: isEn ? 'Entries' : 'Kayıt',
+                label: L10nService.get('year_review.year_review.entries', isEn ? AppLanguage.en : AppLanguage.tr),
                 isDark: isDark,
               ),
               Container(
@@ -487,7 +478,7 @@ class _HeroCard extends StatelessWidget {
               ),
               _StatColumn(
                 value: '${review.totalJournalingDays}',
-                label: isEn ? 'Days' : 'Gün',
+                label: L10nService.get('year_review.year_review.days', isEn ? AppLanguage.en : AppLanguage.tr),
                 isDark: isDark,
               ),
               Container(
@@ -499,7 +490,7 @@ class _HeroCard extends StatelessWidget {
               ),
               _StatColumn(
                 value: review.averageMood.toStringAsFixed(1),
-                label: isEn ? 'Avg Mood' : 'Ort Ruh Hali',
+                label: L10nService.get('year_review.year_review.avg_mood', isEn ? AppLanguage.en : AppLanguage.tr),
                 isDark: isDark,
               ),
               Container(
@@ -511,7 +502,7 @@ class _HeroCard extends StatelessWidget {
               ),
               _StatColumn(
                 value: '${review.streakBest}',
-                label: isEn ? 'Best Streak' : 'En İyi Seri',
+                label: L10nService.get('year_review.year_review.best_streak', isEn ? AppLanguage.en : AppLanguage.tr),
                 isDark: isDark,
               ),
             ],
@@ -616,7 +607,7 @@ class _MoodJourneyCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'Mood Trajectory' : 'Ruh Hali Seyri',
+            L10nService.get('year_review.year_review.mood_trajectory', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,
@@ -625,9 +616,7 @@ class _MoodJourneyCard extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            isEn
-                ? 'Monthly average mood (1-5)'
-                : 'Aylık ortalama ruh hali (1-5)',
+            L10nService.get('year_review.year_review.monthly_average_mood_15', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.elegantAccent(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -751,7 +740,7 @@ class _FocusAreasCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'Focus Areas' : 'Odak Alanları',
+            L10nService.get('year_review.year_review.focus_areas', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,
@@ -760,7 +749,7 @@ class _FocusAreasCard extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            isEn ? 'Time spent per area' : 'Alan başına harcanan zaman',
+            L10nService.get('year_review.year_review.time_spent_per_area', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.elegantAccent(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -844,10 +833,10 @@ class _GrowthScoreCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final score = review.growthScore;
     final label = score >= 70
-        ? (isEn ? 'Strong Growth' : 'Güçlü Gelişim')
+        ? (L10nService.get('year_review.year_review.strong_growth', isEn ? AppLanguage.en : AppLanguage.tr))
         : score >= 50
-        ? (isEn ? 'Steady Progress' : 'İstikrarlı İlerleme')
-        : (isEn ? 'Room to Grow' : 'Gelişim Alanı');
+        ? (L10nService.get('year_review.year_review.steady_progress', isEn ? AppLanguage.en : AppLanguage.tr))
+        : (L10nService.get('year_review.year_review.room_to_grow', isEn ? AppLanguage.en : AppLanguage.tr));
 
     return GlassPanel(
       elevation: GlassElevation.g2,
@@ -856,7 +845,7 @@ class _GrowthScoreCard extends StatelessWidget {
       child: Column(
         children: [
           GradientText(
-            isEn ? 'Growth Score' : 'Gelişim Skoru',
+            L10nService.get('year_review.year_review.growth_score', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,
@@ -865,9 +854,7 @@ class _GrowthScoreCard extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            isEn
-                ? 'Based on your mood improvement trend'
-                : 'Ruh hali iyileşme eğilimi bazında',
+            L10nService.get('year_review.year_review.based_on_your_mood_improvement_trend', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.elegantAccent(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -1023,7 +1010,7 @@ class _HighlightsCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'Highlights' : 'Öne Çıkanlar',
+            L10nService.get('year_review.year_review.highlights', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,
@@ -1193,9 +1180,7 @@ class _HighlightsCard extends StatelessWidget {
           results.add(
             _Highlight(
               icon: Icons.star,
-              text: isEn
-                  ? 'You journaled every single day!'
-                  : 'Her gün günlük tuttunuz!',
+              text: L10nService.get('year_review.year_review.you_journaled_every_single_day', isEn ? AppLanguage.en : AppLanguage.tr),
               color: AppColors.starGold,
             ),
           );
@@ -1298,7 +1283,7 @@ class _ShareableSummaryCard extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           GradientOutlinedButton(
-            label: isEn ? 'Share Summary' : 'Özeti Paylaş',
+            label: L10nService.get('year_review.year_review.share_summary', isEn ? AppLanguage.en : AppLanguage.tr),
             icon: Icons.share,
             variant: GradientTextVariant.gold,
             expanded: true,

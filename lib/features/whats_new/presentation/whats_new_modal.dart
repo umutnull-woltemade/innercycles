@@ -16,6 +16,8 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../data/services/l10n_service.dart';
+import '../../../data/providers/app_providers.dart';
 
 // ---------------------------------------------------------------------------
 // Data model for a single feature highlight
@@ -223,9 +225,7 @@ class _WhatsNewSheet extends StatelessWidget {
                   .slideY(begin: -0.2, duration: 400.ms, curve: Curves.easeOut),
               const SizedBox(height: 4),
               Text(
-                isEn
-                    ? 'Latest features and improvements'
-                    : 'Son \u00f6zellikler ve iyile\u015ftirmeler',
+                L10nService.get('whats_new.whats_new.latest_features_and_improvements', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.decorativeScript(
                   fontSize: 14,
                   color: subtextColor,
@@ -277,7 +277,7 @@ class _WhatsNewSheet extends StatelessWidget {
                                 ),
                               ),
                               child: Text(
-                                isEn ? 'Got it' : 'Anla\u015f\u0131ld\u0131',
+                                L10nService.get('whats_new.whats_new.got_it', isEn ? AppLanguage.en : AppLanguage.tr),
                                 style: AppTypography.subtitle(
                                   fontSize: 16,
                                   color: Colors.white,

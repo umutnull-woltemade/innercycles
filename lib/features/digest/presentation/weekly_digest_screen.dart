@@ -38,6 +38,7 @@ import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
+import '../../../data/services/l10n_service.dart';
 
 class WeeklyDigestScreen extends ConsumerStatefulWidget {
   const WeeklyDigestScreen({super.key});
@@ -76,9 +77,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
       final file = File('${tempDir.path}/innercycles_weekly_digest.png');
       await file.writeAsBytes(bytes);
 
-      final shareText = isEn
-          ? 'My weekly debrief from InnerCycles #InnerCycles #WeeklyDebrief'
-          : 'InnerCycles haftalık değerlendirmem #InnerCycles #HaftalıkDeğerlendirme';
+      final shareText = L10nService.get('digest.weekly_digest.my_weekly_debrief_from_innercycles_inner', isEn ? AppLanguage.en : AppLanguage.tr);
 
       await SharePlus.instance.share(
         ShareParams(files: [XFile(file.path)], text: shareText),
@@ -224,19 +223,15 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: isEn ? 'Weekly Debrief' : 'Haftalık Değerlendirme',
+            title: L10nService.get('digest.weekly_digest.weekly_debrief', isEn ? AppLanguage.en : AppLanguage.tr),
           ),
           SliverFillRemaining(
             hasScrollBody: false,
             child: Center(
               child: PremiumEmptyState(
                 icon: Icons.calendar_view_week_outlined,
-                title: isEn
-                    ? 'No entries this week yet'
-                    : 'Bu hafta henüz kayıt yok',
-                description: isEn
-                    ? 'Start journaling to see your weekly digest with mood trends, patterns, and insights.'
-                    : 'Ruh hali eğilimleri, kalıplar ve içgörüler içeren haftalık özetini görmek için günlük tutmaya başla.',
+                title: L10nService.get('digest.weekly_digest.no_entries_this_week_yet', isEn ? AppLanguage.en : AppLanguage.tr),
+                description: L10nService.get('digest.weekly_digest.start_journaling_to_see_your_weekly_dige', isEn ? AppLanguage.en : AppLanguage.tr),
                 gradientVariant: GradientTextVariant.gold,
               ),
             ),
@@ -263,19 +258,17 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: isEn ? 'Weekly Debrief' : 'Haftalık Değerlendirme',
+            title: L10nService.get('digest.weekly_digest.weekly_debrief_1', isEn ? AppLanguage.en : AppLanguage.tr),
             actions: [
               Semantics(
                 button: true,
-                label: isEn
-                    ? 'Share weekly debrief'
-                    : 'Haftalık değerlendirmeyi paylaş',
+                label: L10nService.get('digest.weekly_digest.share_weekly_debrief', isEn ? AppLanguage.en : AppLanguage.tr),
                 child: IconButton(
                   onPressed: _isSharing ? null : () => _shareDigest(isEn),
                   icon: _isSharing
                       ? const CupertinoActivityIndicator(radius: 10)
                       : const Icon(Icons.ios_share, color: AppColors.starGold),
-                  tooltip: isEn ? 'Share' : 'Paylaş',
+                  tooltip: L10nService.get('digest.weekly_digest.share', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
               ),
             ],
@@ -443,7 +436,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
             const SizedBox(width: 12),
             Expanded(
               child: Text(
-                isEn ? 'View Monthly Wrapped' : 'Aylık Özeti Gör',
+                L10nService.get('digest.weekly_digest.view_monthly_wrapped', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.modernAccent(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -496,7 +489,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         child: Column(
           children: [
             Text(
-              isEn ? 'Week of' : 'Haftasi',
+              L10nService.get('digest.weekly_digest.week_of', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.elegantAccent(
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
@@ -539,7 +532,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     IconData comparisonIcon;
 
     if (!hasComparison) {
-      comparisonText = isEn ? 'First week tracked' : 'İlk takip edilen hafta';
+      comparisonText = L10nService.get('digest.weekly_digest.first_week_tracked', isEn ? AppLanguage.en : AppLanguage.tr);
       comparisonColor = AppColors.starGold;
       comparisonIcon = Icons.star_outline;
     } else if (diff > 0) {
@@ -555,7 +548,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
       comparisonColor = AppColors.warning;
       comparisonIcon = Icons.arrow_downward;
     } else {
-      comparisonText = isEn ? 'Same as last week' : 'Geçen haftayla aynı';
+      comparisonText = L10nService.get('digest.weekly_digest.same_as_last_week', isEn ? AppLanguage.en : AppLanguage.tr);
       comparisonColor = AppColors.starGold;
       comparisonIcon = Icons.horizontal_rule;
     }
@@ -606,7 +599,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GradientText(
-                    isEn ? 'Entries This Week' : 'Bu Haftaki Kayitlar',
+                    L10nService.get('digest.weekly_digest.entries_this_week', isEn ? AppLanguage.en : AppLanguage.tr),
                     variant: GradientTextVariant.gold,
                     style: AppTypography.elegantAccent(
                       fontSize: 15,
@@ -654,7 +647,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         Expanded(
           child: _StatCard(
             value: data.avgMoodRating.toStringAsFixed(1),
-            label: isEn ? 'Avg Rating' : 'Ort Puan',
+            label: L10nService.get('digest.weekly_digest.avg_rating', isEn ? AppLanguage.en : AppLanguage.tr),
             sublabel: '/5',
             icon: Icons.mood,
             color: _moodColor(data.avgMoodRating),
@@ -666,8 +659,8 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         Expanded(
           child: _StatCard(
             value: '${data.streakDays}',
-            label: isEn ? 'Day Streak' : 'Gün Serisi',
-            sublabel: isEn ? 'days' : 'gün',
+            label: L10nService.get('digest.weekly_digest.day_streak', isEn ? AppLanguage.en : AppLanguage.tr),
+            sublabel: L10nService.get('digest.weekly_digest.days', isEn ? AppLanguage.en : AppLanguage.tr),
             icon: Icons.local_fire_department,
             color: AppColors.streakOrange,
             isDark: isDark,
@@ -723,7 +716,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    isEn ? 'Top Focus Area' : 'En Çok Odaklanılan Alan',
+                    L10nService.get('digest.weekly_digest.top_focus_area', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w500,
@@ -816,7 +809,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                   Row(
                     children: [
                       GradientText(
-                        isEn ? 'Mood Trend' : 'Ruh Hali Egilimi',
+                        L10nService.get('digest.weekly_digest.mood_trend', isEn ? AppLanguage.en : AppLanguage.tr),
                         variant: GradientTextVariant.gold,
                         style: AppTypography.elegantAccent(
                           fontSize: 15,
@@ -911,7 +904,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    isEn ? 'Best Day' : 'En İyi Gün',
+                    L10nService.get('digest.weekly_digest.best_day', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w500,
@@ -978,7 +971,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            isEn ? 'Focus Area Breakdown' : 'Odak Alani Dagilimi',
+            L10nService.get('digest.weekly_digest.focus_area_breakdown', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,
               color: isDark
@@ -1109,7 +1102,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
             ),
             const SizedBox(height: 12),
             Text(
-              isEn ? 'Weekly Insight' : 'Haftalık İçgörü',
+              L10nService.get('digest.weekly_digest.weekly_insight', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.elegantAccent(
                 fontSize: 13,
                 fontWeight: FontWeight.w600,

@@ -9,6 +9,8 @@ import '../../../../data/services/referral_service.dart';
 import '../../../../shared/widgets/app_symbol.dart';
 import '../../../../shared/widgets/gradient_text.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../data/services/l10n_service.dart';
+import '../../../../data/providers/app_providers.dart';
 
 class ProfileReferralSection extends ConsumerWidget {
   final bool isDark;
@@ -28,7 +30,7 @@ class ProfileReferralSection extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn ? 'Invite & Earn' : 'Davet Et & Kazan',
+          L10nService.get('profile.profile_referral.invite_earn', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 17,
@@ -39,7 +41,7 @@ class ProfileReferralSection extends ConsumerWidget {
         const SizedBox(height: AppConstants.spacingMd),
         Semantics(
           button: true,
-          label: isEn ? 'Open referral program' : 'Davet programını aç',
+          label: L10nService.get('profile.profile_referral.open_referral_program', isEn ? AppLanguage.en : AppLanguage.tr),
           child: GestureDetector(
             onTap: () => context.push(Routes.referralProgram),
             behavior: HitTestBehavior.opaque,
@@ -55,9 +57,7 @@ class ProfileReferralSection extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          isEn
-                              ? 'Invite Friends, Get Premium'
-                              : 'Arkadaşlarını Davet Et, Premium Kazan',
+                          L10nService.get('profile.profile_referral.invite_friends_get_premium', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.subtitle(
                             fontSize: 14,
                             color: isDark
@@ -76,9 +76,7 @@ class ProfileReferralSection extends ConsumerWidget {
                                   ? (isEn
                                       ? '$count friend${count == 1 ? '' : 's'} invited'
                                       : '$count arkadaş davet edildi')
-                                  : (isEn
-                                      ? '7 days free for each friend'
-                                      : 'Her arkadaş için 7 gün ücretsiz'),
+                                  : (L10nService.get('profile.profile_referral.7_days_free_for_each_friend', isEn ? AppLanguage.en : AppLanguage.tr)),
                               style: AppTypography.subtitle(
                                 fontSize: 12,
                                 color: isDark

@@ -6,6 +6,8 @@
 // ============================================================================
 
 import '../models/journal_entry.dart';
+import '../services/l10n_service.dart';
+import '../providers/app_providers.dart';
 
 /// The dominant emotional trajectory for the year
 enum EmotionalArc {
@@ -16,28 +18,22 @@ enum EmotionalArc {
   String label(bool isEn) {
     switch (this) {
       case EmotionalArc.rising:
-        return isEn ? 'Rising' : 'Yükselen';
+        return L10nService.get('data.models.wrapped_data.rising', isEn ? AppLanguage.en : AppLanguage.tr);
       case EmotionalArc.steady:
-        return isEn ? 'Steady' : 'Dengeli';
+        return L10nService.get('data.models.wrapped_data.steady', isEn ? AppLanguage.en : AppLanguage.tr);
       case EmotionalArc.transforming:
-        return isEn ? 'Transforming' : 'Dönüşen';
+        return L10nService.get('data.models.wrapped_data.transforming', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 
   String description(bool isEn) {
     switch (this) {
       case EmotionalArc.rising:
-        return isEn
-            ? 'Your emotional trajectory has been climbing upward'
-            : 'Duygusal yörüngen yukarı doğru tırmanıyor';
+        return L10nService.get('data.models.wrapped_data.your_emotional_trajectory_has_been_climb', isEn ? AppLanguage.en : AppLanguage.tr);
       case EmotionalArc.steady:
-        return isEn
-            ? 'You maintained a grounded, stable emotional rhythm'
-            : 'İstikrarlı ve dengeli bir duygusal ritim sürdürdün';
+        return L10nService.get('data.models.wrapped_data.you_maintained_a_grounded_stable_emotion', isEn ? AppLanguage.en : AppLanguage.tr);
       case EmotionalArc.transforming:
-        return isEn
-            ? 'Your emotional landscape has been shifting and evolving'
-            : 'Duygusal manzaran değişim ve evrim içinde';
+        return L10nService.get('data.models.wrapped_data.your_emotional_landscape_has_been_shifti', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 }

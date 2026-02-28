@@ -22,6 +22,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../data/services/l10n_service.dart';
 
 enum BreathingPreset {
   relaxation478,
@@ -259,7 +260,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: isEn ? 'Guided Breathwork' : 'Rehberli Nefes',
+                  title: L10nService.get('breathing.breathing_timer.guided_breathwork', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
                 SliverFillRemaining(
                   hasScrollBody: false,
@@ -294,9 +295,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                               ? (isEn
                                     ? '${currentPhase.labelEn()}, $_phaseCountdown seconds'
                                     : '${currentPhase.labelTr()}, $_phaseCountdown saniye')
-                              : (isEn
-                                    ? 'Breathing circle, tap Start to begin'
-                                    : 'Nefes çemberi, başlamak için Başla\'ya dokunun'),
+                              : (L10nService.get('breathing.breathing_timer.breathing_circle_tap_start_to_begin', isEn ? AppLanguage.en : AppLanguage.tr)),
                           liveRegion: _isRunning,
                           child: AnimatedBuilder(
                             animation: _breathController,
@@ -414,7 +413,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                                   ),
                                   const SizedBox(width: 4),
                                   Text(
-                                    isEn ? 'Share session' : 'Oturumu paylaş',
+                                    L10nService.get('breathing.breathing_timer.share_session', isEn ? AppLanguage.en : AppLanguage.tr),
                                     style: AppTypography.elegantAccent(
                                       fontSize: 12,
                                       color: AppColors.starGold.withValues(alpha: 0.7),
@@ -459,7 +458,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                                 ),
                                 child: Center(
                                   child: Text(
-                                    isEn ? 'Stop' : 'Durdur',
+                                    L10nService.get('breathing.breathing_timer.stop', isEn ? AppLanguage.en : AppLanguage.tr),
                                     style: AppTypography.modernAccent(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600,
@@ -472,7 +471,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                           )
                         else
                           GradientButton(
-                            label: isEn ? 'Start Breathing' : 'Nefese Başla',
+                            label: L10nService.get('breathing.breathing_timer.start_breathing', isEn ? AppLanguage.en : AppLanguage.tr),
                             onPressed: _start,
                             expanded: true,
                             gradient: LinearGradient(

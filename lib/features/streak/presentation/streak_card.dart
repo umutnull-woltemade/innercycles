@@ -13,6 +13,7 @@ import '../../../data/services/haptic_service.dart';
 import '../../../data/services/streak_service.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../data/services/l10n_service.dart';
 
 /// Streak card widget for the home screen
 class StreakCard extends ConsumerWidget {
@@ -85,7 +86,7 @@ class _StreakCardContent extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          isEn ? 'Reflection Streak' : 'Yansıma Serisi',
+                          L10nService.get('streak.streak.reflection_streak', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.displayFont.copyWith(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -173,7 +174,7 @@ class _StreakCardContent extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Semantics(
-                    label: isEn ? 'Share your streak' : 'Serini paylaş',
+                    label: L10nService.get('streak.streak.share_your_streak', isEn ? AppLanguage.en : AppLanguage.tr),
                     button: true,
                     child: GestureDetector(
                     onTap: () {
@@ -194,7 +195,7 @@ class _StreakCardContent extends StatelessWidget {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          isEn ? 'Share streak' : 'Seriyi paylaş',
+                          L10nService.get('streak.streak.share_streak', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.elegantAccent(
                             fontSize: 13,
                             color: AppColors.starGold.withValues(alpha: 0.7),
@@ -426,7 +427,7 @@ class _StreakChain extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              isEn ? '14-Day Chain' : '14 Günlük Zincir',
+              L10nService.get('streak.streak.14day_chain', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.elegantAccent(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
@@ -618,7 +619,7 @@ class StreakMilestoneCelebration {
 
                   // Milestone number
                   Text(
-                        '$milestone ${isEn ? 'Days' : 'Gün'}',
+                        '$milestone ${L10nService.get('streak.streak.days', isEn ? AppLanguage.en : AppLanguage.tr)}',
                         style: AppTypography.displayFont.copyWith(
                           fontSize: 32,
                           fontWeight: FontWeight.w800,
@@ -632,7 +633,7 @@ class StreakMilestoneCelebration {
                   const SizedBox(height: 4),
 
                   Text(
-                    isEn ? 'Milestone Reached' : 'Hedefe Ulaşıldı',
+                    L10nService.get('streak.streak.milestone_reached', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -674,7 +675,7 @@ class StreakMilestoneCelebration {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          isEn ? 'Share Achievement' : 'Başarını Paylaş',
+                          L10nService.get('streak.streak.share_achievement', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.elegantAccent(
                             fontSize: 15,
                             color: AppColors.starGold.withValues(alpha: 0.7),
@@ -687,7 +688,7 @@ class StreakMilestoneCelebration {
 
                   // CTA
                   GradientButton.gold(
-                    label: isEn ? 'Keep Going' : 'Devam Et',
+                    label: L10nService.get('streak.streak.keep_going', isEn ? AppLanguage.en : AppLanguage.tr),
                     onPressed: () => Navigator.pop(ctx),
                     expanded: true,
                   ).animate().fadeIn(delay: 600.ms, duration: 400.ms),

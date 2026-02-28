@@ -29,6 +29,7 @@ import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../data/services/review_service.dart';
+import '../../../data/services/l10n_service.dart';
 
 class MonthlyReflectionScreen extends ConsumerStatefulWidget {
   const MonthlyReflectionScreen({super.key});
@@ -121,7 +122,7 @@ class _MonthlyReflectionScreenState
                         color: AppColors.starGold,
                       ),
                       label: Text(
-                        isEn ? 'Retry' : 'Tekrar Dene',
+                        L10nService.get('journal.monthly_reflection.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -146,7 +147,7 @@ class _MonthlyReflectionScreenState
                   ),
                   slivers: [
                     GlassSliverAppBar(
-                      title: isEn ? 'Monthly Reflection' : 'Aylık Yansıma',
+                      title: L10nService.get('journal.monthly_reflection.monthly_reflection', isEn ? AppLanguage.en : AppLanguage.tr),
                       actions: [
                         if (summary.totalEntries > 0)
                           IconButton(
@@ -171,7 +172,7 @@ class _MonthlyReflectionScreenState
                               color: AppColors.starGold,
                               size: 20,
                             ),
-                            tooltip: isEn ? 'Share monthly summary' : 'Aylık özeti paylaş',
+                            tooltip: L10nService.get('journal.monthly_reflection.share_monthly_summary', isEn ? AppLanguage.en : AppLanguage.tr),
                           ),
                       ],
                     ),
@@ -295,9 +296,7 @@ class _MonthlyReflectionScreenState
                     ),
                     const SizedBox(height: 8),
                     GradientText(
-                      isEn
-                          ? 'Access your full monthly report'
-                          : 'Aylık raporunun tamamına eriş',
+                      L10nService.get('journal.monthly_reflection.access_your_full_monthly_report', isEn ? AppLanguage.en : AppLanguage.tr),
                       variant: GradientTextVariant.gold,
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 14,
@@ -306,7 +305,7 @@ class _MonthlyReflectionScreenState
                     ),
                     const SizedBox(height: 12),
                     GradientButton.gold(
-                      label: isEn ? 'See Full Report' : 'Raporun Tamamını Gör',
+                      label: L10nService.get('journal.monthly_reflection.see_full_report', isEn ? AppLanguage.en : AppLanguage.tr),
                       onPressed: () => showContextualPaywall(
                         context,
                         ref,
@@ -372,7 +371,7 @@ class _MonthlyReflectionScreenState
                 }
               });
             },
-            tooltip: isEn ? 'Previous month' : 'Önceki ay',
+            tooltip: L10nService.get('journal.monthly_reflection.previous_month', isEn ? AppLanguage.en : AppLanguage.tr),
             icon: Icon(
               Icons.chevron_left,
               color: isDark
@@ -405,7 +404,7 @@ class _MonthlyReflectionScreenState
                 });
               }
             },
-            tooltip: isEn ? 'Next month' : 'Sonraki ay',
+            tooltip: L10nService.get('journal.monthly_reflection.next_month', isEn ? AppLanguage.en : AppLanguage.tr),
             icon: Icon(
               Icons.chevron_right,
               color: isDark
@@ -462,9 +461,7 @@ class _MonthlyReflectionScreenState
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  isEn
-                      ? 'This month is waiting for your first reflection'
-                      : 'Bu ay ilk yansımanı bekliyor',
+                  L10nService.get('journal.monthly_reflection.this_month_is_waiting_for_your_first_ref', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.decorativeScript(
                     fontSize: 14,
                     color: isDark
@@ -477,7 +474,7 @@ class _MonthlyReflectionScreenState
                   onTap: () => context.go(Routes.journal),
                   behavior: HitTestBehavior.opaque,
                   child: Text(
-                    isEn ? 'Write your first entry →' : 'İlk kaydını yaz →',
+                    L10nService.get('journal.monthly_reflection.write_your_first_entry', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.modernAccent(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -493,7 +490,7 @@ class _MonthlyReflectionScreenState
             _buildHighlight(
               context,
               isDark,
-              isEn ? 'Strongest area' : 'En güçlü alan',
+              L10nService.get('journal.monthly_reflection.strongest_area', isEn ? AppLanguage.en : AppLanguage.tr),
               isEn
                   ? summary.strongestArea!.displayNameEn
                   : summary.strongestArea!.displayNameTr,
@@ -507,7 +504,7 @@ class _MonthlyReflectionScreenState
             _buildHighlight(
               context,
               isDark,
-              isEn ? 'Needs attention' : 'Dikkat gerektirebilir',
+              L10nService.get('journal.monthly_reflection.needs_attention', isEn ? AppLanguage.en : AppLanguage.tr),
               isEn
                   ? summary.weakestArea!.displayNameEn
                   : summary.weakestArea!.displayNameTr,
@@ -519,7 +516,7 @@ class _MonthlyReflectionScreenState
           _buildHighlight(
             context,
             isDark,
-            isEn ? 'Current streak' : 'Mevcut seri',
+            L10nService.get('journal.monthly_reflection.current_streak', isEn ? AppLanguage.en : AppLanguage.tr),
             isEn
                 ? '${summary.currentStreak} days'
                 : '${summary.currentStreak} gün',
@@ -612,7 +609,7 @@ class _MonthlyReflectionScreenState
           ),
           const SizedBox(height: 16),
           Text(
-            isEn ? 'Weekly Prompts' : 'Haftalık Sorular',
+            L10nService.get('journal.monthly_reflection.weekly_prompts', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.elegantAccent(
               fontSize: 12,
               fontWeight: FontWeight.w600,
@@ -695,7 +692,7 @@ class _MonthlyReflectionScreenState
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'Area Breakdown' : 'Alan Dağılımı',
+            L10nService.get('journal.monthly_reflection.area_breakdown', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 14,

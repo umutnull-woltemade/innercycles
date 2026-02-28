@@ -36,6 +36,7 @@ import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
+import '../../../data/services/l10n_service.dart';
 
 // ============================================================================
 // ANNUAL REPORT DATA MODEL
@@ -198,9 +199,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
       final file = File('${tempDir.path}/innercycles_annual_report.png');
       await file.writeAsBytes(bytes);
 
-      final shareText = isEn
-          ? 'My year in review with InnerCycles! #InnerCycles #YearInReview'
-          : 'InnerCycles ile yıllık raporum! #InnerCycles #YıllıkRapor';
+      final shareText = L10nService.get('journal.annual_report.my_year_in_review_with_innercycles_inner', isEn ? AppLanguage.en : AppLanguage.tr);
 
       await SharePlus.instance.share(
         ShareParams(files: [XFile(file.path)], text: shareText),
@@ -247,21 +246,13 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
 
   String _motivationalMessage(_AnnualReportData data, bool isEn) {
     if (data.totalEntries >= 200) {
-      return isEn
-          ? 'An extraordinary year of self-reflection. Your dedication to understanding yourself has been remarkable.'
-          : 'Olağanüstü bir öz-düşünme yılı. Kendini anlamaya olan bağlılığın dikkat çekiciydi.';
+      return L10nService.get('journal.annual_report.an_extraordinary_year_of_selfreflection', isEn ? AppLanguage.en : AppLanguage.tr);
     } else if (data.totalEntries >= 100) {
-      return isEn
-          ? 'You showed up consistently for yourself this year. Your entries reveal meaningful patterns of progress.'
-          : 'Bu yıl kendin için sürekli olarak orda oldun. Kayıtların anlamlı gelişim kalıpları ortaya koyuyor.';
+      return L10nService.get('journal.annual_report.you_showed_up_consistently_for_yourself', isEn ? AppLanguage.en : AppLanguage.tr);
     } else if (data.totalEntries >= 30) {
-      return isEn
-          ? 'Every entry you wrote was a step toward knowing yourself better. Your patterns tell a story worth celebrating.'
-          : 'Yazdığın her kayıt kendini daha iyi tanımaya doğru bir adımdı. Kalıpların kutlanmaya değer bir hikaye anlatıyor.';
+      return L10nService.get('journal.annual_report.every_entry_you_wrote_was_a_step_toward', isEn ? AppLanguage.en : AppLanguage.tr);
     } else {
-      return isEn
-          ? 'You began building self-awareness this year. Each entry matters, and your data is just getting started.'
-          : 'Bu yıl öz-farkındalık oluşturmaya başladınız. Her kayıt önemli ve verileriniz daha yeni şekillenmeye başlıyor.';
+      return L10nService.get('journal.annual_report.you_began_building_selfawareness_this_ye', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 
@@ -286,7 +277,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  isEn ? 'Couldn\'t load your annual report' : 'Yıllık raporun yüklenemedi',
+                  L10nService.get('journal.annual_report.couldnt_load_your_annual_report', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textSecondary
@@ -303,7 +294,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                     color: AppColors.starGold,
                   ),
                   label: Text(
-                    isEn ? 'Retry' : 'Tekrar Dene',
+                    L10nService.get('journal.annual_report.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -344,7 +335,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(title: isEn ? 'Year Synthesis' : 'Yıl Sentezi'),
+          GlassSliverAppBar(title: L10nService.get('journal.annual_report.year_synthesis', isEn ? AppLanguage.en : AppLanguage.tr)),
           SliverFillRemaining(
             hasScrollBody: false,
             child: Center(
@@ -353,11 +344,9 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                 title: isEn
                     ? 'Start journaling to unlock your $year story'
                     : '$year hikayeni açmak için yazmaya başla',
-                description: isEn
-                    ? 'Your year-in-review will come alive with each entry you write.'
-                    : 'Yıllık raporun yazdığın her kayıtla hayat bulacak.',
+                description: L10nService.get('journal.annual_report.your_yearinreview_will_come_alive_with_e', isEn ? AppLanguage.en : AppLanguage.tr),
                 gradientVariant: GradientTextVariant.gold,
-                ctaLabel: isEn ? 'Write First Entry' : 'İlk Kaydı Yaz',
+                ctaLabel: L10nService.get('journal.annual_report.write_first_entry', isEn ? AppLanguage.en : AppLanguage.tr),
                 onCtaPressed: () => context.go(Routes.journal),
               ),
             ),
@@ -384,14 +373,14 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: isEn ? 'Year Synthesis' : 'Yıl Sentezi',
+            title: L10nService.get('journal.annual_report.year_synthesis_1', isEn ? AppLanguage.en : AppLanguage.tr),
             actions: [
               IconButton(
                 onPressed: _isSharing ? null : () => _shareReport(isEn),
                 icon: _isSharing
                     ? const CupertinoActivityIndicator(radius: 10)
                     : const Icon(Icons.ios_share, color: AppColors.starGold),
-                tooltip: isEn ? 'Share' : 'Paylaş',
+                tooltip: L10nService.get('journal.annual_report.share', isEn ? AppLanguage.en : AppLanguage.tr),
               ),
             ],
           ),
@@ -524,7 +513,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
           ),
           const SizedBox(height: 8),
           GradientText(
-            isEn ? 'Your Year Synthesis' : 'Senin Yıl Sentezin',
+            L10nService.get('journal.annual_report.your_year_synthesis', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.elegantAccent(
               fontSize: 16,
@@ -538,14 +527,14 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
             children: [
               _StatBadge(
                 value: '${report.totalEntries}',
-                label: isEn ? 'Entries' : 'Kayıt',
+                label: L10nService.get('journal.annual_report.entries', isEn ? AppLanguage.en : AppLanguage.tr),
                 color: AppColors.starGold,
                 isDark: isDark,
               ),
               const SizedBox(width: 16),
               _StatBadge(
                 value: report.overallAverageRating.toStringAsFixed(1),
-                label: isEn ? 'Avg Rating' : 'Ort Puan',
+                label: L10nService.get('journal.annual_report.avg_rating', isEn ? AppLanguage.en : AppLanguage.tr),
                 color: AppColors.auroraStart,
                 isDark: isDark,
               ),
@@ -581,7 +570,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
               ),
               const SizedBox(width: 8),
               GradientText(
-                isEn ? 'Top Focus Areas' : 'En Çok Odaklanılan Alanlar',
+                L10nService.get('journal.annual_report.top_focus_areas', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
@@ -708,7 +697,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
               ),
               const SizedBox(width: 8),
               GradientText(
-                isEn ? 'Average Rating by Month' : 'Aylik Ortalama Puanlar',
+                L10nService.get('journal.annual_report.average_rating_by_month', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.aurora,
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
@@ -839,7 +828,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isEn ? 'Longest Streak' : 'En Uzun Seri',
+                  L10nService.get('journal.annual_report.longest_streak', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.elegantAccent(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
@@ -908,7 +897,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isEn ? 'Most Active Month' : 'En Aktif Ay',
+                  L10nService.get('journal.annual_report.most_active_month', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.elegantAccent(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,

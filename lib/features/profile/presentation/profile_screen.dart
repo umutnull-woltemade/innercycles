@@ -475,7 +475,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               Icon(Icons.auto_awesome, color: AppColors.starGold, size: 20),
               const SizedBox(width: AppConstants.spacingSm),
               GradientText(
-                isEn ? 'Your Progress' : 'İlerlemen',
+                L10nService.get('profile.profile.your_progress', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 18,
@@ -486,9 +486,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            isEn
-                ? 'Explore your patterns, track your growth, and discover insights from your journal entries.'
-                : 'Örüntülerini keşfet, gelişimini takip et ve günlük kayıtlarından içgörüler elde et.',
+            L10nService.get('profile.profile.explore_your_patterns_track_your_growth', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.subtitle(
               fontSize: 12,
               color: isDark
@@ -500,7 +498,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           const SizedBox(height: AppConstants.spacingLg),
           // Navigate to Signal Dashboard (CORE Insights)
           GradientOutlinedButton(
-            label: isEn ? 'View Insights' : 'İçgörüleri Gör',
+            label: L10nService.get('profile.profile.view_insights', isEn ? AppLanguage.en : AppLanguage.tr),
             icon: Icons.insights,
             variant: GradientTextVariant.aurora,
             expanded: true,

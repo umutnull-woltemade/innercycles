@@ -135,8 +135,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       }
 
       // MOBILE: Guard - redirect to onboarding if not completed
-      // TODO: TEMP SKIP FOR SCREENSHOT - REVERT THIS
-      final onboardingDone = true; // StorageService.loadOnboardingComplete();
+      final onboardingDone = StorageService.loadOnboardingComplete();
       if (!onboardingDone) {
         return Routes.onboarding;
       }
@@ -313,16 +312,14 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.birthdayAgenda,
         builder: (context, state) => const BirthdayAgendaScreen(),
       ),
-      GoRoute(
-        path: Routes.birthdayDetail,
-        builder: (context, state) {
-          final id = state.pathParameters['id'] ?? '';
-          return BirthdayDetailScreen(contactId: id);
-        },
-      ),
+      // Literal routes MUST come before parametric :id route
       GoRoute(
         path: Routes.birthdayAdd,
         builder: (context, state) => const BirthdayAddScreen(),
+      ),
+      GoRoute(
+        path: Routes.birthdayImport,
+        builder: (context, state) => const BirthdayImportScreen(),
       ),
       GoRoute(
         path: Routes.birthdayEdit,
@@ -332,8 +329,11 @@ final routerProvider = Provider<GoRouter>((ref) {
         },
       ),
       GoRoute(
-        path: Routes.birthdayImport,
-        builder: (context, state) => const BirthdayImportScreen(),
+        path: Routes.birthdayDetail,
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          return BirthdayDetailScreen(contactId: id);
+        },
       ),
       GoRoute(
         path: Routes.cycleSync,

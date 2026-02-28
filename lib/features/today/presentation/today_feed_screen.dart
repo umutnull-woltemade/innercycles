@@ -34,6 +34,7 @@ import 'widgets/on_this_day_banner.dart';
 import 'widgets/promotional_banner_stack.dart';
 import 'widgets/weekly_focus_progress.dart';
 import 'widgets/social_proof_strip.dart';
+import '../../../data/services/l10n_service.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
   const TodayFeedScreen({super.key});
@@ -121,7 +122,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  isEn ? 'Welcome back!' : 'Tekrar hoş geldin!',
+                  L10nService.get('today.today_feed.welcome_back', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 22,
                     fontWeight: FontWeight.w700,
@@ -158,7 +159,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        isEn ? 'Write an Entry' : 'Bir Kayıt Yaz',
+                        L10nService.get('today.today_feed.write_an_entry', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.modernAccent(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -172,7 +173,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 GestureDetector(
                   onTap: () => Navigator.pop(ctx),
                   child: Text(
-                    isEn ? 'Maybe later' : 'Belki sonra',
+                    L10nService.get('today.today_feed.maybe_later', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 14,
                       color: isDark
@@ -219,12 +220,12 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     final label = milestone >= 365
-        ? (isEn ? '1 Year' : '1 Y\u0131l')
+        ? (L10nService.get('today.today_feed.1_year', isEn ? AppLanguage.en : AppLanguage.tr))
         : milestone >= 180
-            ? (isEn ? '6 Months' : '6 Ay')
+            ? (L10nService.get('today.today_feed.6_months', isEn ? AppLanguage.en : AppLanguage.tr))
             : milestone >= 90
-                ? (isEn ? '3 Months' : '3 Ay')
-                : (isEn ? '1 Month' : '1 Ay');
+                ? (L10nService.get('today.today_feed.3_months', isEn ? AppLanguage.en : AppLanguage.tr))
+                : (L10nService.get('today.today_feed.1_month', isEn ? AppLanguage.en : AppLanguage.tr));
 
     final emoji = milestone >= 365
         ? '\u{1F389}'
@@ -338,7 +339,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                           ),
                           child: Center(
                             child: Text(
-                              isEn ? 'Continue' : 'Devam Et',
+                              L10nService.get('today.today_feed.continue', isEn ? AppLanguage.en : AppLanguage.tr),
                               style: AppTypography.modernAccent(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,

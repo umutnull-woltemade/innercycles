@@ -204,9 +204,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                   const Text('\u{1F525}', style: TextStyle(fontSize: 18)),
                   const SizedBox(width: 8),
                   Text(
-                    isEn
-                        ? '50% OFF — New User Special'
-                        : '%50 İNDİRİM — Yeni Kullanıcı Özel',
+                    L10nService.get('premium.premium.50_off_new_user_special', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.displayFont.copyWith(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -220,7 +218,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    isEn ? 'Offer expires in ' : 'Teklif bitiyor: ',
+                    L10nService.get('premium.premium.offer_expires_in', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.subtitle(
                       fontSize: 13,
                       color: AppColors.textSecondary,
@@ -244,6 +242,16 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                 style: AppTypography.subtitle(
                   fontSize: 12,
                   color: AppColors.textMuted,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                isEn
+                    ? 'Auto-renews at \$29.99/yr after introductory period'
+                    : 'Tanıtım döneminden sonra \$29.99/yıl olarak otomatik yenilenir',
+                style: AppTypography.subtitle(
+                  fontSize: 10,
+                  color: AppColors.textMuted.withValues(alpha: 0.7),
                 ),
               ),
             ],
@@ -506,15 +514,17 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
               : AppColors.lightTextMuted.withValues(alpha: 0.7),
         ),
         const SizedBox(width: 6),
-        Text(
-          isEn
-              ? 'Trusted by thousands of journalers'
-              : 'Binlerce günlük yazarı tarafından tercih ediliyor',
-          style: AppTypography.elegantAccent(
-            fontSize: 14,
-            color: isDark
-                ? AppColors.textMuted.withValues(alpha: 0.7)
-                : AppColors.lightTextMuted.withValues(alpha: 0.7),
+        Flexible(
+          child: Text(
+            L10nService.get('premium.premium.trusted_by_thousands_of_journalers', isEn ? AppLanguage.en : AppLanguage.tr),
+            style: AppTypography.elegantAccent(
+              fontSize: 14,
+              color: isDark
+                  ? AppColors.textMuted.withValues(alpha: 0.7)
+                  : AppColors.lightTextMuted.withValues(alpha: 0.7),
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
       ],
@@ -723,15 +733,19 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                     child: Center(
                       child: premiumState.isLoading
                           ? const CosmicLoadingIndicator(size: 24)
-                          : Text(
-                              L10nService.get(
-                                'premium.paywall.continue_pro',
-                                language,
-                              ),
-                              style: AppTypography.modernAccent(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
+                          : FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                L10nService.get(
+                                  'premium.paywall.continue_pro',
+                                  language,
+                                ),
+                                style: AppTypography.modernAccent(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                maxLines: 1,
                               ),
                             ),
                     ),
@@ -759,41 +773,53 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
     final monthlyLabel =
         experiment?.monthlyPriceLabel ??
         L10nService.get('premium.price_monthly_crossed', language);
+    final anchorText = L10nService.get('premium.price_anchor', language);
+    final anchorSuffix = anchorText.contains('—')
+        ? anchorText.split('—').last.trim()
+        : anchorText;
     final yearlyLabel = experiment != null
-        ? '${experiment.yearlyMonthlyEquivalent} — ${L10nService.get('premium.price_anchor', language).split('—').last.trim()}'
-        : L10nService.get('premium.price_anchor', language);
+        ? '${experiment.yearlyMonthlyEquivalent} — $anchorSuffix'
+        : anchorText;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          monthlyLabel,
-          style:
-              AppTypography.subtitle(
-                fontSize: 14,
-                color: AppColors.textMuted,
-              ).copyWith(
-                decoration: TextDecoration.lineThrough,
-                decorationColor: AppColors.textMuted,
-              ),
+        Flexible(
+          child: Text(
+            monthlyLabel,
+            style:
+                AppTypography.subtitle(
+                  fontSize: 14,
+                  color: AppColors.textMuted,
+                ).copyWith(
+                  decoration: TextDecoration.lineThrough,
+                  decorationColor: AppColors.textMuted,
+                ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
         const SizedBox(width: 12),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          decoration: BoxDecoration(
-            color: AppColors.starGold.withValues(alpha: 0.15),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: AppColors.starGold.withValues(alpha: 0.3),
+        Flexible(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: AppColors.starGold.withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: AppColors.starGold.withValues(alpha: 0.3),
+              ),
             ),
-          ),
-          child: Text(
-            yearlyLabel,
-            style: AppTypography.elegantAccent(
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
-              color: AppColors.starGold,
-              letterSpacing: 1.0,
+            child: Text(
+              yearlyLabel,
+              style: AppTypography.elegantAccent(
+                fontSize: 14,
+                fontWeight: FontWeight.w700,
+                color: AppColors.starGold,
+                letterSpacing: 1.0,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ),
@@ -982,7 +1008,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
     final language = ref.watch(languageProvider);
     final isEn = language == AppLanguage.en;
     return Semantics(
-      label: isEn ? 'Restore Purchases' : 'Satın Alımları Geri Yükle',
+      label: L10nService.get('premium.premium.restore_purchases', isEn ? AppLanguage.en : AppLanguage.tr),
       button: true,
       child: TextButton(
       onPressed: premiumState.isLoading
@@ -1012,11 +1038,15 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                 );
               }
             },
-      child: Text(
-        L10nService.get('premium.restore_purchases', language),
-        style: AppTypography.elegantAccent(
-          color: AppColors.textSecondary,
-        ).copyWith(decoration: TextDecoration.underline),
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Text(
+          L10nService.get('premium.restore_purchases', language),
+          style: AppTypography.elegantAccent(
+            color: AppColors.textSecondary,
+          ).copyWith(decoration: TextDecoration.underline),
+          maxLines: 1,
+        ),
       ),
     ));
   }
@@ -1041,7 +1071,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Semantics(
-                label: isEn ? 'Privacy Policy' : 'Gizlilik Politikası',
+                label: L10nService.get('premium.premium.privacy_policy', isEn ? AppLanguage.en : AppLanguage.tr),
                 link: true,
                 child: GestureDetector(
                   onTap: () =>
@@ -1080,7 +1110,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                 ),
               ),
               Semantics(
-                label: isEn ? 'Terms of Service' : 'Kullanım Şartları',
+                label: L10nService.get('premium.premium.terms_of_service', isEn ? AppLanguage.en : AppLanguage.tr),
                 link: true,
                 child: GestureDetector(
                   onTap: () =>

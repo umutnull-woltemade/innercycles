@@ -36,6 +36,7 @@ import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
+import '../../../data/services/l10n_service.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // GROWTH DASHBOARD SCREEN
@@ -104,7 +105,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                       icon: Icon(Icons.refresh_rounded,
                           size: 16, color: AppColors.starGold),
                       label: Text(
-                        isEn ? 'Retry' : 'Tekrar Dene',
+                        L10nService.get('growth.growth_dashboard.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -175,7 +176,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(title: isEn ? 'Your Growth' : 'Büyümen'),
+          GlassSliverAppBar(title: L10nService.get('growth.growth_dashboard.your_growth', isEn ? AppLanguage.en : AppLanguage.tr)),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
@@ -399,7 +400,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          isEn ? 'Growth Score' : 'Büyüme Puanı',
+                          L10nService.get('growth.growth_dashboard.growth_score', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.elegantAccent(
                             fontSize: 13,
                             color: Colors.white.withValues(alpha: 0.85),
@@ -431,21 +432,13 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
 
   String _getScoreMessage(int score, bool isEn) {
     if (score >= 80) {
-      return isEn
-          ? 'Outstanding! You are deeply committed to your growth.'
-          : 'Muhteşem! Büyümene çok bağlısın.';
+      return L10nService.get('growth.growth_dashboard.outstanding_you_are_deeply_committed_to', isEn ? AppLanguage.en : AppLanguage.tr);
     } else if (score >= 60) {
-      return isEn
-          ? 'Great progress! Keep building your habits.'
-          : 'Harika ilerleme! Alışkanlıklarını geliştirmeye devam et.';
+      return L10nService.get('growth.growth_dashboard.great_progress_keep_building_your_habits', isEn ? AppLanguage.en : AppLanguage.tr);
     } else if (score >= 30) {
-      return isEn
-          ? 'Good start! Every entry brings you closer.'
-          : 'İyi bir başlangıç! Her kayıt seni yaklaştırıyor.';
+      return L10nService.get('growth.growth_dashboard.good_start_every_entry_brings_you_closer', isEn ? AppLanguage.en : AppLanguage.tr);
     } else {
-      return isEn
-          ? 'Begin your progress. One entry at a time.'
-          : 'Yolculuğuna başla. Her seferinde bir kayıt.';
+      return L10nService.get('growth.growth_dashboard.begin_your_progress_one_entry_at_a_time', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 
@@ -486,7 +479,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
               ),
               const SizedBox(width: 8),
               Text(
-                isEn ? 'Days' : 'Gün',
+                L10nService.get('growth.growth_dashboard.days', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
@@ -612,7 +605,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn ? 'Milestones' : 'Kilometre Taşları',
+          L10nService.get('growth.growth_dashboard.milestones', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.modernAccent(
             fontSize: 15,
@@ -767,13 +760,13 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     return [
       _Milestone(
         icon: Icons.edit_note,
-        title: isEn ? 'First Entry' : 'İlk Kayıt',
+        title: L10nService.get('growth.growth_dashboard.first_entry', isEn ? AppLanguage.en : AppLanguage.tr),
         unlocked: entries.isNotEmpty,
-        progressHint: isEn ? '1 entry to activate' : '1 kayıt gerekli',
+        progressHint: L10nService.get('growth.growth_dashboard.1_entry_to_activate', isEn ? AppLanguage.en : AppLanguage.tr),
       ),
       _Milestone(
         icon: Icons.local_fire_department,
-        title: isEn ? '7-Day Observer' : '7 Günlük Gözlemci',
+        title: L10nService.get('growth.growth_dashboard.7day_observer', isEn ? AppLanguage.en : AppLanguage.tr),
         unlocked: maxStreak >= 7,
         progressHint: maxStreak < 7
             ? isEn
@@ -783,7 +776,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.auto_graph,
-        title: isEn ? 'Pattern Seeker' : 'Kalıp Arayıcısı',
+        title: L10nService.get('growth.growth_dashboard.pattern_seeker', isEn ? AppLanguage.en : AppLanguage.tr),
         unlocked: entries.length >= 7,
         progressHint: entries.length < 7
             ? isEn
@@ -793,7 +786,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.nights_stay,
-        title: isEn ? 'Dream Logger' : 'Rüya Kaydedici',
+        title: L10nService.get('growth.growth_dashboard.dream_logger', isEn ? AppLanguage.en : AppLanguage.tr),
         unlocked: dreamCount >= 3,
         progressHint: dreamCount < 3
             ? isEn
@@ -803,7 +796,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.emoji_events,
-        title: isEn ? 'Challenge Completer' : 'Görev Tamamlayıcı',
+        title: L10nService.get('growth.growth_dashboard.challenge_completer', isEn ? AppLanguage.en : AppLanguage.tr),
         unlocked: completedChallenges >= 3,
         progressHint: completedChallenges < 3
             ? isEn
@@ -813,7 +806,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.favorite,
-        title: isEn ? 'Gratitude Streak' : 'Şükran Serisi',
+        title: L10nService.get('growth.growth_dashboard.gratitude_streak', isEn ? AppLanguage.en : AppLanguage.tr),
         unlocked: gratitudeCount >= 7,
         progressHint: gratitudeCount < 7
             ? isEn
@@ -823,7 +816,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.emoji_events,
-        title: isEn ? '30-Day Streak' : '30 Günlük Seri',
+        title: L10nService.get('growth.growth_dashboard.30day_streak', isEn ? AppLanguage.en : AppLanguage.tr),
         unlocked: maxStreak >= 30,
         progressHint: maxStreak < 30
             ? isEn
@@ -833,7 +826,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.psychology,
-        title: isEn ? 'Self Aware' : 'Öz Farkındalık',
+        title: L10nService.get('growth.growth_dashboard.self_aware', isEn ? AppLanguage.en : AppLanguage.tr),
         unlocked: focusAreasCoveredThisMonth >= 5,
         progressHint: focusAreasCoveredThisMonth < 5
             ? isEn
@@ -843,9 +836,9 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.share,
-        title: isEn ? 'Story Teller' : 'Hikaye Anlatıcısı',
+        title: L10nService.get('growth.growth_dashboard.story_teller', isEn ? AppLanguage.en : AppLanguage.tr),
         unlocked: false,
-        progressHint: isEn ? 'Share your progress' : 'İlerlemeni paylaş',
+        progressHint: L10nService.get('growth.growth_dashboard.share_your_progress', isEn ? AppLanguage.en : AppLanguage.tr),
       ),
     ];
   }
@@ -858,37 +851,37 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     final tools = [
       _GrowthTool(
         icon: Icons.fingerprint_outlined,
-        title: isEn ? 'Your Archetype' : 'Arketipiniz',
-        subtitle: isEn ? 'Emotional profile' : 'Duygusal profil',
+        title: L10nService.get('growth.growth_dashboard.your_archetype', isEn ? AppLanguage.en : AppLanguage.tr),
+        subtitle: L10nService.get('growth.growth_dashboard.emotional_profile', isEn ? AppLanguage.en : AppLanguage.tr),
         route: Routes.archetype,
         color: AppColors.amethyst,
       ),
       _GrowthTool(
         icon: Icons.visibility_off_outlined,
-        title: isEn ? 'Blind Spots' : 'Kör Noktalar',
-        subtitle: isEn ? 'Hidden patterns' : 'Gizli kalıplar',
+        title: L10nService.get('growth.growth_dashboard.blind_spots', isEn ? AppLanguage.en : AppLanguage.tr),
+        subtitle: L10nService.get('growth.growth_dashboard.hidden_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
         route: Routes.blindSpot,
         color: AppColors.brandPink,
       ),
       // compatibility/relationship reflection removed (killed feature)
       _GrowthTool(
         icon: Icons.military_tech_outlined,
-        title: isEn ? 'Milestones' : 'Rozetler',
-        subtitle: isEn ? 'Achievements' : 'Başarılar',
+        title: L10nService.get('growth.growth_dashboard.milestones_1', isEn ? AppLanguage.en : AppLanguage.tr),
+        subtitle: L10nService.get('growth.growth_dashboard.achievements', isEn ? AppLanguage.en : AppLanguage.tr),
         route: Routes.milestones,
         color: AppColors.starGold,
       ),
       _GrowthTool(
         icon: Icons.lightbulb_outline_rounded,
-        title: isEn ? 'Micro-Habits' : 'Mikro Alışkanlıklar',
-        subtitle: isEn ? '56 habits to try' : '56 deneyecek alışkanlık',
+        title: L10nService.get('growth.growth_dashboard.microhabits', isEn ? AppLanguage.en : AppLanguage.tr),
+        subtitle: L10nService.get('growth.growth_dashboard.56_habits_to_try', isEn ? AppLanguage.en : AppLanguage.tr),
         route: Routes.habitSuggestions,
         color: AppColors.success,
       ),
       _GrowthTool(
         icon: Icons.psychology_alt_outlined,
-        title: isEn ? 'Insights' : 'İçgörüler',
-        subtitle: isEn ? '36 modules' : '36 modül',
+        title: L10nService.get('growth.growth_dashboard.insights', isEn ? AppLanguage.en : AppLanguage.tr),
+        subtitle: L10nService.get('growth.growth_dashboard.36_modules', isEn ? AppLanguage.en : AppLanguage.tr),
         route: Routes.insightsDiscovery,
         color: AppColors.auroraEnd,
       ),
@@ -898,7 +891,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn ? 'Explore Growth Tools' : 'Büyüme Araçlarını Keşfet',
+          L10nService.get('growth.growth_dashboard.explore_growth_tools', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.aurora,
           style: AppTypography.modernAccent(
             fontSize: 15,
@@ -1032,7 +1025,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'This Month' : 'Bu Ay',
+            L10nService.get('growth.growth_dashboard.this_month', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.modernAccent(
               fontSize: 15,
@@ -1043,7 +1036,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           const SizedBox(height: AppConstants.spacingLg),
           _buildSummaryRow(
             icon: Icons.edit_note,
-            label: isEn ? 'Entries this month' : 'Bu ayın kayıtları',
+            label: L10nService.get('growth.growth_dashboard.entries_this_month', isEn ? AppLanguage.en : AppLanguage.tr),
             value: '${monthEntries.length}',
             color: AppColors.auroraStart,
             isDark: isDark,
@@ -1051,27 +1044,27 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           const SizedBox(height: AppConstants.spacingMd),
           _buildSummaryRow(
             icon: Icons.category,
-            label: isEn ? 'Most tracked area' : 'En çok takip edilen alan',
+            label: L10nService.get('growth.growth_dashboard.most_tracked_area', isEn ? AppLanguage.en : AppLanguage.tr),
             value: mostTracked != null
                 ? (isEn ? mostTracked.displayNameEn : mostTracked.displayNameTr)
-                : (isEn ? 'None yet' : 'Henüz yok'),
+                : (L10nService.get('growth.growth_dashboard.none_yet', isEn ? AppLanguage.en : AppLanguage.tr)),
             color: AppColors.starGold,
             isDark: isDark,
           ),
           const SizedBox(height: AppConstants.spacingMd),
           _buildSummaryRow(
             icon: Icons.sentiment_satisfied_alt,
-            label: isEn ? 'Average mood' : 'Ortalama ruh hali',
+            label: L10nService.get('growth.growth_dashboard.average_mood', isEn ? AppLanguage.en : AppLanguage.tr),
             value: monthEntries.isNotEmpty
                 ? '${avgRating.toStringAsFixed(1)} / 5'
-                : (isEn ? 'N/A' : 'Yok'),
+                : (L10nService.get('growth.growth_dashboard.na', isEn ? AppLanguage.en : AppLanguage.tr)),
             color: AppColors.success,
             isDark: isDark,
           ),
           const SizedBox(height: AppConstants.spacingMd),
           _buildSummaryRow(
             icon: Icons.nights_stay,
-            label: isEn ? 'Dreams logged' : 'Kaydedilen rüyalar',
+            label: L10nService.get('growth.growth_dashboard.dreams_logged', isEn ? AppLanguage.en : AppLanguage.tr),
             value: '$dreamCount',
             color: AppColors.amethyst,
             isDark: isDark,
@@ -1079,7 +1072,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           const SizedBox(height: AppConstants.spacingMd),
           _buildSummaryRow(
             icon: Icons.emoji_events,
-            label: isEn ? 'Challenges completed' : 'Tamamlanan görevler',
+            label: L10nService.get('growth.growth_dashboard.challenges_completed', isEn ? AppLanguage.en : AppLanguage.tr),
             value: '$completedChallenges',
             color: AppColors.celestialGold,
             isDark: isDark,
@@ -1087,7 +1080,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           const SizedBox(height: AppConstants.spacingMd),
           _buildSummaryRow(
             icon: Icons.favorite,
-            label: isEn ? 'Gratitude entries' : 'Şükran kayıtları',
+            label: L10nService.get('growth.growth_dashboard.gratitude_entries', isEn ? AppLanguage.en : AppLanguage.tr),
             value: '$gratitudeCount',
             color: AppColors.softCoral,
             isDark: isDark,
@@ -1144,7 +1137,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     bool isEn,
   ) {
     return GradientButton.gold(
-      label: isEn ? 'Share Your Progress' : 'İlerlemeni Paylaş',
+      label: L10nService.get('growth.growth_dashboard.share_your_progress_1', isEn ? AppLanguage.en : AppLanguage.tr),
       icon: Icons.share,
       onPressed: () => _shareProgress(score, streak, totalEntries, isEn),
       expanded: true,

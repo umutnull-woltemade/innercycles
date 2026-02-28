@@ -29,6 +29,7 @@ import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../data/services/l10n_service.dart';
 
 class PatternsScreen extends ConsumerWidget {
   const PatternsScreen({super.key});
@@ -70,7 +71,7 @@ class PatternsScreen extends ConsumerWidget {
                         color: AppColors.starGold,
                       ),
                       label: Text(
-                        isEn ? 'Retry' : 'Tekrar Dene',
+                        L10nService.get('journal.patterns.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -214,9 +215,7 @@ class PatternsScreen extends ConsumerWidget {
                             ),
                             const SizedBox(height: 28),
                             GradientText(
-                              isEn
-                                  ? 'Patterns Unlock After 7 Entries'
-                                  : '7 Kayıttan Sonra Kalıplar Açılır',
+                              L10nService.get('journal.patterns.patterns_unlock_after_7_entries', isEn ? AppLanguage.en : AppLanguage.tr),
                               variant: GradientTextVariant.gold,
                               textAlign: TextAlign.center,
                               style: AppTypography.modernAccent(
@@ -277,7 +276,7 @@ class PatternsScreen extends ConsumerWidget {
                             const SizedBox(height: 24),
                             // CTA to journal
                             GradientButton.gold(
-                              label: isEn ? 'Write Entry' : 'Kayıt Yaz',
+                              label: L10nService.get('journal.patterns.write_entry', isEn ? AppLanguage.en : AppLanguage.tr),
                               icon: Icons.edit_note_outlined,
                               onPressed: () => context.go(Routes.journal),
                               expanded: true,
@@ -482,7 +481,7 @@ class PatternsScreen extends ConsumerWidget {
   }) {
     return Semantics(
       button: true,
-      label: isEn ? 'See full analysis' : 'Tam analizi gör',
+      label: L10nService.get('journal.patterns.see_full_analysis', isEn ? AppLanguage.en : AppLanguage.tr),
       child: GestureDetector(
         onTap: () {
           showContextualPaywall(
@@ -550,7 +549,7 @@ class PatternsScreen extends ConsumerWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          isEn ? 'See Full Analysis' : 'Tam Analizi Gör',
+                          L10nService.get('journal.patterns.see_full_analysis_1', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.modernAccent(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -570,7 +569,7 @@ class PatternsScreen extends ConsumerWidget {
   }
 
   GlassSliverAppBar _buildAppBar(BuildContext context, bool isDark, bool isEn) {
-    return GlassSliverAppBar(title: isEn ? 'Your Patterns' : 'Kalıpların');
+    return GlassSliverAppBar(title: L10nService.get('journal.patterns.your_patterns', isEn ? AppLanguage.en : AppLanguage.tr));
   }
 
   Widget _buildCycleArcs(
@@ -590,9 +589,7 @@ class PatternsScreen extends ConsumerWidget {
         border: Border.all(color: AppColors.starGold.withValues(alpha: 0.2)),
       ),
       child: Semantics(
-        label: isEn
-            ? 'Focus area cycle averages chart'
-            : 'Odak alanı döngü ortalamaları grafiği',
+        label: L10nService.get('journal.patterns.focus_area_cycle_averages_chart', isEn ? AppLanguage.en : AppLanguage.tr),
         image: true,
         child: CustomPaint(
           size: const Size(double.infinity, 170),
@@ -628,7 +625,7 @@ class PatternsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'This Week vs Last Week' : 'Bu Hafta vs Geçen Hafta',
+            L10nService.get('journal.patterns.this_week_vs_last_week', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 14,
@@ -734,7 +731,7 @@ class PatternsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'Trends' : 'Eğilimler',
+            L10nService.get('journal.patterns.trends', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 14,
@@ -795,7 +792,7 @@ class PatternsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'Connections' : 'Bağlantılar',
+            L10nService.get('journal.patterns.connections', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.elegantAccent(
               fontSize: 14,
@@ -851,7 +848,7 @@ class PatternsScreen extends ConsumerWidget {
               Icon(Icons.insights, color: AppColors.auroraStart, size: 20),
               const SizedBox(width: 8),
               GradientText(
-                isEn ? 'Cross-Dimension Insights' : 'Boyutlar Arası İçgörüler',
+                L10nService.get('journal.patterns.crossdimension_insights', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.aurora,
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
@@ -959,9 +956,7 @@ class PatternsScreen extends ConsumerWidget {
           const SizedBox(height: AppConstants.spacingSm),
           // Disclaimer
           Text(
-            isEn
-                ? 'Based on your personal journal entries. Not a clinical assessment.'
-                : 'Kişisel günlük kayıtlarınıza dayanmaktadır. Klinik bir değerlendirme değildir.',
+            L10nService.get('journal.patterns.based_on_your_personal_journal_entries_n', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.decorativeScript(
               fontSize: 11,
               color: isDark
@@ -996,7 +991,7 @@ class PatternsScreen extends ConsumerWidget {
               Icon(Icons.favorite_border_rounded, color: accentColor, size: 20),
               const SizedBox(width: 8),
               GradientText(
-                isEn ? 'Gratitude & Mood' : 'Minnettarlık & Ruh Hali',
+                L10nService.get('journal.patterns.gratitude_mood', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
@@ -1012,7 +1007,7 @@ class PatternsScreen extends ConsumerWidget {
               Expanded(
                 child: _buildMoodAverageColumn(
                   context,
-                  label: isEn ? 'Gratitude days' : 'Minnettarlık günleri',
+                  label: L10nService.get('journal.patterns.gratitude_days', isEn ? AppLanguage.en : AppLanguage.tr),
                   average: comparison.moodWithGratitude,
                   days: comparison.daysWithGratitude,
                   color: accentColor,
@@ -1030,7 +1025,7 @@ class PatternsScreen extends ConsumerWidget {
               Expanded(
                 child: _buildMoodAverageColumn(
                   context,
-                  label: isEn ? 'Other days' : 'Diğer günler',
+                  label: L10nService.get('journal.patterns.other_days', isEn ? AppLanguage.en : AppLanguage.tr),
                   average: comparison.moodWithoutGratitude,
                   days: comparison.daysWithoutGratitude,
                   color: isDark

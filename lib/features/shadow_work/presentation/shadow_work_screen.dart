@@ -26,6 +26,7 @@ import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
+import '../../../data/services/l10n_service.dart';
 
 class ShadowWorkScreen extends ConsumerStatefulWidget {
   const ShadowWorkScreen({super.key});
@@ -86,7 +87,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      isEn ? 'Couldn\'t load your shadow work' : 'Gölge çalışman yüklenemedi',
+                      L10nService.get('shadow_work.shadow_work.couldnt_load_your_shadow_work', isEn ? AppLanguage.en : AppLanguage.tr),
                       textAlign: TextAlign.center,
                       style: AppTypography.decorativeScript(
                         fontSize: 14,
@@ -102,7 +103,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                       icon: Icon(Icons.refresh_rounded,
                           size: 16, color: AppColors.starGold),
                       label: Text(
-                        isEn ? 'Retry' : 'Tekrar Dene',
+                        L10nService.get('shadow_work.shadow_work.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -121,7 +122,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                     ),
                     slivers: [
                       GlassSliverAppBar(
-                        title: isEn ? 'Shadow Work' : 'Gölge Çalışması',
+                        title: L10nService.get('shadow_work.shadow_work.shadow_work', isEn ? AppLanguage.en : AppLanguage.tr),
                       ),
                       SliverPadding(
                         padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -240,7 +241,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           GradientText(
-            isEn ? 'Explore Your Inner Landscape' : 'İç Dünyani Keşfet',
+            L10nService.get('shadow_work.shadow_work.explore_your_inner_landscape', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.amethyst,
             textAlign: TextAlign.center,
             style: AppTypography.displayFont.copyWith(
@@ -250,9 +251,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
           ),
           const SizedBox(height: 8),
           Text(
-            isEn
-                ? 'Shadow work helps you understand hidden patterns that shape your emotions and behaviors.'
-                : 'Gölge çalışması, duygularını ve davranışlarını şekillendiren gizli kalıpları anlamanı sağlar.',
+            L10nService.get('shadow_work.shadow_work.shadow_work_helps_you_understand_hidden', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.subtitle(
               fontSize: 14,
               color: isDark
@@ -270,19 +269,19 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                 _buildStatChip(
                   context,
                   '$totalEntries',
-                  isEn ? 'Entries' : 'Giriş',
+                  L10nService.get('shadow_work.shadow_work.entries', isEn ? AppLanguage.en : AppLanguage.tr),
                   isDark,
                 ),
                 _buildStatChip(
                   context,
                   '$streak',
-                  isEn ? 'Streak' : 'Seri',
+                  L10nService.get('shadow_work.shadow_work.streak', isEn ? AppLanguage.en : AppLanguage.tr),
                   isDark,
                 ),
                 _buildStatChip(
                   context,
                   '$breakthroughs',
-                  isEn ? 'Insights' : 'İçgörü',
+                  L10nService.get('shadow_work.shadow_work.insights', isEn ? AppLanguage.en : AppLanguage.tr),
                   isDark,
                 ),
               ],
@@ -335,7 +334,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'Choose an Archetype' : 'Bir Arketip Seç',
+            L10nService.get('shadow_work.shadow_work.choose_an_archetype', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.amethyst,
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,
@@ -531,7 +530,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      isEn ? 'Begin Writing' : 'Yazmaya Başla',
+                      L10nService.get('shadow_work.shadow_work.begin_writing', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.modernAccent(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
@@ -588,9 +587,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               height: 1.6,
             ),
             decoration: InputDecoration(
-              hintText: isEn
-                  ? 'Write freely, without judgment...'
-                  : 'Yargılamadan, özgürce yaz...',
+              hintText: L10nService.get('shadow_work.shadow_work.write_freely_without_judgment', isEn ? AppLanguage.en : AppLanguage.tr),
               hintStyle: TextStyle(
                 color: isDark
                     ? AppColors.textSecondary.withValues(alpha: 0.5)
@@ -620,7 +617,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
             ),
           ),
           Semantics(
-            label: isEn ? 'Intensity slider' : 'Yoğunluk kaydırıcısı',
+            label: L10nService.get('shadow_work.shadow_work.intensity_slider', isEn ? AppLanguage.en : AppLanguage.tr),
             value: '$_intensity',
             child: SliderTheme(
               data: SliderTheme.of(context).copyWith(
@@ -649,7 +646,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               setState(() => _breakthroughMoment = !_breakthroughMoment);
             },
             child: Semantics(
-              label: isEn ? 'Breakthrough moment toggle' : 'İçgörü anı düğmesi',
+              label: L10nService.get('shadow_work.shadow_work.breakthrough_moment_toggle', isEn ? AppLanguage.en : AppLanguage.tr),
               toggled: _breakthroughMoment,
               child: ConstrainedBox(
                 constraints: const BoxConstraints(minHeight: 44),
@@ -669,9 +666,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        isEn
-                            ? 'This was a breakthrough moment'
-                            : 'Bu bir içgörü anıydı',
+                        L10nService.get('shadow_work.shadow_work.this_was_a_breakthrough_moment', isEn ? AppLanguage.en : AppLanguage.tr),
                         style:
                             AppTypography.subtitle(
                               fontSize: 12,
@@ -724,7 +719,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                            isEn ? 'Shadow work entry saved' : 'Gölge çalışması kaydedildi',
+                            L10nService.get('shadow_work.shadow_work.shadow_work_entry_saved', isEn ? AppLanguage.en : AppLanguage.tr),
                           ),
                           backgroundColor: AppColors.success,
                           behavior: SnackBarBehavior.floating,
@@ -766,7 +761,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        isEn ? 'Save Entry' : 'Girişi Kaydet',
+                        L10nService.get('shadow_work.shadow_work.save_entry', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.modernAccent(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
@@ -819,7 +814,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               ),
               const SizedBox(width: 8),
               GradientText(
-                isEn ? 'Your Shadow Map' : 'Gölge Haritan',
+                L10nService.get('shadow_work.shadow_work.your_shadow_map', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.amethyst,
                 style: AppTypography.modernAccent(
                   fontSize: 14,
@@ -941,7 +936,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               ),
               const SizedBox(width: 8),
               GradientText(
-                isEn ? 'Recent Entries' : 'Son Girişler',
+                L10nService.get('shadow_work.shadow_work.recent_entries', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.amethyst,
                 style: AppTypography.modernAccent(
                   fontSize: 14,
@@ -954,9 +949,9 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
           ...entries.map((entry) {
             final daysAgo = DateTime.now().difference(entry.date).inDays;
             final dateLabel = daysAgo == 0
-                ? (isEn ? 'Today' : 'Bugün')
+                ? (L10nService.get('shadow_work.shadow_work.today', isEn ? AppLanguage.en : AppLanguage.tr))
                 : daysAgo == 1
-                ? (isEn ? 'Yesterday' : 'Dün')
+                ? (L10nService.get('shadow_work.shadow_work.yesterday', isEn ? AppLanguage.en : AppLanguage.tr))
                 : (isEn ? '$daysAgo days ago' : '$daysAgo gün önce');
 
             return Padding(
@@ -994,9 +989,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                             ),
                             if (entry.breakthroughMoment)
                               Semantics(
-                                label: isEn
-                                    ? 'Breakthrough moment'
-                                    : 'İçgörü anı',
+                                label: L10nService.get('shadow_work.shadow_work.breakthrough_moment', isEn ? AppLanguage.en : AppLanguage.tr),
                                 child: Icon(
                                   Icons.lightbulb_rounded,
                                   size: 14,
@@ -1045,12 +1038,10 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
     final isEn = language == AppLanguage.en;
     final confirmed = await GlassDialog.confirm(
       context,
-      title: isEn ? 'Discard Changes?' : 'De\u{011F}i\u{015F}iklikleri At?',
-      message: isEn
-          ? 'You have unsaved text. Are you sure you want to go back?'
-          : 'Kaydedilmemi\u{015F} metniniz var. Geri d\u{00F6}nmek istedi\u{011F}inizden emin misiniz?',
-      cancelLabel: isEn ? 'Cancel' : '\u{0130}ptal',
-      confirmLabel: isEn ? 'Discard' : 'At',
+      title: L10nService.get('shadow_work.shadow_work.discard_changes', isEn ? AppLanguage.en : AppLanguage.tr),
+      message: L10nService.get('shadow_work.shadow_work.you_have_unsaved_text_are_you_sure_you_w', isEn ? AppLanguage.en : AppLanguage.tr),
+      cancelLabel: L10nService.get('shadow_work.shadow_work.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
+      confirmLabel: L10nService.get('shadow_work.shadow_work.discard', isEn ? AppLanguage.en : AppLanguage.tr),
       isDestructive: true,
     );
     if (confirmed == true && mounted) {
@@ -1097,7 +1088,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                   Icon(Icons.lock_outline, size: 28, color: _shadowGold),
                   const SizedBox(height: 8),
                   GradientText(
-                    isEn ? 'Unlock your shadow map' : 'Gölge haritanı aç',
+                    L10nService.get('shadow_work.shadow_work.unlock_your_shadow_map', isEn ? AppLanguage.en : AppLanguage.tr),
                     variant: GradientTextVariant.gold,
                     style: AppTypography.elegantAccent(
                       fontSize: 15,

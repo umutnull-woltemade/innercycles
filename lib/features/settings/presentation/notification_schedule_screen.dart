@@ -14,6 +14,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../data/services/l10n_service.dart';
 
 class NotificationScheduleScreen extends ConsumerStatefulWidget {
   const NotificationScheduleScreen({super.key});
@@ -147,7 +148,7 @@ class _NotificationScheduleScreenState
                   ),
                   slivers: [
                     GlassSliverAppBar(
-                      title: isEn ? 'Notifications' : 'Bildirimler',
+                      title: L10nService.get('settings.notification_schedule.notifications', isEn ? AppLanguage.en : AppLanguage.tr),
                     ),
                     SliverPadding(
                       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -240,9 +241,7 @@ class _NotificationScheduleScreenState
 
                           // Info text
                           Text(
-                            isEn
-                                ? 'Notifications help you build a consistent journaling habit. You can change these settings at any time.'
-                                : 'Bildirimler tutarlı bir günlük yazma alışkanlığı oluşturmanıza yardımcı olur. Bu ayarları istediğiniz zaman değiştirebilirsiniz.',
+                            L10nService.get('settings.notification_schedule.notifications_help_you_build_a_consisten', isEn ? AppLanguage.en : AppLanguage.tr),
                             style: AppTypography.decorativeScript(
                               fontSize: 13,
                               color: isDark
@@ -278,7 +277,7 @@ class _NotificationScheduleScreenState
             ),
             const SizedBox(height: AppConstants.spacingMd),
             GradientText(
-              isEn ? 'Notifications are disabled' : 'Bildirimler devre dışı',
+              L10nService.get('settings.notification_schedule.notifications_are_disabled', isEn ? AppLanguage.en : AppLanguage.tr),
               variant: GradientTextVariant.gold,
               style: AppTypography.displayFont.copyWith(
                 fontSize: 18,
@@ -287,9 +286,7 @@ class _NotificationScheduleScreenState
             ),
             const SizedBox(height: AppConstants.spacingSm),
             Text(
-              isEn
-                  ? 'Enable notifications to receive journaling reminders'
-                  : 'Günlük hatırlatıcıları almak için bildirimleri etkinleştirin',
+              L10nService.get('settings.notification_schedule.enable_notifications_to_receive_journali', isEn ? AppLanguage.en : AppLanguage.tr),
               textAlign: TextAlign.center,
               style: AppTypography.decorativeScript(
                 fontSize: 13,
@@ -298,7 +295,7 @@ class _NotificationScheduleScreenState
             ),
             const SizedBox(height: AppConstants.spacingMd),
             GradientButton.gold(
-              label: isEn ? 'Enable Notifications' : 'Bildirimleri Etkinleştir',
+              label: L10nService.get('settings.notification_schedule.enable_notifications', isEn ? AppLanguage.en : AppLanguage.tr),
               onPressed: _requestPermission,
               expanded: true,
             ),
@@ -409,7 +406,7 @@ class _NotificationScheduleScreenState
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                isEn ? 'Reminder time' : 'Hatırlatma saati',
+                L10nService.get('settings.notification_schedule.reminder_time', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
                   color: isDark
@@ -465,7 +462,7 @@ class _NotificationScheduleScreenState
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                isEn ? 'Prompt time' : 'Soru saati',
+                L10nService.get('settings.notification_schedule.prompt_time', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
                   color: isDark

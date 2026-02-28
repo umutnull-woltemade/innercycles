@@ -21,6 +21,7 @@ import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../data/services/l10n_service.dart';
 
 class RitualsScreen extends ConsumerWidget {
   const RitualsScreen({super.key});
@@ -41,7 +42,7 @@ class RitualsScreen extends ConsumerWidget {
                 parent: AlwaysScrollableScrollPhysics(),
               ),
               slivers: [
-                GlassSliverAppBar(title: isEn ? 'My Rituals' : 'Ritüellerim'),
+                GlassSliverAppBar(title: L10nService.get('rituals.rituals.my_rituals', isEn ? AppLanguage.en : AppLanguage.tr)),
                 SliverPadding(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
                   sliver: stacksAsync.when(
@@ -71,7 +72,7 @@ class RitualsScreen extends ConsumerWidget {
                                 icon: Icon(Icons.refresh_rounded,
                                     size: 16, color: AppColors.starGold),
                                 label: Text(
-                                  isEn ? 'Retry' : 'Tekrar Dene',
+                                  L10nService.get('rituals.rituals.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                                   style: AppTypography.elegantAccent(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
@@ -133,12 +134,10 @@ class _EmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.playlist_add_check_rounded,
-      title: isEn ? 'Your ritual practice starts here' : 'Ritüel pratiğin burada başlıyor',
-      description: isEn
-          ? 'Create your first daily ritual to start tracking habits'
-          : 'Alışkanlıkları takip etmek için ilk ritüelini oluştur',
+      title: L10nService.get('rituals.rituals.your_ritual_practice_starts_here', isEn ? AppLanguage.en : AppLanguage.tr),
+      description: L10nService.get('rituals.rituals.create_your_first_daily_ritual_to_start', isEn ? AppLanguage.en : AppLanguage.tr),
       gradientVariant: GradientTextVariant.aurora,
-      ctaLabel: isEn ? 'Create Ritual' : 'Ritüel Oluştur',
+      ctaLabel: L10nService.get('rituals.rituals.create_ritual', isEn ? AppLanguage.en : AppLanguage.tr),
       onCtaPressed: () => context.push(Routes.ritualCreate),
     );
   }
@@ -185,7 +184,7 @@ class _StackCard extends ConsumerWidget {
                         ),
                       ),
                       Text(
-                        '${stack.items.length} ${isEn ? 'items' : 'madde'}',
+                        '${stack.items.length} ${L10nService.get('rituals.rituals.items', isEn ? AppLanguage.en : AppLanguage.tr)}',
                         style: AppTypography.elegantAccent(
                           fontSize: 12,
                           color: isDark
@@ -197,7 +196,7 @@ class _StackCard extends ConsumerWidget {
                   ),
                 ),
                 IconButton(
-                  tooltip: isEn ? 'Delete ritual' : 'Ritüeli sil',
+                  tooltip: L10nService.get('rituals.rituals.delete_ritual', isEn ? AppLanguage.en : AppLanguage.tr),
                   onPressed: () => _confirmDelete(context, ref),
                   icon: Icon(
                     Icons.delete_outline,
@@ -244,12 +243,12 @@ class _StackCard extends ConsumerWidget {
     HapticFeedback.mediumImpact();
     final confirmed = await GlassDialog.confirm(
       context,
-      title: isEn ? 'Delete Ritual?' : 'Ritüelü Sil?',
+      title: L10nService.get('rituals.rituals.delete_ritual_1', isEn ? AppLanguage.en : AppLanguage.tr),
       message: isEn
           ? 'This will delete "${stack.name}" and all its completion history.'
           : '"${stack.name}" ve tüm tamamlama geçmişi silinecek.',
-      cancelLabel: isEn ? 'Cancel' : 'İptal',
-      confirmLabel: isEn ? 'Delete' : 'Sil',
+      cancelLabel: L10nService.get('rituals.rituals.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
+      confirmLabel: L10nService.get('rituals.rituals.delete', isEn ? AppLanguage.en : AppLanguage.tr),
       isDestructive: true,
     );
 
@@ -273,7 +272,7 @@ class _AddButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: GradientOutlinedButton(
-        label: isEn ? 'Add Ritual' : 'Ritüel Ekle',
+        label: L10nService.get('rituals.rituals.add_ritual', isEn ? AppLanguage.en : AppLanguage.tr),
         icon: Icons.add,
         variant: GradientTextVariant.aurora,
         onPressed: () => context.push(Routes.ritualCreate),

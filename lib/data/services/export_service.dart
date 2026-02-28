@@ -8,6 +8,8 @@
 import 'dart:convert';
 import '../models/journal_entry.dart';
 import 'journal_service.dart';
+import 'l10n_service.dart';
+import '../providers/app_providers.dart';
 
 enum ExportFormat { text, csv, json }
 
@@ -61,26 +63,26 @@ class ExportService {
   ExportResult _exportText(List<JournalEntry> entries, bool isEn) {
     final buffer = StringBuffer();
     buffer.writeln(
-      isEn ? 'InnerCycles Journal Export' : 'InnerCycles Günlük Dışa Aktarma',
+      L10nService.get('data.services.export.innercycles_journal_export', isEn ? AppLanguage.en : AppLanguage.tr),
     );
     buffer.writeln('=' * 40);
     buffer.writeln(
-      '${isEn ? 'Exported' : 'Dışa aktarıldı'}: ${DateTime.now().toString().substring(0, 10)}',
+      '${L10nService.get('data.services.export.exported', isEn ? AppLanguage.en : AppLanguage.tr)}: ${DateTime.now().toString().substring(0, 10)}',
     );
-    buffer.writeln('${isEn ? 'Entries' : 'Kayıt'}: ${entries.length}');
+    buffer.writeln('${L10nService.get('data.services.export.entries', isEn ? AppLanguage.en : AppLanguage.tr)}: ${entries.length}');
     buffer.writeln('=' * 40);
     buffer.writeln();
 
     for (final entry in entries) {
-      buffer.writeln('${isEn ? 'Date' : 'Tarih'}: ${entry.dateKey}');
+      buffer.writeln('${L10nService.get('data.services.export.date', isEn ? AppLanguage.en : AppLanguage.tr)}: ${entry.dateKey}');
       buffer.writeln(
-        '${isEn ? 'Focus' : 'Odak'}: ${isEn ? entry.focusArea.displayNameEn : entry.focusArea.displayNameTr}',
+        '${L10nService.get('data.services.export.focus', isEn ? AppLanguage.en : AppLanguage.tr)}: ${isEn ? entry.focusArea.displayNameEn : entry.focusArea.displayNameTr}',
       );
       buffer.writeln(
-        '${isEn ? 'Rating' : 'Puanlama'}: ${entry.overallRating}/5',
+        '${L10nService.get('data.services.export.rating', isEn ? AppLanguage.en : AppLanguage.tr)}: ${entry.overallRating}/5',
       );
       if (entry.note != null && entry.note!.isNotEmpty) {
-        buffer.writeln('${isEn ? 'Note' : 'Not'}: ${entry.note}');
+        buffer.writeln('${L10nService.get('data.services.export.note', isEn ? AppLanguage.en : AppLanguage.tr)}: ${entry.note}');
       }
       buffer.writeln('-' * 30);
     }

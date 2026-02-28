@@ -16,6 +16,7 @@ import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/ecosystem_widgets.dart';
 import '../../../core/constants/routes.dart';
 import 'package:go_router/go_router.dart';
+import '../../../data/services/l10n_service.dart';
 
 class GratitudeArchiveScreen extends ConsumerWidget {
   const GratitudeArchiveScreen({super.key});
@@ -56,7 +57,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
                       color: AppColors.starGold,
                     ),
                     label: Text(
-                      isEn ? 'Retry' : 'Tekrar Dene',
+                      L10nService.get('gratitude.gratitude_archive.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -88,7 +89,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
       return CustomScrollView(
         slivers: [
           GlassSliverAppBar(
-            title: isEn ? 'Gratitude Archive' : 'Şükran Arşivi',
+            title: L10nService.get('gratitude.gratitude_archive.gratitude_archive', isEn ? AppLanguage.en : AppLanguage.tr),
           ),
           SliverFillRemaining(
             hasScrollBody: false,
@@ -126,7 +127,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: isEn ? 'Gratitude Archive' : 'Şükran Arşivi',
+            title: L10nService.get('gratitude.gratitude_archive.gratitude_archive_1', isEn ? AppLanguage.en : AppLanguage.tr),
           ),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -182,7 +183,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
       children: [
         Expanded(
           child: _StatTile(
-            label: isEn ? 'Total Days' : 'Toplam Gün',
+            label: L10nService.get('gratitude.gratitude_archive.total_days', isEn ? AppLanguage.en : AppLanguage.tr),
             value: '$total',
             isDark: isDark,
           ),
@@ -190,7 +191,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
         const SizedBox(width: AppConstants.spacingMd),
         Expanded(
           child: _StatTile(
-            label: isEn ? 'This Week' : 'Bu Hafta',
+            label: L10nService.get('gratitude.gratitude_archive.this_week', isEn ? AppLanguage.en : AppLanguage.tr),
             value: '${summary.daysWithGratitude}',
             isDark: isDark,
           ),
@@ -198,7 +199,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
         const SizedBox(width: AppConstants.spacingMd),
         Expanded(
           child: _StatTile(
-            label: isEn ? 'Week Items' : 'Hafta Madde',
+            label: L10nService.get('gratitude.gratitude_archive.week_items', isEn ? AppLanguage.en : AppLanguage.tr),
             value: '${summary.totalItems}',
             isDark: isDark,
           ),
@@ -225,7 +226,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            isEn ? 'Recurring Themes' : 'Tekrarlanan Temalar',
+            L10nService.get('gratitude.gratitude_archive.recurring_themes', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,
               color: isDark

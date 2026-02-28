@@ -29,6 +29,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
+import '../../../data/services/l10n_service.dart';
 
 class CalendarHeatmapScreen extends ConsumerStatefulWidget {
   const CalendarHeatmapScreen({super.key});
@@ -99,7 +100,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                   icon: Icon(Icons.refresh_rounded,
                       size: 16, color: AppColors.starGold),
                   label: Text(
-                    isEn ? 'Retry' : 'Tekrar Dene',
+                    L10nService.get('calendar.calendar_heatmap.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -173,7 +174,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: isEn ? 'Heatmap Timeline' : 'Isı Haritası Zaman Çizelgesi',
+            title: L10nService.get('calendar.calendar_heatmap.heatmap_timeline', isEn ? AppLanguage.en : AppLanguage.tr),
           ),
           SliverPadding(
             padding: const EdgeInsets.all(16),
@@ -328,19 +329,19 @@ class _StatsRow extends StatelessWidget {
     return Row(
       children: [
         _StatPill(
-          label: isEn ? 'Total' : 'Toplam',
+          label: L10nService.get('calendar.calendar_heatmap.total', isEn ? AppLanguage.en : AppLanguage.tr),
           value: '$totalEntries',
           isDark: isDark,
         ),
         const SizedBox(width: 10),
         _StatPill(
-          label: isEn ? 'This Month' : 'Bu Ay',
+          label: L10nService.get('calendar.calendar_heatmap.this_month', isEn ? AppLanguage.en : AppLanguage.tr),
           value: '$monthCount',
           isDark: isDark,
         ),
         const SizedBox(width: 10),
         _StatPill(
-          label: isEn ? 'Streak' : 'Seri',
+          label: L10nService.get('calendar.calendar_heatmap.streak', isEn ? AppLanguage.en : AppLanguage.tr),
           value: '$streak',
           isDark: isDark,
           accent: true,
@@ -463,7 +464,7 @@ class _MonthNavigator extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
-          tooltip: isEn ? 'Previous month' : 'Önceki ay',
+          tooltip: L10nService.get('calendar.calendar_heatmap.previous_month', isEn ? AppLanguage.en : AppLanguage.tr),
           icon: Icon(
             Icons.chevron_left_rounded,
             color: isDark
@@ -481,7 +482,7 @@ class _MonthNavigator extends StatelessWidget {
           ),
         ),
         IconButton(
-          tooltip: isEn ? 'Next month' : 'Sonraki ay',
+          tooltip: L10nService.get('calendar.calendar_heatmap.next_month', isEn ? AppLanguage.en : AppLanguage.tr),
           icon: Icon(
             Icons.chevron_right_rounded,
             color: isCurrentMonth
@@ -600,8 +601,8 @@ class _CalendarGrid extends StatelessWidget {
                     child: Semantics(
                       label:
                           '${date.day}/${date.month}'
-                          '${hasJournal ? (isEn ? ', has entry' : ', kayıt var') : ''}'
-                          '${dayLifeEvents.isNotEmpty ? (isEn ? ', life event' : ', yaşam olayı') : ''}',
+                          '${hasJournal ? (L10nService.get('calendar.calendar_heatmap._has_entry', isEn ? AppLanguage.en : AppLanguage.tr)) : ''}'
+                          '${dayLifeEvents.isNotEmpty ? (L10nService.get('calendar.calendar_heatmap._life_event', isEn ? AppLanguage.en : AppLanguage.tr)) : ''}',
                       button: !isFuture,
                       child: GestureDetector(
                         onTap: isFuture ? null : () => onDayTap(dateKey),
@@ -760,7 +761,7 @@ class _Legend extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              isEn ? 'Less' : 'Az',
+              L10nService.get('calendar.calendar_heatmap.less', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.elegantAccent(
                 fontSize: 10,
                 color: mutedColor,
@@ -780,7 +781,7 @@ class _Legend extends StatelessWidget {
             }),
             const SizedBox(width: 6),
             Text(
-              isEn ? 'More' : 'Çok',
+              L10nService.get('calendar.calendar_heatmap.more', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.elegantAccent(
                 fontSize: 10,
                 color: mutedColor,
@@ -795,21 +796,21 @@ class _Legend extends StatelessWidget {
           children: [
             _legendDot(
               AppColors.auroraStart,
-              isEn ? 'Journal' : 'Günlük',
+              L10nService.get('calendar.calendar_heatmap.journal', isEn ? AppLanguage.en : AppLanguage.tr),
               mutedColor,
               dotSize,
             ),
             const SizedBox(width: 14),
             _legendDot(
               AppColors.starGold,
-              isEn ? 'Positive' : 'Olumlu',
+              L10nService.get('calendar.calendar_heatmap.positive', isEn ? AppLanguage.en : AppLanguage.tr),
               mutedColor,
               dotSize,
             ),
             const SizedBox(width: 14),
             _legendDot(
               AppColors.amethyst,
-              isEn ? 'Challenging' : 'Zorlu',
+              L10nService.get('calendar.calendar_heatmap.challenging', isEn ? AppLanguage.en : AppLanguage.tr),
               mutedColor,
               dotSize,
             ),
@@ -1014,7 +1015,7 @@ class _DayDetail extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    isEn ? 'View entry' : 'Kaydı gör',
+                    L10nService.get('calendar.calendar_heatmap.view_entry', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.subtitle(
                       fontSize: 11,
                       color: AppColors.auroraStart,
@@ -1055,7 +1056,7 @@ class _DayDetail extends StatelessWidget {
             Icon(Icons.add_rounded, size: 16, color: AppColors.auroraStart),
             const SizedBox(width: 6),
             Text(
-              isEn ? 'Log this day' : 'Bu günü kaydet',
+              L10nService.get('calendar.calendar_heatmap.log_this_day', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.elegantAccent(
                 fontSize: 12,
                 color: AppColors.auroraStart,
@@ -1157,7 +1158,7 @@ class _DayDetail extends StatelessWidget {
             ),
             const SizedBox(width: 6),
             Text(
-              isEn ? 'Add Life Event' : 'Yaşam Olayı Ekle',
+              L10nService.get('calendar.calendar_heatmap.add_life_event', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.elegantAccent(
                 fontSize: 12,
                 color: AppColors.starGold,
@@ -1237,7 +1238,7 @@ class _YearHeatmap extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            '$year ${isEn ? 'Overview' : 'Genel Bakış'}',
+            '$year ${L10nService.get('calendar.calendar_heatmap.overview', isEn ? AppLanguage.en : AppLanguage.tr)}',
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -1330,7 +1331,7 @@ class _PremiumYearOverlay extends ConsumerWidget {
           Icon(Icons.calendar_today, size: 32, color: AppColors.starGold),
           const SizedBox(height: 12),
           GradientText(
-            isEn ? 'Year Heatmap' : 'Yıl Isı Haritası',
+            L10nService.get('calendar.calendar_heatmap.year_heatmap', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,
@@ -1339,9 +1340,7 @@ class _PremiumYearOverlay extends ConsumerWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            isEn
-                ? 'See your full year at a glance with Pro'
-                : 'Pro ile tüm yılını bir bakışta gör',
+            L10nService.get('calendar.calendar_heatmap.see_your_full_year_at_a_glance_with_pro', isEn ? AppLanguage.en : AppLanguage.tr),
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 13,
@@ -1371,7 +1370,7 @@ class _PremiumYearOverlay extends ConsumerWidget {
                 ],
               ),
               child: Text(
-                isEn ? 'Upgrade to Pro' : 'Pro\'ya Yükselt',
+                L10nService.get('calendar.calendar_heatmap.upgrade_to_pro', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.modernAccent(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,

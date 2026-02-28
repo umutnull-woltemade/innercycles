@@ -38,6 +38,7 @@ import 'widgets/phase_ring.dart';
 import 'widgets/shift_outlook_card.dart';
 import '../../../core/theme/app_typography.dart';
 import 'widgets/pattern_loop_analyzer.dart';
+import '../../../data/services/l10n_service.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // EMOTIONAL CYCLE SCREEN
@@ -106,7 +107,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    isEn ? 'Unable to load data' : 'Veri yüklenemedi',
+                    L10nService.get('journal.emotional_cycle.unable_to_load_data', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.decorativeScript(
                       fontSize: 15,
                       color: isDark
@@ -124,7 +125,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                       color: AppColors.starGold,
                     ),
                     label: Text(
-                      isEn ? 'Retry' : 'Tekrar Dene',
+                      L10nService.get('journal.emotional_cycle.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -181,7 +182,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         ),
         slivers: [
           GlassSliverAppBar(
-            title: isEn ? 'Your Inner Cycles' : 'İç Döngülerin',
+            title: L10nService.get('journal.emotional_cycle.your_inner_cycles', isEn ? AppLanguage.en : AppLanguage.tr),
           ),
           SliverFillRemaining(
             hasScrollBody: false,
@@ -250,7 +251,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      isEn ? 'Your Cycles Are Forming' : 'Döngülerin Oluşuyor',
+                      L10nService.get('journal.emotional_cycle.your_cycles_are_forming', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.modernAccent(
                         fontSize: 24,
                         color: isDark
@@ -329,7 +330,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                         ),
                         icon: const Icon(Icons.edit_note, size: 20),
                         label: Text(
-                          isEn ? 'Start Journaling' : 'Kayıt Yapmaya Başla',
+                          L10nService.get('journal.emotional_cycle.start_journaling', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.modernAccent(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -374,7 +375,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         ),
         slivers: [
           GlassSliverAppBar(
-            title: isEn ? 'Your Inner Cycles' : 'İç Döngülerin',
+            title: L10nService.get('journal.emotional_cycle.your_inner_cycles_1', isEn ? AppLanguage.en : AppLanguage.tr),
             largeTitleMode: true,
           ),
           SliverPadding(
@@ -450,7 +451,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
 
                 // SUMMARY CARDS
                 GradientText(
-                  isEn ? 'Your Dimensions' : 'Boyutların',
+                  L10nService.get('journal.emotional_cycle.your_dimensions', isEn ? AppLanguage.en : AppLanguage.tr),
                   variant: GradientTextVariant.aurora,
                   style: AppTypography.elegantAccent(
                     fontSize: 16,
@@ -490,7 +491,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 // INSIGHTS
                 if (analysis.insights.isNotEmpty) ...[
                   Text(
-                    isEn ? 'Cycle Insights' : 'Döngü İçgörüleri',
+                    L10nService.get('journal.emotional_cycle.cycle_insights', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.displayFont.copyWith(
                       fontSize: 18,
                       color: isDark
@@ -616,9 +617,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      isEn
-                          ? 'Start journaling to see your cycles'
-                          : 'Döngüleri görmek için kayıt yapmaya başla',
+                      L10nService.get('journal.emotional_cycle.start_journaling_to_see_your_cycles', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.decorativeScript(
                         fontSize: 14,
                         color: isDark
@@ -668,7 +667,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     ),
                   ),
                   Text(
-                    isEn ? 'Today' : 'Bugün',
+                    L10nService.get('journal.emotional_cycle.today', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 10,
                       color: isDark
@@ -686,6 +685,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
   }
 
   Widget _buildSelectedPointInfo(BuildContext context, bool isDark, bool isEn) {
+    if (_selectedPoint == null) return const SizedBox.shrink();
     final point = _selectedPoint!;
     final color = kAreaColors[point.area] ?? AppColors.auroraStart;
     final areaName = isEn ? point.area.displayNameEn : point.area.displayNameTr;
@@ -908,7 +908,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         Row(
           children: [
             Text(
-              isEn ? 'Shift Outlook' : 'Kayma Görünümü',
+              L10nService.get('journal.emotional_cycle.shift_outlook', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.displayFont.copyWith(
                 fontSize: 18,
                 color: isDark
@@ -951,7 +951,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         else
           Semantics(
             button: true,
-            label: isEn ? 'Access Shift Outlook' : 'Değişim Görünümüne Eriş',
+            label: L10nService.get('journal.emotional_cycle.access_shift_outlook', isEn ? AppLanguage.en : AppLanguage.tr),
             child: GestureDetector(
               onTap: () {
                 HapticFeedback.lightImpact();
@@ -975,9 +975,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        isEn
-                            ? 'Access Shift Outlook to see when your emotional phases may shift'
-                            : 'Duygusal evrelerinin ne zaman kayabileceğini görmek için Kayma Görünümüne eriş',
+                        L10nService.get('journal.emotional_cycle.access_shift_outlook_to_see_when_your_em', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.decorativeScript(
                           fontSize: 13,
                           color: isDark
@@ -1042,7 +1040,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         ],
       ),
       child: Semantics(
-        label: isEn ? 'Share My Inner Cycles' : 'İç Döngülerimi Paylaş',
+        label: L10nService.get('journal.emotional_cycle.share_my_inner_cycles', isEn ? AppLanguage.en : AppLanguage.tr),
         button: true,
         child: Material(
           color: Colors.transparent,
@@ -1060,7 +1058,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                   const Icon(Icons.share, color: Colors.white, size: 20),
                   const SizedBox(width: 10),
                   Text(
-                    isEn ? 'Share My Inner Cycles' : 'İç Döngülerimi Paylaş',
+                    L10nService.get('journal.emotional_cycle.share_my_inner_cycles_1', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.modernAccent(
                       color: Colors.white,
                       fontSize: 16,
@@ -1094,7 +1092,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           const Icon(Icons.lock_outline, color: AppColors.starGold, size: 36),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            isEn ? 'Access Full 30-Day View' : 'Tam 30 Günlük Görünüme Eriş',
+            L10nService.get('journal.emotional_cycle.access_full_30day_view', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.displayFont.copyWith(
               fontSize: 18,
               color: AppColors.starGold,
@@ -1116,7 +1114,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           ),
           const SizedBox(height: AppConstants.spacingLg),
           GradientOutlinedButton(
-            label: isEn ? 'Go Pro' : 'Pro\'ya Geç',
+            label: L10nService.get('journal.emotional_cycle.go_pro', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             expanded: true,
             fontSize: 16,

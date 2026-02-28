@@ -16,6 +16,8 @@ import 'ritual_service.dart';
 import 'wellness_score_service.dart';
 import 'mood_checkin_service.dart';
 import 'streak_service.dart';
+import 'l10n_service.dart';
+import '../providers/app_providers.dart';
 
 // ══════════════════════════════════════════════════════════════════════════
 // DATA MODELS
@@ -238,14 +240,10 @@ class PatternEngineService {
       final last3 = entries.sublist(entries.length - 3);
       final r3 = last3.map((e) => e.overallRating).toList();
       if (r3[0] < r3[1] && r3[1] < r3[2]) {
-        return isEn
-            ? 'Your recent entries show an upward trend — your ratings are climbing.'
-            : 'Son kayıtların yükseliş trendi gösteriyor — puanların artıyor.';
+        return L10nService.get('data.services.pattern_engine.your_recent_entries_show_an_upward_trend', isEn ? AppLanguage.en : AppLanguage.tr);
       }
       if (r3[0] > r3[1] && r3[1] > r3[2]) {
-        return isEn
-            ? 'Your last few entries show a dip. A good moment to reflect on what changed.'
-            : 'Son birkaç kaydın düşüş gösteriyor. Neyin değiştiğini düşünmek için iyi bir an.';
+        return L10nService.get('data.services.pattern_engine.your_last_few_entries_show_a_dip_a_good', isEn ? AppLanguage.en : AppLanguage.tr);
       }
     }
 
@@ -263,15 +261,15 @@ class PatternEngineService {
   static String _areaName(FocusArea area, bool isEn) {
     switch (area) {
       case FocusArea.energy:
-        return isEn ? 'Energy' : 'Enerji';
+        return L10nService.get('data.services.pattern_engine.energy', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.focus:
-        return isEn ? 'Focus' : 'Odak';
+        return L10nService.get('data.services.pattern_engine.focus', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.emotions:
-        return isEn ? 'Emotions' : 'Duygular';
+        return L10nService.get('data.services.pattern_engine.emotions', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.decisions:
-        return isEn ? 'Decisions' : 'Kararlar';
+        return L10nService.get('data.services.pattern_engine.decisions', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.social:
-        return isEn ? 'Social' : 'Sosyal';
+        return L10nService.get('data.services.pattern_engine.social', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 

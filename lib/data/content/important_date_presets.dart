@@ -1,3 +1,5 @@
+import '../services/l10n_service.dart';
+import '../providers/app_providers.dart';
 // ════════════════════════════════════════════════════════════════════════════
 // IMPORTANT DATE PRESETS - 24 Retrospective Journaling Suggestions
 // ════════════════════════════════════════════════════════════════════════════
@@ -15,15 +17,15 @@ enum ImportantDateCategory {
   String label(bool isEn) {
     switch (this) {
       case ImportantDateCategory.personalMilestone:
-        return isEn ? 'Personal Milestones' : 'Kişisel Dönüm Noktaları';
+        return L10nService.get('data.content.important_date_presets.personal_milestones', isEn ? AppLanguage.en : AppLanguage.tr);
       case ImportantDateCategory.relationship:
-        return isEn ? 'Relationships' : 'İlişkiler';
+        return L10nService.get('data.content.important_date_presets.relationships', isEn ? AppLanguage.en : AppLanguage.tr);
       case ImportantDateCategory.challenge:
-        return isEn ? 'Challenges' : 'Zorluklar';
+        return L10nService.get('data.content.important_date_presets.challenges', isEn ? AppLanguage.en : AppLanguage.tr);
       case ImportantDateCategory.growth:
-        return isEn ? 'Growth' : 'Gelişim';
+        return L10nService.get('data.content.important_date_presets.growth', isEn ? AppLanguage.en : AppLanguage.tr);
       case ImportantDateCategory.reflective:
-        return isEn ? 'Reflective' : 'Düşünsel';
+        return L10nService.get('data.content.important_date_presets.reflective', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 }

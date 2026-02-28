@@ -26,6 +26,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/private_toggle.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
+import '../../../data/services/l10n_service.dart';
 
 class NoteDetailScreen extends ConsumerStatefulWidget {
   final String? noteId;
@@ -269,11 +270,11 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CupertinoButton(
-                  child: Text(isEn ? 'Cancel' : '\u0130ptal'),
+                  child: Text(L10nService.get('notes.note_detail.cancel', isEn ? AppLanguage.en : AppLanguage.tr)),
                   onPressed: () => Navigator.pop(ctx),
                 ),
                 CupertinoButton(
-                  child: Text(isEn ? 'Save Note' : 'Notu Kaydet'),
+                  child: Text(L10nService.get('notes.note_detail.save_note', isEn ? AppLanguage.en : AppLanguage.tr)),
                   onPressed: () => Navigator.pop(ctx),
                 ),
               ],
@@ -350,7 +351,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      isEn ? 'Couldn\'t load this note' : 'Bu not yüklenemedi',
+                      L10nService.get('notes.note_detail.couldnt_load_this_note', isEn ? AppLanguage.en : AppLanguage.tr),
                       textAlign: TextAlign.center,
                       style: AppTypography.decorativeScript(
                         color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -363,7 +364,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                       icon: Icon(Icons.refresh_rounded,
                           size: 16, color: AppColors.starGold),
                       label: Text(
-                        isEn ? 'Retry' : 'Tekrar Dene',
+                        L10nService.get('notes.note_detail.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -386,8 +387,8 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                     slivers: [
                       GlassSliverAppBar(
                         title: _isCreateMode
-                            ? (isEn ? 'New Note' : 'Yeni Not')
-                            : (isEn ? 'Edit Note' : 'Notu D\u00fczenle'),
+                            ? (L10nService.get('notes.note_detail.new_note', isEn ? AppLanguage.en : AppLanguage.tr))
+                            : (L10nService.get('notes.note_detail.edit_note', isEn ? AppLanguage.en : AppLanguage.tr)),
                         useGradientTitle: true,
                         gradientVariant: GradientTextVariant.gold,
                         actions: [
@@ -410,7 +411,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Text(
-                                isEn ? 'Save Note' : 'Notu Kaydet',
+                                L10nService.get('notes.note_detail.save_note_1', isEn ? AppLanguage.en : AppLanguage.tr),
                                 style: AppTypography.displayFont.copyWith(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
@@ -446,9 +447,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                             : AppColors.lightTextPrimary,
                                       ),
                                       decoration: InputDecoration(
-                                        hintText: isEn
-                                            ? 'Give this note a title'
-                                            : 'Bu nota bir ba\u015fl\u0131k ver',
+                                        hintText: L10nService.get('notes.note_detail.give_this_note_a_title', isEn ? AppLanguage.en : AppLanguage.tr),
                                         hintStyle: AppTypography.displayFont
                                             .copyWith(
                                               fontSize: 26,
@@ -520,9 +519,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                   height: 1.6,
                                 ),
                                 decoration: InputDecoration(
-                                  hintText: isEn
-                                      ? 'Write your thoughts...'
-                                      : 'D\u00fc\u015f\u00fcncelerini yaz...',
+                                  hintText: L10nService.get('notes.note_detail.write_your_thoughts', isEn ? AppLanguage.en : AppLanguage.tr),
                                   hintStyle: AppTypography.subtitle(
                                     fontSize: 16,
                                     color: isDark
@@ -570,7 +567,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                         ),
                                         const SizedBox(width: 8),
                                         Text(
-                                          isEn ? 'Tags' : 'Etiketler',
+                                          L10nService.get('notes.note_detail.tags', isEn ? AppLanguage.en : AppLanguage.tr),
                                           style: AppTypography.elegantAccent(
                                             fontSize: 14,
                                             color: isDark
@@ -611,9 +608,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                                   : AppColors.lightTextPrimary,
                                             ),
                                             decoration: InputDecoration(
-                                              hintText: isEn
-                                                  ? 'e.g. Ideas, Personal'
-                                                  : 'ör. Fikirler, Kişisel',
+                                              hintText: L10nService.get('notes.note_detail.eg_ideas_personal', isEn ? AppLanguage.en : AppLanguage.tr),
                                               hintStyle: AppTypography.subtitle(
                                                 color: isDark
                                                     ? AppColors.textMuted
@@ -691,9 +686,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                       ),
                                       const SizedBox(width: 8),
                                       Text(
-                                        isEn
-                                            ? 'Mood when created'
-                                            : 'Olu\u015fturuldu\u011fundaki ruh hali',
+                                        L10nService.get('notes.note_detail.mood_when_created', isEn ? AppLanguage.en : AppLanguage.tr),
                                         style: AppTypography.elegantAccent(
                                           fontSize: 12,
                                           color: isDark
@@ -728,9 +721,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                             ),
                                             const SizedBox(width: 8),
                                             Text(
-                                              isEn
-                                                  ? 'Remind Me'
-                                                  : 'Hat\u0131rlat',
+                                              L10nService.get('notes.note_detail.remind_me', isEn ? AppLanguage.en : AppLanguage.tr),
                                               style:
                                                   AppTypography.elegantAccent(
                                                     fontSize: 14,
@@ -772,7 +763,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                                 ),
                                                 const SizedBox(width: 4),
                                                 Text(
-                                                  isEn ? 'Add' : 'Ekle',
+                                                  L10nService.get('notes.note_detail.add', isEn ? AppLanguage.en : AppLanguage.tr),
                                                   style:
                                                       AppTypography.elegantAccent(
                                                         fontSize: 12,
@@ -832,9 +823,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                                         ),
                                                   ),
                                                   Text(
-                                                    isEn
-                                                        ? 'Will be set when you save'
-                                                        : 'Kaydetti\u011finde ayarlanacak',
+                                                    L10nService.get('notes.note_detail.will_be_set_when_you_save', isEn ? AppLanguage.en : AppLanguage.tr),
                                                     style:
                                                         AppTypography.elegantAccent(
                                                           fontSize: 11,
@@ -891,9 +880,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                             _hasPendingReminder)) ...[
                                       const SizedBox(height: 10),
                                       Text(
-                                        isEn
-                                            ? 'Set a date & time to get notified about this note'
-                                            : 'Bu not hakk\u0131nda bildirim almak i\u00e7in tarih ve saat belirle',
+                                        L10nService.get('notes.note_detail.set_a_date_time_to_get_notified_about_th', isEn ? AppLanguage.en : AppLanguage.tr),
                                         style: AppTypography.elegantAccent(
                                           fontSize: 12,
                                           color: isDark
@@ -1010,7 +997,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                                 ),
                                                 const SizedBox(width: 8),
                                                 Text(
-                                                  isEn ? 'Share' : 'Paylaş',
+                                                  L10nService.get('notes.note_detail.share', isEn ? AppLanguage.en : AppLanguage.tr),
                                                   style: AppTypography.subtitle(
                                                     fontSize: 14,
                                                     color: AppColors.starGold,
@@ -1027,18 +1014,10 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                         final confirmed =
                                             await GlassDialog.confirm(
                                               context,
-                                              title: isEn
-                                                  ? 'Delete Note?'
-                                                  : 'Not Silinsin mi?',
-                                              message: isEn
-                                                  ? 'This note will be permanently deleted.'
-                                                  : 'Bu not kalıcı olarak silinecek.',
-                                              cancelLabel: isEn
-                                                  ? 'Cancel'
-                                                  : 'İptal',
-                                              confirmLabel: isEn
-                                                  ? 'Delete'
-                                                  : 'Sil',
+                                              title: L10nService.get('notes.note_detail.delete_note', isEn ? AppLanguage.en : AppLanguage.tr),
+                                              message: L10nService.get('notes.note_detail.this_note_will_be_permanently_deleted', isEn ? AppLanguage.en : AppLanguage.tr),
+                                              cancelLabel: L10nService.get('notes.note_detail.cancel_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                                              confirmLabel: L10nService.get('notes.note_detail.delete', isEn ? AppLanguage.en : AppLanguage.tr),
                                               isDestructive: true,
                                             );
                                         if (confirmed == true) _delete(service);
@@ -1066,7 +1045,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                             ),
                                             const SizedBox(width: 8),
                                             Text(
-                                              isEn ? 'Delete Note' : 'Notu Sil',
+                                              L10nService.get('notes.note_detail.delete_note_1', isEn ? AppLanguage.en : AppLanguage.tr),
                                               style: AppTypography.subtitle(
                                                 fontSize: 14,
                                                 color: AppColors.error,
@@ -1101,12 +1080,10 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
     final isEn = language == AppLanguage.en;
     final confirmed = await GlassDialog.confirm(
       context,
-      title: isEn ? 'Discard Changes?' : 'De\u{011F}i\u{015F}iklikleri At?',
-      message: isEn
-          ? 'You have unsaved changes. Are you sure you want to go back?'
-          : 'Kaydedilmemi\u{015F} de\u{011F}i\u{015F}iklikleriniz var. Geri d\u{00F6}nmek istedi\u{011F}inizden emin misiniz?',
-      cancelLabel: isEn ? 'Cancel' : '\u{0130}ptal',
-      confirmLabel: isEn ? 'Discard' : 'At',
+      title: L10nService.get('notes.note_detail.discard_changes', isEn ? AppLanguage.en : AppLanguage.tr),
+      message: L10nService.get('notes.note_detail.you_have_unsaved_changes_are_you_sure_yo', isEn ? AppLanguage.en : AppLanguage.tr),
+      cancelLabel: L10nService.get('notes.note_detail.cancel_2', isEn ? AppLanguage.en : AppLanguage.tr),
+      confirmLabel: L10nService.get('notes.note_detail.discard', isEn ? AppLanguage.en : AppLanguage.tr),
       isDestructive: true,
     );
     if (confirmed == true && mounted) {
@@ -1339,9 +1316,7 @@ class _ReminderForm extends StatelessWidget {
                   Text(
                     reminderDate != null
                         ? _formatDate(reminderDate!, isEn)
-                        : (isEn
-                              ? 'Pick date & time'
-                              : 'Tarih ve saat se\u00e7'),
+                        : (L10nService.get('notes.note_detail.pick_date_time', isEn ? AppLanguage.en : AppLanguage.tr)),
                     style: AppTypography.subtitle(
                       fontSize: 14,
                       color: reminderDate != null
@@ -1358,7 +1333,7 @@ class _ReminderForm extends StatelessWidget {
 
           // Frequency chips
           Text(
-            isEn ? 'Frequency' : 'S\u0131kl\u0131k',
+            L10nService.get('notes.note_detail.frequency', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.elegantAccent(
               fontSize: 12,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -1417,9 +1392,7 @@ class _ReminderForm extends StatelessWidget {
               color: isDark ? Colors.white : AppColors.lightTextPrimary,
             ),
             decoration: InputDecoration(
-              hintText: isEn
-                  ? 'Custom message (optional)'
-                  : '\u00d6zel mesaj (iste\u011fe ba\u011fl\u0131)',
+              hintText: L10nService.get('notes.note_detail.custom_message_optional', isEn ? AppLanguage.en : AppLanguage.tr),
               hintStyle: AppTypography.subtitle(
                 color: isDark
                     ? AppColors.textMuted
@@ -1465,7 +1438,7 @@ class _ReminderForm extends StatelessWidget {
                 ),
                 alignment: Alignment.center,
                 child: Text(
-                  isEn ? 'Set Reminder' : 'Hat\u0131rlat\u0131c\u0131 Ayarla',
+                  L10nService.get('notes.note_detail.set_reminder', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,

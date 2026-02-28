@@ -15,6 +15,7 @@ import '../../../../shared/widgets/app_symbol.dart';
 import '../../../../shared/widgets/gradient_text.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/tap_scale.dart';
+import '../../../../data/services/l10n_service.dart';
 
 class DailyPulseCard extends ConsumerWidget {
   final bool isEn;
@@ -131,7 +132,7 @@ class DailyPulseCard extends ConsumerWidget {
         Row(
           children: [
             GradientText(
-              isEn ? 'Focus Pulse' : 'Odak Nabzı',
+              L10nService.get('today.daily_pulse.focus_pulse', isEn ? AppLanguage.en : AppLanguage.tr),
               variant: GradientTextVariant.gold,
               style: AppTypography.displayFont.copyWith(
                 fontSize: 14,
@@ -142,7 +143,7 @@ class DailyPulseCard extends ConsumerWidget {
             const Spacer(),
             Semantics(
               button: true,
-              label: isEn ? 'View details' : 'Detaylar',
+              label: L10nService.get('today.daily_pulse.view_details', isEn ? AppLanguage.en : AppLanguage.tr),
               child: GestureDetector(
                 onTap: () {
                   HapticService.selectionTap();
@@ -150,7 +151,7 @@ class DailyPulseCard extends ConsumerWidget {
                 },
                 behavior: HitTestBehavior.opaque,
                 child: Text(
-                  isEn ? 'Details' : 'Detaylar',
+                  L10nService.get('today.daily_pulse.details', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.subtitle(
                     fontSize: 13,
                     color: isDark
@@ -383,9 +384,7 @@ class DailyPulseCard extends ConsumerWidget {
         final history = archetypeService.getArchetypeHistory();
         if (history.isEmpty) {
           icon = Icons.auto_awesome_outlined;
-          text = isEn
-              ? 'Each entry builds your pattern library. Start journaling to see what emerges.'
-              : 'Her kayıt örüntü kütüphaneni oluşturur. Ne ortaya çıkacağını görmek için yazmaya başla.';
+          text = L10nService.get('today.daily_pulse.each_entry_builds_your_pattern_library_s', isEn ? AppLanguage.en : AppLanguage.tr);
         } else {
           icon = Icons.psychology_outlined;
           final latestId = history.last.archetypeId;
@@ -462,15 +461,15 @@ class DailyPulseCard extends ConsumerWidget {
   String _areaLabel(FocusArea area) {
     switch (area) {
       case FocusArea.energy:
-        return isEn ? 'Energy' : 'Enerji';
+        return L10nService.get('today.daily_pulse.energy', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.focus:
-        return isEn ? 'Focus' : 'Odak';
+        return L10nService.get('today.daily_pulse.focus', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.emotions:
-        return isEn ? 'Emotions' : 'Duygular';
+        return L10nService.get('today.daily_pulse.emotions', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.decisions:
-        return isEn ? 'Decisions' : 'Kararlar';
+        return L10nService.get('today.daily_pulse.decisions', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.social:
-        return isEn ? 'Social' : 'Sosyal';
+        return L10nService.get('today.daily_pulse.social', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 

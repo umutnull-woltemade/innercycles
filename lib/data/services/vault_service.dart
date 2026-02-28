@@ -63,11 +63,59 @@ class VaultService {
     await _prefs.setBool(_vaultEnabledKey, true);
   }
 
-  /// Verify a PIN against the stored hash
+  // Brute-force protection
+  static const String _attemptCountKey = 'inner_cycles_vault_attempts';
+  static const String _lockoutUntilKey = 'inner_cycles_vault_lockout';
+  static const int _maxAttempts = 5;
+  static const Duration _lockoutDuration = Duration(minutes: 15);
+
+  /// Whether vault is currently locked out due to failed attempts
+  bool get isLockedOut {
+    final lockoutMs = _prefs.getInt(_lockoutUntilKey);
+    if (lockoutMs == null) return false;
+    return DateTime.now().isBefore(
+      DateTime.fromMillisecondsSinceEpoch(lockoutMs),
+    );
+  }
+
+  /// Remaining lockout duration
+  Duration get remainingLockoutTime {
+    final lockoutMs = _prefs.getInt(_lockoutUntilKey);
+    if (lockoutMs == null) return Duration.zero;
+    final remaining = DateTime.fromMillisecondsSinceEpoch(lockoutMs)
+        .difference(DateTime.now());
+    return remaining.isNegative ? Duration.zero : remaining;
+  }
+
+  /// Verify a PIN against the stored hash (with brute-force protection)
   bool verifyPin(String pin) {
+    if (isLockedOut) return false;
+
     final storedHash = _prefs.getString(_pinHashKey);
     if (storedHash == null) return false;
-    return _hashPin(pin) == storedHash;
+
+    if (_hashPin(pin) == storedHash) {
+      // Success — reset attempts
+      _prefs.remove(_attemptCountKey);
+      _prefs.remove(_lockoutUntilKey);
+      return true;
+    }
+
+    // Failed — increment attempts
+    final attempts = (_prefs.getInt(_attemptCountKey) ?? 0) + 1;
+    _prefs.setInt(_attemptCountKey, attempts);
+    if (attempts >= _maxAttempts) {
+      final lockoutUntil = DateTime.now().add(_lockoutDuration);
+      _prefs.setInt(_lockoutUntilKey, lockoutUntil.millisecondsSinceEpoch);
+      _prefs.setInt(_attemptCountKey, 0);
+    }
+    return false;
+  }
+
+  /// Remaining failed attempts before lockout
+  int get remainingAttempts {
+    if (isLockedOut) return 0;
+    return _maxAttempts - (_prefs.getInt(_attemptCountKey) ?? 0);
   }
 
   /// Change PIN (requires old PIN verification)

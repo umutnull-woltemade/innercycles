@@ -22,6 +22,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/glass_dialog.dart';
+import '../../../data/services/l10n_service.dart';
 
 class VaultScreen extends ConsumerStatefulWidget {
   const VaultScreen({super.key});
@@ -52,13 +53,13 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
             ),
             slivers: [
               GlassSliverAppBar(
-                title: isEn ? 'Private Vault' : 'Gizli Kasa',
+                title: L10nService.get('vault.vault.private_vault', isEn ? AppLanguage.en : AppLanguage.tr),
                 useGradientTitle: true,
                 gradientVariant: GradientTextVariant.amethyst,
                 actions: [
                   Semantics(
                     button: true,
-                    label: isEn ? 'Vault settings' : 'Kasa ayarları',
+                    label: L10nService.get('vault.vault.vault_settings', isEn ? AppLanguage.en : AppLanguage.tr),
                     child: GestureDetector(
                       onTap: () => _showVaultSettings(isEn, isDark),
                       child: Padding(
@@ -211,7 +212,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
       if (journals.isNotEmpty) {
         items.add(
           _buildSectionHeader(
-            isEn ? 'Private Journals' : 'Gizli Günlükler',
+            L10nService.get('vault.vault.private_journals', isEn ? AppLanguage.en : AppLanguage.tr),
             '${journals.length}',
             isDark,
           ),
@@ -227,7 +228,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
       if (notes.isNotEmpty) {
         items.add(
           _buildSectionHeader(
-            isEn ? 'Private Notes' : 'Gizli Notlar',
+            L10nService.get('vault.vault.private_notes', isEn ? AppLanguage.en : AppLanguage.tr),
             '${notes.length}',
             isDark,
           ),
@@ -243,7 +244,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
       if (photos.isNotEmpty) {
         items.add(
           _buildSectionHeader(
-            isEn ? 'Private Photos' : 'Gizli Fotoğraflar',
+            L10nService.get('vault.vault.private_photos', isEn ? AppLanguage.en : AppLanguage.tr),
             '${photos.length}',
             isDark,
           ),
@@ -278,7 +279,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
           ),
           const SizedBox(height: 20),
           Text(
-            isEn ? 'Your vault is empty' : 'Kasan boş',
+            L10nService.get('vault.vault.your_vault_is_empty', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.displayFont.copyWith(
               fontSize: 20,
               fontWeight: FontWeight.w600,
@@ -287,9 +288,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
           ),
           const SizedBox(height: 8),
           Text(
-            isEn
-                ? 'Mark journals or notes as private, or add photos to your vault.'
-                : 'Günlük veya notlarını gizli olarak işaretle ya da kasana fotoğraf ekle.',
+            L10nService.get('vault.vault.mark_journals_or_notes_as_private_or_add', isEn ? AppLanguage.en : AppLanguage.tr),
             textAlign: TextAlign.center,
             style: AppTypography.subtitle(
               fontSize: 14,
@@ -459,7 +458,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
                     Text(
                       note.title.isNotEmpty
                           ? note.title
-                          : (isEn ? 'Untitled' : 'Başlıksız'),
+                          : (L10nService.get('vault.vault.untitled', isEn ? AppLanguage.en : AppLanguage.tr)),
                       style: AppTypography.subtitle(
                         fontSize: 14,
                         color: isDark
@@ -553,12 +552,10 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
 
     final confirmed = await GlassDialog.confirm(
       context,
-      title: isEn ? 'Delete Photo?' : 'Fotoğrafı Sil?',
-      message: isEn
-          ? 'This photo will be permanently deleted from your vault.'
-          : 'Bu fotoğraf kasandan kalıcı olarak silinecek.',
-      cancelLabel: isEn ? 'Cancel' : 'İptal',
-      confirmLabel: isEn ? 'Delete' : 'Sil',
+      title: L10nService.get('vault.vault.delete_photo', isEn ? AppLanguage.en : AppLanguage.tr),
+      message: L10nService.get('vault.vault.this_photo_will_be_permanently_deleted_f', isEn ? AppLanguage.en : AppLanguage.tr),
+      cancelLabel: L10nService.get('vault.vault.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
+      confirmLabel: L10nService.get('vault.vault.delete', isEn ? AppLanguage.en : AppLanguage.tr),
       isDestructive: true,
     );
 
@@ -591,14 +588,14 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     showCupertinoModalPopup(
       context: context,
       builder: (ctx) => CupertinoActionSheet(
-        title: Text(isEn ? 'Vault Settings' : 'Kasa Ayarları'),
+        title: Text(L10nService.get('vault.vault.vault_settings_1', isEn ? AppLanguage.en : AppLanguage.tr)),
         actions: [
           CupertinoActionSheetAction(
             onPressed: () {
               Navigator.pop(ctx);
               context.push(Routes.vaultPin, extra: {'mode': 'change'});
             },
-            child: Text(isEn ? 'Change PIN' : 'PIN Değiştir'),
+            child: Text(L10nService.get('vault.vault.change_pin', isEn ? AppLanguage.en : AppLanguage.tr)),
           ),
           CupertinoActionSheetAction(
             onPressed: () async {
@@ -619,8 +616,8 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
                 final enabled = snap.data?.isBiometricEnabled ?? false;
                 return Text(
                   enabled
-                      ? (isEn ? 'Disable Face ID' : 'Face ID Kapat')
-                      : (isEn ? 'Enable Face ID' : 'Face ID Aç'),
+                      ? (L10nService.get('vault.vault.disable_face_id', isEn ? AppLanguage.en : AppLanguage.tr))
+                      : (L10nService.get('vault.vault.enable_face_id', isEn ? AppLanguage.en : AppLanguage.tr)),
                 );
               },
             ),
@@ -628,7 +625,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
         ],
         cancelButton: CupertinoActionSheetAction(
           onPressed: () => Navigator.pop(ctx),
-          child: Text(isEn ? 'Cancel' : 'İptal'),
+          child: Text(L10nService.get('vault.vault.cancel_1', isEn ? AppLanguage.en : AppLanguage.tr)),
         ),
       ),
     );

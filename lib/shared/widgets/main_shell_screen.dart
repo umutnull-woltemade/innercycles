@@ -20,6 +20,7 @@ import '../../data/providers/app_providers.dart';
 import '../../data/services/ecosystem_analytics_service.dart';
 import '../../data/services/premium_service.dart';
 import '../../features/whats_new/presentation/whats_new_modal.dart';
+import '../../data/services/l10n_service.dart';
 
 class MainShellScreen extends ConsumerStatefulWidget {
   final StatefulNavigationShell navigationShell;
@@ -101,27 +102,27 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen>
       _TabItem(
         icon: CupertinoIcons.house,
         activeIcon: CupertinoIcons.house_fill,
-        label: isEn ? 'Home' : 'Ana Sayfa',
+        label: L10nService.get('shared.main_shell.home', isEn ? AppLanguage.en : AppLanguage.tr),
       ),
       _TabItem(
         icon: CupertinoIcons.book,
         activeIcon: CupertinoIcons.book_fill,
-        label: isEn ? 'Journal' : 'G\u00fcnl\u00fck',
+        label: L10nService.get('shared.main_shell.journal', isEn ? AppLanguage.en : AppLanguage.tr),
       ),
       _TabItem(
         icon: CupertinoIcons.chart_bar,
         activeIcon: CupertinoIcons.chart_bar_fill,
-        label: isEn ? 'Insights' : '\u0130\u00e7g\u00f6r\u00fc',
+        label: L10nService.get('shared.main_shell.insights', isEn ? AppLanguage.en : AppLanguage.tr),
       ),
       _TabItem(
         icon: CupertinoIcons.doc_text,
         activeIcon: CupertinoIcons.doc_text_fill,
-        label: isEn ? 'Notes' : 'Notlar',
+        label: L10nService.get('shared.main_shell.notes', isEn ? AppLanguage.en : AppLanguage.tr),
       ),
       _TabItem(
         icon: CupertinoIcons.person,
         activeIcon: CupertinoIcons.person_fill,
-        label: isEn ? 'Profile' : 'Profil',
+        label: L10nService.get('shared.main_shell.profile', isEn ? AppLanguage.en : AppLanguage.tr),
       ),
     ];
 

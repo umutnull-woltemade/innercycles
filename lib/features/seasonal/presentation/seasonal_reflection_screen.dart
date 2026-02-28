@@ -21,6 +21,7 @@ import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../data/services/l10n_service.dart';
 
 class SeasonalReflectionScreen extends ConsumerWidget {
   const SeasonalReflectionScreen({super.key});
@@ -42,7 +43,7 @@ class SeasonalReflectionScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: isEn ? 'Seasonal Reflections' : 'Mevsimsel Yansımalar',
+                  title: L10nService.get('seasonal.seasonal_reflection.seasonal_reflections', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -55,7 +56,7 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                             const CosmicLoadingIndicator(),
                             const SizedBox(height: 12),
                             Text(
-                              isEn ? 'Loading reflections...' : 'Yansımalar yükleniyor...',
+                              L10nService.get('seasonal.seasonal_reflection.loading_reflections', isEn ? AppLanguage.en : AppLanguage.tr),
                               style: AppTypography.subtitle(
                                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                               ),
@@ -87,7 +88,7 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                                 icon: Icon(Icons.refresh_rounded,
                                     size: 16, color: AppColors.starGold),
                                 label: Text(
-                                  isEn ? 'Retry' : 'Tekrar Dene',
+                                  L10nService.get('seasonal.seasonal_reflection.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                                   style: AppTypography.elegantAccent(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
@@ -219,7 +220,7 @@ class _SeasonHeader extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '${(completion * 100).round()}% ${isEn ? 'complete' : 'tamamlandı'}',
+            '${(completion * 100).round()}% ${L10nService.get('seasonal.seasonal_reflection.complete', isEn ? AppLanguage.en : AppLanguage.tr)}',
             style: AppTypography.modernAccent(
               fontSize: 12,
               fontWeight: FontWeight.w600,
@@ -334,7 +335,7 @@ class _PromptCard extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: GradientOutlinedButton(
-                  label: isEn ? 'Mark Complete' : 'Tamamlandı',
+                  label: L10nService.get('seasonal.seasonal_reflection.mark_complete', isEn ? AppLanguage.en : AppLanguage.tr),
                   icon: Icons.check_rounded,
                   variant: GradientTextVariant.aurora,
                   fontSize: 13,
@@ -367,7 +368,7 @@ class _AllSeasonsRow extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            isEn ? 'All Seasons' : 'Tüm Mevsimler',
+            L10nService.get('seasonal.seasonal_reflection.all_seasons', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.modernAccent(
               fontSize: 14,
               fontWeight: FontWeight.w600,

@@ -11,6 +11,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../data/services/l10n_service.dart';
 
 /// Full-screen celebration modal for challenge completions.
 class ChallengeCelebrationModal extends StatefulWidget {
@@ -141,9 +142,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
 
                   // Title
                   GradientText(
-                        isEn
-                            ? 'Challenge Completed!'
-                            : 'Meydan Okuma Tamamlandı!',
+                        L10nService.get('streak.challenge_celebration.challenge_completed', isEn ? AppLanguage.en : AppLanguage.tr),
                         variant: GradientTextVariant.gold,
                         style: AppTypography.displayFont.copyWith(
                           fontSize: 20,
@@ -171,9 +170,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
 
                   // Message
                   Text(
-                    isEn
-                        ? 'You showed real commitment'
-                        : 'Gerçek bir kararlılık gösterdin',
+                    L10nService.get('streak.challenge_celebration.you_showed_real_commitment', isEn ? AppLanguage.en : AppLanguage.tr),
                     textAlign: TextAlign.center,
                     style: AppTypography.decorativeScript(
                       fontSize: 15,
@@ -216,7 +213,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
                         children: [
                           Expanded(
                             child: GradientOutlinedButton(
-                              label: isEn ? 'Share' : 'Paylaş',
+                              label: L10nService.get('streak.challenge_celebration.share', isEn ? AppLanguage.en : AppLanguage.tr),
                               icon: _isSharing ? null : Icons.share_rounded,
                               variant: GradientTextVariant.gold,
                               expanded: true,
@@ -232,7 +229,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
                           const SizedBox(width: 12),
                           Expanded(
                             child: GradientButton.gold(
-                              label: isEn ? 'Continue' : 'Devam Et',
+                              label: L10nService.get('streak.challenge_celebration.continue', isEn ? AppLanguage.en : AppLanguage.tr),
                               onPressed: () => Navigator.of(context).pop(),
                               expanded: true,
                             ),

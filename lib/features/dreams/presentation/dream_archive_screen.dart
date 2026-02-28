@@ -22,6 +22,7 @@ import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../../core/constants/routes.dart';
 import 'package:go_router/go_router.dart';
+import '../../../data/services/l10n_service.dart';
 
 class DreamArchiveScreen extends ConsumerStatefulWidget {
   const DreamArchiveScreen({super.key});
@@ -150,7 +151,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    isEn ? 'Failed to load dreams' : 'Rüyalar yüklenemedi',
+                    L10nService.get('dreams.dream_archive.failed_to_load_dreams', isEn ? AppLanguage.en : AppLanguage.tr),
                     textAlign: TextAlign.center,
                     style: AppTypography.decorativeScript(
                       color: isDark
@@ -165,7 +166,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      isEn ? 'Retry' : 'Tekrar Dene',
+                      L10nService.get('dreams.dream_archive.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -206,7 +207,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                     ),
                     slivers: [
                       GlassSliverAppBar(
-                        title: isEn ? 'Dream Archive' : 'Rüya Arşivi',
+                        title: L10nService.get('dreams.dream_archive.dream_archive', isEn ? AppLanguage.en : AppLanguage.tr),
                       ),
 
                       // Stats row
@@ -222,7 +223,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                             children: [
                               Expanded(
                                 child: _StatTile(
-                                  label: isEn ? 'Total' : 'Toplam',
+                                  label: L10nService.get('dreams.dream_archive.total', isEn ? AppLanguage.en : AppLanguage.tr),
                                   value: '$totalDreams',
                                   isDark: isDark,
                                 ),
@@ -230,7 +231,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                               const SizedBox(width: AppConstants.spacingSm),
                               Expanded(
                                 child: _StatTile(
-                                  label: isEn ? 'Recurring' : 'Tekrarlayan',
+                                  label: L10nService.get('dreams.dream_archive.recurring', isEn ? AppLanguage.en : AppLanguage.tr),
                                   value: '$recurringCount',
                                   isDark: isDark,
                                 ),
@@ -238,7 +239,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                               const SizedBox(width: AppConstants.spacingSm),
                               Expanded(
                                 child: _StatTile(
-                                  label: isEn ? 'Lucid' : 'Lüsid',
+                                  label: L10nService.get('dreams.dream_archive.lucid', isEn ? AppLanguage.en : AppLanguage.tr),
                                   value: '$lucidCount',
                                   isDark: isDark,
                                 ),
@@ -356,18 +357,10 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                                         confirmDismiss: (_) async {
                                           final confirmed = await GlassDialog.confirm(
                                             context,
-                                            title: isEn
-                                                ? 'Delete Dream?'
-                                                : 'Rüya Silinsin mi?',
-                                            message: isEn
-                                                ? 'This dream entry will be permanently deleted.'
-                                                : 'Bu rüya kaydı kalıcı olarak silinecek.',
-                                            confirmLabel: isEn
-                                                ? 'Delete'
-                                                : 'Sil',
-                                            cancelLabel: isEn
-                                                ? 'Cancel'
-                                                : 'İptal',
+                                            title: L10nService.get('dreams.dream_archive.delete_dream', isEn ? AppLanguage.en : AppLanguage.tr),
+                                            message: L10nService.get('dreams.dream_archive.this_dream_entry_will_be_permanently_del', isEn ? AppLanguage.en : AppLanguage.tr),
+                                            confirmLabel: L10nService.get('dreams.dream_archive.delete', isEn ? AppLanguage.en : AppLanguage.tr),
+                                            cancelLabel: L10nService.get('dreams.dream_archive.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
                                             isDestructive: true,
                                           );
                                           if (confirmed == true) {
@@ -483,7 +476,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: isEn ? 'Search by symbol or theme...' : 'Sembol veya temaya göre ara...',
+          hintText: L10nService.get('dreams.dream_archive.search_by_symbol_or_theme', isEn ? AppLanguage.en : AppLanguage.tr),
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -493,7 +486,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
           ),
           suffixIcon: _searchQuery.isNotEmpty
               ? IconButton(
-                  tooltip: isEn ? 'Clear search' : 'Aramayı temizle',
+                  tooltip: L10nService.get('dreams.dream_archive.clear_search', isEn ? AppLanguage.en : AppLanguage.tr),
                   icon: Icon(
                     Icons.cancel,
                     color: isDark

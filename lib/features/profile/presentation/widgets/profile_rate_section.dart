@@ -5,6 +5,8 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../../shared/widgets/gradient_text.dart';
+import '../../../../data/services/l10n_service.dart';
+import '../../../../data/providers/app_providers.dart';
 
 /// "Love InnerCycles?" rate-us card for profile hub.
 /// Triggers native App Store review dialog via in_app_review.
@@ -53,9 +55,7 @@ class ProfileRateSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GradientText(
-                  isEn
-                      ? 'Enjoying InnerCycles?'
-                      : 'InnerCycles\'ı beğeniyor musun?',
+                  L10nService.get('profile.profile_rate.enjoying_innercycles', isEn ? AppLanguage.en : AppLanguage.tr),
                   variant: GradientTextVariant.gold,
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 15,
@@ -64,9 +64,7 @@ class ProfileRateSection extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  isEn
-                      ? 'A quick rating helps us grow'
-                      : 'Hızlı bir puan büyümemize yardımcı olur',
+                  L10nService.get('profile.profile_rate.a_quick_rating_helps_us_grow', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.subtitle(
                     fontSize: 13,
                     color: isDark
@@ -108,7 +106,7 @@ class ProfileRateSection extends StatelessWidget {
                 ],
               ),
               child: Text(
-                isEn ? 'Rate' : 'Puanla',
+                L10nService.get('profile.profile_rate.rate', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,

@@ -10,6 +10,7 @@ import '../../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/tap_scale.dart';
+import '../../../../data/services/l10n_service.dart';
 
 class OnThisDayBanner extends ConsumerWidget {
   final bool isEn;
@@ -49,9 +50,7 @@ class OnThisDayBanner extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
           child: Semantics(
             button: true,
-            label: isEn
-                ? 'View memories from this day'
-                : 'Bugünün anılarını gör',
+            label: L10nService.get('today.on_this_day.view_memories_from_this_day', isEn ? AppLanguage.en : AppLanguage.tr),
             child: TapScale(
               onTap: () => context.push(Routes.memories),
               child: PremiumCard(

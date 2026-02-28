@@ -25,6 +25,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../data/services/l10n_service.dart';
 
 class LifeEventDetailScreen extends ConsumerWidget {
   final String eventId;
@@ -47,7 +48,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  isEn ? 'Couldn\'t load this event' : 'Bu olay yüklenemedi',
+                  L10nService.get('life_events.life_event_detail.couldnt_load_this_event', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textSecondary
@@ -63,7 +64,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                     color: AppColors.starGold,
                   ),
                   label: Text(
-                    isEn ? 'Retry' : 'Tekrar Dene',
+                    L10nService.get('life_events.life_event_detail.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -79,7 +80,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
             if (event == null) {
               return Center(
                 child: Text(
-                  isEn ? 'Event not found' : 'Olay bulunamadı',
+                  L10nService.get('life_events.life_event_detail.event_not_found', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textMuted
@@ -125,10 +126,10 @@ class LifeEventDetailScreen extends ConsumerWidget {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: isEn ? 'Life Event' : 'Yaşam Olayı',
+            title: L10nService.get('life_events.life_event_detail.life_event', isEn ? AppLanguage.en : AppLanguage.tr),
             actions: [
               IconButton(
-                tooltip: isEn ? 'Share event' : 'Olayı paylaş',
+                tooltip: L10nService.get('life_events.life_event_detail.share_event', isEn ? AppLanguage.en : AppLanguage.tr),
                 icon: Icon(
                   Icons.share_rounded,
                   color: AppColors.starGold,
@@ -147,7 +148,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                 },
               ),
               IconButton(
-                tooltip: isEn ? 'Edit event' : 'Olayı düzenle',
+                tooltip: L10nService.get('life_events.life_event_detail.edit_event', isEn ? AppLanguage.en : AppLanguage.tr),
                 icon: Icon(
                   Icons.edit_rounded,
                   color: isDark
@@ -162,7 +163,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                 },
               ),
               IconButton(
-                tooltip: isEn ? 'Delete event' : 'Olayı sil',
+                tooltip: L10nService.get('life_events.life_event_detail.delete_event', isEn ? AppLanguage.en : AppLanguage.tr),
                 icon: Icon(
                   Icons.delete_outline_rounded,
                   color: AppColors.error,
@@ -184,7 +185,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                       height: 200,
                       width: double.infinity,
                       fit: BoxFit.cover,
-                      semanticLabel: isEn ? 'Event photo' : 'Olay fotoğrafı',
+                      semanticLabel: L10nService.get('life_events.life_event_detail.event_photo', isEn ? AppLanguage.en : AppLanguage.tr),
                       errorBuilder: (_, _, _) => const SizedBox.shrink(),
                     ),
                   ).animate().fadeIn(duration: 400.ms),
@@ -242,7 +243,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                     Expanded(
                       child: _infoCard(
                         icon: Icons.calendar_today_rounded,
-                        label: isEn ? 'Date' : 'Tarih',
+                        label: L10nService.get('life_events.life_event_detail.date', isEn ? AppLanguage.en : AppLanguage.tr),
                         value: formatted,
                         isDark: isDark,
                       ),
@@ -251,7 +252,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                     Expanded(
                       child: _infoCard(
                         icon: Icons.speed_rounded,
-                        label: isEn ? 'Intensity' : 'Yoğunluk',
+                        label: L10nService.get('life_events.life_event_detail.intensity', isEn ? AppLanguage.en : AppLanguage.tr),
                         value:
                             intensityLabels[(event.intensity - 1).clamp(0, 4)],
                         isDark: isDark,
@@ -271,7 +272,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GradientText(
-                          isEn ? 'Emotions' : 'Duygular',
+                          L10nService.get('life_events.life_event_detail.emotions', isEn ? AppLanguage.en : AppLanguage.tr),
                           variant: GradientTextVariant.amethyst,
                           style: AppTypography.elegantAccent(
                             fontSize: 13,
@@ -321,7 +322,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GradientText(
-                          isEn ? 'Reflection' : 'Düşünceler',
+                          L10nService.get('life_events.life_event_detail.reflection', isEn ? AppLanguage.en : AppLanguage.tr),
                           variant: GradientTextVariant.amethyst,
                           style: AppTypography.elegantAccent(
                             fontSize: 13,
@@ -335,7 +336,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                             HapticService.buttonPress();
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text(isEn ? 'Event copied to clipboard' : 'Olay panoya kopyalandı'),
+                                content: Text(L10nService.get('life_events.life_event_detail.event_copied_to_clipboard', isEn ? AppLanguage.en : AppLanguage.tr)),
                                 duration: const Duration(seconds: 1),
                                 backgroundColor: AppColors.success,
                               ),
@@ -417,12 +418,10 @@ class LifeEventDetailScreen extends ConsumerWidget {
   ) async {
     final confirmed = await GlassDialog.confirm(
       context,
-      title: isEn ? 'Delete Event?' : 'Olayı Sil?',
-      message: isEn
-          ? 'This life event will be permanently deleted.'
-          : 'Bu yaşam olayı kalıcı olarak silinecek.',
-      cancelLabel: isEn ? 'Cancel' : 'İptal',
-      confirmLabel: isEn ? 'Delete' : 'Sil',
+      title: L10nService.get('life_events.life_event_detail.delete_event_1', isEn ? AppLanguage.en : AppLanguage.tr),
+      message: L10nService.get('life_events.life_event_detail.this_life_event_will_be_permanently_dele', isEn ? AppLanguage.en : AppLanguage.tr),
+      cancelLabel: L10nService.get('life_events.life_event_detail.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
+      confirmLabel: L10nService.get('life_events.life_event_detail.delete', isEn ? AppLanguage.en : AppLanguage.tr),
       isDestructive: true,
     );
     if (confirmed != true) return;
