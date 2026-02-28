@@ -539,6 +539,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   // ════════════════════════════════════════════════════════════════════════════
 
   Widget _buildPlanSelection(BuildContext context) {
+    final isEn = ref.watch(languageProvider) == AppLanguage.en;
     return Column(
       children: [
         // Yearly — target plan
@@ -547,6 +548,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           isSelected: _selectedTier == PremiumTier.yearly,
           onTap: () => setState(() => _selectedTier = PremiumTier.yearly),
           isBestValue: true,
+          isEn: isEn,
           priceOverride: ref
               .read(premiumProvider.notifier)
               .getProductPrice(PremiumTier.yearly),
@@ -558,6 +560,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           tier: PremiumTier.monthly,
           isSelected: _selectedTier == PremiumTier.monthly,
           onTap: () => setState(() => _selectedTier = PremiumTier.monthly),
+          isEn: isEn,
           priceOverride:
               ref
                   .watch(paywallExperimentProvider)
@@ -897,7 +900,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           const Icon(Icons.star_rounded, size: 72, color: AppColors.starGold),
           const SizedBox(height: 8),
           Text(
-            premiumState.tier.displayName,
+            premiumState.tier.localizedDisplayName(ref.watch(languageProvider)),
             style: AppTypography.elegantAccent(
               fontSize: 16,
               fontWeight: FontWeight.w700,
@@ -1244,6 +1247,7 @@ class _PlanCard extends StatelessWidget {
   final VoidCallback onTap;
   final bool isBestValue;
   final String? priceOverride;
+  final bool isEn;
 
   const _PlanCard({
     required this.tier,
@@ -1251,6 +1255,7 @@ class _PlanCard extends StatelessWidget {
     required this.onTap,
     this.isBestValue = false,
     this.priceOverride,
+    this.isEn = true,
   });
 
   @override
@@ -1266,7 +1271,7 @@ class _PlanCard extends StatelessWidget {
               ? AppColors.starGold.withValues(alpha: 0.2)
               : null,
           child: Semantics(
-            label: '${tier.displayName}${isSelected ? ' selected' : ''}',
+            label: '${tier.localizedDisplayName(isEn ? AppLanguage.en : AppLanguage.tr)}${isSelected ? (isEn ? ' selected' : ' seçili') : ''}',
             button: true,
             selected: isSelected,
             child: Material(
@@ -1307,7 +1312,7 @@ class _PlanCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              tier.displayName,
+                              tier.localizedDisplayName(isEn ? AppLanguage.en : AppLanguage.tr),
                               style: AppTypography.modernAccent(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,

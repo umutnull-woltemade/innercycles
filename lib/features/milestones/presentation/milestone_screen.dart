@@ -673,7 +673,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                           Text(
                             isEn
                                 ? 'Earned ${_formatDate(earnedDate, isEn)}'
-                                : 'Kazanildi: ${_formatDate(earnedDate, isEn)}',
+                                : 'Kazanıldı: ${_formatDate(earnedDate, isEn)}',
                             style: AppTypography.subtitle(
                               fontSize: 13,
                               color: AppColors.success,
