@@ -62,7 +62,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
         shareText: isEn
             ? '${challenge.emoji} $title completed! — InnerCycles\n\nDiscover your patterns: ${AppConstants.appStoreUrl}'
             : '${challenge.emoji} $title tamamlandı! — InnerCycles\n\nÖrüntülerini keşfet: ${AppConstants.appStoreUrl}',
-        hashtags: '#InnerCycles #ChallengeComplete',
+        hashtags: isEn ? '#InnerCycles #ChallengeComplete' : '#InnerCycles #GörevTamamlandı',
         language: isEn ? AppLanguage.en : AppLanguage.tr,
       );
     } finally {

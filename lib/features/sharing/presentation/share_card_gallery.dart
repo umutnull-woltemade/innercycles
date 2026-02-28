@@ -119,7 +119,7 @@ class _ShareCardGalleryScreenState
     final result = await InstagramShareService.shareCosmicContent(
       boundary: boundary,
       shareText: shareText,
-      hashtags: '#InnerCycles #Journaling #SelfAwareness',
+      hashtags: isEn ? '#InnerCycles #Journaling #SelfAwareness' : '#InnerCycles #Günlük #Farkındalık',
       language: language,
     );
 

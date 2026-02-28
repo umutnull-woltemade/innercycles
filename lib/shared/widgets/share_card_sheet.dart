@@ -69,7 +69,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
       await InstagramShareService.shareCosmicContent(
         boundary: boundary,
         shareText: shareText,
-        hashtags: '#InnerCycles #SelfReflection',
+        hashtags: widget.isEn ? '#InnerCycles #SelfReflection' : '#InnerCycles #ÖzYansıma',
         language: widget.isEn ? AppLanguage.en : AppLanguage.tr,
       );
 
