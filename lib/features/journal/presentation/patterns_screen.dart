@@ -71,7 +71,7 @@ class PatternsScreen extends ConsumerWidget {
                         color: AppColors.starGold,
                       ),
                       label: Text(
-                        L10nService.get('journal.patterns.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('journal.patterns.retry', language),
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -105,7 +105,7 @@ class PatternsScreen extends ConsumerWidget {
   Widget _buildLockedView(
     BuildContext context,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     int needed,
     int current,
   ) {
@@ -215,7 +215,7 @@ class PatternsScreen extends ConsumerWidget {
                             ),
                             const SizedBox(height: 28),
                             GradientText(
-                              L10nService.get('journal.patterns.patterns_unlock_after_7_entries', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('journal.patterns.patterns_unlock_after_7_entries', language),
                               variant: GradientTextVariant.gold,
                               textAlign: TextAlign.center,
                               style: AppTypography.modernAccent(
@@ -276,7 +276,7 @@ class PatternsScreen extends ConsumerWidget {
                             const SizedBox(height: 24),
                             // CTA to journal
                             GradientButton.gold(
-                              label: L10nService.get('journal.patterns.write_entry', isEn ? AppLanguage.en : AppLanguage.tr),
+                              label: L10nService.get('journal.patterns.write_entry', language),
                               icon: Icons.edit_note_outlined,
                               onPressed: () => context.go(Routes.journal),
                               expanded: true,
@@ -303,7 +303,7 @@ class PatternsScreen extends ConsumerWidget {
     WidgetRef ref,
     PatternEngineService engine,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     // Trigger review prompt at first pattern insight (post-frame)
     WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -457,10 +457,10 @@ class PatternsScreen extends ConsumerWidget {
                 _ShadowWorkSuggestion(
                   engine: engine,
                   isDark: isDark,
-                  isEn: isEn,
+                  language: language,
                 ),
                 ContentDisclaimer(
-                  language: isEn ? AppLanguage.en : AppLanguage.tr,
+                  language: language,
                 ),
                 const SizedBox(height: 40),
               ]),
@@ -475,13 +475,13 @@ class PatternsScreen extends ConsumerWidget {
   Widget _buildPremiumBlurOverlay(
     BuildContext context,
     WidgetRef ref,
-    bool isEn,
+    AppLanguage language,
     bool isDark, {
     required Widget child,
   }) {
     return Semantics(
       button: true,
-      label: L10nService.get('journal.patterns.see_full_analysis', isEn ? AppLanguage.en : AppLanguage.tr),
+      label: L10nService.get('journal.patterns.see_full_analysis', language),
       child: GestureDetector(
         onTap: () {
           showContextualPaywall(
@@ -549,7 +549,7 @@ class PatternsScreen extends ConsumerWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          L10nService.get('journal.patterns.see_full_analysis_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('journal.patterns.see_full_analysis_1', language),
                           style: AppTypography.modernAccent(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -568,15 +568,15 @@ class PatternsScreen extends ConsumerWidget {
     );
   }
 
-  GlassSliverAppBar _buildAppBar(BuildContext context, bool isDark, bool isEn) {
-    return GlassSliverAppBar(title: L10nService.get('journal.patterns.your_patterns', isEn ? AppLanguage.en : AppLanguage.tr));
+  GlassSliverAppBar _buildAppBar(BuildContext context, bool isDark, AppLanguage language) {
+    return GlassSliverAppBar(title: L10nService.get('journal.patterns.your_patterns', language));
   }
 
   Widget _buildCycleArcs(
     BuildContext context,
     Map<FocusArea, double> averages,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     return Container(
       height: 200,
@@ -589,7 +589,7 @@ class PatternsScreen extends ConsumerWidget {
         border: Border.all(color: AppColors.starGold.withValues(alpha: 0.2)),
       ),
       child: Semantics(
-        label: L10nService.get('journal.patterns.focus_area_cycle_averages_chart', isEn ? AppLanguage.en : AppLanguage.tr),
+        label: L10nService.get('journal.patterns.focus_area_cycle_averages_chart', language),
         image: true,
         child: CustomPaint(
           size: const Size(double.infinity, 170),
@@ -615,7 +615,7 @@ class PatternsScreen extends ConsumerWidget {
     Map<FocusArea, double> thisWeek,
     Map<FocusArea, double> lastWeek,
     bool isDark,
-    bool isEn, {
+    AppLanguage language, {
     Map<FocusArea, DimensionHealth>? healthMap,
   }) {
     return PremiumCard(
@@ -625,7 +625,7 @@ class PatternsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('journal.patterns.this_week_vs_last_week', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('journal.patterns.this_week_vs_last_week', language),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 14,
@@ -720,7 +720,7 @@ class PatternsScreen extends ConsumerWidget {
     BuildContext context,
     List<TrendInsight> trends,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     return PremiumCard(
       style: PremiumCardStyle.subtle,
@@ -729,7 +729,7 @@ class PatternsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('journal.patterns.trends', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('journal.patterns.trends', language),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 14,
@@ -781,7 +781,7 @@ class PatternsScreen extends ConsumerWidget {
     BuildContext context,
     List<CorrelationInsight> correlations,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     return PremiumCard(
       style: PremiumCardStyle.subtle,
@@ -790,7 +790,7 @@ class PatternsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('journal.patterns.connections', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('journal.patterns.connections', language),
             variant: GradientTextVariant.aurora,
             style: AppTypography.elegantAccent(
               fontSize: 14,
@@ -833,7 +833,7 @@ class PatternsScreen extends ConsumerWidget {
     BuildContext context,
     List<CrossCorrelation> crossCorrelations,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     return PremiumCard(
       style: PremiumCardStyle.subtle,
@@ -846,7 +846,7 @@ class PatternsScreen extends ConsumerWidget {
               Icon(Icons.insights, color: AppColors.auroraStart, size: 20),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('journal.patterns.crossdimension_insights', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('journal.patterns.crossdimension_insights', language),
                 variant: GradientTextVariant.aurora,
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
@@ -954,7 +954,7 @@ class PatternsScreen extends ConsumerWidget {
           const SizedBox(height: AppConstants.spacingSm),
           // Disclaimer
           Text(
-            L10nService.get('journal.patterns.based_on_your_personal_journal_entries_n', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('journal.patterns.based_on_your_personal_journal_entries_n', language),
             style: AppTypography.decorativeScript(
               fontSize: 11,
               color: isDark
@@ -971,7 +971,7 @@ class PatternsScreen extends ConsumerWidget {
     BuildContext context,
     GratitudeMoodComparison comparison,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final isPositiveLift = comparison.lift > 0.2;
     final accentColor = isPositiveLift
@@ -989,7 +989,7 @@ class PatternsScreen extends ConsumerWidget {
               Icon(Icons.favorite_border_rounded, color: accentColor, size: 20),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('journal.patterns.gratitude_mood', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('journal.patterns.gratitude_mood', language),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
@@ -1005,12 +1005,12 @@ class PatternsScreen extends ConsumerWidget {
               Expanded(
                 child: _buildMoodAverageColumn(
                   context,
-                  label: L10nService.get('journal.patterns.gratitude_days', isEn ? AppLanguage.en : AppLanguage.tr),
+                  label: L10nService.get('journal.patterns.gratitude_days', language),
                   average: comparison.moodWithGratitude,
                   days: comparison.daysWithGratitude,
                   color: accentColor,
                   isDark: isDark,
-                  isEn: isEn,
+                  language: language,
                 ),
               ),
               Container(
@@ -1023,14 +1023,14 @@ class PatternsScreen extends ConsumerWidget {
               Expanded(
                 child: _buildMoodAverageColumn(
                   context,
-                  label: L10nService.get('journal.patterns.other_days', isEn ? AppLanguage.en : AppLanguage.tr),
+                  label: L10nService.get('journal.patterns.other_days', language),
                   average: comparison.moodWithoutGratitude,
                   days: comparison.daysWithoutGratitude,
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
                   isDark: isDark,
-                  isEn: isEn,
+                  language: language,
                 ),
               ),
             ],
@@ -1058,7 +1058,7 @@ class PatternsScreen extends ConsumerWidget {
     required int days,
     required Color color,
     required bool isDark,
-    required bool isEn,
+    required AppLanguage language,
   }) {
     return Column(
       children: [
@@ -1082,7 +1082,7 @@ class PatternsScreen extends ConsumerWidget {
           textAlign: TextAlign.center,
         ),
         Text(
-          L10nService.getWithParams('journal.patterns.n_days', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$days'}),
+          L10nService.getWithParams('journal.patterns.n_days', language, params: {'count': '$days'}),
           style: AppTypography.subtitle(
             fontSize: 11,
             color: isDark
@@ -1102,11 +1102,12 @@ class PatternsScreen extends ConsumerWidget {
 class _CycleArcsPainter extends CustomPainter {
   final Map<FocusArea, double> averages;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   static const _colors = AppColors.focusAreaPalette;
 
-  _CycleArcsPainter(this.averages, this.isDark, this.isEn);
+  _CycleArcsPainter(this.averages, this.isDark, this.language);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -1176,12 +1177,13 @@ class _CycleArcsPainter extends CustomPainter {
 class _ShadowWorkSuggestion extends StatelessWidget {
   final PatternEngineService engine;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const _ShadowWorkSuggestion({
     required this.engine,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override

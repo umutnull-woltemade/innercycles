@@ -45,7 +45,7 @@ class SleepDetailScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('sleep.sleep_detail.sleep_quality', isEn ? AppLanguage.en : AppLanguage.tr),
+                  title: L10nService.get('sleep.sleep_detail.sleep_quality', language),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -77,7 +77,7 @@ class SleepDetailScreen extends ConsumerWidget {
                                 icon: Icon(Icons.refresh_rounded,
                                     size: 16, color: AppColors.starGold),
                                 label: Text(
-                                  L10nService.get('sleep.sleep_detail.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                                  L10nService.get('sleep.sleep_detail.retry', language),
                                   style: AppTypography.elegantAccent(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
@@ -97,7 +97,7 @@ class SleepDetailScreen extends ConsumerWidget {
 
                       if (summary.nightsLogged == 0) {
                         return SliverToBoxAdapter(
-                          child: _EmptyState(isDark: isDark, isEn: isEn),
+                          child: _EmptyState(isDark: isDark, language: language),
                         );
                       }
 
@@ -107,12 +107,12 @@ class SleepDetailScreen extends ConsumerWidget {
                           _SummaryCard(
                             summary: summary,
                             isDark: isDark,
-                            isEn: isEn,
+                            language: language,
                           ),
                           const SizedBox(height: 20),
 
                           // Weekly chart
-                          _WeeklyChart(days: last7, isDark: isDark, isEn: isEn),
+                          _WeeklyChart(days: last7, isDark: isDark, language: language),
                           const SizedBox(height: 24),
 
                           // Trend card
@@ -120,19 +120,19 @@ class SleepDetailScreen extends ConsumerWidget {
                             _TrendCard(
                               trend: summary.trendDirection!,
                               isDark: isDark,
-                              isEn: isEn,
+                              language: language,
                             ),
                           if (summary.trendDirection != null)
                             const SizedBox(height: 24),
 
                           // Tips
-                          _SleepTips(isDark: isDark, isEn: isEn),
+                          _SleepTips(isDark: isDark, language: language),
                           const SizedBox(height: 24),
 
                           // Recent entries
                           if (entries.isNotEmpty) ...[
                             GradientText(
-                              L10nService.get('sleep.sleep_detail.recent_nights', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('sleep.sleep_detail.recent_nights', language),
                               variant: GradientTextVariant.gold,
                               style: AppTypography.displayFont.copyWith(
                                 fontSize: 16,
@@ -146,7 +146,7 @@ class SleepDetailScreen extends ConsumerWidget {
                                   (entry) => _NightCard(
                                     entry: entry,
                                     isDark: isDark,
-                                    isEn: isEn,
+                                    language: language,
                                   ),
                                 ),
                           ],
@@ -185,12 +185,13 @@ class _DayData {
 class _SummaryCard extends StatelessWidget {
   final SleepSummary summary;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const _SummaryCard({
     required this.summary,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -206,19 +207,19 @@ class _SummaryCard extends StatelessWidget {
             value: summary.averageQuality > 0
                 ? summary.averageQuality.toStringAsFixed(1)
                 : '-',
-            label: L10nService.get('sleep.sleep_detail.average', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('sleep.sleep_detail.average', language),
             color: _qualityColor(summary.averageQuality),
             isDark: isDark,
           ),
           _StatItem(
             value: '${summary.nightsLogged}',
-            label: L10nService.get('sleep.sleep_detail.nights', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('sleep.sleep_detail.nights', language),
             color: AppColors.auroraStart,
             isDark: isDark,
           ),
           _StatItem(
             value: '${summary.bestNightQuality}/5',
-            label: L10nService.get('sleep.sleep_detail.best', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('sleep.sleep_detail.best', language),
             color: AppColors.success,
             isDark: isDark,
           ),
@@ -276,12 +277,13 @@ class _StatItem extends StatelessWidget {
 class _WeeklyChart extends StatelessWidget {
   final List<_DayData> days;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const _WeeklyChart({
     required this.days,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -298,7 +300,7 @@ class _WeeklyChart extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('sleep.sleep_detail.last_7_days', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('sleep.sleep_detail.last_7_days', language),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -375,12 +377,13 @@ class _WeeklyChart extends StatelessWidget {
 class _TrendCard extends StatelessWidget {
   final String trend;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const _TrendCard({
     required this.trend,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -438,9 +441,10 @@ class _TrendCard extends StatelessWidget {
 
 class _SleepTips extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
-  const _SleepTips({required this.isDark, required this.isEn});
+  const _SleepTips({required this.isDark, required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -474,7 +478,7 @@ class _SleepTips extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('sleep.sleep_detail.sleep_tips', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('sleep.sleep_detail.sleep_tips', language),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 14,
@@ -522,12 +526,13 @@ class _SleepTips extends StatelessWidget {
 class _NightCard extends StatelessWidget {
   final SleepEntry entry;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const _NightCard({
     required this.entry,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -604,18 +609,19 @@ class _NightCard extends StatelessWidget {
 
 class _EmptyState extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
-  const _EmptyState({required this.isDark, required this.isEn});
+  const _EmptyState({required this.isDark, required this.language});
 
   @override
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.bedtime_outlined,
-      title: L10nService.get('sleep.sleep_detail.your_sleep_story_is_waiting_to_begin', isEn ? AppLanguage.en : AppLanguage.tr),
-      description: L10nService.get('sleep.sleep_detail.log_your_sleep_quality_in_your_daily_jou', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('sleep.sleep_detail.your_sleep_story_is_waiting_to_begin', language),
+      description: L10nService.get('sleep.sleep_detail.log_your_sleep_quality_in_your_daily_jou', language),
       gradientVariant: GradientTextVariant.amethyst,
-      ctaLabel: L10nService.get('sleep.sleep_detail.write_journal_entry', isEn ? AppLanguage.en : AppLanguage.tr),
+      ctaLabel: L10nService.get('sleep.sleep_detail.write_journal_entry', language),
       onCtaPressed: () => context.go(Routes.journal),
     );
   }

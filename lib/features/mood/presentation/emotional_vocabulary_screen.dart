@@ -67,7 +67,7 @@ class _EmotionalVocabularyScreenState
                       ),
                       slivers: [
                         GlassSliverAppBar(
-                          title: L10nService.get('mood.emotional_vocabulary.emotional_vocabulary', isEn ? AppLanguage.en : AppLanguage.tr),
+                          title: L10nService.get('mood.emotional_vocabulary.emotional_vocabulary', language),
                         ),
                         SliverPadding(
                           padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -105,7 +105,7 @@ class _EmotionalVocabularyScreenState
                                   child: _EmotionCard(
                                     emotion: emotion,
                                     isDark: isDark,
-                                    isEn: isEn,
+                                    language: language,
                                   ),
                                 ),
                               ),
@@ -129,7 +129,7 @@ class _EmotionalVocabularyScreenState
                                           height: AppConstants.spacingMd,
                                         ),
                                         Text(
-                                          L10nService.get('mood.emotional_vocabulary.no_emotions_found', isEn ? AppLanguage.en : AppLanguage.tr),
+                                          L10nService.get('mood.emotional_vocabulary.no_emotions_found', language),
                                           style: AppTypography.decorativeScript(
                                             fontSize: 15,
                                             color: isDark
@@ -155,13 +155,13 @@ class _EmotionalVocabularyScreenState
     );
   }
 
-  Widget _buildFamilyChips(bool isDark, bool isEn) {
+  Widget _buildFamilyChips(bool isDark, AppLanguage language) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
           _FamilyChip(
-            label: L10nService.get('mood.emotional_vocabulary.all', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('mood.emotional_vocabulary.all', language),
             emoji: '🎭',
             isSelected: _selectedFamily == null,
             isDark: isDark,
@@ -185,7 +185,7 @@ class _EmotionalVocabularyScreenState
     );
   }
 
-  Widget _buildSearchBar(bool isDark, bool isEn) {
+  Widget _buildSearchBar(bool isDark, AppLanguage language) {
     return Container(
       decoration: BoxDecoration(
         color: isDark
@@ -205,7 +205,7 @@ class _EmotionalVocabularyScreenState
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: L10nService.get('mood.emotional_vocabulary.find_a_feeling', isEn ? AppLanguage.en : AppLanguage.tr),
+          hintText: L10nService.get('mood.emotional_vocabulary.find_a_feeling', language),
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -215,7 +215,7 @@ class _EmotionalVocabularyScreenState
           ),
           suffixIcon: _searchQuery.isNotEmpty
               ? IconButton(
-                  tooltip: L10nService.get('mood.emotional_vocabulary.clear_search', isEn ? AppLanguage.en : AppLanguage.tr),
+                  tooltip: L10nService.get('mood.emotional_vocabulary.clear_search', language),
                   icon: Icon(
                     Icons.cancel,
                     color: isDark
@@ -309,12 +309,13 @@ class _FamilyChip extends StatelessWidget {
 class _EmotionCard extends StatefulWidget {
   final GranularEmotion emotion;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const _EmotionCard({
     required this.emotion,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -444,7 +445,7 @@ class _EmotionCardState extends State<_EmotionCard> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              L10nService.get('mood.emotional_vocabulary.body_sensation', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('mood.emotional_vocabulary.body_sensation', language),
                               style: AppTypography.elegantAccent(
                                 fontSize: 11,
                                 color: AppColors.auroraStart,

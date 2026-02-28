@@ -42,7 +42,7 @@ class RitualsScreen extends ConsumerWidget {
                 parent: AlwaysScrollableScrollPhysics(),
               ),
               slivers: [
-                GlassSliverAppBar(title: L10nService.get('rituals.rituals.my_rituals', isEn ? AppLanguage.en : AppLanguage.tr)),
+                GlassSliverAppBar(title: L10nService.get('rituals.rituals.my_rituals', language)),
                 SliverPadding(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
                   sliver: stacksAsync.when(
@@ -72,7 +72,7 @@ class RitualsScreen extends ConsumerWidget {
                                 icon: Icon(Icons.refresh_rounded,
                                     size: 16, color: AppColors.starGold),
                                 label: Text(
-                                  L10nService.get('rituals.rituals.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                                  L10nService.get('rituals.rituals.retry', language),
                                   style: AppTypography.elegantAccent(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
@@ -88,7 +88,7 @@ class RitualsScreen extends ConsumerWidget {
                     data: (stacks) {
                       if (stacks.isEmpty) {
                         return SliverToBoxAdapter(
-                          child: _EmptyState(isDark: isDark, isEn: isEn),
+                          child: _EmptyState(isDark: isDark, language: language),
                         );
                       }
                       return SliverList(
@@ -97,16 +97,16 @@ class RitualsScreen extends ConsumerWidget {
                             return _StackCard(
                               stack: entry.value,
                               isDark: isDark,
-                              isEn: isEn,
+                              language: language,
                               index: entry.key,
                             );
                           }),
                           const SizedBox(height: 24),
-                          _AddButton(isDark: isDark, isEn: isEn),
+                          _AddButton(isDark: isDark, language: language),
                           const SizedBox(height: 24),
                           ToolEcosystemFooter(
                             currentToolId: 'rituals',
-                            isEn: isEn,
+                            language: language,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 40),
@@ -126,18 +126,19 @@ class RitualsScreen extends ConsumerWidget {
 
 class _EmptyState extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
-  const _EmptyState({required this.isDark, required this.isEn});
+  const _EmptyState({required this.isDark, required this.language});
 
   @override
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.playlist_add_check_rounded,
-      title: L10nService.get('rituals.rituals.your_ritual_practice_starts_here', isEn ? AppLanguage.en : AppLanguage.tr),
-      description: L10nService.get('rituals.rituals.create_your_first_daily_ritual_to_start', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('rituals.rituals.your_ritual_practice_starts_here', language),
+      description: L10nService.get('rituals.rituals.create_your_first_daily_ritual_to_start', language),
       gradientVariant: GradientTextVariant.aurora,
-      ctaLabel: L10nService.get('rituals.rituals.create_ritual', isEn ? AppLanguage.en : AppLanguage.tr),
+      ctaLabel: L10nService.get('rituals.rituals.create_ritual', language),
       onCtaPressed: () => context.push(Routes.ritualCreate),
     );
   }
@@ -146,13 +147,14 @@ class _EmptyState extends StatelessWidget {
 class _StackCard extends ConsumerWidget {
   final RitualStack stack;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final int index;
 
   const _StackCard({
     required this.stack,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.index,
   });
 
@@ -184,7 +186,7 @@ class _StackCard extends ConsumerWidget {
                         ),
                       ),
                       Text(
-                        '${stack.items.length} ${L10nService.get('rituals.rituals.items', isEn ? AppLanguage.en : AppLanguage.tr)}',
+                        '${stack.items.length} ${L10nService.get('rituals.rituals.items', language)}',
                         style: AppTypography.elegantAccent(
                           fontSize: 12,
                           color: isDark
@@ -196,7 +198,7 @@ class _StackCard extends ConsumerWidget {
                   ),
                 ),
                 IconButton(
-                  tooltip: L10nService.get('rituals.rituals.delete_ritual', isEn ? AppLanguage.en : AppLanguage.tr),
+                  tooltip: L10nService.get('rituals.rituals.delete_ritual', language),
                   onPressed: () => _confirmDelete(context, ref),
                   icon: Icon(
                     Icons.delete_outline,
@@ -243,12 +245,12 @@ class _StackCard extends ConsumerWidget {
     HapticFeedback.mediumImpact();
     final confirmed = await GlassDialog.confirm(
       context,
-      title: L10nService.get('rituals.rituals.delete_ritual_1', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('rituals.rituals.delete_ritual_1', language),
       message: isEn
           ? 'This will delete "${stack.name}" and all its completion history.'
           : '"${stack.name}" ve tüm tamamlama geçmişi silinecek.',
-      cancelLabel: L10nService.get('rituals.rituals.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
-      confirmLabel: L10nService.get('rituals.rituals.delete', isEn ? AppLanguage.en : AppLanguage.tr),
+      cancelLabel: L10nService.get('rituals.rituals.cancel', language),
+      confirmLabel: L10nService.get('rituals.rituals.delete', language),
       isDestructive: true,
     );
 
@@ -264,15 +266,16 @@ class _StackCard extends ConsumerWidget {
 
 class _AddButton extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
-  const _AddButton({required this.isDark, required this.isEn});
+  const _AddButton({required this.isDark, required this.language});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: GradientOutlinedButton(
-        label: L10nService.get('rituals.rituals.add_ritual', isEn ? AppLanguage.en : AppLanguage.tr),
+        label: L10nService.get('rituals.rituals.add_ritual', language),
         icon: Icons.add,
         variant: GradientTextVariant.aurora,
         onPressed: () => context.push(Routes.ritualCreate),

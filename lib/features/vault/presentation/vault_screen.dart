@@ -53,13 +53,13 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
             ),
             slivers: [
               GlassSliverAppBar(
-                title: L10nService.get('vault.vault.private_vault', isEn ? AppLanguage.en : AppLanguage.tr),
+                title: L10nService.get('vault.vault.private_vault', language),
                 useGradientTitle: true,
                 gradientVariant: GradientTextVariant.amethyst,
                 actions: [
                   Semantics(
                     button: true,
-                    label: L10nService.get('vault.vault.vault_settings', isEn ? AppLanguage.en : AppLanguage.tr),
+                    label: L10nService.get('vault.vault.vault_settings', language),
                     child: GestureDetector(
                       onTap: () => _showVaultSettings(isEn, isDark),
                       child: Padding(
@@ -112,7 +112,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     );
   }
 
-  Widget _buildTabBar(bool isEn, bool isDark) {
+  Widget _buildTabBar(AppLanguage language, bool isDark) {
     final tabs = isEn
         ? ['All', 'Journals', 'Notes', 'Photos']
         : ['Tümü', 'Günlük', 'Notlar', 'Fotoğraflar'];
@@ -178,7 +178,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
   }
 
   Widget _buildContent(
-    bool isEn,
+    AppLanguage language,
     bool isDark,
     AsyncValue<List<JournalEntry>> journalsAsync,
     AsyncValue<List<NoteToSelf>> notesAsync,
@@ -212,7 +212,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
       if (journals.isNotEmpty) {
         items.add(
           _buildSectionHeader(
-            L10nService.get('vault.vault.private_journals', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('vault.vault.private_journals', language),
             '${journals.length}',
             isDark,
           ),
@@ -228,7 +228,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
       if (notes.isNotEmpty) {
         items.add(
           _buildSectionHeader(
-            L10nService.get('vault.vault.private_notes', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('vault.vault.private_notes', language),
             '${notes.length}',
             isDark,
           ),
@@ -244,7 +244,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
       if (photos.isNotEmpty) {
         items.add(
           _buildSectionHeader(
-            L10nService.get('vault.vault.private_photos', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('vault.vault.private_photos', language),
             '${photos.length}',
             isDark,
           ),
@@ -267,7 +267,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     );
   }
 
-  Widget _buildEmptyState(bool isEn, bool isDark) {
+  Widget _buildEmptyState(AppLanguage language, bool isDark) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 60),
       child: Column(
@@ -279,7 +279,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
           ),
           const SizedBox(height: 20),
           Text(
-            L10nService.get('vault.vault.your_vault_is_empty', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('vault.vault.your_vault_is_empty', language),
             style: AppTypography.displayFont.copyWith(
               fontSize: 20,
               fontWeight: FontWeight.w600,
@@ -288,7 +288,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
           ),
           const SizedBox(height: 8),
           Text(
-            L10nService.get('vault.vault.mark_journals_or_notes_as_private_or_add', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('vault.vault.mark_journals_or_notes_as_private_or_add', language),
             textAlign: TextAlign.center,
             style: AppTypography.subtitle(
               fontSize: 14,
@@ -334,7 +334,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     );
   }
 
-  Widget _buildJournalCard(JournalEntry entry, bool isEn, bool isDark) {
+  Widget _buildJournalCard(JournalEntry entry, AppLanguage language, bool isDark) {
     final dayName = _dayName(entry.date, isEn);
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
     final areaName = entry.focusArea.localizedName(isEn);
@@ -420,7 +420,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     );
   }
 
-  Widget _buildNoteCard(NoteToSelf note, bool isEn, bool isDark) {
+  Widget _buildNoteCard(NoteToSelf note, AppLanguage language, bool isDark) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: GestureDetector(
@@ -456,7 +456,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
                     Text(
                       note.title.isNotEmpty
                           ? note.title
-                          : (L10nService.get('vault.vault.untitled', isEn ? AppLanguage.en : AppLanguage.tr)),
+                          : (L10nService.get('vault.vault.untitled', language)),
                       style: AppTypography.subtitle(
                         fontSize: 14,
                         color: isDark
@@ -550,10 +550,10 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
 
     final confirmed = await GlassDialog.confirm(
       context,
-      title: L10nService.get('vault.vault.delete_photo', isEn ? AppLanguage.en : AppLanguage.tr),
-      message: L10nService.get('vault.vault.this_photo_will_be_permanently_deleted_f', isEn ? AppLanguage.en : AppLanguage.tr),
-      cancelLabel: L10nService.get('vault.vault.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
-      confirmLabel: L10nService.get('vault.vault.delete', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('vault.vault.delete_photo', language),
+      message: L10nService.get('vault.vault.this_photo_will_be_permanently_deleted_f', language),
+      cancelLabel: L10nService.get('vault.vault.cancel', language),
+      confirmLabel: L10nService.get('vault.vault.delete', language),
       isDestructive: true,
     );
 
@@ -565,7 +565,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     }
   }
 
-  Future<void> _addPhoto(bool isEn) async {
+  Future<void> _addPhoto(AppLanguage language) async {
     final picker = ImagePicker();
     final picked = await picker.pickImage(
       source: ImageSource.gallery,
@@ -582,18 +582,18 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     ref.invalidate(vaultPhotoCountProvider);
   }
 
-  void _showVaultSettings(bool isEn, bool isDark) {
+  void _showVaultSettings(AppLanguage language, bool isDark) {
     showCupertinoModalPopup(
       context: context,
       builder: (ctx) => CupertinoActionSheet(
-        title: Text(L10nService.get('vault.vault.vault_settings_1', isEn ? AppLanguage.en : AppLanguage.tr)),
+        title: Text(L10nService.get('vault.vault.vault_settings_1', language)),
         actions: [
           CupertinoActionSheetAction(
             onPressed: () {
               Navigator.pop(ctx);
               context.push(Routes.vaultPin, extra: {'mode': 'change'});
             },
-            child: Text(L10nService.get('vault.vault.change_pin', isEn ? AppLanguage.en : AppLanguage.tr)),
+            child: Text(L10nService.get('vault.vault.change_pin', language)),
           ),
           CupertinoActionSheetAction(
             onPressed: () async {
@@ -614,8 +614,8 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
                 final enabled = snap.data?.isBiometricEnabled ?? false;
                 return Text(
                   enabled
-                      ? (L10nService.get('vault.vault.disable_face_id', isEn ? AppLanguage.en : AppLanguage.tr))
-                      : (L10nService.get('vault.vault.enable_face_id', isEn ? AppLanguage.en : AppLanguage.tr)),
+                      ? (L10nService.get('vault.vault.disable_face_id', language))
+                      : (L10nService.get('vault.vault.enable_face_id', language)),
                 );
               },
             ),
@@ -623,13 +623,13 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
         ],
         cancelButton: CupertinoActionSheetAction(
           onPressed: () => Navigator.pop(ctx),
-          child: Text(L10nService.get('vault.vault.cancel_1', isEn ? AppLanguage.en : AppLanguage.tr)),
+          child: Text(L10nService.get('vault.vault.cancel_1', language)),
         ),
       ),
     );
   }
 
-  String _dayName(DateTime date, bool isEn) {
+  String _dayName(DateTime date, AppLanguage language) {
     const en = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const tr = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
     return (isEn ? en : tr)[date.weekday - 1];

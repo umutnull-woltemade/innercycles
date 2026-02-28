@@ -155,10 +155,10 @@ class GlassSliverAppBar extends StatelessWidget {
   Widget _buildBackButton(BuildContext context, Color color) {
     final isEn = StorageService.loadLanguage() == AppLanguage.en;
     return Semantics(
-      label: L10nService.get('shared.glass_sliver_app_bar.back', isEn ? AppLanguage.en : AppLanguage.tr),
+      label: L10nService.get('shared.glass_sliver_app_bar.back', language),
       button: true,
       child: IconButton(
-        tooltip: L10nService.get('shared.glass_sliver_app_bar.back_1', isEn ? AppLanguage.en : AppLanguage.tr),
+        tooltip: L10nService.get('shared.glass_sliver_app_bar.back_1', language),
         onPressed: () => Navigator.of(context).pop(),
         icon: Icon(Icons.chevron_left, color: color, size: 28),
       ),

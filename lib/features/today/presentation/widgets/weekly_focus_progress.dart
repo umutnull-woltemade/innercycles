@@ -9,12 +9,13 @@ import '../../../../data/services/l10n_service.dart';
 /// Compact weekly focus area completion indicator.
 /// Shows which of the 5 focus areas the user has logged this week.
 class WeeklyFocusProgress extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final bool isDark;
 
   const WeeklyFocusProgress({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -67,7 +68,7 @@ class WeeklyFocusProgress extends ConsumerWidget {
               Flexible(
                 flex: 0,
                 child: Text(
-                  L10nService.get('today.weekly_focus_progress.week', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('today.weekly_focus_progress.week', language),
                   style: AppTypography.elegantAccent(
                     fontSize: 12,
                     color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,

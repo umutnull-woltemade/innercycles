@@ -12,13 +12,14 @@ import '../../../../data/providers/app_providers.dart';
 /// Triggers native App Store review dialog via in_app_review.
 class ProfileRateSection extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final int totalEntries;
 
   const ProfileRateSection({
     super.key,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.totalEntries,
   });
 
@@ -55,7 +56,7 @@ class ProfileRateSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GradientText(
-                  L10nService.get('profile.profile_rate.enjoying_innercycles', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('profile.profile_rate.enjoying_innercycles', language),
                   variant: GradientTextVariant.gold,
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 15,
@@ -64,7 +65,7 @@ class ProfileRateSection extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  L10nService.get('profile.profile_rate.a_quick_rating_helps_us_grow', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('profile.profile_rate.a_quick_rating_helps_us_grow', language),
                   style: AppTypography.subtitle(
                     fontSize: 13,
                     color: isDark
@@ -106,7 +107,7 @@ class ProfileRateSection extends StatelessWidget {
                 ],
               ),
               child: Text(
-                L10nService.get('profile.profile_rate.rate', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('profile.profile_rate.rate', language),
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,

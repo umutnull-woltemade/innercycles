@@ -1,3 +1,4 @@
+import 'package:innercycles/data/providers/app_providers.dart';
 // ════════════════════════════════════════════════════════════════════════════
 // SHADOW WORK ENTRY MODEL - InnerCycles Shadow Integration Journal
 // ════════════════════════════════════════════════════════════════════════════
@@ -58,7 +59,7 @@ enum ShadowArchetype {
 
   }
 
-  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+  String localizedName(AppLanguage language) => language.isEn ? displayNameEn : displayNameTr;
 
   String get descriptionEn {
     switch (this) {
@@ -152,7 +153,7 @@ enum ShadowDepth {
     }
   }
 
-  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+  String localizedName(AppLanguage language) => language.isEn ? displayNameEn : displayNameTr;
 
 }
 

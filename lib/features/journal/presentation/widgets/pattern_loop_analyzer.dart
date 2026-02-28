@@ -20,13 +20,14 @@ import '../../../../data/providers/app_providers.dart';
 class PatternLoopAnalyzer extends StatelessWidget {
   final PatternLoopAnalysis analysis;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const PatternLoopAnalyzer({
     super.key,
     required this.analysis,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -40,7 +41,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
       children: [
         // Section header
         Text(
-          L10nService.get('journal.pattern_loop_analyzer.pattern_loops', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('journal.pattern_loop_analyzer.pattern_loops', language),
           style: AppTypography.displayFont.copyWith(
             fontSize: 18,
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
@@ -49,7 +50,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          L10nService.get('journal.pattern_loop_analyzer.behavioral_patterns_detected_in_your_ent', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('journal.pattern_loop_analyzer.behavioral_patterns_detected_in_your_ent', language),
           style: AppTypography.decorativeScript(
             fontSize: 13,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -64,7 +65,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
                 child: _PatternLoopCard(
                   loop: entry.value,
                   isDark: isDark,
-                  isEn: isEn,
+                  language: language,
                 ),
               )
               .animate()
@@ -93,7 +94,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              L10nService.get('journal.pattern_loop_analyzer.keep_journaling_to_discover_your_behavio', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('journal.pattern_loop_analyzer.keep_journaling_to_discover_your_behavio', language),
               style: AppTypography.decorativeScript(
                 fontSize: 14,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -127,7 +128,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
         children: [
           if (positive > 0)
             _buildBreakdownChip(
-              L10nService.get('journal.pattern_loop_analyzer.positive', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('journal.pattern_loop_analyzer.positive', language),
               positive,
               AppColors.success,
             ),
@@ -135,14 +136,14 @@ class PatternLoopAnalyzer extends StatelessWidget {
             const SizedBox(width: 8),
           if (negative > 0)
             _buildBreakdownChip(
-              L10nService.get('journal.pattern_loop_analyzer.negative', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('journal.pattern_loop_analyzer.negative', language),
               negative,
               AppColors.warning,
             ),
           if (negative > 0 && neutral > 0) const SizedBox(width: 8),
           if (neutral > 0)
             _buildBreakdownChip(
-              L10nService.get('journal.pattern_loop_analyzer.neutral', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('journal.pattern_loop_analyzer.neutral', language),
               neutral,
               AppColors.textMuted,
             ),
@@ -177,12 +178,13 @@ class PatternLoopAnalyzer extends StatelessWidget {
 class _PatternLoopCard extends StatefulWidget {
   final PatternLoop loop;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const _PatternLoopCard({
     required this.loop,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -375,7 +377,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
           Row(
             children: [
               Text(
-                L10nService.get('journal.pattern_loop_analyzer.strength', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('journal.pattern_loop_analyzer.strength', widget.language),
                 style: AppTypography.elegantAccent(
                   fontSize: 11,
                   color: widget.isDark

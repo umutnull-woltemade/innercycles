@@ -18,7 +18,8 @@ class PhaseRing extends StatefulWidget {
   final EmotionalPhase phase;
   final EmotionalArc? arc;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final double size;
 
   const PhaseRing({
@@ -26,7 +27,7 @@ class PhaseRing extends StatefulWidget {
     required this.phase,
     this.arc,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     this.size = 180,
   });
 
@@ -91,7 +92,7 @@ class _PhaseRingState extends State<PhaseRing>
             children: [
               // Background ring
               Semantics(
-                label: L10nService.get('journal.phase_ring.emotional_phase_ring', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('journal.phase_ring.emotional_phase_ring', widget.language),
                 image: true,
                 child: CustomPaint(
                   size: Size(widget.size, widget.size),

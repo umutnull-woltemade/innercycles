@@ -16,14 +16,15 @@ import '../../data/services/l10n_service.dart';
 class PrivateToggle extends ConsumerWidget {
   final bool isPrivate;
   final ValueChanged<bool> onChanged;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final bool isDark;
 
   const PrivateToggle({
     super.key,
     required this.isPrivate,
     required this.onChanged,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -37,18 +38,18 @@ class PrivateToggle extends ConsumerWidget {
         final shouldSetup = await showCupertinoDialog<bool>(
           context: context,
           builder: (ctx) => CupertinoAlertDialog(
-            title: Text(L10nService.get('shared.private_toggle.set_up_vault_pin', isEn ? AppLanguage.en : AppLanguage.tr)),
+            title: Text(L10nService.get('shared.private_toggle.set_up_vault_pin', language)),
             content: Text(
-              L10nService.get('shared.private_toggle.you_need_to_create_a_4digit_pin_to_prote', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('shared.private_toggle.you_need_to_create_a_4digit_pin_to_prote', language),
             ),
             actions: [
               CupertinoDialogAction(
-                child: Text(L10nService.get('shared.private_toggle.cancel', isEn ? AppLanguage.en : AppLanguage.tr)),
+                child: Text(L10nService.get('shared.private_toggle.cancel', language)),
                 onPressed: () => Navigator.pop(ctx, false),
               ),
               CupertinoDialogAction(
                 isDefaultAction: true,
-                child: Text(L10nService.get('shared.private_toggle.set_up', isEn ? AppLanguage.en : AppLanguage.tr)),
+                child: Text(L10nService.get('shared.private_toggle.set_up', language)),
                 onPressed: () => Navigator.pop(ctx, true),
               ),
             ],
@@ -98,7 +99,7 @@ class PrivateToggle extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    L10nService.get('shared.private_toggle.save_to_vault', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('shared.private_toggle.save_to_vault', language),
                     style: AppTypography.subtitle(
                       fontSize: 14,
                       color: isPrivate
@@ -107,7 +108,7 @@ class PrivateToggle extends ConsumerWidget {
                     ).copyWith(fontWeight: isPrivate ? FontWeight.w600 : FontWeight.w400),
                   ),
                   Text(
-                    L10nService.get('shared.private_toggle.protected_with_pin_face_id', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('shared.private_toggle.protected_with_pin_face_id', language),
                     style: AppTypography.subtitle(
                       fontSize: 11,
                       color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,

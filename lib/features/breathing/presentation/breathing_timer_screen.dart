@@ -260,7 +260,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('breathing.breathing_timer.guided_breathwork', isEn ? AppLanguage.en : AppLanguage.tr),
+                  title: L10nService.get('breathing.breathing_timer.guided_breathwork', language),
                 ),
                 SliverFillRemaining(
                   hasScrollBody: false,
@@ -271,7 +271,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                         // Preset selector
                         _PresetSelector(
                           current: _preset,
-                          isEn: isEn,
+                          language: language,
                           isDark: isDark,
                           enabled: !_isRunning,
                           onChanged: (p) => setState(() => _preset = p),
@@ -295,7 +295,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                               ? (isEn
                                     ? '${currentPhase.labelEn()}, $_phaseCountdown seconds'
                                     : '${currentPhase.labelTr()}, $_phaseCountdown saniye')
-                              : (L10nService.get('breathing.breathing_timer.breathing_circle_tap_start_to_begin', isEn ? AppLanguage.en : AppLanguage.tr)),
+                              : (L10nService.get('breathing.breathing_timer.breathing_circle_tap_start_to_begin', language)),
                           liveRegion: _isRunning,
                           child: AnimatedBuilder(
                             animation: _breathController,
@@ -413,7 +413,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                                   ),
                                   const SizedBox(width: 4),
                                   Text(
-                                    L10nService.get('breathing.breathing_timer.share_session', isEn ? AppLanguage.en : AppLanguage.tr),
+                                    L10nService.get('breathing.breathing_timer.share_session', language),
                                     style: AppTypography.elegantAccent(
                                       fontSize: 12,
                                       color: AppColors.starGold.withValues(alpha: 0.7),
@@ -458,7 +458,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                                 ),
                                 child: Center(
                                   child: Text(
-                                    L10nService.get('breathing.breathing_timer.stop', isEn ? AppLanguage.en : AppLanguage.tr),
+                                    L10nService.get('breathing.breathing_timer.stop', language),
                                     style: AppTypography.modernAccent(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600,
@@ -471,7 +471,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                           )
                         else
                           GradientButton(
-                            label: L10nService.get('breathing.breathing_timer.start_breathing', isEn ? AppLanguage.en : AppLanguage.tr),
+                            label: L10nService.get('breathing.breathing_timer.start_breathing', language),
                             onPressed: _start,
                             expanded: true,
                             gradient: LinearGradient(
@@ -497,14 +497,15 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
 
 class _PresetSelector extends StatelessWidget {
   final BreathingPreset current;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final bool isDark;
   final bool enabled;
   final ValueChanged<BreathingPreset> onChanged;
 
   const _PresetSelector({
     required this.current,
-    required this.isEn,
+    required this.language,
     required this.isDark,
     required this.enabled,
     required this.onChanged,

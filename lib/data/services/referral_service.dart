@@ -1,3 +1,4 @@
+import 'package:innercycles/data/providers/app_providers.dart';
 // ============================================================================
 // REFERRAL SERVICE - Viral growth engine with unique invite codes
 // ============================================================================
@@ -75,7 +76,7 @@ class ReferralService {
       'https://innercycles.app/invite/$myCode';
 
   /// Full share text (EN)
-  String shareText({bool isEn = true}) {
+  String shareText({AppLanguage language = AppLanguage.en}) {
     return isEn
         ? "I've been journaling with InnerCycles and it's changing how I understand myself. "
           'Join me and we both get 7 days of Premium free!\n\n'

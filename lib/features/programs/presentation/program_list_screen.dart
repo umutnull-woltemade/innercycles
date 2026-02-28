@@ -48,7 +48,7 @@ class ProgramListScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('programs.program_list.guided_programs', isEn ? AppLanguage.en : AppLanguage.tr),
+                  title: L10nService.get('programs.program_list.guided_programs', language),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -63,7 +63,7 @@ class ProgramListScreen extends ConsumerWidget {
                           children: [
                             const SizedBox(height: 40),
                             Text(
-                              L10nService.get('programs.program_list.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('programs.program_list.could_not_load_your_local_data_is_unaffe', language),
                               textAlign: TextAlign.center,
                               style: AppTypography.subtitle(
                                 color: isDark
@@ -81,7 +81,7 @@ class ProgramListScreen extends ConsumerWidget {
                                 color: AppColors.starGold,
                               ),
                               label: Text(
-                                L10nService.get('programs.program_list.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                                L10nService.get('programs.program_list.retry', language),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,
@@ -99,7 +99,7 @@ class ProgramListScreen extends ConsumerWidget {
                         delegate: SliverChildListDelegate([
                           // Intro text
                           Text(
-                            L10nService.get('programs.program_list.structured_reflection_journeys_to_deepen', isEn ? AppLanguage.en : AppLanguage.tr),
+                            L10nService.get('programs.program_list.structured_reflection_journeys_to_deepen', language),
                             style: AppTypography.decorativeScript(
                               fontSize: 14,
                               color: isDark
@@ -112,7 +112,7 @@ class ProgramListScreen extends ConsumerWidget {
                           // Active programs section
                           if (service.activeProgramCount > 0) ...[
                             GradientText(
-                              L10nService.get('programs.program_list.in_progress', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('programs.program_list.in_progress', language),
                               variant: GradientTextVariant.aurora,
                               style: AppTypography.displayFont.copyWith(
                                 fontSize: 16,
@@ -133,7 +133,7 @@ class ProgramListScreen extends ConsumerWidget {
                                     isCompleted: false,
                                     isPremium: isPremium,
                                     isDark: isDark,
-                                    isEn: isEn,
+                                    language: language,
                                     onTap: () => context.push(
                                       '${Routes.programs}/${p.id}',
                                     ),
@@ -144,7 +144,7 @@ class ProgramListScreen extends ConsumerWidget {
 
                           // All programs
                           GradientText(
-                            L10nService.get('programs.program_list.all_programs', isEn ? AppLanguage.en : AppLanguage.tr),
+                            L10nService.get('programs.program_list.all_programs', language),
                             variant: GradientTextVariant.gold,
                             style: AppTypography.displayFont.copyWith(
                               fontSize: 16,
@@ -169,7 +169,7 @@ class ProgramListScreen extends ConsumerWidget {
                               isPremium: isPremium,
                               isFirstTasteFree: allowFirstTaste && !isPremium,
                               isDark: isDark,
-                              isEn: isEn,
+                              language: language,
                               onTap: () {
                                 if (p.isPremium && !isPremium) {
                                   if (allowFirstTaste) {
@@ -209,7 +209,7 @@ class ProgramListScreen extends ConsumerWidget {
                           }),
                           ToolEcosystemFooter(
                             currentToolId: 'programList',
-                            isEn: isEn,
+                            language: language,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 40),
@@ -231,7 +231,7 @@ class ProgramListScreen extends ConsumerWidget {
     WidgetRef ref,
     GuidedProgramService service,
     GuidedProgram program,
-    bool isEn,
+    AppLanguage language,
   ) async {
     await service.startProgram(program.id);
     ref.invalidate(guidedProgramServiceProvider);
@@ -253,7 +253,8 @@ class _ProgramCard extends StatelessWidget {
   final bool isPremium;
   final bool isFirstTasteFree;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final VoidCallback onTap;
 
   const _ProgramCard({
@@ -263,7 +264,7 @@ class _ProgramCard extends StatelessWidget {
     required this.isPremium,
     this.isFirstTasteFree = false,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onTap,
   });
 
@@ -378,7 +379,7 @@ class _ProgramCard extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text(
-                                L10nService.get('programs.program_list.free', isEn ? AppLanguage.en : AppLanguage.tr),
+                                L10nService.get('programs.program_list.free', language),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w700,
@@ -431,7 +432,7 @@ class _ProgramCard extends StatelessWidget {
                       ] else if (!isCompleted && !isLocked) ...[
                         const SizedBox(height: 4),
                         Text(
-                          '${program.durationDays} ${L10nService.get('programs.program_list.days', isEn ? AppLanguage.en : AppLanguage.tr)}',
+                          '${program.durationDays} ${L10nService.get('programs.program_list.days', language)}',
                           style: AppTypography.elegantAccent(
                             fontSize: 11,
                             color: AppColors.auroraStart,

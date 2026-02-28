@@ -270,11 +270,11 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CupertinoButton(
-                  child: Text(L10nService.get('notes.note_detail.cancel', isEn ? AppLanguage.en : AppLanguage.tr)),
+                  child: Text(L10nService.get('notes.note_detail.cancel', language)),
                   onPressed: () => Navigator.pop(ctx),
                 ),
                 CupertinoButton(
-                  child: Text(L10nService.get('notes.note_detail.save_note', isEn ? AppLanguage.en : AppLanguage.tr)),
+                  child: Text(L10nService.get('notes.note_detail.save_note', language)),
                   onPressed: () => Navigator.pop(ctx),
                 ),
               ],
@@ -316,7 +316,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
     });
   }
 
-  String _formatReminderDate(DateTime dt, bool isEn) {
+  String _formatReminderDate(DateTime dt, AppLanguage language) {
     final months = isEn
         ? CommonStrings.monthsShortEn
         : CommonStrings.monthsShortTr;
@@ -351,7 +351,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      L10nService.get('notes.note_detail.couldnt_load_this_note', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('notes.note_detail.couldnt_load_this_note', language),
                       textAlign: TextAlign.center,
                       style: AppTypography.decorativeScript(
                         color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -364,7 +364,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                       icon: Icon(Icons.refresh_rounded,
                           size: 16, color: AppColors.starGold),
                       label: Text(
-                        L10nService.get('notes.note_detail.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('notes.note_detail.retry', language),
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -387,8 +387,8 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                     slivers: [
                       GlassSliverAppBar(
                         title: _isCreateMode
-                            ? (L10nService.get('notes.note_detail.new_note', isEn ? AppLanguage.en : AppLanguage.tr))
-                            : (L10nService.get('notes.note_detail.edit_note', isEn ? AppLanguage.en : AppLanguage.tr)),
+                            ? (L10nService.get('notes.note_detail.new_note', language))
+                            : (L10nService.get('notes.note_detail.edit_note', language)),
                         useGradientTitle: true,
                         gradientVariant: GradientTextVariant.gold,
                         actions: [
@@ -411,7 +411,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Text(
-                                L10nService.get('notes.note_detail.save_note_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                                L10nService.get('notes.note_detail.save_note_1', language),
                                 style: AppTypography.displayFont.copyWith(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
@@ -447,7 +447,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                             : AppColors.lightTextPrimary,
                                       ),
                                       decoration: InputDecoration(
-                                        hintText: L10nService.get('notes.note_detail.give_this_note_a_title', isEn ? AppLanguage.en : AppLanguage.tr),
+                                        hintText: L10nService.get('notes.note_detail.give_this_note_a_title', language),
                                         hintStyle: AppTypography.displayFont
                                             .copyWith(
                                               fontSize: 26,
@@ -519,7 +519,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                   height: 1.6,
                                 ),
                                 decoration: InputDecoration(
-                                  hintText: L10nService.get('notes.note_detail.write_your_thoughts', isEn ? AppLanguage.en : AppLanguage.tr),
+                                  hintText: L10nService.get('notes.note_detail.write_your_thoughts', language),
                                   hintStyle: AppTypography.subtitle(
                                     fontSize: 16,
                                     color: isDark
@@ -567,7 +567,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                         ),
                                         const SizedBox(width: 8),
                                         Text(
-                                          L10nService.get('notes.note_detail.tags', isEn ? AppLanguage.en : AppLanguage.tr),
+                                          L10nService.get('notes.note_detail.tags', language),
                                           style: AppTypography.elegantAccent(
                                             fontSize: 14,
                                             color: isDark
@@ -608,7 +608,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                                   : AppColors.lightTextPrimary,
                                             ),
                                             decoration: InputDecoration(
-                                              hintText: L10nService.get('notes.note_detail.eg_ideas_personal', isEn ? AppLanguage.en : AppLanguage.tr),
+                                              hintText: L10nService.get('notes.note_detail.eg_ideas_personal', language),
                                               hintStyle: AppTypography.subtitle(
                                                 color: isDark
                                                     ? AppColors.textMuted
@@ -686,7 +686,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                       ),
                                       const SizedBox(width: 8),
                                       Text(
-                                        L10nService.get('notes.note_detail.mood_when_created', isEn ? AppLanguage.en : AppLanguage.tr),
+                                        L10nService.get('notes.note_detail.mood_when_created', language),
                                         style: AppTypography.elegantAccent(
                                           fontSize: 12,
                                           color: isDark
@@ -721,7 +721,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                             ),
                                             const SizedBox(width: 8),
                                             Text(
-                                              L10nService.get('notes.note_detail.remind_me', isEn ? AppLanguage.en : AppLanguage.tr),
+                                              L10nService.get('notes.note_detail.remind_me', language),
                                               style:
                                                   AppTypography.elegantAccent(
                                                     fontSize: 14,
@@ -763,7 +763,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                                 ),
                                                 const SizedBox(width: 4),
                                                 Text(
-                                                  L10nService.get('notes.note_detail.add', isEn ? AppLanguage.en : AppLanguage.tr),
+                                                  L10nService.get('notes.note_detail.add', language),
                                                   style:
                                                       AppTypography.elegantAccent(
                                                         fontSize: 12,
@@ -823,7 +823,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                                         ),
                                                   ),
                                                   Text(
-                                                    L10nService.get('notes.note_detail.will_be_set_when_you_save', isEn ? AppLanguage.en : AppLanguage.tr),
+                                                    L10nService.get('notes.note_detail.will_be_set_when_you_save', language),
                                                     style:
                                                         AppTypography.elegantAccent(
                                                           fontSize: 11,
@@ -865,7 +865,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                       ..._reminders.map(
                                         (r) => _ReminderRow(
                                           reminder: r,
-                                          isEn: isEn,
+                                          language: language,
                                           isDark: isDark,
                                           onDelete: () =>
                                               _removeReminder(service, r.id),
@@ -880,7 +880,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                             _hasPendingReminder)) ...[
                                       const SizedBox(height: 10),
                                       Text(
-                                        L10nService.get('notes.note_detail.set_a_date_time_to_get_notified_about_th', isEn ? AppLanguage.en : AppLanguage.tr),
+                                        L10nService.get('notes.note_detail.set_a_date_time_to_get_notified_about_th', language),
                                         style: AppTypography.elegantAccent(
                                           fontSize: 12,
                                           color: isDark
@@ -894,7 +894,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                     if (_showReminderForm) ...[
                                       const SizedBox(height: 12),
                                       _ReminderForm(
-                                        isEn: isEn,
+                                        language: language,
                                         isDark: isDark,
                                         isPremium: isPremium,
                                         reminderDate: _isCreateMode
@@ -942,7 +942,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                     _hasChanges = true;
                                   });
                                 },
-                                isEn: isEn,
+                                language: language,
                                 isDark: isDark,
                               ),
 
@@ -997,7 +997,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                                 ),
                                                 const SizedBox(width: 8),
                                                 Text(
-                                                  L10nService.get('notes.note_detail.share', isEn ? AppLanguage.en : AppLanguage.tr),
+                                                  L10nService.get('notes.note_detail.share', language),
                                                   style: AppTypography.subtitle(
                                                     fontSize: 14,
                                                     color: AppColors.starGold,
@@ -1014,10 +1014,10 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                         final confirmed =
                                             await GlassDialog.confirm(
                                               context,
-                                              title: L10nService.get('notes.note_detail.delete_note', isEn ? AppLanguage.en : AppLanguage.tr),
-                                              message: L10nService.get('notes.note_detail.this_note_will_be_permanently_deleted', isEn ? AppLanguage.en : AppLanguage.tr),
-                                              cancelLabel: L10nService.get('notes.note_detail.cancel_1', isEn ? AppLanguage.en : AppLanguage.tr),
-                                              confirmLabel: L10nService.get('notes.note_detail.delete', isEn ? AppLanguage.en : AppLanguage.tr),
+                                              title: L10nService.get('notes.note_detail.delete_note', language),
+                                              message: L10nService.get('notes.note_detail.this_note_will_be_permanently_deleted', language),
+                                              cancelLabel: L10nService.get('notes.note_detail.cancel_1', language),
+                                              confirmLabel: L10nService.get('notes.note_detail.delete', language),
                                               isDestructive: true,
                                             );
                                         if (confirmed == true) _delete(service);
@@ -1045,7 +1045,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                             ),
                                             const SizedBox(width: 8),
                                             Text(
-                                              L10nService.get('notes.note_detail.delete_note_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                                              L10nService.get('notes.note_detail.delete_note_1', language),
                                               style: AppTypography.subtitle(
                                                 fontSize: 14,
                                                 color: AppColors.error,
@@ -1080,10 +1080,10 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
     final isEn = language == AppLanguage.en;
     final confirmed = await GlassDialog.confirm(
       context,
-      title: L10nService.get('notes.note_detail.discard_changes', isEn ? AppLanguage.en : AppLanguage.tr),
-      message: L10nService.get('notes.note_detail.you_have_unsaved_changes_are_you_sure_yo', isEn ? AppLanguage.en : AppLanguage.tr),
-      cancelLabel: L10nService.get('notes.note_detail.cancel_2', isEn ? AppLanguage.en : AppLanguage.tr),
-      confirmLabel: L10nService.get('notes.note_detail.discard', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('notes.note_detail.discard_changes', language),
+      message: L10nService.get('notes.note_detail.you_have_unsaved_changes_are_you_sure_yo', language),
+      cancelLabel: L10nService.get('notes.note_detail.cancel_2', language),
+      confirmLabel: L10nService.get('notes.note_detail.discard', language),
       isDestructive: true,
     );
     if (confirmed == true && mounted) {
@@ -1175,13 +1175,14 @@ class _RemovableTagChip extends StatelessWidget {
 
 class _ReminderRow extends StatelessWidget {
   final NoteReminder reminder;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final bool isDark;
   final VoidCallback onDelete;
 
   const _ReminderRow({
     required this.reminder,
-    required this.isEn,
+    required this.language,
     required this.isDark,
     required this.onDelete,
   });
@@ -1244,7 +1245,7 @@ class _ReminderRow extends StatelessWidget {
     );
   }
 
-  String _formatDate(DateTime dt, bool isEn) {
+  String _formatDate(DateTime dt, AppLanguage language) {
     final months = isEn
         ? CommonStrings.monthsShortEn
         : CommonStrings.monthsShortTr;
@@ -1259,7 +1260,8 @@ class _ReminderRow extends StatelessWidget {
 // ═══════════════════════════════════════════════════════════════════════
 
 class _ReminderForm extends StatelessWidget {
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final bool isDark;
   final bool isPremium;
   final DateTime? reminderDate;
@@ -1270,7 +1272,7 @@ class _ReminderForm extends StatelessWidget {
   final VoidCallback onSave;
 
   const _ReminderForm({
-    required this.isEn,
+    required this.language,
     required this.isDark,
     required this.isPremium,
     required this.reminderDate,
@@ -1314,7 +1316,7 @@ class _ReminderForm extends StatelessWidget {
                   Text(
                     reminderDate != null
                         ? _formatDate(reminderDate!, isEn)
-                        : (L10nService.get('notes.note_detail.pick_date_time', isEn ? AppLanguage.en : AppLanguage.tr)),
+                        : (L10nService.get('notes.note_detail.pick_date_time', language)),
                     style: AppTypography.subtitle(
                       fontSize: 14,
                       color: reminderDate != null
@@ -1331,7 +1333,7 @@ class _ReminderForm extends StatelessWidget {
 
           // Frequency chips
           Text(
-            L10nService.get('notes.note_detail.frequency', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('notes.note_detail.frequency', language),
             style: AppTypography.elegantAccent(
               fontSize: 12,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -1390,7 +1392,7 @@ class _ReminderForm extends StatelessWidget {
               color: isDark ? Colors.white : AppColors.lightTextPrimary,
             ),
             decoration: InputDecoration(
-              hintText: L10nService.get('notes.note_detail.custom_message_optional', isEn ? AppLanguage.en : AppLanguage.tr),
+              hintText: L10nService.get('notes.note_detail.custom_message_optional', language),
               hintStyle: AppTypography.subtitle(
                 color: isDark
                     ? AppColors.textMuted
@@ -1436,7 +1438,7 @@ class _ReminderForm extends StatelessWidget {
                 ),
                 alignment: Alignment.center,
                 child: Text(
-                  L10nService.get('notes.note_detail.set_reminder', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('notes.note_detail.set_reminder', language),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -1453,7 +1455,7 @@ class _ReminderForm extends StatelessWidget {
     ).animate().fadeIn(duration: 300.ms).slideY(begin: -0.05, end: 0);
   }
 
-  String _formatDate(DateTime dt, bool isEn) {
+  String _formatDate(DateTime dt, AppLanguage language) {
     final months = isEn
         ? CommonStrings.monthsShortEn
         : CommonStrings.monthsShortTr;

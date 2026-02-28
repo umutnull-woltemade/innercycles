@@ -2,7 +2,7 @@ class AppConstants {
   AppConstants._();
 
   static const String appName = 'InnerCycles';
-  // REMOVED: Turkish tagline - use L10nService.get('app.tagline', isEn ? AppLanguage.en : AppLanguage.tr) instead
+  // REMOVED: Turkish tagline - use L10nService.get('app.tagline', language) instead
 
   // App IDs and Links
   static const String appStoreId = '6758612716';

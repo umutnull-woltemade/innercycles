@@ -28,7 +28,8 @@ class ToolEmptyState extends StatelessWidget {
   final int requiredEntries;
   final VoidCallback? onSeeExample;
   final VoidCallback? onStartTemplate;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final bool isDark;
 
   const ToolEmptyState({
@@ -42,7 +43,7 @@ class ToolEmptyState extends StatelessWidget {
     this.requiredEntries = 0,
     this.onSeeExample,
     this.onStartTemplate,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -123,7 +124,7 @@ class ToolEmptyState extends StatelessWidget {
               const SizedBox(height: AppConstants.spacingXl),
               if (onStartTemplate != null)
                 GradientButton(
-                  label: L10nService.get('shared.ecosystems.start_with_template', isEn ? AppLanguage.en : AppLanguage.tr),
+                  label: L10nService.get('shared.ecosystems.start_with_template', language),
                   onPressed: onStartTemplate,
                   expanded: true,
                   gradient: const LinearGradient(
@@ -135,7 +136,7 @@ class ToolEmptyState extends StatelessWidget {
                 TextButton(
                   onPressed: onSeeExample,
                   child: Text(
-                    L10nService.get('shared.ecosystems.see_example', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('shared.ecosystems.see_example', language),
                     style: AppTypography.elegantAccent(
                       color: isDark
                           ? AppColors.textSecondary

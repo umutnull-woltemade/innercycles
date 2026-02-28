@@ -22,13 +22,14 @@ import '../../../../data/providers/app_providers.dart';
 class CycleSummaryCard extends StatelessWidget {
   final FocusAreaCycleSummary summary;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const CycleSummaryCard({
     super.key,
     required this.summary,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -110,7 +111,7 @@ class CycleSummaryCard extends StatelessWidget {
                   _buildStatChip(
                     context,
                     icon: Icons.waves,
-                    label: '~${summary.cycleLengthDays}${L10nService.get('common.unit.days_abbr', isEn ? AppLanguage.en : AppLanguage.tr)}',
+                    label: '~${summary.cycleLengthDays}${L10nService.get('common.unit.days_abbr', language)}',
                     color: color,
                   ),
 
@@ -134,7 +135,7 @@ class CycleSummaryCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  L10nService.get('journal.cycle_summary.current_avg', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('journal.cycle_summary.current_avg', language),
                   style: AppTypography.elegantAccent(
                     fontSize: 11,
                     color: isDark

@@ -62,7 +62,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 32),
                     child: Text(
-                      L10nService.get('digest.monthly_wrapped.keep_journaling_to_build_your_monthly_st', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('digest.monthly_wrapped.keep_journaling_to_build_your_monthly_st', language),
                       textAlign: TextAlign.center,
                       style: AppTypography.subtitle(
                         color: isDark
@@ -78,7 +78,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      L10nService.get('digest.monthly_wrapped.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('digest.monthly_wrapped.retry', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -106,7 +106,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                         AppSymbol('\u{1F4CA}', size: AppSymbolSize.xl),
                         const SizedBox(height: 16),
                         Text(
-                          L10nService.get('digest.monthly_wrapped.keep_journaling_your_monthly_wrapped_wil', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('digest.monthly_wrapped.keep_journaling_your_monthly_wrapped_wil', language),
                           textAlign: TextAlign.center,
                           style: AppTypography.decorativeScript(
                             fontSize: 16,
@@ -118,7 +118,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                         const SizedBox(height: 24),
                         TextButton(
                           onPressed: () => Navigator.of(context).pop(),
-                          child: Text(L10nService.get('digest.monthly_wrapped.go_back', isEn ? AppLanguage.en : AppLanguage.tr)),
+                          child: Text(L10nService.get('digest.monthly_wrapped.go_back', language)),
                         ),
                       ],
                     ),
@@ -131,7 +131,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                   // Page indicator
                   Semantics(
                     label:
-                        '${L10nService.get('digest.monthly_wrapped.slide', isEn ? AppLanguage.en : AppLanguage.tr)} ${_currentPage + 1} / 5',
+                        '${L10nService.get('digest.monthly_wrapped.slide', language)} ${_currentPage + 1} / 5',
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 40,
@@ -172,7 +172,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,
                         ),
-                        tooltip: L10nService.get('digest.monthly_wrapped.close', isEn ? AppLanguage.en : AppLanguage.tr),
+                        tooltip: L10nService.get('digest.monthly_wrapped.close', language),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
                     ),
@@ -183,11 +183,11 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                       onPageChanged: (page) =>
                           setState(() => _currentPage = page),
                       children: [
-                        _Slide1Entries(data: data, isEn: isEn, isDark: isDark),
-                        _Slide2Focus(data: data, isEn: isEn, isDark: isDark),
-                        _Slide3BestDay(data: data, isEn: isEn, isDark: isDark),
-                        _Slide4Insight(data: data, isEn: isEn, isDark: isDark),
-                        _Slide5Share(data: data, isEn: isEn, isDark: isDark),
+                        _Slide1Entries(data: data, language: language, isDark: isDark),
+                        _Slide2Focus(data: data, language: language, isDark: isDark),
+                        _Slide3BestDay(data: data, language: language, isDark: isDark),
+                        _Slide4Insight(data: data, language: language, isDark: isDark),
+                        _Slide5Share(data: data, language: language, isDark: isDark),
                       ],
                     ),
                   ),
@@ -207,12 +207,13 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
 
 class _Slide1Entries extends StatelessWidget {
   final MonthlyWrappedData data;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final bool isDark;
 
   const _Slide1Entries({
     required this.data,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -233,17 +234,18 @@ class _Slide1Entries extends StatelessWidget {
 
 class _Slide2Focus extends StatelessWidget {
   final MonthlyWrappedData data;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final bool isDark;
 
   const _Slide2Focus({
     required this.data,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
-  String _areaName(FocusArea? area, bool isEn) {
-    if (area == null) return L10nService.get('digest.monthly_wrapped.balanced', isEn ? AppLanguage.en : AppLanguage.tr);
+  String _areaName(FocusArea? area, AppLanguage language) {
+    if (area == null) return L10nService.get('digest.monthly_wrapped.balanced', language);
     return area.localizedName(isEn);
   }
 
@@ -254,7 +256,7 @@ class _Slide2Focus extends StatelessWidget {
       title: isEn
           ? 'You focused most on ${_areaName(data.dominantArea, true)}'
           : 'En çok ${_areaName(data.dominantArea, false)} odağındaydın',
-      subtitle: L10nService.get('digest.monthly_wrapped.this_area_drew_your_attention_more_than', isEn ? AppLanguage.en : AppLanguage.tr),
+      subtitle: L10nService.get('digest.monthly_wrapped.this_area_drew_your_attention_more_than', language),
       isDark: isDark,
     );
   }
@@ -262,12 +264,13 @@ class _Slide2Focus extends StatelessWidget {
 
 class _Slide3BestDay extends StatelessWidget {
   final MonthlyWrappedData data;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final bool isDark;
 
   const _Slide3BestDay({
     required this.data,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -288,12 +291,13 @@ class _Slide3BestDay extends StatelessWidget {
 
 class _Slide4Insight extends StatelessWidget {
   final MonthlyWrappedData data;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final bool isDark;
 
   const _Slide4Insight({
     required this.data,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -302,7 +306,7 @@ class _Slide4Insight extends StatelessWidget {
     return _SlideBase(
       emoji: '\u{1F4A1}',
       title: data.personalInsight(isEn),
-      subtitle: L10nService.get('digest.monthly_wrapped.based_on_your_monthly_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
+      subtitle: L10nService.get('digest.monthly_wrapped.based_on_your_monthly_patterns', language),
       isDark: isDark,
     );
   }
@@ -310,12 +314,13 @@ class _Slide4Insight extends StatelessWidget {
 
 class _Slide5Share extends StatelessWidget {
   final MonthlyWrappedData data;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final bool isDark;
 
   const _Slide5Share({
     required this.data,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -334,7 +339,7 @@ class _Slide5Share extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           GradientText(
-            L10nService.get('digest.monthly_wrapped.your_month_at_a_glance', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('digest.monthly_wrapped.your_month_at_a_glance', language),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 24,
@@ -343,13 +348,13 @@ class _Slide5Share extends StatelessWidget {
           ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
           const SizedBox(height: 32),
           GradientButton.gold(
-            label: L10nService.get('digest.monthly_wrapped.share_your_month', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('digest.monthly_wrapped.share_your_month', language),
             icon: Icons.share_rounded,
             onPressed: () {
               final template = ShareCardTemplates.monthlyWrapped;
               final cardData = ShareCardTemplates.buildData(
                 template: template,
-                isEn: isEn,
+                language: language,
                 journalDays: data.totalEntries,
                 moodValues: data.dailyRatings.where((r) => r > 0).toList(),
               );
@@ -357,7 +362,7 @@ class _Slide5Share extends StatelessWidget {
                 context,
                 template: template,
                 data: cardData,
-                isEn: isEn,
+                language: language,
               );
             },
             expanded: true,

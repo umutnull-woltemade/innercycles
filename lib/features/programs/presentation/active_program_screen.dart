@@ -73,7 +73,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                       icon: Icon(Icons.refresh_rounded,
                           size: 16, color: AppColors.starGold),
                       label: Text(
-                        L10nService.get('programs.active_program.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('programs.active_program.retry', language),
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -110,7 +110,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                               program: program,
                               progress: progress,
                               isDark: isDark,
-                              isEn: isEn,
+                              language: language,
                             ),
                             const SizedBox(height: 20),
 
@@ -129,7 +129,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                               _TodayPromptCard(
                                 day: todayPrompt,
                                 isDark: isDark,
-                                isEn: isEn,
+                                language: language,
                               ),
                               const SizedBox(height: 16),
 
@@ -137,14 +137,14 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                               _ReflectionInput(
                                 controller: _reflectionController,
                                 isDark: isDark,
-                                isEn: isEn,
+                                language: language,
                               ),
                               const SizedBox(height: 16),
 
                               // Complete day button
                               _CompleteButton(
                                 isDark: isDark,
-                                isEn: isEn,
+                                language: language,
                                 isAlreadyDone: progress.completedDays.contains(
                                   todayPrompt.dayNumber,
                                 ),
@@ -154,9 +154,9 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                                 ),
                               ),
                             ] else if (progress?.isCompleted ?? false) ...[
-                              _CompletedBanner(isDark: isDark, isEn: isEn),
+                              _CompletedBanner(isDark: isDark, language: language),
                             ] else ...[
-                              _NotStartedBanner(isDark: isDark, isEn: isEn),
+                              _NotStartedBanner(isDark: isDark, language: language),
                             ],
 
                             const SizedBox(height: 40),
@@ -189,7 +189,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            L10nService.getWithParams('programs.day_complete', isEn ? AppLanguage.en : AppLanguage.tr, params: {'day': '$dayNumber'}),
+            L10nService.getWithParams('programs.day_complete', language, params: {'day': '$dayNumber'}),
           ),
           backgroundColor: AppColors.success,
           behavior: SnackBarBehavior.floating,
@@ -210,13 +210,14 @@ class _ProgramHeader extends StatelessWidget {
   final GuidedProgram program;
   final ProgramProgress? progress;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const _ProgramHeader({
     required this.program,
     this.progress,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -245,13 +246,13 @@ class _ProgramHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _MiniStat(
-                label: L10nService.get('programs.active_program.duration', isEn ? AppLanguage.en : AppLanguage.tr),
-                value: '${program.durationDays} ${L10nService.get('programs.active_program.days', isEn ? AppLanguage.en : AppLanguage.tr)}',
+                label: L10nService.get('programs.active_program.duration', language),
+                value: '${program.durationDays} ${L10nService.get('programs.active_program.days', language)}',
                 isDark: isDark,
               ),
               const SizedBox(width: 24),
               _MiniStat(
-                label: L10nService.get('programs.active_program.completed', isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('programs.active_program.completed', language),
                 value: '$completed / ${program.durationDays}',
                 isDark: isDark,
               ),
@@ -374,12 +375,13 @@ class _DayProgressRow extends StatelessWidget {
 class _TodayPromptCard extends StatelessWidget {
   final ProgramDay day;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const _TodayPromptCard({
     required this.day,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -402,7 +404,7 @@ class _TodayPromptCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  '${L10nService.get('programs.active_program.day', isEn ? AppLanguage.en : AppLanguage.tr)} ${day.dayNumber}',
+                  '${L10nService.get('programs.active_program.day', language)} ${day.dayNumber}',
                   style: AppTypography.elegantAccent(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
@@ -448,12 +450,13 @@ class _TodayPromptCard extends StatelessWidget {
 class _ReflectionInput extends StatelessWidget {
   final TextEditingController controller;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
   const _ReflectionInput({
     required this.controller,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -470,7 +473,7 @@ class _ReflectionInput extends StatelessWidget {
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: L10nService.get('programs.active_program.write_your_reflection_here_optional', isEn ? AppLanguage.en : AppLanguage.tr),
+          hintText: L10nService.get('programs.active_program.write_your_reflection_here_optional', language),
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -491,13 +494,14 @@ class _ReflectionInput extends StatelessWidget {
 
 class _CompleteButton extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final bool isAlreadyDone;
   final VoidCallback onComplete;
 
   const _CompleteButton({
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.isAlreadyDone,
     required this.onComplete,
   });
@@ -506,8 +510,8 @@ class _CompleteButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GradientButton(
       label: isAlreadyDone
-          ? (L10nService.get('programs.active_program.completed_1', isEn ? AppLanguage.en : AppLanguage.tr))
-          : (L10nService.get('programs.active_program.complete_today', isEn ? AppLanguage.en : AppLanguage.tr)),
+          ? (L10nService.get('programs.active_program.completed_1', language))
+          : (L10nService.get('programs.active_program.complete_today', language)),
       onPressed: isAlreadyDone ? null : onComplete,
       expanded: true,
       gradient: LinearGradient(
@@ -526,9 +530,10 @@ class _CompleteButton extends StatelessWidget {
 
 class _CompletedBanner extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
-  const _CompletedBanner({required this.isDark, required this.isEn});
+  const _CompletedBanner({required this.isDark, required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -548,7 +553,7 @@ class _CompletedBanner extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               GradientText(
-                L10nService.get('programs.active_program.program_completed', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('programs.active_program.program_completed', language),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 18,
@@ -557,7 +562,7 @@ class _CompletedBanner extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                L10nService.get('programs.active_program.you_have_finished_this_guided_program_we', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('programs.active_program.you_have_finished_this_guided_program_we', language),
                 textAlign: TextAlign.center,
                 style: AppTypography.decorativeScript(
                   fontSize: 14,
@@ -581,9 +586,10 @@ class _CompletedBanner extends StatelessWidget {
 
 class _NotStartedBanner extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
 
-  const _NotStartedBanner({required this.isDark, required this.isEn});
+  const _NotStartedBanner({required this.isDark, required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -596,7 +602,7 @@ class _NotStartedBanner extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Text(
-        L10nService.get('programs.active_program.this_program_hasnt_been_started_yet', isEn ? AppLanguage.en : AppLanguage.tr),
+        L10nService.get('programs.active_program.this_program_hasnt_been_started_yet', language),
         textAlign: TextAlign.center,
         style: AppTypography.decorativeScript(
           fontSize: 14,

@@ -61,7 +61,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
         ),
         child: FloatingActionButton(
           onPressed: () => context.push(Routes.birthdayAdd),
-          tooltip: L10nService.get('birthdays.birthday_agenda.add_birthday', isEn ? AppLanguage.en : AppLanguage.tr),
+          tooltip: L10nService.get('birthdays.birthday_agenda.add_birthday', language),
           backgroundColor: Colors.transparent,
           elevation: 0,
           child: const Icon(
@@ -78,7 +78,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  L10nService.get('birthdays.birthday_agenda.couldnt_load_your_birthdays', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('birthdays.birthday_agenda.couldnt_load_your_birthdays', language),
                   textAlign: TextAlign.center,
                   style: AppTypography.subtitle(
                     color: isDark
@@ -93,7 +93,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                   icon: Icon(Icons.refresh_rounded,
                       size: 16, color: AppColors.starGold),
                   label: Text(
-                    L10nService.get('birthdays.birthday_agenda.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('birthdays.birthday_agenda.retry', language),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -114,7 +114,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
     BuildContext context,
     BirthdayContactService service,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final allContacts = service.getAllContacts();
     final todayBirthdays = service.getTodayBirthdays();
@@ -134,7 +134,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
           ),
           slivers: [
             GlassSliverAppBar(
-              title: L10nService.get('birthdays.birthday_agenda.birthday_agenda', isEn ? AppLanguage.en : AppLanguage.tr),
+              title: L10nService.get('birthdays.birthday_agenda.birthday_agenda', language),
             ),
             SliverPadding(
               padding: const EdgeInsets.all(16),
@@ -144,7 +144,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                   if (isEmpty) ...[
                     _EmptyState(
                       isDark: isDark,
-                      isEn: isEn,
+                      language: language,
                       onImport: () => context.push(Routes.birthdayImport),
                       onAdd: () => context.push(Routes.birthdayAdd),
                     ),
@@ -156,7 +156,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                     _TodayBanner(
                       contacts: todayBirthdays,
                       isDark: isDark,
-                      isEn: isEn,
+                      language: language,
                       onTap: (id) => context.push(
                         Routes.birthdayDetail.replaceFirst(':id', id),
                       ),
@@ -169,7 +169,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                     year: _selectedYear,
                     month: _selectedMonth,
                     isDark: isDark,
-                    isEn: isEn,
+                    language: language,
                     onPrevious: () {
                       final minYear = DateTime.now().year - 1;
                       HapticFeedback.selectionClick();
@@ -221,7 +221,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                     birthdayMap: birthdayMap,
                     selectedDay: _selectedDay,
                     isDark: isDark,
-                    isEn: isEn,
+                    language: language,
                     onDayTap: (day) {
                       HapticFeedback.lightImpact();
                       setState(() {
@@ -238,7 +238,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                       month: _selectedMonth,
                       birthdayMap: birthdayMap,
                       isDark: isDark,
-                      isEn: isEn,
+                      language: language,
                       onContactTap: (id) => context.push(
                         Routes.birthdayDetail.replaceFirst(':id', id),
                       ),
@@ -249,7 +249,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                   // 5. Upcoming birthdays
                   if (upcoming.isNotEmpty) ...[
                     GradientText(
-                      L10nService.get('birthdays.birthday_agenda.upcoming_birthdays', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('birthdays.birthday_agenda.upcoming_birthdays', language),
                       variant: GradientTextVariant.gold,
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 16,
@@ -261,7 +261,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                       (contact) => _UpcomingCard(
                         contact: contact,
                         isDark: isDark,
-                        isEn: isEn,
+                        language: language,
                         onTap: () => context.push(
                           Routes.birthdayDetail.replaceFirst(':id', contact.id),
                         ),
@@ -273,7 +273,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                   // 6. Action buttons
                   _ActionButtons(
                     isDark: isDark,
-                    isEn: isEn,
+                    language: language,
                     onImport: () => context.push(Routes.birthdayImport),
                     onAdd: () => context.push(Routes.birthdayAdd),
                   ),
@@ -296,13 +296,14 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
 class _TodayBanner extends StatelessWidget {
   final List<BirthdayContact> contacts;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final ValueChanged<String> onTap;
 
   const _TodayBanner({
     required this.contacts,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onTap,
   });
 
@@ -319,7 +320,7 @@ class _TodayBanner extends StatelessWidget {
               const AppSymbol.card('\u{1F382}'),
               const SizedBox(width: 10),
               GradientText(
-                L10nService.get('birthdays.birthday_agenda.todays_birthdays', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('birthdays.birthday_agenda.todays_birthdays', language),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 18,
@@ -384,7 +385,8 @@ class _MonthNav extends StatelessWidget {
   final int year;
   final int month;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final VoidCallback onPrevious;
   final VoidCallback onNext;
   final VoidCallback? onToday;
@@ -393,7 +395,7 @@ class _MonthNav extends StatelessWidget {
     required this.year,
     required this.month,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onPrevious,
     required this.onNext,
     this.onToday,
@@ -417,7 +419,7 @@ class _MonthNav extends StatelessWidget {
                 ? AppColors.textSecondary
                 : AppColors.lightTextSecondary,
           ),
-          tooltip: L10nService.get('birthdays.birthday_agenda.previous_month', isEn ? AppLanguage.en : AppLanguage.tr),
+          tooltip: L10nService.get('birthdays.birthday_agenda.previous_month', language),
           onPressed: onPrevious,
         ),
         GestureDetector(
@@ -436,7 +438,7 @@ class _MonthNav extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 2),
                   child: Text(
-                    L10nService.get('birthdays.birthday_agenda.tap_for_today', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('birthdays.birthday_agenda.tap_for_today', language),
                     style: AppTypography.elegantAccent(
                       fontSize: 10,
                       color: AppColors.starGold.withValues(alpha: 0.6),
@@ -453,7 +455,7 @@ class _MonthNav extends StatelessWidget {
                 ? AppColors.textSecondary
                 : AppColors.lightTextSecondary,
           ),
-          tooltip: L10nService.get('birthdays.birthday_agenda.next_month', isEn ? AppLanguage.en : AppLanguage.tr),
+          tooltip: L10nService.get('birthdays.birthday_agenda.next_month', language),
           onPressed: onNext,
         ),
       ],
@@ -471,7 +473,8 @@ class _BirthdayCalendarGrid extends StatelessWidget {
   final Map<String, List<BirthdayContact>> birthdayMap;
   final int? selectedDay;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final ValueChanged<int> onDayTap;
 
   const _BirthdayCalendarGrid({
@@ -480,7 +483,7 @@ class _BirthdayCalendarGrid extends StatelessWidget {
     required this.birthdayMap,
     this.selectedDay,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onDayTap,
   });
 
@@ -642,7 +645,8 @@ class _SelectedDayDetail extends StatelessWidget {
   final int month;
   final Map<String, List<BirthdayContact>> birthdayMap;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final ValueChanged<String> onContactTap;
 
   const _SelectedDayDetail({
@@ -650,7 +654,7 @@ class _SelectedDayDetail extends StatelessWidget {
     required this.month,
     required this.birthdayMap,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onContactTap,
   });
 
@@ -666,7 +670,7 @@ class _SelectedDayDetail extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Center(
           child: Text(
-            L10nService.get('birthdays.birthday_agenda.no_birthdays_on_this_day', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('birthdays.birthday_agenda.no_birthdays_on_this_day', language),
             style: AppTypography.subtitle(
               fontSize: 14,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -713,7 +717,7 @@ class _SelectedDayDetail extends StatelessWidget {
                         const SizedBox(height: 2),
                         Text(
                           '${contact.relationship.emoji} ${contact.relationship.localizedName(isEn)}'
-                          '${contact.age != null ? ' \u{2022} ${contact.age} ${L10nService.get('common.years', isEn ? AppLanguage.en : AppLanguage.tr)}' : ''}',
+                          '${contact.age != null ? ' \u{2022} ${contact.age} ${L10nService.get('common.years', language)}' : ''}',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: AppTypography.elegantAccent(
@@ -748,13 +752,14 @@ class _SelectedDayDetail extends StatelessWidget {
 class _UpcomingCard extends StatelessWidget {
   final BirthdayContact contact;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final VoidCallback onTap;
 
   const _UpcomingCard({
     required this.contact,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onTap,
   });
 
@@ -827,8 +832,8 @@ class _UpcomingCard extends StatelessWidget {
                 ),
                 child: Text(
                   isToday
-                      ? (L10nService.get('birthdays.birthday_agenda.today', isEn ? AppLanguage.en : AppLanguage.tr))
-                      : '$days ${L10nService.get('birthdays.birthday_agenda.days', isEn ? AppLanguage.en : AppLanguage.tr)}',
+                      ? (L10nService.get('birthdays.birthday_agenda.today', language))
+                      : '$days ${L10nService.get('birthdays.birthday_agenda.days', language)}',
                   style: AppTypography.elegantAccent(
                     fontSize: 12,
                     letterSpacing: 0.5,
@@ -850,13 +855,14 @@ class _UpcomingCard extends StatelessWidget {
 
 class _EmptyState extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final VoidCallback onImport;
   final VoidCallback onAdd;
 
   const _EmptyState({
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onImport,
     required this.onAdd,
   });
@@ -871,7 +877,7 @@ class _EmptyState extends StatelessWidget {
           const AppSymbol.hero('\u{1F382}'),
           const SizedBox(height: 16),
           GradientText(
-            L10nService.get('birthdays.birthday_agenda.never_miss_a_birthday', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('birthdays.birthday_agenda.never_miss_a_birthday', language),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 20,
@@ -880,7 +886,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            L10nService.get('birthdays.birthday_agenda.add_your_friends_and_family_to_get_remin', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('birthdays.birthday_agenda.add_your_friends_and_family_to_get_remin', language),
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 14,
@@ -892,7 +898,7 @@ class _EmptyState extends StatelessWidget {
           const SizedBox(height: 24),
           _ActionButtons(
             isDark: isDark,
-            isEn: isEn,
+            language: language,
             onImport: onImport,
             onAdd: onAdd,
           ),
@@ -908,13 +914,14 @@ class _EmptyState extends StatelessWidget {
 
 class _ActionButtons extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
+  bool get isEn => language.isEn;
   final VoidCallback onImport;
   final VoidCallback onAdd;
 
   const _ActionButtons({
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onImport,
     required this.onAdd,
   });
@@ -952,7 +959,7 @@ class _ActionButtons extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  L10nService.get('birthdays.birthday_agenda.import_from_facebook', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('birthdays.birthday_agenda.import_from_facebook', language),
                   style: AppTypography.modernAccent(
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
@@ -989,7 +996,7 @@ class _ActionButtons extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  L10nService.get('birthdays.birthday_agenda.add_manually', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('birthdays.birthday_agenda.add_manually', language),
                   style: AppTypography.modernAccent(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,

@@ -57,7 +57,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
                       color: AppColors.starGold,
                     ),
                     label: Text(
-                      L10nService.get('gratitude.gratitude_archive.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('gratitude.gratitude_archive.retry', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -79,7 +79,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
     BuildContext context,
     GratitudeService service,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final allEntries = service.getAllEntries();
     final themes = service.getAllTimeThemes();
@@ -89,7 +89,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
       return CustomScrollView(
         slivers: [
           GlassSliverAppBar(
-            title: L10nService.get('gratitude.gratitude_archive.gratitude_archive', isEn ? AppLanguage.en : AppLanguage.tr),
+            title: L10nService.get('gratitude.gratitude_archive.gratitude_archive', language),
           ),
           SliverFillRemaining(
             hasScrollBody: false,
@@ -102,7 +102,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
               descriptionTr:
                   'Şükran kalıplarının büyümesini görmek için şükran pratiğine başla.',
               onStartTemplate: () => context.push(Routes.gratitudeJournal),
-              isEn: isEn,
+              language: language,
               isDark: isDark,
             ),
           ),
@@ -127,7 +127,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: L10nService.get('gratitude.gratitude_archive.gratitude_archive_1', isEn ? AppLanguage.en : AppLanguage.tr),
+            title: L10nService.get('gratitude.gratitude_archive.gratitude_archive_1', language),
           ),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -175,7 +175,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
   Widget _buildStatsRow(
     BuildContext context,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     GratitudeSummary summary,
     int total,
   ) {
@@ -183,7 +183,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
       children: [
         Expanded(
           child: _StatTile(
-            label: L10nService.get('gratitude.gratitude_archive.total_days', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('gratitude.gratitude_archive.total_days', language),
             value: '$total',
             isDark: isDark,
           ),
@@ -191,7 +191,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
         const SizedBox(width: AppConstants.spacingMd),
         Expanded(
           child: _StatTile(
-            label: L10nService.get('gratitude.gratitude_archive.this_week', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('gratitude.gratitude_archive.this_week', language),
             value: '${summary.daysWithGratitude}',
             isDark: isDark,
           ),
@@ -199,7 +199,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
         const SizedBox(width: AppConstants.spacingMd),
         Expanded(
           child: _StatTile(
-            label: L10nService.get('gratitude.gratitude_archive.week_items', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('gratitude.gratitude_archive.week_items', language),
             value: '${summary.totalItems}',
             isDark: isDark,
           ),
@@ -211,7 +211,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
   Widget _buildThemesCard(
     BuildContext context,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     Map<String, int> themes,
   ) {
     final topThemes = themes.entries.take(10).toList();
@@ -226,7 +226,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            L10nService.get('gratitude.gratitude_archive.recurring_themes', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('gratitude.gratitude_archive.recurring_themes', language),
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,
               color: isDark
@@ -273,7 +273,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
   Widget _buildMonthHeader(
     BuildContext context,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     String monthKey,
     int count,
   ) {
@@ -330,7 +330,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
           ),
           const Spacer(),
           Text(
-            L10nService.getWithParams('gratitude.archive.entry_count', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$count'}),
+            L10nService.getWithParams('gratitude.archive.entry_count', language, params: {'count': '$count'}),
             style: AppTypography.elegantAccent(
               fontSize: 12,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,

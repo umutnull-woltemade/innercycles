@@ -74,7 +74,7 @@ class _InsightsDiscoveryScreenState
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    L10nService.get('insight.insights_discovery.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('insight.insights_discovery.could_not_load_your_local_data_is_unaffe', language),
                     textAlign: TextAlign.center,
                     style: AppTypography.decorativeScript(
                       fontSize: 14,
@@ -90,7 +90,7 @@ class _InsightsDiscoveryScreenState
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      L10nService.get('insight.insights_discovery.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('insight.insights_discovery.retry', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -112,7 +112,7 @@ class _InsightsDiscoveryScreenState
     BuildContext context,
     ContextModuleService service,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final daily = service.getDailyModule();
     final modules = _getFilteredModules(service);
@@ -125,13 +125,13 @@ class _InsightsDiscoveryScreenState
         slivers: [
           // App Bar
           GlassSliverAppBar(
-            title: L10nService.get('insight.insights_discovery.discover_insights', isEn ? AppLanguage.en : AppLanguage.tr),
+            title: L10nService.get('insight.insights_discovery.discover_insights', language),
             actions: [
               // Bookmark filter toggle
               IconButton(
                 tooltip: _showBookmarksOnly
-                    ? (L10nService.get('insight.insights_discovery.show_all_insights', isEn ? AppLanguage.en : AppLanguage.tr))
-                    : (L10nService.get('insight.insights_discovery.show_bookmarks', isEn ? AppLanguage.en : AppLanguage.tr)),
+                    ? (L10nService.get('insight.insights_discovery.show_all_insights', language))
+                    : (L10nService.get('insight.insights_discovery.show_bookmarks', language)),
                 icon: Icon(
                   _showBookmarksOnly
                       ? Icons.bookmark_rounded
@@ -181,7 +181,7 @@ class _InsightsDiscoveryScreenState
                 padding: const EdgeInsets.all(40),
                 child: Center(
                   child: Text(
-                    L10nService.get('insight.insights_discovery.no_insights_found', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('insight.insights_discovery.no_insights_found', language),
                     style: AppTypography.decorativeScript(
                       fontSize: 14,
                       color: isDark
@@ -215,7 +215,7 @@ class _InsightsDiscoveryScreenState
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: ToolEcosystemFooter(
                 currentToolId: 'insightsDiscovery',
-                isEn: isEn,
+                language: language,
                 isDark: isDark,
               ),
             ),
@@ -234,7 +234,7 @@ class _InsightsDiscoveryScreenState
   Widget _buildProgressBar(
     ContextModuleService service,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final progress = service.readProgress;
     final read = service.readCount;
@@ -247,7 +247,7 @@ class _InsightsDiscoveryScreenState
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              L10nService.get('insight.insights_discovery.reading_progress', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('insight.insights_discovery.reading_progress', language),
               style: AppTypography.elegantAccent(
                 fontSize: 11,
                 fontWeight: FontWeight.w600,
@@ -289,7 +289,7 @@ class _InsightsDiscoveryScreenState
     ContextModule module,
     ContextModuleService service,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     return Semantics(
       button: true,
@@ -322,7 +322,7 @@ class _InsightsDiscoveryScreenState
                   const SizedBox(width: 10),
                   Expanded(
                     child: GradientText(
-                      L10nService.get('insight.insights_discovery.todays_insight', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('insight.insights_discovery.todays_insight', language),
                       variant: GradientTextVariant.gold,
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 13,
@@ -360,7 +360,7 @@ class _InsightsDiscoveryScreenState
                 children: [
                   _buildCategoryPill(module.category, isDark, isEn),
                   Text(
-                    L10nService.get('insight.insights_discovery.tap_to_read', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('insight.insights_discovery.tap_to_read', language),
                     style: AppTypography.elegantAccent(
                       fontSize: 11,
                       fontWeight: FontWeight.w500,
@@ -383,13 +383,13 @@ class _InsightsDiscoveryScreenState
   // CATEGORY CHIPS
   // ═══════════════════════════════════════════════════════════════
 
-  Widget _buildCategoryChips(bool isDark, bool isEn) {
+  Widget _buildCategoryChips(bool isDark, AppLanguage language) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
           _buildChip(
-            label: L10nService.get('insight.insights_discovery.all', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('insight.insights_discovery.all', language),
             isSelected: _selectedCategory == null,
             isDark: isDark,
             onTap: () => setState(() => _selectedCategory = null),
@@ -469,7 +469,7 @@ class _InsightsDiscoveryScreenState
     ContextModule module,
     ContextModuleService service,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final isRead = service.isRead(module.id);
     final isBookmarked = service.isBookmarked(module.id);
@@ -521,8 +521,8 @@ class _InsightsDiscoveryScreenState
                   Semantics(
                     button: true,
                     label: isBookmarked
-                        ? (L10nService.get('insight.insights_discovery.remove_bookmark', isEn ? AppLanguage.en : AppLanguage.tr))
-                        : (L10nService.get('insight.insights_discovery.add_bookmark', isEn ? AppLanguage.en : AppLanguage.tr)),
+                        ? (L10nService.get('insight.insights_discovery.remove_bookmark', language))
+                        : (L10nService.get('insight.insights_discovery.add_bookmark', language)),
                     child: GestureDetector(
                       onTap: () async {
                         HapticFeedback.lightImpact();
@@ -704,7 +704,7 @@ class _InsightsDiscoveryScreenState
                             ),
                             const SizedBox(width: 6),
                             GradientText(
-                              L10nService.get('insight.insights_discovery.why_this_matters', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('insight.insights_discovery.why_this_matters', language),
                               variant: GradientTextVariant.gold,
                               style: AppTypography.elegantAccent(
                                 fontSize: 13,
@@ -778,7 +778,7 @@ class _InsightsDiscoveryScreenState
                   if (module.relatedModuleIds.isNotEmpty) ...[
                     const SizedBox(height: 24),
                     GradientText(
-                      L10nService.get('insight.insights_discovery.related_insights', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('insight.insights_discovery.related_insights', language),
                       variant: GradientTextVariant.gold,
                       style: AppTypography.elegantAccent(
                         fontSize: 14,
@@ -879,7 +879,7 @@ class _InsightsDiscoveryScreenState
   Widget _buildCategoryPill(
     ContextModuleCategory category,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final color = _categoryColor(category);
     return Container(
@@ -908,7 +908,7 @@ class _InsightsDiscoveryScreenState
     );
   }
 
-  Widget _buildDepthBadge(ContextModuleDepth depth, bool isDark, bool isEn) {
+  Widget _buildDepthBadge(ContextModuleDepth depth, bool isDark, AppLanguage language) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
