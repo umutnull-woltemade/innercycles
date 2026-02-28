@@ -470,7 +470,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         '${dateFormat.format(data.weekStart)} - ${dateFormat.format(data.weekEnd)}';
 
     return Semantics(
-      label: isEn ? 'Week of $range' : '$range Haftasi',
+      label: L10nService.getWithParams('digest.week_of_range', isEn ? AppLanguage.en : AppLanguage.tr, params: {'range': range}),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(AppConstants.spacingXl),

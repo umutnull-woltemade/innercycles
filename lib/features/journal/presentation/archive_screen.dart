@@ -362,7 +362,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
       padding: const EdgeInsets.only(right: 8),
       child: Semantics(
         button: true,
-        label: isEn ? 'Filter: $label' : 'Filtre: $label',
+        label: L10nService.getWithParams('journal.archive.filter_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'label': label}),
         child: GestureDetector(
           onTap: onTap,
           child: ConstrainedBox(
@@ -493,7 +493,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                         Text(
                           () {
                             final words = entry.note!.trim().split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
-                            return isEn ? '$words words' : '$words kelime';
+                            return L10nService.getWithParams('journal.archive.word_count', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$words'});
                           }(),
                           style: AppTypography.elegantAccent(
                             fontSize: 11,

@@ -351,7 +351,7 @@ class DailyPulseCard extends ConsumerWidget {
             ),
             const SizedBox(width: 6),
             GradientText(
-              isEn ? 'Try this for $areaLabel' : '$areaLabel için dene',
+              L10nService.getWithParams('today.daily_pulse.try_for_area', isEn ? AppLanguage.en : AppLanguage.tr, params: {'area': areaLabel}),
               variant: GradientTextVariant.amethyst,
               style: AppTypography.elegantAccent(
                 fontSize: 12,

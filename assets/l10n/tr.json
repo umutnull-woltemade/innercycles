@@ -66,7 +66,8 @@
     "no_entries_yet": "Henüz bir şey yok — hazır olduğunda burada",
     "try_again": "Tekrar dene",
     "could_not_share_try_again": "Şu an paylaşılamadı. Lütfen tekrar dene.",
-    "error_loading_program": "Program yüklenemedi"
+    "error_loading_program": "Program yüklenemedi",
+    "upgrade_to_pro": "Pro'ya Yükselt"
   },
   "greetings": {
     "night": "Hâlâ ayakta mısın? Yazmak için iyi bir zaman.",
@@ -313,7 +314,8 @@
       "write_first_entry": "İlk Kaydı Yaz",
       "your_archetype": "Arketip Profilin",
       "your_archetype_is_waiting_to_emerge": "Arketipin ortaya çıkmayı bekliyor"
-    }
+    },
+    "alignment_pct": "%{pct} uyum"
   },
   "home": {
     "greeting": "Merhaba, {name}!",
@@ -837,7 +839,10 @@
       "restore_purchases": "Satın Alımları Geri Yükle",
       "terms_of_service": "Kullanım Şartları",
       "trusted_by_thousands_of_journalers": "Binlerce günlük yazarı tarafından tercih ediliyor"
-    }
+    },
+    "entry_count": "{count} kayıt",
+    "day_streak": "{count} gün seri",
+    "dream_count": "{count} rüya"
   },
   "progressive_unlock": {
     "dream_journal": "Rüya Günlüğü",
@@ -3358,7 +3363,13 @@
     "cosmic_timing": "Kişisel Zamanlama",
     "golden_hour": "Altın Saat",
     "be_careful": "Dikkatli Ol",
-    "listen_to_universe": "İçsel fısıltılarını dinle"
+    "listen_to_universe": "İçsel fısıltılarını dinle",
+    "day_streak_headline": "{count} Gün",
+    "days_of_journaling": "{count} Gün Günlük",
+    "explored_dreams": "{count} Rüya Keşfedildi",
+    "found_patterns": "{count} Örüntü Bulundu",
+    "day_of_length": "{length} günün {day}. günü",
+    "program_completed": "{name} Tamamlandı!"
   },
   "notifications": {
     "title": "Bildirimler",
@@ -3936,6 +3947,9 @@
       "no_favorites_yet": "Henüz favori yok",
       "remove_from_favorites": "Favorilerden kaldır",
       "retry": "Tekrar Dene"
+    },
+    "library": {
+      "filter_label": "Filtre: {label}"
     }
   },
   "app_lock": {
@@ -4039,7 +4053,8 @@
       "subtle": "Hafif",
       "what_your_journal_reveals": "Günlüğün Ne Ortaya Çıkarıyor",
       "your_overview": "Genel Bakış"
-    }
+    },
+    "entry_count_progress": "{count} / 14 kayıt"
   },
   "breathing": {
     "breathing_timer": {
@@ -4130,7 +4145,9 @@
       "retry": "Tekrar Dene",
       "start_tracking_your_cycle": "Döngünü Takip Etmeye Başla",
       "unlock_deeper_cycle_insights": "Daha derin döngü içgörülerini aç"
-    }
+    },
+    "of_cycle_length": "/ {count}",
+    "in_n_days": "~{count} gün sonra"
   },
   "data": {
     "content": {
@@ -4394,7 +4411,8 @@
       "weekly_debrief": "Haftalık Değerlendirme",
       "weekly_debrief_1": "Haftalık Değerlendirme",
       "weekly_insight": "Haftalık İçgörü"
-    }
+    },
+    "week_of_range": "{range} Haftası"
   },
   "energy": {
     "energy_map": {
@@ -4462,6 +4480,9 @@
       "this_week": "Bu Hafta",
       "total_days": "Toplam Gün",
       "week_items": "Hafta Madde"
+    },
+    "archive": {
+      "entry_count": "{count} kayıt"
     }
   },
   "growth": {
@@ -4507,7 +4528,8 @@
       "this_month": "Bu Ay",
       "your_archetype": "Arketipiniz",
       "your_growth": "Büyümen"
-    }
+    },
+    "best_streak_days": "En iyi: {count} gün"
   },
   "habits": {
     "daily_habits": {
@@ -4570,7 +4592,8 @@
       "you_began_building_selfawareness_this_ye": "Bu yıl öz-farkındalık oluşturmaya başladınız. Her kayıt önemli ve verileriniz daha yeni şekillenmeye başlıyor.",
       "you_showed_up_consistently_for_yourself": "Bu yıl kendin için sürekli olarak orda oldun. Kayıtların anlamlı gelişim kalıpları ortaya koyuyor.",
       "your_year_synthesis": "Senin Yıl Sentezin",
-      "your_yearinreview_will_come_alive_with_e": "Yıllık raporun yazdığın her kayıtla hayat bulacak."
+      "your_yearinreview_will_come_alive_with_e": "Yıllık raporun yazdığın her kayıtla hayat bulacak.",
+      "entries_recorded": "{count} kayıt yazıldı"
     },
     "archive": {
       "all": "Tümü",
@@ -4584,7 +4607,9 @@
       "this_journal_entry_will_be_permanently_d": "Bu günlük kaydı kalıcı olarak silinecek.",
       "write_first_entry": "İlk Kaydını Yaz",
       "your_journal_entries_will_appear_here_as": "Kişisel döngü haritanı oluşturdukça günlük kayıtların burada görünecek.",
-      "your_journal_is_a_blank_page_ready_when": "Günlüğün boş bir sayfa — hazır olduğunda burada"
+      "your_journal_is_a_blank_page_ready_when": "Günlüğün boş bir sayfa — hazır olduğunda burada",
+      "filter_label": "Filtre: {label}",
+      "word_count": "{count} kelime"
     },
     "cycle_summary": {
       "current_avg": "Ort."
@@ -4628,7 +4653,9 @@
       "today": "Bugün",
       "yesterday": "Dün",
       "you_just_wrote_your_first_reflectionneve": "İlk yansımanı yazdın.\\nHer büyük hikaye tek bir sayfayla başlar.",
-      "your_journey_begins": "Yolculuğun Başlıyor"
+      "your_journey_begins": "Yolculuğun Başlıyor",
+      "word_count": "{count} kelime",
+      "day_streak": "{count} gün seri"
     },
     "emotional_cycle": {
       "access_full_30day_view": "Tam 30 Günlük Görünüme Eriş",
@@ -4647,7 +4674,9 @@
       "your_cycles_are_forming": "Döngülerin Oluşuyor",
       "your_dimensions": "Boyutların",
       "your_inner_cycles": "İç Döngülerin",
-      "your_inner_cycles_1": "İç Döngülerin"
+      "your_inner_cycles_1": "İç Döngülerin",
+      "last_n_days": "Son {count} Gün",
+      "days_ago": "{count} gün önce"
     },
     "entry_detail": {
       "cancel": "İptal",
@@ -4702,7 +4731,8 @@
       "this_week_vs_last_week": "Bu Hafta vs Geçen Hafta",
       "trends": "Eğilimler",
       "write_entry": "Kayıt Yaz",
-      "your_patterns": "Kalıpların"
+      "your_patterns": "Kalıpların",
+      "n_days": "{count} gün"
     },
     "phase_ring": {
       "emotional_phase_ring": "Duygusal faz halkası"
@@ -4756,6 +4786,9 @@
       "reset": "Sıfırla",
       "resume": "Devam",
       "session_complete_well_done": "Oturum tamamlandı. Tebrikler!"
+    },
+    "timer": {
+      "n_minutes": "{count} dakika"
     }
   },
   "memories": {
@@ -4795,7 +4828,8 @@
       "try_new_features": "Yeni özellikleri dene",
       "write_more": "Daha fazla yaz",
       "you_earned_them_all": "Hepsini kazandın!"
-    }
+    },
+    "filter_label": "{label} filtresi"
   },
   "mood": {
     "emotional_vocabulary": {
@@ -4933,7 +4967,8 @@
       "in_progress": "Devam Eden",
       "retry": "Tekrar Dene",
       "structured_reflection_journeys_to_deepen": "Öz farkındalığı derinleştirmek için yapılandırılmış yansıma yolculukları"
-    }
+    },
+    "day_complete": "{day}. gün tamam — ivmeni sürdür!"
   },
   "prompts": {
     "daily_question": {
@@ -5004,7 +5039,8 @@
       "when_did_these_happen": "Bunlar ne zaman oldu?",
       "your_past_is_now_part_of_your_journey_co": "Geçmişin artık yolculuğunun bir parçası. Bu günler hakkında yazmak için istediğin zaman geri dön.",
       "your_story_didnt_start_today": "Hikayen bugün başlamadı"
-    }
+    },
+    "memories_saved": "{count} anı kaydedildi"
   },
   "search": {
     "global_search": {
@@ -5064,7 +5100,8 @@
       "yesterday": "Dün",
       "you_have_unsaved_text_are_you_sure_you_w": "Kaydedilmemi\\u{015F} metniniz var. Geri d\\u{00F6}nmek istedi\\u{011F}inizden emin misiniz?",
       "your_shadow_map": "Gölge Haritan"
-    }
+    },
+    "days_ago": "{count} gün önce"
   },
   "shared": {
     "ecosystems": {
@@ -5202,7 +5239,8 @@
       "this_week": "Bu Hafta",
       "total_entries": "Toplam Kayıt",
       "use_freeze": "Kullan"
-    }
+    },
+    "milestone_days_short": "{count} g"
   },
   "today": {
     "daily_pulse": {
@@ -5214,7 +5252,8 @@
       "focus": "Odak",
       "focus_pulse": "Odak Nabzı",
       "social": "Sosyal",
-      "view_details": "Detaylar"
+      "view_details": "Detaylar",
+      "try_for_area": "{area} için dene"
     },
     "hero_journal": {
       "daily_reflection": "GÜNLÜK YANSIMA",
@@ -5295,7 +5334,8 @@
     },
     "weekly_focus_progress": {
       "week": "Hafta: "
-    }
+    },
+    "anniversary_label": "{label} Yıl Dönümü!"
   },
   "tools": {
     "tool_catalog": {
@@ -5444,6 +5484,8 @@
       "you_journaled_every_single_day": "Her gün günlük tuttunuz!",
       "you_need_at_least_7_journal_entries_to_g": "Değerlendirme oluşturmak için en az 7 kayıt gerekli.",
       "your_year_synthesis_is_ready": "Yıl senteziniz hazır"
-    }
+    },
+    "my_year_summary": "{year} Özetim",
+    "entries_this_year": "Bu yıl {count} kayıt"
   }
 }

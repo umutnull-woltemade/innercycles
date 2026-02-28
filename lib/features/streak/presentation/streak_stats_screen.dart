@@ -546,7 +546,7 @@ class StreakStatsScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    isEn ? '$milestone d' : '$milestone g',
+                    L10nService.getWithParams('streak.milestone_days_short', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$milestone'}),
                     style: AppTypography.elegantAccent(
                       fontSize: 10,
                       color: reached

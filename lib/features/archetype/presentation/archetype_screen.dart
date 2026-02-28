@@ -266,7 +266,7 @@ class _DominantArchetypeCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(
-              isEn ? '$confidencePct% alignment' : '%$confidencePct uyum',
+              L10nService.getWithParams('archetype.alignment_pct', isEn ? AppLanguage.en : AppLanguage.tr, params: {'pct': confidencePct}),
               style: AppTypography.elegantAccent(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,

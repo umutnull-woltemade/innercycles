@@ -197,7 +197,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                   horizontal: 6,
                                 ),
                                 child: Semantics(
-                                  label: isEn ? '$m minutes' : '$m dakika',
+                                  label: L10nService.getWithParams('meditation.timer.n_minutes', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$m'}),
                                   button: true,
                                   selected: isSelected,
                                   child: GestureDetector(

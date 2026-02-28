@@ -493,7 +493,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           const SizedBox(height: 8),
           // Longest streak
           Text(
-            isEn ? 'Best: $longestStreak days' : 'En iyi: $longestStreak gün',
+            L10nService.getWithParams('growth.best_streak_days', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$longestStreak'}),
             style: AppTypography.elegantAccent(
               fontSize: 14,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,

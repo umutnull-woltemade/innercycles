@@ -270,7 +270,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                         ),
                       ),
                       Text(
-                        isEn ? 'of $cycleLength' : '/ $cycleLength',
+                        L10nService.getWithParams('cycle_sync.of_cycle_length', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$cycleLength'}),
                         style: AppTypography.elegantAccent(
                           fontSize: 12,
                           color: isDark
@@ -375,7 +375,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
               context,
               Icons.schedule_rounded,
               L10nService.get('cycle_sync.cycle_sync.next_period', isEn ? AppLanguage.en : AppLanguage.tr),
-              isEn ? 'in ~$daysUntil days' : '~$daysUntil gün sonra',
+              L10nService.getWithParams('cycle_sync.in_n_days', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$daysUntil'}),
               isDark,
             ),
           ],
@@ -1015,7 +1015,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   ),
                   const SizedBox(height: 12),
                   GradientButton.gold(
-                    label: isEn ? 'Upgrade to Pro' : "Pro'ya Yükselt",
+                    label: L10nService.get('common.upgrade_to_pro', isEn ? AppLanguage.en : AppLanguage.tr),
                     onPressed: () => showContextualPaywall(
                       context,
                       ref,

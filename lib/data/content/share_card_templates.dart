@@ -626,7 +626,7 @@ class ShareCardTemplates {
       case 'streak_flame':
         final streakText = streak > 0 ? '$streak' : '0';
         result = ShareCardData(
-          headline: isEn ? 'Day $streakText' : '$streakText Gün',
+          headline: L10nService.getWithParams('share.day_streak_headline', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': streakText}),
           subtitle: L10nService.get('data.content.share_templates.consistency_builds_selfawareness', isEn ? AppLanguage.en : AppLanguage.tr),
           statValue: streakText,
           statLabel: L10nService.get('data.content.share_templates.day_streak', isEn ? AppLanguage.en : AppLanguage.tr),
@@ -654,7 +654,7 @@ class ShareCardTemplates {
       case 'journal_milestone':
         final days = journalDays > 0 ? journalDays : 30;
         result = ShareCardData(
-          headline: isEn ? '$days Days of Journaling' : '$days Gün Günlük',
+          headline: L10nService.getWithParams('share.days_of_journaling', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$days'}),
           subtitle: L10nService.get('data.content.share_templates.another_milestone_of_showing_up_for_your', isEn ? AppLanguage.en : AppLanguage.tr),
           statValue: '$days',
           statLabel: L10nService.get('data.content.share_templates.days', isEn ? AppLanguage.en : AppLanguage.tr),
@@ -663,7 +663,7 @@ class ShareCardTemplates {
       case 'dream_explorer':
         final count = dreamCount > 0 ? dreamCount : 10;
         result = ShareCardData(
-          headline: isEn ? 'Explored $count Dreams' : '$count Rüya Keşfedildi',
+          headline: L10nService.getWithParams('share.explored_dreams', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$count'}),
           subtitle: L10nService.get('data.content.share_templates.your_dream_world_keeps_revealing_insight', isEn ? AppLanguage.en : AppLanguage.tr),
           statValue: '$count',
           statLabel: L10nService.get('data.content.share_templates.dreams', isEn ? AppLanguage.en : AppLanguage.tr),
@@ -672,7 +672,7 @@ class ShareCardTemplates {
       case 'pattern_discoverer':
         final count = patternCount > 0 ? patternCount : 5;
         result = ShareCardData(
-          headline: isEn ? 'Found $count Patterns' : '$count Örüntü Bulundu',
+          headline: L10nService.getWithParams('share.found_patterns', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$count'}),
           subtitle: L10nService.get('data.content.share_templates.selfawareness_grows_with_each_discovery', isEn ? AppLanguage.en : AppLanguage.tr),
           statValue: '$count',
           statLabel: L10nService.get('data.content.share_templates.patterns', isEn ? AppLanguage.en : AppLanguage.tr),
@@ -754,7 +754,7 @@ class ShareCardTemplates {
         result = ShareCardData(
           headline: phase,
           subtitle: desc,
-          detail: isEn ? 'Day $day of $length' : '$length günün $day. günü',
+          detail: L10nService.getWithParams('share.day_of_length', isEn ? AppLanguage.en : AppLanguage.tr, params: {'day': '$day', 'length': '$length'}),
           statValue: '$day',
           statLabel: '$length',
           chartValues: [day.toDouble(), length.toDouble()],
@@ -845,7 +845,7 @@ class ShareCardTemplates {
         final emoji = challengeEmoji ?? '\u{1F3C6}';
         final name = challengeName ?? (L10nService.get('data.content.share_templates.challenge', isEn ? AppLanguage.en : AppLanguage.tr));
         result = ShareCardData(
-          headline: isEn ? '$name Completed!' : '$name Tamamlandı!',
+          headline: L10nService.getWithParams('share.program_completed', isEn ? AppLanguage.en : AppLanguage.tr, params: {'name': name}),
           subtitle: L10nService.get('data.content.share_templates.you_showed_real_commitment', isEn ? AppLanguage.en : AppLanguage.tr),
           statValue: emoji,
           statLabel: L10nService.get('data.content.share_templates.completed', isEn ? AppLanguage.en : AppLanguage.tr),

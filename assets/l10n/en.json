@@ -66,7 +66,8 @@
     "no_entries_yet": "Nothing here yet — ready when you are",
     "try_again": "Try again",
     "could_not_share_try_again": "Couldn't share right now. Please try again.",
-    "error_loading_program": "Couldn't load this program"
+    "error_loading_program": "Couldn't load this program",
+    "upgrade_to_pro": "Upgrade to Pro"
   },
   "greetings": {
     "night": "Still up? Good time to write.",
@@ -313,7 +314,8 @@
       "write_first_entry": "Write First Entry",
       "your_archetype": "Your Archetype",
       "your_archetype_is_waiting_to_emerge": "Your archetype is waiting to emerge"
-    }
+    },
+    "alignment_pct": "{pct}% alignment"
   },
   "home": {
     "greeting": "Hi, {name}!",
@@ -837,7 +839,10 @@
       "restore_purchases": "Restore Purchases",
       "terms_of_service": "Terms of Service",
       "trusted_by_thousands_of_journalers": "Trusted by thousands of journalers"
-    }
+    },
+    "entry_count": "{count} entries",
+    "day_streak": "{count}-day streak",
+    "dream_count": "{count} dreams"
   },
   "progressive_unlock": {
     "dream_journal": "Dream Journal",
@@ -3358,7 +3363,13 @@
     "cosmic_timing": "Optimal Timing",
     "golden_hour": "Golden Hour",
     "be_careful": "Be Careful",
-    "listen_to_universe": "Listen to the whispers of your inner self"
+    "listen_to_universe": "Listen to the whispers of your inner self",
+    "day_streak_headline": "Day {count}",
+    "days_of_journaling": "{count} Days of Journaling",
+    "explored_dreams": "Explored {count} Dreams",
+    "found_patterns": "Found {count} Patterns",
+    "day_of_length": "Day {day} of {length}",
+    "program_completed": "{name} Completed!"
   },
   "notifications": {
     "title": "Notifications",
@@ -3936,6 +3947,9 @@
       "no_favorites_yet": "No favorites yet",
       "remove_from_favorites": "Remove from favorites",
       "retry": "Retry"
+    },
+    "library": {
+      "filter_label": "Filter: {label}"
     }
   },
   "app_lock": {
@@ -4039,7 +4053,8 @@
       "subtle": "Subtle",
       "what_your_journal_reveals": "What Your Journal Reveals",
       "your_overview": "Your Overview"
-    }
+    },
+    "entry_count_progress": "{count} / 14 entries"
   },
   "breathing": {
     "breathing_timer": {
@@ -4130,7 +4145,9 @@
       "retry": "Retry",
       "start_tracking_your_cycle": "Start Tracking Your Cycle",
       "unlock_deeper_cycle_insights": "Unlock deeper cycle insights"
-    }
+    },
+    "of_cycle_length": "of {count}",
+    "in_n_days": "in ~{count} days"
   },
   "data": {
     "content": {
@@ -4394,7 +4411,8 @@
       "weekly_debrief": "Weekly Debrief",
       "weekly_debrief_1": "Weekly Debrief",
       "weekly_insight": "Weekly Insight"
-    }
+    },
+    "week_of_range": "Week of {range}"
   },
   "energy": {
     "energy_map": {
@@ -4462,6 +4480,9 @@
       "this_week": "This Week",
       "total_days": "Total Days",
       "week_items": "Week Items"
+    },
+    "archive": {
+      "entry_count": "{count} entries"
     }
   },
   "growth": {
@@ -4507,7 +4528,8 @@
       "this_month": "This Month",
       "your_archetype": "Your Archetype",
       "your_growth": "Your Growth"
-    }
+    },
+    "best_streak_days": "Best: {count} days"
   },
   "habits": {
     "daily_habits": {
@@ -4570,7 +4592,8 @@
       "you_began_building_selfawareness_this_ye": "You began building self-awareness this year. Each entry matters, and your data is just getting started.",
       "you_showed_up_consistently_for_yourself": "You showed up consistently for yourself this year. Your entries reveal meaningful patterns of progress.",
       "your_year_synthesis": "Your Year Synthesis",
-      "your_yearinreview_will_come_alive_with_e": "Your year-in-review will come alive with each entry you write."
+      "your_yearinreview_will_come_alive_with_e": "Your year-in-review will come alive with each entry you write.",
+      "entries_recorded": "{count} entries recorded"
     },
     "archive": {
       "all": "All",
@@ -4584,7 +4607,9 @@
       "this_journal_entry_will_be_permanently_d": "This journal entry will be permanently deleted.",
       "write_first_entry": "Write First Entry",
       "your_journal_entries_will_appear_here_as": "Your journal entries will appear here as you build your personal cycle map.",
-      "your_journal_is_a_blank_page_ready_when": "Your journal is a blank page — ready when you are"
+      "your_journal_is_a_blank_page_ready_when": "Your journal is a blank page — ready when you are",
+      "filter_label": "Filter: {label}",
+      "word_count": "{count} words"
     },
     "cycle_summary": {
       "current_avg": "Current avg"
@@ -4628,7 +4653,9 @@
       "today": "Today",
       "yesterday": "Yesterday",
       "you_just_wrote_your_first_reflectionneve": "You just wrote your first reflection.\\nEvery great story starts with a single page.",
-      "your_journey_begins": "Your Journey Begins"
+      "your_journey_begins": "Your Journey Begins",
+      "word_count": "{count} words",
+      "day_streak": "{count} day streak"
     },
     "emotional_cycle": {
       "access_full_30day_view": "Access Full 30-Day View",
@@ -4647,7 +4674,9 @@
       "your_cycles_are_forming": "Your Cycles Are Forming",
       "your_dimensions": "Your Dimensions",
       "your_inner_cycles": "Your Inner Cycles",
-      "your_inner_cycles_1": "Your Inner Cycles"
+      "your_inner_cycles_1": "Your Inner Cycles",
+      "last_n_days": "Last {count} Days",
+      "days_ago": "{count} days ago"
     },
     "entry_detail": {
       "cancel": "Cancel",
@@ -4702,7 +4731,8 @@
       "this_week_vs_last_week": "This Week vs Last Week",
       "trends": "Trends",
       "write_entry": "Write Entry",
-      "your_patterns": "Your Patterns"
+      "your_patterns": "Your Patterns",
+      "n_days": "{count} days"
     },
     "phase_ring": {
       "emotional_phase_ring": "Emotional phase ring"
@@ -4756,6 +4786,9 @@
       "reset": "Reset",
       "resume": "Resume",
       "session_complete_well_done": "Session complete. Well done!"
+    },
+    "timer": {
+      "n_minutes": "{count} minutes"
     }
   },
   "memories": {
@@ -4795,7 +4828,8 @@
       "try_new_features": "Try new features",
       "write_more": "Write more",
       "you_earned_them_all": "You earned them all!"
-    }
+    },
+    "filter_label": "{label} filter"
   },
   "mood": {
     "emotional_vocabulary": {
@@ -4933,7 +4967,8 @@
       "in_progress": "In Progress",
       "retry": "Retry",
       "structured_reflection_journeys_to_deepen": "Structured reflection journeys to deepen self-awareness"
-    }
+    },
+    "day_complete": "Day {day} complete — keep the momentum going!"
   },
   "prompts": {
     "daily_question": {
@@ -5004,7 +5039,8 @@
       "when_did_these_happen": "When did these happen?",
       "your_past_is_now_part_of_your_journey_co": "Your past is now part of your journey. Come back anytime to write about these days.",
       "your_story_didnt_start_today": "Your story didn\\'t start today"
-    }
+    },
+    "memories_saved": "{count} memories saved"
   },
   "search": {
     "global_search": {
@@ -5064,7 +5100,8 @@
       "yesterday": "Yesterday",
       "you_have_unsaved_text_are_you_sure_you_w": "You have unsaved text. Are you sure you want to go back?",
       "your_shadow_map": "Your Shadow Map"
-    }
+    },
+    "days_ago": "{count} days ago"
   },
   "shared": {
     "ecosystems": {
@@ -5202,7 +5239,8 @@
       "this_week": "This Week",
       "total_entries": "Total Entries",
       "use_freeze": "Use Freeze"
-    }
+    },
+    "milestone_days_short": "{count} d"
   },
   "today": {
     "daily_pulse": {
@@ -5214,7 +5252,8 @@
       "focus": "Focus",
       "focus_pulse": "Focus Pulse",
       "social": "Social",
-      "view_details": "View details"
+      "view_details": "View details",
+      "try_for_area": "Try this for {area}"
     },
     "hero_journal": {
       "daily_reflection": "DAILY REFLECTION",
@@ -5295,7 +5334,8 @@
     },
     "weekly_focus_progress": {
       "week": "Week: "
-    }
+    },
+    "anniversary_label": "{label} Anniversary!"
   },
   "tools": {
     "tool_catalog": {
@@ -5444,6 +5484,8 @@
       "you_journaled_every_single_day": "You journaled every single day!",
       "you_need_at_least_7_journal_entries_to_g": "You need at least 7 journal entries to generate a review.",
       "your_year_synthesis_is_ready": "Your Year Synthesis is ready"
-    }
+    },
+    "my_year_summary": "My {year} Summary",
+    "entries_this_year": "{count} entries this year"
   }
 }

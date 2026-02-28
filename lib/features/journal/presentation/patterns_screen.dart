@@ -1084,7 +1084,7 @@ class PatternsScreen extends ConsumerWidget {
           textAlign: TextAlign.center,
         ),
         Text(
-          isEn ? '$days days' : '$days gün',
+          L10nService.getWithParams('journal.patterns.n_days', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$days'}),
           style: AppTypography.subtitle(
             fontSize: 11,
             color: isDark

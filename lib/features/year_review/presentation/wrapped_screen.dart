@@ -1066,7 +1066,7 @@ class _TopPatternsCard extends StatelessWidget {
       case 'dedicated_journaler':
       case 'committed_journaler':
         final count = parts.length > 1 ? parts[1] : '';
-        return isEn ? '$count entries this year' : 'Bu yıl $count kayıt';
+        return L10nService.getWithParams('year_review.entries_this_year', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': count});
       default:
         return raw;
     }

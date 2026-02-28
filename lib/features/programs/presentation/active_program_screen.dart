@@ -189,7 +189,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            isEn ? 'Day $dayNumber complete — keep the momentum going!' : '$dayNumber. gün tamam — ivmeni sürdür!',
+            L10nService.getWithParams('programs.day_complete', isEn ? AppLanguage.en : AppLanguage.tr, params: {'day': '$dayNumber'}),
           ),
           backgroundColor: AppColors.success,
           behavior: SnackBarBehavior.floating,

@@ -502,7 +502,7 @@ class _ContextualPaywallSheetState
       items.add(
         _ValueItem(
           Icons.edit_note_outlined,
-          isEn ? '$entryCount entries' : '$entryCount kayıt',
+          L10nService.getWithParams('premium.entry_count', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$entryCount'}),
         ),
       );
     }
@@ -510,7 +510,7 @@ class _ContextualPaywallSheetState
       items.add(
         _ValueItem(
           Icons.local_fire_department_outlined,
-          isEn ? '$streakDays-day streak' : '$streakDays gün seri',
+          L10nService.getWithParams('premium.day_streak', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$streakDays'}),
         ),
       );
     }
@@ -518,7 +518,7 @@ class _ContextualPaywallSheetState
       items.add(
         _ValueItem(
           Icons.nights_stay_outlined,
-          isEn ? '$dreamCount dreams' : '$dreamCount rüya',
+          L10nService.getWithParams('premium.dream_count', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$dreamCount'}),
         ),
       );
     }

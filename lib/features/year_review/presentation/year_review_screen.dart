@@ -1245,7 +1245,7 @@ class _ShareableSummaryCard extends StatelessWidget {
       child: Column(
         children: [
           GradientText(
-            isEn ? 'My ${review.year} Summary' : '${review.year} Özetim',
+            L10nService.getWithParams('year_review.my_year_summary', isEn ? AppLanguage.en : AppLanguage.tr, params: {'year': '${review.year}'}),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,

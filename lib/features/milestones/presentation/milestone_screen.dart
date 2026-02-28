@@ -344,7 +344,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                   ? (isEn
                         ? '$label filter, selected'
                         : '$label filtresi, seçili')
-                  : (isEn ? '$label filter' : '$label filtresi'),
+                  : (L10nService.getWithParams('milestones.filter_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'label': label})),
               button: true,
               selected: selected,
               child: FilterChip(

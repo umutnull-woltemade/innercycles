@@ -609,7 +609,7 @@ class _SummaryStep extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           GradientText(
-            isEn ? '$savedCount memories saved' : '$savedCount anı kaydedildi',
+            L10nService.getWithParams('retrospective.memories_saved', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$savedCount'}),
             variant: GradientTextVariant.aurora,
             textAlign: TextAlign.center,
             style: AppTypography.displayFont.copyWith(

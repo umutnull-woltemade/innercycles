@@ -917,7 +917,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  isEn ? '$count entries recorded' : '$count kayıt yazıldı',
+                  L10nService.getWithParams('journal.annual_report.entries_recorded', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$count'}),
                   style: AppTypography.elegantAccent(
                     fontSize: 12,
                     color: isDark

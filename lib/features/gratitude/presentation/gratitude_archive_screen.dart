@@ -330,7 +330,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
           ),
           const Spacer(),
           Text(
-            isEn ? '$count entries' : '$count kayıt',
+            L10nService.getWithParams('gratitude.archive.entry_count', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$count'}),
             style: AppTypography.elegantAccent(
               fontSize: 12,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,

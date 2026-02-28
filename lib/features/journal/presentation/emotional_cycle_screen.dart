@@ -590,7 +590,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
               const Icon(Icons.waves, color: AppColors.auroraStart, size: 20),
               const SizedBox(width: 8),
               GradientText(
-                isEn ? 'Last $displayDays Days' : 'Son $displayDays Gün',
+                L10nService.getWithParams('journal.emotional_cycle.last_n_days', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$displayDays'}),
                 variant: GradientTextVariant.aurora,
                 style: AppTypography.modernAccent(
                   fontSize: 15,
@@ -657,7 +657,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    isEn ? '$displayDays days ago' : '$displayDays gün önce',
+                    L10nService.getWithParams('journal.emotional_cycle.days_ago', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$displayDays'}),
                     style: AppTypography.elegantAccent(
                       fontSize: 10,
                       color: isDark

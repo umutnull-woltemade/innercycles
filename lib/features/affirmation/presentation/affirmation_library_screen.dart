@@ -332,7 +332,7 @@ class _FilterChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       button: true,
-      label: isEn ? 'Filter: $label' : 'Filtre: $label',
+      label: L10nService.getWithParams('affirmation.library.filter_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'label': label}),
       child: GestureDetector(
         onTap: onTap,
         child: Container(

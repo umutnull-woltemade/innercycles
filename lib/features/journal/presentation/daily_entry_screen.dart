@@ -854,7 +854,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     child: Text(
                       () {
                         final words = _noteController.text.trim().split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
-                        return isEn ? '$words words' : '$words kelime';
+                        return L10nService.getWithParams('journal.daily_entry.word_count', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$words'});
                       }(),
                       style: AppTypography.elegantAccent(
                         fontSize: 11,
@@ -1402,7 +1402,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       await widgetService.updateLockScreen(
         moodEmoji: moodEmoji,
         accentEmoji: _focusAreaEmoji(_selectedArea),
-        shortMessage: isEn ? '$streak day streak' : '$streak gün seri',
+        shortMessage: L10nService.getWithParams('journal.daily_entry.day_streak', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$streak'}),
         energyLevel: _overallRating,
       );
     } catch (e) {

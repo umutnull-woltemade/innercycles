@@ -952,7 +952,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                 ? (L10nService.get('shadow_work.shadow_work.today', isEn ? AppLanguage.en : AppLanguage.tr))
                 : daysAgo == 1
                 ? (L10nService.get('shadow_work.shadow_work.yesterday', isEn ? AppLanguage.en : AppLanguage.tr))
-                : (isEn ? '$daysAgo days ago' : '$daysAgo gün önce');
+                : (L10nService.getWithParams('shadow_work.days_ago', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$daysAgo'}));
 
             return Padding(
               padding: const EdgeInsets.only(bottom: 12),
@@ -1123,7 +1123,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                         ],
                       ),
                       child: Text(
-                        isEn ? 'Upgrade to Pro' : "Pro'ya Yükselt",
+                        L10nService.get('common.upgrade_to_pro', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.modernAccent(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,

@@ -349,7 +349,7 @@ class _NotEnoughData extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  isEn ? '$entryCount / 14 entries' : '$entryCount / 14 kayıt',
+                  L10nService.getWithParams('blind_spot.entry_count_progress', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$entryCount'}),
                   style: AppTypography.modernAccent(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
