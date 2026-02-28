@@ -5,6 +5,8 @@
 // SECONDARY features soft-archived: code preserved, routes removed.
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'dart:ui' as ui;
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -743,6 +745,8 @@ class _NotFoundScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isEn = ui.PlatformDispatcher.instance.locale.languageCode != 'tr';
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
@@ -752,7 +756,7 @@ class _NotFoundScreen extends StatelessWidget {
             const Icon(Icons.explore_off, size: 64, color: Colors.white38),
             const SizedBox(height: 24),
             Text(
-              'Page Not Found / Sayfa Bulunamad\u0131',
+              isEn ? 'Page Not Found' : 'Sayfa Bulunamadı',
               style: Theme.of(
                 context,
               ).textTheme.headlineSmall?.copyWith(color: Colors.white),
@@ -771,7 +775,7 @@ class _NotFoundScreen extends StatelessWidget {
               onPressed: () => context.go(Routes.today),
               icon: const Icon(Icons.home, color: Colors.white70),
               label: Text(
-                'Home / Ana Sayfa',
+                isEn ? 'Home' : 'Ana Sayfa',
                 style: AppTypography.elegantAccent(color: Colors.white70),
               ),
             ),

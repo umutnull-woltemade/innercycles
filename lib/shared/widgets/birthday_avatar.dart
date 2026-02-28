@@ -3,6 +3,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'dart:io';
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
@@ -80,7 +81,9 @@ class BirthdayAvatar extends StatelessWidget {
           width: size,
           height: size,
           fit: BoxFit.cover,
-          semanticLabel: 'Photo of $name',
+          semanticLabel: ui.PlatformDispatcher.instance.locale.languageCode == 'tr'
+              ? '$name fotoğrafı'
+              : 'Photo of $name',
           errorBuilder: (_, _, _) => _buildInitials(isDark),
         ),
       );

@@ -247,7 +247,7 @@ class _ShareCardGalleryScreenState
           return Semantics(
             button: true,
             selected: isSelected,
-            label: 'Category: ${category.label(isEn)}',
+            label: isEn ? 'Category: ${category.label(isEn)}' : 'Kategori: ${category.label(isEn)}',
             child: GestureDetector(
               onTap: () {
                 HapticFeedback.selectionClick();
@@ -338,7 +338,7 @@ class _ShareCardGalleryScreenState
 
         return Semantics(
           button: true,
-          label: 'Preview ${template.title(isEn)} card',
+          label: isEn ? 'Preview ${template.title(isEn)} card' : '${template.title(isEn)} kartını önizle',
           child: GestureDetector(
             onTap: () {
               HapticFeedback.lightImpact();

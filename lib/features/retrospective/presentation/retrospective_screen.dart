@@ -76,7 +76,7 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
           child: Column(
             children: [
               // Step indicator
-              _StepIndicator(currentStep: _currentStep, isDark: isDark),
+              _StepIndicator(currentStep: _currentStep, isDark: isDark, isEn: isEn),
               Expanded(
                 child: PageView(
                   controller: _pageController,
@@ -181,13 +181,14 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
 class _StepIndicator extends StatelessWidget {
   final int currentStep;
   final bool isDark;
+  final bool isEn;
 
-  const _StepIndicator({required this.currentStep, required this.isDark});
+  const _StepIndicator({required this.currentStep, required this.isDark, this.isEn = true});
 
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: 'Step ${currentStep + 1} of 4',
+      label: isEn ? 'Step ${currentStep + 1} of 4' : 'Adım ${currentStep + 1} / 4',
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
         child: Row(
