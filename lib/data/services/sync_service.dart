@@ -73,7 +73,7 @@ class SyncService {
       _syncBox = await Hive.openBox(_syncQueueBoxName);
 
       // Purge stale queue items (older than 30 days)
-      await purgeStaleQueueItems();
+      await SyncService.purgeStaleQueueItems();
 
       // Listen for connectivity changes (cancel previous if re-initialized)
       _connectivitySub?.cancel();
