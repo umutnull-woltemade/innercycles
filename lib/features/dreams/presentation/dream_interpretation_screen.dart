@@ -2152,7 +2152,11 @@ ${_getPersonalAdvice(sign)}''';
                         const SizedBox(height: 8),
                         Align(
                           alignment: Alignment.centerRight,
-                          child: GestureDetector(
+                          child: Semantics(
+                            button: true,
+                            label: L10nService.get('dreams.dream_interpretation.copy', language),
+                            child: GestureDetector(
+                              behavior: HitTestBehavior.opaque,
                             onTap: () {
                               Clipboard.setData(ClipboardData(text: message.text));
                               HapticService.buttonPress();

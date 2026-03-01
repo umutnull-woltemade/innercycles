@@ -733,6 +733,8 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
             borderRadius: BorderRadius.circular(12),
             child: Image.file(
               File(_imagePath!),
+              cacheWidth: 800,
+              cacheHeight: 480,
               height: 160,
               width: double.infinity,
               fit: BoxFit.cover,

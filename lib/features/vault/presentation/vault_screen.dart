@@ -524,6 +524,8 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
             borderRadius: BorderRadius.circular(10),
             child: Image.file(
               File(photo.filePath),
+              cacheWidth: 400,
+              cacheHeight: 400,
               fit: BoxFit.cover,
               errorBuilder: (_, _, _) => Container(
                 color: isDark
@@ -659,6 +661,8 @@ class _FullScreenPhoto extends StatelessWidget {
           child: InteractiveViewer(
             child: Image.file(
               File(photo.filePath),
+              cacheWidth: 400,
+              cacheHeight: 400,
               fit: BoxFit.contain,
               errorBuilder: (_, _, _) => const Icon(
                 CupertinoIcons.photo,
