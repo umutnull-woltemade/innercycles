@@ -249,7 +249,7 @@ class _NotificationScheduleScreenState
   }
 
   Widget _buildPermissionBanner(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.only(bottom: AppConstants.spacingLg),
       child: GlassPanel(
@@ -366,7 +366,7 @@ class _NotificationScheduleScreenState
   }
 
   Widget _buildTimePicker(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final time =
         _settings?.dailyReflectionTime ?? const TimeOfDay(hour: 9, minute: 0);
     final formatted = time.format(context);
@@ -423,7 +423,7 @@ class _NotificationScheduleScreenState
   }
 
   Widget _buildJournalPromptTimePicker(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final time =
         _settings?.journalPromptTime ?? const TimeOfDay(hour: 10, minute: 0);
     final formatted = time.format(context);

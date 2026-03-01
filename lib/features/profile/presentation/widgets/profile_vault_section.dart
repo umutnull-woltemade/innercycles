@@ -27,7 +27,7 @@ class ProfileVaultSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

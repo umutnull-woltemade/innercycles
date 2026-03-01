@@ -270,7 +270,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
   }
 
   Widget _buildEmptyState(BuildContext context, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return CustomScrollView(
       slivers: [
         GlassSliverAppBar(title: L10nService.get('memories.memories.memories_1', language)),
@@ -331,7 +331,7 @@ class _MemoriesStatsHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: 14,
@@ -424,7 +424,7 @@ class _OnThisDayCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final hasPhoto = _hasValidPhoto(entry);
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
 
@@ -633,7 +633,7 @@ class _MemoryCard extends StatelessWidget {
   }
 
   Widget _buildPhotoCard(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
     final areaLabel = entry.focusArea.localizedName(isEn);
 

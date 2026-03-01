@@ -187,7 +187,7 @@ class _StepIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       label: L10nService.getWithParams('retrospective.step_indicator', language, params: {'current': '${currentStep + 1}', 'total': '4'}),
       child: Padding(
@@ -233,7 +233,7 @@ class _WelcomeStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.all(32),
       child: Column(
@@ -302,7 +302,7 @@ class _DaySelectionStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       children: [
         Padding(
@@ -457,7 +457,7 @@ class _DateEntryStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final presets = selectedPresets
         .map((k) => ImportantDatePresets.getByKey(k))
         .where((p) => p != null)
@@ -601,7 +601,7 @@ class _SummaryStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.all(32),
       child: Column(

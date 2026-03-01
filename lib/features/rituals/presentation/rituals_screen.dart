@@ -132,7 +132,7 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumEmptyState(
       icon: Icons.playlist_add_check_rounded,
       title: L10nService.get('rituals.rituals.your_ritual_practice_starts_here', language),
@@ -159,7 +159,7 @@ class _StackCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: PremiumCard(
@@ -242,7 +242,7 @@ class _StackCard extends ConsumerWidget {
   }
 
   Future<void> _confirmDelete(BuildContext context, WidgetRef ref) async {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     HapticFeedback.mediumImpact();
     final confirmed = await GlassDialog.confirm(
       context,
@@ -273,7 +273,7 @@ class _AddButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Center(
       child: GradientOutlinedButton(
         label: L10nService.get('rituals.rituals.add_ritual', language),

@@ -126,7 +126,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
   }
 
   String _formatDate(DateTime date, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final day = date.day.toString().padLeft(2, '0');
     final month = date.month.toString().padLeft(2, '0');
     final year = date.year;
@@ -457,7 +457,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
   }
 
   Widget _buildSearchBar(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       decoration: BoxDecoration(
         color: isDark

@@ -175,7 +175,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     int needed,
     int current,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return CupertinoScrollbar(
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(
@@ -360,7 +360,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final now = DateTime.now();
     final bool hasEnoughForFull = analysis.totalEntries >= 30;
     final int displayDays = hasEnoughForFull ? 30 : 14;
@@ -577,7 +577,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     Map<FocusArea, List<CycleDataPoint>> chartData,
     int displayDays,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final hasData = chartData.values.any((list) => list.isNotEmpty);
     return PremiumCard(
       style: PremiumCardStyle.aurora,
@@ -739,7 +739,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
       scrollDirection: Axis.horizontal,
       child: Row(
         children: FocusArea.values.map((area) {
-          final language = isEn ? AppLanguage.en : AppLanguage.tr;
+          final language = AppLanguage.fromIsEn(isEn);
           final isVisible = _visibleAreas.contains(area);
           final color = kAreaColors[area] ?? AppColors.auroraStart;
           final label = area.localizedName(isEn);
@@ -845,7 +845,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     bool isEn,
     CycleInsight insight,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final color = insight.relatedArea != null
         ? (kAreaColors[insight.relatedArea!] ?? AppColors.auroraStart)
         : AppColors.auroraStart;
@@ -903,7 +903,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final isPremium = ref.watch(isPremiumUserProvider);
     final outlookAsync = ref.watch(shiftOutlookProvider);
     return Column(
@@ -1028,7 +1028,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildShareButton(BuildContext context, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -1089,7 +1089,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     bool isEn,
     int totalEntries,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(AppConstants.spacingXl),

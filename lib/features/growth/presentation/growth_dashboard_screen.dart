@@ -146,7 +146,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final now = DateTime.now();
     final entries = journalService.getAllEntries();
     final currentStreak = journalService.getCurrentStreak();
@@ -358,7 +358,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                 }
               },
               builder: (context, value, child) {
-                final language = isEn ? AppLanguage.en : AppLanguage.tr;
+                final language = AppLanguage.fromIsEn(isEn);
                 return Stack(
                   alignment: Alignment.center,
                   children: [
@@ -433,7 +433,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
   }
 
   String _getScoreMessage(int score, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     if (score >= 80) {
       return L10nService.get('growth.growth_dashboard.outstanding_you_are_deeply_committed_to', language);
     } else if (score >= 60) {
@@ -458,7 +458,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
@@ -594,7 +594,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final milestones = _buildMilestoneData(
       entries: entries,
       currentStreak: currentStreak,
@@ -760,7 +760,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     required int gratitudeCount,
     required bool isEn,
   }) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final maxStreak = math.max(currentStreak, longestStreak);
 
     return [
@@ -854,7 +854,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildExploreSection(BuildContext context, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final tools = [
       _GrowthTool(
         icon: Icons.fingerprint_outlined,
@@ -1004,7 +1004,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     // Most tracked focus area this month
     final areaCount = <FocusArea, int>{};
     for (final entry in monthEntries) {
@@ -1144,7 +1144,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GradientButton.gold(
       label: L10nService.get('growth.growth_dashboard.share_your_progress_1', language),
       icon: Icons.share,

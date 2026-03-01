@@ -61,7 +61,7 @@ class ExportService {
   }
 
   ExportResult _exportText(List<JournalEntry> entries, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final buffer = StringBuffer();
     buffer.writeln(
       L10nService.get('data.services.export.innercycles_journal_export', language),

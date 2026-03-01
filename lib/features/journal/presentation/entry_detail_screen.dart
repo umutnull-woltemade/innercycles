@@ -106,7 +106,7 @@ class EntryDetailScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final areaLabel = entry.focusArea.localizedName(isEn);
     final names = isEn
         ? entry.focusArea.subRatingNamesEn
@@ -333,7 +333,7 @@ class EntryDetailScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final file = File(imagePath);
     try {
       if (!file.existsSync()) return const SizedBox.shrink();
@@ -364,7 +364,7 @@ class EntryDetailScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GlassPanel(
       elevation: GlassElevation.g2,
       width: double.infinity,
@@ -385,7 +385,7 @@ class EntryDetailScreen extends ConsumerWidget {
           const SizedBox(height: AppConstants.spacingMd),
           GestureDetector(
             onLongPress: () {
-              final language = isEn ? AppLanguage.en : AppLanguage.tr;
+              final language = AppLanguage.fromIsEn(isEn);
               Clipboard.setData(ClipboardData(text: note));
               HapticService.buttonPress();
               ScaffoldMessenger.of(context).showSnackBar(
@@ -418,7 +418,7 @@ class EntryDetailScreen extends ConsumerWidget {
     String id,
     bool isEn,
   ) async {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final confirmed = await GlassDialog.confirm(
       context,
       title: L10nService.get('journal.entry_detail.delete_entry_1', language),

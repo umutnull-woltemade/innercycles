@@ -221,7 +221,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final streak = shadowService.getStreak();
     final breakthroughs = shadowService.getBreakthroughCount();
     final totalEntries = shadowService.totalEntries;
@@ -327,7 +327,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
   // ═══════════════════════════════════════════════════════════════════════
 
   Widget _buildArchetypeSelector(BuildContext context, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GlassPanel(
       elevation: GlassElevation.g2,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -430,7 +430,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final entryCount = shadowService
         .getEntriesByArchetype(_selectedArchetype)
         .length;
@@ -557,7 +557,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final entryCount = shadowService
         .getEntriesByArchetype(_selectedArchetype)
         .length;
@@ -696,7 +696,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               onTap: !_hasText
                   ? null
                   : () async {
-                      final language = isEn ? AppLanguage.en : AppLanguage.tr;
+                      final language = AppLanguage.fromIsEn(isEn);
                       HapticFeedback.mediumImpact();
                       final entry = ShadowWorkEntry(
                         id: '${DateTime.now().millisecondsSinceEpoch}',
@@ -791,7 +791,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final stats =
         shadowService.getArchetypeStats() as Map<ShadowArchetype, int>;
     if (stats.isEmpty) return const SizedBox.shrink();
@@ -911,7 +911,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final entries = (shadowService.getEntries() as List<ShadowWorkEntry>)
         .take(5)
         .toList();
@@ -948,7 +948,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           ...entries.map((entry) {
-            final language = isEn ? AppLanguage.en : AppLanguage.tr;
+            final language = AppLanguage.fromIsEn(isEn);
             final daysAgo = DateTime.now().difference(entry.date).inDays;
             final dateLabel = daysAgo == 0
                 ? (L10nService.get('shadow_work.shadow_work.today', language))
@@ -1059,7 +1059,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
     bool isPremium, {
     required Widget child,
   }) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     if (isPremium) return child;
 
     return Stack(

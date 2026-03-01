@@ -180,7 +180,7 @@ class _SeasonHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.aurora,
       padding: const EdgeInsets.all(24),
@@ -264,7 +264,7 @@ class _PromptCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: PremiumCard(
@@ -360,7 +360,7 @@ class _AllSeasonsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final current = SeasonalReflectionService.currentSeason();
 
     return PremiumCard(
@@ -384,7 +384,7 @@ class _AllSeasonsRow extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: SeasonalReflectionService.allModules.map((m) {
-              final language = isEn ? AppLanguage.en : AppLanguage.tr;
+              final language = AppLanguage.fromIsEn(isEn);
               final isCurrent = m.season == current;
               return Column(
                 children: [

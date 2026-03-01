@@ -185,7 +185,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
   }
 
   Widget _buildQuizAppBar(BuildContext context, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppConstants.spacingSm,
@@ -266,7 +266,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
     bool isEn,
   ) {
     final question = AttachmentStyleService.questions[index];
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final questionText = question.localizedQuestion(language);
     final options = question.localizedOptions(language);
 
@@ -439,7 +439,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildResultView(BuildContext context, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final result = _result!;
     final style = result.attachmentStyle;
 
@@ -620,7 +620,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -781,7 +781,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildShareButton(BuildContext context, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GradientButton(
       label: L10nService.get('quiz.attachment_quiz.share_your_result', language),
       icon: Icons.share_rounded,
@@ -802,7 +802,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
   }
 
   Widget _buildGoDeeperButton(BuildContext context, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GradientOutlinedButton(
       label: L10nService.get('quiz.attachment_quiz.go_deeper_premium', language),
       icon: Icons.auto_awesome,
@@ -822,7 +822,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
   }
 
   Widget _buildRetakeButton(BuildContext context, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return SizedBox(
       width: double.infinity,
       height: 48,

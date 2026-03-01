@@ -81,7 +81,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final allEntries = service.getAllEntries();
     final themes = service.getAllTimeThemes();
     final summary = service.getWeeklySummary();
@@ -180,7 +180,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
     GratitudeSummary summary,
     int total,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Row(
       children: [
         Expanded(
@@ -216,7 +216,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
     bool isEn,
     Map<String, int> themes,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final topThemes = themes.entries.take(10).toList();
     if (topThemes.isEmpty) return const SizedBox.shrink();
     final maxFreq = topThemes.first.value;
@@ -280,7 +280,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
     String monthKey,
     int count,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final parts = monthKey.split('-');
     if (parts.length < 2) return const SizedBox.shrink();
     final year = parts[0];

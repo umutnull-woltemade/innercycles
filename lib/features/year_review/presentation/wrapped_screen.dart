@@ -402,7 +402,7 @@ class _IntroCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return _WrappedCardBase(
       gradientColors: [
         AppColors.starGold.withValues(alpha: 0.15),
@@ -491,7 +491,7 @@ class _EmotionalArcCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final arcColors = EmotionalGradient.emotionalGradient(data.averageMood);
 
     return _WrappedCardBase(
@@ -576,7 +576,7 @@ class _IntenseWeekCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final weekStr = data.mostIntenseWeek != null
         ? _formatWeek(data.mostIntenseWeek!, isEn)
         : (L10nService.get('year_review.wrapped.throughout_the_year', language));
@@ -662,7 +662,7 @@ class _FocusAreaCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final sorted = data.focusAreaCounts.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
     final maxVal = sorted.isNotEmpty ? sorted.first.value : 1;
@@ -792,7 +792,7 @@ class _GrowthScoreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return _WrappedCardBase(
       gradientColors: [
         AppColors.amethyst.withValues(alpha: 0.15),
@@ -850,7 +850,7 @@ class _GrowthScoreCard extends StatelessWidget {
   }
 
   String _growthLabel(int score, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     if (score >= 70) {
       return L10nService.get('year_review.wrapped.remarkable_growth_this_year', language);
     } else if (score >= 50) {
@@ -877,7 +877,7 @@ class _BreakthroughCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return _WrappedCardBase(
       gradientColors: [
         AppColors.success.withValues(alpha: 0.15),
@@ -948,7 +948,7 @@ class _TopPatternsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final patterns = data.topPatterns.take(3).toList();
 
     return _WrappedCardBase(
@@ -1040,7 +1040,7 @@ class _TopPatternsCard extends StatelessWidget {
   }
 
   String _formatPattern(String raw, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     // Parse pattern codes like "focus_dominant:energy:42"
     final parts = raw.split(':');
     if (parts.isEmpty) return raw;
@@ -1106,7 +1106,7 @@ class _ClosingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return _WrappedCardBase(
       gradientColors: [
         AppColors.starGold.withValues(alpha: 0.18),
@@ -1191,7 +1191,7 @@ class _PremiumGateCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return _WrappedCardBase(
       gradientColors: [
         AppColors.starGold.withValues(alpha: 0.08),

@@ -89,7 +89,7 @@ class _CheckinView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.aurora,
       child: Column(
@@ -156,7 +156,7 @@ class _LoggedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final nowTime = DateTime.now();
     return PremiumCard(
       style: PremiumCardStyle.subtle,
@@ -255,7 +255,7 @@ class _LoggedView extends StatelessWidget {
   }
 
   String _moodLabel(int mood, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     switch (mood) {
       case 1:
         return L10nService.get('mood.mood_checkin.struggling', language);
@@ -327,7 +327,7 @@ class _ThankYouView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final suggestions = _getSuggestedEmotions(todayMood.mood);
 
     return PremiumCard(
@@ -368,7 +368,7 @@ class _ThankYouView extends StatelessWidget {
             spacing: 6,
             runSpacing: 6,
             children: suggestions.take(6).map((emotion) {
-              final language = isEn ? AppLanguage.en : AppLanguage.tr;
+              final language = AppLanguage.fromIsEn(isEn);
               return Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 10,

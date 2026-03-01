@@ -161,7 +161,10 @@ enum AppLanguage {
   fr, // Français (French)
   de, // Deutsch (German)
   es, // Español (Spanish)
-  ar, // العربية (Arabic - RTL)
+  ar; // العربية (Arabic - RTL)
+
+  /// Convert legacy bool isEn to AppLanguage.
+  static AppLanguage fromIsEn(bool isEn) => isEn ? en : tr;
 }
 
 extension AppLanguageExtension on AppLanguage {

@@ -56,7 +56,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
   // ==========================================================================
 
   Future<void> _shareDigest(bool isEn) async {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final boundary =
         _repaintKey.currentContext?.findRenderObject()
             as RenderRepaintBoundary?;
@@ -217,7 +217,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
   // ==========================================================================
 
   Widget _buildEmptyState(BuildContext context, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return CupertinoScrollbar(
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(
@@ -253,7 +253,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return CupertinoScrollbar(
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(
@@ -424,7 +424,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GestureDetector(
       onTap: () => context.push(Routes.monthlyWrapped),
       child: PremiumCard(
@@ -469,7 +469,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final dateFormat = DateFormat('MMM d');
     final range =
         '${dateFormat.format(data.weekStart)} - ${dateFormat.format(data.weekEnd)}';
@@ -529,7 +529,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final diff = data.entriesThisWeek - data.entriesLastWeek;
     final hasComparison = data.entriesLastWeek > 0;
 
@@ -647,7 +647,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Row(
       children: [
         // Average Mood
@@ -687,7 +687,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final area = data.topFocusArea!;
     final areaName = area.localizedName(isEn);
     final color = _focusAreaColor(area);
@@ -778,7 +778,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final icon = _moodTrendIcon(data.moodTrend);
     final color = _moodTrendColor(data.moodTrend);
     final message = _moodTrendMessage(data.moodTrend);
@@ -867,7 +867,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final bestDate = data.bestDay!;
     final dayName = _weekdayNameFull(bestDate.weekday, isEn);
     final dateStr = DateFormat('MMM d').format(bestDate);
@@ -964,7 +964,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -1083,7 +1083,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       label: isEn
           ? 'Weekly insight: ${data.localizedHighlightInsight(language)}'

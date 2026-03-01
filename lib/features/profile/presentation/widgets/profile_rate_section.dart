@@ -24,7 +24,7 @@ class ProfileRateSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     // Only show after meaningful engagement (5+ entries)
     if (totalEntries < 5) return const SizedBox.shrink();
 

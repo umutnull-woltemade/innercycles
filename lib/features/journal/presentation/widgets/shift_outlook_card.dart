@@ -32,7 +32,7 @@ class ShiftOutlookCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     if (!outlook.hasValidOutlook) {
       return _buildNoOutlook(context);
     }
@@ -220,7 +220,7 @@ class ShiftOutlookCard extends StatelessWidget {
     Color currentColor,
     Color nextColor,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Row(
       children: [
         // Current phase badge
@@ -277,7 +277,7 @@ class ShiftOutlookCard extends StatelessWidget {
   }
 
   Widget _buildNoOutlook(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),

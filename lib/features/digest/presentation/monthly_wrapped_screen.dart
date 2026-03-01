@@ -243,14 +243,14 @@ class _Slide2Focus extends StatelessWidget {
   });
 
   String _areaName(FocusArea? area, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     if (area == null) return L10nService.get('digest.monthly_wrapped.balanced', language);
     return area.localizedName(isEn);
   }
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return _SlideBase(
       emoji: '\u{1F3AF}',
       title: isEn
@@ -301,7 +301,7 @@ class _Slide4Insight extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return _SlideBase(
       emoji: '\u{1F4A1}',
       title: data.personalInsight(isEn),
@@ -324,7 +324,7 @@ class _Slide5Share extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.all(32),
       child: Column(

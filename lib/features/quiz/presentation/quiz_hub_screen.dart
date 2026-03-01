@@ -66,7 +66,7 @@ class QuizHubScreen extends ConsumerWidget {
 
                     // Quiz cards
                     ...QuizContent.allQuizzes.asMap().entries.map((entry) {
-                      final language = isEn ? AppLanguage.en : AppLanguage.tr;
+                      final language = AppLanguage.fromIsEn(isEn);
                       final index = entry.key;
                       final quiz = entry.value;
 
@@ -162,7 +162,7 @@ class _QuizCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       button: true,
       label: quiz.localizedTitle(language),

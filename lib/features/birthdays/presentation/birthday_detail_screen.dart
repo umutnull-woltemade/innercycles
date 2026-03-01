@@ -104,7 +104,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final monthNames = isEn
         ? CommonStrings.monthsFullEn
         : CommonStrings.monthsFullTr;
@@ -267,7 +267,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                           label: L10nService.get('birthdays.birthday_detail.long_press_to_copy_note', language),
                           child: GestureDetector(
                           onLongPress: () {
-                            final language = isEn ? AppLanguage.en : AppLanguage.tr;
+                            final language = AppLanguage.fromIsEn(isEn);
                             Clipboard.setData(
                               ClipboardData(text: contact.note!),
                             );
@@ -372,7 +372,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
   }
 
   Widget _buildCountdownCard(BirthdayContact contact, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final days = contact.daysUntilBirthday;
     final isToday = contact.isBirthdayToday;
 
@@ -490,7 +490,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
     BirthdayContact contact,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     GlassDialog.confirm(
       context,
       title: L10nService.get('birthdays.birthday_detail.delete_contact_1', language),
@@ -501,7 +501,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
       confirmLabel: L10nService.get('birthdays.birthday_detail.delete', language),
       isDestructive: true,
       onConfirm: () async {
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         try {
           final service = await ref.read(birthdayContactServiceProvider.future);
           await service.deleteContact(contact.id);

@@ -385,7 +385,7 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumEmptyState(
       icon: Icons.auto_awesome,
       title: L10nService.get('year_review.year_review.your_year_synthesis_is_ready', language),
@@ -403,7 +403,7 @@ class _NotEnoughData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumEmptyState(
       icon: Icons.lock_outline,
       title: L10nService.get('year_review.year_review.not_enough_entries_for_this_year', language),
@@ -432,7 +432,7 @@ class _HeroCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GlassPanel(
       elevation: GlassElevation.g3,
       borderRadius: BorderRadius.circular(20),
@@ -600,7 +600,7 @@ class _MoodJourneyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final monthLabels = isEn ? _monthLabelsEn : _monthLabelsTr;
 
     return GlassPanel(
@@ -731,7 +731,7 @@ class _FocusAreasCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     // Sort by count descending
     final sortedAreas = review.focusAreaCounts.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
@@ -836,7 +836,7 @@ class _GrowthScoreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final score = review.growthScore;
     final label = score >= 70
         ? (L10nService.get('year_review.year_review.strong_growth', language))
@@ -1005,7 +1005,7 @@ class _HighlightsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final highlights = _parseHighlights(review.topPatterns);
     if (highlights.isEmpty) return const SizedBox.shrink();
 
@@ -1074,7 +1074,7 @@ class _HighlightsCard extends StatelessWidget {
   }
 
   List<_Highlight> _parseHighlights(List<String> patterns) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final results = <_Highlight>[];
     final monthNamesEn = [
       '',
@@ -1241,7 +1241,7 @@ class _ShareableSummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final topAreaName = review.topFocusArea.localizedName(isEn);
 
     return GlassPanel(

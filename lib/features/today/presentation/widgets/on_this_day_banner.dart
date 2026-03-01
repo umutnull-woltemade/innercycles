@@ -29,7 +29,7 @@ class OnThisDayBanner extends ConsumerWidget {
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (service) {
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         final allEntries = service.getAllEntries();
         final now = DateTime.now();
         final onThisDayEntries = allEntries.where((e) {

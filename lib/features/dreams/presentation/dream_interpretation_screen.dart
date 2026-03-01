@@ -2202,7 +2202,7 @@ ${_getPersonalAdvice(sign)}''';
   }
 
   Widget _buildLockedPerspectivesCard(int lockedCount, bool isEn, bool isDark) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: Stack(
@@ -2391,7 +2391,7 @@ ${_getPersonalAdvice(sign)}''';
   }
 
   Widget _buildInputArea(bool isDark, {bool isEn = true}) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(

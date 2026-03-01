@@ -16,7 +16,7 @@ enum EmotionalArc {
   transforming;
 
   String label(bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     switch (this) {
       case EmotionalArc.rising:
         return L10nService.get('data.models.wrapped_data.rising', language);
@@ -28,7 +28,7 @@ enum EmotionalArc {
   }
 
   String description(bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     switch (this) {
       case EmotionalArc.rising:
         return L10nService.get('data.models.wrapped_data.your_emotional_trajectory_has_been_climb', language);

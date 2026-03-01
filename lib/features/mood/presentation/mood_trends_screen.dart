@@ -90,7 +90,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     bool isEn,
     bool isPremium,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final allEntries = service.getAllEntries();
 
     // Empty state — inline mood check-in so users can start right here
@@ -230,7 +230,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     bool isPremium, {
     required Widget child,
   }) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     if (isPremium) return child;
 
     return Stack(
@@ -303,7 +303,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     int total,
     bool isPremium,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Row(
       children: [
         Expanded(
@@ -343,7 +343,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     List<MoodEntry?> weekMoods,
     DateTime now,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final dayLabels = isEn
         ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         : ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
@@ -429,7 +429,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     List<MoodEntry?> weekMoods,
     int totalLogs,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     if (totalLogs < 3) return const SizedBox.shrink();
 
     return Align(
@@ -476,7 +476,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     Map<int, int> distribution,
     int maxCount,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final labels = [
       (1, '😔', L10nService.get('mood.mood_trends.struggling', language)),
       (2, '😐', L10nService.get('mood.mood_trends.low', language)),
@@ -574,7 +574,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     bool isEn,
     List<MoodEntry> entries,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GlassPanel(
       elevation: GlassElevation.g2,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -666,7 +666,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GlassPanel(
       elevation: GlassElevation.g1,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -861,7 +861,7 @@ class _EmptyStateMoodCheckin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [

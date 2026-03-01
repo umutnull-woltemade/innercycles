@@ -107,7 +107,7 @@ class _AffirmationLibraryScreenState
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     // Get filtered affirmations
     List<Affirmation> affirmations;
     if (_showFavoritesOnly) {
@@ -202,7 +202,7 @@ class _AffirmationLibraryScreenState
   }
 
   Widget _buildTodayHero(AffirmationService service, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final today = service.getDailyAffirmation();
 
     return GlassPanel(
@@ -257,7 +257,7 @@ class _AffirmationLibraryScreenState
   }
 
   Widget _buildFilterChips(AffirmationService service, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       physics: const BouncingScrollPhysics(),
@@ -331,7 +331,7 @@ class _FilterChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       button: true,
       label: L10nService.getWithParams('affirmation.library.filter_label', language, params: {'label': label}),
@@ -424,10 +424,10 @@ class _AffirmationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GestureDetector(
       onLongPress: () {
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         final text = affirmation.localizedText(language);
         Clipboard.setData(ClipboardData(text: text));
         HapticService.buttonPress();

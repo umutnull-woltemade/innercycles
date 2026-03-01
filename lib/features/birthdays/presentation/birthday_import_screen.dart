@@ -85,7 +85,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildInstructions(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final steps = isEn
         ? [
             'Go to Facebook Settings & Privacy > Settings',
@@ -235,7 +235,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
       if (contacts.isEmpty && mounted) {
         final lang = ref.read(languageProvider);
         final isEn = lang == AppLanguage.en;
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -273,7 +273,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildPreview(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -476,7 +476,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
       if (mounted) {
         final lang = ref.read(languageProvider);
         final isEn = lang == AppLanguage.en;
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -494,7 +494,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildSuccess(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
           style: PremiumCardStyle.gold,
           padding: const EdgeInsets.all(32),

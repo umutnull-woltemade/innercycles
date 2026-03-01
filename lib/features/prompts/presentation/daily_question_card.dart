@@ -37,7 +37,7 @@ class DailyQuestionCard extends ConsumerWidget {
 
     return promptAsync.maybeWhen(
       data: (service) {
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         final prompt = service.getDailyPrompt();
         final questionText = prompt.localizedPrompt(language);
 

@@ -285,7 +285,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
   }
 
   Widget _buildQuestion(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final question = _questions[_currentQuestion];
     final progress = (_currentQuestion + 1) / _questions.length;
 
@@ -386,7 +386,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
   }
 
   Widget _buildResult(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     if (_result == null) {
       return Center(
         child: Column(

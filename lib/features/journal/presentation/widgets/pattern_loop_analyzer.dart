@@ -31,7 +31,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     if (analysis.detectedLoops.isEmpty) {
       return _buildEmpty(context);
     }
@@ -81,7 +81,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
   }
 
   Widget _buildEmpty(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -108,7 +108,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
   }
 
   Widget _buildBreakdown(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final positive =
         analysis.reinforcementBreakdown[ReinforcementType.positive] ?? 0;
     final negative =
@@ -198,7 +198,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
   @override
   Widget build(BuildContext context) {
     final isEn = widget.isEn;
-    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(widget.isEn);
     final loop = widget.loop;
     final color = _reinforcementColor(loop.reinforcementType);
     final areaColor = kAreaColors[loop.primaryArea] ?? AppColors.auroraStart;
@@ -334,7 +334,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
   }
 
   Widget _buildLoopChain(BuildContext context, PatternLoop loop, Color color) {
-    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(widget.isEn);
     final stages = [
       loop.trigger,
       loop.emotionalShift,
@@ -419,7 +419,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
 
           // 5-stage chain
           ...stages.asMap().entries.map((entry) {
-            final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
+            final language = AppLanguage.fromIsEn(widget.isEn);
             final idx = entry.key;
             final stage = entry.value;
             final isLast = idx == stages.length - 1;

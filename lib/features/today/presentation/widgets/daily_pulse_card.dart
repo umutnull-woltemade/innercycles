@@ -124,7 +124,7 @@ class DailyPulseCard extends ConsumerWidget {
 
   // ── FOCUS PULSE (compact circles) ──
   Widget? _buildFocusPulse(BuildContext context, Map<FocusArea, double> averages) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     if (averages.isEmpty) return null;
 
     return Column(
@@ -319,7 +319,7 @@ class DailyPulseCard extends ConsumerWidget {
     bool hasFull,
     Map<FocusArea, double> averages,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     if (!hasFull || averages.isEmpty) return null;
 
     FocusArea weakestArea = averages.keys.first;
@@ -381,7 +381,7 @@ class DailyPulseCard extends ConsumerWidget {
     final archetypeAsync = ref.watch(archetypeServiceProvider);
     return archetypeAsync.maybeWhen(
       data: (archetypeService) {
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         String text;
         IconData icon;
         final history = archetypeService.getArchetypeHistory();
@@ -462,7 +462,7 @@ class DailyPulseCard extends ConsumerWidget {
   }
 
   String _areaLabel(FocusArea area) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     switch (area) {
       case FocusArea.energy:
         return L10nService.get('today.daily_pulse.energy', language);

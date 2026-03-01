@@ -56,7 +56,7 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
   bool get isPremium => widget.isPremium;
 
   Future<void> _shareCard() async {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     // Open the visual share card gallery for a higher-quality, branded share
     if (!mounted) return;
     Navigator.of(context).pop(); // close celebration first
@@ -98,7 +98,7 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
   }
 
   String get _title {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final lang = language;
     switch (streakDays) {
       case 3:
@@ -128,7 +128,7 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Semantics(

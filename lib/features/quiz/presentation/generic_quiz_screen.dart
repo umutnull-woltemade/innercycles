@@ -200,7 +200,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppConstants.spacingSm,
@@ -282,7 +282,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
     bool isEn,
   ) {
     final question = definition.questions[index];
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final questionText = question.localizedText(language);
     final selectedAnswer = _answers.length > index ? _answers[index] : -1;
 
@@ -445,7 +445,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final result = _result!;
     final winningDim = definition.dimensions[result.resultType];
     if (winningDim == null) return const SizedBox.shrink();
@@ -568,7 +568,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final percentage = (result.percentageFor(result.resultType) * 100)
         .toStringAsFixed(0);
 
@@ -637,7 +637,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -678,7 +678,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
     required bool isDark,
     required bool isEn,
   }) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -800,7 +800,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildRetakeButton(BuildContext context, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GradientButton(
       label: L10nService.get('quiz.generic_quiz.retake_quiz', language),
       icon: Icons.refresh_rounded,
@@ -813,7 +813,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
   }
 
   Widget _buildBackToHubButton(BuildContext context, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return SizedBox(
       width: double.infinity,
       height: 48,

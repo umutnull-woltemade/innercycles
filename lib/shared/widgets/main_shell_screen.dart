@@ -47,8 +47,7 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen>
       Future.delayed(const Duration(milliseconds: 600), () {
         if (!mounted) return;
         final language = ref.read(languageProvider);
-        final isEn = language == AppLanguage.en;
-        WhatsNewModal.showIfNeeded(context, isEn);
+        WhatsNewModal.showIfNeeded(context, language);
       });
     });
   }
@@ -96,7 +95,7 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen>
   }
 
   Widget _buildBottomBar(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final currentIndex = widget.navigationShell.currentIndex;
 
     final tabs = [

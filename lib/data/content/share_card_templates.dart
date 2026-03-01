@@ -562,7 +562,7 @@ class ShareCardTemplates {
     String? challengeName,
     String? challengeEmoji,
   }) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final ShareCardData result;
     switch (template.id) {
       // ── Identity ──────────────────────────────────────────────────────

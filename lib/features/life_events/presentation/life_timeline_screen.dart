@@ -102,7 +102,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
     bool isEn,
     bool isPremium,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     var events = _filter != null
         ? service.getEventsByType(_filter!)
         : service.getAllEvents();
@@ -182,7 +182,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
   }
 
   Widget _buildFilterChips(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Row(
       children: [
         _filterChip(null, L10nService.get('life_events.life_timeline.all', language), AppColors.auroraStart, isDark),
@@ -290,7 +290,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final isPositive = event.type == LifeEventType.positive;
     final accentColor = isPositive ? AppColors.starGold : AppColors.amethyst;
     final preset = event.eventKey != null
@@ -394,6 +394,8 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
                       File(event.imagePath!),
                       width: 40,
                       height: 40,
+                      cacheWidth: 120,
+                      cacheHeight: 120,
                       fit: BoxFit.cover,
                       semanticLabel: L10nService.get('life_events.life_timeline.event_photo', language),
                       errorBuilder: (_, _, _) => const SizedBox.shrink(),
@@ -416,7 +418,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
   }
 
   Widget _buildEmptyState(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumEmptyState(
       icon: Icons.auto_awesome_rounded,
       title: L10nService.get('life_events.life_timeline.your_timeline_awaits_its_first_chapter', language),
@@ -428,7 +430,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
   }
 
   Widget _buildPremiumGate(BuildContext context, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: PremiumCard(
@@ -476,7 +478,7 @@ class _AnimatedFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Tooltip(
           message: L10nService.get('life_events.life_timeline.add_life_event_1', language),
           child: GestureDetector(

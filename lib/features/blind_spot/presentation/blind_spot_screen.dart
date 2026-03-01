@@ -186,7 +186,7 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
 
   @override
   Widget build(BuildContext context) {
-    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(widget.isEn);
     return RefreshIndicator(
       onRefresh: _handleRefresh,
       color: AppColors.auroraStart,
@@ -282,7 +282,7 @@ class _NotEnoughData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final remaining = 14 - entryCount;
 
     return Padding(
@@ -384,7 +384,7 @@ class _OverallInsightCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.aurora,
       borderRadius: 20,
@@ -481,7 +481,7 @@ class _BlindSpotsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     if (spots.isEmpty) {
       return PremiumCard(
         style: PremiumCardStyle.subtle,
@@ -566,7 +566,7 @@ class _BlindSpotCardState extends State<_BlindSpotCard>
     final spot = widget.spot;
     final isDark = widget.isDark;
     final isEn = widget.isEn;
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
 
     return Semantics(
       label: spot.localizedType(language),
@@ -765,7 +765,7 @@ class _SeverityIndicator extends StatelessWidget {
   }
 
   String get _label {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     switch (severity) {
       case BlindSpotSeverity.low:
         return L10nService.get('blind_spot.blind_spot.subtle', language);
@@ -794,7 +794,7 @@ class _GrowthSuggestionsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final suggestions = isEn
         ? report.growthSuggestionsEn
         : report.growthSuggestionsTr;
@@ -896,7 +896,7 @@ class _ShareInsightsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GradientButton(
       label: L10nService.get('blind_spot.blind_spot.share_your_insights', language),
       icon: Icons.share_rounded,

@@ -265,7 +265,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
   }
 
   Widget _buildSearchBar(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       decoration: BoxDecoration(
         color: isDark
@@ -326,7 +326,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
   }
 
   Widget _buildFilterChips(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
@@ -360,7 +360,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
     bool isDark, {
     bool isEn = true,
   }) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.only(right: 8),
       child: Semantics(
@@ -409,7 +409,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final areaLabel = entry.focusArea.localizedName(isEn);
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
 
@@ -494,7 +494,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                         const SizedBox(height: 2),
                         Text(
                           () {
-                            final language = isEn ? AppLanguage.en : AppLanguage.tr;
+                            final language = AppLanguage.fromIsEn(isEn);
                             final words = entry.note!.trim().split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
                             return L10nService.getWithParams('journal.archive.word_count', language, params: {'count': '$words'});
                           }(),

@@ -80,7 +80,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
   }
 
   Widget _buildSection(bool isDark, bool isEn, GratitudeService service) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       child: Column(
@@ -176,13 +176,13 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
     bool isEn,
     GratitudeService service,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
       child: Column(
         children: [
           ...List.generate(_controllers.length, (index) {
-            final language = isEn ? AppLanguage.en : AppLanguage.tr;
+            final language = AppLanguage.fromIsEn(isEn);
             return Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: Row(
@@ -327,7 +327,7 @@ class _GratitudeSummaryContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),

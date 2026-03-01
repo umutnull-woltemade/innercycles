@@ -77,7 +77,7 @@ class SleepTrendsScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final allEntries = service.getAllEntries();
     final summary = service.getWeeklySummary();
 
@@ -222,7 +222,7 @@ class SleepTrendsScreen extends ConsumerWidget {
     SleepSummary summary,
     int total,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Row(
       children: [
         Expanded(
@@ -262,7 +262,7 @@ class SleepTrendsScreen extends ConsumerWidget {
     bool isEn,
     String trend,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final IconData icon;
     final Color color;
     final String text;
@@ -313,7 +313,7 @@ class SleepTrendsScreen extends ConsumerWidget {
     bool isEn,
     List<_DayQuality> days,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GlassPanel(
       elevation: GlassElevation.g2,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -394,7 +394,7 @@ class SleepTrendsScreen extends ConsumerWidget {
     bool isEn,
     Map<int, int> distribution,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final labels = [
       (1, L10nService.get('sleep.sleep_trends.poor', language)),
       (2, L10nService.get('sleep.sleep_trends.fair', language)),
@@ -497,7 +497,7 @@ class SleepTrendsScreen extends ConsumerWidget {
     bool isEn,
     List<SleepEntry> entries,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     if (entries.isEmpty) return const SizedBox.shrink();
 
     return GlassPanel(

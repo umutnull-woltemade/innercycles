@@ -107,7 +107,7 @@ class _HabitSuggestionsScreenState
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final dailyHabit = service.getDailyHabit();
 
     // Build filtered list
@@ -346,7 +346,7 @@ class _DailySpotlightCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final isTried = service.isTried(habit.id);
     final isAdopted = service.isAdopted(habit.id);
 
@@ -586,7 +586,7 @@ class _ProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final tried = service.triedCount;
     final adopted = service.adoptedCount;
     final total = service.totalCount;
@@ -757,7 +757,7 @@ class _HabitCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final isTried = service.isTried(habit.id);
     final isAdopted = service.isAdopted(habit.id);
     final isBookmarked = service.isBookmarked(habit.id);
@@ -974,7 +974,7 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
       minChildSize: 0.3,
       maxChildSize: 0.85,
       builder: (context, scrollController) {
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         return ClipRRect(
           borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
           child: BackdropFilter(

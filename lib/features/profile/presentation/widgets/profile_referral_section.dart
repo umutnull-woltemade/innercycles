@@ -24,7 +24,7 @@ class ProfileReferralSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final referralAsync = ref.watch(referralServiceProvider);
 
     return Column(
@@ -71,7 +71,7 @@ class ProfileReferralSection extends ConsumerWidget {
                           loading: () => const SizedBox.shrink(),
                           error: (_, _) => const SizedBox.shrink(),
                           data: (service) {
-                            final language = isEn ? AppLanguage.en : AppLanguage.tr;
+                            final language = AppLanguage.fromIsEn(isEn);
                             final count = service.referralCount;
                             return Text(
                               count > 0

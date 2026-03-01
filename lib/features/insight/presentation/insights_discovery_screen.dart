@@ -114,7 +114,7 @@ class _InsightsDiscoveryScreenState
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final daily = service.getDailyModule();
     final modules = _getFilteredModules(service);
 
@@ -237,7 +237,7 @@ class _InsightsDiscoveryScreenState
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final progress = service.readProgress;
     final read = service.readCount;
     final total = service.totalCount;
@@ -293,7 +293,7 @@ class _InsightsDiscoveryScreenState
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       button: true,
       label: isEn
@@ -387,7 +387,7 @@ class _InsightsDiscoveryScreenState
   // ═══════════════════════════════════════════════════════════════
 
   Widget _buildCategoryChips(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
@@ -475,7 +475,7 @@ class _InsightsDiscoveryScreenState
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final isRead = service.isRead(module.id);
     final isBookmarked = service.isBookmarked(module.id);
 

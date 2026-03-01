@@ -30,7 +30,7 @@ class HeroJournalCard extends ConsumerWidget {
 
     return promptAsync.maybeWhen(
       data: (service) {
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         final prompt = service.getDailyPrompt();
         final questionText = prompt.localizedPrompt(language);
 
@@ -203,7 +203,7 @@ class HeroJournalCard extends ConsumerWidget {
             .glassReveal(context: context, delay: 100.ms);
       },
       orElse: () {
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         // Fallback: simple CTA pill
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),

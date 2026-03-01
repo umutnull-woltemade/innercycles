@@ -269,7 +269,7 @@ class _ProgramCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final isLocked = program.isPremium && !isPremium && !isFirstTasteFree;
     final hasProgress = progress != null && !progress!.isCompleted;
     final completionPercent = hasProgress

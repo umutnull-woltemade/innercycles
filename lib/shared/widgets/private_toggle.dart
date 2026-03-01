@@ -28,7 +28,7 @@ class PrivateToggle extends ConsumerWidget {
   });
 
   Future<void> _handleToggle(BuildContext context, WidgetRef ref, bool value) async {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     if (value) {
       // Turning ON — check vault setup
       final vaultService = await ref.read(vaultServiceProvider.future);
@@ -66,7 +66,7 @@ class PrivateToggle extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GestureDetector(
       onTap: () => _handleToggle(context, ref, !isPrivate),
       child: AnimatedContainer(

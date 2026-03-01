@@ -101,7 +101,7 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
   }
 
   Widget _buildContent(GrowthChallengeService service, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final allChallenges = GrowthChallengeService.allChallenges;
     final activeChallenges = allChallenges.where((c) {
       final progress = service.getProgress(c.id);
@@ -351,7 +351,7 @@ class _StatsBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -437,7 +437,7 @@ class _ActiveChallengeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -540,7 +540,7 @@ class _AvailableChallengeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       button: true,
       label: isEn
@@ -630,7 +630,7 @@ class _CompletedChallengeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: AppConstants.radiusMd,
@@ -655,7 +655,7 @@ class _CompletedChallengeTile extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              final language = isEn ? AppLanguage.en : AppLanguage.tr;
+              final language = AppLanguage.fromIsEn(isEn);
               HapticService.buttonPress();
               final title = challenge.localizedTitle(language);
               final msg = isEn

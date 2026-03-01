@@ -38,7 +38,7 @@ class RecentEntriesSection extends ConsumerWidget {
 
     return journalAsync.maybeWhen(
       data: (service) {
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         final entries = service.getRecentEntries(5);
         if (entries.isEmpty) return const SizedBox.shrink();
 
@@ -264,7 +264,7 @@ class RecentEntriesSection extends ConsumerWidget {
   }
 
   String _focusAreaLabel(FocusArea area) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     switch (area) {
       case FocusArea.energy:
         return L10nService.get('today.recent_entries.energy', language);

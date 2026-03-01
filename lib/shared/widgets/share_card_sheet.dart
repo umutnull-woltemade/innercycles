@@ -55,7 +55,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
   bool _isSharing = false;
 
   Future<void> _share() async {
-    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(widget.isEn);
     setState(() => _isSharing = true);
     try {
       final boundary =
@@ -80,7 +80,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(widget.isEn);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final accent = ShareCardTemplates.accentColor(widget.template);
 

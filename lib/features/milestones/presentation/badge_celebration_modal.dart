@@ -83,7 +83,7 @@ class _BadgeCelebrationModalState extends State<BadgeCelebrationModal>
   }
 
   void _share() {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     HapticFeedback.lightImpact();
     final lang = language;
     final name = milestone.localizedName(lang);
@@ -100,7 +100,7 @@ class _BadgeCelebrationModalState extends State<BadgeCelebrationModal>
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final lang = language;
     final name = milestone.localizedName(lang);

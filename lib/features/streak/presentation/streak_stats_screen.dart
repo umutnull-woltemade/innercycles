@@ -103,7 +103,7 @@ class StreakStatsScreen extends ConsumerWidget {
     bool isEn,
     bool isPremium,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return CupertinoScrollbar(
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(
@@ -160,7 +160,7 @@ class StreakStatsScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GlassPanel(
       elevation: GlassElevation.g3,
       glowColor: AppColors.starGold.withValues(alpha: 0.3),
@@ -263,7 +263,7 @@ class StreakStatsScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Row(
       children: [
         Expanded(
@@ -302,7 +302,7 @@ class StreakStatsScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final dayLabels = isEn
         ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         : ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
@@ -405,7 +405,7 @@ class StreakStatsScreen extends ConsumerWidget {
     bool isEn,
     bool isPremium,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GlassPanel(
       elevation: GlassElevation.g2,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -482,7 +482,7 @@ class StreakStatsScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GlassPanel(
       elevation: GlassElevation.g2,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -503,7 +503,7 @@ class StreakStatsScreen extends ConsumerWidget {
             spacing: 12,
             runSpacing: 12,
             children: streakMilestones.map((milestone) {
-              final language = isEn ? AppLanguage.en : AppLanguage.tr;
+              final language = AppLanguage.fromIsEn(isEn);
               final reached = stats.currentStreak >= milestone;
               final celebrated = stats.celebratedMilestones.contains(milestone);
               return Column(
@@ -575,7 +575,7 @@ class StreakStatsScreen extends ConsumerWidget {
   }
 
   Widget _buildQuickAction(BuildContext context, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GradientOutlinedButton(
       label: L10nService.get('streak.streak_stats.log_todays_entry', language),
       icon: Icons.edit_note,

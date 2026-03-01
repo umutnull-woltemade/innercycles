@@ -210,7 +210,7 @@ class PostSaveEngagementSheet extends ConsumerWidget {
   }
 
   List<_Suggestion> _buildSuggestions(WidgetRef ref, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final suggestions = <_Suggestion>[];
 
     // Always suggest mood check-in (quick action)

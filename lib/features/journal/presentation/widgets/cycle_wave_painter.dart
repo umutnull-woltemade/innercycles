@@ -66,7 +66,7 @@ class _CycleWaveChartState extends State<CycleWaveChart> {
 
   @override
   Widget build(BuildContext context) {
-    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(widget.isEn);
     return GestureDetector(
       onTapDown: (details) => _handleTap(details.localPosition),
       onPanUpdate: (details) => _handleTap(details.localPosition),

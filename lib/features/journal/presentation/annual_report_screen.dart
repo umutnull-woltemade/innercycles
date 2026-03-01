@@ -179,7 +179,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
   // =========================================================================
 
   Future<void> _shareReport(bool isEn) async {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final boundary =
         _repaintKey.currentContext?.findRenderObject()
             as RenderRepaintBoundary?;
@@ -246,7 +246,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
   }
 
   String _motivationalMessage(_AnnualReportData data, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     if (data.totalEntries >= 200) {
       return L10nService.get('journal.annual_report.an_extraordinary_year_of_selfreflection', language);
     } else if (data.totalEntries >= 100) {
@@ -331,7 +331,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isEn,
     int year,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return SafeArea(
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(
@@ -369,7 +369,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return SafeArea(
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(
@@ -500,7 +500,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
@@ -560,7 +560,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -683,7 +683,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final maxRating = report.monthlyAverageRatings.values.isNotEmpty
         ? report.monthlyAverageRatings.values.reduce(max)
         : 5.0;
@@ -807,7 +807,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
@@ -874,7 +874,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final activeMonth = report.mostActiveMonth;
     if (activeMonth == null) return const SizedBox.shrink();
     final month = activeMonth.key;

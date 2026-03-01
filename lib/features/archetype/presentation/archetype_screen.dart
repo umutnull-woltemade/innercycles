@@ -236,7 +236,7 @@ class _DominantArchetypeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final archetype = result.dominant;
     final confidencePct = (result.confidence * 100).toStringAsFixed(0);
 
@@ -310,7 +310,7 @@ class _StrengthsShadowSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final strengths = archetype.getStrengths(isEnglish: isEn);
     final shadow = archetype.getShadow(isEnglish: isEn);
 
@@ -425,7 +425,7 @@ class _GrowthTipCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.aurora,
       padding: const EdgeInsets.all(20),
@@ -485,7 +485,7 @@ class _EvolutionTimeline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: 16,
@@ -624,7 +624,7 @@ class _BreakdownChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     // Sort archetypes by percentage descending
     final sortedIds = breakdown.keys.toList()
       ..sort((a, b) => (breakdown[b] ?? 0).compareTo(breakdown[a] ?? 0));
@@ -840,7 +840,7 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumEmptyState(
       icon: Icons.psychology_outlined,
       title: L10nService.get('archetype.archetype.your_archetype_is_waiting_to_emerge', language),
@@ -869,7 +869,7 @@ class _ShareArchetypeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GradientButton(
       label: L10nService.get('archetype.archetype.share_your_archetype', language),
       icon: Icons.share_rounded,
@@ -878,7 +878,7 @@ class _ShareArchetypeButton extends StatelessWidget {
         colors: [AppColors.amethyst, AppColors.starGold],
       ),
       onPressed: () {
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         HapticFeedback.mediumImpact();
         final name = archetype.localizedName(language);
         final text = isEn

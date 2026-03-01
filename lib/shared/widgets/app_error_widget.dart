@@ -44,7 +44,7 @@ class AppErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = _isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(_isEn);
     if (kDebugMode) {
       debugPrint(
         'AppErrorWidget: Rendering error fallback for: ${details.exception}',

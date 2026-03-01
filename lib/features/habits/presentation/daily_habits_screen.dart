@@ -101,7 +101,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final adoptedHabits = service.getAdoptedHabits();
     final completedCount = service.todayCompletedCount;
     final totalAdopted = adoptedHabits.length;
@@ -227,7 +227,7 @@ class _ProgressHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final allDone = completed == total && total > 0;
     final progress = total > 0 ? completed / total : 0.0;
 
@@ -322,7 +322,7 @@ class _HabitCheckCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
@@ -517,7 +517,7 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumEmptyState(
       icon: Icons.playlist_add_check_rounded,
       title: L10nService.get('habits.daily_habits.your_habit_routine_starts_here', language),

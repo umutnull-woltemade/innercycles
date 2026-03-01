@@ -23,7 +23,7 @@ class MoodStatsStrip extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final streakAsync = ref.watch(streakStatsProvider);
     final moodAsync = ref.watch(moodCheckinServiceProvider);
     final journalAsync = ref.watch(journalServiceProvider);
@@ -132,7 +132,7 @@ class MoodStatsStrip extends ConsumerWidget {
   }
 
   String _moodCountLabel(WidgetRef ref) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final moodAsync = ref.watch(moodCheckinServiceProvider);
     final count = moodAsync.whenOrNull(
           data: (service) => service.getAllEntries().length,
@@ -142,7 +142,7 @@ class MoodStatsStrip extends ConsumerWidget {
   }
 
   String _moodLabel(int mood) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final lang = language;
     switch (mood) {
       case 1:

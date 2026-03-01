@@ -85,7 +85,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                 ),
               ),
               data: (service) {
-                final language = isEn ? AppLanguage.en : AppLanguage.tr;
+                final language = AppLanguage.fromIsEn(isEn);
                 final program = GuidedProgramService.allPrograms.firstWhere(
                   (p) => p.id == widget.programId,
                   orElse: () => GuidedProgramService.allPrograms.first,
@@ -187,7 +187,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
     _reflectionController.clear();
     if (mounted) {
       final isEn = ref.read(languageProvider) == AppLanguage.en;
-      final language = isEn ? AppLanguage.en : AppLanguage.tr;
+      final language = AppLanguage.fromIsEn(isEn);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -223,7 +223,7 @@ class _ProgramHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final completed = progress?.completedDays.length ?? 0;
 
     return PremiumCard(
@@ -387,7 +387,7 @@ class _TodayPromptCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(20),
@@ -462,7 +462,7 @@ class _ReflectionInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       showGradientBorder: false,
@@ -509,7 +509,7 @@ class _CompleteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GradientButton(
       label: isAlreadyDone
           ? (L10nService.get('programs.active_program.completed_1', language))
@@ -538,7 +538,7 @@ class _CompletedBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
@@ -594,7 +594,7 @@ class _NotStartedBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(

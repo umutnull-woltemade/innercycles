@@ -184,7 +184,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     AsyncValue<List<NoteToSelf>> notesAsync,
     AsyncValue<List<VaultPhoto>> photosAsync,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final journals = journalsAsync.valueOrNull ?? [];
     final notes = notesAsync.valueOrNull ?? [];
     final photos = photosAsync.valueOrNull ?? [];
@@ -269,7 +269,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
   }
 
   Widget _buildEmptyState(bool isEn, bool isDark) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 60),
       child: Column(
@@ -423,7 +423,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
   }
 
   Widget _buildNoteCard(NoteToSelf note, bool isEn, bool isDark) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: GestureDetector(
@@ -585,7 +585,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
   }
 
   void _showVaultSettings(bool isEn, bool isDark) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     showCupertinoModalPopup(
       context: context,
       builder: (ctx) => CupertinoActionSheet(
@@ -614,7 +614,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
             child: FutureBuilder(
               future: ref.read(vaultServiceProvider.future),
               builder: (_, snap) {
-                final language = isEn ? AppLanguage.en : AppLanguage.tr;
+                final language = AppLanguage.fromIsEn(isEn);
                 final enabled = snap.data?.isBiometricEnabled ?? false;
                 return Text(
                   enabled

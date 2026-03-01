@@ -1005,7 +1005,7 @@ class _SyncStatusTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final syncAsync = ref.watch(syncStatusProvider);
     final pendingCount = ref.watch(pendingSyncCountProvider);
 
@@ -1269,7 +1269,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (service) {
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         final isEnabled = service.isEnabled;
 
         return _GroupedContainer(

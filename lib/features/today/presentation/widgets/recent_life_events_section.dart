@@ -33,7 +33,7 @@ class RecentLifeEventsSection extends ConsumerWidget {
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (service) {
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         final recentEvents = service.getRecentEvents(3);
         if (recentEvents.isEmpty) {
           return _buildRetentionPrompt(context);
@@ -197,7 +197,7 @@ class RecentLifeEventsSection extends ConsumerWidget {
   }
 
   Widget _buildRetentionPrompt(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
       child: Semantics(

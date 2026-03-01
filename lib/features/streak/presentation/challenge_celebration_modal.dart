@@ -49,7 +49,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
   bool get isEn => widget.isEn;
 
   Future<void> _shareCard() async {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     setState(() => _isSharing = true);
     try {
       final boundary =
@@ -71,7 +71,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final title = challenge.localizedTitle(language);
 

@@ -136,7 +136,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
     bool isEn,
     bool isPremium,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     // Cache entryMap — only rebuild when service instance changes
     if (!identical(service, _lastService)) {
       _lastService = service;
@@ -327,7 +327,7 @@ class _StatsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Row(
       children: [
         _StatPill(
@@ -429,7 +429,7 @@ class _MonthNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final monthNames = isEn
         ? [
             'January',
@@ -572,7 +572,7 @@ class _CalendarGrid extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 4),
               child: Row(
                 children: List.generate(7, (weekday) {
-                  final language = isEn ? AppLanguage.en : AppLanguage.tr;
+                  final language = AppLanguage.fromIsEn(isEn);
                   final dayIndex = week * 7 + weekday - (startWeekday - 1);
                   if (dayIndex < 1 || dayIndex > daysInMonth) {
                     return const Expanded(child: SizedBox(height: 52));
@@ -755,7 +755,7 @@ class _Legend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final mutedColor = isDark ? AppColors.textMuted : AppColors.lightTextMuted;
     const dotSize = 8.0;
 
@@ -930,7 +930,7 @@ class _DayDetail extends StatelessWidget {
   }
 
   Widget _buildJournalCard(JournalEntry e) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final ratingLabels = isEn
         ? ['Low', 'Below Avg', 'Average', 'Good', 'Excellent']
         : ['Düşük', 'Ortanın Altı', 'Orta', 'İyi', 'Mükemmel'];
@@ -1041,7 +1041,7 @@ class _DayDetail extends StatelessWidget {
   }
 
   Widget _buildAddJournalButton() {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GestureDetector(
       onTap: onCreateEntry,
       child: Container(
@@ -1143,7 +1143,7 @@ class _DayDetail extends StatelessWidget {
   }
 
   Widget _buildAddLifeEventButton() {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GestureDetector(
       onTap: onAddLifeEvent,
       child: Container(
@@ -1214,7 +1214,7 @@ class _YearHeatmap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final endDate = DateTime.now().isBefore(DateTime(year, 12, 31))
         ? DateTime.now()
         : DateTime(year, 12, 31);
@@ -1330,7 +1330,7 @@ class _PremiumYearOverlay extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(24),

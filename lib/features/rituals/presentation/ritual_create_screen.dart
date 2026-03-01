@@ -371,7 +371,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
   }
 
   Widget _buildHabitSuggestions(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final categories = _categoriesForTime(_selectedTime);
     final suggestions = allHabitSuggestions
         .where((h) => categories.contains(h.category))
@@ -395,7 +395,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
           spacing: 6,
           runSpacing: 6,
           children: suggestions.map((habit) {
-            final language = isEn ? AppLanguage.en : AppLanguage.tr;
+            final language = AppLanguage.fromIsEn(isEn);
             final title = habit.localizedTitle(language);
             return Semantics(
               label: title,
@@ -480,7 +480,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
 
     if (itemNames.isEmpty) {
       final isEn = ref.read(languageProvider) == AppLanguage.en;
-      final language = isEn ? AppLanguage.en : AppLanguage.tr;
+      final language = AppLanguage.fromIsEn(isEn);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(

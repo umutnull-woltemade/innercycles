@@ -157,7 +157,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
   }
 
   Future<bool> _showBiometricDialog(bool isEn) async {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final result = await showCupertinoDialog<bool>(
       context: context,
       builder: (ctx) => CupertinoAlertDialog(

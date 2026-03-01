@@ -112,7 +112,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
   }
 
   List<ToolManifest> _filterTools(List<ToolManifest> tools, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     if (_searchQuery.isEmpty) return tools;
     return tools.where((tool) {
       final name = tool.localizedName(language).toLowerCase();
@@ -196,7 +196,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
   }
 
   Widget _buildSearchBar(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
@@ -253,7 +253,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
   }
 
   Widget _buildEmptySearch(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: AppConstants.spacingHuge),
       child: Column(
@@ -331,7 +331,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
   }
 
   Widget _buildCategoryHeader(_CategoryInfo info, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       padding: const EdgeInsets.symmetric(vertical: AppConstants.spacingSm),
       decoration: BoxDecoration(
@@ -478,7 +478,7 @@ class _ToolCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final isFavorite =
         smartRouterAsync.whenOrNull(
           data: (service) => service.isFavorite(tool.id),

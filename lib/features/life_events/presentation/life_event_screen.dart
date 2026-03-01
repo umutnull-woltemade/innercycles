@@ -198,7 +198,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildTypeSelector(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -283,7 +283,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildPresetPicker(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final presets = _selectedType == LifeEventType.positive
         ? LifeEventPresets.positive
         : LifeEventPresets.challenging;
@@ -304,7 +304,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
           spacing: 8,
           runSpacing: 8,
           children: presets.map((preset) {
-            final language = isEn ? AppLanguage.en : AppLanguage.tr;
+            final language = AppLanguage.fromIsEn(isEn);
             final isSelected = _selectedPreset?.key == preset.key;
             final color = _selectedType == LifeEventType.positive
                 ? AppColors.starGold
@@ -314,7 +314,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
               onTap: () {
                 HapticService.selectionTap();
                 setState(() {
-                  final language = isEn ? AppLanguage.en : AppLanguage.tr;
+                  final language = AppLanguage.fromIsEn(isEn);
                   _selectedPreset = preset;
                   _titleController.text = preset.localizedName(language);
                   // Pre-fill suggested emotions
@@ -377,7 +377,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildCustomTitle(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -490,7 +490,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildEmotionTags(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     const emotions = [
       'joy',
       'pride',
@@ -606,7 +606,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildIntensitySlider(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final labels = isEn
         ? ['Subtle', 'Mild', 'Moderate', 'Strong', 'Life-Changing']
         : ['Hafif', 'Az', 'Orta', 'Güçlü', 'Hayat Değiştiren'];
@@ -665,7 +665,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildReflectionNote(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -715,7 +715,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildPhotoSection(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -826,7 +826,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildSaveButton(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final title = _selectedPreset != null
         ? _selectedPreset!.localizedName(language)
         : _titleController.text.trim();

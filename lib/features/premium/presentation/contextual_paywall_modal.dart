@@ -368,7 +368,7 @@ class _ContextualPaywallSheetState
   }
 
   Widget _buildPriceAnchor(bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final experiment = ref
         .watch(paywallExperimentProvider)
         .whenOrNull(data: (e) => e);
@@ -458,7 +458,7 @@ class _ContextualPaywallSheetState
   }
 
   Widget _buildSocialProof(bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -484,7 +484,7 @@ class _ContextualPaywallSheetState
   }
 
   Widget _buildValueRecap(bool isEn, Color accentColor) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final entryCount =
         widget.entryCount ??
         ref.read(journalServiceProvider).valueOrNull?.entryCount ??
@@ -577,7 +577,7 @@ class _ContextualPaywallSheetState
   }
 
   _PaywallConfig _getConfig(bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     switch (widget.paywallContext) {
       case PaywallContext.patterns:
         return _PaywallConfig(

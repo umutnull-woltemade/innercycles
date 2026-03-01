@@ -48,7 +48,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
   }
 
   Future<void> _applyCode(ReferralService service, bool isEn) async {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final code = _codeController.text.trim();
     if (code.isEmpty) return;
 
@@ -81,7 +81,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = ref.watch(languageProvider) == AppLanguage.en;
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final referralAsync = ref.watch(referralServiceProvider);
 
     return Scaffold(
@@ -145,7 +145,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
   }
 
   Widget _buildHeroHeader(bool isEn, bool isDark) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       children: [
         AppSymbol('\u{1F381}', size: AppSymbolSize.xl)
@@ -180,7 +180,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
   }
 
   Widget _buildYourCodeCard(ReferralService service, bool isEn, bool isDark) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(20),
@@ -197,7 +197,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
           const SizedBox(height: 12),
           GestureDetector(
             onTap: () {
-              final language = isEn ? AppLanguage.en : AppLanguage.tr;
+              final language = AppLanguage.fromIsEn(isEn);
               Clipboard.setData(ClipboardData(text: service.myCode));
               HapticFeedback.lightImpact();
               ScaffoldMessenger.of(context).showSnackBar(
@@ -252,7 +252,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
   }
 
   Widget _buildShareButton(ReferralService service, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GradientButton.gold(
       label: L10nService.get('referral.referral.share_invite_link', language),
       icon: Icons.share_rounded,
@@ -267,7 +267,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
   }
 
   Widget _buildStatsRow(ReferralService service, bool isEn, bool isDark) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final info = service.info;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
@@ -306,7 +306,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
   }
 
   Widget _buildMilestones(ReferralService service, bool isEn, bool isDark) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final count = service.referralCount;
 
     return Column(
@@ -345,7 +345,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
     bool isEn,
     bool isDark,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     if (service.hasAppliedCode) {
       return PremiumCard(
         style: PremiumCardStyle.subtle,

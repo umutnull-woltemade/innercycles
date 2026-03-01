@@ -63,6 +63,7 @@ class ShareCardRenderer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final accent = ShareCardTemplates.accentColor(template);
 
     // Use mood gradient override if available, otherwise use template default
@@ -148,7 +149,7 @@ class ShareCardRenderer extends StatelessWidget {
             Positioned(
               top: 20,
               right: 20,
-              child: _BadgePill(text: template.badge(isEn), color: accent),
+              child: _BadgePill(text: template.badge(language), color: accent),
             ),
 
             // Main content by layout type
@@ -808,7 +809,7 @@ class _BottomWatermark extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -906,7 +907,7 @@ class _CyclePositionLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     // Extract cycle day / cycle length from chartValues
     final cycleDay = data.chartValues != null && data.chartValues!.isNotEmpty
         ? data.chartValues![0]
@@ -951,7 +952,7 @@ class _CyclePositionLayout extends StatelessWidget {
           duration: const Duration(milliseconds: 1200),
           curve: Curves.easeOutCubic,
           builder: (context, animatedProgress, child) {
-            final language = isEn ? AppLanguage.en : AppLanguage.tr;
+            final language = AppLanguage.fromIsEn(isEn);
             return SizedBox(
               width: arcSize,
               height: arcSize,

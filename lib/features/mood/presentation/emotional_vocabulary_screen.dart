@@ -156,7 +156,7 @@ class _EmotionalVocabularyScreenState
   }
 
   Widget _buildFamilyChips(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
@@ -173,7 +173,7 @@ class _EmotionalVocabularyScreenState
             (family) => Padding(
               padding: const EdgeInsets.only(right: 8),
               child: _FamilyChip(
-                label: family.localizedName(isEn),
+                label: family.localizedName(language),
                 emoji: family.emoji,
                 isSelected: _selectedFamily == family,
                 isDark: isDark,
@@ -187,7 +187,7 @@ class _EmotionalVocabularyScreenState
   }
 
   Widget _buildSearchBar(bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       decoration: BoxDecoration(
         color: isDark
@@ -331,7 +331,7 @@ class _EmotionCardState extends State<_EmotionCard> {
     final e = widget.emotion;
     final isDark = widget.isDark;
     final isEn = widget.isEn;
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
 
     return Semantics(
       button: true,
@@ -379,7 +379,7 @@ class _EmotionCardState extends State<_EmotionCard> {
                                 ),
                               ),
                               child: Text(
-                                e.intensity.localizedName(isEn),
+                                e.intensity.localizedName(language),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w600,
@@ -390,7 +390,7 @@ class _EmotionCardState extends State<_EmotionCard> {
                             ),
                             const SizedBox(width: 6),
                             Text(
-                              e.family.localizedName(isEn),
+                              e.family.localizedName(language),
                               style: AppTypography.elegantAccent(
                                 fontSize: 11,
                                 color: isDark

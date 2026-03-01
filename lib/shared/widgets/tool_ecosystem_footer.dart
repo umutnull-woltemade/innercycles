@@ -43,7 +43,7 @@ class ToolEcosystemFooter extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final manifest = ToolManifestRegistry.findById(currentToolId);
     if (manifest == null) return const SizedBox.shrink();
 
@@ -83,7 +83,7 @@ class ToolEcosystemFooter extends ConsumerWidget {
             scrollDirection: Axis.horizontal,
             itemCount: relatedTools.length,
             itemBuilder: (context, index) {
-              final language = isEn ? AppLanguage.en : AppLanguage.tr;
+              final language = AppLanguage.fromIsEn(isEn);
               final tool = relatedTools[index];
               final color =
                   _categoryColors[tool.category] ?? AppColors.auroraStart;

@@ -259,7 +259,7 @@ class _MonthlyReflectionScreenState
     required bool isDark,
     required bool isEn,
   }) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return ClipRRect(
       borderRadius: BorderRadius.circular(AppConstants.radiusLg),
       child: Stack(
@@ -323,7 +323,7 @@ class _MonthlyReflectionScreenState
   }
 
   Widget _buildMonthSelector(BuildContext context, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final months = isEn
         ? [
             'January',
@@ -424,7 +424,7 @@ class _MonthlyReflectionScreenState
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
@@ -565,7 +565,7 @@ class _MonthlyReflectionScreenState
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final theme = allMonthlyThemes.firstWhere(
       (t) => t.month == month,
       orElse: () => allMonthlyThemes.first,
@@ -619,7 +619,7 @@ class _MonthlyReflectionScreenState
           ),
           const SizedBox(height: 8),
           ...List.generate(prompts.length, (i) {
-            final language = isEn ? AppLanguage.en : AppLanguage.tr;
+            final language = AppLanguage.fromIsEn(isEn);
             return Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: Row(
@@ -686,7 +686,7 @@ class _MonthlyReflectionScreenState
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),

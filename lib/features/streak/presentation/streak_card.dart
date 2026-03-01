@@ -48,7 +48,7 @@ class _StreakCardContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       label: isEn
           ? 'Streak: ${stats.currentStreak} days. Tap for details'
@@ -403,7 +403,7 @@ class _StreakChain extends ConsumerWidget {
 
     return journalAsync.maybeWhen(
       data: (journal) {
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         final now = DateTime.now();
         final startDay = DateTime(now.year, now.month, now.day - 13);
         final endDay = DateTime(now.year, now.month, now.day);
@@ -546,7 +546,7 @@ class StreakMilestoneCelebration {
     required int milestone,
     required bool isEn,
   }) async {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     HapticFeedback.heavyImpact();
     final message = isEn
         ? StreakService.getMilestoneMessageEn(milestone)
@@ -565,7 +565,7 @@ class StreakMilestoneCelebration {
         );
       },
       pageBuilder: (ctx, anim, secondAnim) {
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         final isDark = Theme.of(ctx).brightness == Brightness.dark;
         return Center(
           child: Material(

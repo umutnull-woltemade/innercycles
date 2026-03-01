@@ -49,7 +49,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
   }
 
   List<ToolManifest> _getFilteredTools(SmartRouterService? service) {
-    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(widget.isEn);
     var tools = ToolManifestRegistry.all;
 
     if (_searchQuery.isNotEmpty) {
@@ -70,7 +70,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
 
   @override
   Widget build(BuildContext context) {
-    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(widget.isEn);
     final smartRouterAsync = ref.watch(smartRouterServiceProvider);
     final isPremium = ref.watch(isPremiumUserProvider);
     final service = smartRouterAsync.whenOrNull(data: (s) => s);
@@ -117,7 +117,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildSuggestedSection(bool isPremium) {
-    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(widget.isEn);
     final suggestedTools = ToolManifestRegistry.all
         .where((t) => _suggestedToolIds.contains(t.id))
         .toList();
@@ -157,7 +157,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
   }
 
   Widget _buildSuggestionCard(ToolManifest tool, bool isPremium) {
-    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(widget.isEn);
     return GestureDetector(
       onTap: () {
         HapticFeedback.lightImpact();
@@ -217,7 +217,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildSearchBar() {
-    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(widget.isEn);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
@@ -283,7 +283,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildCategoryTabs() {
-    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(widget.isEn);
     final isAll = !_isFavoritesFilter && _selectedCategory == null;
 
     return SingleChildScrollView(
@@ -442,7 +442,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
   }
 
   Widget _buildEmptyState() {
-    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(widget.isEn);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: AppConstants.spacingHuge),
       child: Column(
@@ -487,7 +487,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
   // ══════════════════════════════════════════════════════════════════════════
 
   String _categoryLabel(ToolCategory category) {
-    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(widget.isEn);
     switch (category) {
       case ToolCategory.journal:
         return L10nService.get('profile.profile_tools_grid.journal', language);
@@ -570,7 +570,7 @@ class _ProfileToolCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final isFavorite = smartRouterAsync.whenOrNull(
           data: (service) => service.isFavorite(tool.id),
         ) ??

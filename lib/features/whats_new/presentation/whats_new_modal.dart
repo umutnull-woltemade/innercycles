@@ -1,7 +1,7 @@
 // ============================================================================
 // WHAT'S NEW MODAL - Shows feature highlights on first launch after update
 // ============================================================================
-// Triggered via WhatsNewModal.showIfNeeded(context, isEn) after app loads.
+// Triggered via WhatsNewModal.showIfNeeded(context, language) after app loads.
 // Compares current app version against SharedPreferences 'last_seen_version'.
 // ============================================================================
 
@@ -38,8 +38,10 @@ class _FeatureItem {
     required this.descTr,
   });
 
-  String localizedTitle(bool isEn) => isEn ? titleEn : titleTr;
-  String localizedDesc(bool isEn) => isEn ? descEn : descTr;
+  String localizedTitle(AppLanguage language) =>
+      language == AppLanguage.en ? titleEn : titleTr;
+  String localizedDesc(AppLanguage language) =>
+      language == AppLanguage.en ? descEn : descTr;
 }
 
 // ---------------------------------------------------------------------------
@@ -114,7 +116,7 @@ class WhatsNewModal {
 
   /// Check if the modal should be shown and display it if needed.
   /// Call this after the app is fully loaded and the navigator context is valid.
-  static Future<void> showIfNeeded(BuildContext context, bool isEn) async {
+  static Future<void> showIfNeeded(BuildContext context, AppLanguage language) async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final lastSeen = prefs.getString(_prefKey);
@@ -126,7 +128,7 @@ class WhatsNewModal {
 
       if (!context.mounted) return;
 
-      await _show(context, isEn);
+      await _show(context, language);
 
       // Persist after dismissal
       await prefs.setString(_prefKey, currentVersion);
@@ -141,7 +143,7 @@ class WhatsNewModal {
   // Modal presentation
   // -------------------------------------------------------------------------
 
-  static Future<void> _show(BuildContext context, bool isEn) {
+  static Future<void> _show(BuildContext context, AppLanguage language) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return showModalBottomSheet<void>(
@@ -149,7 +151,7 @@ class WhatsNewModal {
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (sheetContext) {
-        return _WhatsNewSheet(isEn: isEn, isDark: isDark);
+        return _WhatsNewSheet(language: language, isDark: isDark);
       },
     );
   }
@@ -160,14 +162,13 @@ class WhatsNewModal {
 // ---------------------------------------------------------------------------
 
 class _WhatsNewSheet extends StatelessWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
-  const _WhatsNewSheet({required this.isEn, required this.isDark});
+  const _WhatsNewSheet({required this.language, required this.isDark});
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final bgColor = isDark ? AppColors.surfaceDark : AppColors.lightSurface;
     final textColor = isDark
         ? AppColors.textPrimary
@@ -251,8 +252,8 @@ class _WhatsNewSheet extends StatelessWidget {
                     final f = WhatsNewModal._features[index];
                     return _FeatureTile(
                       emoji: f.emoji,
-                      title: f.localizedTitle(isEn),
-                      description: f.localizedDesc(isEn),
+                      title: f.localizedTitle(language),
+                      description: f.localizedDesc(language),
                       textColor: textColor,
                       subtextColor: subtextColor,
                       delay: Duration(milliseconds: 150 + index * 80),

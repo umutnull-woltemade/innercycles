@@ -212,7 +212,7 @@ class PatternEngineService {
   /// Detect micro-patterns from as few as 3 entries.
   /// Returns a single human-readable insight string (EN/TR).
   String? detectMicroPattern({required bool isEn}) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     if (!hasMicroPatternData()) return null;
 
     final entries = _journalService.getAllEntries();
@@ -260,7 +260,7 @@ class PatternEngineService {
   }
 
   static String _areaName(FocusArea area, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     switch (area) {
       case FocusArea.energy:
         return L10nService.get('data.services.pattern_engine.energy', language);

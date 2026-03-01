@@ -56,7 +56,7 @@ class _ProfileHeroSectionState extends State<ProfileHeroSection>
 
   @override
   Widget build(BuildContext context) {
-    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(widget.isEn);
     return Column(
       children: [
         // Animated avatar with rotating aurora ring

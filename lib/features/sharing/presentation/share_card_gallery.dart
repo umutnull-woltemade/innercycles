@@ -54,7 +54,7 @@ class _ShareCardGalleryScreenState
     int streak, {
     EmotionalCycleAnalysis? cycleAnalysis,
   }) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     // Extract cycle position data when available
     String? cyclePhaseName;
     String? cyclePhaseDescription;
@@ -102,7 +102,7 @@ class _ShareCardGalleryScreenState
   // =========================================================================
 
   Future<void> _onShare(bool isEn, AppLanguage language) async {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     // Share cards are now FREE for all users (viral growth strategy).
     // Free users get a "Made with InnerCycles" watermark on their cards.
     // Premium users get clean cards without promotional watermark.
@@ -137,7 +137,7 @@ class _ShareCardGalleryScreenState
   }
 
   Future<void> _onCopy(bool isEn, ShareCardData cardData) async {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final text =
         '${cardData.headline}\n${cardData.subtitle}'
         '${cardData.detail != null ? '\n${cardData.detail}' : ''}'
@@ -242,7 +242,7 @@ class _ShareCardGalleryScreenState
         itemCount: ShareCardCategory.values.length,
         separatorBuilder: (_, _) => const SizedBox(width: 8),
         itemBuilder: (context, index) {
-          final language = isEn ? AppLanguage.en : AppLanguage.tr;
+          final language = AppLanguage.fromIsEn(isEn);
           final category = ShareCardCategory.values[index];
           final isSelected = category == _selectedCategory;
           final accent = _categoryAccent(category);
@@ -250,7 +250,7 @@ class _ShareCardGalleryScreenState
           return Semantics(
             button: true,
             selected: isSelected,
-            label: L10nService.getWithParams('sharing.category_label', language, params: {'name': category.label(isEn)}),
+            label: L10nService.getWithParams('sharing.category_label', language, params: {'name': category.label(language)}),
             child: GestureDetector(
               onTap: () {
                 HapticFeedback.selectionClick();
@@ -292,7 +292,7 @@ class _ShareCardGalleryScreenState
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      category.label(isEn),
+                      category.label(language),
                       style: AppTypography.subtitle(
                         fontSize: 13,
                         color: isSelected
@@ -330,7 +330,7 @@ class _ShareCardGalleryScreenState
       ),
       itemCount: templates.length,
       itemBuilder: (context, index) {
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         final template = templates[index];
         final data = _buildDataForTemplate(
           template,
@@ -342,7 +342,7 @@ class _ShareCardGalleryScreenState
 
         return Semantics(
           button: true,
-          label: L10nService.getWithParams('sharing.preview_card', language, params: {'name': template.title(isEn)}),
+          label: L10nService.getWithParams('sharing.preview_card', language, params: {'name': template.title(language)}),
           child: GestureDetector(
             onTap: () {
               HapticFeedback.lightImpact();
@@ -382,7 +382,7 @@ class _ShareCardGalleryScreenState
     int streak,
     EmotionalCycleAnalysis? cycleAnalysis,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final template = _previewTemplate!;
     final data = _buildDataForTemplate(
       template,
@@ -462,7 +462,7 @@ class _ShareCardGalleryScreenState
     AppLanguage language,
     ShareCardData cardData,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final accent = _previewTemplate != null
         ? ShareCardTemplates.accentColor(_previewTemplate!)
         : AppColors.auroraStart;
@@ -541,6 +541,7 @@ class _ThumbnailCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
@@ -579,7 +580,7 @@ class _ThumbnailCard extends StatelessWidget {
                 border: Border.all(color: accent.withValues(alpha: 0.4)),
               ),
               child: Text(
-                template.badge(isEn),
+                template.badge(language),
                 style: AppTypography.elegantAccent(
                   fontSize: 10,
                   color: accent,
@@ -599,7 +600,7 @@ class _ThumbnailCard extends StatelessWidget {
                   Icon(template.icon, color: accent, size: 32),
                   const SizedBox(height: 10),
                   Text(
-                    template.title(isEn),
+                    template.title(language),
                     textAlign: TextAlign.center,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -612,7 +613,7 @@ class _ThumbnailCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    template.category.label(isEn),
+                    template.category.label(language),
                     style: AppTypography.elegantAccent(
                       fontSize: 10,
                       color: AppColors.textMuted,

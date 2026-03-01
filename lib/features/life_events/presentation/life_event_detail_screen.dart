@@ -103,7 +103,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final isPositive = event.type == LifeEventType.positive;
     final accentColor = isPositive ? AppColors.starGold : AppColors.amethyst;
     final preset = event.eventKey != null
@@ -331,7 +331,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                         const SizedBox(height: 8),
                         GestureDetector(
                           onLongPress: () {
-                            final language = isEn ? AppLanguage.en : AppLanguage.tr;
+                            final language = AppLanguage.fromIsEn(isEn);
                             Clipboard.setData(ClipboardData(text: note));
                             HapticService.buttonPress();
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -416,7 +416,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
     LifeEvent event,
     bool isEn,
   ) async {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final confirmed = await GlassDialog.confirm(
       context,
       title: L10nService.get('life_events.life_event_detail.delete_event_1', language),

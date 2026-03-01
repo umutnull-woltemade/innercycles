@@ -109,7 +109,7 @@ class PatternsScreen extends ConsumerWidget {
     int needed,
     int current,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final progress = (current / 7).clamp(0.0, 1.0);
 
     return CupertinoScrollbar(
@@ -306,7 +306,7 @@ class PatternsScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     // Trigger review prompt at first pattern insight (post-frame)
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final reviewService = await ref.read(reviewServiceProvider.future);
@@ -481,7 +481,7 @@ class PatternsScreen extends ConsumerWidget {
     bool isDark, {
     required Widget child,
   }) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       button: true,
       label: L10nService.get('journal.patterns.see_full_analysis', language),
@@ -572,7 +572,7 @@ class PatternsScreen extends ConsumerWidget {
   }
 
   GlassSliverAppBar _buildAppBar(BuildContext context, bool isDark, bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return GlassSliverAppBar(title: L10nService.get('journal.patterns.your_patterns', language));
   }
 
@@ -582,7 +582,7 @@ class PatternsScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       height: 200,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -623,7 +623,7 @@ class PatternsScreen extends ConsumerWidget {
     bool isEn, {
     Map<FocusArea, DimensionHealth>? healthMap,
   }) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -728,7 +728,7 @@ class PatternsScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -790,7 +790,7 @@ class PatternsScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -843,7 +843,7 @@ class PatternsScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -982,7 +982,7 @@ class PatternsScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final isPositiveLift = comparison.lift > 0.2;
     final accentColor = isPositiveLift
         ? AppColors.success
@@ -1070,7 +1070,7 @@ class PatternsScreen extends ConsumerWidget {
     required bool isDark,
     required bool isEn,
   }) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       children: [
         Text(
@@ -1197,7 +1197,7 @@ class _ShadowWorkSuggestion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final trends = engine.detectTrends();
     final weakAreas = trends
         .where((t) => t.direction == TrendDirection.down)

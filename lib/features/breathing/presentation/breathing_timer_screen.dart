@@ -526,7 +526,7 @@ class _PresetSelector extends StatelessWidget {
       spacing: 0,
       runSpacing: 8,
       children: BreathingPreset.values.map((preset) {
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         final isSelected = preset == current;
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),

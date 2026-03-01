@@ -19,7 +19,7 @@ enum ShareCardCategory {
   reflection;
 
   String label(bool isEn) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     switch (this) {
       case ShareCardCategory.identity:
         return L10nService.get('data.models.share_models.identity', language);

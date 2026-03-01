@@ -112,7 +112,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
 
   @override
   Widget build(BuildContext context) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final allMilestones = service.getAllMilestones();
     final filtered = _selectedCategory == null
         ? allMilestones
@@ -190,7 +190,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildProgressCard() {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final earned = service.earnedCount;
     final total = service.totalCount;
     final progress = service.getProgress();
@@ -310,7 +310,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   }
 
   String _getProgressMessage(int earned, int total) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final remaining = total - earned;
     if (earned == 0) {
       return L10nService.get('milestones.milestone.start_tracking', language);
@@ -335,7 +335,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
       physics: const BouncingScrollPhysics(),
       child: Row(
         children: categories.map((cat) {
-          final language = isEn ? AppLanguage.en : AppLanguage.tr;
+          final language = AppLanguage.fromIsEn(isEn);
           final selected = _selectedCategory == cat;
           final label = cat == null
               ? (L10nService.get('milestones.milestone.all', language))
@@ -397,7 +397,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildBadgeTile(Milestone milestone, bool earned, int index) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final name = milestone.localizedName(language);
 
     return Semantics(
@@ -520,7 +520,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   }
 
   String _getCategoryHint(MilestoneCategory category) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     switch (category) {
       case MilestoneCategory.streak:
         return L10nService.get('milestones.milestone.keep_logging', language);
@@ -542,7 +542,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   // ══════════════════════════════════════════════════════════════════════════
 
   void _showBadgeDetail(Milestone milestone) {
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     final earnedDate = service.earnedAt(milestone.id);
     final lang = language;
     final name = milestone.localizedName(lang);
@@ -552,7 +552,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
     showDialog(
       context: context,
       builder: (ctx) {
-        final language = isEn ? AppLanguage.en : AppLanguage.tr;
+        final language = AppLanguage.fromIsEn(isEn);
         final dialogDark = Theme.of(ctx).brightness == Brightness.dark;
 
         return Dialog(

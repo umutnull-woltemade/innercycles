@@ -526,7 +526,7 @@ class NotificationLifecycleService {
     JournalService journalService,
   ) {
     final isEn = _isEn;
-    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = AppLanguage.fromIsEn(isEn);
     switch (type) {
       case LifecycleNotificationType.challengeCompleted:
         return _NotificationContent(
