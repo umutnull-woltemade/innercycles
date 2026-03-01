@@ -328,7 +328,7 @@ class _DaySelectionStep extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 4, top: 12, bottom: 8),
                     child: Text(
-                      category.label(isEn),
+                      category.label(language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,

@@ -245,7 +245,7 @@ class _Slide2Focus extends StatelessWidget {
   String _areaName(FocusArea? area, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     if (area == null) return L10nService.get('digest.monthly_wrapped.balanced', language);
-    return area.localizedName(isEn);
+    return area.localizedName(language);
   }
 
   @override
@@ -304,7 +304,7 @@ class _Slide4Insight extends StatelessWidget {
     final language = AppLanguage.fromIsEn(isEn);
     return _SlideBase(
       emoji: '\u{1F4A1}',
-      title: data.personalInsight(isEn),
+      title: data.personalInsight(language),
       subtitle: L10nService.get('digest.monthly_wrapped.based_on_your_monthly_patterns', language),
       isDark: isDark,
     );
@@ -353,7 +353,7 @@ class _Slide5Share extends StatelessWidget {
               final template = ShareCardTemplates.monthlyWrapped;
               final cardData = ShareCardTemplates.buildData(
                 template: template,
-                isEn: isEn,
+                language: AppLanguage.fromIsEn(isEn),
                 journalDays: data.totalEntries,
                 moodValues: data.dailyRatings.where((r) => r > 0).toList(),
               );
@@ -361,7 +361,7 @@ class _Slide5Share extends StatelessWidget {
                 context,
                 template: template,
                 data: cardData,
-                isEn: isEn,
+                language: AppLanguage.fromIsEn(isEn),
               );
             },
             expanded: true,

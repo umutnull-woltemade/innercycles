@@ -717,7 +717,7 @@ class _SelectedDayDetail extends StatelessWidget {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          '${contact.relationship.emoji} ${contact.relationship.localizedName(isEn)}'
+                          '${contact.relationship.emoji} ${contact.relationship.localizedName(language)}'
                           '${contact.age != null ? ' \u{2022} ${contact.age} ${L10nService.get('common.years', language)}' : ''}',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -809,7 +809,7 @@ class _UpcomingCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      '${contact.relationship.emoji} ${contact.relationship.localizedName(isEn)}',
+                      '${contact.relationship.emoji} ${contact.relationship.localizedName(language)}',
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: isDark

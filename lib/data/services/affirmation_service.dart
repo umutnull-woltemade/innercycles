@@ -58,7 +58,7 @@ enum AffirmationCategory {
     }
   }
 
-  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+  String localizedName(AppLanguage language) => language == AppLanguage.en ? displayNameEn : displayNameTr;
 
   String get iconData {
     switch (this) {

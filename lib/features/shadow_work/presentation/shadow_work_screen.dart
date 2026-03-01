@@ -359,7 +359,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                   });
                 },
                 child: Semantics(
-                  label: archetype.localizedName(isEn),
+                  label: archetype.localizedName(language),
                   selected: isSelected,
                   button: true,
                   child: AnimatedContainer(
@@ -381,7 +381,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                       ),
                     ),
                     child: Text(
-                      archetype.localizedName(isEn),
+                      archetype.localizedName(language),
                       style:
                           AppTypography.subtitle(
                             fontSize: 12,
@@ -475,7 +475,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  prompt.depth.localizedName(isEn),
+                  prompt.depth.localizedName(language),
                   style: AppTypography.subtitle(
                     fontSize: 10,
                     color: _shadowPurple,
@@ -833,13 +833,13 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               padding: const EdgeInsets.only(bottom: 8),
               child: Semantics(
                 label:
-                    '${archetype.localizedName(isEn)}: $count',
+                    '${archetype.localizedName(language)}: $count',
                 child: Row(
                   children: [
                     SizedBox(
                       width: 90,
                       child: Text(
-                        archetype.localizedName(isEn),
+                        archetype.localizedName(language),
                         style: AppTypography.subtitle(
                           fontSize: 11,
                           color: isDark
@@ -980,7 +980,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                           children: [
                             Expanded(
                               child: Text(
-                                entry.archetype.localizedName(isEn),
+                                entry.archetype.localizedName(language),
                                 style: AppTypography.subtitle(
                                   fontSize: 12,
                                   color: _shadowPurple,

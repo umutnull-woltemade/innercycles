@@ -530,7 +530,7 @@ class ShareCardTemplates {
   /// When [currentMood] is provided, a dynamic gradient override is applied.
   static ShareCardData buildData({
     required ShareCardTemplate template,
-    required bool isEn,
+    required AppLanguage language,
     double? currentMood,
     int streak = 0,
     int journalDays = 0,
@@ -562,7 +562,7 @@ class ShareCardTemplates {
     String? challengeName,
     String? challengeEmoji,
   }) {
-    final language = AppLanguage.fromIsEn(isEn);
+    final isEn = language == AppLanguage.en;
     final ShareCardData result;
     switch (template.id) {
       // ── Identity ──────────────────────────────────────────────────────

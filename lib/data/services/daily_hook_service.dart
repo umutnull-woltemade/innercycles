@@ -10,6 +10,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../providers/app_providers.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // ENUMS
@@ -60,7 +61,7 @@ class DailyHook {
   });
 
   /// Get localized title based on language preference
-  String getTitle({bool isEnglish = true}) => isEnglish ? titleEn : titleTr;
+  String getTitle({AppLanguage language = AppLanguage.en}) => language == AppLanguage.en ? titleEn : titleTr;
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -307,7 +308,7 @@ class DailyHookService {
 
   /// Select the best hook for today, avoiding repeats within 7 days.
   /// Uses day-of-week context, time-of-day context, and category engagement.
-  DailyHook getHookForToday({bool isEnglish = true}) {
+  DailyHook getHookForToday({AppLanguage language = AppLanguage.en}) {
     final now = DateTime.now();
     final candidates = _getCandidatesForContext(now);
     final recentlyShown = _getRecentlyShownIds();
@@ -342,7 +343,7 @@ class DailyHookService {
   }
 
   /// Get a morning-appropriate hook text
-  String getMorningHook({bool isEnglish = true}) {
+  String getMorningHook({AppLanguage language = AppLanguage.en}) {
     final now = DateTime.now();
     final morningHooks = _hooks
         .where(
@@ -373,11 +374,11 @@ class DailyHookService {
     }
 
     final hook = available[_random.nextInt(available.length)];
-    return hook.getTitle(isEnglish: isEnglish);
+    return hook.getTitle(language: language);
   }
 
   /// Get an evening-appropriate hook text
-  String getEveningHook({bool isEnglish = true}) {
+  String getEveningHook({AppLanguage language = AppLanguage.en}) {
     final eveningHooks = _hooks
         .where(
           (h) =>
@@ -396,7 +397,7 @@ class DailyHookService {
     }
 
     final hook = available[_random.nextInt(available.length)];
-    return hook.getTitle(isEnglish: isEnglish);
+    return hook.getTitle(language: language);
   }
 
   /// Get all hooks belonging to a specific category

@@ -70,7 +70,7 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
         statValue: '$streakDays',
         statLabel: L10nService.get('streak.milestone_celebration.day_streak', language),
       ),
-      isEn: isEn,
+      language: language,
     );
   }
 

@@ -11,6 +11,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../providers/app_providers.dart';
 import 'notification_service.dart';
 
 // ============================================================================
@@ -74,9 +75,9 @@ class ReferralService {
   String get shareLink =>
       'https://innercycles.app/invite/$myCode';
 
-  /// Full share text (EN)
-  String shareText({bool isEn = true}) {
-    return isEn
+  /// Full share text
+  String shareText({AppLanguage language = AppLanguage.en}) {
+    return language == AppLanguage.en
         ? "I've been journaling with InnerCycles and it's changing how I understand myself. "
           'Join me and we both get 7 days of Premium free!\n\n'
           '$shareLink'

@@ -7,6 +7,7 @@
 
 import '../models/cycle_entry.dart';
 import '../models/journal_entry.dart';
+import '../providers/app_providers.dart';
 import 'cycle_sync_service.dart';
 import 'journal_service.dart';
 
@@ -255,7 +256,8 @@ class CycleCorrelationService {
   // ═══════════════════════════════════════════════════════════════════════
 
   /// Generate bilingual insight message for the current phase
-  String? getCurrentPhaseInsight(bool isEn) {
+  String? getCurrentPhaseInsight(AppLanguage language) {
+    final isEn = language == AppLanguage.en;
     final phase = _cycleSyncService.getCurrentPhase();
     if (phase == null) return null;
 
@@ -270,7 +272,7 @@ class CycleCorrelationService {
 
     if (topInsight == null) return null;
 
-    final areaName = topInsight.focusArea.localizedName(isEn);
+    final areaName = topInsight.focusArea.localizedName(language);
     final strongPhase = topInsight.strongestPhase;
     final weakPhase = topInsight.weakestPhase;
 

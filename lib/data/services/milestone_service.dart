@@ -57,7 +57,7 @@ enum MilestoneCategory {
     }
   }
 
-  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+  String localizedName(AppLanguage language) => language == AppLanguage.en ? displayNameEn : displayNameTr;
 
   String displayName(AppLanguage language) =>
       language == AppLanguage.en ? displayNameEn : displayNameTr;

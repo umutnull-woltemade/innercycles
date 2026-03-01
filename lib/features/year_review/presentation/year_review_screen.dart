@@ -767,7 +767,7 @@ class _FocusAreasCard extends StatelessWidget {
             final ratio = count / maxCount;
             final color = _areaColors[area] ?? AppColors.starGold;
             final pct = ((count / review.totalEntries) * 100).round();
-            final label = area.localizedName(isEn);
+            final label = area.localizedName(language);
 
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
@@ -1242,7 +1242,7 @@ class _ShareableSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final language = AppLanguage.fromIsEn(isEn);
-    final topAreaName = review.topFocusArea.localizedName(isEn);
+    final topAreaName = review.topFocusArea.localizedName(language);
 
     return GlassPanel(
       elevation: GlassElevation.g3,

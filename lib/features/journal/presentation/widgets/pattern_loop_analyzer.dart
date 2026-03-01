@@ -197,7 +197,6 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
 
   @override
   Widget build(BuildContext context) {
-    final isEn = widget.isEn;
     final language = AppLanguage.fromIsEn(widget.isEn);
     final loop = widget.loop;
     final color = _reinforcementColor(loop.reinforcementType);
@@ -253,7 +252,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                               ),
                               const SizedBox(width: 6),
                               Text(
-                                widget.loop.primaryArea.localizedName(isEn),
+                                widget.loop.primaryArea.localizedName(language),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 11,
                                   fontWeight: FontWeight.w500,
@@ -273,7 +272,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                                   ),
                                 ),
                                 Text(
-                                  secondary.localizedName(isEn),
+                                  secondary.localizedName(language),
                                   style: AppTypography.elegantAccent(
                                     fontSize: 11,
                                     fontWeight: FontWeight.w500,

@@ -43,7 +43,7 @@ class OnThisDayBanner extends ConsumerWidget {
 
         final yearsAgo = now.year - onThisDayEntries.first.date.year;
         final entry = onThisDayEntries.first;
-        final areaLabel = entry.focusArea.localizedName(isEn);
+        final areaLabel = entry.focusArea.localizedName(language);
 
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),

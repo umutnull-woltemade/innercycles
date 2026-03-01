@@ -642,7 +642,7 @@ class PatternsScreen extends ConsumerWidget {
           ...thisWeek.entries.map((entry) {
             final prev = lastWeek[entry.key];
             final diff = prev != null ? entry.value - prev : 0.0;
-            final label = entry.key.localizedName(isEn);
+            final label = entry.key.localizedName(language);
             final dimensionHealth = healthMap?[entry.key];
 
             return Semantics(
@@ -1121,6 +1121,7 @@ class _CycleArcsPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    final language = AppLanguage.fromIsEn(isEn);
     final center = Offset(size.width / 2, size.height);
     final maxRadius = size.height * 0.9;
 
@@ -1165,7 +1166,7 @@ class _CycleArcsPainter extends CustomPainter {
       // Label
       final labelPainter = TextPainter(
         text: TextSpan(
-          text: area.localizedName(isEn),
+          text: area.localizedName(language),
           style: AppTypography.subtitle(fontSize: 10, color: _colors[i]),
         ),
         textDirection: TextDirection.ltr,

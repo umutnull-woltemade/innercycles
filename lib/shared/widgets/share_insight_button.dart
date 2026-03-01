@@ -27,7 +27,6 @@ class ShareInsightButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
-    final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Semantics(
@@ -39,14 +38,14 @@ class ShareInsightButton extends ConsumerWidget {
           final template = ShareCardTemplates.patternWisdom;
           final cardData = ShareCardTemplates.buildData(
             template: template,
-            isEn: isEn,
+            language: language,
             patternInsightText: insightText,
           );
           ShareCardSheet.show(
             context,
             template: template,
             data: cardData,
-            isEn: isEn,
+            language: language,
           );
         },
         child: ConstrainedBox(

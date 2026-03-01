@@ -52,7 +52,7 @@ enum ContextModuleCategory {
     }
   }
 
-  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+  String localizedName(AppLanguage language) => language == AppLanguage.en ? displayNameEn : displayNameTr;
 }
 
 enum ContextModuleDepth {
@@ -82,7 +82,7 @@ enum ContextModuleDepth {
     }
   }
 
-  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+  String localizedName(AppLanguage language) => language == AppLanguage.en ? displayNameEn : displayNameTr;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

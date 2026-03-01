@@ -60,7 +60,7 @@ enum ShadowArchetype {
 
   }
 
-  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+  String localizedName(AppLanguage language) => language == AppLanguage.en ? displayNameEn : displayNameTr;
 
   String localizedDisplayName(AppLanguage language) =>
       language == AppLanguage.en ? displayNameEn : displayNameTr;
@@ -160,7 +160,7 @@ enum ShadowDepth {
     }
   }
 
-  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+  String localizedName(AppLanguage language) => language == AppLanguage.en ? displayNameEn : displayNameTr;
 
   String localizedDisplayName(AppLanguage language) =>
       language == AppLanguage.en ? displayNameEn : displayNameTr;

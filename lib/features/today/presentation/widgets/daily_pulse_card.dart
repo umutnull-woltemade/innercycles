@@ -252,6 +252,7 @@ class DailyPulseCard extends ConsumerWidget {
     bool hasFull,
     bool hasMicro,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     String? text;
     IconData icon = Icons.lightbulb_outline;
 
@@ -264,7 +265,7 @@ class DailyPulseCard extends ConsumerWidget {
         text = isEn ? best.getMessageEn() : best.getMessageTr();
       }
     } else if (hasMicro) {
-      final micro = engine.detectMicroPattern(isEn: isEn);
+      final micro = engine.detectMicroPattern(language: language);
       if (micro != null) {
         text = micro;
         icon = Icons.insights_outlined;
@@ -395,8 +396,8 @@ class DailyPulseCard extends ConsumerWidget {
             (a) => a.id == latestId,
             orElse: () => ArchetypeService.archetypes.first,
           );
-          final tip = archetype.getGrowthTip(isEnglish: isEn);
-          text = '${archetype.getName(isEnglish: isEn)}: $tip';
+          final tip = archetype.getGrowthTip(language: language);
+          text = '${archetype.getName(language: language)}: $tip';
         }
 
         return Padding(

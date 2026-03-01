@@ -296,7 +296,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
-                  phase.localizedName(isEn),
+                  phase.localizedName(language),
                   style: AppTypography.modernAccent(
                     color: phaseColor,
                     fontWeight: FontWeight.w600,
@@ -577,7 +577,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
       error: (_, _) => const SizedBox.shrink(),
       data: (correlationService) {
         final language = AppLanguage.fromIsEn(isEn);
-        final insight = correlationService.getCurrentPhaseInsight(isEn);
+        final insight = correlationService.getCurrentPhaseInsight(language);
         if (insight == null) {
           return GlassPanel(
             elevation: GlassElevation.g2,
@@ -775,7 +775,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    phase.localizedName(isEn),
+                    phase.localizedName(language),
                     style: AppTypography.subtitle(
                       fontSize: 12,
                       color: isDark

@@ -499,12 +499,13 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   }
 
   Widget _buildFocusAreaSelector(bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Wrap(
       spacing: AppConstants.spacingSm,
       runSpacing: AppConstants.spacingSm,
       children: FocusArea.values.map((area) {
         final isSelected = area == _selectedArea;
-        final label = area.localizedName(isEn);
+        final label = area.localizedName(language);
         final icon = _getAreaIcon(area);
 
         return Semantics(
@@ -1451,7 +1452,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         moodEmoji: moodEmoji,
         moodLabel: moodLabel,
         dailyPrompt: L10nService.get('journal.daily_entry.how_did_your_day_feel', language),
-        focusArea: _selectedArea.localizedName(isEn),
+        focusArea: _selectedArea.localizedName(language),
         streakDays: streak,
         moodRating: _overallRating,
       );
@@ -1922,10 +1923,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 template: ShareCardTemplates.streakFlame,
                 data: ShareCardTemplates.buildData(
                   template: ShareCardTemplates.streakFlame,
-                  isEn: isEn,
+                  language: language,
                   streak: streak,
                 ),
-                isEn: isEn,
+                language: language,
               );
             },
           ),

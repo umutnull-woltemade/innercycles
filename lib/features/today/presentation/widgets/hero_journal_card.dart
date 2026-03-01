@@ -159,14 +159,14 @@ class HeroJournalCard extends ConsumerWidget {
                           final template = ShareCardTemplates.questionOfTheDay;
                           final cardData = ShareCardTemplates.buildData(
                             template: template,
-                            isEn: isEn,
+                            language: language,
                             reflectionText: questionText,
                           );
                           ShareCardSheet.show(
                             context,
                             template: template,
                             data: cardData,
-                            isEn: isEn,
+                            language: language,
                           );
                         },
                         child: Padding(

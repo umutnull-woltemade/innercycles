@@ -60,18 +60,18 @@ class Archetype {
     this.compatibleArchetypes = const [],
   });
 
-  String getName({bool isEnglish = true}) => isEnglish ? nameEn : nameTr;
-  String getDescription({bool isEnglish = true}) =>
-      isEnglish ? descriptionEn : descriptionTr;
-  List<String> getStrengths({bool isEnglish = true}) =>
-      isEnglish ? strengthsEn : strengthsTr;
-  String getShadow({bool isEnglish = true}) => isEnglish ? shadowEn : shadowTr;
-  String getGrowthTip({bool isEnglish = true}) =>
-      isEnglish ? growthTipEn : growthTipTr;
-  List<String> getGrowthAreas({bool isEnglish = true}) =>
-      isEnglish ? growthAreasEn : growthAreasTr;
-  String getDailyIntentionStyle({bool isEnglish = true}) =>
-      isEnglish ? dailyIntentionStyleEn : dailyIntentionStyleTr;
+  String getName({AppLanguage language = AppLanguage.en}) => language == AppLanguage.en ? nameEn : nameTr;
+  String getDescription({AppLanguage language = AppLanguage.en}) =>
+      language == AppLanguage.en ? descriptionEn : descriptionTr;
+  List<String> getStrengths({AppLanguage language = AppLanguage.en}) =>
+      language == AppLanguage.en ? strengthsEn : strengthsTr;
+  String getShadow({AppLanguage language = AppLanguage.en}) => language == AppLanguage.en ? shadowEn : shadowTr;
+  String getGrowthTip({AppLanguage language = AppLanguage.en}) =>
+      language == AppLanguage.en ? growthTipEn : growthTipTr;
+  List<String> getGrowthAreas({AppLanguage language = AppLanguage.en}) =>
+      language == AppLanguage.en ? growthAreasEn : growthAreasTr;
+  String getDailyIntentionStyle({AppLanguage language = AppLanguage.en}) =>
+      language == AppLanguage.en ? dailyIntentionStyleEn : dailyIntentionStyleTr;
 
   String localizedName(AppLanguage language) =>
       language == AppLanguage.en ? nameEn : nameTr;

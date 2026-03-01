@@ -251,7 +251,7 @@ class _DominantArchetypeCard extends StatelessWidget {
           const SizedBox(height: 12),
           // Name
           Text(
-            archetype.getName(isEnglish: isEn),
+            archetype.getName(language: language),
             style: AppTypography.displayFont.copyWith(
               fontSize: 28,
               fontWeight: FontWeight.w700,
@@ -278,7 +278,7 @@ class _DominantArchetypeCard extends StatelessWidget {
           const SizedBox(height: 16),
           // Description
           Text(
-            archetype.getDescription(isEnglish: isEn),
+            archetype.getDescription(language: language),
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 14,
@@ -311,8 +311,8 @@ class _StrengthsShadowSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final language = AppLanguage.fromIsEn(isEn);
-    final strengths = archetype.getStrengths(isEnglish: isEn);
-    final shadow = archetype.getShadow(isEnglish: isEn);
+    final strengths = archetype.getStrengths(language: language);
+    final shadow = archetype.getShadow(language: language);
 
     return PremiumCard(
       style: PremiumCardStyle.subtle,
@@ -454,7 +454,7 @@ class _GrowthTipCard extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            archetype.getGrowthTip(isEnglish: isEn),
+            archetype.getGrowthTip(language: language),
             style: AppTypography.decorativeScript(
               fontSize: 14,
               color: isDark
@@ -696,6 +696,7 @@ class _BreakdownRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final barColor = isTop
         ? AppColors.starGold
         : AppColors.auroraStart.withValues(alpha: 0.7);
@@ -713,7 +714,7 @@ class _BreakdownRow extends StatelessWidget {
         SizedBox(
           width: 90,
           child: Text(
-            archetype.getName(isEnglish: isEn),
+            archetype.getName(language: language),
             style: AppTypography.elegantAccent(
               fontSize: 11,
               fontWeight: isTop ? FontWeight.w600 : FontWeight.w400,

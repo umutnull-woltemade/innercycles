@@ -339,7 +339,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
             isEn: isEn,
           ),
           ...FocusArea.values.map((area) {
-            final label = area.localizedName(isEn);
+            final label = area.localizedName(language);
             return _buildChip(
               label,
               _filterArea == area,
@@ -410,7 +410,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
     bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
-    final areaLabel = entry.focusArea.localizedName(isEn);
+    final areaLabel = entry.focusArea.localizedName(language);
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
 
     return Padding(

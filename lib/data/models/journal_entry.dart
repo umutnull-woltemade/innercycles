@@ -2,6 +2,8 @@
 // JOURNAL ENTRY MODEL - InnerCycles Personal Cycle Tracking
 // ════════════════════════════════════════════════════════════════════════════
 
+import '../providers/app_providers.dart';
+
 /// Focus areas for journal entries - the 5 personal life cycle dimensions
 enum FocusArea {
   energy,
@@ -41,7 +43,7 @@ enum FocusArea {
 
   }
 
-  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+  String localizedName(AppLanguage language) => language == AppLanguage.en ? displayNameEn : displayNameTr;
 
   /// Sub-rating keys for this focus area
   List<String> get subRatingKeys {

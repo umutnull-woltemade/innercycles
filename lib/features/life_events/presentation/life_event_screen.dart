@@ -254,7 +254,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        type.localizedName(isEn),
+                        type.localizedName(language),
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: isSelected

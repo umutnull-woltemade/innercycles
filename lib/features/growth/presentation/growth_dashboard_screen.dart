@@ -1054,7 +1054,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
             icon: Icons.category,
             label: L10nService.get('growth.growth_dashboard.most_tracked_area', language),
             value: mostTracked != null
-                ? (mostTracked.localizedName(isEn))
+                ? (mostTracked.localizedName(language))
                 : (L10nService.get('growth.growth_dashboard.none_yet', language)),
             color: AppColors.starGold,
             isDark: isDark,

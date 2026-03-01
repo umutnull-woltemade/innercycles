@@ -472,7 +472,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
                 _buildListSection(
                   context,
                   title: L10nService.get('quiz.attachment_quiz.your_strengths', language),
-                  items: style.localizedStrengths(isEn),
+                  items: style.localizedStrengths(language),
                   icon: Icons.star_rounded,
                   color: AppColors.starGold,
                   isDark: isDark,
@@ -483,7 +483,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
                 _buildListSection(
                   context,
                   title: L10nService.get('quiz.attachment_quiz.growth_areas', language),
-                  items: style.localizedGrowthAreas(isEn),
+                  items: style.localizedGrowthAreas(language),
                   icon: Icons.spa_rounded,
                   color: AppColors.amethyst,
                   isDark: isDark,
@@ -547,6 +547,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final percentage = (result.percentageFor(style) * 100).toStringAsFixed(0);
 
     return Container(
@@ -574,7 +575,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
 
               // Style name
               Text(
-                style.localizedName(isEn),
+                style.localizedName(language),
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 20,
                   color: style.color,
@@ -597,7 +598,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
 
               // Description
               Text(
-                style.localizedDescription(isEn),
+                style.localizedDescription(language),
                 style: AppTypography.decorativeScript(
                   fontSize: 15,
                   color: isDark
@@ -660,6 +661,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
     required bool isDark,
     required bool isEn,
   }) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -668,7 +670,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
           children: [
             Expanded(
               child: Text(
-                style.localizedName(isEn),
+                style.localizedName(language),
                 style: AppTypography.subtitle(
                   fontSize: 14,
                   color: isDark

@@ -42,8 +42,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
 
   void _updateDefaultName() {
     final language = ref.read(languageProvider);
-    final isEn = language == AppLanguage.en;
-    _nameController.text = _selectedTime.localizedName(isEn);
+    _nameController.text = _selectedTime.localizedName(language);
   }
 
   @override
@@ -101,7 +100,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                             return ConstrainedBox(
                               constraints: const BoxConstraints(minHeight: 44),
                               child: Semantics(
-                                label: time.localizedName(isEn),
+                                label: time.localizedName(language),
                                 button: true,
                                 selected: isSelected,
                                 child: GestureDetector(
@@ -147,7 +146,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                                         ),
                                         const SizedBox(width: 6),
                                         Text(
-                                          time.localizedName(isEn),
+                                          time.localizedName(language),
                                           style: isSelected
                                               ? AppTypography.modernAccent(
                                                   fontSize: 14,

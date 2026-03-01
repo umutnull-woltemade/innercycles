@@ -897,7 +897,7 @@ class _FirstCyclePage extends StatelessWidget {
 
                 return Semantics(
                   button: true,
-                  label: area.localizedName(isEn),
+                  label: area.localizedName(language),
                   child: GestureDetector(
                     onTap: () {
                       HapticFeedback.selectionClick();
@@ -953,7 +953,7 @@ class _FirstCyclePage extends StatelessWidget {
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              area.localizedName(isEn),
+                              area.localizedName(language),
                               style: AppTypography.elegantAccent(
                                 fontSize: 19,
                                 fontWeight: FontWeight.w600,

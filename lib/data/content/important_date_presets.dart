@@ -14,8 +14,7 @@ enum ImportantDateCategory {
   growth,
   reflective;
 
-  String label(bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  String label(AppLanguage language) {
     switch (this) {
       case ImportantDateCategory.personalMilestone:
         return L10nService.get('data.content.important_date_presets.personal_milestones', language);

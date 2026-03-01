@@ -686,10 +686,11 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
   }
 
   Widget _buildSelectedPointInfo(BuildContext context, bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     if (_selectedPoint == null) return const SizedBox.shrink();
     final point = _selectedPoint!;
     final color = kAreaColors[point.area] ?? AppColors.auroraStart;
-    final areaName = point.area.localizedName(isEn);
+    final areaName = point.area.localizedName(language);
     final dateStr = '${point.date.day}/${point.date.month}/${point.date.year}';
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -742,7 +743,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           final language = AppLanguage.fromIsEn(isEn);
           final isVisible = _visibleAreas.contains(area);
           final color = kAreaColors[area] ?? AppColors.auroraStart;
-          final label = area.localizedName(isEn);
+          final label = area.localizedName(language);
           return Padding(
             padding: const EdgeInsets.only(right: AppConstants.spacingSm),
             child: Semantics(

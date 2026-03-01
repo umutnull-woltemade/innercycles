@@ -107,7 +107,7 @@ class EntryDetailScreen extends ConsumerWidget {
     bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
-    final areaLabel = entry.focusArea.localizedName(isEn);
+    final areaLabel = entry.focusArea.localizedName(language);
     final names = isEn
         ? entry.focusArea.subRatingNamesEn
         : entry.focusArea.subRatingNamesTr;

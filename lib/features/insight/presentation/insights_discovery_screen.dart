@@ -403,7 +403,7 @@ class _InsightsDiscoveryScreenState
             (cat) => Padding(
               padding: const EdgeInsets.only(right: 8),
               child: _buildChip(
-                label: cat.localizedName(isEn),
+                label: cat.localizedName(language),
                 isSelected: _selectedCategory == cat,
                 isDark: isDark,
                 onTap: () => setState(() => _selectedCategory = cat),
@@ -881,6 +881,7 @@ class _InsightsDiscoveryScreenState
     bool isDark,
     bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final color = _categoryColor(category);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -895,7 +896,7 @@ class _InsightsDiscoveryScreenState
           Icon(_categoryIcon(category), size: 12, color: color),
           const SizedBox(width: 4),
           Text(
-            category.localizedName(isEn),
+            category.localizedName(language),
             style: AppTypography.elegantAccent(
               fontSize: 11,
               fontWeight: FontWeight.w500,
@@ -909,6 +910,7 @@ class _InsightsDiscoveryScreenState
   }
 
   Widget _buildDepthBadge(ContextModuleDepth depth, bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
@@ -918,7 +920,7 @@ class _InsightsDiscoveryScreenState
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
-        depth.localizedName(isEn),
+        depth.localizedName(language),
         style: AppTypography.elegantAccent(
           fontSize: 10,
           fontWeight: FontWeight.w500,

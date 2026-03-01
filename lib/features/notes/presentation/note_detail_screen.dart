@@ -1186,7 +1186,8 @@ class _ReminderRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final freq = reminder.frequency.localizedName(isEn);
+    final language = AppLanguage.fromIsEn(isEn);
+    final freq = reminder.frequency.localizedName(language);
     final dateStr = _formatDate(reminder.scheduledAt, isEn);
 
     return Container(
@@ -1342,7 +1343,7 @@ class _ReminderForm extends StatelessWidget {
             children: ReminderFrequency.values.map((f) {
               final isSelected = f == frequency;
               final isLocked = !isPremium && f != ReminderFrequency.once;
-              final label = f.localizedName(isEn);
+              final label = f.localizedName(language);
               return GestureDetector(
                 onTap: isLocked ? null : () => onFrequencyChanged(f),
                 child: Container(

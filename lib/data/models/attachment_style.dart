@@ -8,6 +8,7 @@
 
 import 'dart:ui';
 import '../../core/theme/app_colors.dart';
+import '../providers/app_providers.dart';
 
 /// The four primary attachment style archetypes used for self-reflection
 enum AttachmentStyle {
@@ -47,7 +48,7 @@ enum AttachmentStyle {
 
   }
 
-  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+  String localizedName(AppLanguage language) => language == AppLanguage.en ? displayNameEn : displayNameTr;
 
   // ══════════════════════════════════════════════════════════════════════════
   // DESCRIPTIONS
@@ -238,14 +239,14 @@ enum AttachmentStyle {
     }
   }
 
-  String localizedDescription(bool isEn) =>
-      isEn ? descriptionEn : descriptionTr;
+  String localizedDescription(AppLanguage language) =>
+      language == AppLanguage.en ? descriptionEn : descriptionTr;
 
-  List<String> localizedStrengths(bool isEn) =>
-      isEn ? strengthsEn : strengthsTr;
+  List<String> localizedStrengths(AppLanguage language) =>
+      language == AppLanguage.en ? strengthsEn : strengthsTr;
 
-  List<String> localizedGrowthAreas(bool isEn) =>
-      isEn ? growthAreasEn : growthAreasTr;
+  List<String> localizedGrowthAreas(AppLanguage language) =>
+      language == AppLanguage.en ? growthAreasEn : growthAreasTr;
 
   /// Icon representing each style
   String get emojiIcon {

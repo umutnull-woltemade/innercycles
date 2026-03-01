@@ -490,7 +490,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      rel.localizedName(isEn),
+                      rel.localizedName(language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: isSelected

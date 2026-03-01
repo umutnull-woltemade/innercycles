@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../providers/app_providers.dart';
 
 /// Time of day for a ritual stack
 enum RitualTime { morning, midday, evening }
@@ -34,7 +35,7 @@ extension RitualTimeExtension on RitualTime {
     }
   }
 
-  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+  String localizedName(AppLanguage language) => language == AppLanguage.en ? displayNameEn : displayNameTr;
 
   String get icon {
     switch (this) {

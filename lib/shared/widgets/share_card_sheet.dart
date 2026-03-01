@@ -22,27 +22,27 @@ import '../../data/services/l10n_service.dart';
 class ShareCardSheet extends StatefulWidget {
   final ShareCardTemplate template;
   final ShareCardData data;
-  final bool isEn;
+  final AppLanguage language;
 
   const ShareCardSheet({
     super.key,
     required this.template,
     required this.data,
-    required this.isEn,
+    required this.language,
   });
 
   static Future<void> show(
     BuildContext context, {
     required ShareCardTemplate template,
     required ShareCardData data,
-    required bool isEn,
+    required AppLanguage language,
   }) {
     return showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (_) =>
-          ShareCardSheet(template: template, data: data, isEn: isEn),
+          ShareCardSheet(template: template, data: data, language: language),
     );
   }
 
@@ -55,7 +55,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
   bool _isSharing = false;
 
   Future<void> _share() async {
-    final language = AppLanguage.fromIsEn(widget.isEn);
+    final language = widget.language;
     setState(() => _isSharing = true);
     try {
       final boundary =
@@ -80,12 +80,12 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(widget.isEn);
+    final language = widget.language;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final accent = ShareCardTemplates.accentColor(widget.template);
 
     return Semantics(
-      label: widget.isEn
+      label: widget.language == AppLanguage.en
           ? 'Share card: ${widget.data.headline}'
           : 'Paylaşım kartı: ${widget.data.headline}',
       child: ClipRRect(
@@ -156,7 +156,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Text(
-                            widget.template.badge(widget.isEn),
+                            widget.template.badge(widget.language),
                             style: AppTypography.elegantAccent(
                               fontSize: 10,
                               fontWeight: FontWeight.w700,

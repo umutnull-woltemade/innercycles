@@ -6,6 +6,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import '../models/journal_entry.dart';
+import '../providers/app_providers.dart';
 import '../services/journal_service.dart';
 import '../services/pattern_engine_service.dart';
 
@@ -34,8 +35,8 @@ class MonthlyWrappedData {
     required this.month,
   });
 
-  String personalInsight(bool isEn) =>
-      isEn ? personalInsightEn : personalInsightTr;
+  String personalInsight(AppLanguage language) =>
+      language == AppLanguage.en ? personalInsightEn : personalInsightTr;
 }
 
 class MonthlyWrappedService {

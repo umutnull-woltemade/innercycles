@@ -2,6 +2,8 @@
 // LIFE EVENT MODEL - InnerCycles Life Timeline
 // ════════════════════════════════════════════════════════════════════════════
 
+import '../providers/app_providers.dart';
+
 /// Category of life event
 enum LifeEventType {
   positive,
@@ -31,7 +33,7 @@ enum LifeEventType {
 
   }
 
-  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+  String localizedName(AppLanguage language) => language == AppLanguage.en ? displayNameEn : displayNameTr;
 }
 
 /// A life event representing a significant moment in the user's timeline

@@ -260,7 +260,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
       onPressed: () {
         HapticFeedback.lightImpact();
         SharePlus.instance.share(
-          ShareParams(text: service.shareText(isEn: isEn)),
+          ShareParams(text: service.shareText(language: language)),
         );
       },
     );

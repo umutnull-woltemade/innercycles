@@ -306,7 +306,7 @@ class _HeatmapGrid extends StatelessWidget {
                   SizedBox(
                     width: 60,
                     child: Text(
-                      area.localizedName(isEn),
+                      area.localizedName(language),
                       style: AppTypography.subtitle(
                         fontSize: 10,
                         color: isDark

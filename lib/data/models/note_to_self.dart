@@ -2,6 +2,8 @@
 // NOTE TO SELF MODEL - InnerCycles Personal Notes with Reminders
 // ════════════════════════════════════════════════════════════════════════════
 
+import '../providers/app_providers.dart';
+
 /// Reminder frequency options
 enum ReminderFrequency {
   once,
@@ -36,7 +38,7 @@ enum ReminderFrequency {
 
   }
 
-  String localizedName(bool isEn) => isEn ? displayNameEn() : displayNameTr();
+  String localizedName(AppLanguage language) => language == AppLanguage.en ? displayNameEn() : displayNameTr();
 }
 
 /// A reminder attached to a note

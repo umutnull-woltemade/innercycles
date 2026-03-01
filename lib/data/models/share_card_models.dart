@@ -18,8 +18,7 @@ enum ShareCardCategory {
   wisdom,
   reflection;
 
-  String label(bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  String label(AppLanguage language) {
     switch (this) {
       case ShareCardCategory.identity:
         return L10nService.get('data.models.share_models.identity', language);
@@ -84,8 +83,8 @@ class ShareCardTemplate {
     required this.badgeTr,
   });
 
-  String title(bool isEn) => isEn ? titleEn : titleTr;
-  String badge(bool isEn) => isEn ? badgeEn : badgeTr;
+  String title(AppLanguage language) => language == AppLanguage.en ? titleEn : titleTr;
+  String badge(AppLanguage language) => language == AppLanguage.en ? badgeEn : badgeTr;
 }
 
 /// User-specific data that gets injected into a template at render time

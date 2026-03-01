@@ -211,8 +211,7 @@ class PatternEngineService {
 
   /// Detect micro-patterns from as few as 3 entries.
   /// Returns a single human-readable insight string (EN/TR).
-  String? detectMicroPattern({required bool isEn}) {
-    final language = AppLanguage.fromIsEn(isEn);
+  String? detectMicroPattern({required AppLanguage language}) {
     if (!hasMicroPatternData()) return null;
 
     final entries = _journalService.getAllEntries();
@@ -231,7 +230,7 @@ class PatternEngineService {
       (a, b) => a.value >= b.value ? a : b,
     );
 
-    final dominantName = _areaName(dominant.key, isEn);
+    final dominantName = _areaName(dominant.key, language);
     final count = dominant.value;
     final ratings = areaRatings[dominant.key]!;
     final avg = ratings.fold<int>(0, (s, r) => s + r) / ratings.length;
@@ -250,6 +249,7 @@ class PatternEngineService {
 
     // Dominant area insight
     if (count >= 2) {
+      final isEn = language == AppLanguage.en;
       final avgStr = avg.toStringAsFixed(1);
       return isEn
           ? '$dominantName appears in $count of your ${entries.length} entries (avg $avgStr/5). A pattern may be forming.'
@@ -259,8 +259,7 @@ class PatternEngineService {
     return null;
   }
 
-  static String _areaName(FocusArea area, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  static String _areaName(FocusArea area, AppLanguage language) {
     switch (area) {
       case FocusArea.energy:
         return L10nService.get('data.services.pattern_engine.energy', language);

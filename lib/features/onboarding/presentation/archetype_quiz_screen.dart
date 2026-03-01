@@ -435,7 +435,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
 
           // Archetype name
           GradientText(
-            archetype.getName(isEnglish: isEn),
+            archetype.getName(language: language),
             variant: GradientTextVariant.cosmic,
             style: AppTypography.displayFont.copyWith(
               fontSize: 28,
@@ -450,7 +450,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
 
           // Description
           Text(
-            archetype.getDescription(isEnglish: isEn),
+            archetype.getDescription(language: language),
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 15,
@@ -483,7 +483,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                 ),
                 const SizedBox(height: 8),
                 ...archetype
-                    .getStrengths(isEnglish: isEn)
+                    .getStrengths(language: language)
                     .map(
                       (s) => Padding(
                         padding: const EdgeInsets.only(bottom: 4),
@@ -539,7 +539,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  archetype.getGrowthTip(isEnglish: isEn),
+                  archetype.getGrowthTip(language: language),
                   style: AppTypography.decorativeScript(
                     fontSize: 14,
                     color: isDark

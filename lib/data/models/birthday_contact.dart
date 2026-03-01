@@ -2,6 +2,8 @@
 // BIRTHDAY CONTACT MODEL - InnerCycles Birthday Agenda
 // ════════════════════════════════════════════════════════════════════════════
 
+import '../providers/app_providers.dart';
+
 /// Source of the birthday contact
 enum BirthdayContactSource {
   manual,
@@ -26,7 +28,7 @@ enum BirthdayContactSource {
 
   }
 
-  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+  String localizedName(AppLanguage language) => language == AppLanguage.en ? displayNameEn : displayNameTr;
 }
 
 /// Relationship type for a birthday contact
@@ -72,7 +74,7 @@ enum BirthdayRelationship {
     }
   }
 
-  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+  String localizedName(AppLanguage language) => language == AppLanguage.en ? displayNameEn : displayNameTr;
 
   String get emoji {
     switch (this) {

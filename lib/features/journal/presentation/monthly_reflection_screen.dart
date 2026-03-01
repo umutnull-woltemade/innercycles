@@ -159,7 +159,7 @@ class _MonthlyReflectionScreenState
                               final monthLabel = monthNames[_selectedMonth - 1];
                               final strongestArea = summary.strongestArea;
                               final strongest = strongestArea != null
-                                  ? (strongestArea.localizedName(isEn))
+                                  ? (strongestArea.localizedName(language))
                                   : null;
                               final msg = isEn
                                   ? 'My $monthLabel $_selectedYear reflection:\n${summary.totalEntries} entries${strongest != null ? '\nStrongest area: $strongest' : ''}\n\nTracking my patterns with InnerCycles.\n${AppConstants.appStoreUrl}\n#InnerCycles #MonthlyReflection'
@@ -493,7 +493,7 @@ class _MonthlyReflectionScreenState
               context,
               isDark,
               L10nService.get('journal.monthly_reflection.strongest_area', language),
-              summary.strongestArea?.localizedName(isEn) ?? '',
+              summary.strongestArea?.localizedName(language) ?? '',
               Icons.star,
               AppColors.success,
             ),
@@ -505,7 +505,7 @@ class _MonthlyReflectionScreenState
               context,
               isDark,
               L10nService.get('journal.monthly_reflection.needs_attention', language),
-              summary.weakestArea?.localizedName(isEn) ?? '',
+              summary.weakestArea?.localizedName(language) ?? '',
               Icons.info_outline,
               AppColors.warning,
             ),
@@ -703,7 +703,7 @@ class _MonthlyReflectionScreenState
           ),
           const SizedBox(height: AppConstants.spacingMd),
           ...summary.averagesByArea.entries.map((e) {
-            final label = e.key.localizedName(isEn);
+            final label = e.key.localizedName(language);
             return Semantics(
               label: isEn
                   ? '$label: ${e.value.toStringAsFixed(1)} out of 5'

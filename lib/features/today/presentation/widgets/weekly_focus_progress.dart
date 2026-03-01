@@ -83,7 +83,7 @@ class WeeklyFocusProgress extends ConsumerWidget {
                 return Padding(
                   padding: const EdgeInsets.only(right: 6),
                   child: Tooltip(
-                    message: area.localizedName(isEn),
+                    message: area.localizedName(language),
                     child: Container(
                       width: 28,
                       height: 28,

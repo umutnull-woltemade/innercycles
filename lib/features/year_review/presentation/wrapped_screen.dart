@@ -515,7 +515,7 @@ class _EmotionalArcCard extends StatelessWidget {
           ).animate().fadeIn(duration: 400.ms),
           const SizedBox(height: 16),
           Text(
-                data.dominantEmotionalArc.label(isEn),
+                data.dominantEmotionalArc.label(language),
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 42,
                   fontWeight: FontWeight.w800,
@@ -535,7 +535,7 @@ class _EmotionalArcCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(
-              data.dominantEmotionalArc.description(isEn),
+              data.dominantEmotionalArc.description(language),
               textAlign: TextAlign.center,
               style: AppTypography.decorativeScript(
                 fontSize: 15,
@@ -703,7 +703,7 @@ class _FocusAreaCard extends StatelessWidget {
                       SizedBox(
                         width: 80,
                         child: Text(
-                          area.localizedName(isEn),
+                          area.localizedName(language),
                           style: AppTypography.subtitle(
                             fontSize: 13,
                             color: AppColors.textSecondary,

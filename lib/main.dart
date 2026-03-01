@@ -277,9 +277,8 @@ class _AppInitializerState extends State<AppInitializer>
           final dailyTime = await notifService.getDailyReflectionTime();
           if (dailyTime != null) {
             final hookService = await DailyHookService.init();
-            final isEnglish = savedLanguage == AppLanguage.en;
             final hookMessage = hookService.getMorningHook(
-              isEnglish: isEnglish,
+              language: savedLanguage,
             );
             await notifService.scheduleDailyReflection(
               hour: dailyTime.hour,

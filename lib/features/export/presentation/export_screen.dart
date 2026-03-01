@@ -274,7 +274,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
       final result = service.export(
         format: _selectedFormat,
         isPremium: isPremium,
-        isEn: isEn,
+        language: AppLanguage.fromIsEn(isEn),
       );
 
       await SharePlus.instance.share(
@@ -310,7 +310,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
     final result = service.export(
       format: _selectedFormat,
       isPremium: isPremium,
-      isEn: isEn,
+      language: AppLanguage.fromIsEn(isEn),
     );
 
     await Clipboard.setData(ClipboardData(text: result.content));
