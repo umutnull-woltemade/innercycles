@@ -469,7 +469,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
                 _buildListSection(
                   context,
                   title: L10nService.get('quiz.attachment_quiz.your_strengths', isEn ? AppLanguage.en : AppLanguage.tr),
-                  items: isEn ? style.strengthsEn : style.strengthsTr,
+                  items: style.localizedStrengths(isEn),
                   icon: Icons.star_rounded,
                   color: AppColors.starGold,
                   isDark: isDark,
@@ -480,7 +480,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
                 _buildListSection(
                   context,
                   title: L10nService.get('quiz.attachment_quiz.growth_areas', isEn ? AppLanguage.en : AppLanguage.tr),
-                  items: isEn ? style.growthAreasEn : style.growthAreasTr,
+                  items: style.localizedGrowthAreas(isEn),
                   icon: Icons.spa_rounded,
                   color: AppColors.amethyst,
                   isDark: isDark,
@@ -594,7 +594,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
 
               // Description
               Text(
-                isEn ? style.descriptionEn : style.descriptionTr,
+                style.localizedDescription(isEn),
                 style: AppTypography.decorativeScript(
                   fontSize: 15,
                   color: isDark

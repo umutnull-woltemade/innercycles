@@ -56,7 +56,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
               as RenderRepaintBoundary?;
       if (boundary == null) return;
 
-      final title = isEn ? challenge.titleEn : challenge.titleTr;
+      final title = challenge.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr);
       await InstagramShareService.shareCosmicContent(
         boundary: boundary,
         shareText: L10nService.getWithParams('sharing.share_challenge_text', isEn ? AppLanguage.en : AppLanguage.tr, params: {'emoji': challenge.emoji, 'title': title, 'appStoreUrl': AppConstants.appStoreUrl}),
@@ -71,7 +71,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final title = isEn ? challenge.titleEn : challenge.titleTr;
+    final title = challenge.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr);
 
     return Semantics(
       label: isEn

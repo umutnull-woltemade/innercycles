@@ -63,10 +63,9 @@ class _ShareCardGalleryScreenState
     if (cycleAnalysis != null && template.id == 'cycle_position') {
       final phase = cycleAnalysis.overallPhase;
       if (phase != null) {
-        cyclePhaseName = isEn ? phase.labelEn() : phase.labelTr();
-        cyclePhaseDescription = isEn
-            ? phase.descriptionEn()
-            : phase.descriptionTr();
+        final lang = isEn ? AppLanguage.en : AppLanguage.tr;
+        cyclePhaseName = phase.label(lang);
+        cyclePhaseDescription = phase.description(lang);
       }
 
       // Find the best cycle length from area summaries

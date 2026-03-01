@@ -384,7 +384,7 @@ class _ChallengeCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          isEn ? challenge.titleEn : challenge.titleTr,
+                          challenge.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.displayFont.copyWith(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -423,7 +423,7 @@ class _ChallengeCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    isEn ? challenge.descriptionEn : challenge.descriptionTr,
+                    challenge.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.decorativeScript(
                       fontSize: 12,
                       color: isDark

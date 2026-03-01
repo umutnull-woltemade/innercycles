@@ -37,6 +37,9 @@ class _FeatureItem {
     required this.descEn,
     required this.descTr,
   });
+
+  String localizedTitle(bool isEn) => isEn ? titleEn : titleTr;
+  String localizedDesc(bool isEn) => isEn ? descEn : descTr;
 }
 
 // ---------------------------------------------------------------------------
@@ -247,8 +250,8 @@ class _WhatsNewSheet extends StatelessWidget {
                     final f = WhatsNewModal._features[index];
                     return _FeatureTile(
                       emoji: f.emoji,
-                      title: isEn ? f.titleEn : f.titleTr,
-                      description: isEn ? f.descEn : f.descTr,
+                      title: f.localizedTitle(isEn),
+                      description: f.localizedDesc(isEn),
                       textColor: textColor,
                       subtextColor: subtextColor,
                       delay: Duration(milliseconds: 150 + index * 80),

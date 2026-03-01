@@ -394,7 +394,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
           spacing: 6,
           runSpacing: 6,
           children: suggestions.map((habit) {
-            final title = isEn ? habit.titleEn : habit.titleTr;
+            final title = habit.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr);
             return Semantics(
               label: title,
               button: true,

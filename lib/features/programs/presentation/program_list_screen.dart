@@ -278,7 +278,7 @@ class _ProgramCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Semantics(
-        label: isEn ? program.titleEn : program.titleTr,
+        label: program.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
         button: true,
         child: GestureDetector(
           onTap: () {
@@ -322,7 +322,7 @@ class _ProgramCard extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              isEn ? program.titleEn : program.titleTr,
+                              program.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
                               style: AppTypography.displayFont.copyWith(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
@@ -390,7 +390,7 @@ class _ProgramCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        isEn ? program.descriptionEn : program.descriptionTr,
+                        program.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.decorativeScript(
                           fontSize: 12,
                           color: isDark

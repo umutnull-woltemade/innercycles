@@ -84,8 +84,9 @@ class _BadgeCelebrationModalState extends State<BadgeCelebrationModal>
 
   void _share() {
     HapticFeedback.lightImpact();
-    final name = isEn ? milestone.nameEn : milestone.nameTr;
-    final desc = isEn ? milestone.descriptionEn : milestone.descriptionTr;
+    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
+    final name = milestone.localizedName(lang);
+    final desc = milestone.localizedDescription(lang);
     final text = isEn
         ? '${milestone.emoji} Badge Unlocked: $name\n\n$desc\n\n'
           'Track your growth: ${AppConstants.appStoreUrl}\n'
@@ -99,9 +100,10 @@ class _BadgeCelebrationModalState extends State<BadgeCelebrationModal>
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final name = isEn ? milestone.nameEn : milestone.nameTr;
-    final desc = isEn ? milestone.descriptionEn : milestone.descriptionTr;
-    final category = milestone.category.localizedName(isEn);
+    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
+    final name = milestone.localizedName(lang);
+    final desc = milestone.localizedDescription(lang);
+    final category = milestone.category.displayName(lang);
 
     return Semantics(
       label: isEn

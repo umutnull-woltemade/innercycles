@@ -332,7 +332,7 @@ class _EmotionCardState extends State<_EmotionCard> {
 
     return Semantics(
       button: true,
-      label: isEn ? e.nameEn : e.nameTr,
+      label: e.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
       child: GestureDetector(
         onTap: () => setState(() => _isExpanded = !_isExpanded),
         child: GlassPanel(
@@ -351,7 +351,7 @@ class _EmotionCardState extends State<_EmotionCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          isEn ? e.nameEn : e.nameTr,
+                          e.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.displayFont.copyWith(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -413,7 +413,7 @@ class _EmotionCardState extends State<_EmotionCard> {
               if (_isExpanded) ...[
                 const SizedBox(height: AppConstants.spacingMd),
                 Text(
-                  isEn ? e.descriptionEn : e.descriptionTr,
+                  e.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.decorativeScript(
                     fontSize: 14,
                     color: isDark
@@ -453,7 +453,7 @@ class _EmotionCardState extends State<_EmotionCard> {
                             ),
                             const SizedBox(height: 2),
                             Text(
-                              isEn ? e.bodySensationEn : e.bodySensationTr,
+                              e.localizedBodySensation(isEn ? AppLanguage.en : AppLanguage.tr),
                               style: AppTypography.decorativeScript(
                                 fontSize: 13,
                                 color: isDark

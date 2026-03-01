@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../providers/app_providers.dart';
 
 enum Season { spring, summer, autumn, winter }
 
@@ -24,6 +25,12 @@ class SeasonalPrompt {
     required this.promptEn,
     required this.promptTr,
   });
+
+  String localizedTitle(AppLanguage language) =>
+      language == AppLanguage.en ? titleEn : titleTr;
+
+  String localizedPrompt(AppLanguage language) =>
+      language == AppLanguage.en ? promptEn : promptTr;
 }
 
 class SeasonalModule {
@@ -44,6 +51,12 @@ class SeasonalModule {
     required this.themeTr,
     required this.prompts,
   });
+
+  String localizedName(AppLanguage language) =>
+      language == AppLanguage.en ? nameEn : nameTr;
+
+  String localizedTheme(AppLanguage language) =>
+      language == AppLanguage.en ? themeEn : themeTr;
 }
 
 class SeasonalProgress {

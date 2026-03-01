@@ -483,7 +483,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            isEn ? prompt.promptEn : prompt.promptTr,
+            prompt.localizedPrompt(isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.decorativeScript(
               fontSize: 17,
               fontWeight: FontWeight.w500,
@@ -697,7 +697,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                         id: '${DateTime.now().millisecondsSinceEpoch}',
                         date: DateTime.now(),
                         archetype: _selectedArchetype,
-                        prompt: isEn ? prompt.promptEn : prompt.promptTr,
+                        prompt: prompt.localizedPrompt(isEn ? AppLanguage.en : AppLanguage.tr),
                         response: _responseController.text.trim(),
                         intensity: _intensity,
                         breakthroughMoment: _breakthroughMoment,

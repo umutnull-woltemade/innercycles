@@ -294,8 +294,8 @@ class _InsightsDiscoveryScreenState
     return Semantics(
       button: true,
       label: isEn
-          ? 'Today\'s Insight: ${module.titleEn}'
-          : 'Bugünün İçgörüsü: ${module.titleTr}',
+          ? 'Today\'s Insight: ${module.localizedTitle(AppLanguage.en)}'
+          : 'Bugünün İçgörüsü: ${module.localizedTitle(AppLanguage.tr)}',
       child: GestureDetector(
         onTap: () => _openModuleDetail(module, service),
         child: PremiumCard(
@@ -335,7 +335,7 @@ class _InsightsDiscoveryScreenState
               ),
               const SizedBox(height: 14),
               GradientText(
-                isEn ? module.titleEn : module.titleTr,
+                module.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.aurora,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 20,
@@ -344,7 +344,7 @@ class _InsightsDiscoveryScreenState
               ),
               const SizedBox(height: 8),
               Text(
-                isEn ? module.summaryEn : module.summaryTr,
+                module.localizedSummary(isEn ? AppLanguage.en : AppLanguage.tr),
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: AppTypography.decorativeScript(
@@ -476,7 +476,7 @@ class _InsightsDiscoveryScreenState
 
     return Semantics(
       button: true,
-      label: isEn ? module.titleEn : module.titleTr,
+      label: module.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
       child: GestureDetector(
         onTap: () => _openModuleDetail(module, service),
         child: PremiumCard(
@@ -501,7 +501,7 @@ class _InsightsDiscoveryScreenState
                   const SizedBox(width: 10),
                   Expanded(
                     child: Text(
-                      isEn ? module.titleEn : module.titleTr,
+                      module.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -513,7 +513,7 @@ class _InsightsDiscoveryScreenState
                   ),
                   // Share button
                   ShareInsightButton(
-                    insightText: isEn ? module.summaryEn : module.summaryTr,
+                    insightText: module.localizedSummary(isEn ? AppLanguage.en : AppLanguage.tr),
                     iconSize: 16,
                   ),
                   const SizedBox(width: 4),
@@ -547,7 +547,7 @@ class _InsightsDiscoveryScreenState
               ),
               const SizedBox(height: 8),
               Text(
-                isEn ? module.summaryEn : module.summaryTr,
+                module.localizedSummary(isEn ? AppLanguage.en : AppLanguage.tr),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: AppTypography.decorativeScript(
@@ -648,7 +648,7 @@ class _InsightsDiscoveryScreenState
 
                   // Title
                   GradientText(
-                    isEn ? module.titleEn : module.titleTr,
+                    module.localizedTitle(language),
                     variant: GradientTextVariant.aurora,
                     style: AppTypography.displayFont.copyWith(
                       fontSize: 24,
@@ -659,7 +659,7 @@ class _InsightsDiscoveryScreenState
 
                   // Summary
                   Text(
-                    isEn ? module.summaryEn : module.summaryTr,
+                    module.localizedSummary(language),
                     style: AppTypography.decorativeScript(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
@@ -672,7 +672,7 @@ class _InsightsDiscoveryScreenState
 
                   // Body
                   Text(
-                    isEn ? module.bodyEn : module.bodyTr,
+                    module.localizedBody(language),
                     style: AppTypography.decorativeScript(
                       fontSize: 15,
                       color: isDark
@@ -716,7 +716,7 @@ class _InsightsDiscoveryScreenState
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          isEn ? module.whyItMattersEn : module.whyItMattersTr,
+                          module.localizedWhyItMatters(language),
                           style: AppTypography.decorativeScript(
                             fontSize: 14,
                             color: isDark
@@ -756,10 +756,7 @@ class _InsightsDiscoveryScreenState
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            isEn
-                                ? module.screenshotLineEn!
-                                : (module.screenshotLineTr ??
-                                      module.screenshotLineEn!),
+                            module.localizedScreenshotLine(language)!,
                             textAlign: TextAlign.center,
                             style: AppTypography.decorativeScript(
                               fontSize: 17,
@@ -794,7 +791,7 @@ class _InsightsDiscoveryScreenState
                             padding: const EdgeInsets.only(bottom: 8),
                             child: Semantics(
                               button: true,
-                              label: isEn ? related.titleEn : related.titleTr,
+                              label: related.localizedTitle(language),
                               child: GestureDetector(
                                 onTap: () {
                                   Navigator.of(ctx).pop();
@@ -826,9 +823,7 @@ class _InsightsDiscoveryScreenState
                                       const SizedBox(width: 10),
                                       Expanded(
                                         child: Text(
-                                          isEn
-                                              ? related.titleEn
-                                              : related.titleTr,
+                                          related.localizedTitle(language),
                                           style: AppTypography.subtitle(
                                             fontSize: 13,
                                             color: isDark

@@ -229,7 +229,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
           ),
           Expanded(
             child: Text(
-              isEn ? definition.title : definition.titleTr,
+              definition.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
               textAlign: TextAlign.center,
               style: AppTypography.displayFont.copyWith(
                 fontSize: 22,
@@ -488,9 +488,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
                   _buildListSection(
                     context,
                     title: L10nService.get('quiz.generic_quiz.your_strengths', isEn ? AppLanguage.en : AppLanguage.tr),
-                    items: isEn
-                        ? winningDim.strengthsEn
-                        : winningDim.strengthsTr,
+                    items: winningDim.localizedStrengths(isEn ? AppLanguage.en : AppLanguage.tr),
                     icon: Icons.star_rounded,
                     color: AppColors.starGold,
                     isDark: isDark,
@@ -503,9 +501,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
                   _buildListSection(
                     context,
                     title: L10nService.get('quiz.generic_quiz.growth_areas', isEn ? AppLanguage.en : AppLanguage.tr),
-                    items: isEn
-                        ? winningDim.growthAreasEn
-                        : winningDim.growthAreasTr,
+                    items: winningDim.localizedGrowthAreas(isEn ? AppLanguage.en : AppLanguage.tr),
                     icon: Icons.spa_rounded,
                     color: AppColors.amethyst,
                     isDark: isDark,
@@ -594,7 +590,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
               AppSymbol.hero(dim.emoji),
               const SizedBox(height: AppConstants.spacingMd),
               Text(
-                isEn ? dim.nameEn : dim.nameTr,
+                dim.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 20,
                   color: dim.color,
@@ -613,7 +609,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
               ),
               const SizedBox(height: AppConstants.spacingLg),
               Text(
-                isEn ? dim.descriptionEn : dim.descriptionTr,
+                dim.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.decorativeScript(
                   fontSize: 15,
                   color: isDark
@@ -685,7 +681,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
           children: [
             Expanded(
               child: Text(
-                isEn ? dim.nameEn : dim.nameTr,
+                dim.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.subtitle(
                   fontSize: 14,
                   color: isDark

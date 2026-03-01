@@ -450,7 +450,7 @@ class _ActiveChallengeCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      isEn ? challenge.titleEn : challenge.titleTr,
+                      challenge.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
@@ -509,7 +509,7 @@ class _ActiveChallengeCard extends StatelessWidget {
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            isEn ? challenge.descriptionEn : challenge.descriptionTr,
+            challenge.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.decorativeScript(
               fontSize: 13,
               color: isDark
@@ -540,8 +540,8 @@ class _AvailableChallengeCard extends StatelessWidget {
     return Semantics(
       button: true,
       label: isEn
-          ? 'Start challenge: ${challenge.titleEn}'
-          : 'Göreve başla: ${challenge.titleTr}',
+          ? 'Start challenge: ${challenge.localizedTitle(AppLanguage.en)}'
+          : 'Göreve başla: ${challenge.localizedTitle(AppLanguage.tr)}',
       child: PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: AppConstants.radiusLg,
@@ -577,7 +577,7 @@ class _AvailableChallengeCard extends StatelessWidget {
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            isEn ? challenge.titleEn : challenge.titleTr,
+            challenge.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.subtitle(
               fontSize: 14,
               color: isDark
@@ -639,7 +639,7 @@ class _CompletedChallengeTile extends StatelessWidget {
           const SizedBox(width: AppConstants.spacingMd),
           Expanded(
             child: Text(
-              isEn ? challenge.titleEn : challenge.titleTr,
+              challenge.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.subtitle(
                 fontSize: 14,
                 color: isDark
@@ -651,7 +651,7 @@ class _CompletedChallengeTile extends StatelessWidget {
           GestureDetector(
             onTap: () {
               HapticService.buttonPress();
-              final title = isEn ? challenge.titleEn : challenge.titleTr;
+              final title = challenge.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr);
               final msg = isEn
                   ? 'I completed the "$title" challenge on InnerCycles! Personal growth through daily reflection.\n\n${AppConstants.appStoreUrl}\n#InnerCycles #ChallengeComplete'
                   : '"$title" görevini InnerCycles\'da tamamladım! Günlük yansıma ile kişisel gelişim.\n\n${AppConstants.appStoreUrl}\n#InnerCycles';

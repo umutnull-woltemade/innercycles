@@ -7,6 +7,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import '../models/shadow_work_entry.dart';
+import '../providers/app_providers.dart';
 
 class ShadowPrompt {
   final String promptEn;
@@ -20,6 +21,9 @@ class ShadowPrompt {
     required this.archetype,
     required this.depth,
   });
+
+  String localizedPrompt(AppLanguage language) =>
+      language == AppLanguage.en ? promptEn : promptTr;
 }
 
 class ShadowPromptsContent {

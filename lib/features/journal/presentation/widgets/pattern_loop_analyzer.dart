@@ -284,7 +284,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            widget.isEn ? loop.insightEn : loop.insightTr,
+                            loop.localizedInsight(widget.isEn ? AppLanguage.en : AppLanguage.tr),
                             style: AppTypography.decorativeScript(
                               fontSize: 13,
                               color: widget.isDark
@@ -464,7 +464,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            widget.isEn ? stage.labelEn : stage.labelTr,
+                            stage.localizedLabel(widget.isEn ? AppLanguage.en : AppLanguage.tr),
                             style: AppTypography.displayFont.copyWith(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
@@ -475,10 +475,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                           ),
                           if (stage.descriptionEn != null)
                             Text(
-                              widget.isEn
-                                  ? stage.descriptionEn!
-                                  : (stage.descriptionTr ??
-                                        stage.descriptionEn!),
+                              stage.localizedDescription(widget.isEn ? AppLanguage.en : AppLanguage.tr) ?? stage.descriptionEn!,
                               style: AppTypography.decorativeScript(
                                 fontSize: 12,
                                 color: widget.isDark
@@ -512,9 +509,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                   const SizedBox(width: 6),
                   Expanded(
                     child: Text(
-                      widget.isEn
-                          ? loop.actionEn!
-                          : (loop.actionTr ?? loop.actionEn!),
+                      loop.localizedAction(widget.isEn ? AppLanguage.en : AppLanguage.tr) ?? loop.actionEn!,
                       style: AppTypography.decorativeScript(
                         fontSize: 12,
                         color: widget.isDark

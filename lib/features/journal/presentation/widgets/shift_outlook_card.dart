@@ -75,7 +75,7 @@ class ShiftOutlookCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${isEn ? window.confidence.labelEn() : window.confidence.labelTr()} ${L10nService.get('journal.shift_outlook.confidence', isEn ? AppLanguage.en : AppLanguage.tr)}',
+                      '${window.confidence.label(isEn ? AppLanguage.en : AppLanguage.tr)} ${L10nService.get('journal.shift_outlook.confidence', isEn ? AppLanguage.en : AppLanguage.tr)}',
                       style: AppTypography.elegantAccent(
                         fontSize: 11,
                         color: _confidenceColor(window.confidence),
@@ -124,7 +124,7 @@ class ShiftOutlookCard extends StatelessWidget {
 
           // Description
           Text(
-            isEn ? window.descriptionEn : window.descriptionTr,
+            window.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.decorativeScript(
               fontSize: 14,
               color: isDark
@@ -150,7 +150,7 @@ class ShiftOutlookCard extends StatelessWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    isEn ? window.actionEn : window.actionTr,
+                    window.localizedAction(isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.decorativeScript(
                       fontSize: 13,
                       color: isDark
@@ -193,7 +193,7 @@ class ShiftOutlookCard extends StatelessWidget {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        isEn ? signal.signalEn : signal.signalTr,
+                        signal.localizedSignal(isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.decorativeScript(
                           fontSize: 12,
                           color: isDark
@@ -224,7 +224,7 @@ class ShiftOutlookCard extends StatelessWidget {
         // Current phase badge
         _buildPhaseBadge(
           context,
-          isEn ? current.labelEn() : current.labelTr(),
+          current.label(isEn ? AppLanguage.en : AppLanguage.tr),
           currentColor,
           true,
         ),
@@ -240,7 +240,7 @@ class ShiftOutlookCard extends StatelessWidget {
         // Next phase badge
         _buildPhaseBadge(
           context,
-          isEn ? next.labelEn() : next.labelTr(),
+          next.label(isEn ? AppLanguage.en : AppLanguage.tr),
           nextColor,
           false,
         ),

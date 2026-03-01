@@ -415,9 +415,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                         ),
                       ),
                       child: Text(
-                        isEn
-                            ? analysis.overallPhase!.descriptionEn()
-                            : analysis.overallPhase!.descriptionTr(),
+                        analysis.overallPhase!.description(isEn ? AppLanguage.en : AppLanguage.tr),
                         textAlign: TextAlign.center,
                         style: AppTypography.decorativeScript(
                           fontSize: 13,

@@ -10,6 +10,8 @@
 
 import 'dart:ui';
 
+import '../providers/app_providers.dart';
+
 // ════════════════════════════════════════════════════════════════════════════
 // SCORING TYPE
 // ════════════════════════════════════════════════════════════════════════════
@@ -55,6 +57,12 @@ class QuizDefinition {
     required this.scoringType,
     required this.dimensions,
   });
+
+  String localizedTitle(AppLanguage language) =>
+      language == AppLanguage.en ? title : titleTr;
+
+  String localizedDescription(AppLanguage language) =>
+      language == AppLanguage.en ? description : descriptionTr;
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -128,6 +136,18 @@ class QuizDimensionMeta {
     this.growthAreasEn = const [],
     this.growthAreasTr = const [],
   });
+
+  String localizedName(AppLanguage language) =>
+      language == AppLanguage.en ? nameEn : nameTr;
+
+  String localizedDescription(AppLanguage language) =>
+      language == AppLanguage.en ? descriptionEn : descriptionTr;
+
+  List<String> localizedStrengths(AppLanguage language) =>
+      language == AppLanguage.en ? strengthsEn : strengthsTr;
+
+  List<String> localizedGrowthAreas(AppLanguage language) =>
+      language == AppLanguage.en ? growthAreasEn : growthAreasTr;
 }
 
 // ════════════════════════════════════════════════════════════════════════════

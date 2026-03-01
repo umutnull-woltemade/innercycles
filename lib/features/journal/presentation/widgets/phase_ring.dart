@@ -115,9 +115,7 @@ class _PhaseRingState extends State<PhaseRing>
                   const SizedBox(height: 6),
                   // Phase label
                   Text(
-                    widget.isEn
-                        ? widget.phase.labelEn()
-                        : widget.phase.labelTr(),
+                    widget.phase.label(widget.isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.displayFont.copyWith(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -131,9 +129,7 @@ class _PhaseRingState extends State<PhaseRing>
                   if (widget.arc != null) ...[
                     const SizedBox(height: 2),
                     Text(
-                      widget.isEn
-                          ? widget.arc!.labelEn()
-                          : widget.arc!.labelTr(),
+                      widget.arc!.label(widget.isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 11,
                         color: phaseColor.withValues(alpha: 0.8),

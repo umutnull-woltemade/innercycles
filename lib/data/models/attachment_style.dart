@@ -238,6 +238,15 @@ enum AttachmentStyle {
     }
   }
 
+  String localizedDescription(bool isEn) =>
+      isEn ? descriptionEn : descriptionTr;
+
+  List<String> localizedStrengths(bool isEn) =>
+      isEn ? strengthsEn : strengthsTr;
+
+  List<String> localizedGrowthAreas(bool isEn) =>
+      isEn ? growthAreasEn : growthAreasTr;
+
   /// Icon representing each style
   String get emojiIcon {
     switch (this) {

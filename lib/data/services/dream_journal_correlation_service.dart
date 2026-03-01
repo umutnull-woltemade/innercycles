@@ -258,7 +258,7 @@ class DreamJournalCorrelationService {
 
     for (final c in correlations) {
       final deltaStr = c.delta.abs().toStringAsFixed(1);
-      final direction = isEn ? c.direction.labelEn() : c.direction.labelTr();
+      final direction = c.direction.label(lang);
       buffer.writeln(
         L10nService.getWithParams('dream_correlation.connection_item', lang, params: {
           'theme': c.theme,

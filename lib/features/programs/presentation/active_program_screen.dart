@@ -99,7 +99,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                     ),
                     slivers: [
                       GlassSliverAppBar(
-                        title: isEn ? program.titleEn : program.titleTr,
+                        title: program.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
                       ),
                       SliverPadding(
                         padding: const EdgeInsets.all(16),
@@ -231,7 +231,7 @@ class _ProgramHeader extends StatelessWidget {
           AppSymbol.hero(program.emoji),
           const SizedBox(height: 12),
           Text(
-            isEn ? program.descriptionEn : program.descriptionTr,
+            program.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 14,
@@ -413,7 +413,7 @@ class _TodayPromptCard extends StatelessWidget {
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
-                  isEn ? day.titleEn : day.titleTr,
+                  day.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
@@ -427,7 +427,7 @@ class _TodayPromptCard extends StatelessWidget {
           ),
           const SizedBox(height: 14),
           Text(
-            isEn ? day.promptEn : day.promptTr,
+            day.localizedPrompt(isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.decorativeScript(
               fontSize: 15,
               color: isDark

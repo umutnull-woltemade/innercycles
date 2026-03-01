@@ -5,6 +5,8 @@
 /// Apple App Store 4.3(b) compliant. Educational and reflective only.
 library;
 
+import '../providers/app_providers.dart';
+
 // ═══════════════════════════════════════════════════════════════════════════
 // ENUMS
 // ═══════════════════════════════════════════════════════════════════════════
@@ -129,6 +131,15 @@ class GranularEmotion {
     required this.bodySensationTr,
     required this.emoji,
   });
+
+  String localizedName(AppLanguage language) =>
+      language == AppLanguage.en ? nameEn : nameTr;
+
+  String localizedDescription(AppLanguage language) =>
+      language == AppLanguage.en ? descriptionEn : descriptionTr;
+
+  String localizedBodySensation(AppLanguage language) =>
+      language == AppLanguage.en ? bodySensationEn : bodySensationTr;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

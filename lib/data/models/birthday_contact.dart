@@ -270,8 +270,9 @@ class BirthdayContact {
   /// Initials from name (first letters of first two words)
   String get initials {
     final parts = name.trim().split(RegExp(r'\s+'));
-    if (parts.isEmpty) return '?';
+    if (parts.isEmpty || parts[0].isEmpty) return '?';
     if (parts.length == 1) return parts[0][0].toUpperCase();
+    if (parts[1].isEmpty) return parts[0][0].toUpperCase();
     return '${parts[0][0]}${parts[1][0]}'.toUpperCase();
   }
 }

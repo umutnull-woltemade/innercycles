@@ -381,7 +381,7 @@ class _HabitCheckCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      isEn ? habit.titleEn : habit.titleTr,
+                      habit.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,

@@ -4,6 +4,8 @@
 /// Apple App Store 4.3(b) compliant. No predictions. Educational only.
 library;
 
+import '../providers/app_providers.dart';
+
 // ═══════════════════════════════════════════════════════════════════════════
 // ENUMS
 // ═══════════════════════════════════════════════════════════════════════════
@@ -121,6 +123,23 @@ class ContextModule {
     this.relatedFocusAreas = const [],
     this.relatedModuleIds = const [],
   });
+
+  String localizedTitle(AppLanguage language) =>
+      language == AppLanguage.en ? titleEn : titleTr;
+
+  String localizedSummary(AppLanguage language) =>
+      language == AppLanguage.en ? summaryEn : summaryTr;
+
+  String localizedBody(AppLanguage language) =>
+      language == AppLanguage.en ? bodyEn : bodyTr;
+
+  String localizedWhyItMatters(AppLanguage language) =>
+      language == AppLanguage.en ? whyItMattersEn : whyItMattersTr;
+
+  String? localizedScreenshotLine(AppLanguage language) =>
+      language == AppLanguage.en
+          ? screenshotLineEn
+          : (screenshotLineTr ?? screenshotLineEn);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

@@ -335,7 +335,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
           final selected = _selectedCategory == cat;
           final label = cat == null
               ? (L10nService.get('milestones.milestone.all', isEn ? AppLanguage.en : AppLanguage.tr))
-              : (cat.localizedName(isEn));
+              : (cat.displayName(isEn ? AppLanguage.en : AppLanguage.tr));
 
           return Padding(
             padding: const EdgeInsets.only(right: 8),
@@ -393,7 +393,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildBadgeTile(Milestone milestone, bool earned, int index) {
-    final name = isEn ? milestone.nameEn : milestone.nameTr;
+    final name = milestone.localizedName(isEn ? AppLanguage.en : AppLanguage.tr);
 
     return Semantics(
           label: earned
@@ -537,11 +537,10 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
 
   void _showBadgeDetail(Milestone milestone) {
     final earnedDate = service.earnedAt(milestone.id);
-    final name = isEn ? milestone.nameEn : milestone.nameTr;
-    final description = isEn
-        ? milestone.descriptionEn
-        : milestone.descriptionTr;
-    final categoryName = milestone.category.localizedName(isEn);
+    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
+    final name = milestone.localizedName(lang);
+    final description = milestone.localizedDescription(lang);
+    final categoryName = milestone.category.displayName(lang);
 
     showDialog(
       context: context,

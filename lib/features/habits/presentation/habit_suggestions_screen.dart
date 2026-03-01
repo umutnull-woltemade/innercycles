@@ -349,7 +349,7 @@ class _DailySpotlightCard extends StatelessWidget {
     final isAdopted = service.isAdopted(habit.id);
 
     return Semantics(
-      label: isEn ? habit.titleEn : habit.titleTr,
+      label: habit.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
       button: true,
       child: GestureDetector(
         onTap: onTap,
@@ -407,7 +407,7 @@ class _DailySpotlightCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 2),
                         GradientText(
-                          isEn ? habit.titleEn : habit.titleTr,
+                          habit.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
                           variant: GradientTextVariant.gold,
                           style: AppTypography.displayFont.copyWith(
                             fontSize: 17,
@@ -448,7 +448,7 @@ class _DailySpotlightCard extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               Text(
-                isEn ? habit.descriptionEn : habit.descriptionTr,
+                habit.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.decorativeScript(
                   fontSize: 13,
                   color: isDark
@@ -759,7 +759,7 @@ class _HabitCard extends StatelessWidget {
     final isBookmarked = service.isBookmarked(habit.id);
 
     return Semantics(
-      label: isEn ? habit.titleEn : habit.titleTr,
+      label: habit.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
       button: true,
       child: GestureDetector(
         onTap: onTap,
@@ -807,7 +807,7 @@ class _HabitCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            isEn ? habit.titleEn : habit.titleTr,
+                            habit.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
                             style: AppTypography.displayFont.copyWith(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
@@ -1082,7 +1082,7 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
 
                     // Title
                     Text(
-                      isEn ? habit.titleEn : habit.titleTr,
+                      habit.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 22,
                         fontWeight: FontWeight.w700,
@@ -1096,7 +1096,7 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
 
                     // Description
                     Text(
-                      isEn ? habit.descriptionEn : habit.descriptionTr,
+                      habit.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.decorativeScript(
                         fontSize: 15,
                         color: isDark

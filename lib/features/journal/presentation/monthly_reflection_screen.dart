@@ -490,9 +490,7 @@ class _MonthlyReflectionScreenState
               context,
               isDark,
               L10nService.get('journal.monthly_reflection.strongest_area', isEn ? AppLanguage.en : AppLanguage.tr),
-              isEn
-                  ? (summary.strongestArea?.displayNameEn ?? '')
-                  : (summary.strongestArea?.displayNameTr ?? ''),
+              summary.strongestArea?.localizedName(isEn) ?? '',
               Icons.star,
               AppColors.success,
             ),
@@ -504,9 +502,7 @@ class _MonthlyReflectionScreenState
               context,
               isDark,
               L10nService.get('journal.monthly_reflection.needs_attention', isEn ? AppLanguage.en : AppLanguage.tr),
-              isEn
-                  ? (summary.weakestArea?.displayNameEn ?? '')
-                  : (summary.weakestArea?.displayNameTr ?? ''),
+              summary.weakestArea?.localizedName(isEn) ?? '',
               Icons.info_outline,
               AppColors.warning,
             ),
@@ -571,8 +567,9 @@ class _MonthlyReflectionScreenState
       orElse: () => allMonthlyThemes.first,
     );
 
-    final prompts = isEn ? theme.weeklyPromptsEn : theme.weeklyPromptsTr;
-    final tip = isEn ? theme.wellnessTipEn : theme.wellnessTipTr;
+    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
+    final prompts = theme.localizedWeeklyPrompts(lang);
+    final tip = theme.localizedWellnessTip(lang);
 
     return PremiumCard(
       style: PremiumCardStyle.aurora,
@@ -586,7 +583,7 @@ class _MonthlyReflectionScreenState
               const SizedBox(width: 8),
               Expanded(
                 child: GradientText(
-                  isEn ? theme.themeNameEn : theme.themeNameTr,
+                  theme.localizedThemeName(lang),
                   variant: GradientTextVariant.aurora,
                   style: AppTypography.elegantAccent(
                     fontSize: 14,
@@ -598,7 +595,7 @@ class _MonthlyReflectionScreenState
           ),
           const SizedBox(height: 10),
           Text(
-            isEn ? theme.descriptionEn : theme.descriptionTr,
+            theme.localizedDescription(lang),
             style: AppTypography.decorativeScript(
               fontSize: 13,
               color: isDark

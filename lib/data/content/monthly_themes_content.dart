@@ -4,6 +4,8 @@
 /// Apple App Store 4.3(b) compliant. No predictions. Reflective/educational only.
 library;
 
+import '../providers/app_providers.dart';
+
 class MonthlyTheme {
   final int month; // 1-12
   final String themeNameEn;
@@ -26,6 +28,18 @@ class MonthlyTheme {
     required this.wellnessTipEn,
     required this.wellnessTipTr,
   });
+
+  String localizedThemeName(AppLanguage language) =>
+      language == AppLanguage.en ? themeNameEn : themeNameTr;
+
+  String localizedDescription(AppLanguage language) =>
+      language == AppLanguage.en ? descriptionEn : descriptionTr;
+
+  List<String> localizedWeeklyPrompts(AppLanguage language) =>
+      language == AppLanguage.en ? weeklyPromptsEn : weeklyPromptsTr;
+
+  String localizedWellnessTip(AppLanguage language) =>
+      language == AppLanguage.en ? wellnessTipEn : wellnessTipTr;
 }
 
 const List<MonthlyTheme> allMonthlyThemes = [

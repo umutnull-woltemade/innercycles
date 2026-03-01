@@ -188,7 +188,7 @@ class _SeasonHeader extends StatelessWidget {
           AppSymbol.hero(module.emoji),
           const SizedBox(height: 12),
           GradientText(
-            isEn ? module.nameEn : module.nameTr,
+            module.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 24,
@@ -197,7 +197,7 @@ class _SeasonHeader extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            isEn ? module.themeEn : module.themeTr,
+            module.localizedTheme(isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.decorativeScript(
               fontSize: 15,
               color: isDark
@@ -303,7 +303,7 @@ class _PromptCard extends StatelessWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    isEn ? prompt.titleEn : prompt.titleTr,
+                    prompt.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
                     style:
                         AppTypography.modernAccent(
                           fontSize: 15,
@@ -322,7 +322,7 @@ class _PromptCard extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              isEn ? prompt.promptEn : prompt.promptTr,
+              prompt.localizedPrompt(isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.decorativeScript(
                 fontSize: 13,
                 color: isDark
@@ -409,9 +409,7 @@ class _AllSeasonsRow extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    isEn
-                        ? m.nameEn.split(' ').first
-                        : m.nameTr.split(' ').first,
+                    m.localizedName(isEn ? AppLanguage.en : AppLanguage.tr).split(' ').first,
                     style: AppTypography.elegantAccent(
                       fontSize: 11,
                       fontWeight: isCurrent ? FontWeight.w600 : FontWeight.w400,

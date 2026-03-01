@@ -85,7 +85,7 @@ class QuizHubScreen extends ConsumerWidget {
                         if (lastResult != null) {
                           final dim = quiz.dimensions[lastResult.resultType];
                           if (dim != null) {
-                            lastResultName = isEn ? dim.nameEn : dim.nameTr;
+                            lastResultName = dim.localizedName(isEn ? AppLanguage.en : AppLanguage.tr);
                           }
                         }
                       }
@@ -163,7 +163,7 @@ class _QuizCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       button: true,
-      label: isEn ? quiz.title : quiz.titleTr,
+      label: quiz.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
       hint: isCompleted ? (L10nService.get('quiz.quiz_hub.completed', isEn ? AppLanguage.en : AppLanguage.tr)) : null,
       child: GestureDetector(
         onTap: onTap,
@@ -199,7 +199,7 @@ class _QuizCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            isEn ? quiz.title : quiz.titleTr,
+                            quiz.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
                             style: AppTypography.displayFont.copyWith(
                               fontSize: 16,
                               color: isDark
@@ -236,7 +236,7 @@ class _QuizCard extends StatelessWidget {
                     ),
                     const SizedBox(height: AppConstants.spacingXs),
                     Text(
-                      isEn ? quiz.description : quiz.descriptionTr,
+                      quiz.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.subtitle(
                         fontSize: 12,
                         color: isDark

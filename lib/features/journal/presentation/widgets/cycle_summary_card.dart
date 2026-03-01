@@ -245,7 +245,7 @@ class CycleSummaryCard extends StatelessWidget {
   ) {
     final phaseColor = _phaseColor(phase);
     final phaseIcon = _phaseIcon(phase);
-    final phaseLabel = isEn ? phase.labelEn() : phase.labelTr();
+    final phaseLabel = phase.label(isEn ? AppLanguage.en : AppLanguage.tr);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -275,7 +275,7 @@ class CycleSummaryCard extends StatelessWidget {
   Widget _buildTrendIndicator(BuildContext context, CycleTrend trend) {
     final trendColor = _trendColor(trend);
     final trendIcon = _trendIcon(trend);
-    final trendLabel = isEn ? trend.labelEn() : trend.labelTr();
+    final trendLabel = trend.label(isEn ? AppLanguage.en : AppLanguage.tr);
 
     return Row(
       mainAxisSize: MainAxisSize.min,
