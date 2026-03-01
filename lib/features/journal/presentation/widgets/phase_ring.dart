@@ -18,7 +18,7 @@ class PhaseRing extends StatefulWidget {
   final EmotionalPhase phase;
   final EmotionalArc? arc;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final double size;
 
   const PhaseRing({
@@ -26,7 +26,7 @@ class PhaseRing extends StatefulWidget {
     required this.phase,
     this.arc,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     this.size = 180,
   });
 

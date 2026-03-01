@@ -76,7 +76,6 @@ class _WrappedScreenState extends ConsumerState<WrappedScreen> {
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
-    final language.isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isPremium = ref.watch(isPremiumUserProvider);
     final wrappedAsync = ref.watch(_wrappedDataProvider(_year));

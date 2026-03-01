@@ -561,7 +561,6 @@ class _BlindSpotCardState extends State<_BlindSpotCard>
   Widget build(BuildContext context) {
     final spot = widget.spot;
     final isDark = widget.isDark;
-    final language.isEn = widget.isEn;
 
     return Semantics(
       label: spot.localizedType(language),

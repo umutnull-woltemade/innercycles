@@ -41,7 +41,7 @@ class CycleWaveChart extends StatefulWidget {
   final Map<FocusArea, List<CycleDataPoint>> areaData;
   final Set<FocusArea> visibleAreas;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final int displayDays;
   final double animationProgress;
   final ValueChanged<CycleDataPointInfo?>? onPointSelected;

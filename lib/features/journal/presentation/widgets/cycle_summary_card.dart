@@ -22,13 +22,13 @@ import '../../../../data/providers/app_providers.dart';
 class CycleSummaryCard extends StatelessWidget {
   final FocusAreaCycleSummary summary;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const CycleSummaryCard({
     super.key,
     required this.summary,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -75,7 +75,7 @@ class CycleSummaryCard extends StatelessWidget {
                     ),
                     if (hasData)
                       Text(
-                        isEn ? summary.getSummaryEn() : summary.getSummaryTr(),
+                        language.isEn ? summary.getSummaryEn() : summary.getSummaryTr(),
                         style: AppTypography.decorativeScript(
                           fontSize: 12,
                           color: isDark
@@ -146,7 +146,7 @@ class CycleSummaryCard extends StatelessWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Semantics(
-                    label: isEn
+                    label: language.isEn
                         ? '${summary.currentAverage.toStringAsFixed(1)} out of 5'
                         : '5 üzerinden ${summary.currentAverage.toStringAsFixed(1)}',
                     child: ClipRRect(
@@ -189,7 +189,7 @@ class CycleSummaryCard extends StatelessWidget {
                   ),
                   const SizedBox(width: 6),
                   Text(
-                    isEn
+                    language.isEn
                         ? 'Start tracking $areaName to see patterns here'
                         : 'Burada örüntüleri görmek için $areaName takibine başla',
                     style: AppTypography.decorativeScript(
