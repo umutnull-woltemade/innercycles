@@ -150,7 +150,7 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
     final date = _presetDates[presetKey];
     if (date == null) return;
 
-    final isEn = ref.read(languageProvider) == AppLanguage.en;
+    final language = ref.read(languageProvider);
 
     // Find the retrospective ID for this preset
     String? retroId;
@@ -166,7 +166,7 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
       Routes.journal,
       extra: {
         'initialDate': date,
-        'journalPrompt': preset.prompt(isEn),
+        'journalPrompt': preset.localizedPrompt(language),
         'retrospectiveDateId': retroId,
       },
     );
@@ -341,11 +341,10 @@ class _DaySelectionStep extends StatelessWidget {
                     spacing: 8,
                     runSpacing: 8,
                     children: presets.map((preset) {
-                      final language = isEn ? AppLanguage.en : AppLanguage.tr;
                       final selected = selectedPresets.contains(preset.key);
                       return Semantics(
                         label:
-                            '${preset.name(isEn)}, ${selected ? (L10nService.get('retrospective.retrospective.selected', language)) : (L10nService.get('retrospective.retrospective.not_selected', language))}',
+                            '${preset.localizedName(language)}, ${selected ? (L10nService.get('retrospective.retrospective.selected', language)) : (L10nService.get('retrospective.retrospective.not_selected', language))}',
                         button: true,
                         selected: selected,
                         child: GestureDetector(
@@ -384,7 +383,7 @@ class _DaySelectionStep extends StatelessWidget {
                                 const SizedBox(width: 6),
                                 Flexible(
                                   child: Text(
-                                    preset.name(isEn),
+                                    preset.localizedName(language),
                                     style:
                                         AppTypography.elegantAccent(
                                           fontSize: 13,
@@ -484,7 +483,6 @@ class _DateEntryStep extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             itemCount: presets.length,
             itemBuilder: (context, index) {
-              final language = isEn ? AppLanguage.en : AppLanguage.tr;
               final preset = presets[index];
               final date = presetDates[preset.key];
 
@@ -503,7 +501,7 @@ class _DateEntryStep extends StatelessWidget {
                           const SizedBox(width: 10),
                           Expanded(
                             child: Text(
-                              preset.name(isEn),
+                              preset.localizedName(language),
                               style: AppTypography.displayFont.copyWith(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
@@ -517,7 +515,7 @@ class _DateEntryStep extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        preset.prompt(isEn),
+                        preset.localizedPrompt(language),
                         style: AppTypography.decorativeScript(
                           fontSize: 13,
                           color: isDark

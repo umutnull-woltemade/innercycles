@@ -50,9 +50,6 @@ class ImportantDatePreset {
     required this.category,
   });
 
-  String name(bool isEn) => isEn ? nameEn : nameTr;
-  String prompt(bool isEn) => isEn ? promptEn : promptTr;
-
   String localizedName(AppLanguage language) =>
       language == AppLanguage.en ? nameEn : nameTr;
 
