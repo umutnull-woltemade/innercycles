@@ -712,14 +712,6 @@ final habitSuggestionServiceProvider = FutureProvider<HabitSuggestionService>((
 });
 
 // =============================================================================
-// MONTHLY THEME SERVICE PROVIDER
-// =============================================================================
-
-) async {
-  return await MonthlyThemeService.init();
-});
-
-// =============================================================================
 // PATTERN LOOP SERVICE PROVIDER (Emotion Intelligence)
 // =============================================================================
 
@@ -866,11 +858,6 @@ final todayBirthdaysProvider = FutureProvider<List<BirthdayContact>>((
 ) async {
   final service = await ref.watch(birthdayContactServiceProvider.future);
   return service.getTodayBirthdays();
-});
-
-) async {
-  final service = await ref.watch(birthdayContactServiceProvider.future);
-  return service.getUpcomingBirthdays(withinDays: 30);
 });
 
 // =============================================================================
