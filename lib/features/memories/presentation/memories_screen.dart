@@ -44,6 +44,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(journalServiceProvider);
 
     return Scaffold(
@@ -91,7 +92,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
               final allEntries = _cachedEntries;
 
               if (allEntries.isEmpty) {
-                return _buildEmptyState(context, isDark, language);
+                return _buildEmptyState(context, isDark, isEn);
               }
 
               // Sort newest first
@@ -148,7 +149,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                           photoEntries: photoEntries,
                           firstDate: firstDateStr,
                           isDark: isDark,
-                          language: language,
+                          isEn: isEn,
                         ),
                       ).animate().fadeIn(duration: 300.ms),
                     ),
@@ -187,7 +188,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                                 child: _OnThisDayCard(
                                   entry: onThisDayEntries[index],
                                   isDark: isDark,
-                                  language: language,
+                                  isEn: isEn,
                                   onTap: () => _navigateToEntry(
                                     context,
                                     onThisDayEntries[index],
@@ -217,7 +218,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                           months: months,
                           selectedMonth: selectedMonth,
                           isDark: isDark,
-                          language: language,
+                          isEn: isEn,
                           onMonthSelected: (month) {
                             setState(() => _selectedMonth = month);
                           },
@@ -248,7 +249,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                             return _MemoryCard(
                               entry: entry,
                               isDark: isDark,
-                              language: language,
+                              isEn: isEn,
                               onTap: () => _navigateToEntry(context, entry),
                             ).animate().fadeIn(
                               delay: Duration(milliseconds: 50 * (index % 10)),
@@ -268,7 +269,8 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
     );
   }
 
-  Widget _buildEmptyState(BuildContext context, bool isDark, bool language) {
+  Widget _buildEmptyState(BuildContext context, bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     return CustomScrollView(
       slivers: [
         GlassSliverAppBar(title: L10nService.get('memories.memories.memories_1', language)),
@@ -276,8 +278,8 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
           hasScrollBody: false,
           child: ToolEmptyState(
             icon: Icons.photo_library_outlined,
-            title: language.isEn ? 'No memories yet' : 'Hen\u00fcz an\u0131 yok',
-            description: language.isEn
+            title: isEn ? 'No memories yet' : 'Hen\u00fcz an\u0131 yok',
+            description: isEn
                 ? 'Start journaling to build your memories collection.'
                 : 'An\u0131lar\u0131n\u0131 olu\u015fturmak i\u00e7in g\u00fcnl\u00fck yazmaya ba\u015fla.',
             onStartTemplate: () => context.go(Routes.journal),
@@ -317,7 +319,7 @@ class _MemoriesStatsHeader extends StatelessWidget {
   final int photoEntries;
   final String firstDate;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _MemoriesStatsHeader({
     required this.totalEntries,
@@ -329,6 +331,7 @@ class _MemoriesStatsHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: 14,
@@ -409,7 +412,7 @@ class _MiniStat extends StatelessWidget {
 class _OnThisDayCard extends StatelessWidget {
   final JournalEntry entry;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
   final VoidCallback onTap;
 
   const _OnThisDayCard({
@@ -421,6 +424,7 @@ class _OnThisDayCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final hasPhoto = _hasValidPhoto(entry);
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
 
@@ -519,7 +523,7 @@ class _MonthSelector extends StatelessWidget {
   final List<DateTime> months;
   final DateTime selectedMonth;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
   final ValueChanged<DateTime> onMonthSelected;
 
   const _MonthSelector({
@@ -539,7 +543,7 @@ class _MonthSelector extends StatelessWidget {
           final isSelected =
               month.year == selectedMonth.year &&
               month.month == selectedMonth.month;
-          final label = _monthLabel(month, language);
+          final label = _monthLabel(month, isEn);
           return Padding(
             padding: const EdgeInsets.only(right: 8),
             child: GestureDetector(
@@ -591,8 +595,8 @@ class _MonthSelector extends StatelessWidget {
     );
   }
 
-  String _monthLabel(DateTime month, bool language) {
-    final names = language.isEn
+  String _monthLabel(DateTime month, bool isEn) {
+    final names = isEn
         ? CommonStrings.monthsShortEn
         : CommonStrings.monthsShortTr;
     final name = names[month.month - 1];
@@ -609,7 +613,7 @@ class _MonthSelector extends StatelessWidget {
 class _MemoryCard extends StatelessWidget {
   final JournalEntry entry;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
   final VoidCallback onTap;
 
   const _MemoryCard({
@@ -629,6 +633,7 @@ class _MemoryCard extends StatelessWidget {
   }
 
   Widget _buildPhotoCard(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
     final areaLabel = entry.focusArea.localizedName(language);
 
@@ -731,6 +736,7 @@ class _MemoryCard extends StatelessWidget {
   }
 
   Widget _buildTextCard(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
     final areaLabel = entry.focusArea.localizedName(language);
 

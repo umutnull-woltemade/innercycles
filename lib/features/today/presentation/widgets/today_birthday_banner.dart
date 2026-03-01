@@ -12,7 +12,7 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class TodayBirthdayBanner extends ConsumerWidget {
-  final bool language.isEn;
+  final bool isEn;
   final bool isDark;
 
   const TodayBirthdayBanner({
@@ -28,6 +28,7 @@ class TodayBirthdayBanner extends ConsumerWidget {
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (service) {
+        final language = AppLanguage.fromIsEn(isEn);
         final todayBirthdays = service.getTodayBirthdays();
         if (todayBirthdays.isEmpty) return const SizedBox.shrink();
         return Padding(

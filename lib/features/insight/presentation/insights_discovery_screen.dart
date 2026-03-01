@@ -61,6 +61,7 @@ class _InsightsDiscoveryScreenState
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
+    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(contextModuleServiceProvider);
 
     return Scaffold(
@@ -100,7 +101,7 @@ class _InsightsDiscoveryScreenState
                 ],
               ),
             ),
-            data: (service) => _buildContent(context, service, isDark, language),
+            data: (service) => _buildContent(context, service, isDark, isEn),
           ),
         ),
       ),
@@ -111,8 +112,9 @@ class _InsightsDiscoveryScreenState
     BuildContext context,
     ContextModuleService service,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final daily = service.getDailyModule();
     final modules = _getFilteredModules(service);
 
@@ -153,7 +155,7 @@ class _InsightsDiscoveryScreenState
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20, 4, 20, 16),
-              child: _buildProgressBar(service, isDark, language),
+              child: _buildProgressBar(service, isDark, isEn),
             ),
           ),
 
@@ -161,7 +163,7 @@ class _InsightsDiscoveryScreenState
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _buildDailySpotlight(daily, service, isDark, language),
+              child: _buildDailySpotlight(daily, service, isDark, isEn),
             ),
           ),
 
@@ -169,7 +171,7 @@ class _InsightsDiscoveryScreenState
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 12),
-              child: _buildCategoryChips(isDark, language),
+              child: _buildCategoryChips(isDark, isEn),
             ),
           ),
 
@@ -200,7 +202,7 @@ class _InsightsDiscoveryScreenState
                         horizontal: 20,
                         vertical: 6,
                       ),
-                      child: _buildModuleCard(module, service, isDark, language),
+                      child: _buildModuleCard(module, service, isDark, isEn),
                     )
                     .animate()
                     .fadeIn(duration: 400.ms, delay: (index * 60).ms)
@@ -214,7 +216,7 @@ class _InsightsDiscoveryScreenState
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: ToolEcosystemFooter(
                 currentToolId: 'insightsDiscovery',
-                language: language,
+                isEn: isEn,
                 isDark: isDark,
               ),
             ),
@@ -233,8 +235,9 @@ class _InsightsDiscoveryScreenState
   Widget _buildProgressBar(
     ContextModuleService service,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final progress = service.readProgress;
     final read = service.readCount;
     final total = service.totalCount;
@@ -288,11 +291,12 @@ class _InsightsDiscoveryScreenState
     ContextModule module,
     ContextModuleService service,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       button: true,
-      label: language.isEn
+      label: isEn
           ? 'Today\'s Insight: ${module.localizedTitle(AppLanguage.en)}'
           : 'Bugünün İçgörüsü: ${module.localizedTitle(AppLanguage.tr)}',
       child: GestureDetector(
@@ -329,7 +333,7 @@ class _InsightsDiscoveryScreenState
                       ),
                     ),
                   ),
-                  _buildDepthBadge(module.depth, isDark, language),
+                  _buildDepthBadge(module.depth, isDark, isEn),
                 ],
               ),
               const SizedBox(height: 14),
@@ -357,7 +361,7 @@ class _InsightsDiscoveryScreenState
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _buildCategoryPill(module.category, isDark, language),
+                  _buildCategoryPill(module.category, isDark, isEn),
                   Text(
                     L10nService.get('insight.insights_discovery.tap_to_read', language),
                     style: AppTypography.elegantAccent(
@@ -382,7 +386,8 @@ class _InsightsDiscoveryScreenState
   // CATEGORY CHIPS
   // ═══════════════════════════════════════════════════════════════
 
-  Widget _buildCategoryChips(bool isDark, bool language) {
+  Widget _buildCategoryChips(bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
@@ -468,8 +473,9 @@ class _InsightsDiscoveryScreenState
     ContextModule module,
     ContextModuleService service,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final isRead = service.isRead(module.id);
     final isBookmarked = service.isBookmarked(module.id);
 
@@ -559,9 +565,9 @@ class _InsightsDiscoveryScreenState
               const SizedBox(height: 10),
               Row(
                 children: [
-                  _buildCategoryPill(module.category, isDark, language),
+                  _buildCategoryPill(module.category, isDark, isEn),
                   const SizedBox(width: 8),
-                  _buildDepthBadge(module.depth, isDark, language),
+                  _buildDepthBadge(module.depth, isDark, isEn),
                 ],
               ),
             ],
@@ -581,6 +587,7 @@ class _InsightsDiscoveryScreenState
 
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.read(languageProvider);
+    final isEn = language == AppLanguage.en;
 
     showModalBottomSheet(
       context: context,
@@ -637,9 +644,9 @@ class _InsightsDiscoveryScreenState
                   // Category + Depth
                   Row(
                     children: [
-                      _buildCategoryPill(module.category, isDark, language),
+                      _buildCategoryPill(module.category, isDark, isEn),
                       const SizedBox(width: 8),
-                      _buildDepthBadge(module.depth, isDark, language),
+                      _buildDepthBadge(module.depth, isDark, isEn),
                     ],
                   ),
                   const SizedBox(height: 16),
@@ -872,8 +879,9 @@ class _InsightsDiscoveryScreenState
   Widget _buildCategoryPill(
     ContextModuleCategory category,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final color = _categoryColor(category);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -901,7 +909,8 @@ class _InsightsDiscoveryScreenState
     );
   }
 
-  Widget _buildDepthBadge(ContextModuleDepth depth, bool isDark, bool language) {
+  Widget _buildDepthBadge(ContextModuleDepth depth, bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(

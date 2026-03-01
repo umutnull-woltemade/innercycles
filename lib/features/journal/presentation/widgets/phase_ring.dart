@@ -18,7 +18,7 @@ class PhaseRing extends StatefulWidget {
   final EmotionalPhase phase;
   final EmotionalArc? arc;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
   final double size;
 
   const PhaseRing({
@@ -83,7 +83,7 @@ class _PhaseRingState extends State<PhaseRing>
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, _) {
-        final language = widget.language;
+        final language = AppLanguage.fromIsEn(widget.isEn);
         return SizedBox(
           width: widget.size,
           height: widget.size,

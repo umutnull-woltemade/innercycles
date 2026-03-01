@@ -29,16 +29,16 @@ class NotificationService {
   bool _isInitialized = false;
 
   /// Cached language preference (true = EN, false = TR)
-  AppLanguage _language = AppLanguage.en;
+  bool _isEn = true;
 
   /// Read language preference from SharedPreferences
-  Future<AppLanguage> _readLanguage() async {
+  Future<bool> _readIsEn() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      return StorageService.loadLanguage();
+      return (prefs.getInt('app_language') ?? 0) == 0;
     } catch (e) {
       if (kDebugMode) debugPrint('Notification: read language pref error: $e');
-      return AppLanguage.en;
+      return true;
     }
   }
 
@@ -225,8 +225,8 @@ class NotificationService {
     required int minute,
     String? personalizedMessage,
   }) async {
-    _language = await _readLanguage();
-    final language = _language;
+    _isEn = await _readIsEn();
+    final language = AppLanguage.fromIsEn(_isEn);
     final message =
         personalizedMessage ??
         (L10nService.get('data.services.notification.take_a_moment_to_reflect_on_your_day', language));
@@ -290,8 +290,8 @@ class NotificationService {
     required int hour,
     required int minute,
   }) async {
-    _language = await _readLanguage();
-    final language = _language;
+    _isEn = await _readIsEn();
+    final language = AppLanguage.fromIsEn(_isEn);
     await _notifications.zonedSchedule(
       id: eveningReflectionId,
       title: L10nService.get('data.services.notification.evening_reflection', language),
@@ -338,8 +338,8 @@ class NotificationService {
     required int hour,
     required int minute,
   }) async {
-    _language = await _readLanguage();
-    final language = _language;
+    _isEn = await _readIsEn();
+    final language = AppLanguage.fromIsEn(_isEn);
 
     // Get today's deterministic prompt
     final promptService = await JournalPromptService.init();
@@ -407,8 +407,8 @@ class NotificationService {
     // Only notify if they have an active streak worth protecting
     if (currentStreak < 2) return;
 
-    _language = await _readLanguage();
-    final language = _language;
+    _isEn = await _readIsEn();
+    final language = AppLanguage.fromIsEn(_isEn);
 
     final now = DateTime.now();
     var scheduledTime = tz.TZDateTime(
@@ -461,8 +461,8 @@ class NotificationService {
   Future<void> scheduleStreakRecovery({required int lostStreak}) async {
     if (lostStreak < 2) return;
 
-    _language = await _readLanguage();
-    final language = _language;
+    _isEn = await _readIsEn();
+    final language = AppLanguage.fromIsEn(_isEn);
 
     final now = DateTime.now();
     final tomorrow = tz.TZDateTime(
@@ -510,8 +510,8 @@ class NotificationService {
   /// Schedule a nostalgia notification for today at 11 AM when user has
   /// entries from the same date in a previous year.
   Future<void> scheduleOnThisDayMemory({required int yearsAgo}) async {
-    _language = await _readLanguage();
-    final language = _language;
+    _isEn = await _readIsEn();
+    final language = AppLanguage.fromIsEn(_isEn);
 
     final now = DateTime.now();
     var scheduledTime = tz.TZDateTime(tz.local, now.year, now.month, now.day, 11, 0);
@@ -551,8 +551,8 @@ class NotificationService {
   Future<void> showReferralRewardNotification({
     required int totalReferrals,
   }) async {
-    _language = await _readLanguage();
-    final language = _language;
+    _isEn = await _readIsEn();
+    final language = AppLanguage.fromIsEn(_isEn);
 
     String title;
     String body;
@@ -596,8 +596,8 @@ class NotificationService {
 
   /// Schedule moon cycle mindfulness reminders
   Future<void> scheduleMoonPhaseNotifications() async {
-    _language = await _readLanguage();
-    final language = _language;
+    _isEn = await _readIsEn();
+    final language = AppLanguage.fromIsEn(_isEn);
     await _notifications.zonedSchedule(
       id: moonCycleId,
       title: L10nService.get('data.services.notification.moon_cycle_awareness', language),
@@ -624,8 +624,8 @@ class NotificationService {
 
   /// Show new moon notification
   Future<void> showNewMoonNotification({String? message}) async {
-    _language = await _readLanguage();
-    final language = _language;
+    _isEn = await _readIsEn();
+    final language = AppLanguage.fromIsEn(_isEn);
     await _notifications.show(
       id: newMoonId,
       title: L10nService.get('data.services.notification._new_moon', language),
@@ -653,8 +653,8 @@ class NotificationService {
 
   /// Show full moon notification
   Future<void> showFullMoonNotification({String? message}) async {
-    _language = await _readLanguage();
-    final language = _language;
+    _isEn = await _readIsEn();
+    final language = AppLanguage.fromIsEn(_isEn);
     await _notifications.show(
       id: fullMoonId,
       title: L10nService.get('data.services.notification._full_moon', language),
@@ -713,8 +713,8 @@ class NotificationService {
     required ReminderFrequency frequency,
   }) async {
     if (kIsWeb) return;
-    _language = await _readLanguage();
-    final language = _language;
+    _isEn = await _readIsEn();
+    final language = AppLanguage.fromIsEn(_isEn);
 
     final title = L10nService.get('data.services.notification.note_reminder', language);
     final body = message ?? noteTitle;
@@ -791,8 +791,8 @@ class NotificationService {
   /// Day-before reminders use range 51000-51799.
   Future<void> scheduleBirthdayNotification(BirthdayContact contact) async {
     if (kIsWeb || !contact.notificationsEnabled) return;
-    _language = await _readLanguage();
-    final language = _language;
+    _isEn = await _readIsEn();
+    final language = AppLanguage.fromIsEn(_isEn);
 
     final notifId = 50000 + (contact.id.hashCode.abs() % 800);
     final now = DateTime.now();

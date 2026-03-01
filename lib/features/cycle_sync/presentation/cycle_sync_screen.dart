@@ -34,6 +34,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
+    final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final cycleSyncAsync = ref.watch(cycleSyncServiceProvider);
     final isPremium = ref.watch(isPremiumUserProvider);
@@ -93,7 +94,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                             context,
                             cycleService,
                             isDark,
-                            language,
+                            isEn,
                           ).glassReveal(context: context),
                           const SizedBox(height: AppConstants.spacingLg),
 
@@ -102,7 +103,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                             context,
                             cycleService,
                             isDark,
-                            language,
+                            isEn,
                           ).glassListItem(context: context, index: 1),
                           const SizedBox(height: AppConstants.spacingLg),
 
@@ -111,14 +112,14 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                             _buildPremiumGate(
                               context,
                               isDark,
-                              language,
+                              isEn,
                               isPremium,
                               paywallContext: PaywallContext.cycleSync,
                               child: _buildPhasePromptCard(
                                 context,
                                 cycleService,
                                 isDark,
-                                language,
+                                isEn,
                               ),
                             ).glassListItem(context: context, index: 2),
                           if (cycleService.hasData)
@@ -128,10 +129,10 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                           _buildPremiumGate(
                             context,
                             isDark,
-                            language,
+                            isEn,
                             isPremium,
                             paywallContext: PaywallContext.cycleSync,
-                            child: _buildCorrelationCard(context, isDark, language),
+                            child: _buildCorrelationCard(context, isDark, isEn),
                           ).glassListItem(context: context, index: 3),
                           const SizedBox(height: AppConstants.spacingLg),
 
@@ -140,7 +141,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                             context,
                             cycleService,
                             isDark,
-                            language,
+                            isEn,
                           ).glassListItem(context: context, index: 4),
                           const SizedBox(height: AppConstants.spacingXl),
                         ]),
@@ -153,7 +154,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
           ),
         ),
       ),
-      floatingActionButton: _buildLogPeriodFab(context, language),
+      floatingActionButton: _buildLogPeriodFab(context, isEn),
     );
   }
 
@@ -165,8 +166,9 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     BuildContext context,
     dynamic cycleService,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final cycleDay = cycleService.getCurrentCycleDay();
     final cycleLength = cycleService.getAverageCycleLength();
     final phase = cycleService.getCurrentPhase();
@@ -219,7 +221,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     final phaseColor = _phaseColor(phase);
 
     return Semantics(
-      label: language.isEn
+      label: isEn
           ? 'Cycle day ${cycleDay ?? 0} of $cycleLength, ${phase != null ? phase.displayNameEn : "unknown"} phase'
           : 'Döngü günü ${cycleDay ?? 0} / $cycleLength, ${phase != null ? phase.displayNameTr : "bilinmiyor"} evresi',
       child: GlassPanel(
@@ -328,8 +330,9 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     BuildContext context,
     dynamic cycleService,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final daysUntil = cycleService.getDaysUntilNextPeriod();
 
     return GlassPanel(
@@ -353,7 +356,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
             context,
             Icons.calendar_today_rounded,
             L10nService.get('cycle_sync.cycle_sync.cycle_length', language),
-            language.isEn
+            isEn
                 ? '${cycleService.getAverageCycleLength()} days'
                 : '${cycleService.getAverageCycleLength()} gün',
             isDark,
@@ -363,7 +366,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
             context,
             Icons.water_drop_outlined,
             L10nService.get('cycle_sync.cycle_sync.period_length', language),
-            language.isEn
+            isEn
                 ? '${cycleService.getAveragePeriodLength()} days'
                 : '${cycleService.getAveragePeriodLength()} gün',
             isDark,
@@ -439,12 +442,12 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     BuildContext context,
     dynamic cycleService,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
     final phase = cycleService.getCurrentPhase();
     if (phase == null) return const SizedBox.shrink();
 
-    final prompt = _getPhasePrompt(phase, language);
+    final prompt = _getPhasePrompt(phase, isEn);
     final phaseColor = _phaseColor(phase);
 
     return GlassPanel(
@@ -465,7 +468,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
               ),
               const SizedBox(width: 8),
               Text(
-                language.isEn
+                isEn
                     ? '${phase.displayNameEn} Phase Prompt'
                     : '${phase.displayNameTr} Evresi İpucu',
                 style: AppTypography.modernAccent(
@@ -492,7 +495,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     );
   }
 
-  String _getPhasePrompt(CyclePhase phase, bool language) {
+  String _getPhasePrompt(CyclePhase phase, bool isEn) {
     // Date-rotated prompt
     final now = DateTime.now();
     final dayOfYear = now.difference(DateTime(now.year, 1, 1)).inDays;
@@ -500,7 +503,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     final prompts = _phasePrompts[phase] ?? _phasePrompts.values.first;
     if (prompts.isEmpty) return '';
     final index = dayOfYear % prompts.length;
-    return language.isEn ? prompts[index].$1 : prompts[index].$2;
+    return isEn ? prompts[index].$1 : prompts[index].$2;
   }
 
   static const Map<CyclePhase, List<(String, String)>> _phasePrompts = {
@@ -566,13 +569,14 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
   // CORRELATION INSIGHT
   // ═══════════════════════════════════════════════════════════════════════
 
-  Widget _buildCorrelationCard(BuildContext context, bool isDark, bool language) {
+  Widget _buildCorrelationCard(BuildContext context, bool isDark, bool isEn) {
     final correlationAsync = ref.watch(cycleCorrelationServiceProvider);
 
     return correlationAsync.when(
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (correlationService) {
+        final language = AppLanguage.fromIsEn(isEn);
         final insight = correlationService.getCurrentPhaseInsight(language);
         if (insight == null) {
           return GlassPanel(
@@ -659,8 +663,9 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     BuildContext context,
     dynamic cycleService,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final cycleLength = cycleService.getAverageCycleLength() as int;
     final currentDay = cycleService.getCurrentCycleDay() as int?;
 
@@ -703,7 +708,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 2),
                           child: Text(
-                            language.isEn
+                            isEn
                                 ? phase.displayNameEn.substring(
                                     0,
                                     phase.displayNameEn.length.clamp(0, 3),
@@ -818,12 +823,13 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
   // LOG PERIOD FAB
   // ═══════════════════════════════════════════════════════════════════════
 
-  Widget _buildLogPeriodFab(BuildContext context, bool language) {
+  Widget _buildLogPeriodFab(BuildContext context, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       label: L10nService.get('cycle_sync.cycle_sync.log_period_start', language),
       button: true,
       child: FloatingActionButton.extended(
-        onPressed: () => _showLogPeriodSheet(context, language),
+        onPressed: () => _showLogPeriodSheet(context, isEn),
         backgroundColor: AppColors.amethyst,
         foregroundColor: Colors.white,
         icon: const Icon(Icons.water_drop_rounded),
@@ -835,7 +841,8 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     );
   }
 
-  void _showLogPeriodSheet(BuildContext context, bool language) {
+  void _showLogPeriodSheet(BuildContext context, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     HapticFeedback.lightImpact();
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
@@ -970,11 +977,12 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
   Widget _buildPremiumGate(
     BuildContext context,
     bool isDark,
-    bool language,
+    bool isEn,
     bool isPremium, {
     required Widget child,
     required PaywallContext paywallContext,
   }) {
+    final language = AppLanguage.fromIsEn(isEn);
     if (isPremium) return child;
 
     return Stack(

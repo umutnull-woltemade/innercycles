@@ -315,8 +315,8 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
     });
   }
 
-  String _formatReminderDate(DateTime dt, bool language) {
-    final months = language.isEn
+  String _formatReminderDate(DateTime dt, bool isEn) {
+    final months = isEn
         ? CommonStrings.monthsShortEn
         : CommonStrings.monthsShortTr;
     final h = dt.hour.toString().padLeft(2, '0');
@@ -327,6 +327,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
+    final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isPremium = ref.watch(isPremiumUserProvider);
     final serviceAsync = ref.watch(notesToSelfServiceProvider);
@@ -534,7 +535,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                 child: Text(
                                   _wordCount == 0
                                       ? ''
-                                      : (language.isEn
+                                      : (isEn
                                             ? '$_wordCount words'
                                             : '$_wordCount kelime'),
                                   style: AppTypography.elegantAccent(
@@ -810,7 +811,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                                   Text(
                                                     _formatReminderDate(
                                                       _pendingReminderDate!,
-                                                      language,
+                                                      isEn,
                                                     ),
                                                     style:
                                                         AppTypography.subtitle(
@@ -863,7 +864,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                       ..._reminders.map(
                                         (r) => _ReminderRow(
                                           reminder: r,
-                                          language: language,
+                                          isEn: isEn,
                                           isDark: isDark,
                                           onDelete: () =>
                                               _removeReminder(service, r.id),
@@ -892,7 +893,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                     if (_showReminderForm) ...[
                                       const SizedBox(height: 12),
                                       _ReminderForm(
-                                        language: language,
+                                        isEn: isEn,
                                         isDark: isDark,
                                         isPremium: isPremium,
                                         reminderDate: _isCreateMode
@@ -940,7 +941,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                     _hasChanges = true;
                                   });
                                 },
-                                language: language,
+                                isEn: isEn,
                                 isDark: isDark,
                               ),
 
@@ -1172,7 +1173,7 @@ class _RemovableTagChip extends StatelessWidget {
 
 class _ReminderRow extends StatelessWidget {
   final NoteReminder reminder;
-  final bool language.isEn;
+  final bool isEn;
   final bool isDark;
   final VoidCallback onDelete;
 
@@ -1185,8 +1186,9 @@ class _ReminderRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final freq = reminder.frequency.localizedName(language);
-    final dateStr = _formatDate(reminder.scheduledAt, language);
+    final dateStr = _formatDate(reminder.scheduledAt, isEn);
 
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
@@ -1241,8 +1243,8 @@ class _ReminderRow extends StatelessWidget {
     );
   }
 
-  String _formatDate(DateTime dt, bool language) {
-    final months = language.isEn
+  String _formatDate(DateTime dt, bool isEn) {
+    final months = isEn
         ? CommonStrings.monthsShortEn
         : CommonStrings.monthsShortTr;
     final h = dt.hour.toString().padLeft(2, '0');
@@ -1256,7 +1258,7 @@ class _ReminderRow extends StatelessWidget {
 // ═══════════════════════════════════════════════════════════════════════
 
 class _ReminderForm extends StatelessWidget {
-  final bool language.isEn;
+  final bool isEn;
   final bool isDark;
   final bool isPremium;
   final DateTime? reminderDate;
@@ -1280,6 +1282,7 @@ class _ReminderForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
@@ -1310,7 +1313,7 @@ class _ReminderForm extends StatelessWidget {
                   const SizedBox(width: 8),
                   Text(
                     reminderDate != null
-                        ? _formatDate(reminderDate!, language)
+                        ? _formatDate(reminderDate!, isEn)
                         : (L10nService.get('notes.note_detail.pick_date_time', language)),
                     style: AppTypography.subtitle(
                       fontSize: 14,
@@ -1450,8 +1453,8 @@ class _ReminderForm extends StatelessWidget {
     ).animate().fadeIn(duration: 300.ms).slideY(begin: -0.05, end: 0);
   }
 
-  String _formatDate(DateTime dt, bool language) {
-    final months = language.isEn
+  String _formatDate(DateTime dt, bool isEn) {
+    final months = isEn
         ? CommonStrings.monthsShortEn
         : CommonStrings.monthsShortTr;
     final h = dt.hour.toString().padLeft(2, '0');

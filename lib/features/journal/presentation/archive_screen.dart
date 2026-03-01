@@ -64,6 +64,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(journalServiceProvider);
 
     return Scaffold(
@@ -147,14 +148,14 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                           padding: const EdgeInsets.symmetric(
                             horizontal: AppConstants.spacingLg,
                           ),
-                          child: _buildSearchBar(isDark, language),
+                          child: _buildSearchBar(isDark, isEn),
                         ),
                       ),
                       // Filter chips
                       SliverToBoxAdapter(
                         child: Padding(
                           padding: const EdgeInsets.all(AppConstants.spacingLg),
-                          child: _buildFilterChips(isDark, language),
+                          child: _buildFilterChips(isDark, isEn),
                         ),
                       ),
                       // Entry count
@@ -164,7 +165,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                             horizontal: AppConstants.spacingLg,
                           ),
                           child: Text(
-                            language.isEn
+                            isEn
                                 ? '${entries.length} entries'
                                 : '${entries.length} kayıt',
                             style: AppTypography.elegantAccent(
@@ -239,7 +240,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                                   context,
                                   entry,
                                   isDark,
-                                  language,
+                                  isEn,
                                 ),
                               ).animate().fadeIn(
                                 delay: Duration(
@@ -263,7 +264,8 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
     );
   }
 
-  Widget _buildSearchBar(bool isDark, bool language) {
+  Widget _buildSearchBar(bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       decoration: BoxDecoration(
         color: isDark
@@ -323,7 +325,8 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
     );
   }
 
-  Widget _buildFilterChips(bool isDark, bool language) {
+  Widget _buildFilterChips(bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
@@ -333,7 +336,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
             _filterArea == null,
             () => setState(() => _filterArea = null),
             isDark,
-            language: language,
+            isEn: isEn,
           ),
           ...FocusArea.values.map((area) {
             final label = area.localizedName(language);
@@ -342,7 +345,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
               _filterArea == area,
               () => setState(() => _filterArea = area),
               isDark,
-              language: language,
+              isEn: isEn,
             );
           }),
         ],
@@ -355,8 +358,9 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
     bool isSelected,
     VoidCallback onTap,
     bool isDark, {
-    bool language.isEn = true,
+    bool isEn = true,
   }) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.only(right: 8),
       child: Semantics(
@@ -403,8 +407,9 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
     BuildContext context,
     JournalEntry entry,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final areaLabel = entry.focusArea.localizedName(language);
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
 
@@ -489,6 +494,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                         const SizedBox(height: 2),
                         Text(
                           () {
+                            final language = AppLanguage.fromIsEn(isEn);
                             final words = entry.note!.trim().split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
                             return L10nService.getWithParams('journal.archive.word_count', language, params: {'count': '$words'});
                           }(),

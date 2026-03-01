@@ -31,6 +31,7 @@ class ChallengeListScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
     final isPremium = ref.watch(isPremiumUserProvider);
     final serviceAsync = ref.watch(growthChallengeServiceProvider);
 
@@ -118,7 +119,7 @@ class ChallengeListScreen extends ConsumerWidget {
                             completed: completed.length,
                             total: challenges.length,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           ),
                           const SizedBox(height: 20),
 
@@ -136,7 +137,7 @@ class ChallengeListScreen extends ConsumerWidget {
                                 isCompleted: false,
                                 isPremium: isPremium,
                                 isDark: isDark,
-                                language: language,
+                                isEn: isEn,
                                 onIncrement: () async {
                                   final justCompleted = await service
                                       .incrementProgress(c.id);
@@ -149,7 +150,7 @@ class ChallengeListScreen extends ConsumerWidget {
                                     ChallengeCelebrationModal.show(
                                       context,
                                       c,
-                                      language,
+                                      isEn,
                                     );
                                   }
                                 },
@@ -171,7 +172,7 @@ class ChallengeListScreen extends ConsumerWidget {
                               isCompleted: false,
                               isPremium: isPremium,
                               isDark: isDark,
-                              language: language,
+                              isEn: isEn,
                               onStart: () async {
                                 if (c.isPremium && !isPremium) {
                                   showContextualPaywall(
@@ -204,14 +205,14 @@ class ChallengeListScreen extends ConsumerWidget {
                                 isCompleted: true,
                                 isPremium: isPremium,
                                 isDark: isDark,
-                                language: language,
+                                isEn: isEn,
                               ),
                             ),
                           ],
 
                           ToolEcosystemFooter(
                             currentToolId: 'challengeList',
-                            language: language,
+                            isEn: isEn,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 40),
@@ -234,7 +235,7 @@ class _StatsBar extends StatelessWidget {
   final int completed;
   final int total;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _StatsBar({
     required this.active,
@@ -246,6 +247,7 @@ class _StatsBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: 14,
@@ -339,7 +341,7 @@ class _ChallengeCard extends StatelessWidget {
   final bool isCompleted;
   final bool isPremium;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
   final VoidCallback? onStart;
   final VoidCallback? onIncrement;
 
@@ -356,6 +358,7 @@ class _ChallengeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final isLocked = challenge.isPremium && !isPremium;
     final hasProgress = progress != null && !progress!.isCompleted;
 

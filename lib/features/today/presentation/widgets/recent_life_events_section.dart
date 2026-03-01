@@ -16,7 +16,7 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class RecentLifeEventsSection extends ConsumerWidget {
-  final bool language.isEn;
+  final bool isEn;
   final bool isDark;
 
   const RecentLifeEventsSection({
@@ -33,6 +33,7 @@ class RecentLifeEventsSection extends ConsumerWidget {
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (service) {
+        final language = AppLanguage.fromIsEn(isEn);
         final recentEvents = service.getRecentEvents(3);
         if (recentEvents.isEmpty) {
           return _buildRetentionPrompt(context);
@@ -102,7 +103,7 @@ class RecentLifeEventsSection extends ConsumerWidget {
                 final emojiAccent = AppSymbol.accentForEmoji(emoji);
                 return Semantics(
                   button: true,
-                  label: language.isEn
+                  label: isEn
                       ? 'View life event: ${event.title}'
                       : 'Yaşam olayını gör: ${event.title}',
                   child: TapScale(
@@ -196,6 +197,7 @@ class RecentLifeEventsSection extends ConsumerWidget {
   }
 
   Widget _buildRetentionPrompt(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
       child: Semantics(

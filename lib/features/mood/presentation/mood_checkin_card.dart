@@ -29,6 +29,7 @@ class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(moodCheckinServiceProvider);
 
     return serviceAsync.when(
@@ -43,7 +44,7 @@ class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
             todayMood: todayMood,
             weekMoods: weekMoods,
             isDark: isDark,
-            language: language,
+            isEn: isEn,
           );
         }
 
@@ -52,13 +53,13 @@ class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
             todayMood: todayMood,
             weekMoods: weekMoods,
             isDark: isDark,
-            language: language,
+            isEn: isEn,
           );
         }
 
         return _CheckinView(
           isDark: isDark,
-          language: language,
+          isEn: isEn,
           onSelect: (mood, emoji) async {
             await service.logMood(mood, emoji);
             HapticService.moodSelected();
@@ -77,7 +78,7 @@ class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
 
 class _CheckinView extends StatelessWidget {
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
   final Function(int, String) onSelect;
 
   const _CheckinView({
@@ -88,6 +89,7 @@ class _CheckinView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.aurora,
       child: Column(
@@ -107,7 +109,7 @@ class _CheckinView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: MoodCheckinService.moodOptions.map((option) {
               final (mood, emoji, labelEn, labelTr) = option;
-              final label = language.isEn ? labelEn : labelTr;
+              final label = isEn ? labelEn : labelTr;
               return Semantics(
                 label: label,
                 button: true,
@@ -143,7 +145,7 @@ class _LoggedView extends StatelessWidget {
   final MoodEntry todayMood;
   final List<MoodEntry?> weekMoods;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _LoggedView({
     required this.todayMood,
@@ -154,6 +156,7 @@ class _LoggedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final nowTime = DateTime.now();
     return PremiumCard(
       style: PremiumCardStyle.subtle,
@@ -179,7 +182,7 @@ class _LoggedView extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      _moodLabel(todayMood.mood, language),
+                      _moodLabel(todayMood.mood, isEn),
                       style: AppTypography.decorativeScript(
                         fontSize: 12,
                         color: isDark
@@ -198,7 +201,7 @@ class _LoggedView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: List.generate(7, (i) {
               final entry = weekMoods[i];
-              final dayLabels = language.isEn
+              final dayLabels = isEn
                   ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
                   : ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pa'];
               final day = nowTime.subtract(Duration(days: 6 - i));
@@ -251,7 +254,8 @@ class _LoggedView extends StatelessWidget {
     ).animate().fadeIn(duration: 300.ms);
   }
 
-  String _moodLabel(int mood, bool language) {
+  String _moodLabel(int mood, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     switch (mood) {
       case 1:
         return L10nService.get('mood.mood_checkin.struggling', language);
@@ -290,7 +294,7 @@ class _ThankYouView extends StatelessWidget {
   final MoodEntry todayMood;
   final List<MoodEntry?> weekMoods;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _ThankYouView({
     required this.todayMood,
@@ -323,6 +327,7 @@ class _ThankYouView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final suggestions = _getSuggestedEmotions(todayMood.mood);
 
     return PremiumCard(
@@ -363,6 +368,7 @@ class _ThankYouView extends StatelessWidget {
             spacing: 6,
             runSpacing: 6,
             children: suggestions.take(6).map((emotion) {
+              final language = AppLanguage.fromIsEn(isEn);
               return Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 10,

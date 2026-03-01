@@ -19,7 +19,7 @@ class ProfileHeroSection extends StatefulWidget {
   final String name;
   final bool isPremium;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
   final int growthScore;
 
   const ProfileHeroSection({
@@ -56,7 +56,7 @@ class _ProfileHeroSectionState extends State<ProfileHeroSection>
 
   @override
   Widget build(BuildContext context) {
-    final language = widget.language;
+    final language = AppLanguage.fromIsEn(widget.isEn);
     return Column(
       children: [
         // Animated avatar with rotating aurora ring

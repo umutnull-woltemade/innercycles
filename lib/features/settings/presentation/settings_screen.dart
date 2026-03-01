@@ -238,7 +238,7 @@ class SettingsScreen extends ConsumerWidget {
                               _GroupedSeparator(isDark: isDark),
                               _SyncStatusTile(
                                 isDark: isDark,
-                                language: language == AppLanguage.en,
+                                isEn: language == AppLanguage.en,
                               ),
                             ],
                             _GroupedSeparator(isDark: isDark),
@@ -999,12 +999,13 @@ class _GroupedSeparator extends StatelessWidget {
 /// Sync status indicator tile for Settings → Account section
 class _SyncStatusTile extends ConsumerWidget {
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _SyncStatusTile({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final language = AppLanguage.fromIsEn(isEn);
     final syncAsync = ref.watch(syncStatusProvider);
     final pendingCount = ref.watch(pendingSyncCountProvider);
 
@@ -1262,11 +1263,13 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
   Widget build(BuildContext context) {
     final lockAsync = ref.watch(appLockServiceProvider);
     final language = widget.language;
+    final isEn = language == AppLanguage.en;
 
     return lockAsync.when(
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (service) {
+        final language = AppLanguage.fromIsEn(isEn);
         final isEnabled = service.isEnabled;
 
         return _GroupedContainer(

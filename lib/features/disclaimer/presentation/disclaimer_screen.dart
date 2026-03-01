@@ -23,6 +23,7 @@ class DisclaimerScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
+    final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor =
         isDark ? AppColors.textSecondary : AppColors.lightTextSecondary;
@@ -127,7 +128,7 @@ class DisclaimerScreen extends ConsumerWidget {
                       const SizedBox(width: 14),
                       Expanded(
                         child: Text(
-                          language.isEn
+                          isEn
                               ? 'InnerCycles is a personal journaling tool for self-reflection and pattern awareness.'
                               : L10nService.get('disclaimer.text_1', language),
                           style: AppTypography.subtitle(
@@ -158,7 +159,7 @@ class DisclaimerScreen extends ConsumerWidget {
                       const SizedBox(width: 14),
                       Expanded(
                         child: Text(
-                          language.isEn
+                          isEn
                               ? 'All insights are based solely on your own journal entries. This app does not make predictions about your future.'
                               : L10nService.get('disclaimer.text_2', language),
                           style: AppTypography.subtitle(
@@ -189,7 +190,7 @@ class DisclaimerScreen extends ConsumerWidget {
                       const SizedBox(width: 14),
                       Expanded(
                         child: Text(
-                          language.isEn
+                          isEn
                               ? 'This is for personal reflection only. It is not medical, psychological, or professional advice.'
                               : L10nService.get('disclaimer.text_3', language),
                           style: AppTypography.subtitle(

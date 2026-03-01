@@ -90,6 +90,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
     final yearsAsync = ref.watch(availableYearsProvider);
     final reviewAsync = ref.watch(yearReviewProvider);
     final selectedYear = ref.watch(selectedYearProvider);
@@ -149,7 +150,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                     ),
                     data: (years) {
                       if (years.isEmpty) {
-                        return _EmptyState(isDark: isDark, language: language);
+                        return _EmptyState(isDark: isDark, isEn: isEn);
                       }
                       if (years.length > 1) {
                         return _YearSelector(
@@ -219,11 +220,11 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                       if (review == null) {
                         if (selectedYear == null) {
                           return SliverToBoxAdapter(
-                            child: _EmptyState(isDark: isDark, language: language),
+                            child: _EmptyState(isDark: isDark, isEn: isEn),
                           );
                         }
                         return SliverToBoxAdapter(
-                          child: _NotEnoughData(isDark: isDark, language: language),
+                          child: _NotEnoughData(isDark: isDark, isEn: isEn),
                         );
                       }
                       return SliverList(
@@ -232,44 +233,44 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                           _HeroCard(
                             review: review,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           ).glassReveal(context: context),
                           const SizedBox(height: 20),
                           _MoodJourneyCard(
                             review: review,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           ).glassListItem(context: context, index: 1),
                           const SizedBox(height: 20),
                           _FocusAreasCard(
                             review: review,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           ).glassListItem(context: context, index: 2),
                           const SizedBox(height: 20),
                           _GrowthScoreCard(
                             review: review,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           ).glassListItem(context: context, index: 3),
                           const SizedBox(height: 20),
                           _HighlightsCard(
                             review: review,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           ).glassListItem(context: context, index: 4),
                           const SizedBox(height: 20),
                           _ShareableSummaryCard(
                             review: review,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           ).glassListItem(context: context, index: 5),
                           ContentDisclaimer(
                             language: language,
                           ),
                           ToolEcosystemFooter(
                             currentToolId: 'yearReview',
-                            language: language,
+                            isEn: isEn,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 40),
@@ -378,12 +379,13 @@ class _YearSelector extends StatelessWidget {
 
 class _EmptyState extends StatelessWidget {
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _EmptyState({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumEmptyState(
       icon: Icons.auto_awesome,
       title: L10nService.get('year_review.year_review.your_year_synthesis_is_ready', language),
@@ -395,12 +397,13 @@ class _EmptyState extends StatelessWidget {
 
 class _NotEnoughData extends StatelessWidget {
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _NotEnoughData({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumEmptyState(
       icon: Icons.lock_outline,
       title: L10nService.get('year_review.year_review.not_enough_entries_for_this_year', language),
@@ -419,7 +422,7 @@ class _NotEnoughData extends StatelessWidget {
 class _HeroCard extends StatelessWidget {
   final YearReview review;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _HeroCard({
     required this.review,
@@ -429,6 +432,7 @@ class _HeroCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return GlassPanel(
       elevation: GlassElevation.g3,
       borderRadius: BorderRadius.circular(20),
@@ -449,7 +453,7 @@ class _HeroCard extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           Text(
-            language.isEn
+            isEn
                 ? 'Your ${review.year} in Review'
                 : '${review.year} Yılı Değerlendirmesi',
             style: AppTypography.modernAccent(
@@ -557,7 +561,7 @@ class _StatColumn extends StatelessWidget {
 class _MoodJourneyCard extends StatelessWidget {
   final YearReview review;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _MoodJourneyCard({
     required this.review,
@@ -596,7 +600,8 @@ class _MoodJourneyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final monthLabels = language.isEn ? _monthLabelsEn : _monthLabelsTr;
+    final language = AppLanguage.fromIsEn(isEn);
+    final monthLabels = isEn ? _monthLabelsEn : _monthLabelsTr;
 
     return GlassPanel(
       elevation: GlassElevation.g2,
@@ -708,7 +713,7 @@ class _MoodJourneyCard extends StatelessWidget {
 class _FocusAreasCard extends StatelessWidget {
   final YearReview review;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _FocusAreasCard({
     required this.review,
@@ -726,6 +731,7 @@ class _FocusAreasCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     // Sort by count descending
     final sortedAreas = review.focusAreaCounts.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
@@ -820,7 +826,7 @@ class _FocusAreasCard extends StatelessWidget {
 class _GrowthScoreCard extends StatelessWidget {
   final YearReview review;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _GrowthScoreCard({
     required this.review,
@@ -830,6 +836,7 @@ class _GrowthScoreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final score = review.growthScore;
     final label = score >= 70
         ? (L10nService.get('year_review.year_review.strong_growth', language))
@@ -864,7 +871,7 @@ class _GrowthScoreCard extends StatelessWidget {
             width: 160,
             height: 160,
             child: Semantics(
-              label: language.isEn
+              label: isEn
                   ? 'Growth score: $score out of 100'
                   : 'Gelişim skoru: 100 üzerinden $score',
               image: true,
@@ -988,7 +995,7 @@ class _GrowthCirclePainter extends CustomPainter {
 class _HighlightsCard extends StatelessWidget {
   final YearReview review;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _HighlightsCard({
     required this.review,
@@ -998,6 +1005,7 @@ class _HighlightsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final highlights = _parseHighlights(review.topPatterns);
     if (highlights.isEmpty) return const SizedBox.shrink();
 
@@ -1066,6 +1074,7 @@ class _HighlightsCard extends StatelessWidget {
   }
 
   List<_Highlight> _parseHighlights(List<String> patterns) {
+    final language = AppLanguage.fromIsEn(isEn);
     final results = <_Highlight>[];
     final monthNamesEn = [
       '',
@@ -1114,7 +1123,7 @@ class _HighlightsCard extends StatelessWidget {
             results.add(
               _Highlight(
                 icon: Icons.center_focus_strong,
-                text: language.isEn
+                text: isEn
                     ? '${area.displayNameEn} was your top focus area ($pct% of entries)'
                     : '${area.displayNameTr} en çok odaklandığınız alan oldu (kayıtların %$pct\'i)',
                 color: AppColors.starGold,
@@ -1125,11 +1134,11 @@ class _HighlightsCard extends StatelessWidget {
           if (parts.length >= 3) {
             final month = (int.tryParse(parts[1]) ?? 1).clamp(1, 12);
             final avg = parts[2];
-            final name = language.isEn ? monthNamesEn[month] : monthNamesTr[month];
+            final name = isEn ? monthNamesEn[month] : monthNamesTr[month];
             results.add(
               _Highlight(
                 icon: Icons.emoji_events,
-                text: language.isEn
+                text: isEn
                     ? '$name was your best month (avg $avg)'
                     : '$name en iyi ayınız oldu (ort $avg)',
                 color: AppColors.celestialGold,
@@ -1144,7 +1153,7 @@ class _HighlightsCard extends StatelessWidget {
             results.add(
               _Highlight(
                 icon: Icons.local_fire_department,
-                text: language.isEn
+                text: isEn
                     ? 'Your longest streak was $days days!'
                     : 'En uzun seriniz $days gün oldu!',
                 color: AppColors.brandPink,
@@ -1156,7 +1165,7 @@ class _HighlightsCard extends StatelessWidget {
             results.add(
               _Highlight(
                 icon: Icons.sentiment_very_satisfied,
-                text: language.isEn
+                text: isEn
                     ? 'You maintained a high average mood of ${parts[1]}'
                     : '${parts[1]} gibi yüksek bir ortalama ruh haliniz oldu',
                 color: AppColors.success,
@@ -1168,7 +1177,7 @@ class _HighlightsCard extends StatelessWidget {
             results.add(
               _Highlight(
                 icon: Icons.explore,
-                text: language.isEn
+                text: isEn
                     ? 'You explored ${parts[1]} different focus areas'
                     : '${parts[1]} farklı odak alanını keşfettiniz',
                 color: AppColors.auroraStart,
@@ -1189,7 +1198,7 @@ class _HighlightsCard extends StatelessWidget {
             results.add(
               _Highlight(
                 icon: Icons.auto_stories,
-                text: language.isEn
+                text: isEn
                     ? 'You logged an impressive ${parts[1]} entries'
                     : 'Etkileyici bir şekilde ${parts[1]} kayıt oluşturdunuz',
                 color: AppColors.amethyst,
@@ -1222,7 +1231,7 @@ class _Highlight {
 class _ShareableSummaryCard extends StatelessWidget {
   final YearReview review;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _ShareableSummaryCard({
     required this.review,
@@ -1232,6 +1241,7 @@ class _ShareableSummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final topAreaName = review.topFocusArea.localizedName(language);
 
     return GlassPanel(
@@ -1251,7 +1261,7 @@ class _ShareableSummaryCard extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            language.isEn
+            isEn
                 ? '${review.totalEntries} entries across ${review.totalJournalingDays} days\n'
                       'Top focus: $topAreaName\n'
                       'Growth score: ${review.growthScore}/100\n'
@@ -1287,7 +1297,7 @@ class _ShareableSummaryCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
             onPressed: () {
               HapticFeedback.mediumImpact();
-              final shareText = language.isEn
+              final shareText = isEn
                   ? 'My ${review.year} in Review\n\n'
                         '${review.totalEntries} entries across ${review.totalJournalingDays} days\n'
                         'Top focus: $topAreaName\n'

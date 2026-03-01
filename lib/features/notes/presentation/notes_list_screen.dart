@@ -97,6 +97,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
+    final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final notesAsync = ref.watch(allNotesProvider);
 
@@ -173,7 +174,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                           pinnedCount: allNotes.where((n) => n.isPinned).length,
                           tagCount: allTags.length,
                           isDark: isDark,
-                          language: language,
+                          isEn: isEn,
                         ).animate().fadeIn(duration: 400.ms),
                       ),
 
@@ -297,7 +298,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                         hasScrollBody: false,
                         child: _EmptyState(
                           hasNotes: allNotes.isNotEmpty,
-                          language: language,
+                          isEn: isEn,
                           isDark: isDark,
                           onCreate: () {
                             HapticService.buttonPress();
@@ -323,7 +324,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                           (context, index) =>
                               _NoteCard(
                                     note: pinned[index],
-                                    language: language,
+                                    isEn: isEn,
                                     isDark: isDark,
                                     onTap: () => _openNote(pinned[index].id),
                                     onDelete: () =>
@@ -365,7 +366,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                           (context, index) =>
                               _NoteCard(
                                     note: unpinned[index],
-                                    language: language,
+                                    isEn: isEn,
                                     isDark: isDark,
                                     onTap: () => _openNote(unpinned[index].id),
                                     onDelete: () =>
@@ -398,7 +399,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
         ),
       ),
       floatingActionButton: _AnimatedFAB(
-        language: language,
+        isEn: isEn,
         isDark: isDark,
         onPressed: () {
           HapticService.buttonPress();
@@ -444,7 +445,7 @@ class _NotesStatsBar extends StatelessWidget {
   final int pinnedCount;
   final int tagCount;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _NotesStatsBar({
     required this.total,
@@ -456,6 +457,7 @@ class _NotesStatsBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 4, 20, 0),
       child: Row(
@@ -575,7 +577,7 @@ class _SectionHeader extends StatelessWidget {
 
 class _EmptyState extends StatelessWidget {
   final bool hasNotes;
-  final bool language.isEn;
+  final bool isEn;
   final bool isDark;
   final VoidCallback onCreate;
 
@@ -588,6 +590,7 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     if (hasNotes) {
       // Filtered empty
       return PremiumEmptyState(
@@ -720,7 +723,7 @@ class _EmptyState extends StatelessWidget {
 
 class _NoteCard extends StatelessWidget {
   final NoteToSelf note;
-  final bool language.isEn;
+  final bool isEn;
   final bool isDark;
   final VoidCallback onTap;
   final VoidCallback onDelete;
@@ -735,6 +738,7 @@ class _NoteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Dismissible(
       key: ValueKey(note.id),
       direction: DismissDirection.endToStart,
@@ -797,7 +801,7 @@ class _NoteCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      _formatDate(note.updatedAt, language),
+                      _formatDate(note.updatedAt, isEn),
                       style: AppTypography.elegantAccent(
                         fontSize: 11,
                         color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -880,7 +884,8 @@ class _NoteCard extends StatelessWidget {
     );
   }
 
-  String _formatDate(DateTime dt, bool language) {
+  String _formatDate(DateTime dt, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     final now = DateTime.now();
     final diff = now.difference(dt);
     if (diff.inMinutes < 1) {
@@ -895,7 +900,7 @@ class _NoteCard extends StatelessWidget {
     if (diff.inDays < 7) {
       return L10nService.getWithParams('common.time.days_short', language, params: {'count': '${diff.inDays}'});
     }
-    final months = language.isEn
+    final months = isEn
         ? CommonStrings.monthsShortEn
         : CommonStrings.monthsShortTr;
     return '${dt.day} ${months[dt.month - 1]}';
@@ -965,7 +970,7 @@ class _TagChip extends StatelessWidget {
 // ═══════════════════════════════════════════════════════════════════════
 
 class _AnimatedFAB extends StatelessWidget {
-  final bool language.isEn;
+  final bool isEn;
   final bool isDark;
   final VoidCallback onPressed;
 
@@ -977,6 +982,7 @@ class _AnimatedFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return GestureDetector(
           onTap: onPressed,
           child: Container(

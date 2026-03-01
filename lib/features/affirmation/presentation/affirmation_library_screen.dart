@@ -50,6 +50,7 @@ class _AffirmationLibraryScreenState
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(affirmationServiceProvider);
 
     return Scaffold(
@@ -94,7 +95,7 @@ class _AffirmationLibraryScreenState
               ),
             ),
           ),
-          data: (service) => _buildContent(context, service, isDark, language),
+          data: (service) => _buildContent(context, service, isDark, isEn),
         ),
       ),
     );
@@ -104,8 +105,9 @@ class _AffirmationLibraryScreenState
     BuildContext context,
     AffirmationService service,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     // Get filtered affirmations
     List<Affirmation> affirmations;
     if (_showFavoritesOnly) {
@@ -130,11 +132,11 @@ class _AffirmationLibraryScreenState
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 // Today's affirmation hero
-                _buildTodayHero(service, isDark, language),
+                _buildTodayHero(service, isDark, isEn),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Filter chips
-                _buildFilterChips(service, isDark, language),
+                _buildFilterChips(service, isDark, isEn),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Affirmation list
@@ -147,7 +149,7 @@ class _AffirmationLibraryScreenState
                       affirmation: a,
                       isFavorite: service.isFavorite(a.id),
                       isDark: isDark,
-                      language: language,
+                      isEn: isEn,
                       onToggleFavorite: () async {
                         await service.toggleFavorite(a.id);
                         if (!mounted) return;
@@ -187,7 +189,7 @@ class _AffirmationLibraryScreenState
                   ),
                 ToolEcosystemFooter(
                   currentToolId: 'affirmations',
-                  language: language,
+                  isEn: isEn,
                   isDark: isDark,
                 ),
                 const SizedBox(height: 40),
@@ -199,7 +201,8 @@ class _AffirmationLibraryScreenState
     ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms);
   }
 
-  Widget _buildTodayHero(AffirmationService service, bool isDark, bool language) {
+  Widget _buildTodayHero(AffirmationService service, bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     final today = service.getDailyAffirmation();
 
     return GlassPanel(
@@ -253,7 +256,8 @@ class _AffirmationLibraryScreenState
     );
   }
 
-  Widget _buildFilterChips(AffirmationService service, bool isDark, bool language) {
+  Widget _buildFilterChips(AffirmationService service, bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       physics: const BouncingScrollPhysics(),
@@ -264,7 +268,7 @@ class _AffirmationLibraryScreenState
             label: L10nService.get('affirmation.affirmation_library.all', language),
             isSelected: _selectedCategory == null && !_showFavoritesOnly,
             isDark: isDark,
-            language: language,
+            isEn: isEn,
             onTap: () => setState(() {
               _selectedCategory = null;
               _showFavoritesOnly = false;
@@ -277,7 +281,7 @@ class _AffirmationLibraryScreenState
             label: L10nService.get('affirmation.affirmation_library.favorites', language),
             isSelected: _showFavoritesOnly,
             isDark: isDark,
-            language: language,
+            isEn: isEn,
             icon: Icons.favorite,
             onTap: () => setState(() {
               _showFavoritesOnly = !_showFavoritesOnly;
@@ -294,7 +298,7 @@ class _AffirmationLibraryScreenState
                 label: cat.localizedName(language),
                 isSelected: _selectedCategory == cat && !_showFavoritesOnly,
                 isDark: isDark,
-                language: language,
+                isEn: isEn,
                 onTap: () => setState(() {
                   _selectedCategory = cat;
                   _showFavoritesOnly = false;
@@ -312,7 +316,7 @@ class _FilterChip extends StatelessWidget {
   final String label;
   final bool isSelected;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
   final IconData? icon;
   final VoidCallback onTap;
 
@@ -327,6 +331,7 @@ class _FilterChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       button: true,
       label: L10nService.getWithParams('affirmation.library.filter_label', language, params: {'label': label}),
@@ -389,7 +394,7 @@ class _AffirmationTile extends StatelessWidget {
   final Affirmation affirmation;
   final bool isFavorite;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
   final VoidCallback onToggleFavorite;
 
   const _AffirmationTile({
@@ -419,8 +424,10 @@ class _AffirmationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return GestureDetector(
       onLongPress: () {
+        final language = AppLanguage.fromIsEn(isEn);
         final text = affirmation.localizedText(language);
         Clipboard.setData(ClipboardData(text: text));
         HapticService.buttonPress();

@@ -130,7 +130,8 @@ class _ContextualPaywallSheetState
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
-    final config = _getConfig(language);
+    final isEn = language == AppLanguage.en;
+    final config = _getConfig(isEn);
 
     return ClipRRect(
       borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
@@ -246,14 +247,14 @@ class _ContextualPaywallSheetState
 
                   // Social proof
                   _buildSocialProof(
-                    language,
+                    isEn,
                   ).animate().fadeIn(duration: 400.ms, delay: 270.ms),
 
                   const SizedBox(height: 16),
 
                   // Dynamic value recap
                   _buildValueRecap(
-                    language,
+                    isEn,
                     config.accentColor,
                   ).animate().fadeIn(duration: 400.ms, delay: 290.ms),
 
@@ -320,7 +321,7 @@ class _ContextualPaywallSheetState
 
                   // Price anchor (variant-aware)
                   _buildPriceAnchor(
-                    language,
+                    isEn,
                   ).animate().fadeIn(duration: 400.ms, delay: 350.ms),
                   const SizedBox(height: 16),
 
@@ -366,7 +367,8 @@ class _ContextualPaywallSheetState
     );
   }
 
-  Widget _buildPriceAnchor(bool language) {
+  Widget _buildPriceAnchor(bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     final experiment = ref
         .watch(paywallExperimentProvider)
         .whenOrNull(data: (e) => e);
@@ -386,7 +388,7 @@ class _ContextualPaywallSheetState
       children: [
         Flexible(
           child: Text(
-            language.isEn
+            isEn
                 ? monthlyLabel
                 : monthlyLabel.replaceAll('.', ',').replaceAll('/mo', '/ay'),
             style:
@@ -404,7 +406,7 @@ class _ContextualPaywallSheetState
         const SizedBox(width: 8),
         Flexible(
           child: Text(
-            language.isEn
+            isEn
                 ? '$yearlyLabel billed yearly'
                 : '${yearlyLabel.replaceAll('.', ',').replaceAll('/mo', '/ay')} yıllık',
             style: AppTypography.modernAccent(
@@ -455,7 +457,8 @@ class _ContextualPaywallSheetState
     }
   }
 
-  Widget _buildSocialProof(bool language) {
+  Widget _buildSocialProof(bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -480,7 +483,8 @@ class _ContextualPaywallSheetState
     );
   }
 
-  Widget _buildValueRecap(bool language, Color accentColor) {
+  Widget _buildValueRecap(bool isEn, Color accentColor) {
+    final language = AppLanguage.fromIsEn(isEn);
     final entryCount =
         widget.entryCount ??
         ref.read(journalServiceProvider).valueOrNull?.entryCount ??
@@ -572,7 +576,8 @@ class _ContextualPaywallSheetState
     );
   }
 
-  _PaywallConfig _getConfig(bool language) {
+  _PaywallConfig _getConfig(bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     switch (widget.paywallContext) {
       case PaywallContext.patterns:
         return _PaywallConfig(
@@ -581,7 +586,7 @@ class _ContextualPaywallSheetState
           headline: L10nService.get('premium.contextual_paywall.your_data_has_more_to_show', language),
           subtitle: L10nService.get('premium.contextual_paywall.your_entries_hold_patterns_you_cant_see', language),
           detail: widget.entryCount != null
-              ? (language.isEn
+              ? (isEn
                     ? '${widget.entryCount} entries analyzed'
                     : '${widget.entryCount} kayıt analiz edildi')
               : null,
@@ -601,12 +606,12 @@ class _ContextualPaywallSheetState
         return _PaywallConfig(
           icon: Icons.local_fire_department,
           accentColor: AppColors.streakOrange,
-          headline: language.isEn
+          headline: isEn
               ? "Don't lose what you've built"
               : 'İnşa ettiğini kaybetme',
           subtitle: L10nService.get('premium.contextual_paywall.freeze_your_streak_and_pick_up_where_you', language),
           detail: widget.streakDays != null
-              ? (language.isEn
+              ? (isEn
                     ? '${widget.streakDays}-day streak at risk'
                     : '${widget.streakDays} günlük seri risk altında')
               : null,
@@ -617,7 +622,7 @@ class _ContextualPaywallSheetState
         return _PaywallConfig(
           icon: Icons.insert_chart_outlined,
           accentColor: AppColors.chartBlue,
-          headline: language.isEn
+          headline: isEn
               ? "You've done the work. See the growth."
               : 'Emeği verdin. Büyümeyi gör.',
           subtitle: L10nService.get('premium.contextual_paywall.your_monthly_reflection_report_distills', language),
@@ -629,7 +634,7 @@ class _ContextualPaywallSheetState
           icon: Icons.download_rounded,
           accentColor: AppColors.exportGreen,
           headline: L10nService.get('premium.contextual_paywall.your_data_belongs_to_you', language),
-          subtitle: language.isEn
+          subtitle: isEn
               ? 'Export your complete journal history in any format. All ${widget.entryCount ?? ''} entries, yours to keep.'
               : 'Tüm günlük geçmişini istediğin formatta dışa aktar. ${widget.entryCount ?? ''} kayıt, senin.',
           cta: L10nService.get('premium.contextual_paywall.export_everything', language),
