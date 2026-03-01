@@ -145,7 +145,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           final moodService = await MoodCheckinService.init();
           await moodService.logMood(_selectedMood!, _selectedMoodEmoji!);
           ref.invalidate(moodCheckinServiceProvider);
-        } catch (_) {}
+        } catch (e) { if (kDebugMode) debugPrint('Onboarding service init: $e'); }
       }
 
       // Apply referral code if entered during onboarding
@@ -153,7 +153,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         try {
           final referralService = await ReferralService.init();
           await referralService.applyCode(_referralCode.trim());
-        } catch (_) {}
+        } catch (e) { if (kDebugMode) debugPrint('Onboarding service init: $e'); }
       }
 
       await Future.delayed(const Duration(milliseconds: 100));

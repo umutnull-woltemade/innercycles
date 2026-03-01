@@ -253,7 +253,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     }
   }
 
-  void _showDiscardDialog() async {
+  Future<void> _showDiscardDialog() async {
     final language = ref.read(languageProvider);
     final confirmed = await GlassDialog.confirm(
       context,
@@ -1304,7 +1304,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
             widget.retrospectiveDateId!,
             'linked', // journal entry ID from save
           );
-        } catch (_) {}
+        } catch (e) { if (kDebugMode) debugPrint('Daily entry best-effort: $e'); }
       }
 
       // Clear draft on successful save
@@ -1329,7 +1329,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       // Cancel streak-at-risk notification — user journaled today
       try {
         await NotificationService().cancelStreakAtRisk();
-      } catch (_) {}
+      } catch (e) { if (kDebugMode) debugPrint('Daily entry best-effort: $e'); }
 
       // Check for review prompt at engagement milestones
       _checkReviewTrigger(service);

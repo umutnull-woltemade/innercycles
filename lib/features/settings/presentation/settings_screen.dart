@@ -775,7 +775,7 @@ class SettingsScreen extends ConsumerWidget {
           if (await vaultDir.exists()) {
             await vaultDir.delete(recursive: true);
           }
-        } catch (_) {}
+        } catch (e) { if (kDebugMode) debugPrint('Vault dir cleanup: $e'); }
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -813,7 +813,7 @@ class SettingsScreen extends ConsumerWidget {
       // Fallback: sign out even on error
       try {
         await Supabase.instance.client.auth.signOut();
-      } catch (_) {}
+      } catch (e) { if (kDebugMode) debugPrint('Vault dir cleanup: $e'); }
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

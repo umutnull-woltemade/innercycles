@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 // ════════════════════════════════════════════════════════════════════════════
 // TODAY FEED SCREEN - InnerCycles Premium Home (v3 Three-Zone Architecture)
 // ════════════════════════════════════════════════════════════════════════════
@@ -76,7 +77,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
     try {
       final journalService = await ref.read(journalServiceProvider.future);
       previousStreak = journalService.getCurrentStreak();
-    } catch (_) {}
+    } catch (e) { if (kDebugMode) debugPrint('Streak fetch: $e'); }
 
     final hasStreak = previousStreak > 1;
     final subtitle = hasStreak

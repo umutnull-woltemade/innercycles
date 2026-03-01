@@ -145,7 +145,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
     );
   }
 
-  void _showDiscardDialog() async {
+  Future<void> _showDiscardDialog() async {
     final language = ref.read(languageProvider);
     final confirmed = await GlassDialog.confirm(
       context,

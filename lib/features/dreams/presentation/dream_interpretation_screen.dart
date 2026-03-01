@@ -1702,7 +1702,7 @@ ${_getPersonalAdvice(sign)}''';
     });
   }
 
-  void _showDiscardDialog() async {
+  Future<void> _showDiscardDialog() async {
     final language = ref.read(languageProvider);
     final confirmed = await GlassDialog.confirm(
       context,

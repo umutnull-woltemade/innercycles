@@ -1074,7 +1074,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
     );
   }
 
-  void _showDiscardDialog() async {
+  Future<void> _showDiscardDialog() async {
     final language = ref.read(languageProvider);
     final confirmed = await GlassDialog.confirm(
       context,
