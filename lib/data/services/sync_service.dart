@@ -497,10 +497,10 @@ class SyncQueueItem {
   };
 
   factory SyncQueueItem.fromJson(Map<String, dynamic> json) => SyncQueueItem(
-    id: json['id'],
-    operation: json['operation'],
-    tableName: json['table_name'],
-    recordId: json['record_id'],
+    id: json['id']?.toString() ?? '',
+    operation: json['operation']?.toString() ?? 'upsert',
+    tableName: json['table_name']?.toString() ?? '',
+    recordId: json['record_id']?.toString() ?? '',
     payload: json['payload'] is Map
         ? Map<String, dynamic>.from(json['payload'] as Map)
         : <String, dynamic>{},

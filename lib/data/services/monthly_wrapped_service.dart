@@ -101,8 +101,9 @@ class MonthlyWrappedService {
     int streakPeak = 1;
     int currentStreak = 1;
     for (int i = 1; i < sortedDates.length; i++) {
-      final prev = DateTime.parse(sortedDates[i - 1]);
-      final curr = DateTime.parse(sortedDates[i]);
+      final prev = DateTime.tryParse(sortedDates[i - 1]);
+      final curr = DateTime.tryParse(sortedDates[i]);
+      if (prev == null || curr == null) continue;
       if (curr.difference(prev).inDays == 1) {
         currentStreak++;
         if (currentStreak > streakPeak) streakPeak = currentStreak;

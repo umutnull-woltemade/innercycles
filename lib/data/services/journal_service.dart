@@ -288,7 +288,7 @@ class JournalService with SupabaseSyncMixin {
   /// Merge entries pulled from Supabase into local storage.
   Future<void> mergeRemoteEntries(List<Map<String, dynamic>> remoteData) async {
     for (final row in remoteData) {
-      final id = row['id'] as String;
+      final id = (row['id'] as String?) ?? '';
       final isDeleted = row['is_deleted'] as bool? ?? false;
 
       if (isDeleted) {
@@ -311,7 +311,7 @@ class JournalService with SupabaseSyncMixin {
         subRatings: row['sub_ratings'] is Map
             ? Map<String, int>.from(
                 (row['sub_ratings'] as Map).map(
-                  (k, v) => MapEntry(k.toString(), v as int),
+                  (k, v) => MapEntry(k.toString(), (v as num).toInt()),
                 ),
               )
             : {},

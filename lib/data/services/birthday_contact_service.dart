@@ -196,7 +196,7 @@ class BirthdayContactService with SupabaseSyncMixin {
     List<Map<String, dynamic>> remoteData,
   ) async {
     for (final row in remoteData) {
-      final id = row['id'] as String;
+      final id = (row['id'] as String?) ?? '';
       final isDeleted = row['is_deleted'] as bool? ?? false;
 
       if (isDeleted) {

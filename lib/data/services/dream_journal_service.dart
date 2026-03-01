@@ -752,7 +752,7 @@ class DreamJournalService with SupabaseSyncMixin {
   Future<void> mergeRemoteDreams(List<Map<String, dynamic>> remoteData) async {
     final dreams = List<DreamEntry>.from(await getAllDreams());
     for (final row in remoteData) {
-      final id = row['id'] as String;
+      final id = (row['id'] as String?) ?? '';
       final isDeleted = row['is_deleted'] as bool? ?? false;
 
       if (isDeleted) {

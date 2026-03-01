@@ -152,7 +152,7 @@ class MoodCheckinService with SupabaseSyncMixin {
   /// Merge entries pulled from Supabase into local storage.
   Future<void> mergeRemoteMoods(List<Map<String, dynamic>> remoteData) async {
     for (final row in remoteData) {
-      final id = row['id'] as String;
+      final id = (row['id'] as String?) ?? '';
       final isDeleted = row['is_deleted'] as bool? ?? false;
 
       if (isDeleted) {
