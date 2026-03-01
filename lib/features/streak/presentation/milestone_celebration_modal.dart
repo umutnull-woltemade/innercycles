@@ -17,7 +17,7 @@ import '../../../data/services/l10n_service.dart';
 /// Full-screen celebration modal for streak milestones (D3, D7, D14, etc.)
 class MilestoneCelebrationModal extends StatefulWidget {
   final int streakDays;
-  final bool isEn;
+  final bool language.isEn;
   final bool isPremium;
 
   const MilestoneCelebrationModal({
@@ -28,7 +28,7 @@ class MilestoneCelebrationModal extends StatefulWidget {
   });
 
   /// Show the celebration modal. Call after saving an entry.
-  static void show(BuildContext context, int days, bool isEn, {bool isPremium = false}) {
+  static void show(BuildContext context, int days, bool language, {bool isPremium = false}) {
     HapticFeedback.heavyImpact();
     showDialog(
       context: context,
@@ -36,7 +36,7 @@ class MilestoneCelebrationModal extends StatefulWidget {
       barrierColor: Colors.black54,
       builder: (_) => MilestoneCelebrationModal(
         streakDays: days,
-        isEn: isEn,
+        language: language,
         isPremium: isPremium,
       ),
     );
@@ -52,11 +52,10 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
   final bool _isSharing = false;
 
   int get streakDays => widget.streakDays;
-  bool get isEn => widget.isEn;
+  bool get language.isEn => widget.isEn;
   bool get isPremium => widget.isPremium;
 
   Future<void> _shareCard() async {
-    final language = AppLanguage.fromIsEn(isEn);
     // Open the visual share card gallery for a higher-quality, branded share
     if (!mounted) return;
     Navigator.of(context).pop(); // close celebration first
@@ -98,7 +97,6 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
   }
 
   String get _title {
-    final language = AppLanguage.fromIsEn(isEn);
     final lang = language;
     switch (streakDays) {
       case 3:
@@ -122,13 +120,12 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
     }
   }
 
-  String get _message => isEn
+  String get _message => language.isEn
       ? StreakService.getMilestoneMessageEn(streakDays)
       : StreakService.getMilestoneMessageTr(streakDays);
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Semantics(

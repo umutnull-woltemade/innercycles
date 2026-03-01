@@ -14,7 +14,7 @@ import '../../../../data/providers/app_providers.dart';
 
 class ProfileReferralSection extends ConsumerWidget {
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const ProfileReferralSection({
     super.key,
@@ -24,7 +24,6 @@ class ProfileReferralSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = AppLanguage.fromIsEn(isEn);
     final referralAsync = ref.watch(referralServiceProvider);
 
     return Column(
@@ -71,11 +70,10 @@ class ProfileReferralSection extends ConsumerWidget {
                           loading: () => const SizedBox.shrink(),
                           error: (_, _) => const SizedBox.shrink(),
                           data: (service) {
-                            final language = AppLanguage.fromIsEn(isEn);
                             final count = service.referralCount;
                             return Text(
                               count > 0
-                                  ? (isEn
+                                  ? (language.isEn
                                       ? '$count friend${count == 1 ? '' : 's'} invited'
                                       : '$count arkadaş davet edildi')
                                   : (L10nService.get('profile.profile_referral.7_days_free_for_each_friend', language)),

@@ -30,7 +30,6 @@ class RitualsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isEn = language == AppLanguage.en;
     final stacksAsync = ref.watch(ritualStacksProvider);
 
     return Scaffold(
@@ -88,7 +87,7 @@ class RitualsScreen extends ConsumerWidget {
                     data: (stacks) {
                       if (stacks.isEmpty) {
                         return SliverToBoxAdapter(
-                          child: _EmptyState(isDark: isDark, isEn: isEn),
+                          child: _EmptyState(isDark: isDark, language: language),
                         );
                       }
                       return SliverList(
@@ -97,16 +96,16 @@ class RitualsScreen extends ConsumerWidget {
                             return _StackCard(
                               stack: entry.value,
                               isDark: isDark,
-                              isEn: isEn,
+                              language: language,
                               index: entry.key,
                             );
                           }),
                           const SizedBox(height: 24),
-                          _AddButton(isDark: isDark, isEn: isEn),
+                          _AddButton(isDark: isDark, language: language),
                           const SizedBox(height: 24),
                           ToolEcosystemFooter(
                             currentToolId: 'rituals',
-                            isEn: isEn,
+                            language: language,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 40),
@@ -126,13 +125,12 @@ class RitualsScreen extends ConsumerWidget {
 
 class _EmptyState extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _EmptyState({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return PremiumEmptyState(
       icon: Icons.playlist_add_check_rounded,
       title: L10nService.get('rituals.rituals.your_ritual_practice_starts_here', language),
@@ -147,7 +145,7 @@ class _EmptyState extends StatelessWidget {
 class _StackCard extends ConsumerWidget {
   final RitualStack stack;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
   final int index;
 
   const _StackCard({
@@ -159,7 +157,6 @@ class _StackCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: PremiumCard(
@@ -242,12 +239,11 @@ class _StackCard extends ConsumerWidget {
   }
 
   Future<void> _confirmDelete(BuildContext context, WidgetRef ref) async {
-    final language = AppLanguage.fromIsEn(isEn);
     HapticFeedback.mediumImpact();
     final confirmed = await GlassDialog.confirm(
       context,
       title: L10nService.get('rituals.rituals.delete_ritual_1', language),
-      message: isEn
+      message: language.isEn
           ? 'This will delete "${stack.name}" and all its completion history.'
           : '"${stack.name}" ve tüm tamamlama geçmişi silinecek.',
       cancelLabel: L10nService.get('rituals.rituals.cancel', language),
@@ -267,13 +263,12 @@ class _StackCard extends ConsumerWidget {
 
 class _AddButton extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _AddButton({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return Center(
       child: GradientOutlinedButton(
         label: L10nService.get('rituals.rituals.add_ritual', language),

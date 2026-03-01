@@ -15,7 +15,7 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class HeroJournalCard extends ConsumerWidget {
-  final bool isEn;
+  final bool language.isEn;
   final bool isDark;
 
   const HeroJournalCard({
@@ -30,7 +30,6 @@ class HeroJournalCard extends ConsumerWidget {
 
     return promptAsync.maybeWhen(
       data: (service) {
-        final language = AppLanguage.fromIsEn(isEn);
         final prompt = service.getDailyPrompt();
         final questionText = prompt.localizedPrompt(language);
 
@@ -203,7 +202,6 @@ class HeroJournalCard extends ConsumerWidget {
             .glassReveal(context: context, delay: 100.ms);
       },
       orElse: () {
-        final language = AppLanguage.fromIsEn(isEn);
         // Fallback: simple CTA pill
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),

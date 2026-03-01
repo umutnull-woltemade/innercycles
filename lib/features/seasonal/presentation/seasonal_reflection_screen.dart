@@ -30,7 +30,6 @@ class SeasonalReflectionScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(seasonalReflectionServiceProvider);
 
     return Scaffold(
@@ -113,7 +112,7 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                             module: module,
                             completion: completion,
                             isDark: isDark,
-                            isEn: isEn,
+                            language: language,
                           ),
                           const SizedBox(height: 20),
 
@@ -125,7 +124,7 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                               prompt: prompt,
                               isCompleted: isCompleted,
                               isDark: isDark,
-                              isEn: isEn,
+                              language: language,
                               onComplete: () async {
                                 await service.completePrompt(prompt.index);
                                 if (!context.mounted) return;
@@ -140,12 +139,12 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                           const SizedBox(height: 24),
 
                           // All seasons overview
-                          _AllSeasonsRow(isDark: isDark, isEn: isEn),
+                          _AllSeasonsRow(isDark: isDark, language: language),
                           const SizedBox(height: 24),
                           ContentDisclaimer(language: language),
                           ToolEcosystemFooter(
                             currentToolId: 'seasonalReflection',
-                            isEn: isEn,
+                            language: language,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 40),
@@ -169,7 +168,7 @@ class _SeasonHeader extends StatelessWidget {
   final SeasonalModule module;
   final double completion;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _SeasonHeader({
     required this.module,
@@ -180,7 +179,6 @@ class _SeasonHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.aurora,
       padding: const EdgeInsets.all(24),
@@ -251,7 +249,7 @@ class _PromptCard extends StatelessWidget {
   final SeasonalPrompt prompt;
   final bool isCompleted;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
   final VoidCallback onComplete;
 
   const _PromptCard({
@@ -264,7 +262,6 @@ class _PromptCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: PremiumCard(
@@ -354,13 +351,12 @@ class _PromptCard extends StatelessWidget {
 
 class _AllSeasonsRow extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _AllSeasonsRow({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     final current = SeasonalReflectionService.currentSeason();
 
     return PremiumCard(
@@ -384,7 +380,6 @@ class _AllSeasonsRow extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: SeasonalReflectionService.allModules.map((m) {
-              final language = AppLanguage.fromIsEn(isEn);
               final isCurrent = m.season == current;
               return Column(
                 children: [

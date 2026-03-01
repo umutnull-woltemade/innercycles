@@ -13,7 +13,7 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class OnThisDayBanner extends ConsumerWidget {
-  final bool isEn;
+  final bool language.isEn;
   final bool isDark;
 
   const OnThisDayBanner({
@@ -29,7 +29,6 @@ class OnThisDayBanner extends ConsumerWidget {
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (service) {
-        final language = AppLanguage.fromIsEn(isEn);
         final allEntries = service.getAllEntries();
         final now = DateTime.now();
         final onThisDayEntries = allEntries.where((e) {
@@ -84,7 +83,7 @@ class OnThisDayBanner extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            isEn
+                            language.isEn
                                 ? 'On This Day — $yearsAgo year${yearsAgo == 1 ? '' : 's'} ago'
                                 : 'Bugün Geçmişte — $yearsAgo yıl önce',
                             maxLines: 1,
@@ -114,7 +113,7 @@ class OnThisDayBanner extends ConsumerWidget {
                           if (onThisDayEntries.length > 1) ...[
                             const SizedBox(height: 2),
                             Text(
-                              isEn
+                              language.isEn
                                   ? '+${onThisDayEntries.length - 1} more memories'
                                   : '+${onThisDayEntries.length - 1} anı daha',
                               style: AppTypography.elegantAccent(
@@ -134,7 +133,7 @@ class OnThisDayBanner extends ConsumerWidget {
                             entry.note != null && entry.note!.isNotEmpty
                                 ? '"${entry.note!.length > 80 ? '${entry.note!.substring(0, 80)}...' : entry.note!}"'
                                 : areaLabel;
-                        final shareText = isEn
+                        final shareText = language.isEn
                             ? '$yearsAgo year${yearsAgo == 1 ? '' : 's'} ago today, I wrote:\n\n$noteSnippet\n\n'
                               'Some things are worth remembering.\n'
                               '#InnerCycles #OnThisDay #Journaling'

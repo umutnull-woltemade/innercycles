@@ -40,7 +40,6 @@ class ProgramCompletionScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isEn = language == AppLanguage.en;
 
     return Scaffold(
       body: CosmicBackground(
@@ -84,7 +83,7 @@ class ProgramCompletionScreen extends ConsumerWidget {
 
                 // Subtitle
                 Text(
-                  isEn
+                  language.isEn
                       ? 'You completed $programTitle'
                       : '$programTitle tamamlandı',
                   textAlign: TextAlign.center,
@@ -173,7 +172,7 @@ class ProgramCompletionScreen extends ConsumerWidget {
                       _CertificateRow(
                         icon: Icons.today_rounded,
                         label: L10nService.get('programs.program_completion.completed_on', language),
-                        value: _formatDate(DateTime.now(), isEn),
+                        value: _formatDate(DateTime.now(), language),
                         isDark: isDark,
                       ),
                       const SizedBox(height: AppConstants.spacingXl),
@@ -236,8 +235,8 @@ class ProgramCompletionScreen extends ConsumerWidget {
     );
   }
 
-  String _formatDate(DateTime date, bool isEn) {
-    final months = isEn
+  String _formatDate(DateTime date, bool language) {
+    final months = language.isEn
         ? [
             'January',
             'February',
@@ -267,7 +266,7 @@ class ProgramCompletionScreen extends ConsumerWidget {
             'Aralık',
           ];
     final month = months[date.month - 1];
-    return isEn
+    return language.isEn
         ? '$month ${date.day}, ${date.year}'
         : '${date.day} $month ${date.year}';
   }

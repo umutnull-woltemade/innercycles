@@ -562,7 +562,6 @@ class ShareCardTemplates {
     String? challengeName,
     String? challengeEmoji,
   }) {
-    final isEn = language == AppLanguage.en;
     final ShareCardData result;
     switch (template.id) {
       // ── Identity ──────────────────────────────────────────────────────
@@ -609,7 +608,7 @@ class ShareCardTemplates {
           headline: L10nService.get('data.content.share_templates.my_week_in_feelings', language),
           subtitle: L10nService.get('data.content.share_templates.patterns_drawn_from_7day_mood_data', language),
           chartValues: moodValues ?? [3, 4, 3, 5, 4, 3, 4],
-          chartLabels: isEn
+          chartLabels: language.isEn
               ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
               : ['Pt', 'Sa', 'Ca', 'Pe', 'Cu', 'Ct', 'Pa'],
         );
@@ -619,7 +618,7 @@ class ShareCardTemplates {
           headline: L10nService.get('data.content.share_templates.focus_area_balance', language),
           subtitle: L10nService.get('data.content.share_templates.how_your_attention_spreads_across_areas', language),
           chartValues: focusValues ?? [4, 3, 5, 2, 4],
-          chartLabels: isEn
+          chartLabels: language.isEn
               ? ['Mind', 'Body', 'Heart', 'Inner', 'Social']
               : ['Zihin', 'Beden', 'Kalp', 'İç', 'Sosyal'],
         );
@@ -646,7 +645,7 @@ class ShareCardTemplates {
           headline: L10nService.get('data.content.share_templates.my_sleep_quality', language),
           subtitle: L10nService.get('data.content.share_templates.how_your_rest_has_been_this_week', language),
           chartValues: sleepValues ?? [3, 4, 4, 5, 3, 4, 4],
-          chartLabels: isEn
+          chartLabels: language.isEn
               ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
               : ['Pt', 'Sa', 'Ca', 'Pe', 'Cu', 'Ct', 'Pa'],
         );
@@ -682,7 +681,7 @@ class ShareCardTemplates {
       case 'consistency_star':
         final days = monthDays > 0 ? monthDays : 20;
         result = ShareCardData(
-          headline: isEn
+          headline: language.isEn
               ? 'Journaled $days Days This Month'
               : 'Bu Ay $days Gün Yazıldı',
           subtitle: L10nService.get('data.content.share_templates.showing_up_consistently_for_yourself', language),
@@ -694,7 +693,7 @@ class ShareCardTemplates {
         final from = growthFrom > 0 ? growthFrom : 42;
         final to = growthTo > 0 ? growthTo : 78;
         result = ShareCardData(
-          headline: isEn
+          headline: language.isEn
               ? 'Growth: $from \u{2192} $to'
               : 'Gelişim: $from \u{2192} $to',
           subtitle: L10nService.get('data.content.share_templates.your_growth_score_has_been_rising_steadi', language),
@@ -831,10 +830,10 @@ class ShareCardTemplates {
                   .toStringAsFixed(1)
             : '—';
         result = ShareCardData(
-          headline: isEn
+          headline: language.isEn
               ? '$entries entries this month'
               : 'Bu ay $entries kayıt',
-          subtitle: isEn
+          subtitle: language.isEn
               ? 'Average rating: $avg — your month at a glance'
               : 'Ortalama puan: $avg — ayına genel bakış',
           statValue: '$entries',

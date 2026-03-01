@@ -41,7 +41,6 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isEn = language == AppLanguage.en;
     final isPremium = ref.watch(isPremiumUserProvider);
     final exportAsync = ref.watch(exportServiceProvider);
 
@@ -64,7 +63,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                       // Info card
                       _InfoCard(
                         isDark: isDark,
-                        isEn: isEn,
+                        language: language,
                         isPremium: isPremium,
                       ),
                       const SizedBox(height: 24),
@@ -76,7 +75,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                             _EntryCountCard(
                               count: service.totalEntries,
                               isDark: isDark,
-                              isEn: isEn,
+                              language: language,
                               isPremium: isPremium,
                             ),
                             // Locked entries CTA for free users
@@ -86,7 +85,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                                 totalEntries: service.totalEntries,
                                 lockedEntries: service.totalEntries - 7,
                                 isDark: isDark,
-                                isEn: isEn,
+                                language: language,
                                 onUnlock: () => showContextualPaywall(
                                   context,
                                   ref,
@@ -214,7 +213,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                         icon: Icons.file_download_outlined,
                         onPressed: _isExporting
                             ? null
-                            : () => _doExport(isPremium, isEn),
+                            : () => _doExport(isPremium, language),
                         isLoading: _isExporting,
                         expanded: true,
                       ),
@@ -233,7 +232,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                         ),
                         onPressed: _isExporting
                             ? null
-                            : () => _copyToClipboard(isPremium, isEn),
+                            : () => _copyToClipboard(isPremium, language),
                       ),
 
                       const SizedBox(height: 40),
@@ -248,7 +247,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
     );
   }
 
-  Future<void> _doExport(bool isPremium, bool isEn) async {
+  Future<void> _doExport(bool isPremium, bool language) async {
     // GUARDRAIL: Double-check entitlement with RevenueCat before export
     if (isPremium) {
       final verified = await ref
@@ -274,7 +273,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
       final result = service.export(
         format: _selectedFormat,
         isPremium: isPremium,
-        language: AppLanguage.fromIsEn(isEn),
+        language: AppLanguage.fromIsEn(language),
       );
 
       await SharePlus.instance.share(
@@ -286,8 +285,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
     }
   }
 
-  Future<void> _copyToClipboard(bool isPremium, bool isEn) async {
-    final language = AppLanguage.fromIsEn(isEn);
+  Future<void> _copyToClipboard(bool isPremium, bool language) async {
     // GUARDRAIL: Double-check entitlement with RevenueCat before clipboard export
     if (isPremium) {
       final verified = await ref
@@ -310,7 +308,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
     final result = service.export(
       format: _selectedFormat,
       isPremium: isPremium,
-      language: AppLanguage.fromIsEn(isEn),
+      language: AppLanguage.fromIsEn(language),
     );
 
     await Clipboard.setData(ClipboardData(text: result.content));
@@ -334,7 +332,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
 
 class _InfoCard extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
   final bool isPremium;
 
   const _InfoCard({
@@ -345,7 +343,6 @@ class _InfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: 14,
@@ -376,7 +373,7 @@ class _InfoCard extends StatelessWidget {
 class _EntryCountCard extends StatelessWidget {
   final int count;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
   final bool isPremium;
 
   const _EntryCountCard({
@@ -388,7 +385,6 @@ class _EntryCountCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: 14,
@@ -448,7 +444,7 @@ class _LockedEntriesCta extends StatelessWidget {
   final int totalEntries;
   final int lockedEntries;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
   final VoidCallback onUnlock;
 
   const _LockedEntriesCta({
@@ -461,10 +457,9 @@ class _LockedEntriesCta extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       button: true,
-      label: isEn
+      label: language.isEn
           ? 'Access $lockedEntries locked entries'
           : '$lockedEntries kilitli kayda eriş',
       child: GestureDetector(
@@ -493,7 +488,7 @@ class _LockedEntriesCta extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      isEn
+                      language.isEn
                           ? '$lockedEntries entries locked'
                           : '$lockedEntries kayıt kilitli',
                       style: AppTypography.modernAccent(
@@ -506,7 +501,7 @@ class _LockedEntriesCta extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      isEn
+                      language.isEn
                           ? 'Upgrade to export all $totalEntries entries'
                           : 'Tüm $totalEntries kaydı aktarmak için yükselt',
                       style: AppTypography.elegantAccent(

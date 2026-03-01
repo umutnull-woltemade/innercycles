@@ -34,7 +34,6 @@ class MilestoneScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
-    final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final milestoneAsync = ref.watch(milestoneServiceProvider);
 
@@ -77,7 +76,7 @@ class MilestoneScreen extends ConsumerWidget {
             ),
           ),
           data: (service) =>
-              _MilestoneBody(service: service, isEn: isEn, isDark: isDark),
+              _MilestoneBody(service: service, language: language, isDark: isDark),
         ),
       ),
     );
@@ -90,7 +89,7 @@ class MilestoneScreen extends ConsumerWidget {
 
 class _MilestoneBody extends StatefulWidget {
   final MilestoneService service;
-  final bool isEn;
+  final bool language.isEn;
   final bool isDark;
 
   const _MilestoneBody({
@@ -107,12 +106,11 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   MilestoneCategory? _selectedCategory;
 
   MilestoneService get service => widget.service;
-  bool get isEn => widget.isEn;
+  bool get language.isEn => widget.isEn;
   bool get isDark => widget.isDark;
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     final allMilestones = service.getAllMilestones();
     final filtered = _selectedCategory == null
         ? allMilestones
@@ -172,7 +170,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: ToolEcosystemFooter(
                 currentToolId: 'milestones',
-                isEn: isEn,
+                language: language,
                 isDark: isDark,
               ),
             ),
@@ -190,13 +188,12 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildProgressCard() {
-    final language = AppLanguage.fromIsEn(isEn);
     final earned = service.earnedCount;
     final total = service.totalCount;
     final progress = service.getProgress();
 
     return Semantics(
-      label: isEn
+      label: language.isEn
           ? '$earned of $total milestones earned, ${(progress * 100).round()} percent complete'
           : '$total rozetin $earned tanesi kazanıldı, yüzde ${(progress * 100).round()} tamamlandı',
       child: Container(
@@ -284,7 +281,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    isEn
+                    language.isEn
                         ? '${(progress * 100).round()}% complete'
                         : '%${(progress * 100).round()} tamamlandı',
                     style: AppTypography.subtitle(
@@ -310,7 +307,6 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   }
 
   String _getProgressMessage(int earned, int total) {
-    final language = AppLanguage.fromIsEn(isEn);
     final remaining = total - earned;
     if (earned == 0) {
       return L10nService.get('milestones.milestone.start_tracking', language);
@@ -318,7 +314,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
     if (earned >= total) {
       return L10nService.get('milestones.milestone.you_earned_them_all', language);
     }
-    return isEn
+    return language.isEn
         ? '$remaining more to discover'
         : '$remaining tane daha keşfedilecek';
   }
@@ -335,7 +331,6 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
       physics: const BouncingScrollPhysics(),
       child: Row(
         children: categories.map((cat) {
-          final language = AppLanguage.fromIsEn(isEn);
           final selected = _selectedCategory == cat;
           final label = cat == null
               ? (L10nService.get('milestones.milestone.all', language))
@@ -345,7 +340,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
             padding: const EdgeInsets.only(right: 8),
             child: Semantics(
               label: selected
-                  ? (isEn
+                  ? (language.isEn
                         ? '$label filter, selected'
                         : '$label filtresi, seçili')
                   : (L10nService.getWithParams('milestones.filter_label', language, params: {'label': label})),
@@ -397,15 +392,14 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildBadgeTile(Milestone milestone, bool earned, int index) {
-    final language = AppLanguage.fromIsEn(isEn);
     final name = milestone.localizedName(language);
 
     return Semantics(
           label: earned
-              ? (isEn
+              ? (language.isEn
                     ? '$name badge, earned. Double tap to view details'
                     : '$name rozeti, kazanıldı. Ayrıntıları görmek için iki kez dokun')
-              : (isEn
+              : (language.isEn
                     ? '$name badge, locked. ${_getCategoryHint(milestone.category)}'
                     : '$name rozeti, kilitli. ${_getCategoryHint(milestone.category)}'),
           button: earned,
@@ -520,7 +514,6 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   }
 
   String _getCategoryHint(MilestoneCategory category) {
-    final language = AppLanguage.fromIsEn(isEn);
     switch (category) {
       case MilestoneCategory.streak:
         return L10nService.get('milestones.milestone.keep_logging', language);
@@ -542,7 +535,6 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   // ══════════════════════════════════════════════════════════════════════════
 
   void _showBadgeDetail(Milestone milestone) {
-    final language = AppLanguage.fromIsEn(isEn);
     final earnedDate = service.earnedAt(milestone.id);
     final lang = language;
     final name = milestone.localizedName(lang);
@@ -552,7 +544,6 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
     showDialog(
       context: context,
       builder: (ctx) {
-        final language = AppLanguage.fromIsEn(isEn);
         final dialogDark = Theme.of(ctx).brightness == Brightness.dark;
 
         return Dialog(
@@ -678,9 +669,9 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                           ),
                           const SizedBox(width: 6),
                           Text(
-                            isEn
-                                ? 'Earned ${_formatDate(earnedDate, isEn)}'
-                                : 'Kazanıldı: ${_formatDate(earnedDate, isEn)}',
+                            language.isEn
+                                ? 'Earned ${_formatDate(earnedDate, language)}'
+                                : 'Kazanıldı: ${_formatDate(earnedDate, language)}',
                             style: AppTypography.subtitle(
                               fontSize: 13,
                               color: AppColors.success,
@@ -728,8 +719,8 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
     );
   }
 
-  String _formatDate(DateTime date, bool isEn) {
-    final months = isEn
+  String _formatDate(DateTime date, bool language) {
+    final months = language.isEn
         ? [
             'Jan',
             'Feb',

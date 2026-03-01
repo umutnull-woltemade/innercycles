@@ -57,7 +57,6 @@ class _HabitSuggestionsScreenState
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
-    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(habitSuggestionServiceProvider);
 
     return Scaffold(
@@ -95,7 +94,7 @@ class _HabitSuggestionsScreenState
               ],
             ),
           ),
-          data: (service) => _buildContent(context, service, isDark, isEn),
+          data: (service) => _buildContent(context, service, isDark, language),
         ),
       ),
     );
@@ -105,9 +104,8 @@ class _HabitSuggestionsScreenState
     BuildContext context,
     HabitSuggestionService service,
     bool isDark,
-    bool isEn,
+    bool language,
   ) {
-    final language = AppLanguage.fromIsEn(isEn);
     final dailyHabit = service.getDailyHabit();
 
     // Build filtered list
@@ -166,13 +164,13 @@ class _HabitSuggestionsScreenState
                 habit: dailyHabit,
                 service: service,
                 isDark: isDark,
-                isEn: isEn,
+                language: language,
                 onTap: () => _showHabitDetail(
                   context,
                   dailyHabit,
                   service,
                   isDark,
-                  isEn,
+                  language,
                 ),
                 onRefresh: () => setState(() {}),
               ),
@@ -183,7 +181,7 @@ class _HabitSuggestionsScreenState
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _ProgressBar(service: service, isDark: isDark, isEn: isEn),
+              child: _ProgressBar(service: service, isDark: isDark, language: language),
             ),
           ),
 
@@ -213,7 +211,7 @@ class _HabitSuggestionsScreenState
                       return Padding(
                         padding: const EdgeInsets.only(left: 8),
                         child: _CategoryChip(
-                          label: isEn
+                          label: language.isEn
                               ? HabitSuggestionService.categoryDisplayNameEn(
                                   cat,
                                 )
@@ -268,13 +266,13 @@ class _HabitSuggestionsScreenState
                       habit: habit,
                       service: service,
                       isDark: isDark,
-                      isEn: isEn,
+                      language: language,
                       onTap: () => _showHabitDetail(
                         context,
                         habit,
                         service,
                         isDark,
-                        isEn,
+                        language,
                       ),
                       onRefresh: () => setState(() {}),
                     ),
@@ -290,7 +288,7 @@ class _HabitSuggestionsScreenState
               padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
               child: ToolEcosystemFooter(
                 currentToolId: 'habitSuggestions',
-                isEn: isEn,
+                language: language,
                 isDark: isDark,
               ),
             ),
@@ -305,7 +303,7 @@ class _HabitSuggestionsScreenState
     HabitSuggestion habit,
     HabitSuggestionService service,
     bool isDark,
-    bool isEn,
+    bool language,
   ) {
     HapticFeedback.lightImpact();
     showModalBottomSheet(
@@ -316,7 +314,7 @@ class _HabitSuggestionsScreenState
         habit: habit,
         service: service,
         isDark: isDark,
-        isEn: isEn,
+        language: language,
         onChanged: () => setState(() {}),
       ),
     );
@@ -331,7 +329,7 @@ class _DailySpotlightCard extends StatelessWidget {
   final HabitSuggestion habit;
   final HabitSuggestionService service;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
   final VoidCallback onTap;
   final VoidCallback onRefresh;
 
@@ -346,7 +344,6 @@ class _DailySpotlightCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     final isTried = service.isTried(habit.id);
     final isAdopted = service.isAdopted(habit.id);
 
@@ -474,7 +471,7 @@ class _DailySpotlightCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
-                      isEn
+                      language.isEn
                           ? HabitSuggestionService.categoryDisplayNameEn(
                               habit.category,
                             )
@@ -576,7 +573,7 @@ class _DailySpotlightCard extends StatelessWidget {
 class _ProgressBar extends StatelessWidget {
   final HabitSuggestionService service;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _ProgressBar({
     required this.service,
@@ -586,7 +583,6 @@ class _ProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     final tried = service.triedCount;
     final adopted = service.adoptedCount;
     final total = service.totalCount;
@@ -645,7 +641,7 @@ class _ProgressBar extends StatelessWidget {
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  isEn
+                  language.isEn
                       ? '$adopted adopted into your routine'
                       : '$adopted rutininize eklendi',
                   style: AppTypography.subtitle(
@@ -742,7 +738,7 @@ class _HabitCard extends StatelessWidget {
   final HabitSuggestion habit;
   final HabitSuggestionService service;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
   final VoidCallback onTap;
   final VoidCallback onRefresh;
 
@@ -757,7 +753,6 @@ class _HabitCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     final isTried = service.isTried(habit.id);
     final isAdopted = service.isAdopted(habit.id);
     final isBookmarked = service.isBookmarked(habit.id);
@@ -935,7 +930,7 @@ class _HabitDetailSheet extends StatefulWidget {
   final HabitSuggestion habit;
   final HabitSuggestionService service;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
   final VoidCallback onChanged;
 
   const _HabitDetailSheet({
@@ -966,7 +961,6 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
   @override
   Widget build(BuildContext context) {
     final isDark = widget.isDark;
-    final isEn = widget.isEn;
     final habit = widget.habit;
 
     return DraggableScrollableSheet(
@@ -974,7 +968,6 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
       minChildSize: 0.3,
       maxChildSize: 0.85,
       builder: (context, scrollController) {
-        final language = AppLanguage.fromIsEn(isEn);
         return ClipRRect(
           borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
           child: BackdropFilter(
@@ -1030,7 +1023,7 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                isEn
+                                language.isEn
                                     ? HabitSuggestionService.categoryDisplayNameEn(
                                         habit.category,
                                       )

@@ -69,7 +69,6 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
     if (!mounted) return;
     final language = ref.read(languageProvider);
-    final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     // Get previous streak for urgency
@@ -81,10 +80,10 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
     final hasStreak = previousStreak > 1;
     final subtitle = hasStreak
-        ? (isEn
+        ? (language.isEn
             ? 'You had a $previousStreak-day streak! One entry restarts your momentum.'
             : '$previousStreak günlük serin vardı! Bir kayıt ivmeni yeniden başlatır.')
-        : (isEn
+        : (language.isEn
             ? 'It\'s been $daysSince days. A quick check-in is all it takes to restart.'
             : '$daysSince gündür burada değildin. Kısa bir kayıt yeniden başlamak için yeter.');
 
@@ -217,7 +216,6 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
     if (!mounted) return;
     final language = ref.read(languageProvider);
-    final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     final label = milestone >= 365
@@ -234,7 +232,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
             ? '\u{1F31F}'
             : '\u{2B50}';
 
-    final message = isEn
+    final message = language.isEn
         ? 'You\'ve been journaling for $label.\nYour commitment to self-reflection is inspiring.'
         : '$label boyunca g\u00fcnl\u00fck tutuyorsun.\n\u00d6z yans\u0131ma konusundaki kararl\u0131l\u0131\u011f\u0131n ilham verici.';
 
@@ -297,7 +295,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        final text = isEn
+                        final text = language.isEn
                             ? '$emoji $label of journaling with InnerCycles!\n\n'
                               'Building a reflection practice, one day at a time.\n\n'
                               '${AppConstants.appStoreUrl}\n#InnerCycles #Anniversary'
@@ -364,7 +362,6 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
-    final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final userProfile = ref.watch(userProfileProvider);
     final userName = userProfile?.name ?? '';
@@ -395,14 +392,14 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   SliverToBoxAdapter(
                     child: HomeHeader(
                       userName: userName,
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                     ).glassEntrance(context: context),
                   ),
 
                   // 2. Hero Journal Card (promoted to #2)
                   SliverToBoxAdapter(
-                    child: HeroJournalCard(isEn: isEn, isDark: isDark),
+                    child: HeroJournalCard(language: language, isDark: isDark),
                   ),
 
                   const SliverToBoxAdapter(child: SizedBox(height: 12)),
@@ -410,7 +407,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 3. Mood + Stats Strip
                   SliverToBoxAdapter(
                     child: MoodStatsStrip(
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                     ).glassEntrance(context: context, delay: 180.ms),
                   ),
@@ -435,7 +432,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 5. Daily Pulse Card
                   SliverToBoxAdapter(
                     child: DailyPulseCard(
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                     ).glassReveal(context: context, delay: 280.ms),
                   ),
@@ -443,7 +440,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 5b. Weekly Focus Progress
                   SliverToBoxAdapter(
                     child: WeeklyFocusProgress(
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                     ).animate().fadeIn(delay: 320.ms, duration: 400.ms),
                   ),
@@ -456,26 +453,26 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 6. Recent Entries
                   SliverToBoxAdapter(
                     child: RecentEntriesSection(
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                     ).glassEntrance(context: context, delay: 400.ms),
                   ),
 
                   // 7. Today's Birthdays (conditional)
                   SliverToBoxAdapter(
-                    child: TodayBirthdayBanner(isEn: isEn, isDark: isDark),
+                    child: TodayBirthdayBanner(language: language, isDark: isDark),
                   ),
 
                   // 7b. On This Day — Anniversary memories
                   SliverToBoxAdapter(
-                    child: OnThisDayBanner(isEn: isEn, isDark: isDark),
+                    child: OnThisDayBanner(language: language, isDark: isDark),
                   ),
 
                   const SliverToBoxAdapter(child: SizedBox(height: 8)),
 
                   // 8. Recent Life Events
                   SliverToBoxAdapter(
-                    child: RecentLifeEventsSection(isEn: isEn, isDark: isDark),
+                    child: RecentLifeEventsSection(language: language, isDark: isDark),
                   ),
 
                   // 9. Streak Card
@@ -500,12 +497,12 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
                   // 10. Promotional Banner Stack
                   SliverToBoxAdapter(
-                    child: PromotionalBannerStack(isEn: isEn, isDark: isDark),
+                    child: PromotionalBannerStack(language: language, isDark: isDark),
                   ),
 
                   // 11. Social Proof Strip
                   SliverToBoxAdapter(
-                    child: SocialProofStrip(isEn: isEn, isDark: isDark),
+                    child: SocialProofStrip(language: language, isDark: isDark),
                   ),
 
                   // 12. Bottom padding

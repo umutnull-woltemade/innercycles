@@ -31,7 +31,6 @@ class LibraryHubScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isEn = language == AppLanguage.en;
 
     final categories = [
       _LibraryCategory(
@@ -123,7 +122,7 @@ class LibraryHubScreen extends ConsumerWidget {
                             child: _CategoryCard(
                               category: cat,
                               isDark: isDark,
-                              isEn: isEn,
+                              language: language,
                             ),
                           )
                           .animate()
@@ -141,7 +140,7 @@ class LibraryHubScreen extends ConsumerWidget {
 
                     ToolEcosystemFooter(
                       currentToolId: 'libraryHub',
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                     ),
                     const SizedBox(height: AppConstants.spacingHuge),
@@ -175,7 +174,7 @@ class _LibraryCategory {
 class _CategoryCard extends StatelessWidget {
   final _LibraryCategory category;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
   const _CategoryCard({
     required this.category,
     required this.isDark,
@@ -184,7 +183,6 @@ class _CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       label: category.localizedName(language),
       button: true,

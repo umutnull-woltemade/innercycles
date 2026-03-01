@@ -37,7 +37,6 @@ class _EmotionalVocabularyScreenState
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isEn = language == AppLanguage.en;
 
     // Filter emotions
     var emotions = List<GranularEmotion>.from(allGranularEmotions);
@@ -74,16 +73,16 @@ class _EmotionalVocabularyScreenState
                           sliver: SliverList(
                             delegate: SliverChildListDelegate([
                               // Family filter chips
-                              _buildFamilyChips(isDark, isEn),
+                              _buildFamilyChips(isDark, language),
                               const SizedBox(height: AppConstants.spacingMd),
 
                               // Search bar
-                              _buildSearchBar(isDark, isEn),
+                              _buildSearchBar(isDark, language),
                               const SizedBox(height: AppConstants.spacingLg),
 
                               // Emotion count
                               Text(
-                                isEn
+                                language.isEn
                                     ? '${emotions.length} emotions'
                                     : '${emotions.length} duygu',
                                 style: AppTypography.elegantAccent(
@@ -105,7 +104,7 @@ class _EmotionalVocabularyScreenState
                                   child: _EmotionCard(
                                     emotion: emotion,
                                     isDark: isDark,
-                                    isEn: isEn,
+                                    language: language,
                                   ),
                                 ),
                               ),
@@ -155,8 +154,7 @@ class _EmotionalVocabularyScreenState
     );
   }
 
-  Widget _buildFamilyChips(bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildFamilyChips(bool isDark, bool language) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
@@ -186,8 +184,7 @@ class _EmotionalVocabularyScreenState
     );
   }
 
-  Widget _buildSearchBar(bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildSearchBar(bool isDark, bool language) {
     return Container(
       decoration: BoxDecoration(
         color: isDark
@@ -311,7 +308,7 @@ class _FamilyChip extends StatelessWidget {
 class _EmotionCard extends StatefulWidget {
   final GranularEmotion emotion;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _EmotionCard({
     required this.emotion,
@@ -330,8 +327,6 @@ class _EmotionCardState extends State<_EmotionCard> {
   Widget build(BuildContext context) {
     final e = widget.emotion;
     final isDark = widget.isDark;
-    final isEn = widget.isEn;
-    final language = AppLanguage.fromIsEn(isEn);
 
     return Semantics(
       button: true,

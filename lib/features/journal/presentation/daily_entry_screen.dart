@@ -86,7 +86,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 
   /// Returns a time-of-day contextual hint for the note field.
   /// Uses a pool of 5 hints per time window, selected by date hash for daily consistency.
-  String _contextualHint(bool isEn) {
+  String _contextualHint(bool language) {
     final now = DateTime.now();
     final hour = now.hour;
 
@@ -134,10 +134,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     ];
 
     final pool = hour < 12
-        ? (isEn ? morningEn : morningTr)
+        ? (language.isEn ? morningEn : morningTr)
         : hour < 17
-            ? (isEn ? afternoonEn : afternoonTr)
-            : (isEn ? eveningEn : eveningTr);
+            ? (language.isEn ? afternoonEn : afternoonTr)
+            : (language.isEn ? eveningEn : eveningTr);
 
     // Deterministic daily selection: hash of date so hint is consistent per day
     final dayHash = now.year * 366 + now.month * 31 + now.day;
@@ -272,7 +272,6 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isEn = language == AppLanguage.en;
 
     return PopScope(
       canPop: !_hasChanges,
@@ -302,7 +301,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     sliver: SliverList(
                       delegate: SliverChildListDelegate([
                         // Date selector
-                        _buildDateSelector(context, isDark, isEn),
+                        _buildDateSelector(context, isDark, language),
                         const SizedBox(height: AppConstants.spacingSm),
 
                         const SizedBox(height: AppConstants.spacingMd),
@@ -314,7 +313,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                           L10nService.get('journal.daily_entry.focus_area', language),
                         ),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildFocusAreaSelector(isDark, isEn),
+                        _buildFocusAreaSelector(isDark, language),
                         const SizedBox(height: AppConstants.spacingXl),
 
                         // Overall rating
@@ -324,7 +323,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                           L10nService.get('journal.daily_entry.overall_rating', language),
                         ),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildRatingSlider(isDark, isEn, _overallRating, (v) {
+                        _buildRatingSlider(isDark, language, _overallRating, (v) {
                           setState(() {
                             _overallRating = v;
                             _hasChanges = true;
@@ -334,7 +333,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                         const SizedBox(height: AppConstants.spacingXl),
 
                         // Sub-ratings (adaptive: collapsed if abandonment >40%)
-                        _buildAdaptiveSubRatings(context, isDark, isEn),
+                        _buildAdaptiveSubRatings(context, isDark, language),
                         const SizedBox(height: AppConstants.spacingXl),
 
                         // Note
@@ -344,8 +343,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                           L10nService.get('journal.daily_entry.notes_optional', language),
                         ),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _CyclePhasePromptHint(isEn: isEn, isDark: isDark),
-                        _buildNoteField(isDark, isEn),
+                        _CyclePhasePromptHint(language: language, isDark: isDark),
+                        _buildNoteField(isDark, language),
                         const SizedBox(height: AppConstants.spacingXl),
 
                         // Tags (optional)
@@ -355,7 +354,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                           L10nService.get('journal.daily_entry.tags_optional', language),
                         ),
                         const SizedBox(height: AppConstants.spacingMd),
-                        _buildTagSection(isDark, isEn),
+                        _buildTagSection(isDark, language),
                         const SizedBox(height: AppConstants.spacingXl),
 
                         // Photo attachment
@@ -366,7 +365,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                             L10nService.get('journal.daily_entry.photo_optional', language),
                           ),
                           const SizedBox(height: AppConstants.spacingMd),
-                          _buildPhotoPicker(isDark, isEn),
+                          _buildPhotoPicker(isDark, language),
                           const SizedBox(height: AppConstants.spacingXl),
                         ],
 
@@ -389,14 +388,14 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                               _isPrivate = v;
                               _hasChanges = true;
                             }),
-                            isEn: isEn,
+                            language: language,
                             isDark: isDark,
                           ),
                         if (!kIsWeb)
                           const SizedBox(height: AppConstants.spacingXl),
 
                         // Save button
-                        _buildSaveButton(isDark, isEn),
+                        _buildSaveButton(isDark, language),
                         const SizedBox(height: 40),
                       ]),
                     ),
@@ -411,13 +410,13 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     );
   }
 
-  Widget _buildDateSelector(BuildContext context, bool isDark, bool isEn) {
-    final dayName = _getDayName(_selectedDate, isEn);
+  Widget _buildDateSelector(BuildContext context, bool isDark, bool language) {
+    final dayName = _getDayName(_selectedDate, language);
     final dateStr =
         '${_selectedDate.day}.${_selectedDate.month}.${_selectedDate.year}';
 
     return Semantics(
-      label: isEn
+      label: language.isEn
           ? 'Select date: $dayName $dateStr'
           : 'Tarih seç: $dayName $dateStr',
       button: true,
@@ -498,8 +497,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     );
   }
 
-  Widget _buildFocusAreaSelector(bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildFocusAreaSelector(bool isDark, bool language) {
     return Wrap(
       spacing: AppConstants.spacingSm,
       runSpacing: AppConstants.spacingSm,
@@ -591,11 +589,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 
   Widget _buildRatingSlider(
     bool isDark,
-    bool isEn,
+    bool language,
     int value,
     ValueChanged<int> onChanged,
   ) {
-    final language = AppLanguage.fromIsEn(isEn);
     final lang = language;
     final labels = L10nService.getList('journal.daily_entry.rating_labels', lang);
 
@@ -608,7 +605,6 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(5, (i) {
-              final language = AppLanguage.fromIsEn(isEn);
               final rating = i + 1;
               final isActive = rating == value;
               return Semantics(
@@ -678,9 +674,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   Widget _buildAdaptiveSubRatings(
     BuildContext context,
     bool isDark,
-    bool isEn,
+    bool language,
   ) {
-    final language = AppLanguage.fromIsEn(isEn);
     final telemetryAsync = ref.watch(telemetryServiceProvider);
     final shouldSimplify =
         telemetryAsync.whenOrNull(data: (t) => t.shouldSimplifyEntryForm) ??
@@ -703,7 +698,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
               letterSpacing: 1.0,
             ),
           ),
-          children: [_buildSubRatings(isDark, isEn)],
+          children: [_buildSubRatings(isDark, language)],
         ),
       );
     }
@@ -714,13 +709,13 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       children: [
         _buildSectionLabel(context, isDark, L10nService.get('journal.daily_entry.details', language)),
         const SizedBox(height: AppConstants.spacingMd),
-        _buildSubRatings(isDark, isEn),
+        _buildSubRatings(isDark, language),
       ],
     );
   }
 
-  Widget _buildSubRatings(bool isDark, bool isEn) {
-    final names = isEn
+  Widget _buildSubRatings(bool isDark, bool language) {
+    final names = language.isEn
         ? _selectedArea.subRatingNamesEn
         : _selectedArea.subRatingNamesTr;
 
@@ -797,8 +792,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     ).glassListItem(context: context, index: 3);
   }
 
-  Widget _buildNoteField(bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildNoteField(bool isDark, bool language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -821,7 +815,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 decoration: InputDecoration(
                   hintText:
                       widget.journalPrompt ??
-                      _contextualHint(isEn),
+                      _contextualHint(language),
                   hintStyle: AppTypography.decorativeScript(
                     fontSize: 16,
                     color: isDark
@@ -935,8 +929,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     }
   }
 
-  Widget _buildTagSection(bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildTagSection(bool isDark, bool language) {
     return GlassPanel(
       elevation: GlassElevation.g2,
       borderRadius: BorderRadius.circular(AppConstants.radiusLg),
@@ -1053,7 +1046,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           _TagSuggestions(
             currentTags: _tags,
             isDark: isDark,
-            isEn: isEn,
+            language: language,
             onTagSelected: (tag) {
               if (!_tags.contains(tag)) {
                 HapticService.buttonPress();
@@ -1070,8 +1063,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     ).glassListItem(context: context, index: 4);
   }
 
-  Widget _buildPhotoPicker(bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildPhotoPicker(bool isDark, bool language) {
     if (_selectedImagePath != null) {
       return GlassPanel(
         elevation: GlassElevation.g2,
@@ -1213,8 +1205,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     }
   }
 
-  Widget _buildSaveButton(bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildSaveButton(bool isDark, bool language) {
     return Semantics(
       label: L10nService.get('journal.daily_entry.save_entry', language),
       button: true,
@@ -1442,11 +1433,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       final widgetService = WidgetDataService();
       if (!widgetService.isSupported) return;
 
-      final isEn = ref.read(languageProvider) == AppLanguage.en;
-      final language = AppLanguage.fromIsEn(isEn);
+      final language = ref.read(languageProvider);
       final streak = service.getCurrentStreak();
       final moodEmoji = _ratingToMoodEmoji(_overallRating);
-      final moodLabel = _ratingToMoodLabel(_overallRating, isEn);
+      final moodLabel = _ratingToMoodLabel(_overallRating, language);
 
       await widgetService.updateDailyReflection(
         moodEmoji: moodEmoji,
@@ -1477,7 +1467,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 
   Future<void> _showFirstEntryCelebration() async {
     if (!mounted) return;
-    final isEn = ref.read(languageProvider) == AppLanguage.en;
+    final language = ref.read(languageProvider);
     HapticFeedback.heavyImpact();
 
     await showDialog(
@@ -1485,7 +1475,6 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       barrierDismissible: true,
       barrierColor: Colors.black54,
       builder: (ctx) {
-        final language = AppLanguage.fromIsEn(isEn);
         final isDark = Theme.of(ctx).brightness == Brightness.dark;
         return Center(
           child: Container(
@@ -1553,7 +1542,6 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     // Share button
                     GestureDetector(
                       onTap: () {
-                        final language = AppLanguage.fromIsEn(isEn);
                         HapticFeedback.lightImpact();
                         final lang = language;
                         final text = '${L10nService.get('journal.daily_entry.first_entry_share', lang)} '
@@ -1622,8 +1610,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 
   Future<void> _showEntryMilestoneCelebration(int count) async {
     if (!mounted) return;
-    final isEn = ref.read(languageProvider) == AppLanguage.en;
-    final language = AppLanguage.fromIsEn(isEn);
+    final language = ref.read(languageProvider);
     HapticFeedback.heavyImpact();
 
     final emoji = count >= 500
@@ -1645,7 +1632,6 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       barrierDismissible: true,
       barrierColor: Colors.black54,
       builder: (ctx) {
-        final language = AppLanguage.fromIsEn(isEn);
         final isDark = Theme.of(ctx).brightness == Brightness.dark;
         return Center(
           child: Container(
@@ -1709,7 +1695,6 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        final language = AppLanguage.fromIsEn(isEn);
                         HapticFeedback.lightImpact();
                         final lang = language;
                         final text = '${L10nService.getWithParams('journal.daily_entry.milestone_share', lang, params: {'count': '$count'})} '
@@ -1765,9 +1750,9 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 
       if (milestone != null && mounted) {
         await streakService.celebrateMilestone(milestone);
-        final isEn = ref.read(languageProvider) == AppLanguage.en;
+        final language = ref.read(languageProvider);
         if (mounted) {
-          MilestoneCelebrationModal.show(context, milestone, isEn);
+          MilestoneCelebrationModal.show(context, milestone, language);
         }
       }
     } catch (e) {
@@ -1800,18 +1785,18 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           .toList();
 
       if (nonStreakBadges.isNotEmpty && mounted) {
-        final isEn = ref.read(languageProvider) == AppLanguage.en;
+        final language = ref.read(languageProvider);
         await BadgeCelebrationModal.showSequential(
           context,
           nonStreakBadges,
-          isEn,
+          language,
         );
 
         // Badge unlock is a peak positive moment — ideal for review prompt
         _triggerReviewAfterBadge(allEntries.length);
 
         // Referral nudge at peak positive moment
-        _showReferralNudgeAfterBadge(isEn);
+        _showReferralNudgeAfterBadge(language);
       }
 
       // Deep engagement: 25+ entries is a strong retention signal
@@ -1851,8 +1836,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 
   /// Show a subtle referral nudge after badge celebration.
   /// Only shows once, at the first badge unlock, if user hasn't used referral.
-  Future<void> _showReferralNudgeAfterBadge(bool isEn) async {
-    final language = AppLanguage.fromIsEn(isEn);
+  Future<void> _showReferralNudgeAfterBadge(bool language) async {
     try {
       final prefs = await SharedPreferences.getInstance();
       if (prefs.getBool('badge_referral_nudge_shown') == true) return;
@@ -1906,8 +1890,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 
       if (!mounted) return;
 
-      final isEn = ref.read(languageProvider) == AppLanguage.en;
-      final language = AppLanguage.fromIsEn(isEn);
+      final language = ref.read(languageProvider);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -1954,8 +1937,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     }
   }
 
-  static String _ratingToMoodLabel(int rating, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  static String _ratingToMoodLabel(int rating, bool language) {
     switch (rating) {
       case 1:
         return L10nService.get('journal.daily_entry.difficult', language);
@@ -2002,8 +1984,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     }
   }
 
-  String _getDayName(DateTime date, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  String _getDayName(DateTime date, bool language) {
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
     final selected = DateTime(date.year, date.month, date.day);
@@ -2024,7 +2005,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 class _TagSuggestions extends ConsumerWidget {
   final List<String> currentTags;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
   final ValueChanged<String> onTagSelected;
 
   const _TagSuggestions({
@@ -2092,7 +2073,7 @@ class _TagSuggestions extends ConsumerWidget {
 // ═══════════════════════════════════════════════════════════════════════════
 
 class _CyclePhasePromptHint extends ConsumerWidget {
-  final bool isEn;
+  final bool language.isEn;
   final bool isDark;
 
   const _CyclePhasePromptHint({required this.isEn, required this.isDark});
@@ -2105,7 +2086,6 @@ class _CyclePhasePromptHint extends ConsumerWidget {
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (service) {
-        final language = AppLanguage.fromIsEn(isEn);
         if (!service.hasData) return const SizedBox.shrink();
         final phase = service.getCurrentPhase();
         if (phase == null) return const SizedBox.shrink();

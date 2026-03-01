@@ -46,7 +46,6 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(guidedProgramServiceProvider);
 
     return Scaffold(
@@ -85,7 +84,6 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                 ),
               ),
               data: (service) {
-                final language = AppLanguage.fromIsEn(isEn);
                 final program = GuidedProgramService.allPrograms.firstWhere(
                   (p) => p.id == widget.programId,
                   orElse: () => GuidedProgramService.allPrograms.first,
@@ -111,7 +109,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                               program: program,
                               progress: progress,
                               isDark: isDark,
-                              isEn: isEn,
+                              language: language,
                             ),
                             const SizedBox(height: 20),
 
@@ -130,7 +128,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                               _TodayPromptCard(
                                 day: todayPrompt,
                                 isDark: isDark,
-                                isEn: isEn,
+                                language: language,
                               ),
                               const SizedBox(height: 16),
 
@@ -138,14 +136,14 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                               _ReflectionInput(
                                 controller: _reflectionController,
                                 isDark: isDark,
-                                isEn: isEn,
+                                language: language,
                               ),
                               const SizedBox(height: 16),
 
                               // Complete day button
                               _CompleteButton(
                                 isDark: isDark,
-                                isEn: isEn,
+                                language: language,
                                 isAlreadyDone: progress.completedDays.contains(
                                   todayPrompt.dayNumber,
                                 ),
@@ -155,9 +153,9 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                                 ),
                               ),
                             ] else if (progress?.isCompleted ?? false) ...[
-                              _CompletedBanner(isDark: isDark, isEn: isEn),
+                              _CompletedBanner(isDark: isDark, language: language),
                             ] else ...[
-                              _NotStartedBanner(isDark: isDark, isEn: isEn),
+                              _NotStartedBanner(isDark: isDark, language: language),
                             ],
 
                             const SizedBox(height: 40),
@@ -186,8 +184,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
     HapticFeedback.heavyImpact();
     _reflectionController.clear();
     if (mounted) {
-      final isEn = ref.read(languageProvider) == AppLanguage.en;
-      final language = AppLanguage.fromIsEn(isEn);
+      final language = ref.read(languageProvider);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -212,7 +209,7 @@ class _ProgramHeader extends StatelessWidget {
   final GuidedProgram program;
   final ProgramProgress? progress;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _ProgramHeader({
     required this.program,
@@ -223,7 +220,6 @@ class _ProgramHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     final completed = progress?.completedDays.length ?? 0;
 
     return PremiumCard(
@@ -377,7 +373,7 @@ class _DayProgressRow extends StatelessWidget {
 class _TodayPromptCard extends StatelessWidget {
   final ProgramDay day;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _TodayPromptCard({
     required this.day,
@@ -387,7 +383,6 @@ class _TodayPromptCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(20),
@@ -452,7 +447,7 @@ class _TodayPromptCard extends StatelessWidget {
 class _ReflectionInput extends StatelessWidget {
   final TextEditingController controller;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _ReflectionInput({
     required this.controller,
@@ -462,7 +457,6 @@ class _ReflectionInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       showGradientBorder: false,
@@ -496,7 +490,7 @@ class _ReflectionInput extends StatelessWidget {
 
 class _CompleteButton extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
   final bool isAlreadyDone;
   final VoidCallback onComplete;
 
@@ -509,7 +503,6 @@ class _CompleteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return GradientButton(
       label: isAlreadyDone
           ? (L10nService.get('programs.active_program.completed_1', language))
@@ -532,13 +525,12 @@ class _CompleteButton extends StatelessWidget {
 
 class _CompletedBanner extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _CompletedBanner({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return Container(
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
@@ -588,13 +580,12 @@ class _CompletedBanner extends StatelessWidget {
 
 class _NotStartedBanner extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _NotStartedBanner({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(

@@ -32,7 +32,6 @@ class SleepDetailScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isEn = language == AppLanguage.en;
     final sleepAsync = ref.watch(sleepServiceProvider);
 
     return Scaffold(
@@ -97,7 +96,7 @@ class SleepDetailScreen extends ConsumerWidget {
 
                       if (summary.nightsLogged == 0) {
                         return SliverToBoxAdapter(
-                          child: _EmptyState(isDark: isDark, isEn: isEn),
+                          child: _EmptyState(isDark: isDark, language: language),
                         );
                       }
 
@@ -107,12 +106,12 @@ class SleepDetailScreen extends ConsumerWidget {
                           _SummaryCard(
                             summary: summary,
                             isDark: isDark,
-                            isEn: isEn,
+                            language: language,
                           ),
                           const SizedBox(height: 20),
 
                           // Weekly chart
-                          _WeeklyChart(days: last7, isDark: isDark, isEn: isEn),
+                          _WeeklyChart(days: last7, isDark: isDark, language: language),
                           const SizedBox(height: 24),
 
                           // Trend card
@@ -120,13 +119,13 @@ class SleepDetailScreen extends ConsumerWidget {
                             _TrendCard(
                               trend: summary.trendDirection!,
                               isDark: isDark,
-                              isEn: isEn,
+                              language: language,
                             ),
                           if (summary.trendDirection != null)
                             const SizedBox(height: 24),
 
                           // Tips
-                          _SleepTips(isDark: isDark, isEn: isEn),
+                          _SleepTips(isDark: isDark, language: language),
                           const SizedBox(height: 24),
 
                           // Recent entries
@@ -146,7 +145,7 @@ class SleepDetailScreen extends ConsumerWidget {
                                   (entry) => _NightCard(
                                     entry: entry,
                                     isDark: isDark,
-                                    isEn: isEn,
+                                    language: language,
                                   ),
                                 ),
                           ],
@@ -185,7 +184,7 @@ class _DayData {
 class _SummaryCard extends StatelessWidget {
   final SleepSummary summary;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _SummaryCard({
     required this.summary,
@@ -195,7 +194,6 @@ class _SummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: 14,
@@ -277,7 +275,7 @@ class _StatItem extends StatelessWidget {
 class _WeeklyChart extends StatelessWidget {
   final List<_DayData> days;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _WeeklyChart({
     required this.days,
@@ -287,8 +285,7 @@ class _WeeklyChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
-    final dayLabels = isEn
+    final dayLabels = language.isEn
         ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         : ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
 
@@ -377,7 +374,7 @@ class _WeeklyChart extends StatelessWidget {
 class _TrendCard extends StatelessWidget {
   final String trend;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _TrendCard({
     required this.trend,
@@ -397,7 +394,7 @@ class _TrendCard extends StatelessWidget {
         : trend == 'declining'
         ? AppColors.warning
         : AppColors.auroraStart;
-    final label = isEn
+    final label = language.isEn
         ? (trend == 'improving'
               ? 'Your sleep quality is improving'
               : trend == 'declining'
@@ -440,14 +437,13 @@ class _TrendCard extends StatelessWidget {
 
 class _SleepTips extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _SleepTips({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
-    final tips = isEn
+    final tips = language.isEn
         ? [
             'Maintain a consistent sleep schedule',
             'Limit screen time 1 hour before bed',
@@ -525,7 +521,7 @@ class _SleepTips extends StatelessWidget {
 class _NightCard extends StatelessWidget {
   final SleepEntry entry;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _NightCard({
     required this.entry,
@@ -607,13 +603,12 @@ class _NightCard extends StatelessWidget {
 
 class _EmptyState extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _EmptyState({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return PremiumEmptyState(
       icon: Icons.bedtime_outlined,
       title: L10nService.get('sleep.sleep_detail.your_sleep_story_is_waiting_to_begin', language),

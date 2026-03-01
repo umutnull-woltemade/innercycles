@@ -85,17 +85,15 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen>
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
-    final isEn = language == AppLanguage.en;
 
     return Scaffold(
       body: widget.navigationShell,
       extendBody: true,
-      bottomNavigationBar: _buildBottomBar(isDark, isEn),
+      bottomNavigationBar: _buildBottomBar(isDark, language),
     );
   }
 
-  Widget _buildBottomBar(bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildBottomBar(bool isDark, bool language) {
     final currentIndex = widget.navigationShell.currentIndex;
 
     final tabs = [

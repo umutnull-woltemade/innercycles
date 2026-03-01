@@ -135,7 +135,6 @@ class _NotificationScheduleScreenState
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isEn = language == AppLanguage.en;
 
     return Scaffold(
       body: CosmicBackground(
@@ -156,7 +155,7 @@ class _NotificationScheduleScreenState
                         delegate: SliverChildListDelegate([
                           // Permission banner
                           if (!_hasPermission)
-                            _buildPermissionBanner(isDark, isEn),
+                            _buildPermissionBanner(isDark, language),
 
                           // Daily reflection
                           _buildNotificationCard(
@@ -164,15 +163,15 @@ class _NotificationScheduleScreenState
                             isDark: isDark,
                             icon: Icons.wb_sunny_outlined,
                             iconColor: AppColors.starGold,
-                            title: isEn ? 'Daily Reflection' : 'Günlük Yansıma',
-                            subtitle: isEn
+                            title: language.isEn ? 'Daily Reflection' : 'Günlük Yansıma',
+                            subtitle: language.isEn
                                 ? 'A morning reminder to journal your cycle position'
                                 : 'Döngü pozisyonunu kaydetmen için sabah hatırlatıcısı',
                             enabled: _settings?.dailyReflectionEnabled ?? false,
                             onToggle: _toggleDailyReflection,
                             timeWidget:
                                 _settings?.dailyReflectionEnabled == true
-                                ? _buildTimePicker(isDark, isEn)
+                                ? _buildTimePicker(isDark, language)
                                 : null,
                           ).animate().fadeIn(duration: 300.ms),
                           const SizedBox(height: AppConstants.spacingMd),
@@ -183,8 +182,8 @@ class _NotificationScheduleScreenState
                             isDark: isDark,
                             icon: Icons.nightlight_round_outlined,
                             iconColor: AppColors.auroraStart,
-                            title: isEn ? 'Evening Reflection' : 'Akşam Yansıması',
-                            subtitle: isEn
+                            title: language.isEn ? 'Evening Reflection' : 'Akşam Yansıması',
+                            subtitle: language.isEn
                                 ? 'End-of-day prompt to capture your emotional state'
                                 : 'Duygusal durumunu kaydetmen için gün sonu hatırlatıcısı',
                             enabled:
@@ -199,14 +198,14 @@ class _NotificationScheduleScreenState
                             isDark: isDark,
                             icon: Icons.auto_awesome_outlined,
                             iconColor: AppColors.auroraEnd,
-                            title: isEn ? 'Daily Journal Prompt' : 'Günlük Soru',
-                            subtitle: isEn
+                            title: language.isEn ? 'Daily Journal Prompt' : 'Günlük Soru',
+                            subtitle: language.isEn
                                 ? 'A fresh journaling question to inspire your writing'
                                 : 'Yazmanıza ilham verecek günlük bir soru',
                             enabled: _settings?.journalPromptEnabled ?? false,
                             onToggle: _toggleJournalPrompt,
                             timeWidget: _settings?.journalPromptEnabled == true
-                                ? _buildJournalPromptTimePicker(isDark, isEn)
+                                ? _buildJournalPromptTimePicker(isDark, language)
                                 : null,
                           ).animate().fadeIn(duration: 300.ms, delay: 120.ms),
                           const SizedBox(height: AppConstants.spacingMd),
@@ -217,8 +216,8 @@ class _NotificationScheduleScreenState
                             isDark: isDark,
                             icon: Icons.spa_outlined,
                             iconColor: AppColors.auroraEnd,
-                            title: isEn ? 'Wellness Reminders' : 'Sağlık Hatırlatıcıları',
-                            subtitle: isEn
+                            title: language.isEn ? 'Wellness Reminders' : 'Sağlık Hatırlatıcıları',
+                            subtitle: language.isEn
                                 ? 'Gentle nudges for breathing, hydration & movement'
                                 : 'Nefes, su ve hareket için nazik hatırlatmalar',
                             enabled:
@@ -248,8 +247,7 @@ class _NotificationScheduleScreenState
     );
   }
 
-  Widget _buildPermissionBanner(bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildPermissionBanner(bool isDark, bool language) {
     return Padding(
       padding: const EdgeInsets.only(bottom: AppConstants.spacingLg),
       child: GlassPanel(
@@ -365,14 +363,13 @@ class _NotificationScheduleScreenState
     );
   }
 
-  Widget _buildTimePicker(bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildTimePicker(bool isDark, bool language) {
     final time =
         _settings?.dailyReflectionTime ?? const TimeOfDay(hour: 9, minute: 0);
     final formatted = time.format(context);
 
     return Semantics(
-      label: isEn
+      label: language.isEn
           ? 'Change reminder time: $formatted'
           : 'Hatırlatma saatini değiştir: $formatted',
       button: true,
@@ -422,14 +419,13 @@ class _NotificationScheduleScreenState
     );
   }
 
-  Widget _buildJournalPromptTimePicker(bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildJournalPromptTimePicker(bool isDark, bool language) {
     final time =
         _settings?.journalPromptTime ?? const TimeOfDay(hour: 10, minute: 0);
     final formatted = time.format(context);
 
     return Semantics(
-      label: isEn
+      label: language.isEn
           ? 'Change prompt time: $formatted'
           : 'Soru saatini değiştir: $formatted',
       button: true,

@@ -66,7 +66,6 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
-    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(gratitudeServiceProvider);
 
     return serviceAsync.when(
@@ -74,20 +73,19 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
       error: (_, _) => const SizedBox.shrink(),
       data: (service) {
         _loadExisting(service);
-        return _buildSection(isDark, isEn, service);
+        return _buildSection(isDark, language, service);
       },
     );
   }
 
-  Widget _buildSection(bool isDark, bool isEn, GratitudeService service) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildSection(bool isDark, bool language, GratitudeService service) {
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       child: Column(
         children: [
           // Toggle header
           Semantics(
-            label: isEn
+            label: language.isEn
                 ? (_isExpanded ? 'Collapse gratitude' : 'Expand gratitude')
                 : (_isExpanded ? 'Şükranı daralt' : 'Şükranı genişlet'),
             button: true,
@@ -160,7 +158,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
           // Expanded content
           AnimatedCrossFade(
             firstChild: const SizedBox(width: double.infinity),
-            secondChild: _buildGratitudeFields(isDark, isEn, service),
+            secondChild: _buildGratitudeFields(isDark, language, service),
             crossFadeState: _isExpanded
                 ? CrossFadeState.showSecond
                 : CrossFadeState.showFirst,
@@ -173,16 +171,14 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
 
   Widget _buildGratitudeFields(
     bool isDark,
-    bool isEn,
+    bool language,
     GratitudeService service,
   ) {
-    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
       child: Column(
         children: [
           ...List.generate(_controllers.length, (index) {
-            final language = AppLanguage.fromIsEn(isEn);
             return Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: Row(
@@ -296,7 +292,6 @@ class GratitudeSummaryCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
-    final isEn = language == AppLanguage.en;
     final summaryAsync = ref.watch(gratitudeSummaryProvider);
 
     return summaryAsync.when(
@@ -307,7 +302,7 @@ class GratitudeSummaryCard extends ConsumerWidget {
         return _GratitudeSummaryContent(
           summary: summary,
           isDark: isDark,
-          isEn: isEn,
+          language: language,
         );
       },
     );
@@ -317,7 +312,7 @@ class GratitudeSummaryCard extends ConsumerWidget {
 class _GratitudeSummaryContent extends StatelessWidget {
   final GratitudeSummary summary;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _GratitudeSummaryContent({
     required this.summary,
@@ -327,7 +322,6 @@ class _GratitudeSummaryContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
@@ -350,7 +344,7 @@ class _GratitudeSummaryContent extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            isEn
+            language.isEn
                 ? '${summary.totalItems} gratitude items across ${summary.daysWithGratitude} days'
                 : '${summary.daysWithGratitude} günde ${summary.totalItems} şükran maddesi',
             style: AppTypography.decorativeScript(

@@ -15,7 +15,7 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class RecentEntriesSection extends ConsumerWidget {
-  final bool isEn;
+  final bool language.isEn;
   final bool isDark;
 
   const RecentEntriesSection({
@@ -38,7 +38,6 @@ class RecentEntriesSection extends ConsumerWidget {
 
     return journalAsync.maybeWhen(
       data: (service) {
-        final language = AppLanguage.fromIsEn(isEn);
         final entries = service.getRecentEntries(5);
         if (entries.isEmpty) return const SizedBox.shrink();
 
@@ -109,7 +108,7 @@ class RecentEntriesSection extends ConsumerWidget {
 
                     return Semantics(
                       button: true,
-                      label: isEn
+                      label: language.isEn
                           ? 'View journal entry from $dateStr'
                           : '$dateStr tarihli günlük kaydını gör',
                       child: TapScale(
@@ -257,14 +256,13 @@ class RecentEntriesSection extends ConsumerWidget {
   }
 
   String _formatDate(DateTime date) {
-    final months = isEn
+    final months = language.isEn
         ? CommonStrings.monthsShortEn
         : CommonStrings.monthsShortTr;
     return '${months[date.month - 1]} ${date.day}';
   }
 
   String _focusAreaLabel(FocusArea area) {
-    final language = AppLanguage.fromIsEn(isEn);
     switch (area) {
       case FocusArea.energy:
         return L10nService.get('today.recent_entries.energy', language);
