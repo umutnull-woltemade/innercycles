@@ -14,7 +14,6 @@ class AppColors {
   static const Color starGold = Color(0xFFC8553D);
   static const Color celestialGold = Color(0xFFD4704A);
   static const Color moonSilver = Color(0xFFB8A99A);
-  static const Color stardust = Color(0xFFE8E4E1);
   static const Color amethyst = Color(0xFF8B6F5E);
 
   // Gradient colors
@@ -48,7 +47,6 @@ class AppColors {
   // Surface colors (dark mode)
   static const Color surfaceDark = Color(0xFF2D241F);
   static const Color surfaceLight = Color(0xFF3D322B);
-  static const Color cardBackground = Color(0xFF352C25);
 
   // Status colors
   static const Color success = Color(0xFF2ECC71);
@@ -56,11 +54,9 @@ class AppColors {
   static const Color error = Color(0xFFE74C3C);
 
   // Palette accent colors
-  static const Color amberBrown = Color(0xFF8B7355);
   static const Color warmTan = Color(0xFFD4A574);
   static const Color softCoral = Color(0xFFCD5C5C);
   static const Color softPink = Color(0xFFFFB6C1);
-  static const Color silverGray = Color(0xFFB8B8B8);
 
   // Brand accent color
   static const Color brandPink = Color(0xFFE91E8C);
@@ -108,7 +104,6 @@ class AppColors {
   static const Color warmCrimson = Color(0xFFBC544B); // Soft crimson
   static const Color roseGold = Color(0xFFE8B4B8); // Rose gold
   static const Color deepAmber = Color(0xFF8B5A2B); // Deep amber
-  static const Color creamIvory = Color(0xFFFDF6E3); // Cream ivory
 
   static const LinearGradient goldGradient = LinearGradient(
     begin: Alignment.topCenter,
