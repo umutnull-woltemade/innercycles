@@ -18,13 +18,13 @@ import '../../../../data/providers/app_providers.dart';
 
 class ProfileSettingsSection extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final bool isPremium;
 
   const ProfileSettingsSection({
     super.key,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.isPremium,
   });
 

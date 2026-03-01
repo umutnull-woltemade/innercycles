@@ -16,12 +16,12 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class RecentLifeEventsSection extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const RecentLifeEventsSection({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -103,7 +103,7 @@ class RecentLifeEventsSection extends ConsumerWidget {
                 final emojiAccent = AppSymbol.accentForEmoji(emoji);
                 return Semantics(
                   button: true,
-                  label: isEn
+                  label: language.isEn
                       ? 'View life event: ${event.title}'
                       : 'Yaşam olayını gör: ${event.title}',
                   child: TapScale(

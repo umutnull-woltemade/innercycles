@@ -22,12 +22,12 @@ import '../../../shared/widgets/share_card_sheet.dart';
 import '../../../data/services/l10n_service.dart';
 
 class DailyQuestionCard extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const DailyQuestionCard({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 

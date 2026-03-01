@@ -18,12 +18,12 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class DailyPulseCard extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const DailyPulseCard({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -262,7 +262,7 @@ class DailyPulseCard extends ConsumerWidget {
         final best = trends.reduce(
           (a, b) => a.changePercent.abs() > b.changePercent.abs() ? a : b,
         );
-        text = isEn ? best.getMessageEn() : best.getMessageTr();
+        text = language.isEn ? best.getMessageEn() : best.getMessageTr();
       }
     } else if (hasMicro) {
       final micro = engine.detectMicroPattern(language: language);
@@ -338,7 +338,7 @@ class DailyPulseCard extends ConsumerWidget {
     );
 
     final areaName = weakestArea.name;
-    final areaLabel = isEn
+    final areaLabel = language.isEn
         ? areaName[0].toUpperCase() + areaName.substring(1)
         : _turkishLabel(areaName);
 

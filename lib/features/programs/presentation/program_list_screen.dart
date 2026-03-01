@@ -208,7 +208,7 @@ class ProgramListScreen extends ConsumerWidget {
                           }),
                           ToolEcosystemFooter(
                             currentToolId: 'programList',
-                            isEn: language.isEn,
+                            language: language,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 40),

@@ -107,7 +107,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
           // Check biometric availability and offer
           final canBio = await vaultService.canUseBiometrics();
           if (canBio && mounted) {
-            final enableBio = await _showBiometricDialog(isEn);
+            final enableBio = await _showBiometricDialog(language);
             if (enableBio) {
               await vaultService.setBiometricEnabled(true);
             }
@@ -155,7 +155,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
     context.go(Routes.vault);
   }
 
-  Future<bool> _showBiometricDialog(bool isEn) async {
+  Future<bool> _showBiometricDialog(AppLanguage language) async {
     final language = AppLanguage.fromIsEn(isEn);
     final result = await showCupertinoDialog<bool>(
       context: context,

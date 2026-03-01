@@ -183,11 +183,11 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                       onPageChanged: (page) =>
                           setState(() => _currentPage = page),
                       children: [
-                        _Slide1Entries(data: data, isEn: isEn, isDark: isDark),
-                        _Slide2Focus(data: data, isEn: isEn, isDark: isDark),
-                        _Slide3BestDay(data: data, isEn: isEn, isDark: isDark),
-                        _Slide4Insight(data: data, isEn: isEn, isDark: isDark),
-                        _Slide5Share(data: data, isEn: isEn, isDark: isDark),
+                        _Slide1Entries(data: data, language: language, isDark: isDark),
+                        _Slide2Focus(data: data, language: language, isDark: isDark),
+                        _Slide3BestDay(data: data, language: language, isDark: isDark),
+                        _Slide4Insight(data: data, language: language, isDark: isDark),
+                        _Slide5Share(data: data, language: language, isDark: isDark),
                       ],
                     ),
                   ),
@@ -207,12 +207,12 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
 
 class _Slide1Entries extends StatelessWidget {
   final MonthlyWrappedData data;
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const _Slide1Entries({
     required this.data,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -220,10 +220,10 @@ class _Slide1Entries extends StatelessWidget {
   Widget build(BuildContext context) {
     return _SlideBase(
       emoji: '\u{1F4DD}',
-      title: isEn
+      title: language.isEn
           ? '${data.totalEntries} entries this month'
           : 'Bu ay ${data.totalEntries} kayıt',
-      subtitle: isEn
+      subtitle: language.isEn
           ? 'Average rating: ${data.avgRating.toStringAsFixed(1)} / 5'
           : 'Ortalama puan: ${data.avgRating.toStringAsFixed(1)} / 5',
       isDark: isDark,
@@ -233,16 +233,16 @@ class _Slide1Entries extends StatelessWidget {
 
 class _Slide2Focus extends StatelessWidget {
   final MonthlyWrappedData data;
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const _Slide2Focus({
     required this.data,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
-  String _areaName(FocusArea? area, bool isEn) {
+  String _areaName(FocusArea? area, AppLanguage language) {
     final language = AppLanguage.fromIsEn(isEn);
     if (area == null) return L10nService.get('digest.monthly_wrapped.balanced', language);
     return area.localizedName(language);
@@ -253,7 +253,7 @@ class _Slide2Focus extends StatelessWidget {
     final language = AppLanguage.fromIsEn(isEn);
     return _SlideBase(
       emoji: '\u{1F3AF}',
-      title: isEn
+      title: language.isEn
           ? 'You focused most on ${_areaName(data.dominantArea, true)}'
           : 'En çok ${_areaName(data.dominantArea, false)} odağındaydın',
       subtitle: L10nService.get('digest.monthly_wrapped.this_area_drew_your_attention_more_than', language),
@@ -264,12 +264,12 @@ class _Slide2Focus extends StatelessWidget {
 
 class _Slide3BestDay extends StatelessWidget {
   final MonthlyWrappedData data;
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const _Slide3BestDay({
     required this.data,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -277,10 +277,10 @@ class _Slide3BestDay extends StatelessWidget {
   Widget build(BuildContext context) {
     return _SlideBase(
       emoji: '\u{1F525}',
-      title: isEn
+      title: language.isEn
           ? '${data.bestDayOfWeek}s were your best days'
           : '${data.bestDayOfWeek} günlerin en iyi günlerindi',
-      subtitle: isEn
+      subtitle: language.isEn
           ? 'Longest streak this month: ${data.streakPeak} days'
           : 'Bu ayki en uzun seri: ${data.streakPeak} gün',
       isDark: isDark,
@@ -290,12 +290,12 @@ class _Slide3BestDay extends StatelessWidget {
 
 class _Slide4Insight extends StatelessWidget {
   final MonthlyWrappedData data;
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const _Slide4Insight({
     required this.data,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -313,12 +313,12 @@ class _Slide4Insight extends StatelessWidget {
 
 class _Slide5Share extends StatelessWidget {
   final MonthlyWrappedData data;
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const _Slide5Share({
     required this.data,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -353,7 +353,7 @@ class _Slide5Share extends StatelessWidget {
               final template = ShareCardTemplates.monthlyWrapped;
               final cardData = ShareCardTemplates.buildData(
                 template: template,
-                language: AppLanguage.fromIsEn(isEn),
+                language: language,
                 journalDays: data.totalEntries,
                 moodValues: data.dailyRatings.where((r) => r > 0).toList(),
               );
@@ -361,7 +361,7 @@ class _Slide5Share extends StatelessWidget {
                 context,
                 template: template,
                 data: cardData,
-                language: AppLanguage.fromIsEn(isEn),
+                language: language,
               );
             },
             expanded: true,

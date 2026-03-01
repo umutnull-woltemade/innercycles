@@ -76,19 +76,19 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
           child: Column(
             children: [
               // Step indicator
-              _StepIndicator(currentStep: _currentStep, isDark: isDark, isEn: isEn),
+              _StepIndicator(currentStep: _currentStep, isDark: isDark, language: language),
               Expanded(
                 child: PageView(
                   controller: _pageController,
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
                     _WelcomeStep(
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                       onContinue: () => _goToStep(1),
                     ),
                     _DaySelectionStep(
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                       selectedPresets: _selectedPresets,
                       onToggle: (key) {
@@ -103,7 +103,7 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
                       onContinue: () => _goToStep(2),
                     ),
                     _DateEntryStep(
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                       selectedPresets: _selectedPresets,
                       presetDates: _presetDates,
@@ -114,7 +114,7 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
                       onJournalTap: _openJournal,
                     ),
                     _SummaryStep(
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                       savedCount: _savedIds.length,
                       journalCount: _journalsSaved,
@@ -181,7 +181,7 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
 class _StepIndicator extends StatelessWidget {
   final int currentStep;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _StepIndicator({required this.currentStep, required this.isDark, this.isEn = true});
 
@@ -221,12 +221,12 @@ class _StepIndicator extends StatelessWidget {
 // ════════════════════════════════════════════════════════════════════════════
 
 class _WelcomeStep extends StatelessWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
   final VoidCallback onContinue;
 
   const _WelcomeStep({
-    required this.isEn,
+    required this.language,
     required this.isDark,
     required this.onContinue,
   });
@@ -286,14 +286,14 @@ class _WelcomeStep extends StatelessWidget {
 // ════════════════════════════════════════════════════════════════════════════
 
 class _DaySelectionStep extends StatelessWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
   final Set<String> selectedPresets;
   final ValueChanged<String> onToggle;
   final VoidCallback onContinue;
 
   const _DaySelectionStep({
-    required this.isEn,
+    required this.language,
     required this.isDark,
     required this.selectedPresets,
     required this.onToggle,
@@ -415,7 +415,7 @@ class _DaySelectionStep extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
           child: GradientButton.gold(
-            label: isEn
+            label: language.isEn
                 ? 'Continue (${selectedPresets.length} selected)'
                 : 'Devam (${selectedPresets.length} seçili)',
             onPressed: selectedPresets.isEmpty
@@ -437,7 +437,7 @@ class _DaySelectionStep extends StatelessWidget {
 // ════════════════════════════════════════════════════════════════════════════
 
 class _DateEntryStep extends StatelessWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
   final Set<String> selectedPresets;
   final Map<String, DateTime> presetDates;
@@ -446,7 +446,7 @@ class _DateEntryStep extends StatelessWidget {
   final ValueChanged<String> onJournalTap;
 
   const _DateEntryStep({
-    required this.isEn,
+    required this.language,
     required this.isDark,
     required this.selectedPresets,
     required this.presetDates,
@@ -563,7 +563,7 @@ class _DateEntryStep extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
           child: GradientButton.gold(
-            label: isEn
+            label: language.isEn
                 ? 'Save ${presetDates.length} memories'
                 : '${presetDates.length} anıyı kaydet',
             onPressed: presetDates.isEmpty
@@ -585,14 +585,14 @@ class _DateEntryStep extends StatelessWidget {
 // ════════════════════════════════════════════════════════════════════════════
 
 class _SummaryStep extends StatelessWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
   final int savedCount;
   final int journalCount;
   final VoidCallback onDone;
 
   const _SummaryStep({
-    required this.isEn,
+    required this.language,
     required this.isDark,
     required this.savedCount,
     required this.journalCount,

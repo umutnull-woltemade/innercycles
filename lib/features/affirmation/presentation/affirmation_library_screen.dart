@@ -95,7 +95,7 @@ class _AffirmationLibraryScreenState
               ),
             ),
           ),
-          data: (service) => _buildContent(context, service, isDark, isEn),
+          data: (service) => _buildContent(context, service, isDark, language),
         ),
       ),
     );
@@ -105,7 +105,7 @@ class _AffirmationLibraryScreenState
     BuildContext context,
     AffirmationService service,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     // Get filtered affirmations
@@ -132,11 +132,11 @@ class _AffirmationLibraryScreenState
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 // Today's affirmation hero
-                _buildTodayHero(service, isDark, isEn),
+                _buildTodayHero(service, isDark, language),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Filter chips
-                _buildFilterChips(service, isDark, isEn),
+                _buildFilterChips(service, isDark, language),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Affirmation list
@@ -149,7 +149,7 @@ class _AffirmationLibraryScreenState
                       affirmation: a,
                       isFavorite: service.isFavorite(a.id),
                       isDark: isDark,
-                      isEn: isEn,
+                      language: language,
                       onToggleFavorite: () async {
                         await service.toggleFavorite(a.id);
                         if (!mounted) return;
@@ -189,7 +189,7 @@ class _AffirmationLibraryScreenState
                   ),
                 ToolEcosystemFooter(
                   currentToolId: 'affirmations',
-                  isEn: isEn,
+                  language: language,
                   isDark: isDark,
                 ),
                 const SizedBox(height: 40),
@@ -201,7 +201,7 @@ class _AffirmationLibraryScreenState
     ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms);
   }
 
-  Widget _buildTodayHero(AffirmationService service, bool isDark, bool isEn) {
+  Widget _buildTodayHero(AffirmationService service, bool isDark, AppLanguage language) {
     final language = AppLanguage.fromIsEn(isEn);
     final today = service.getDailyAffirmation();
 
@@ -256,7 +256,7 @@ class _AffirmationLibraryScreenState
     );
   }
 
-  Widget _buildFilterChips(AffirmationService service, bool isDark, bool isEn) {
+  Widget _buildFilterChips(AffirmationService service, bool isDark, AppLanguage language) {
     final language = AppLanguage.fromIsEn(isEn);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -268,7 +268,7 @@ class _AffirmationLibraryScreenState
             label: L10nService.get('affirmation.affirmation_library.all', language),
             isSelected: _selectedCategory == null && !_showFavoritesOnly,
             isDark: isDark,
-            isEn: isEn,
+            language: language,
             onTap: () => setState(() {
               _selectedCategory = null;
               _showFavoritesOnly = false;
@@ -281,7 +281,7 @@ class _AffirmationLibraryScreenState
             label: L10nService.get('affirmation.affirmation_library.favorites', language),
             isSelected: _showFavoritesOnly,
             isDark: isDark,
-            isEn: isEn,
+            language: language,
             icon: Icons.favorite,
             onTap: () => setState(() {
               _showFavoritesOnly = !_showFavoritesOnly;
@@ -298,7 +298,7 @@ class _AffirmationLibraryScreenState
                 label: cat.localizedName(language),
                 isSelected: _selectedCategory == cat && !_showFavoritesOnly,
                 isDark: isDark,
-                isEn: isEn,
+                language: language,
                 onTap: () => setState(() {
                   _selectedCategory = cat;
                   _showFavoritesOnly = false;
@@ -316,7 +316,7 @@ class _FilterChip extends StatelessWidget {
   final String label;
   final bool isSelected;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final IconData? icon;
   final VoidCallback onTap;
 
@@ -324,7 +324,7 @@ class _FilterChip extends StatelessWidget {
     required this.label,
     required this.isSelected,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     this.icon,
     required this.onTap,
   });
@@ -394,14 +394,14 @@ class _AffirmationTile extends StatelessWidget {
   final Affirmation affirmation;
   final bool isFavorite;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final VoidCallback onToggleFavorite;
 
   const _AffirmationTile({
     required this.affirmation,
     required this.isFavorite,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onToggleFavorite,
   });
 

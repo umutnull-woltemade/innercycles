@@ -64,7 +64,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                       // Info card
                       _InfoCard(
                         isDark: isDark,
-                        isEn: isEn,
+                        language: language,
                         isPremium: isPremium,
                       ),
                       const SizedBox(height: 24),
@@ -76,7 +76,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                             _EntryCountCard(
                               count: service.totalEntries,
                               isDark: isDark,
-                              isEn: isEn,
+                              language: language,
                               isPremium: isPremium,
                             ),
                             // Locked entries CTA for free users
@@ -86,7 +86,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                                 totalEntries: service.totalEntries,
                                 lockedEntries: service.totalEntries - 7,
                                 isDark: isDark,
-                                isEn: isEn,
+                                language: language,
                                 onUnlock: () => showContextualPaywall(
                                   context,
                                   ref,
@@ -214,7 +214,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                         icon: Icons.file_download_outlined,
                         onPressed: _isExporting
                             ? null
-                            : () => _doExport(isPremium, isEn),
+                            : () => _doExport(isPremium, language),
                         isLoading: _isExporting,
                         expanded: true,
                       ),
@@ -233,7 +233,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                         ),
                         onPressed: _isExporting
                             ? null
-                            : () => _copyToClipboard(isPremium, isEn),
+                            : () => _copyToClipboard(isPremium, language),
                       ),
 
                       const SizedBox(height: 40),
@@ -248,7 +248,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
     );
   }
 
-  Future<void> _doExport(bool isPremium, bool isEn) async {
+  Future<void> _doExport(bool isPremium, AppLanguage language) async {
     // GUARDRAIL: Double-check entitlement with RevenueCat before export
     if (isPremium) {
       final verified = await ref
@@ -274,7 +274,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
       final result = service.export(
         format: _selectedFormat,
         isPremium: isPremium,
-        language: AppLanguage.fromIsEn(isEn),
+        language: language,
       );
 
       await SharePlus.instance.share(
@@ -286,7 +286,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
     }
   }
 
-  Future<void> _copyToClipboard(bool isPremium, bool isEn) async {
+  Future<void> _copyToClipboard(bool isPremium, AppLanguage language) async {
     final language = AppLanguage.fromIsEn(isEn);
     // GUARDRAIL: Double-check entitlement with RevenueCat before clipboard export
     if (isPremium) {
@@ -310,7 +310,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
     final result = service.export(
       format: _selectedFormat,
       isPremium: isPremium,
-      language: AppLanguage.fromIsEn(isEn),
+      language: language,
     );
 
     await Clipboard.setData(ClipboardData(text: result.content));
@@ -334,12 +334,12 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
 
 class _InfoCard extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final bool isPremium;
 
   const _InfoCard({
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.isPremium,
   });
 
@@ -376,13 +376,13 @@ class _InfoCard extends StatelessWidget {
 class _EntryCountCard extends StatelessWidget {
   final int count;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final bool isPremium;
 
   const _EntryCountCard({
     required this.count,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.isPremium,
   });
 
@@ -448,14 +448,14 @@ class _LockedEntriesCta extends StatelessWidget {
   final int totalEntries;
   final int lockedEntries;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final VoidCallback onUnlock;
 
   const _LockedEntriesCta({
     required this.totalEntries,
     required this.lockedEntries,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onUnlock,
   });
 
@@ -464,7 +464,7 @@ class _LockedEntriesCta extends StatelessWidget {
     final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       button: true,
-      label: isEn
+      label: language.isEn
           ? 'Access $lockedEntries locked entries'
           : '$lockedEntries kilitli kayda eriş',
       child: GestureDetector(
@@ -493,7 +493,7 @@ class _LockedEntriesCta extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      isEn
+                      language.isEn
                           ? '$lockedEntries entries locked'
                           : '$lockedEntries kayıt kilitli',
                       style: AppTypography.modernAccent(
@@ -506,7 +506,7 @@ class _LockedEntriesCta extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      isEn
+                      language.isEn
                           ? 'Upgrade to export all $totalEntries entries'
                           : 'Tüm $totalEntries kaydı aktarmak için yükselt',
                       style: AppTypography.elegantAccent(

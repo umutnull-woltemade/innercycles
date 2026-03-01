@@ -92,7 +92,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
               final allEntries = _cachedEntries;
 
               if (allEntries.isEmpty) {
-                return _buildEmptyState(context, isDark, isEn);
+                return _buildEmptyState(context, isDark, language);
               }
 
               // Sort newest first
@@ -149,7 +149,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                           photoEntries: photoEntries,
                           firstDate: firstDateStr,
                           isDark: isDark,
-                          isEn: isEn,
+                          language: language,
                         ),
                       ).animate().fadeIn(duration: 300.ms),
                     ),
@@ -188,7 +188,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                                 child: _OnThisDayCard(
                                   entry: onThisDayEntries[index],
                                   isDark: isDark,
-                                  isEn: isEn,
+                                  language: language,
                                   onTap: () => _navigateToEntry(
                                     context,
                                     onThisDayEntries[index],
@@ -218,7 +218,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                           months: months,
                           selectedMonth: selectedMonth,
                           isDark: isDark,
-                          isEn: isEn,
+                          language: language,
                           onMonthSelected: (month) {
                             setState(() => _selectedMonth = month);
                           },
@@ -249,7 +249,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                             return _MemoryCard(
                               entry: entry,
                               isDark: isDark,
-                              isEn: isEn,
+                              language: language,
                               onTap: () => _navigateToEntry(context, entry),
                             ).animate().fadeIn(
                               delay: Duration(milliseconds: 50 * (index % 10)),
@@ -269,7 +269,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
     );
   }
 
-  Widget _buildEmptyState(BuildContext context, bool isDark, bool isEn) {
+  Widget _buildEmptyState(BuildContext context, bool isDark, AppLanguage language) {
     final language = AppLanguage.fromIsEn(isEn);
     return CustomScrollView(
       slivers: [
@@ -278,8 +278,8 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
           hasScrollBody: false,
           child: ToolEmptyState(
             icon: Icons.photo_library_outlined,
-            title: isEn ? 'No memories yet' : 'Hen\u00fcz an\u0131 yok',
-            description: isEn
+            title: language.isEn ? 'No memories yet' : 'Hen\u00fcz an\u0131 yok',
+            description: language.isEn
                 ? 'Start journaling to build your memories collection.'
                 : 'An\u0131lar\u0131n\u0131 olu\u015fturmak i\u00e7in g\u00fcnl\u00fck yazmaya ba\u015fla.',
             onStartTemplate: () => context.go(Routes.journal),
@@ -319,14 +319,14 @@ class _MemoriesStatsHeader extends StatelessWidget {
   final int photoEntries;
   final String firstDate;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _MemoriesStatsHeader({
     required this.totalEntries,
     required this.photoEntries,
     required this.firstDate,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -412,13 +412,13 @@ class _MiniStat extends StatelessWidget {
 class _OnThisDayCard extends StatelessWidget {
   final JournalEntry entry;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final VoidCallback onTap;
 
   const _OnThisDayCard({
     required this.entry,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onTap,
   });
 
@@ -523,14 +523,14 @@ class _MonthSelector extends StatelessWidget {
   final List<DateTime> months;
   final DateTime selectedMonth;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final ValueChanged<DateTime> onMonthSelected;
 
   const _MonthSelector({
     required this.months,
     required this.selectedMonth,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onMonthSelected,
   });
 
@@ -543,7 +543,7 @@ class _MonthSelector extends StatelessWidget {
           final isSelected =
               month.year == selectedMonth.year &&
               month.month == selectedMonth.month;
-          final label = _monthLabel(month, isEn);
+          final label = _monthLabel(month, language);
           return Padding(
             padding: const EdgeInsets.only(right: 8),
             child: GestureDetector(
@@ -595,8 +595,8 @@ class _MonthSelector extends StatelessWidget {
     );
   }
 
-  String _monthLabel(DateTime month, bool isEn) {
-    final names = isEn
+  String _monthLabel(DateTime month, AppLanguage language) {
+    final names = language.isEn
         ? CommonStrings.monthsShortEn
         : CommonStrings.monthsShortTr;
     final name = names[month.month - 1];
@@ -613,13 +613,13 @@ class _MonthSelector extends StatelessWidget {
 class _MemoryCard extends StatelessWidget {
   final JournalEntry entry;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final VoidCallback onTap;
 
   const _MemoryCard({
     required this.entry,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onTap,
   });
 

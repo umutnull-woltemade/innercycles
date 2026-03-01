@@ -89,7 +89,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                 ),
               );
             }
-            return _buildContent(context, ref, event, isDark, isEn);
+            return _buildContent(context, ref, event, isDark, language);
           },
         ),
       ),
@@ -101,7 +101,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
     WidgetRef ref,
     LifeEvent event,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     final isPositive = event.type == LifeEventType.positive;
@@ -111,7 +111,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
         : null;
     final emoji = preset?.emoji ?? (isPositive ? '\u{2728}' : '\u{1F4AD}');
 
-    final intensityLabels = isEn
+    final intensityLabels = language.isEn
         ? ['Subtle', 'Mild', 'Moderate', 'Strong', 'Life-Changing']
         : ['Hafif', 'Az', 'Orta', 'Güçlü', 'Hayat Değiştiren'];
 
@@ -142,7 +142,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                       event.note != null && event.note!.isNotEmpty
                       ? '\n"${event.note!.length > 80 ? '${event.note!.substring(0, 80)}...' : event.note!}"'
                       : '';
-                  final msg = isEn
+                  final msg = language.isEn
                       ? '${event.title} — $formatted$noteSnippet\n\nReflecting with InnerCycles.\n${AppConstants.appStoreUrl}\n#InnerCycles #LifeEvent'
                       : '${event.title} — $formatted$noteSnippet\n\nInnerCycles ile yansıma yapıyorum.\n${AppConstants.appStoreUrl}\n#InnerCycles';
                   SharePlus.instance.share(ShareParams(text: msg));
@@ -169,7 +169,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                   Icons.delete_outline_rounded,
                   color: AppColors.error,
                 ),
-                onPressed: () => _confirmDelete(context, ref, event, isEn),
+                onPressed: () => _confirmDelete(context, ref, event, language),
               ),
             ],
           ),
@@ -414,7 +414,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
     LifeEvent event,
-    bool isEn,
+    AppLanguage language,
   ) async {
     final language = AppLanguage.fromIsEn(isEn);
     final confirmed = await GlassDialog.confirm(

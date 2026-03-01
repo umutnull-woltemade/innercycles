@@ -84,7 +84,7 @@ class StreakStatsScreen extends ConsumerWidget {
               stats,
               weekCal,
               isDark,
-              isEn,
+              language,
               isPremium,
             );
           },
@@ -100,7 +100,7 @@ class StreakStatsScreen extends ConsumerWidget {
     StreakStats stats,
     Map<DateTime, bool> weekCalendar,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     bool isPremium,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
@@ -116,15 +116,15 @@ class StreakStatsScreen extends ConsumerWidget {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 // Current streak hero
-                _buildStreakHero(context, stats, isDark, isEn),
+                _buildStreakHero(context, stats, isDark, language),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Stats row
-                _buildStatsRow(context, stats, isDark, isEn),
+                _buildStatsRow(context, stats, isDark, language),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // This week calendar
-                _buildWeekCalendar(context, weekCalendar, isDark, isEn),
+                _buildWeekCalendar(context, weekCalendar, isDark, language),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Freeze status
@@ -134,17 +134,17 @@ class StreakStatsScreen extends ConsumerWidget {
                   service,
                   stats,
                   isDark,
-                  isEn,
+                  language,
                   isPremium,
                 ),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Milestones
-                _buildMilestonesCard(context, stats, isDark, isEn),
+                _buildMilestonesCard(context, stats, isDark, language),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Quick action
-                _buildQuickAction(context, isDark, isEn),
+                _buildQuickAction(context, isDark, language),
                 const SizedBox(height: 40),
               ]),
             ),
@@ -158,7 +158,7 @@ class StreakStatsScreen extends ConsumerWidget {
     BuildContext context,
     StreakStats stats,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     return GlassPanel(
@@ -189,7 +189,7 @@ class StreakStatsScreen extends ConsumerWidget {
           if (stats.nextMilestone != null) ...[
             const SizedBox(height: 12),
             Semantics(
-              label: isEn
+              label: language.isEn
                   ? '${stats.currentStreak} of ${stats.nextMilestone} day milestone'
                   : '${stats.nextMilestone} günlük hedefin ${stats.currentStreak} günü tamamlandı',
               child: ClipRRect(
@@ -211,7 +211,7 @@ class StreakStatsScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 6),
             Text(
-              isEn
+              language.isEn
                   ? '${stats.nextMilestone! - stats.currentStreak} days to ${stats.nextMilestone}-day milestone'
                   : '${stats.nextMilestone}-gün kilometre taşına ${stats.nextMilestone! - stats.currentStreak} gün',
               style: AppTypography.elegantAccent(
@@ -226,7 +226,7 @@ class StreakStatsScreen extends ConsumerWidget {
             GestureDetector(
               onTap: () {
                 HapticService.buttonPress();
-                final msg = isEn
+                final msg = language.isEn
                     ? '\u{1F525} I\'m on a ${stats.currentStreak}-day reflection streak on InnerCycles! Journaling daily is changing how I understand myself.\n\n${AppConstants.appStoreUrl}\n#InnerCycles #Streak #Journaling'
                     : '\u{1F525} InnerCycles\'da ${stats.currentStreak} günlük yansıma serisindeyim! Günlük yazmak kendimi anlama şeklimi değiştiriyor.\n\n${AppConstants.appStoreUrl}\n#InnerCycles';
                 SharePlus.instance.share(ShareParams(text: msg));
@@ -261,7 +261,7 @@ class StreakStatsScreen extends ConsumerWidget {
     BuildContext context,
     StreakStats stats,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     return Row(
@@ -300,10 +300,10 @@ class StreakStatsScreen extends ConsumerWidget {
     BuildContext context,
     Map<DateTime, bool> weekCalendar,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
-    final dayLabels = isEn
+    final dayLabels = language.isEn
         ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         : ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
     final today = DateTime.now();
@@ -402,7 +402,7 @@ class StreakStatsScreen extends ConsumerWidget {
     StreakService service,
     StreakStats stats,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     bool isPremium,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
@@ -432,7 +432,7 @@ class StreakStatsScreen extends ConsumerWidget {
             children: [
               Expanded(
                 child: Text(
-                  isEn
+                  language.isEn
                       ? '${stats.freezesAvailable} freeze${stats.freezesAvailable == 1 ? '' : 's'} available this week'
                       : 'Bu hafta ${stats.freezesAvailable} dondurma hakkı',
                   style: AppTypography.subtitle(
@@ -480,7 +480,7 @@ class StreakStatsScreen extends ConsumerWidget {
     BuildContext context,
     StreakStats stats,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     return GlassPanel(
@@ -574,7 +574,7 @@ class StreakStatsScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildQuickAction(BuildContext context, bool isDark, bool isEn) {
+  Widget _buildQuickAction(BuildContext context, bool isDark, AppLanguage language) {
     final language = AppLanguage.fromIsEn(isEn);
     return GradientOutlinedButton(
       label: L10nService.get('streak.streak_stats.log_todays_entry', language),

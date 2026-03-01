@@ -111,7 +111,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                               program: program,
                               progress: progress,
                               isDark: isDark,
-                              isEn: isEn,
+                              language: language,
                             ),
                             const SizedBox(height: 20),
 
@@ -130,7 +130,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                               _TodayPromptCard(
                                 day: todayPrompt,
                                 isDark: isDark,
-                                isEn: isEn,
+                                language: language,
                               ),
                               const SizedBox(height: 16),
 
@@ -138,14 +138,14 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                               _ReflectionInput(
                                 controller: _reflectionController,
                                 isDark: isDark,
-                                isEn: isEn,
+                                language: language,
                               ),
                               const SizedBox(height: 16),
 
                               // Complete day button
                               _CompleteButton(
                                 isDark: isDark,
-                                isEn: isEn,
+                                language: language,
                                 isAlreadyDone: progress.completedDays.contains(
                                   todayPrompt.dayNumber,
                                 ),
@@ -155,9 +155,9 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                                 ),
                               ),
                             ] else if (progress?.isCompleted ?? false) ...[
-                              _CompletedBanner(isDark: isDark, isEn: isEn),
+                              _CompletedBanner(isDark: isDark, language: language),
                             ] else ...[
-                              _NotStartedBanner(isDark: isDark, isEn: isEn),
+                              _NotStartedBanner(isDark: isDark, language: language),
                             ],
 
                             const SizedBox(height: 40),
@@ -186,7 +186,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
     HapticFeedback.heavyImpact();
     _reflectionController.clear();
     if (mounted) {
-      final isEn = ref.read(languageProvider) == AppLanguage.en;
+      final language = ref.read(languageProvider);
       final language = AppLanguage.fromIsEn(isEn);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -212,13 +212,13 @@ class _ProgramHeader extends StatelessWidget {
   final GuidedProgram program;
   final ProgramProgress? progress;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _ProgramHeader({
     required this.program,
     this.progress,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -377,12 +377,12 @@ class _DayProgressRow extends StatelessWidget {
 class _TodayPromptCard extends StatelessWidget {
   final ProgramDay day;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _TodayPromptCard({
     required this.day,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -452,12 +452,12 @@ class _TodayPromptCard extends StatelessWidget {
 class _ReflectionInput extends StatelessWidget {
   final TextEditingController controller;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _ReflectionInput({
     required this.controller,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -496,13 +496,13 @@ class _ReflectionInput extends StatelessWidget {
 
 class _CompleteButton extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final bool isAlreadyDone;
   final VoidCallback onComplete;
 
   const _CompleteButton({
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.isAlreadyDone,
     required this.onComplete,
   });
@@ -532,9 +532,9 @@ class _CompleteButton extends StatelessWidget {
 
 class _CompletedBanner extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
-  const _CompletedBanner({required this.isDark, required this.isEn});
+  const _CompletedBanner({required this.isDark, required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -588,9 +588,9 @@ class _CompletedBanner extends StatelessWidget {
 
 class _NotStartedBanner extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
-  const _NotStartedBanner({required this.isDark, required this.isEn});
+  const _NotStartedBanner({required this.isDark, required this.language});
 
   @override
   Widget build(BuildContext context) {

@@ -17,18 +17,18 @@ import '../../../data/services/l10n_service.dart';
 /// Full-screen celebration modal for streak milestones (D3, D7, D14, etc.)
 class MilestoneCelebrationModal extends StatefulWidget {
   final int streakDays;
-  final bool isEn;
+  final AppLanguage language;
   final bool isPremium;
 
   const MilestoneCelebrationModal({
     super.key,
     required this.streakDays,
-    required this.isEn,
+    required this.language,
     this.isPremium = false,
   });
 
   /// Show the celebration modal. Call after saving an entry.
-  static void show(BuildContext context, int days, bool isEn, {bool isPremium = false}) {
+  static void show(BuildContext context, int days, AppLanguage language, {bool isPremium = false}) {
     HapticFeedback.heavyImpact();
     showDialog(
       context: context,
@@ -36,7 +36,7 @@ class MilestoneCelebrationModal extends StatefulWidget {
       barrierColor: Colors.black54,
       builder: (_) => MilestoneCelebrationModal(
         streakDays: days,
-        isEn: isEn,
+        language: language,
         isPremium: isPremium,
       ),
     );
@@ -52,7 +52,7 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
   final bool _isSharing = false;
 
   int get streakDays => widget.streakDays;
-  bool get isEn => widget.isEn;
+  AppLanguage get language => widget.language;
   bool get isPremium => widget.isPremium;
 
   Future<void> _shareCard() async {
@@ -122,7 +122,7 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
     }
   }
 
-  String get _message => isEn
+  String get _message => language.isEn
       ? StreakService.getMilestoneMessageEn(streakDays)
       : StreakService.getMilestoneMessageTr(streakDays);
 

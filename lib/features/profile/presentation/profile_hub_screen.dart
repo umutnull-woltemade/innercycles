@@ -85,7 +85,7 @@ class ProfileHubScreen extends ConsumerWidget {
                         name: name,
                         isPremium: isPremium,
                         isDark: isDark,
-                        isEn: isEn,
+                        language: language,
                         growthScore: growthScore,
                       ),
                       const SizedBox(height: AppConstants.spacingXl),
@@ -98,28 +98,28 @@ class ProfileHubScreen extends ConsumerWidget {
                         challenges: completedChallenges,
                         totalWords: totalWords,
                         isDark: isDark,
-                        isEn: isEn,
+                        language: language,
                       ).glassListItem(context: context, index: 1),
                       const SizedBox(height: AppConstants.spacingXl),
 
                       // Tools: suggested + category tabs + grid
                       ProfileToolsGrid(
                         isDark: isDark,
-                        isEn: isEn,
+                        language: language,
                       ).glassListItem(context: context, index: 2),
                       const SizedBox(height: AppConstants.spacingXl),
 
                       // Invite & Earn (Referral)
                       ProfileReferralSection(
                         isDark: isDark,
-                        isEn: isEn,
+                        language: language,
                       ).glassListItem(context: context, index: 3),
                       const SizedBox(height: AppConstants.spacingXl),
 
                       // Rate Us
                       ProfileRateSection(
                         isDark: isDark,
-                        isEn: isEn,
+                        language: language,
                         totalEntries: totalEntries,
                       ).glassListItem(context: context, index: 4),
                       const SizedBox(height: AppConstants.spacingXl),
@@ -127,14 +127,14 @@ class ProfileHubScreen extends ConsumerWidget {
                       // Vault & Security
                       ProfileVaultSection(
                         isDark: isDark,
-                        isEn: isEn,
+                        language: language,
                       ).glassListItem(context: context, index: 5),
                       const SizedBox(height: AppConstants.spacingXl),
 
                       // Settings & Account
                       ProfileSettingsSection(
                         isDark: isDark,
-                        isEn: isEn,
+                        language: language,
                         isPremium: isPremium,
                       ).glassListItem(context: context, index: 6),
                       const SizedBox(height: AppConstants.spacingHuge),

@@ -251,7 +251,7 @@ class PatternEngineService {
     if (count >= 2) {
       final isEn = language == AppLanguage.en;
       final avgStr = avg.toStringAsFixed(1);
-      return isEn
+      return language.isEn
           ? '$dominantName appears in $count of your ${entries.length} entries (avg $avgStr/5). A pattern may be forming.'
           : '$dominantName, ${entries.length} kaydınızın $count tanesinde görünüyor (ort $avgStr/5). Bir kalıp oluşuyor olabilir.';
     }

@@ -119,7 +119,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
               service,
               lifeEventService,
               isDark,
-              isEn,
+              language,
               isPremium,
             );
           },
@@ -133,7 +133,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
     JournalService service,
     LifeEventService? lifeEventService,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     bool isPremium,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
@@ -187,7 +187,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                   monthCount: monthCount,
                   streak: streak,
                   isDark: isDark,
-                  isEn: isEn,
+                  language: language,
                 ),
                 const SizedBox(height: 20),
 
@@ -196,7 +196,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                   year: _selectedYear,
                   month: _selectedMonth,
                   isDark: isDark,
-                  isEn: isEn,
+                  language: language,
                   onPrevious: () {
                     if (!isPremium) {
                       showContextualPaywall(
@@ -244,7 +244,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                   lifeEventMap: lifeEventMap,
                   selectedDateKey: _selectedDateKey,
                   isDark: isDark,
-                  isEn: isEn,
+                  language: language,
                   onDayTap: (dateKey) {
                     HapticFeedback.lightImpact();
                     setState(() {
@@ -257,7 +257,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                 const SizedBox(height: 12),
 
                 // Legend
-                _Legend(isDark: isDark, isEn: isEn),
+                _Legend(isDark: isDark, language: language),
                 const SizedBox(height: 20),
 
                 // Selected day detail
@@ -267,7 +267,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                     entry: entryMap[_selectedDateKey],
                     lifeEvents: lifeEventMap[_selectedDateKey] ?? [],
                     isDark: isDark,
-                    isEn: isEn,
+                    language: language,
                     onViewEntry: (id) => context.push(
                       Routes.journalEntryDetail.replaceFirst(':id', id),
                     ),
@@ -288,10 +288,10 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                     year: _selectedYear,
                     entryMap: entryMap,
                     isDark: isDark,
-                    isEn: isEn,
+                    language: language,
                   )
                 else
-                  _PremiumYearOverlay(isDark: isDark, isEn: isEn),
+                  _PremiumYearOverlay(isDark: isDark, language: language),
 
                 ContentDisclaimer(
                   language: language,
@@ -315,14 +315,14 @@ class _StatsRow extends StatelessWidget {
   final int monthCount;
   final int streak;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _StatsRow({
     required this.totalEntries,
     required this.monthCount,
     required this.streak,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -414,7 +414,7 @@ class _MonthNavigator extends StatelessWidget {
   final int year;
   final int month;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final VoidCallback onPrevious;
   final VoidCallback onNext;
 
@@ -422,7 +422,7 @@ class _MonthNavigator extends StatelessWidget {
     required this.year,
     required this.month,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onPrevious,
     required this.onNext,
   });
@@ -430,7 +430,7 @@ class _MonthNavigator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final language = AppLanguage.fromIsEn(isEn);
-    final monthNames = isEn
+    final monthNames = language.isEn
         ? [
             'January',
             'February',
@@ -513,7 +513,7 @@ class _CalendarGrid extends StatelessWidget {
   final Map<String, List<LifeEvent>> lifeEventMap;
   final String? selectedDateKey;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final ValueChanged<String> onDayTap;
 
   const _CalendarGrid({
@@ -523,7 +523,7 @@ class _CalendarGrid extends StatelessWidget {
     required this.lifeEventMap,
     this.selectedDateKey,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onDayTap,
   });
 
@@ -543,7 +543,7 @@ class _CalendarGrid extends StatelessWidget {
           // Day headers
           Row(
             children:
-                (isEn
+                (language.isEn
                         ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
                         : ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pa'])
                     .map((d) {
@@ -749,9 +749,9 @@ class _CalendarGrid extends StatelessWidget {
 
 class _Legend extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
-  const _Legend({required this.isDark, required this.isEn});
+  const _Legend({required this.isDark, required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -853,7 +853,7 @@ class _DayDetail extends StatelessWidget {
   final JournalEntry? entry;
   final List<LifeEvent> lifeEvents;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final ValueChanged<String> onViewEntry;
   final VoidCallback onCreateEntry;
   final VoidCallback onAddLifeEvent;
@@ -864,7 +864,7 @@ class _DayDetail extends StatelessWidget {
     this.entry,
     this.lifeEvents = const [],
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onViewEntry,
     required this.onCreateEntry,
     required this.onAddLifeEvent,
@@ -931,12 +931,12 @@ class _DayDetail extends StatelessWidget {
 
   Widget _buildJournalCard(JournalEntry e) {
     final language = AppLanguage.fromIsEn(isEn);
-    final ratingLabels = isEn
+    final ratingLabels = language.isEn
         ? ['Low', 'Below Avg', 'Average', 'Good', 'Excellent']
         : ['Düşük', 'Ortanın Altı', 'Orta', 'İyi', 'Mükemmel'];
 
     return Semantics(
-      label: isEn
+      label: language.isEn
           ? 'View entry: ${e.focusArea.displayNameEn}, rating ${e.overallRating}'
           : 'Kaydı gör: ${e.focusArea.displayNameTr}, puan ${e.overallRating}',
       button: true,
@@ -1203,13 +1203,13 @@ class _YearHeatmap extends StatelessWidget {
   final int year;
   final Map<String, JournalEntry> entryMap;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _YearHeatmap({
     required this.year,
     required this.entryMap,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -1233,7 +1233,7 @@ class _YearHeatmap extends StatelessWidget {
 
     final maxCount = monthCounts.reduce((a, b) => a > b ? a : b);
 
-    final monthLabels = isEn
+    final monthLabels = language.isEn
         ? ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D']
         : ['O', 'Ş', 'M', 'N', 'M', 'H', 'T', 'A', 'E', 'E', 'K', 'A'];
 
@@ -1324,9 +1324,9 @@ class _YearHeatmap extends StatelessWidget {
 
 class _PremiumYearOverlay extends ConsumerWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
-  const _PremiumYearOverlay({required this.isDark, required this.isEn});
+  const _PremiumYearOverlay({required this.isDark, required this.language});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

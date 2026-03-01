@@ -65,7 +65,7 @@ class SleepTrendsScreen extends ConsumerWidget {
               ),
             ),
           ),
-          data: (service) => _buildContent(context, service, isDark, isEn),
+          data: (service) => _buildContent(context, service, isDark, language),
         ),
       ),
     );
@@ -75,7 +75,7 @@ class SleepTrendsScreen extends ConsumerWidget {
     BuildContext context,
     SleepService service,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     final allEntries = service.getAllEntries();
@@ -162,7 +162,7 @@ class SleepTrendsScreen extends ConsumerWidget {
                 _buildStatsRow(
                   context,
                   isDark,
-                  isEn,
+                  language,
                   summary,
                   allEntries.length,
                 ),
@@ -173,25 +173,25 @@ class SleepTrendsScreen extends ConsumerWidget {
                   _buildTrendCard(
                     context,
                     isDark,
-                    isEn,
+                    language,
                     summary.trendDirection!,
                   ),
                 if (summary.trendDirection != null)
                   const SizedBox(height: AppConstants.spacingLg),
 
                 // 14-day bar chart
-                _buildBarChart(context, isDark, isEn, last14),
+                _buildBarChart(context, isDark, language, last14),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Quality distribution
-                _buildDistributionCard(context, isDark, isEn, distribution),
+                _buildDistributionCard(context, isDark, language, distribution),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Recent entries with notes
                 _buildRecentCard(
                   context,
                   isDark,
-                  isEn,
+                  language,
                   allEntries
                       .where((e) => e.note != null && e.note!.isNotEmpty)
                       .take(10)
@@ -203,7 +203,7 @@ class SleepTrendsScreen extends ConsumerWidget {
                 const SizedBox(height: 16),
                 ToolEcosystemFooter(
                   currentToolId: 'sleepTrends',
-                  isEn: isEn,
+                  language: language,
                   isDark: isDark,
                 ),
                 const SizedBox(height: 40),
@@ -218,7 +218,7 @@ class SleepTrendsScreen extends ConsumerWidget {
   Widget _buildStatsRow(
     BuildContext context,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     SleepSummary summary,
     int total,
   ) {
@@ -259,7 +259,7 @@ class SleepTrendsScreen extends ConsumerWidget {
   Widget _buildTrendCard(
     BuildContext context,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     String trend,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
@@ -310,7 +310,7 @@ class SleepTrendsScreen extends ConsumerWidget {
   Widget _buildBarChart(
     BuildContext context,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     List<_DayQuality> days,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
@@ -391,7 +391,7 @@ class SleepTrendsScreen extends ConsumerWidget {
   Widget _buildDistributionCard(
     BuildContext context,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     Map<int, int> distribution,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
@@ -494,7 +494,7 @@ class SleepTrendsScreen extends ConsumerWidget {
   Widget _buildRecentCard(
     BuildContext context,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     List<SleepEntry> entries,
   ) {
     final language = AppLanguage.fromIsEn(isEn);

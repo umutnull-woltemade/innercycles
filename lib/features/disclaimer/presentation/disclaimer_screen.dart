@@ -128,7 +128,7 @@ class DisclaimerScreen extends ConsumerWidget {
                       const SizedBox(width: 14),
                       Expanded(
                         child: Text(
-                          isEn
+                          language.isEn
                               ? 'InnerCycles is a personal journaling tool for self-reflection and pattern awareness.'
                               : L10nService.get('disclaimer.text_1', language),
                           style: AppTypography.subtitle(
@@ -159,7 +159,7 @@ class DisclaimerScreen extends ConsumerWidget {
                       const SizedBox(width: 14),
                       Expanded(
                         child: Text(
-                          isEn
+                          language.isEn
                               ? 'All insights are based solely on your own journal entries. This app does not make predictions about your future.'
                               : L10nService.get('disclaimer.text_2', language),
                           style: AppTypography.subtitle(
@@ -190,7 +190,7 @@ class DisclaimerScreen extends ConsumerWidget {
                       const SizedBox(width: 14),
                       Expanded(
                         child: Text(
-                          isEn
+                          language.isEn
                               ? 'This is for personal reflection only. It is not medical, psychological, or professional advice.'
                               : L10nService.get('disclaimer.text_3', language),
                           style: AppTypography.subtitle(

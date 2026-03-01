@@ -315,8 +315,8 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
     });
   }
 
-  String _formatReminderDate(DateTime dt, bool isEn) {
-    final months = isEn
+  String _formatReminderDate(DateTime dt, AppLanguage language) {
+    final months = language.isEn
         ? CommonStrings.monthsShortEn
         : CommonStrings.monthsShortTr;
     final h = dt.hour.toString().padLeft(2, '0');
@@ -535,7 +535,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                 child: Text(
                                   _wordCount == 0
                                       ? ''
-                                      : (isEn
+                                      : (language.isEn
                                             ? '$_wordCount words'
                                             : '$_wordCount kelime'),
                                   style: AppTypography.elegantAccent(
@@ -811,7 +811,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                                   Text(
                                                     _formatReminderDate(
                                                       _pendingReminderDate!,
-                                                      isEn,
+                                                      language,
                                                     ),
                                                     style:
                                                         AppTypography.subtitle(
@@ -864,7 +864,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                       ..._reminders.map(
                                         (r) => _ReminderRow(
                                           reminder: r,
-                                          isEn: isEn,
+                                          language: language,
                                           isDark: isDark,
                                           onDelete: () =>
                                               _removeReminder(service, r.id),
@@ -893,7 +893,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                     if (_showReminderForm) ...[
                                       const SizedBox(height: 12),
                                       _ReminderForm(
-                                        isEn: isEn,
+                                        language: language,
                                         isDark: isDark,
                                         isPremium: isPremium,
                                         reminderDate: _isCreateMode
@@ -941,7 +941,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                     _hasChanges = true;
                                   });
                                 },
-                                isEn: isEn,
+                                language: language,
                                 isDark: isDark,
                               ),
 
@@ -1173,13 +1173,13 @@ class _RemovableTagChip extends StatelessWidget {
 
 class _ReminderRow extends StatelessWidget {
   final NoteReminder reminder;
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
   final VoidCallback onDelete;
 
   const _ReminderRow({
     required this.reminder,
-    required this.isEn,
+    required this.language,
     required this.isDark,
     required this.onDelete,
   });
@@ -1188,7 +1188,7 @@ class _ReminderRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final language = AppLanguage.fromIsEn(isEn);
     final freq = reminder.frequency.localizedName(language);
-    final dateStr = _formatDate(reminder.scheduledAt, isEn);
+    final dateStr = _formatDate(reminder.scheduledAt, language);
 
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
@@ -1243,8 +1243,8 @@ class _ReminderRow extends StatelessWidget {
     );
   }
 
-  String _formatDate(DateTime dt, bool isEn) {
-    final months = isEn
+  String _formatDate(DateTime dt, AppLanguage language) {
+    final months = language.isEn
         ? CommonStrings.monthsShortEn
         : CommonStrings.monthsShortTr;
     final h = dt.hour.toString().padLeft(2, '0');
@@ -1258,7 +1258,7 @@ class _ReminderRow extends StatelessWidget {
 // ═══════════════════════════════════════════════════════════════════════
 
 class _ReminderForm extends StatelessWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
   final bool isPremium;
   final DateTime? reminderDate;
@@ -1269,7 +1269,7 @@ class _ReminderForm extends StatelessWidget {
   final VoidCallback onSave;
 
   const _ReminderForm({
-    required this.isEn,
+    required this.language,
     required this.isDark,
     required this.isPremium,
     required this.reminderDate,
@@ -1313,7 +1313,7 @@ class _ReminderForm extends StatelessWidget {
                   const SizedBox(width: 8),
                   Text(
                     reminderDate != null
-                        ? _formatDate(reminderDate!, isEn)
+                        ? _formatDate(reminderDate!, language)
                         : (L10nService.get('notes.note_detail.pick_date_time', language)),
                     style: AppTypography.subtitle(
                       fontSize: 14,
@@ -1453,8 +1453,8 @@ class _ReminderForm extends StatelessWidget {
     ).animate().fadeIn(duration: 300.ms).slideY(begin: -0.05, end: 0);
   }
 
-  String _formatDate(DateTime dt, bool isEn) {
-    final months = isEn
+  String _formatDate(DateTime dt, AppLanguage language) {
+    final months = language.isEn
         ? CommonStrings.monthsShortEn
         : CommonStrings.monthsShortTr;
     final h = dt.hour.toString().padLeft(2, '0');

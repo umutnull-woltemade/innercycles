@@ -69,7 +69,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
               ),
             ),
           ),
-          data: (service) => _buildContent(context, service, isDark, isEn),
+          data: (service) => _buildContent(context, service, isDark, language),
         ),
       ),
     );
@@ -79,7 +79,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
     BuildContext context,
     GratitudeService service,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     final allEntries = service.getAllEntries();
@@ -96,10 +96,10 @@ class GratitudeArchiveScreen extends ConsumerWidget {
             hasScrollBody: false,
             child: ToolEmptyState(
               icon: Icons.favorite_border,
-              title: isEn
+              title: language.isEn
                   ? 'Your gratitude garden is ready to bloom'
                   : 'Şükran bahçen çiçek açmaya hazır',
-              description: isEn
+              description: language.isEn
                   ? 'Start your gratitude practice to see your appreciation patterns grow.'
                   : 'Şükran kalıplarının büyümesini görmek için şükran pratiğine başla.',
               onStartTemplate: () => context.push(Routes.gratitudeJournal),
@@ -138,7 +138,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
                 _buildStatsRow(
                   context,
                   isDark,
-                  isEn,
+                  language,
                   summary,
                   allEntries.length,
                 ),
@@ -146,7 +146,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
 
                 // Top themes
                 if (themes.isNotEmpty) ...[
-                  _buildThemesCard(context, isDark, isEn, themes),
+                  _buildThemesCard(context, isDark, language, themes),
                   const SizedBox(height: AppConstants.spacingLg),
                 ],
 
@@ -157,7 +157,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
                     _buildMonthHeader(
                       context,
                       isDark,
-                      isEn,
+                      language,
                       monthKey,
                       entries.length,
                     ),
@@ -176,7 +176,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
   Widget _buildStatsRow(
     BuildContext context,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     GratitudeSummary summary,
     int total,
   ) {
@@ -213,7 +213,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
   Widget _buildThemesCard(
     BuildContext context,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     Map<String, int> themes,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
@@ -276,7 +276,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
   Widget _buildMonthHeader(
     BuildContext context,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     String monthKey,
     int count,
   ) {
@@ -285,7 +285,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
     if (parts.length < 2) return const SizedBox.shrink();
     final year = parts[0];
     final month = int.tryParse(parts[1]) ?? 1;
-    final monthNames = isEn
+    final monthNames = language.isEn
         ? [
             '',
             'January',

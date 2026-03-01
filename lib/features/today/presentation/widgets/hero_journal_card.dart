@@ -15,12 +15,12 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class HeroJournalCard extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const HeroJournalCard({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 

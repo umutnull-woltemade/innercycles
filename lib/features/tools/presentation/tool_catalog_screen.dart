@@ -111,7 +111,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
     super.dispose();
   }
 
-  List<ToolManifest> _filterTools(List<ToolManifest> tools, bool isEn) {
+  List<ToolManifest> _filterTools(List<ToolManifest> tools, AppLanguage language) {
     final language = AppLanguage.fromIsEn(isEn);
     if (_searchQuery.isEmpty) return tools;
     return tools.where((tool) {
@@ -129,7 +129,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
 
     final isPremium = ref.watch(isPremiumUserProvider);
     final allTools = ToolManifestRegistry.all;
-    final filteredTools = _filterTools(allTools, isEn);
+    final filteredTools = _filterTools(allTools, language);
 
     return Scaffold(
       body: CosmicBackground(
@@ -154,7 +154,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
                       // Search Bar
                       _buildSearchBar(
                         isDark,
-                        isEn,
+                        language,
                       ).animate().fadeIn(duration: 400.ms, delay: 100.ms),
                       const SizedBox(height: AppConstants.spacingXl),
 
@@ -162,13 +162,13 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
                         if (filteredTools.isEmpty)
                           _buildEmptySearch(
                             isDark,
-                            isEn,
+                            language,
                           ).animate().fadeIn(duration: 400.ms, delay: 200.ms)
                         else
                           _buildToolGrid(
                             filteredTools,
                             isDark,
-                            isEn,
+                            language,
                             smartRouterAsync,
                             0,
                             isPremium,
@@ -177,7 +177,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
                         // Category Sections
                         ..._buildCategorySections(
                           isDark,
-                          isEn,
+                          language,
                           smartRouterAsync,
                           isPremium,
                         ),
@@ -195,7 +195,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
     );
   }
 
-  Widget _buildSearchBar(bool isDark, bool isEn) {
+  Widget _buildSearchBar(bool isDark, AppLanguage language) {
     final language = AppLanguage.fromIsEn(isEn);
     return Container(
       decoration: BoxDecoration(
@@ -252,7 +252,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
     );
   }
 
-  Widget _buildEmptySearch(bool isDark, bool isEn) {
+  Widget _buildEmptySearch(bool isDark, AppLanguage language) {
     final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: AppConstants.spacingHuge),
@@ -283,7 +283,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
 
   List<Widget> _buildCategorySections(
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     AsyncValue<SmartRouterService> smartRouterAsync,
     bool isPremium,
   ) {
@@ -300,7 +300,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
       final delay = 200 + (sectionIndex * 100);
 
       widgets.add(
-        _buildCategoryHeader(info, isDark, isEn)
+        _buildCategoryHeader(info, isDark, language)
             .animate()
             .fadeIn(
               duration: 500.ms,
@@ -318,7 +318,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
         _buildToolGrid(
           tools,
           isDark,
-          isEn,
+          language,
           smartRouterAsync,
           delay + 100,
           isPremium,
@@ -330,7 +330,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
     return widgets;
   }
 
-  Widget _buildCategoryHeader(_CategoryInfo info, bool isDark, bool isEn) {
+  Widget _buildCategoryHeader(_CategoryInfo info, bool isDark, AppLanguage language) {
     final language = AppLanguage.fromIsEn(isEn);
     return Container(
       padding: const EdgeInsets.symmetric(vertical: AppConstants.spacingSm),
@@ -380,7 +380,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
   Widget _buildToolGrid(
     List<ToolManifest> tools,
     bool isDark,
-    bool isEn,
+    AppLanguage language,
     AsyncValue<SmartRouterService> smartRouterAsync,
     int baseDelay,
     bool isPremium,
@@ -400,7 +400,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
                     child: _ToolCard(
                       tool: left,
                       isDark: isDark,
-                      isEn: isEn,
+                      language: language,
                       smartRouterAsync: smartRouterAsync,
                       isPremium: isPremium,
                       onFavoriteToggle: () => _toggleFavorite(left),
@@ -417,7 +417,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
                         ? _ToolCard(
                             tool: right,
                             isDark: isDark,
-                            isEn: isEn,
+                            language: language,
                             smartRouterAsync: smartRouterAsync,
                             isPremium: isPremium,
                             onFavoriteToggle: () => _toggleFavorite(right),
@@ -460,7 +460,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
 class _ToolCard extends StatelessWidget {
   final ToolManifest tool;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final bool isPremium;
   final AsyncValue<SmartRouterService> smartRouterAsync;
   final VoidCallback onFavoriteToggle;
@@ -469,7 +469,7 @@ class _ToolCard extends StatelessWidget {
   const _ToolCard({
     required this.tool,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.smartRouterAsync,
     required this.isPremium,
     required this.onFavoriteToggle,

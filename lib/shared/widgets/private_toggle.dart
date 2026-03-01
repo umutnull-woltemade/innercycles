@@ -11,19 +11,20 @@ import '../../core/constants/routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
 import '../../data/providers/app_providers.dart';
+import '../../data/services/haptic_service.dart';
 import '../../data/services/l10n_service.dart';
 
 class PrivateToggle extends ConsumerWidget {
   final bool isPrivate;
   final ValueChanged<bool> onChanged;
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const PrivateToggle({
     super.key,
     required this.isPrivate,
     required this.onChanged,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -61,6 +62,7 @@ class PrivateToggle extends ConsumerWidget {
         return; // Don't toggle yet — they'll enable after setup
       }
     }
+    HapticService.toggleChanged();
     onChanged(value);
   }
 

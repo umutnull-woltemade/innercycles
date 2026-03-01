@@ -217,7 +217,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             GradientText(
-                              isEn
+                              language.isEn
                                   ? 'Ritual Items (${_itemControllers.length}/$maxItems)'
                                   : 'Ritüel Maddeleri (${_itemControllers.length}/$maxItems)',
                               variant: GradientTextVariant.gold,
@@ -247,7 +247,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                         const SizedBox(height: 8),
 
                         // Habit suggestions
-                        _buildHabitSuggestions(isDark, isEn),
+                        _buildHabitSuggestions(isDark, language),
                         const SizedBox(height: 12),
 
                         ...List.generate(_itemControllers.length, (i) {
@@ -296,7 +296,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                                                 : AppColors.lightTextPrimary,
                                           ),
                                           decoration: InputDecoration(
-                                            hintText: _getPlaceholder(i, isEn),
+                                            hintText: _getPlaceholder(i, language),
                                             hintStyle: AppTypography.subtitle(
                                               color: isDark
                                                   ? AppColors.textMuted
@@ -369,7 +369,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
     }
   }
 
-  Widget _buildHabitSuggestions(bool isDark, bool isEn) {
+  Widget _buildHabitSuggestions(bool isDark, AppLanguage language) {
     final language = AppLanguage.fromIsEn(isEn);
     final categories = _categoriesForTime(_selectedTime);
     final suggestions = allHabitSuggestions
@@ -452,7 +452,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
     );
   }
 
-  String _getPlaceholder(int index, bool isEn) {
+  String _getPlaceholder(int index, AppLanguage language) {
     final enPlaceholders = [
       'e.g. Drink water',
       'e.g. Stretch for 5 min',
@@ -467,7 +467,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
       'ör. Meditasyon',
       'ör. 10 dk kitap oku',
     ];
-    final list = isEn ? enPlaceholders : trPlaceholders;
+    final list = language.isEn ? enPlaceholders : trPlaceholders;
     return list[index % list.length];
   }
 
@@ -478,7 +478,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
         .toList();
 
     if (itemNames.isEmpty) {
-      final isEn = ref.read(languageProvider) == AppLanguage.en;
+      final language = ref.read(languageProvider);
       final language = AppLanguage.fromIsEn(isEn);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

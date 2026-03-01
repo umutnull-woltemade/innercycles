@@ -20,13 +20,13 @@ import '../../../../data/providers/app_providers.dart';
 class PatternLoopAnalyzer extends StatelessWidget {
   final PatternLoopAnalysis analysis;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const PatternLoopAnalyzer({
     super.key,
     required this.analysis,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -65,7 +65,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
                 child: _PatternLoopCard(
                   loop: entry.value,
                   isDark: isDark,
-                  isEn: isEn,
+                  language: language,
                 ),
               )
               .animate()
@@ -180,12 +180,12 @@ class PatternLoopAnalyzer extends StatelessWidget {
 class _PatternLoopCard extends StatefulWidget {
   final PatternLoop loop;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _PatternLoopCard({
     required this.loop,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -197,7 +197,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(widget.isEn);
+    final language = widget.language;
     final loop = widget.loop;
     final color = _reinforcementColor(loop.reinforcementType);
     final areaColor = kAreaColors[loop.primaryArea] ?? AppColors.auroraStart;
@@ -209,7 +209,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
         children: [
           // Header (tappable)
           Semantics(
-            label: widget.isEn
+            label: widget.language.isEn
                 ? '${loop.primaryArea.displayNameEn} pattern: ${loop.insightEn}'
                 : '${loop.primaryArea.displayNameTr} kalıbı: ${loop.insightTr}',
             button: true,
@@ -333,7 +333,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
   }
 
   Widget _buildLoopChain(BuildContext context, PatternLoop loop, Color color) {
-    final language = AppLanguage.fromIsEn(widget.isEn);
+    final language = widget.language;
     final stages = [
       loop.trigger,
       loop.emotionalShift,
@@ -418,7 +418,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
 
           // 5-stage chain
           ...stages.asMap().entries.map((entry) {
-            final language = AppLanguage.fromIsEn(widget.isEn);
+            final language = widget.language;
             final idx = entry.key;
             final stage = entry.value;
             final isLast = idx == stages.length - 1;
@@ -458,7 +458,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            widget.isEn
+                            widget.language.isEn
                                 ? stageLabelsEn[idx]
                                 : stageLabelsTr[idx],
                             style: AppTypography.elegantAccent(

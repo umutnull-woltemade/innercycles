@@ -19,7 +19,7 @@ class ProfileHeroSection extends StatefulWidget {
   final String name;
   final bool isPremium;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final int growthScore;
 
   const ProfileHeroSection({
@@ -27,7 +27,7 @@ class ProfileHeroSection extends StatefulWidget {
     required this.name,
     required this.isPremium,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.growthScore,
   });
 
@@ -56,7 +56,7 @@ class _ProfileHeroSectionState extends State<ProfileHeroSection>
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(widget.isEn);
+    final language = widget.language;
     return Column(
       children: [
         // Animated avatar with rotating aurora ring
@@ -161,7 +161,7 @@ class _ProfileHeroSectionState extends State<ProfileHeroSection>
         GestureDetector(
           onTap: () => context.push(Routes.streakStats),
           child: Semantics(
-            label: widget.isEn
+            label: widget.language.isEn
                 ? 'Growth score ${widget.growthScore}. Tap for details'
                 : 'Geli\u015fim puan\u0131 ${widget.growthScore}. Detaylar i\u00e7in dokun',
             button: true,

@@ -17,12 +17,12 @@ import '../../../../data/services/l10n_service.dart';
 
 class ProfileVaultSection extends ConsumerWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const ProfileVaultSection({
     super.key,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override

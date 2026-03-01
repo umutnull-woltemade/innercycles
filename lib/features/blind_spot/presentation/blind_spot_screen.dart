@@ -109,7 +109,7 @@ class BlindSpotScreen extends ConsumerWidget {
                   entries: entries,
                   hasEnough: hasEnough,
                   isDark: isDark,
-                  isEn: isEn,
+                  language: language,
                   onRefresh: () {
                     ref.invalidate(blindSpotServiceProvider);
                     ref.invalidate(journalServiceProvider);
@@ -133,7 +133,7 @@ class _BlindSpotBody extends StatefulWidget {
   final List entries;
   final bool hasEnough;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final VoidCallback onRefresh;
 
   const _BlindSpotBody({
@@ -141,7 +141,7 @@ class _BlindSpotBody extends StatefulWidget {
     required this.entries,
     required this.hasEnough,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onRefresh,
   });
 
@@ -186,7 +186,7 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(widget.isEn);
+    final language = widget.language;
     return RefreshIndicator(
       onRefresh: _handleRefresh,
       color: AppColors.auroraStart,
@@ -207,7 +207,7 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
                 hasScrollBody: false,
                 child: _NotEnoughData(
                   isDark: widget.isDark,
-                  isEn: widget.isEn,
+                  language: widget.language.isEn,
                   entryCount: widget.entries.length,
                 ),
               )
@@ -224,19 +224,19 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
                     _OverallInsightCard(
                       report: report,
                       isDark: widget.isDark,
-                      isEn: widget.isEn,
+                      language: widget.language.isEn,
                     ),
                     const SizedBox(height: 20),
                     _BlindSpotsList(
                       spots: report.blindSpots,
                       isDark: widget.isDark,
-                      isEn: widget.isEn,
+                      language: widget.language.isEn,
                     ),
                     const SizedBox(height: 20),
                     _GrowthSuggestionsCard(
                       report: report,
                       isDark: widget.isDark,
-                      isEn: widget.isEn,
+                      language: widget.language.isEn,
                     ),
                     const SizedBox(height: 24),
                     ContentDisclaimer(
@@ -246,12 +246,12 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
                     _ShareInsightsButton(
                       spotCount: report.blindSpots.length,
                       isDark: widget.isDark,
-                      isEn: widget.isEn,
+                      language: widget.language.isEn,
                     ),
                     const SizedBox(height: 24),
                     ToolEcosystemFooter(
                       currentToolId: 'blindSpot',
-                      isEn: widget.isEn,
+                      language: widget.language.isEn,
                       isDark: widget.isDark,
                     ),
                     const SizedBox(height: 40),
@@ -271,12 +271,12 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
 
 class _NotEnoughData extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final int entryCount;
 
   const _NotEnoughData({
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.entryCount,
   });
 
@@ -311,7 +311,7 @@ class _NotEnoughData extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            isEn
+            language.isEn
                 ? 'You have $entryCount entries so far. After $remaining more, '
                       'your journal will have enough data to reveal patterns '
                       'you might not notice on your own.'
@@ -374,12 +374,12 @@ class _NotEnoughData extends StatelessWidget {
 class _OverallInsightCard extends StatelessWidget {
   final BlindSpotReport report;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _OverallInsightCard({
     required this.report,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -471,12 +471,12 @@ class _SpotCountBadge extends StatelessWidget {
 class _BlindSpotsList extends StatelessWidget {
   final List<BlindSpot> spots;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _BlindSpotsList({
     required this.spots,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -525,7 +525,7 @@ class _BlindSpotsList extends StatelessWidget {
         ...List.generate(spots.length, (i) {
           return Padding(
             padding: const EdgeInsets.only(bottom: 10),
-            child: _BlindSpotCard(spot: spots[i], isDark: isDark, isEn: isEn)
+            child: _BlindSpotCard(spot: spots[i], isDark: isDark, language: language)
                 .animate()
                 .fadeIn(
                   delay: Duration(milliseconds: 100 + i * 80),
@@ -545,12 +545,12 @@ class _BlindSpotsList extends StatelessWidget {
 class _BlindSpotCard extends StatefulWidget {
   final BlindSpot spot;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _BlindSpotCard({
     required this.spot,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -636,7 +636,7 @@ class _BlindSpotCardState extends State<_BlindSpotCard>
                           ),
                         ),
                         const SizedBox(height: 2),
-                        _SeverityIndicator(severity: spot.severity, isEn: isEn),
+                        _SeverityIndicator(severity: spot.severity, language: language),
                       ],
                     ),
                   ),
@@ -712,9 +712,9 @@ class _BlindSpotCardState extends State<_BlindSpotCard>
 
 class _SeverityIndicator extends StatelessWidget {
   final BlindSpotSeverity severity;
-  final bool isEn;
+  final AppLanguage language;
 
-  const _SeverityIndicator({required this.severity, required this.isEn});
+  const _SeverityIndicator({required this.severity, required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -784,18 +784,18 @@ class _SeverityIndicator extends StatelessWidget {
 class _GrowthSuggestionsCard extends StatelessWidget {
   final BlindSpotReport report;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _GrowthSuggestionsCard({
     required this.report,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
   Widget build(BuildContext context) {
     final language = AppLanguage.fromIsEn(isEn);
-    final suggestions = isEn
+    final suggestions = language.isEn
         ? report.growthSuggestionsEn
         : report.growthSuggestionsTr;
 
@@ -886,12 +886,12 @@ class _GrowthSuggestionsCard extends StatelessWidget {
 class _ShareInsightsButton extends StatelessWidget {
   final int spotCount;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _ShareInsightsButton({
     required this.spotCount,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -906,7 +906,7 @@ class _ShareInsightsButton extends StatelessWidget {
       ),
       onPressed: () {
         HapticFeedback.mediumImpact();
-        final text = isEn
+        final text = language.isEn
             ? 'I uncovered $spotCount emotional blind spots through self-reflection with InnerCycles.\n\n'
                   'Discover your hidden patterns:\nhttps://apps.apple.com/app/innercycles/id6758612716\n#InnerCycles #SelfDiscovery'
             : 'InnerCycles ile öz yansıma yaparak $spotCount duygusal kör noktamı keşfettim.\n\n'

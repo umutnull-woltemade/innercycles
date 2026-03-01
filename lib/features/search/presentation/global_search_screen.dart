@@ -245,15 +245,15 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                 ),
 
                 // Tab bar (only when searching)
-                if (_query.isNotEmpty) _buildTabBar(isDark, isEn),
+                if (_query.isNotEmpty) _buildTabBar(isDark, language),
 
                 // Content
                 Expanded(
                   child: _query.isEmpty
-                      ? _buildEmptyState(isDark, isEn)
+                      ? _buildEmptyState(isDark, language)
                       : _totalResults == 0
-                          ? _buildNoResults(isDark, isEn)
-                          : _buildSearchResults(isDark, isEn),
+                          ? _buildNoResults(isDark, language)
+                          : _buildSearchResults(isDark, language),
                 ),
               ],
             ),
@@ -263,7 +263,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
     );
   }
 
-  Widget _buildTabBar(bool isDark, bool isEn) {
+  Widget _buildTabBar(bool isDark, AppLanguage language) {
     final language = AppLanguage.fromIsEn(isEn);
     final tabs = [
       (
@@ -335,7 +335,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
     ).animate().fadeIn(duration: 200.ms);
   }
 
-  Widget _buildEmptyState(bool isDark, bool isEn) {
+  Widget _buildEmptyState(bool isDark, AppLanguage language) {
     final language = AppLanguage.fromIsEn(isEn);
     return SingleChildScrollView(
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -344,7 +344,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Tag cloud
-          _TagCloudSection(isDark: isDark, isEn: isEn, onTagTapped: (tag) {
+          _TagCloudSection(isDark: isDark, language: language, onTagTapped: (tag) {
             _searchController.text = tag;
             _onQueryChanged(tag);
           }),
@@ -410,7 +410,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             final tool = entry.value;
             return Padding(
               padding: const EdgeInsets.only(bottom: 4),
-              child: _ToolResultTile(tool: tool, isDark: isDark, isEn: isEn)
+              child: _ToolResultTile(tool: tool, isDark: isDark, language: language)
                   .animate()
                   .fadeIn(
                     delay: Duration(milliseconds: 150 + entry.key * 40),
@@ -423,7 +423,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
     );
   }
 
-  Widget _buildSearchResults(bool isDark, bool isEn) {
+  Widget _buildSearchResults(bool isDark, AppLanguage language) {
     final language = AppLanguage.fromIsEn(isEn);
     return ListView(
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -443,7 +443,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             final e = entry.value;
             return Padding(
               padding: const EdgeInsets.only(bottom: 6),
-              child: _JournalResultTile(entry: e, isDark: isDark, isEn: isEn)
+              child: _JournalResultTile(entry: e, isDark: isDark, language: language)
                   .animate()
                   .fadeIn(
                     delay: Duration(milliseconds: entry.key * 30),
@@ -468,7 +468,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             final n = entry.value;
             return Padding(
               padding: const EdgeInsets.only(bottom: 6),
-              child: _NoteResultTile(note: n, isDark: isDark, isEn: isEn)
+              child: _NoteResultTile(note: n, isDark: isDark, language: language)
                   .animate()
                   .fadeIn(
                     delay: Duration(milliseconds: entry.key * 30),
@@ -493,7 +493,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             final d = entry.value;
             return Padding(
               padding: const EdgeInsets.only(bottom: 6),
-              child: _DreamResultTile(dream: d, isDark: isDark, isEn: isEn)
+              child: _DreamResultTile(dream: d, isDark: isDark, language: language)
                   .animate()
                   .fadeIn(
                     delay: Duration(milliseconds: entry.key * 30),
@@ -517,7 +517,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                 (tool) => Padding(
                   padding: const EdgeInsets.only(bottom: 4),
                   child:
-                      _ToolResultTile(tool: tool, isDark: isDark, isEn: isEn),
+                      _ToolResultTile(tool: tool, isDark: isDark, language: language),
                 ),
               ),
         ],
@@ -554,7 +554,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
     );
   }
 
-  Widget _buildNoResults(bool isDark, bool isEn) {
+  Widget _buildNoResults(bool isDark, AppLanguage language) {
     final language = AppLanguage.fromIsEn(isEn);
     return Center(
       child: Column(
@@ -606,12 +606,12 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
 
 class _TagCloudSection extends ConsumerWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final ValueChanged<String> onTagTapped;
 
   const _TagCloudSection({
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onTagTapped,
   });
 
@@ -682,12 +682,12 @@ class _TagCloudSection extends ConsumerWidget {
 class _JournalResultTile extends StatelessWidget {
   final JournalEntry entry;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _JournalResultTile({
     required this.entry,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -816,12 +816,12 @@ class _JournalResultTile extends StatelessWidget {
 class _NoteResultTile extends StatelessWidget {
   final NoteToSelf note;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _NoteResultTile({
     required this.note,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -916,12 +916,12 @@ class _NoteResultTile extends StatelessWidget {
 class _DreamResultTile extends StatelessWidget {
   final DreamEntry dream;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _DreamResultTile({
     required this.dream,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
@@ -1031,12 +1031,12 @@ class _DreamResultTile extends StatelessWidget {
 class _ToolResultTile extends StatelessWidget {
   final ToolManifest tool;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _ToolResultTile({
     required this.tool,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override

@@ -277,14 +277,14 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
       body: CosmicBackground(
         child: SafeArea(
           child: _showResult
-              ? _buildResult(isDark, isEn)
-              : _buildQuestion(isDark, isEn),
+              ? _buildResult(isDark, language)
+              : _buildQuestion(isDark, language),
         ),
       ),
     );
   }
 
-  Widget _buildQuestion(bool isDark, bool isEn) {
+  Widget _buildQuestion(bool isDark, AppLanguage language) {
     final language = AppLanguage.fromIsEn(isEn);
     final question = _questions[_currentQuestion];
     final progress = (_currentQuestion + 1) / _questions.length;
@@ -385,7 +385,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
     );
   }
 
-  Widget _buildResult(bool isDark, bool isEn) {
+  Widget _buildResult(bool isDark, AppLanguage language) {
     final language = AppLanguage.fromIsEn(isEn);
     if (_result == null) {
       return Center(
