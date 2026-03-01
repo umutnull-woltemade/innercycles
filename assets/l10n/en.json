@@ -160,7 +160,7 @@
       "daily_reflection_reminder": "Daily Reflection Reminder",
       "dream_journal": "Dream journal",
       "enable_notifications": "Enable notifications",
-      "enter_your_friends_code_for_7_days_free": "Enter your friend\\'s code for 7 days free Premium",
+      "enter_your_friends_code_for_7_days_free": "Enter your friend's code for 7 days free Premium",
       "get_started": "Get Started",
       "have_an_invite_code": "Have an invite code?",
       "how_are_you_feeling_right_now": "How are you feeling right now?",
@@ -172,11 +172,11 @@
       "privacy_policy_link": "Read Privacy Policy",
       "skip_for_now": "Skip for now",
       "symbol_glossary": "Symbol glossary",
-      "theres_no_wrong_answer_follow_your_curio": "There\\'s no wrong answer — follow your curiosity",
-      "whats_included": "What\\'s Included",
+      "theres_no_wrong_answer_follow_your_curio": "There's no wrong answer — follow your curiosity",
+      "whats_included": "What's Included",
       "your_first_checkin_this_powers_your_mood": "Your first check-in — this powers your mood dashboard",
       "your_story_your_patterns_your_clarity": "Your story. Your patterns. Your clarity.",
-      "youre_all_set": "You\\'re All Set"
+      "youre_all_set": "You're All Set"
     }
   },
   "disclaimer": {
@@ -304,7 +304,7 @@
       "clear_search": "Clear search",
       "data": "Data",
       "discovery": "Discovery",
-      "favorites_u2b50": "Favorites \\u{2B50}",
+      "favorites_u2b50": "Favorites ⭐",
       "journal": "Journal",
       "no_favorites_yet": "No favorites yet",
       "no_tools_found": "No tools found",
@@ -390,7 +390,6 @@
     "todays_cosmic_whisper": "Today's Reflection Prompt",
     "special_readings": "Personalized Features",
     "personalized_readings": "Personalized features based on your journal entries",
-    "moon_phase_formatted": "Moon in Current Phase",
     "currently_in_sky": "Current Phase",
     "illumination": "Illumination",
     "light_mode": "Light",
@@ -603,7 +602,6 @@
     "birthday_reflection": {
       "title": "Birthday Reflection",
       "subtitle": "Birthday Overview",
-      "birthday_cycle": "Birthday Reflection Cycle",
       "return_date": "Return Date",
       "sun_house": "Core Focus",
       "house_number": "{number}. Area",
@@ -846,7 +844,7 @@
       "go_adfree": "Go Ad-Free",
       "go_deeper_with_guided_growth": "Go deeper with guided growth",
       "guided_shadow_work_helps_you_understand": "Guided shadow work helps you understand the unconscious patterns shaping your emotions and behaviors.",
-      "no_ai_no_cloud_just_your_words_revealing": "Your words revealing patterns you couldn\\'t see before.",
+      "no_ai_no_cloud_just_your_words_revealing": "Your words revealing patterns you couldn't see before.",
       "not_now": "Not now",
       "pro_growth_challenges_that_elevate_your": "Pro growth challenges that elevate your daily practice.",
       "protect_my_streak": "Protect My Streak",
@@ -862,7 +860,7 @@
       "your_data_has_more_to_show": "Your data has more to show",
       "your_data_has_more_to_show_1": "Your data has more to show",
       "your_dream_has_more_to_say": "Your dream has more to say",
-      "your_entries_hold_patterns_you_cant_see": "Your entries hold patterns you can\\'t see in the moment. Pro reveals what your journal already knows.",
+      "your_entries_hold_patterns_you_cant_see": "Your entries hold patterns you can't see in the moment. Pro reveals what your journal already knows.",
       "your_investment_so_far": "Your investment so far",
       "your_monthly_reflection_report_distills": "Your monthly reflection report distills a full month into one clear picture.",
       "your_reflection_space_uninterrupted": "Your reflection space, uninterrupted"
@@ -1590,7 +1588,7 @@
       "show_all_insights": "Show all insights",
       "show_bookmarks": "Show bookmarks",
       "tap_to_read": "Tap to read",
-      "todays_insight": "Today\\'s Insight",
+      "todays_insight": "Today's Insight",
       "why_this_matters": "Why This Matters"
     },
     "send_message": "Send message"
@@ -2215,11 +2213,7 @@
       "which_dreams_this_sign_sees": "What dreams do people of this archetype see most?",
       "special_message_for_today": "Special Message for Today",
       "cosmic_guidance": "Get personal guidance.",
-      "beyond_your_core_archetype": "What's beyond your core archetype?",
-      "where_is_your_ruler": "Where is your guiding trait now?",
-      "reading_aligned_with_energy": "A reflection aligned with your energy.",
-      "compatibility_with": "Compatibility Profile",
-      "weekly_reading": "Weekly Archetype Reflection"
+      "where_is_your_ruler": "Where is your guiding trait now?"
     },
     "profile": "Profile"
   },
@@ -3961,7 +3955,7 @@
     },
     "life_event_detail": {
       "cancel": "Cancel",
-      "couldnt_load_this_event": "Couldn\\'t load this event",
+      "couldnt_load_this_event": "Couldn't load this event",
       "date": "Date",
       "delete": "Delete",
       "delete_event": "Delete event",
@@ -3983,7 +3977,7 @@
       "add_life_event_1": "Add life event",
       "all": "All",
       "challenging": "Challenging",
-      "couldnt_load_your_timeline": "Couldn\\'t load your timeline",
+      "couldnt_load_your_timeline": "Couldn't load your timeline",
       "event_photo": "Event photo",
       "life_timeline": "Life Timeline",
       "new_event": "New Event",
@@ -4027,12 +4021,12 @@
       "birthday_notification": "Birthday notification",
       "cancel": "Cancel",
       "change_photo": "Change photo",
-      "couldnt_save_this_contact_please_try_aga": "Couldn\\'t save this contact. Please try again.",
+      "couldnt_save_this_contact_please_try_aga": "Couldn't save this contact. Please try again.",
       "day_before_reminder": "Day before reminder",
       "discard": "Discard",
       "discard_changes": "Discard Changes?",
       "edit_birthday": "Edit Birthday",
-      "friends_name": "Friend\\'s name",
+      "friends_name": "Friend's name",
       "gift_ideas_memories": "Gift ideas, memories...",
       "name": "Name",
       "name_required": "Please enter a name",
@@ -4051,7 +4045,7 @@
       "add_manually": "Add Manually",
       "add_your_friends_and_family_to_get_remin": "Add your friends and family to get reminders on their special days.",
       "birthday_agenda": "Birthday Agenda",
-      "couldnt_load_your_birthdays": "Couldn\\'t load your birthdays",
+      "couldnt_load_your_birthdays": "Couldn't load your birthdays",
       "days": "days",
       "import_from_facebook": "Import from Facebook",
       "never_miss_a_birthday": "Never Miss a Birthday",
@@ -4061,7 +4055,7 @@
       "retry": "Retry",
       "tap_for_today": "Tap for today",
       "today": "Today!",
-      "todays_birthdays": "Today\\'s Birthdays!",
+      "todays_birthdays": "Today's Birthdays!",
       "upcoming_birthdays": "Upcoming Birthdays"
     },
     "birthday_detail": {
@@ -4069,8 +4063,8 @@
       "birthday_notification": "Birthday notification",
       "cancel": "Cancel",
       "contact_not_found": "Contact not found",
-      "couldnt_delete_this_contact_please_try_a": "Couldn\\'t delete this contact. Please try again.",
-      "couldnt_load_this_contact": "Couldn\\'t load this contact",
+      "couldnt_delete_this_contact_please_try_a": "Couldn't delete this contact. Please try again.",
+      "couldnt_load_this_contact": "Couldn't load this contact",
       "day_before": "Day before",
       "days_left": "days left",
       "delete": "Delete",
@@ -4086,7 +4080,7 @@
     },
     "birthday_import": {
       "birthday_import_failed_please_check_your": "Birthday import failed. Please check your file and try again.",
-      "couldnt_read_this_file_make_sure_its_a_v": "Couldn\\'t read this file. Make sure it\\'s a valid Facebook export (.json).",
+      "couldnt_read_this_file_make_sure_its_a_v": "Couldn't read this file. Make sure it's a valid Facebook export (.json).",
       "deselect_all": "Deselect All",
       "how_to_export_from_facebook": "How to Export from Facebook",
       "import_birthdays": "Import Birthdays",
@@ -4186,7 +4180,7 @@
     "cycle_sync": {
       "add_more_entries_to_surface_cycleemotion": "Add more entries to surface cycle-emotion correlations.",
       "cancel": "Cancel",
-      "couldnt_load_your_cycle_data": "Couldn\\'t load your cycle data",
+      "couldnt_load_your_cycle_data": "Couldn't load your cycle data",
       "cycle_insight": "Cycle Insight",
       "cycle_length": "Cycle length",
       "cycle_overview": "Cycle Overview",
@@ -4331,7 +4325,7 @@
         "rating": "Rating"
       },
       "notification": {
-        "10_friends_joined_youve_earned_lifetime": "10 friends joined! You\\'ve earned Lifetime Premium. Thank you for spreading the word!",
+        "10_friends_joined_youve_earned_lifetime": "10 friends joined! You've earned Lifetime Premium. Thank you for spreading the word!",
         "_full_moon": "🌕 Full Moon",
         "_new_moon": "🌑 New Moon",
         "_your_daily_reflection": "✨ Your Daily Reflection",
@@ -4373,18 +4367,18 @@
         "streak_recovery": "Streak Recovery",
         "streak_reminders": "Streak Reminders",
         "take_a_moment_to_reflect_on_your_day": "Take a moment to reflect on your day.",
-        "todays_journal_prompt": "Today\\'s Journal Prompt",
-        "u1f381_referral_reward_7_days_premium": "\\u{1F381} Referral Reward: +7 Days Premium!",
-        "u1f48e_lifetime_premium_unlocked": "\\u{1F48E} Lifetime Premium Unlocked!",
-        "u2b50_1_month_free_premium": "\\u{2B50} 1 Month Free Premium!",
-        "streak_at_risk_title": "\ud83d\udd25 Your {streak}-day streak is at risk",
+        "todays_journal_prompt": "Today's Journal Prompt",
+        "u1f381_referral_reward_7_days_premium": "🎁 Referral Reward: +7 Days Premium!",
+        "u1f48e_lifetime_premium_unlocked": "💎 Lifetime Premium Unlocked!",
+        "u2b50_1_month_free_premium": "⭐ 1 Month Free Premium!",
+        "streak_at_risk_title": "🔥 Your {streak}-day streak is at risk",
         "streak_recovery_body": "Your {streak}-day streak ended, but a fresh start is one entry away.",
-        "on_this_day_title_singular": "\ud83d\udcd6 A memory from {years} year ago",
-        "on_this_day_title_plural": "\ud83d\udcd6 A memory from {years} years ago",
+        "on_this_day_title_singular": "📖 A memory from {years} year ago",
+        "on_this_day_title_plural": "📖 A memory from {years} years ago",
         "referral_body_month": "{count} friends joined! You've earned 1 month of free Premium.",
-        "birthday_today_title": "\ud83c\udf82 {name}'s Birthday!",
+        "birthday_today_title": "🎂 {name}'s Birthday!",
         "birthday_today_body": "Today is {name}'s birthday!",
-        "birthday_tomorrow_title": "\ud83c\udf89 Tomorrow: {name}'s Birthday",
+        "birthday_tomorrow_title": "🎉 Tomorrow: {name}'s Birthday",
         "birthday_tomorrow_body": "{name}'s birthday is tomorrow!"
       },
       "notification_lifecycle": {
@@ -4406,7 +4400,7 @@
         "the_new_moon_is_tonight_a_perfect_time_f": "The new moon is tonight — a perfect time for reflection.",
         "weekly_reflection": "Weekly Reflection",
         "welcome_back": "Welcome Back?",
-        "whats_present_for_you_right_now_a_quick": "What\\'s present for you right now? A quick check-in takes 30 seconds.",
+        "whats_present_for_you_right_now_a_quick": "What's present for you right now? A quick check-in takes 30 seconds.",
         "you_finished_a_challenge_share_your_achi": "You finished a challenge! Share your achievement with friends.",
         "you_reached_a_milestone_recently_share_i": "You reached a milestone recently — share it with someone who would appreciate it.",
         "your_archetype_shifted": "Your Archetype Shifted",
@@ -4432,13 +4426,13 @@
       },
       "premium": {
         "could_not_connect_your_local_data_is_una": "Could not connect. Your local data is unaffected.",
-        "couldnt_restore_purchases_please_try_aga": "Couldn\\'t restore purchases. Please try again.",
+        "couldnt_restore_purchases_please_try_aga": "Couldn't restore purchases. Please try again.",
         "no_purchases_found_to_restore": "No purchases found to restore",
         "purchase_cancelled": "Purchase cancelled",
         "purchases_are_not_allowed_on_this_device": "Purchases are not allowed on this device",
         "something_went_wrong_your_account_was_no": "Something went wrong. Your account was not charged.",
         "this_product_is_not_available_right_now": "This product is not available right now",
-        "this_purchase_couldnt_be_completed": "This purchase couldn\\'t be completed"
+        "this_purchase_couldnt_be_completed": "This purchase couldn't be completed"
       },
       "voice_journal": {
         "could_not_start_listening": "Could not start listening",
@@ -4533,14 +4527,14 @@
       "gratitude": "Gratitude",
       "gratitude_journal": "Gratitude Journal",
       "history": "History",
-      "im_grateful_for": "I\\'m grateful for...",
+      "im_grateful_for": "I'm grateful for...",
       "items": "Items",
       "premium_add_up_to_3_gratitude_items_them": "Premium: Add up to 3 gratitude items + theme analysis",
       "retry": "Retry",
       "save_gratitude": "Save Gratitude",
       "themes": "Themes",
-      "this_weeks_gratitude": "This Week\\'s Gratitude",
-      "this_weeks_themes": "This Week\\'s Themes",
+      "this_weeks_gratitude": "This Week's Gratitude",
+      "this_weeks_themes": "This Week's Themes",
       "update": "Update",
       "what_went_well_today": "What went well today?"
     },
@@ -4616,7 +4610,7 @@
       "min": "min",
       "retry": "Retry",
       "routine_tracker": "Routine Tracker",
-      "todays_progress": "Today\\'s Progress",
+      "todays_progress": "Today's Progress",
       "your_habit_routine_starts_here": "Your habit routine starts here"
     },
     "habit_suggestions": {
@@ -4636,7 +4630,7 @@
       "retry": "Retry",
       "show_all_habits": "Show all habits",
       "show_bookmarks": "Show bookmarks",
-      "todays_habit": "Today\\'s Habit",
+      "todays_habit": "Today's Habit",
       "tried": "Tried",
       "tried_1": "Tried",
       "tried_2": "Tried",
@@ -4650,7 +4644,7 @@
       "an_extraordinary_year_of_selfreflection": "An extraordinary year of self-reflection. Your dedication to understanding yourself has been remarkable.",
       "average_rating_by_month": "Average Rating by Month",
       "avg_rating": "Avg Rating",
-      "couldnt_load_your_annual_report": "Couldn\\'t load your annual report",
+      "couldnt_load_your_annual_report": "Couldn't load your annual report",
       "entries": "Entries",
       "every_entry_you_wrote_was_a_step_toward": "Every entry you wrote was a step toward knowing yourself better. Your patterns tell a story worth celebrating.",
       "longest_streak": "Longest Streak",
@@ -4898,7 +4892,7 @@
   },
   "memories": {
     "memories": {
-      "couldnt_load_your_memories": "Couldn\\'t load your memories",
+      "couldnt_load_your_memories": "Couldn't load your memories",
       "entries": "Entries",
       "memories": "Memories",
       "memories_1": "Memories",
@@ -4952,8 +4946,8 @@
       "mood_logged_get_more_specific": "Mood logged! Get more specific?",
       "okay": "Okay",
       "struggling": "Struggling",
-      "todays_mood": "Today\\'s Mood",
-      "whats_present_for_you_right_now": "What\\'s present for you right now?"
+      "todays_mood": "Today's Mood",
+      "whats_present_for_you_right_now": "What's present for you right now?"
     },
     "mood_trends": {
       "30day_avg": "30-Day Avg",
@@ -4985,7 +4979,7 @@
       "cancel": "Cancel",
       "cancel_1": "Cancel",
       "cancel_2": "Cancel",
-      "couldnt_load_this_note": "Couldn\\'t load this note",
+      "couldnt_load_this_note": "Couldn't load this note",
       "custom_message_optional": "Custom message (optional)",
       "delete": "Delete",
       "delete_note": "Delete Note?",
@@ -5017,7 +5011,7 @@
       "cancel": "Cancel",
       "capture_your_thoughts": "Capture your thoughts",
       "clear_search": "Clear search",
-      "couldnt_load_your_notes": "Couldn\\'t load your notes",
+      "couldnt_load_your_notes": "Couldn't load your notes",
       "delete": "Delete",
       "delete_note": "Delete Note?",
       "new_note": "New Note",
@@ -5048,7 +5042,7 @@
       "duration": "Duration",
       "program_completed": "Program Completed!",
       "retry": "Retry",
-      "this_program_hasnt_been_started_yet": "This program hasn\\'t been started yet.",
+      "this_program_hasnt_been_started_yet": "This program hasn't been started yet.",
       "write_your_reflection_here_optional": "Write your reflection here (optional)...",
       "you_have_finished_this_guided_program_we": "You have finished this guided program. Well done!"
     },
@@ -5126,11 +5120,11 @@
       "share_invite_link": "Share Invite Link",
       "share_your_code_with_friends_when_they_j": "Share your code with friends. When they join,\\nyou both get 7 days of Premium free.",
       "tap_to_copy": "Tap to copy",
-      "that_code_didnt_work_please_doublecheck": "That code didn\\'t work. Please double-check and try again.",
-      "you_cant_use_your_own_code": "You can\\'t use your own code.",
+      "that_code_didnt_work_please_doublecheck": "That code didn't work. Please double-check and try again.",
+      "you_cant_use_your_own_code": "You can't use your own code.",
       "your_invite_code": "Your Invite Code",
-      "youve_already_used_a_referral_code": "You\\'ve already used a referral code.",
-      "youve_already_used_a_referral_code_1": "You\\'ve already used a referral code."
+      "youve_already_used_a_referral_code": "You've already used a referral code.",
+      "youve_already_used_a_referral_code_1": "You've already used a referral code."
     }
   },
   "retrospective": {
@@ -5138,13 +5132,13 @@
       "add_journal_entries_for_the_most_meaning": "Add journal entries for the most meaningful days in your past. Reflect on what shaped you.",
       "back_to_home": "Back to Home",
       "choose_the_days_that_matter_to_you": "Choose the days that matter to you",
-      "lets_begin": "Let\\'s Begin",
+      "lets_begin": "Let's Begin",
       "not_selected": "not selected",
       "pick_a_date": "Pick a date",
       "selected": "selected",
       "when_did_these_happen": "When did these happen?",
       "your_past_is_now_part_of_your_journey_co": "Your past is now part of your journey. Come back anytime to write about these days.",
-      "your_story_didnt_start_today": "Your story didn\\'t start today"
+      "your_story_didnt_start_today": "Your story didn't start today"
     },
     "memories_saved": "{count} memories saved",
     "step_indicator": "Step {current} of {total}"
@@ -5186,7 +5180,7 @@
       "breakthrough_moment_toggle": "Breakthrough moment toggle",
       "cancel": "Cancel",
       "choose_an_archetype": "Choose an Archetype",
-      "couldnt_load_your_shadow_work": "Couldn\\'t load your shadow work",
+      "couldnt_load_your_shadow_work": "Couldn't load your shadow work",
       "discard": "Discard",
       "discard_changes": "Discard Changes?",
       "entries": "Entries",
@@ -5298,7 +5292,7 @@
       "good": "Good",
       "great": "Great",
       "last_14_nights": "Last 14 Nights",
-      "log_your_first_nights_sleep_to_see_trend": "Log your first night\\'s sleep to see trends and patterns.",
+      "log_your_first_nights_sleep_to_see_trend": "Log your first night's sleep to see trends and patterns.",
       "nights": "Nights",
       "no_sleep_data_yet": "No sleep data yet",
       "notes": "Notes",
@@ -5346,7 +5340,7 @@
     },
     "streak_stats": {
       "day_streak": "day streak",
-      "log_todays_entry": "Log Today\\'s Entry",
+      "log_todays_entry": "Log Today's Entry",
       "longest": "Longest",
       "milestones": "Milestones",
       "milestones_1": "Milestones",
@@ -5423,13 +5417,13 @@
       "see_your_year_in_patterns": "See your year in patterns",
       "share_it_with_a_friend_who_would_love_it": "Share it with a friend who would love it too.",
       "share_weekly_insights": "Share weekly insights",
-      "share_your_weeks_insights": "Share your week\\'s insights",
+      "share_your_weeks_insights": "Share your week's insights",
       "upcoming_reminders": "Upcoming Reminders",
       "view_monthly_wrapped": "View monthly wrapped",
       "view_upcoming_reminders": "View upcoming reminders",
       "view_year_wrapped": "View year wrapped",
       "your_latest_pattern_card_is_ready": "Your latest pattern card is ready",
-      "your_story_didnt_start_today": "Your story didn\\'t start today"
+      "your_story_didnt_start_today": "Your story didn't start today"
     },
     "recent_entries": {
       "decisions": "Decisions",
@@ -5450,7 +5444,7 @@
       "see_all_life_events": "See all life events"
     },
     "today_birthday": {
-      "u1f382_birthday_today": "\\u{1F382} Birthday today!",
+      "u1f382_birthday_today": "🎂 Birthday today!",
       "view_birthday_agenda": "View birthday agenda"
     },
     "today_feed": {
@@ -5530,8 +5524,8 @@
       "enter_your_vault_pin": "Enter your vault PIN",
       "new_pin": "New PIN",
       "not_now": "Not Now",
-      "that_pin_didnt_match_try_again": "That PIN didn\\'t match. Try again.",
-      "those_dont_match_no_worries_try_again": "Those don\\'t match — no worries, try again.",
+      "that_pin_didnt_match_try_again": "That PIN didn't match. Try again.",
+      "those_dont_match_no_worries_try_again": "Those don't match — no worries, try again.",
       "use_face_id_to_quickly_access_your_vault": "Use Face ID to quickly access your vault instead of entering PIN every time."
     }
   },

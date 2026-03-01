@@ -45,28 +45,33 @@ function calculateAppleRiskScore(content) {
   const lower = content.toLowerCase();
   let risk = 0;
 
+  const matchWord = (text, phrase) => {
+    const regex = new RegExp(`\\b${phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`);
+    return regex.test(text);
+  };
+
   // Prediction language (+3 each)
   const predictions = ["will happen", "will be", "you will", "predict", "forecast", "your future"];
   for (const p of predictions) {
-    if (lower.includes(p)) risk += 3;
+    if (matchWord(lower, p)) risk += 3;
   }
 
   // Dependency patterns (+2 each)
   const dependency = ["you need this", "don't miss", "act now", "limited time"];
   for (const d of dependency) {
-    if (lower.includes(d)) risk += 2;
+    if (matchWord(lower, d)) risk += 2;
   }
 
   // Medical/financial (+2 each)
-  const claims = ["cure", "diagnose", "medical advice", "financial advice"];
+  const claims = ["will cure", "can cure", "cures your", "diagnose", "medical advice", "financial advice"];
   for (const c of claims) {
-    if (lower.includes(c)) risk += 2;
+    if (matchWord(lower, c)) risk += 2;
   }
 
   // Gambling/adult content (+5 each)
   const severe = ["gambling", "bet on", "adult content"];
   for (const s of severe) {
-    if (lower.includes(s)) risk += 5;
+    if (matchWord(lower, s)) risk += 5;
   }
 
   return risk;

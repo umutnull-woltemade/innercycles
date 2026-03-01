@@ -152,7 +152,7 @@
       "your_strengths": "Güçlü Yönlerin"
     },
     "onboarding": {
-      "a_gentle_nudge_at_900_am": "Sabah 9:00\\'da nazik bir hatırlatma",
+      "a_gentle_nudge_at_900_am": "Sabah 9:00'da nazik bir hatırlatma",
       "abcd1234": "ABCD1234",
       "all_signals_unlock_as_you_journal": "Günlük tuttukça tüm sinyaller açılır",
       "check_in_daily_to_see_patterns_emerge": "Her gün kayıt yap, kalıpların ortaya çıksın",
@@ -174,7 +174,7 @@
       "symbol_glossary": "Sembol sözlüğü",
       "theres_no_wrong_answer_follow_your_curio": "Yanlış cevap yok — merakını takip et",
       "whats_included": "Neler Dahil",
-      "your_first_checkin_this_powers_your_mood": "İlk check-in\\'in — bu ruh hali panelini besler",
+      "your_first_checkin_this_powers_your_mood": "İlk check-in'in — bu ruh hali panelini besler",
       "your_story_your_patterns_your_clarity": "Senin hikayen. Senin kalıpların. Senin netliğin.",
       "youre_all_set": "Her Şey Hazır"
     }
@@ -187,7 +187,7 @@
     "reflection_only": "Bu içerik yalnızca öz-yansıtma ve farkındalık içindir.",
     "disclaimer": {
       "a_private_space_for_reflection_not_predi": "Tahmin değil, yansıma için özel bir alan.",
-      "welcome_to_innercycles": "InnerCycles\\'a Hoş Geldin",
+      "welcome_to_innercycles": "InnerCycles'a Hoş Geldin",
       "your_data_stays_on_your_device": "Verilerin senin kontrolünde"
     }
   },
@@ -265,15 +265,15 @@
       "your_progress": "İlerlemen"
     },
     "profile_hero": {
-      "growth_score": "GEL\\u0130\\u015e\\u0130M PUANI"
+      "growth_score": "GELİŞİM PUANI"
     },
     "profile_hub": {
-      "explorer": "Ka\\u015fif",
+      "explorer": "Kaşif",
       "profile": "Profil"
     },
     "profile_rate": {
       "a_quick_rating_helps_us_grow": "Hızlı bir puan büyümemize yardımcı olur",
-      "enjoying_innercycles": "InnerCycles\\'ı beğeniyor musun?",
+      "enjoying_innercycles": "InnerCycles'ı beğeniyor musun?",
       "rate": "Puanla"
     },
     "profile_referral": {
@@ -283,42 +283,42 @@
       "open_referral_program": "Davet programını aç"
     },
     "profile_settings": {
-      "edit_profile": "Profili D\\u00fczenle",
-      "export_data": "D\\u0131\\u015fa Aktar",
-      "go_premium": "Premium\\'a Ge\\u00e7",
+      "edit_profile": "Profili Düzenle",
+      "export_data": "Dışa Aktar",
+      "go_premium": "Premium'a Geç",
       "notifications": "Bildirimler",
       "settings": "Ayarlar",
       "settings_1": "Ayarlar",
-      "unlock_full_potential": "T\\u00fcm Potansiyeli A\\u00e7"
+      "unlock_full_potential": "Tüm Potansiyeli Aç"
     },
     "profile_stats_dashboard": {
-      "done": "B\\u0130TEN",
+      "done": "BİTEN",
       "entries": "KAYITLAR",
-      "streak": "SER\\u0130",
-      "words": "KEL\\u0130ME"
+      "streak": "SERİ",
+      "words": "KELİME"
     },
     "profile_tools_grid": {
       "add_to_favorites": "Favorilere ekle",
-      "all": "T\\u00fcm\\u00fc",
+      "all": "Tümü",
       "analysis": "Analiz",
-      "clear_search": "Aramay\\u0131 temizle",
+      "clear_search": "Aramayı temizle",
       "data": "Veri",
-      "discovery": "Ke\\u015fif",
-      "favorites_u2b50": "Favoriler \\u{2B50}",
-      "journal": "G\\u00fcnl\\u00fck",
-      "no_favorites_yet": "Hen\\u00fcz favori yok",
-      "no_tools_found": "Ara\\u00e7 bulunamad\\u0131",
+      "discovery": "Keşif",
+      "favorites_u2b50": "Favoriler ⭐",
+      "journal": "Günlük",
+      "no_favorites_yet": "Henüz favori yok",
+      "no_tools_found": "Araç bulunamadı",
       "reference": "Referans",
-      "remove_from_favorites": "Favorilerden \\u00e7\\u0131kar",
-      "search_by_name_or_category": "Ad veya kategoriye g\\u00f6re ara...",
-      "suggested_for_you": "Senin \\u0130\\u00e7in",
+      "remove_from_favorites": "Favorilerden çıkar",
+      "search_by_name_or_category": "Ad veya kategoriye göre ara...",
+      "suggested_for_you": "Senin İçin",
       "support": "Destek",
-      "tools": "Ara\\u00e7lar"
+      "tools": "Araçlar"
     },
     "profile_vault": {
       "app_lock": "Uygulama Kilidi",
       "private_vault": "Gizli Kasa",
-      "vault_security": "Kasa & G\\u00fcvenlik"
+      "vault_security": "Kasa & Güvenlik"
     }
   },
   "archetype": {
@@ -390,7 +390,6 @@
     "todays_cosmic_whisper": "Bugünün Kişisel Fısıltısı",
     "special_readings": "Özel Çözümlemelerimiz",
     "personalized_readings": "Doğum bilgilerinize özel analizler",
-    "moon_phase_formatted": "Ay {archetype} arketipinde",
     "currently_in_sky": "Şimdi Gökyüzünde",
     "illumination": "Aydınlık",
     "light_mode": "Aydınlık",
@@ -603,7 +602,6 @@
     "birthday_reflection": {
       "title": "Doğum Günü Yansıması",
       "subtitle": "Doğum Günü Haritası",
-      "birthday_cycle": "Temel kimliğin {archetype} arketipine dönüyor",
       "return_date": "Dönüş Tarihi",
       "sun_house": "Kimlik Evi",
       "house_number": "{number}. Ev",
@@ -1661,9 +1659,9 @@
       "keep_account": "Hesabı Koru",
       "offline": "Çevrimdışı",
       "pin_must_be_4_digits": "PIN 4 haneli olmalı",
-      "pins_do_not_match": "PIN\\'ler eşleşmiyor",
+      "pins_do_not_match": "PIN'ler eşleşmiyor",
       "ready": "Hazır",
-      "reenter_pin": "PIN\\'i tekrar gir",
+      "reenter_pin": "PIN'i tekrar gir",
       "require_pin_or_biometrics_to_open": "Açmak için PIN veya biyometrik gerekli",
       "save_changes": "Değişiklikleri Kaydet",
       "set_4digit_pin": "4 Haneli PIN Belirle",
@@ -2215,11 +2213,7 @@
       "which_dreams_this_sign_sees": "Bu arketipta insanlar en çok hangi rüyaları görür?",
       "special_message_for_today": "Bugün Sana Özel Mesaj",
       "cosmic_guidance": "Kişisel rehberlik al.",
-      "beyond_your_core_archetype": "{archetype} temel kimliğinin ötesinde ne var?",
-      "where_is_your_ruler": "Yönlendirici özelliğin şu an nerede?",
-      "reading_aligned_with_energy": "{archetype} enerjisiyle uyumlu bir okuma.",
-      "compatibility_with": "{archetype} ile Uyumun",
-      "weekly_reading": "Haftalık {archetype} Yorumu"
+      "where_is_your_ruler": "Yönlendirici özelliğin şu an nerede?"
     },
     "profile": "Profil"
   },
@@ -3939,10 +3933,10 @@
     },
     "life_event": {
       "add_a_photo": "Fotoğraf ekle",
-      "cancel": "\\u{0130}ptal",
+      "cancel": "İptal",
       "describe_your_life_event": "Yaşam olayınızı tanımlayın...",
       "discard": "At",
-      "discard_changes": "De\\u{011F}i\\u{015F}iklikleri At?",
+      "discard_changes": "Değişiklikleri At?",
       "edit_life_event": "Yaşam Olayını Düzenle",
       "emotion_tags": "Duygu Etiketleri",
       "event_photo": "Olay fotoğrafı",
@@ -3957,7 +3951,7 @@
       "save_event": "Olayı Kaydet",
       "select_event": "Olay Seçin",
       "update_event": "Olayı Güncelle",
-      "you_have_unsaved_changes_are_you_sure_yo": "Kaydedilmemi\\u{015F} de\\u{011F}i\\u{015F}iklikleriniz var. Geri d\\u{00F6}nmek istedi\\u{011F}inizden emin misiniz?"
+      "you_have_unsaved_changes_are_you_sure_yo": "Kaydedilmemiş değişiklikleriniz var. Geri dönmek istediğinizden emin misiniz?"
     },
     "life_event_detail": {
       "cancel": "İptal",
@@ -3991,7 +3985,7 @@
       "retry": "Tekrar Dene",
       "start_recording_the_moments_that_shape_y": "Hikayenizi şekillendiren anları kaydetmeye başlayın",
       "unlock_your_full_timeline_with_pro": "Pro ile tüm zaman çizelgenizi açın",
-      "upgrade_to_pro": "Pro\\'ya Yükselt",
+      "upgrade_to_pro": "Pro'ya Yükselt",
       "your_timeline_awaits_its_first_chapter": "Zaman çizelgen ilk bölümünü bekliyor"
     }
   },
@@ -4022,79 +4016,79 @@
   },
   "birthdays": {
     "birthday_add": {
-      "add_birthday": "Do\\u{011F}um G\\u{00FC}n\\u{00FC} Ekle",
-      "birthday": "Do\\u{011F}um G\\u{00FC}n\\u{00FC}",
-      "birthday_notification": "Do\\u{011F}um g\\u{00FC}n\\u{00FC} bildirimi",
-      "cancel": "\\u{0130}ptal",
+      "add_birthday": "Doğum Günü Ekle",
+      "birthday": "Doğum Günü",
+      "birthday_notification": "Doğum günü bildirimi",
+      "cancel": "İptal",
       "change_photo": "Fotoğrafı değiştir",
-      "couldnt_save_this_contact_please_try_aga": "Ki\\u{015F}i kaydedilemedi. L\\u{00FC}tfen tekrar deneyin.",
-      "day_before_reminder": "Bir g\\u{00FC}n \\u{00F6}nce hat\\u{0131}rlat",
+      "couldnt_save_this_contact_please_try_aga": "Kişi kaydedilemedi. Lütfen tekrar deneyin.",
+      "day_before_reminder": "Bir gün önce hatırlat",
       "discard": "At",
-      "discard_changes": "De\\u{011F}i\\u{015F}iklikleri At?",
-      "edit_birthday": "Do\\u{011F}um G\\u{00FC}n\\u{00FC} D\\u{00FC}zenle",
-      "friends_name": "Arkada\\u{015F}\\u{0131}n\\u{0131}n ad\\u{0131}",
-      "gift_ideas_memories": "Hediye fikirleri, an\\u{0131}lar...",
-      "name": "\\u{0130}sim",
-      "name_required": "L\\u{00FC}tfen bir isim girin",
-      "not_specified": "Belirtilmemi\\u{015F}",
-      "note_optional": "Not (\\u{0130}ste\\u{011F}e Ba\\u{011F}l\\u{0131})",
-      "relationship": "\\u{0130}li\\u{015F}ki",
-      "reminders": "Hat\\u{0131}rlat\\u{0131}c\\u{0131}lar",
+      "discard_changes": "Değişiklikleri At?",
+      "edit_birthday": "Doğum Günü Düzenle",
+      "friends_name": "Arkadaşının adı",
+      "gift_ideas_memories": "Hediye fikirleri, anılar...",
+      "name": "İsim",
+      "name_required": "Lütfen bir isim girin",
+      "not_specified": "Belirtilmemiş",
+      "note_optional": "Not (İsteğe Bağlı)",
+      "relationship": "İlişki",
+      "reminders": "Hatırlatıcılar",
       "save_contact": "Kişiyi Kaydet",
-      "tap_to_change_photo": "Foto\\u{011F}raf\\u{0131} de\\u{011F}i\\u{015F}tirmek i\\u{00E7}in dokun",
-      "update_contact": "Kişiyi G\\u{00FC}ncelle",
-      "year_optional": "Y\\u{0131}l (iste\\u{011F}e ba\\u{011F}l\\u{0131})",
-      "you_have_unsaved_changes_are_you_sure_yo": "Kaydedilmemi\\u{015F} de\\u{011F}i\\u{015F}iklikleriniz var. Geri d\\u{00F6}nmek istedi\\u{011F}inizden emin misiniz?"
+      "tap_to_change_photo": "Fotoğrafı değiştirmek için dokun",
+      "update_contact": "Kişiyi Güncelle",
+      "year_optional": "Yıl (isteğe bağlı)",
+      "you_have_unsaved_changes_are_you_sure_yo": "Kaydedilmemiş değişiklikleriniz var. Geri dönmek istediğinizden emin misiniz?"
     },
     "birthday_agenda": {
       "add_birthday": "Doğum günü ekle",
       "add_manually": "Manuel Ekle",
-      "add_your_friends_and_family_to_get_remin": "Arkada\\u{015F}lar\\u{0131}n\\u{0131} ve aileni ekleyerek \\u{00F6}zel g\\u{00FC}nlerinde hat\\u{0131}rlat\\u{0131}c\\u{0131} al.",
-      "birthday_agenda": "Do\\u{011F}um G\\u{00FC}n\\u{00FC} Ajandas\\u{0131}",
+      "add_your_friends_and_family_to_get_remin": "Arkadaşlarını ve aileni ekleyerek özel günlerinde hatırlatıcı al.",
+      "birthday_agenda": "Doğum Günü Ajandası",
       "couldnt_load_your_birthdays": "Doğum günlerin yüklenemedi",
-      "days": "g\\u{00FC}n",
-      "import_from_facebook": "Facebook\\'tan Aktar",
-      "never_miss_a_birthday": "Hi\\u{00E7} Do\\u{011F}um G\\u{00FC}n\\u{00FC} Ka\\u{00E7}\\u{0131}rma",
+      "days": "gün",
+      "import_from_facebook": "Facebook'tan Aktar",
+      "never_miss_a_birthday": "Hiç Doğum Günü Kaçırma",
       "next_month": "Sonraki ay",
-      "no_birthdays_on_this_day": "Bu g\\u{00FC}nde do\\u{011F}um g\\u{00FC}n\\u{00FC} yok",
+      "no_birthdays_on_this_day": "Bu günde doğum günü yok",
       "previous_month": "Önceki ay",
       "retry": "Tekrar Dene",
-      "tap_for_today": "Bug\\u{00FC}ne d\\u{00F6}n",
-      "today": "Bug\\u{00FC}n!",
-      "todays_birthdays": "Bug\\u{00FC}nk\\u{00FC} Do\\u{011F}um G\\u{00FC}nleri!",
-      "upcoming_birthdays": "Yakla\\u{015F}an Do\\u{011F}um G\\u{00FC}nleri"
+      "tap_for_today": "Bugüne dön",
+      "today": "Bugün!",
+      "todays_birthdays": "Bugünkü Doğum Günleri!",
+      "upcoming_birthdays": "Yaklaşan Doğum Günleri"
     },
     "birthday_detail": {
       "birthday_note_copied": "Doğum günü notu kopyalandı",
-      "birthday_notification": "Do\\u{011F}um g\\u{00FC}n\\u{00FC} bildirimi",
-      "cancel": "\\u{0130}ptal",
-      "contact_not_found": "Ki\\u{015F}i bulunamad\\u{0131}",
-      "couldnt_delete_this_contact_please_try_a": "Ki\\u{015F}i silinemedi. L\\u{00FC}tfen tekrar deneyin.",
+      "birthday_notification": "Doğum günü bildirimi",
+      "cancel": "İptal",
+      "contact_not_found": "Kişi bulunamadı",
+      "couldnt_delete_this_contact_please_try_a": "Kişi silinemedi. Lütfen tekrar deneyin.",
       "couldnt_load_this_contact": "Bu kişi yüklenemedi",
-      "day_before": "Bir g\\u{00FC}n \\u{00F6}nce",
-      "days_left": "g\\u{00FC}n kald\\u{0131}",
+      "day_before": "Bir gün önce",
+      "days_left": "gün kaldı",
       "delete": "Sil",
-      "delete_contact": "Ki\\u{015F}iyi Sil",
-      "delete_contact_1": "Ki\\u{015F}iyi Sil?",
+      "delete_contact": "Kişiyi Sil",
+      "delete_contact_1": "Kişiyi Sil?",
       "edit_birthday": "Doğum gününü düzenle",
-      "happy_birthday": "Do\\u{011F}um G\\u{00FC}n\\u{00FC} Kutlu Olsun!",
+      "happy_birthday": "Doğum Günü Kutlu Olsun!",
       "long_press_to_copy_note": "Notu kopyalamak için basılı tut",
       "note": "Not",
-      "reminders": "Hat\\u{0131}rlat\\u{0131}c\\u{0131}lar",
+      "reminders": "Hatırlatıcılar",
       "retry": "Tekrar Dene",
       "share_birthday": "Doğum gününü paylaş"
     },
     "birthday_import": {
-      "birthday_import_failed_please_check_your": "Do\\u{011F}um g\\u{00FC}n\\u{00FC} aktarma ba\\u{015F}ar\\u{0131}s\\u{0131}z. Dosyan\\u{0131} kontrol edip tekrar dene.",
-      "couldnt_read_this_file_make_sure_its_a_v": "Dosya okunamad\\u{0131}. Ge\\u{00E7}erli bir Facebook d\\u{0131}\\u{015F}a aktar\\u{0131}m\\u{0131} (.json) oldu\\u{011F}undan emin ol.",
-      "deselect_all": "T\\u{00FC}m\\u{00FC}n\\u{00FC} Kald\\u{0131}r",
-      "how_to_export_from_facebook": "Facebook\\'tan Nas\\u{0131}l D\\u{0131}\\u{015F}a Aktar\\u{0131}l\\u{0131}r",
-      "import_birthdays": "Do\\u{011F}um G\\u{00FC}nlerini Aktar",
-      "import_complete": "Aktarma Tamamland\\u{0131}!",
-      "no_birthdays_found_in_this_file_try_a_di": "Bu dosyada do\\u{011F}um g\\u{00FC}n\\u{00FC} bulunamad\\u{0131}. Farkl\\u{0131} bir dosya dene veya manuel ekle.",
-      "select_all": "T\\u{00FC}m\\u{00FC}n\\u{00FC} Se\\u{00E7}",
-      "select_json_file": "JSON Dosyas\\u{0131} Se\\u{00E7}",
-      "view_birthdays": "Do\\u{011F}um G\\u{00FC}nlerini G\\u{00F6}r"
+      "birthday_import_failed_please_check_your": "Doğum günü aktarma başarısız. Dosyanı kontrol edip tekrar dene.",
+      "couldnt_read_this_file_make_sure_its_a_v": "Dosya okunamadı. Geçerli bir Facebook dışa aktarımı (.json) olduğundan emin ol.",
+      "deselect_all": "Tümünü Kaldır",
+      "how_to_export_from_facebook": "Facebook'tan Nasıl Dışa Aktarılır",
+      "import_birthdays": "Doğum Günlerini Aktar",
+      "import_complete": "Aktarma Tamamlandı!",
+      "no_birthdays_found_in_this_file_try_a_di": "Bu dosyada doğum günü bulunamadı. Farklı bir dosya dene veya manuel ekle.",
+      "select_all": "Tümünü Seç",
+      "select_json_file": "JSON Dosyası Seç",
+      "view_birthdays": "Doğum Günlerini Gör"
     }
   },
   "blind_spot": {
@@ -4118,7 +4112,7 @@
   },
   "breathing": {
     "breathing_timer": {
-      "breathing_circle_tap_start_to_begin": "Nefes çemberi, başlamak için Başla\\'ya dokunun",
+      "breathing_circle_tap_start_to_begin": "Nefes çemberi, başlamak için Başla'ya dokunun",
       "guided_breathwork": "Rehberli Nefes",
       "share_session": "Oturumu paylaş",
       "start_breathing": "Nefese Başla",
@@ -4145,7 +4139,7 @@
       "streak": "Seri",
       "this_month": "Bu Ay",
       "total": "Toplam",
-      "upgrade_to_pro": "Pro\\'ya Yükselt",
+      "upgrade_to_pro": "Pro'ya Yükselt",
       "view_entry": "Kaydı gör",
       "year_heatmap": "Yıl Isı Haritası"
     }
@@ -4153,9 +4147,9 @@
   "challenges": {
     "challenge_hub": {
       "active": "Aktif",
-      "active_challenges": "Aktif G\\u00f6revler",
-      "available_challenges": "Mevcut G\\u00f6revler",
-      "challenges": "G\\u00f6revler",
+      "active_challenges": "Aktif Görevler",
+      "available_challenges": "Mevcut Görevler",
+      "challenges": "Görevler",
       "completed": "Tamamlanan",
       "retry": "Tekrar Dene",
       "start": "Başla",
@@ -4341,10 +4335,10 @@
         "a_time_for_new_beginnings_and_setting_in": "Yeni başlangıçlar ve niyet belirleme zamanı.",
         "a_time_for_reflection_and_gratitude": "Yansıma ve şükran zamanı.",
         "alerts_when_your_journaling_streak_is_ab": "Günlük serin sıfırlanmak üzereyken uyarılar",
-        "birthday_reminder_notifications": "Do\\u{011F}um g\\u{00FC}n\\u{00FC} hat\\u{0131}rlat\\u{0131}c\\u{0131} bildirimleri",
-        "birthday_reminder_notifications_1": "Do\\u{011F}um g\\u{00FC}n\\u{00FC} hat\\u{0131}rlat\\u{0131}c\\u{0131} bildirimleri",
-        "birthday_reminders": "Do\\u{011F}um G\\u{00FC}n\\u{00FC} Hat\\u{0131}rlat\\u{0131}c\\u{0131}lar\\u{0131}",
-        "birthday_reminders_1": "Do\\u{011F}um G\\u{00FC}n\\u{00FC} Hat\\u{0131}rlat\\u{0131}c\\u{0131}lar\\u{0131}",
+        "birthday_reminder_notifications": "Doğum günü hatırlatıcı bildirimleri",
+        "birthday_reminder_notifications_1": "Doğum günü hatırlatıcı bildirimleri",
+        "birthday_reminders": "Doğum Günü Hatırlatıcıları",
+        "birthday_reminders_1": "Doğum Günü Hatırlatıcıları",
         "daily_journal_reflection_reminders": "Günlük yansıma hatırlatıcıları",
         "daily_journaling_prompt_to_inspire_your": "Yazmanıza ilham verecek günlük soru",
         "daily_reflection": "Günlük Yansıma",
@@ -4374,17 +4368,17 @@
         "streak_reminders": "Seri Hatırlatıcıları",
         "take_a_moment_to_reflect_on_your_day": "Bugününü düşünmek için bir an dur.",
         "todays_journal_prompt": "Bugünkü Günlük Sorusu",
-        "u1f381_referral_reward_7_days_premium": "\\u{1F381} Davet Ödülü: +7 Gün Premium!",
-        "u1f48e_lifetime_premium_unlocked": "\\u{1F48E} Ömür Boyu Premium Açıldı!",
-        "u2b50_1_month_free_premium": "\\u{2B50} 1 Ay Ücretsiz Premium!",
-        "streak_at_risk_title": "\ud83d\udd25 {streak} günlük serin risk altında",
+        "u1f381_referral_reward_7_days_premium": "🎁 Davet Ödülü: +7 Gün Premium!",
+        "u1f48e_lifetime_premium_unlocked": "💎 Ömür Boyu Premium Açıldı!",
+        "u2b50_1_month_free_premium": "⭐ 1 Ay Ücretsiz Premium!",
+        "streak_at_risk_title": "🔥 {streak} günlük serin risk altında",
         "streak_recovery_body": "{streak} günlük serin sona erdi ama yeni bir başlangıç bir kayıt uzağında.",
-        "on_this_day_title_singular": "\ud83d\udcd6 {years} yıl önceki bir anı",
-        "on_this_day_title_plural": "\ud83d\udcd6 {years} yıl önceki bir anı",
+        "on_this_day_title_singular": "📖 {years} yıl önceki bir anı",
+        "on_this_day_title_plural": "📖 {years} yıl önceki bir anı",
         "referral_body_month": "{count} arkadaş katıldı! 1 ay ücretsiz Premium kazandın.",
-        "birthday_today_title": "\ud83c\udf82 {name} Doğum Günü!",
+        "birthday_today_title": "🎂 {name} Doğum Günü!",
         "birthday_today_body": "Bugün {name}'in doğum günü!",
-        "birthday_tomorrow_title": "\ud83c\udf89 Yarın: {name} Doğum Günü",
+        "birthday_tomorrow_title": "🎉 Yarın: {name} Doğum Günü",
         "birthday_tomorrow_body": "{name}'in doğum günü yarın!"
       },
       "notification_lifecycle": {
@@ -4710,7 +4704,7 @@
       "journal_photo": "Günlük fotoğrafı",
       "keep_journaling_to_reveal_your_patterns": "Kalıplarını ortaya çıkarmak için yazmaya devam et",
       "log_your_day": "Gününü Kaydet",
-      "loving_innercycles_invite_a_friend_you_b": "InnerCycles\\'ı beğeniyor musun? Bir arkadaşını davet et — ikiniz de 7 gün Premium kazanın!",
+      "loving_innercycles_invite_a_friend_you_b": "InnerCycles'ı beğeniyor musun? Bir arkadaşını davet et — ikiniz de 7 gün Premium kazanın!",
       "low": "Düşük",
       "neutral": "Nötr",
       "neutral_1": "Nötr",
@@ -4767,7 +4761,7 @@
       "access_shift_outlook": "Değişim Görünümüne Eriş",
       "access_shift_outlook_to_see_when_your_em": "Duygusal evrelerinin ne zaman kayabileceğini görmek için Kayma Görünümüne eriş",
       "cycle_insights": "Döngü İçgörüleri",
-      "go_pro": "Pro\\'ya Geç",
+      "go_pro": "Pro'ya Geç",
       "retry": "Tekrar Dene",
       "share_my_inner_cycles": "İç Döngülerimi Paylaş",
       "share_my_inner_cycles_1": "İç Döngülerimi Paylaş",
@@ -4843,20 +4837,20 @@
       "emotional_phase_ring": "Duygusal faz halkası"
     },
     "post_save_engagement": {
-      "back_to_home": "Ana Sayfa\\u0027ya D\\u00f6n",
+      "back_to_home": "Ana Sayfa'ya Dön",
       "capture_it_before_it_fades": "Unutmadan kaydet",
-      "end_your_day_with_gratitude": "G\\u00fcn\\u00fc minnettarl\\u0131kla bitir",
-      "explore_your_patterns": "\\u00d6r\\u00fcnt\\u00fclerini ke\\u015ffet",
-      "gratitude_journal": "Minnettarl\\u0131k g\\u00fcnl\\u00fc\\u011f\\u00fc",
-      "invite_a_friend": "Bir arkada\\u015f\\u0131n\\u0131 davet et",
+      "end_your_day_with_gratitude": "Günü minnettarlıkla bitir",
+      "explore_your_patterns": "Örüntülerini keşfet",
+      "gratitude_journal": "Minnettarlık günlüğü",
+      "invite_a_friend": "Bir arkadaşını davet et",
       "log_your_mood": "Ruh halini kaydet",
-      "quick_1tap_checkin": "H\\u0131zl\\u0131 ruh hali kayd\\u0131",
-      "record_a_dream": "R\\u00fcyan\\u0131 kaydet",
+      "quick_1tap_checkin": "Hızlı ruh hali kaydı",
+      "record_a_dream": "Rüyanı kaydet",
       "saved": "Kaydedildi!",
-      "thoughts_reminders_ideas": "D\\u00fc\\u015f\\u00fcnceler, hat\\u0131rlatmalar, fikirler",
-      "what_else_would_you_like_to_capture": "Ba\\u015fka ne kaydetmek istersin?",
-      "write_a_note_to_yourself": "Kendine bir not b\\u0131rak",
-      "you_both_get_7_days_premium_free": "\\u0130kiniz de 7 g\\u00fcn \\u00fccretsiz Premium kazan\\u0131n"
+      "thoughts_reminders_ideas": "Düşünceler, hatırlatmalar, fikirler",
+      "what_else_would_you_like_to_capture": "Başka ne kaydetmek istersin?",
+      "write_a_note_to_yourself": "Kendine bir not bırak",
+      "you_both_get_7_days_premium_free": "İkiniz de 7 gün ücretsiz Premium kazanın"
     },
     "shift_outlook": {
       "confidence": "güven",
@@ -4865,7 +4859,7 @@
       "supporting_signals": "Destekleyen Sinyaller"
     },
     "voice_input_button": {
-      "microphone_permission_is_required_for_vo": "Sesli giriş için mikrofon izni gerekli. Lütfen Ayarlar\\'dan etkinleştirin.",
+      "microphone_permission_is_required_for_vo": "Sesli giriş için mikrofon izni gerekli. Lütfen Ayarlar'dan etkinleştirin.",
       "start_voice_input": "Sesli girişi başlat",
       "stop_voice_input": "Sesli girişi durdur",
       "voice_input_is_not_available_on_this_dev": "Sesli giriş bu cihazda kullanılamıyor.",
@@ -4874,8 +4868,8 @@
   },
   "library": {
     "library_hub": {
-      "library": "K\\u00fct\\u00fcphane",
-      "your_personal_data_vault": "Ki\\u015fisel veri kasan"
+      "library": "Kütüphane",
+      "your_personal_data_vault": "Kişisel veri kasan"
     }
   },
   "meditation": {
@@ -4899,15 +4893,15 @@
   "memories": {
     "memories": {
       "couldnt_load_your_memories": "Anıların yüklenemedi",
-      "entries": "Kay\\u0131t",
-      "memories": "An\\u0131lar",
-      "memories_1": "An\\u0131lar",
+      "entries": "Kayıt",
+      "memories": "Anılar",
+      "memories_1": "Anılar",
       "memory_photo": "Anı fotoğrafı",
       "memory_photo_1": "Anı fotoğrafı",
-      "on_this_day": "Bug\\u00fcn Ge\\u00e7mi\\u015fte",
-      "photos": "Foto\\u011fraf",
+      "on_this_day": "Bugün Geçmişte",
+      "photos": "Fotoğraf",
       "retry": "Tekrar Dene",
-      "since": "\\u0130lk Kay\\u0131t",
+      "since": "İlk Kayıt",
       "this_month_is_a_blank_canvas": "Bu ay boş bir tuval",
       "write_an_entry": "Kayıt Yaz",
       "your_memories_from_this_period_will_appe": "Bu döneme ait anıların burada görünecek"
@@ -4970,52 +4964,52 @@
       "share_week": "Haftayı paylaş",
       "signal_dashboard": "Sinyal Paneli",
       "signal_dashboard_1": "Sinyal Paneli",
-      "start_your_first_checkin": "İlk check-in\\'ini yap",
+      "start_your_first_checkin": "İlk check-in'ini yap",
       "struggling": "Zor",
       "tap_how_you_feel_your_dashboard_lights_u": "Nasıl hissettiğine dokun — panelin buradan canlanır",
       "this_week": "Bu Hafta",
       "total_logs": "Toplam",
-      "upgrade_to_pro": "Pro\\'ya Yükselt",
+      "upgrade_to_pro": "Pro'ya Yükselt",
       "your_data_has_more_to_show": "Verilerinin gösterecekleri var"
     }
   },
   "notes": {
     "note_detail": {
       "add": "Ekle",
-      "cancel": "\\u0130ptal",
+      "cancel": "İptal",
       "cancel_1": "İptal",
-      "cancel_2": "\\u{0130}ptal",
+      "cancel_2": "İptal",
       "couldnt_load_this_note": "Bu not yüklenemedi",
-      "custom_message_optional": "\\u00d6zel mesaj (iste\\u011fe ba\\u011fl\\u0131)",
+      "custom_message_optional": "Özel mesaj (isteğe bağlı)",
       "delete": "Sil",
       "delete_note": "Not Silinsin mi?",
       "delete_note_1": "Notu Sil",
       "discard": "At",
-      "discard_changes": "De\\u{011F}i\\u{015F}iklikleri At?",
-      "edit_note": "Notu D\\u00fczenle",
+      "discard_changes": "Değişiklikleri At?",
+      "edit_note": "Notu Düzenle",
       "eg_ideas_personal": "ör. Fikirler, Kişisel",
-      "frequency": "S\\u0131kl\\u0131k",
-      "give_this_note_a_title": "Bu nota bir ba\\u015fl\\u0131k ver",
-      "mood_when_created": "Olu\\u015fturuldu\\u011fundaki ruh hali",
+      "frequency": "Sıklık",
+      "give_this_note_a_title": "Bu nota bir başlık ver",
+      "mood_when_created": "Oluşturulduğundaki ruh hali",
       "new_note": "Yeni Not",
-      "pick_date_time": "Tarih ve saat se\\u00e7",
-      "remind_me": "Hat\\u0131rlat",
+      "pick_date_time": "Tarih ve saat seç",
+      "remind_me": "Hatırlat",
       "retry": "Tekrar Dene",
       "save_note": "Notu Kaydet",
       "save_note_1": "Notu Kaydet",
-      "set_a_date_time_to_get_notified_about_th": "Bu not hakk\\u0131nda bildirim almak i\\u00e7in tarih ve saat belirle",
-      "set_reminder": "Hat\\u0131rlat\\u0131c\\u0131 Ayarla",
+      "set_a_date_time_to_get_notified_about_th": "Bu not hakkında bildirim almak için tarih ve saat belirle",
+      "set_reminder": "Hatırlatıcı Ayarla",
       "share": "Paylaş",
       "tags": "Etiketler",
       "this_note_will_be_permanently_deleted": "Bu not kalıcı olarak silinecek.",
-      "will_be_set_when_you_save": "Kaydetti\\u011finde ayarlanacak",
-      "write_your_thoughts": "D\\u00fc\\u015f\\u00fcncelerini yaz...",
-      "you_have_unsaved_changes_are_you_sure_yo": "Kaydedilmemi\\u{015F} de\\u{011F}i\\u{015F}iklikleriniz var. Geri d\\u{00F6}nmek istedi\\u{011F}inizden emin misiniz?"
+      "will_be_set_when_you_save": "Kaydettiğinde ayarlanacak",
+      "write_your_thoughts": "Düşüncelerini yaz...",
+      "you_have_unsaved_changes_are_you_sure_yo": "Kaydedilmemiş değişiklikleriniz var. Geri dönmek istediğinizden emin misiniz?"
     },
     "notes_list": {
-      "all": "T\\u00fcm\\u00fc",
+      "all": "Tümü",
       "cancel": "İptal",
-      "capture_your_thoughts": "D\\u00fc\\u015f\\u00fcncelerini kaydet",
+      "capture_your_thoughts": "Düşüncelerini kaydet",
       "clear_search": "Aramayı temizle",
       "couldnt_load_your_notes": "Notların yüklenemedi",
       "delete": "Sil",
@@ -5024,18 +5018,18 @@
       "no_notes_matched_your_search": "Aramanızla eşleşen not bulunamadı",
       "notes": "Notlar",
       "notes_1": "not",
-      "now": "\\u015fimdi",
-      "pinned": "Sabitlenmi\\u015f",
+      "now": "şimdi",
+      "pinned": "Sabitlenmiş",
       "pinned_1": "sabit",
-      "quick_notes_reminders_ideas_neverything": "H\\u0131zl\\u0131 notlar, hat\\u0131rlat\\u0131c\\u0131lar, fikirler —\\nher \\u015fey tek yerde.",
+      "quick_notes_reminders_ideas_neverything": "Hızlı notlar, hatırlatıcılar, fikirler —\\nher şey tek yerde.",
       "recent": "Son Notlar",
       "retry": "Tekrar Dene",
       "search_notes": "Notlarda ara...",
       "tags": "etiket",
       "this_note_will_be_permanently_deleted": "Bu not kalıcı olarak silinecek.",
       "try_a_different_search_term": "Farklı bir arama terimi deneyin",
-      "untitled": "Ba\\u015fl\\u0131ks\\u0131z",
-      "write_your_first_note": "\\u0130lk notunu yaz"
+      "untitled": "Başlıksız",
+      "write_your_first_note": "İlk notunu yaz"
     }
   },
   "programs": {
@@ -5151,22 +5145,22 @@
   },
   "search": {
     "global_search": {
-      "all": "T\\u00fcm\\u00fc",
+      "all": "Tümü",
       "clear_search": "Aramayı temizle",
-      "close_search": "Aramay\\u0131 kapat",
-      "double_tap_to_open": "A\\u00e7mak i\\u00e7in \\u00e7ift dokun",
-      "dreams": "R\\u00fcyalar",
-      "dreams_1": "R\\u00fcyalar",
-      "journal": "G\\u00fcnl\\u00fck",
-      "journal_entries": "G\\u00fcnl\\u00fck Kay\\u0131tlar\\u0131",
+      "close_search": "Aramayı kapat",
+      "double_tap_to_open": "Açmak için çift dokun",
+      "dreams": "Rüyalar",
+      "dreams_1": "Rüyalar",
+      "journal": "Günlük",
+      "journal_entries": "Günlük Kayıtları",
       "notes": "Notlar",
       "notes_1": "Notlar",
       "nothing_matched_try_different_words": "Eşleşen sonuç yok — farklı kelimeler dene",
-      "quick_actions": "H\\u0131zl\\u0131 Eri\\u015fim",
+      "quick_actions": "Hızlı Erişim",
       "recent_searches": "Son Aramalar",
-      "search_entries_notes_dreams": "G\\u00fcnl\\u00fck, not, r\\u00fcya ara...",
+      "search_entries_notes_dreams": "Günlük, not, rüya ara...",
       "tags": "Etiketler",
-      "tools": "Ara\\u00e7lar"
+      "tools": "Araçlar"
     }
   },
   "seasonal": {
@@ -5184,11 +5178,11 @@
       "begin_writing": "Yazmaya Başla",
       "breakthrough_moment": "İçgörü anı",
       "breakthrough_moment_toggle": "İçgörü anı düğmesi",
-      "cancel": "\\u{0130}ptal",
+      "cancel": "İptal",
       "choose_an_archetype": "Bir Arketip Seç",
       "couldnt_load_your_shadow_work": "Gölge çalışman yüklenemedi",
       "discard": "At",
-      "discard_changes": "De\\u{011F}i\\u{015F}iklikleri At?",
+      "discard_changes": "Değişiklikleri At?",
       "entries": "Giriş",
       "explore_your_inner_landscape": "İç Dünyani Keşfet",
       "insights": "İçgörü",
@@ -5205,7 +5199,7 @@
       "unlock_your_shadow_map": "Gölge haritanı aç",
       "write_freely_without_judgment": "Yargılamadan, özgürce yaz...",
       "yesterday": "Dün",
-      "you_have_unsaved_text_are_you_sure_you_w": "Kaydedilmemi\\u{015F} metniniz var. Geri d\\u{00F6}nmek istedi\\u{011F}inizden emin misiniz?",
+      "you_have_unsaved_text_are_you_sure_you_w": "Kaydedilmemiş metniniz var. Geri dönmek istediğinizden emin misiniz?",
       "your_shadow_map": "Gölge Haritan"
     },
     "days_ago": "{count} gün önce",
@@ -5222,8 +5216,8 @@
     },
     "main_shell": {
       "home": "Ana Sayfa",
-      "insights": "\\u0130\\u00e7g\\u00f6r\\u00fc",
-      "journal": "G\\u00fcnl\\u00fck",
+      "insights": "İçgörü",
+      "journal": "Günlük",
       "notes": "Notlar",
       "profile": "Profil"
     },
@@ -5232,7 +5226,7 @@
       "protected_with_pin_face_id": "PIN ve Face ID ile korunur",
       "save_to_vault": "Gizli Kaydet",
       "set_up": "Ayarla",
-      "set_up_vault_pin": "Kasa PIN\\'i Ayarla",
+      "set_up_vault_pin": "Kasa PIN'i Ayarla",
       "you_need_to_create_a_4digit_pin_to_prote": "Gizli içeriklerini korumak için 4 haneli bir PIN oluşturman gerekiyor."
     },
     "share": {
@@ -5450,12 +5444,12 @@
       "see_all_life_events": "Tüm yaşam olaylarını gör"
     },
     "today_birthday": {
-      "u1f382_birthday_today": "\\u{1F382} Bug\\u{00FC}n do\\u{011F}um g\\u{00FC}n\\u{00FC}!",
+      "u1f382_birthday_today": "🎂 Bugün doğum günü!",
       "view_birthday_agenda": "Doğum günü ajandası"
     },
     "today_feed": {
       "1_month": "1 Ay",
-      "1_year": "1 Y\\u0131l",
+      "1_year": "1 Yıl",
       "3_months": "3 Ay",
       "6_months": "6 Ay",
       "continue": "Devam Et",
@@ -5491,10 +5485,10 @@
     "tool_catalog": {
       "add_to_favorites": "Favorilere ekle",
       "clear_search": "Aramayı temizle",
-      "no_tools_found": "Ara\\u00e7 bulunamad\\u0131",
+      "no_tools_found": "Araç bulunamadı",
       "remove_from_favorites": "Favorilerden çıkar",
-      "search_by_name_or_category": "Ad veya kategoriye g\\u00f6re ara...",
-      "tools": "Ara\\u00e7lar"
+      "search_by_name_or_category": "Ad veya kategoriye göre ara...",
+      "tools": "Araçlar"
     }
   },
   "vault": {
@@ -5521,13 +5515,13 @@
       "back": "Geri",
       "choose_a_4digit_pin_for_your_vault": "Kasan için 4 haneli bir PIN seç",
       "choose_a_new_4digit_pin": "Yeni 4 haneli PIN seç",
-      "confirm_pin": "PIN\\'i Onayla",
+      "confirm_pin": "PIN'i Onayla",
       "create_pin": "PIN Oluştur",
       "enable": "Etkinleştir",
       "enable_face_id": "Face ID Etkinleştirilsin mi?",
       "enter_pin": "PIN Gir",
-      "enter_the_same_pin_again": "Aynı PIN\\'i tekrar gir",
-      "enter_your_vault_pin": "Kasa PIN\\'ini gir",
+      "enter_the_same_pin_again": "Aynı PIN'i tekrar gir",
+      "enter_your_vault_pin": "Kasa PIN'ini gir",
       "new_pin": "Yeni PIN",
       "not_now": "Şimdi Değil",
       "that_pin_didnt_match_try_again": "PIN eşleşmedi. Tekrar dene.",
@@ -5547,7 +5541,7 @@
       "how_your_score_works": "Skorun nasıl çalışır",
       "improving": "Yükseliyor",
       "journal_rating": "Günlük Puanı",
-      "journal_rating_40_of_score": "Günlük puanı = skorun %40\\'ı",
+      "journal_rating_40_of_score": "Günlük puanı = skorun %40'ı",
       "log_a_cycle_entry_gratitude_or_sleep_to": "Döngü skorunu görmek için döngü kaydı, şükran veya uyku kaydı oluştur",
       "out_of_100": "100 üzerinden",
       "retry": "Tekrar Dene",
@@ -5569,8 +5563,8 @@
   },
   "whats_new": {
     "whats_new": {
-      "got_it": "Anla\\u015f\\u0131ld\\u0131",
-      "latest_features_and_improvements": "Son \\u00f6zellikler ve iyile\\u015ftirmeler"
+      "got_it": "Anlaşıldı",
+      "latest_features_and_improvements": "Son özellikler ve iyileştirmeler"
     },
     "title": "Yenilikler"
   },
@@ -5590,19 +5584,19 @@
       "growth_score": "Gelişim Puanı",
       "journaled_every_single_day": "Her gün yazdın",
       "keep_journaling_to_discover_patterns": "Örüntüleri keşfetmek için yazmaya devam et",
-      "keep_journaling_to_unlock_your_wrapped": "Wrapped\\'ını açmak için yazmaya devam et!",
+      "keep_journaling_to_unlock_your_wrapped": "Wrapped'ını açmak için yazmaya devam et!",
       "keep_journaling_your_story_is_building": "Yazmaya devam et — hikayen şekilleniyor",
       "moments_where_your_mood_lifted_and_a_pos": "Ruh halin yükselip pozitif bir seri başladığı anlar",
       "most_intense_week": "En Yoğun Haftan",
       "not_enough_entries_for_your_wrapped_yet": "Wrapped için henüz yeterli kayıt yok",
       "remarkable_growth_this_year": "Bu yıl kayda değer bir gelişim",
       "see_you_next_year": "Gelecek Yıl Görüşmek Üzere",
-      "share_your_wrapped": "Wrapped\\'ını Paylaş",
+      "share_your_wrapped": "Wrapped'ını Paylaş",
       "steady_and_consistent_progress": "İstikrarlı ve tutarlı bir ilerleme",
       "swipe_to_explore": "Keşfetmek için kaydır →",
       "this_week_had_the_widest_range_of_emotio": "Bu hafta kayıtlarında en geniş duygu yelpazesi vardı",
       "throughout_the_year": "Yıl boyunca",
-      "unlock_your_full_wrapped": "Tam Wrapped\\'ını Aç",
+      "unlock_your_full_wrapped": "Tam Wrapped'ını Aç",
       "write_an_entry": "Kayıt yaz →",
       "your_emotional_arc": "Duygusal Yörüngen",
       "your_top_patterns": "En Önemli Örüntülerin",

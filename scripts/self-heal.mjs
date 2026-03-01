@@ -172,7 +172,9 @@ async function spotCheckCompliance(agent) {
       "forecast",
       "your future",
       "guaranteed",
-      "cure",
+      "will cure",
+      "can cure",
+      "cures your",
       "diagnose",
       "medical advice",
       "financial advice",
@@ -182,8 +184,10 @@ async function spotCheckCompliance(agent) {
     ];
 
     const violations = [];
+    const lower = content.toLowerCase();
     for (const phrase of BANNED_PHRASES) {
-      if (content.toLowerCase().includes(phrase)) {
+      const regex = new RegExp(`\\b${phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`);
+      if (regex.test(lower)) {
         violations.push(phrase);
       }
     }
