@@ -128,7 +128,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
         break;
 
       case _PinMode.verify:
-        if (vaultService.verifyPin(_pin)) {
+        if (await vaultService.verifyPin(_pin)) {
           if (widget.mode == 'change') {
             setState(() {
               _pin = '';

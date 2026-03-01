@@ -77,7 +77,7 @@ class WatchMoodService {
             : DateTime.now(),
       );
     } catch (e) {
-      debugPrint('[WatchMoodService] Error reading watch mood: $e');
+      if (kDebugMode) debugPrint('[WatchMoodService] Error reading watch mood: $e');
       return null;
     }
   }

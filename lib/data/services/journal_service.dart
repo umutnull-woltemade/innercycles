@@ -348,7 +348,7 @@ class JournalService with SupabaseSyncMixin {
         final List<dynamic> jsonList = json.decode(jsonString);
         _entries = jsonList.map((j) => JournalEntry.fromJson(j)).toList();
       } catch (e) {
-        debugPrint('JournalService._loadEntries: JSON decode failed: $e');
+        if (kDebugMode) debugPrint('JournalService._loadEntries: JSON decode failed: $e');
         _entries = [];
       }
     }

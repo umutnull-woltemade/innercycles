@@ -420,7 +420,7 @@ class NoteToSelfService with SupabaseSyncMixin {
         final List<dynamic> jsonList = json.decode(jsonString);
         _notes = jsonList.map((j) => NoteToSelf.fromJson(j)).toList();
       } catch (e) {
-        debugPrint('NoteToSelfService._loadNotes: JSON decode failed: $e');
+        if (kDebugMode) debugPrint('NoteToSelfService._loadNotes: JSON decode failed: $e');
         _notes = [];
       }
     }
@@ -433,7 +433,7 @@ class NoteToSelfService with SupabaseSyncMixin {
         final List<dynamic> jsonList = json.decode(jsonString);
         _reminders = jsonList.map((j) => NoteReminder.fromJson(j)).toList();
       } catch (e) {
-        debugPrint('NoteToSelfService._loadReminders: JSON decode failed: $e');
+        if (kDebugMode) debugPrint('NoteToSelfService._loadReminders: JSON decode failed: $e');
         _reminders = [];
       }
     }

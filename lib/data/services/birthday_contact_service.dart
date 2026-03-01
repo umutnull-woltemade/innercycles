@@ -252,9 +252,11 @@ class BirthdayContactService with SupabaseSyncMixin {
         final List<dynamic> jsonList = json.decode(jsonString);
         _contacts = jsonList.map((j) => BirthdayContact.fromJson(j)).toList();
       } catch (e) {
-        debugPrint(
-          'BirthdayContactService._loadContacts: JSON decode failed: $e',
-        );
+        if (kDebugMode) {
+          debugPrint(
+            'BirthdayContactService._loadContacts: JSON decode failed: $e',
+          );
+        }
         _contacts = [];
       }
     }

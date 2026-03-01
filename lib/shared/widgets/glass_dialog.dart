@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
 import '../../core/constants/app_constants.dart';
+import '../../data/services/haptic_service.dart';
 import 'gradient_text.dart';
 
 /// A premium glass-morphism dialog with backdrop blur, gradient accent border,
@@ -41,9 +42,27 @@ class GlassDialog extends StatelessWidget {
     bool isDestructive = false,
     VoidCallback? onConfirm,
   }) {
-    return showDialog<bool>(
+    HapticService.sheetOpened();
+    return showGeneralDialog<bool>(
       context: context,
-      builder: (_) => GlassDialog(
+      barrierDismissible: true,
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+      barrierColor: Colors.black54,
+      transitionDuration: const Duration(milliseconds: 300),
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        final curvedAnimation = CurvedAnimation(
+          parent: animation,
+          curve: Curves.easeOutBack,
+        );
+        return FadeTransition(
+          opacity: animation,
+          child: ScaleTransition(
+            scale: Tween<double>(begin: 0.85, end: 1.0).animate(curvedAnimation),
+            child: child,
+          ),
+        );
+      },
+      pageBuilder: (_, _, _) => GlassDialog(
         title: title,
         content: message,
         gradientVariant: gradientVariant,

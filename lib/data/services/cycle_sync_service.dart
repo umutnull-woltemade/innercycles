@@ -341,7 +341,7 @@ class CycleSyncService with SupabaseSyncMixin {
           (a, b) => b.periodStartDate.compareTo(a.periodStartDate),
         );
       } catch (e) {
-        debugPrint('CycleSyncService._load: JSON decode failed: $e');
+        if (kDebugMode) debugPrint('CycleSyncService._load: JSON decode failed: $e');
         _periodLogs = [];
       }
     }

@@ -53,12 +53,14 @@ class WidgetDataService {
         'widget_cycle_length': cycleLength.clamp(1, 365),
       });
 
-      debugPrint(
-        '[WidgetDataService] Cycle position updated: '
-        '$emotionalPhase (day $cycleDay/$cycleLength)',
-      );
+      if (kDebugMode) {
+        debugPrint(
+          '[WidgetDataService] Cycle position updated: '
+          '$emotionalPhase (day $cycleDay/$cycleLength)',
+        );
+      }
     } catch (e) {
-      debugPrint('[WidgetDataService] Error updating cycle position: $e');
+      if (kDebugMode) debugPrint('[WidgetDataService] Error updating cycle position: $e');
     }
   }
 
@@ -87,9 +89,9 @@ class WidgetDataService {
         'widget_mood_rating': moodRating.clamp(1, 5),
       });
 
-      debugPrint('[WidgetDataService] Daily reflection widget updated');
+      if (kDebugMode) debugPrint('[WidgetDataService] Daily reflection widget updated');
     } catch (e) {
-      debugPrint('[WidgetDataService] Error updating daily reflection: $e');
+      if (kDebugMode) debugPrint('[WidgetDataService] Error updating daily reflection: $e');
     }
   }
 
@@ -116,9 +118,9 @@ class WidgetDataService {
         'widget_week_trend': weekTrend,
       });
 
-      debugPrint('[WidgetDataService] Mood insight widget updated');
+      if (kDebugMode) debugPrint('[WidgetDataService] Mood insight widget updated');
     } catch (e) {
-      debugPrint('[WidgetDataService] Error updating mood insight: $e');
+      if (kDebugMode) debugPrint('[WidgetDataService] Error updating mood insight: $e');
     }
   }
 
@@ -145,9 +147,9 @@ class WidgetDataService {
         'widget_lock_energy': energyLevel.clamp(1, 5),
       });
 
-      debugPrint('[WidgetDataService] Lock screen widget updated');
+      if (kDebugMode) debugPrint('[WidgetDataService] Lock screen widget updated');
     } catch (e) {
-      debugPrint('[WidgetDataService] Error updating lock screen: $e');
+      if (kDebugMode) debugPrint('[WidgetDataService] Error updating lock screen: $e');
     }
   }
 
@@ -173,11 +175,13 @@ class WidgetDataService {
         'widget_last_updated': DateTime.now().millisecondsSinceEpoch / 1000.0,
       });
 
-      debugPrint(
-        '[WidgetDataService] Widget metadata updated (lang=$languageCode)',
-      );
+      if (kDebugMode) {
+        debugPrint(
+          '[WidgetDataService] Widget metadata updated (lang=$languageCode)',
+        );
+      }
     } catch (e) {
-      debugPrint('[WidgetDataService] Error updating widget metadata: $e');
+      if (kDebugMode) debugPrint('[WidgetDataService] Error updating widget metadata: $e');
     }
   }
 

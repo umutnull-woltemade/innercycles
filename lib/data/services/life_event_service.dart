@@ -224,7 +224,7 @@ class LifeEventService with SupabaseSyncMixin {
         final List<dynamic> jsonList = json.decode(jsonString);
         _events = jsonList.map((j) => LifeEvent.fromJson(j)).toList();
       } catch (e) {
-        debugPrint('LifeEventService._loadEvents: JSON decode failed: $e');
+        if (kDebugMode) debugPrint('LifeEventService._loadEvents: JSON decode failed: $e');
         _events = [];
       }
     }

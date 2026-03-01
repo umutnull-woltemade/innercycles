@@ -6,6 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:uuid/uuid.dart';
+import 'storage_service.dart' show StorageService;
 
 /// Offline-first sync service for Supabase
 /// Queues operations when offline and syncs when connectivity is restored
@@ -70,7 +71,32 @@ class SyncService {
         _statusController = StreamController<SyncStatus>.broadcast();
       }
 
-      _syncBox = await Hive.openBox(_syncQueueBoxName);
+      // Open sync box with encryption (same key as StorageService)
+      final cipher = await StorageService.getHiveEncryptionCipher();
+      try {
+        _syncBox = cipher != null
+            ? await Hive.openBox(_syncQueueBoxName, encryptionCipher: cipher)
+            : await Hive.openBox(_syncQueueBoxName);
+      } catch (_) {
+        // Migration: if existing box is unencrypted, re-create with encryption
+        if (cipher != null) {
+          try {
+            final oldBox = await Hive.openBox(_syncQueueBoxName);
+            final data = Map<dynamic, dynamic>.from(oldBox.toMap());
+            await oldBox.close();
+            await Hive.deleteBoxFromDisk(_syncQueueBoxName);
+            _syncBox = await Hive.openBox(_syncQueueBoxName, encryptionCipher: cipher);
+            for (final entry in data.entries) {
+              await _syncBox!.put(entry.key, entry.value);
+            }
+          } catch (e2) {
+            _syncBox = await Hive.openBox(_syncQueueBoxName);
+            if (kDebugMode) debugPrint('SyncService: Encryption migration failed: $e2');
+          }
+        } else {
+          _syncBox = await Hive.openBox(_syncQueueBoxName);
+        }
+      }
 
       // Purge stale queue items (older than 30 days)
       await SyncService.purgeStaleQueueItems();
@@ -148,11 +174,14 @@ class SyncService {
     final box = _syncBox;
     if (kIsWeb || box == null) return;
 
+    // Create a defensive copy to avoid mutating the caller's map
+    final payloadCopy = Map<String, dynamic>.from(payload);
+
     // Inject user_id from current auth session (skip if Supabase not initialized)
     try {
       final userId = Supabase.instance.client.auth.currentUser?.id;
-      if (userId != null && !payload.containsKey('user_id')) {
-        payload['user_id'] = userId;
+      if (userId != null && !payloadCopy.containsKey('user_id')) {
+        payloadCopy['user_id'] = userId;
       }
     } catch (_) {
       // Supabase not initialized — queue without user_id, will be set on sync
@@ -163,7 +192,7 @@ class SyncService {
       operation: operation,
       tableName: tableName,
       recordId: recordId,
-      payload: payload,
+      payload: payloadCopy,
       createdAt: DateTime.now(),
     );
 
@@ -380,21 +409,32 @@ class SyncService {
     try {
       final supabase = Supabase.instance.client;
 
+      // Ensure user_id is present (may have been queued before auth)
+      final payload = Map<String, dynamic>.from(item.payload);
+      if (!payload.containsKey('user_id')) {
+        final userId = supabase.auth.currentUser?.id;
+        if (userId == null) {
+          // Can't sync without auth — retry later
+          return false;
+        }
+        payload['user_id'] = userId;
+      }
+
       switch (item.operation) {
         case 'INSERT':
-          await supabase.from(item.tableName).insert(item.payload);
+          await supabase.from(item.tableName).insert(payload);
           break;
         case 'UPDATE':
           await supabase
               .from(item.tableName)
-              .update(item.payload)
+              .update(payload)
               .eq('id', item.recordId);
           break;
         case 'DELETE':
           await supabase.from(item.tableName).delete().eq('id', item.recordId);
           break;
         case 'UPSERT':
-          await supabase.from(item.tableName).upsert(item.payload);
+          await supabase.from(item.tableName).upsert(payload);
           break;
         default:
           if (kDebugMode) {

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -13,6 +14,7 @@ import 'sync_service.dart';
 class StorageService {
   static const String _userProfileBoxName = 'user_profile_box';
   static const String _settingsBoxName = 'settings_box';
+  static const String _hiveEncryptionKeyName = 'inner_cycles_hive_encryption_key';
 
   static const String _profileKey = 'user_profile';
   static const String _allProfilesKey = 'all_profiles';
@@ -47,29 +49,15 @@ class StorageService {
     try {
       await Hive.initFlutter();
 
-      // Try to open boxes with individual timeouts
-      _profileBox = await Hive.openBox(_userProfileBoxName).timeout(
-        const Duration(seconds: 5),
-        onTimeout: () {
-          if (kDebugMode) {
-            debugPrint('Warning: Profile box initialization timed out');
-          }
-          throw TimeoutException('Profile box timeout');
-        },
-      );
+      // Get or create AES encryption key for Hive boxes
+      final cipher = await _getHiveEncryptionCipher();
 
-      _settingsBox = await Hive.openBox(_settingsBoxName).timeout(
-        const Duration(seconds: 5),
-        onTimeout: () {
-          if (kDebugMode) {
-            debugPrint('Warning: Settings box initialization timed out');
-          }
-          throw TimeoutException('Settings box timeout');
-        },
-      );
+      // Try to open boxes with encryption and individual timeouts
+      _profileBox = await _openEncryptedBox(_userProfileBoxName, cipher);
+      _settingsBox = await _openEncryptedBox(_settingsBoxName, cipher);
 
       if (kDebugMode) {
-        debugPrint('StorageService initialized successfully');
+        debugPrint('StorageService initialized successfully (encrypted)');
       }
     } catch (e) {
       if (kDebugMode) {
@@ -77,6 +65,99 @@ class StorageService {
       }
       // Continue without storage - app will work in memory-only mode
     }
+  }
+
+  /// Public access to encryption cipher for other Hive boxes (e.g. SyncService)
+  static Future<HiveAesCipher?> getHiveEncryptionCipher() => _getHiveEncryptionCipher();
+
+  /// Get or create AES-256 encryption cipher for Hive, stored in secure storage
+  static Future<HiveAesCipher?> _getHiveEncryptionCipher() async {
+    try {
+      const secureStorage = FlutterSecureStorage(
+        iOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
+      );
+
+      // Try to read existing key
+      final existingKey = await secureStorage.read(key: _hiveEncryptionKeyName);
+      if (existingKey != null) {
+        final keyBytes = base64Url.decode(existingKey);
+        return HiveAesCipher(keyBytes);
+      }
+
+      // Generate new key and store securely
+      final newKey = Hive.generateSecureKey();
+      await secureStorage.write(
+        key: _hiveEncryptionKeyName,
+        value: base64Url.encode(newKey),
+      );
+      return HiveAesCipher(newKey);
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('StorageService: Failed to get encryption key: $e');
+      }
+      // Fall back to unencrypted if secure storage fails
+      return null;
+    }
+  }
+
+  /// Open a Hive box with optional encryption, migrating unencrypted data if needed
+  static Future<Box> _openEncryptedBox(
+    String name,
+    HiveAesCipher? cipher,
+  ) async {
+    try {
+      // Try opening with encryption first
+      if (cipher != null) {
+        return await Hive.openBox(name, encryptionCipher: cipher).timeout(
+          const Duration(seconds: 5),
+          onTimeout: () {
+            if (kDebugMode) {
+              debugPrint('Warning: $name box initialization timed out');
+            }
+            throw TimeoutException('$name box timeout');
+          },
+        );
+      }
+    } catch (e) {
+      // If encrypted open fails (e.g. existing unencrypted box), migrate
+      if (kDebugMode) {
+        debugPrint('StorageService: Migrating $name to encrypted box');
+      }
+      try {
+        // Open unencrypted to read data
+        final unencryptedBox = await Hive.openBox(name);
+        final data = Map<dynamic, dynamic>.from(unencryptedBox.toMap());
+        await unencryptedBox.close();
+
+        // Delete and recreate with encryption
+        await Hive.deleteBoxFromDisk(name);
+        final encryptedBox = await Hive.openBox(
+          name,
+          encryptionCipher: cipher!,
+        );
+
+        // Restore data
+        for (final entry in data.entries) {
+          await encryptedBox.put(entry.key, entry.value);
+        }
+        return encryptedBox;
+      } catch (migrationError) {
+        if (kDebugMode) {
+          debugPrint('StorageService: Migration failed for $name: $migrationError');
+        }
+      }
+    }
+
+    // Final fallback: open without encryption
+    return await Hive.openBox(name).timeout(
+      const Duration(seconds: 5),
+      onTimeout: () {
+        if (kDebugMode) {
+          debugPrint('Warning: $name box initialization timed out');
+        }
+        throw TimeoutException('$name box timeout');
+      },
+    );
   }
 
   // ========== USER PROFILE ==========

@@ -188,7 +188,7 @@ class MoodCheckinService with SupabaseSyncMixin {
             .map((e) => MoodEntry.fromJson(e as Map<String, dynamic>))
             .toList();
       } catch (e) {
-        debugPrint('MoodCheckinService._load: JSON decode failed: $e');
+        if (kDebugMode) debugPrint('MoodCheckinService._load: JSON decode failed: $e');
         _entries = [];
       }
     }

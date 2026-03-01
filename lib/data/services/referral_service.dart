@@ -211,7 +211,7 @@ class ReferralService {
         'created_at': DateTime.now().toIso8601String(),
       }, onConflict: 'user_id');
     } catch (e) {
-      debugPrint('ReferralService: Failed to register code on Supabase: $e');
+      if (kDebugMode) debugPrint('ReferralService: Failed to register code on Supabase: $e');
     }
   }
 
@@ -225,7 +225,7 @@ class ReferralService {
           .limit(1);
       return result.isNotEmpty;
     } catch (e) {
-      debugPrint('ReferralService: Failed to validate code: $e');
+      if (kDebugMode) debugPrint('ReferralService: Failed to validate code: $e');
       // Require network — don't accept unverified codes offline
       return false;
     }
@@ -247,7 +247,7 @@ class ReferralService {
       });
       return true;
     } catch (e) {
-      debugPrint('ReferralService: Failed to credit inviter: $e');
+      if (kDebugMode) debugPrint('ReferralService: Failed to credit inviter: $e');
       return false;
     }
   }
@@ -283,7 +283,7 @@ class ReferralService {
         }
       }
     } catch (e) {
-      debugPrint('ReferralService: Failed to sync from server: $e');
+      if (kDebugMode) debugPrint('ReferralService: Failed to sync from server: $e');
     }
   }
 }

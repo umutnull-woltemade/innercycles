@@ -7,8 +7,10 @@
 
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
@@ -19,32 +21,82 @@ import '../models/vault_photo.dart';
 import '../providers/app_providers.dart';
 
 class VaultService {
+  // Secure storage keys (Keychain on iOS, Keystore on Android)
   static const String _pinHashKey = 'inner_cycles_vault_pin_hash';
   static const String _pinSaltKey = 'inner_cycles_vault_pin_salt';
+  static const String _pinVersionKey = 'inner_cycles_vault_pin_version';
+  // SharedPreferences keys (non-sensitive)
   static const String _vaultEnabledKey = 'inner_cycles_vault_enabled';
   static const String _biometricEnabledKey = 'inner_cycles_vault_biometric';
   static const String _photosKey = 'inner_cycles_vault_photos';
   static const _uuid = Uuid();
 
+  /// PBKDF2 parameters
+  static const int _pbkdf2Iterations = 100000;
+  static const int _saltLength = 32;
+  static const int _pinVersion = 2; // v1 = SHA-256, v2 = PBKDF2
+
   final SharedPreferences _prefs;
+  final FlutterSecureStorage _secureStorage;
   final LocalAuthentication _localAuth = LocalAuthentication();
   List<VaultPhoto> _photos = [];
 
-  VaultService._(this._prefs) {
+  VaultService._(this._prefs, this._secureStorage) {
     _loadPhotos();
   }
 
   static Future<VaultService> init() async {
     final prefs = await SharedPreferences.getInstance();
-    return VaultService._(prefs);
+    const secureStorage = FlutterSecureStorage(
+      iOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
+    );
+    final service = VaultService._(prefs, secureStorage);
+    // Migrate legacy PIN from SharedPreferences to secure storage
+    await service._migrateLegacyPin();
+    return service;
+  }
+
+  /// One-time migration: move PIN hash/salt from SharedPreferences to secure storage
+  Future<void> _migrateLegacyPin() async {
+    final legacyHash = _prefs.getString(_pinHashKey);
+    if (legacyHash == null) return; // No legacy data or already migrated
+
+    final legacySalt = _prefs.getString(_pinSaltKey);
+
+    // Copy to secure storage
+    await _secureStorage.write(key: _pinHashKey, value: legacyHash);
+    if (legacySalt != null) {
+      await _secureStorage.write(key: _pinSaltKey, value: legacySalt);
+    }
+    // Mark as v1 (will be upgraded to v2 on next successful verify)
+    await _secureStorage.write(key: _pinVersionKey, value: '1');
+
+    // Remove from SharedPreferences
+    await _prefs.remove(_pinHashKey);
+    await _prefs.remove(_pinSaltKey);
+
+    if (kDebugMode) {
+      debugPrint('VaultService: Migrated PIN from SharedPreferences to secure storage');
+    }
   }
 
   // ══════════════════════════════════════════════════════════════════════════
   // PIN MANAGEMENT
   // ══════════════════════════════════════════════════════════════════════════
 
+  // Cache vault setup state (avoids async check on hot path)
+  bool? _isSetUpCache;
+
   /// Whether the vault has been set up (PIN exists)
-  bool get isVaultSetUp => _prefs.getString(_pinHashKey) != null;
+  /// Uses cached value after first async check
+  bool get isVaultSetUp => _isSetUpCache ?? _prefs.getBool(_vaultEnabledKey) ?? false;
+
+  /// Async check for vault setup (reads from secure storage)
+  Future<bool> checkVaultSetUp() async {
+    final hash = await _secureStorage.read(key: _pinHashKey);
+    _isSetUpCache = hash != null;
+    return _isSetUpCache!;
+  }
 
   /// Whether vault is enabled
   bool get isVaultEnabled => _prefs.getBool(_vaultEnabledKey) ?? false;
@@ -52,22 +104,50 @@ class VaultService {
   /// Whether biometric unlock is enabled for vault
   bool get isBiometricEnabled => _prefs.getBool(_biometricEnabledKey) ?? false;
 
-  /// Generate a random salt for PIN hashing
-  String _generateSalt() => _uuid.v4();
+  /// Generate a cryptographically secure random salt
+  String _generateSalt() {
+    final random = Random.secure();
+    final saltBytes = Uint8List(_saltLength);
+    for (int i = 0; i < _saltLength; i++) {
+      saltBytes[i] = random.nextInt(256);
+    }
+    return base64Url.encode(saltBytes);
+  }
 
-  /// Hash a PIN with salt using SHA-256
-  String _hashPin(String pin, String salt) {
+  /// PBKDF2-HMAC-SHA256 key derivation
+  String _pbkdf2Hash(String pin, String salt) {
+    final pinBytes = utf8.encode(pin);
+    final saltBytes = utf8.encode(salt);
+
+    // PBKDF2 with HMAC-SHA256
+    var block = Hmac(sha256, pinBytes).convert(saltBytes + [0, 0, 0, 1]).bytes;
+    var result = List<int>.from(block);
+
+    for (int i = 1; i < _pbkdf2Iterations; i++) {
+      block = Hmac(sha256, pinBytes).convert(block).bytes;
+      for (int j = 0; j < result.length; j++) {
+        result[j] ^= block[j];
+      }
+    }
+
+    return base64Url.encode(result);
+  }
+
+  /// Legacy SHA-256 hash (for migration only)
+  String _legacyHashPin(String pin, String salt) {
     final bytes = utf8.encode(salt + pin);
     return sha256.convert(bytes).toString();
   }
 
-  /// Set up the vault PIN (first time or change)
+  /// Set up the vault PIN (first time or change) — uses PBKDF2
   Future<void> setPin(String pin) async {
     final salt = _generateSalt();
-    final hash = _hashPin(pin, salt);
-    await _prefs.setString(_pinSaltKey, salt);
-    await _prefs.setString(_pinHashKey, hash);
+    final hash = _pbkdf2Hash(pin, salt);
+    await _secureStorage.write(key: _pinSaltKey, value: salt);
+    await _secureStorage.write(key: _pinHashKey, value: hash);
+    await _secureStorage.write(key: _pinVersionKey, value: _pinVersion.toString());
     await _prefs.setBool(_vaultEnabledKey, true);
+    _isSetUpCache = true;
   }
 
   // Brute-force protection
@@ -95,25 +175,38 @@ class VaultService {
   }
 
   /// Verify a PIN against the stored hash (with brute-force protection)
-  bool verifyPin(String pin) {
+  /// Now async because it reads from secure storage
+  Future<bool> verifyPin(String pin) async {
     if (isLockedOut) return false;
 
-    final storedHash = _prefs.getString(_pinHashKey);
-    final storedSalt = _prefs.getString(_pinSaltKey);
+    final storedHash = await _secureStorage.read(key: _pinHashKey);
+    final storedSalt = await _secureStorage.read(key: _pinSaltKey);
+    final versionStr = await _secureStorage.read(key: _pinVersionKey);
+    final version = int.tryParse(versionStr ?? '') ?? 1;
+
     if (storedHash == null) return false;
 
-    // Support legacy unsalted hashes (migrate on success)
-    final hash = storedSalt != null
-        ? _hashPin(pin, storedSalt)
-        : sha256.convert(utf8.encode(pin)).toString();
+    // Compute hash based on version
+    String hash;
+    if (version >= 2) {
+      // PBKDF2 (current)
+      hash = _pbkdf2Hash(pin, storedSalt ?? '');
+    } else if (storedSalt != null) {
+      // v1: SHA-256 with salt
+      hash = _legacyHashPin(pin, storedSalt);
+    } else {
+      // v0: SHA-256 without salt (very old)
+      hash = sha256.convert(utf8.encode(pin)).toString();
+    }
 
     if (hash == storedHash) {
       // Success — reset attempts
       _prefs.remove(_attemptCountKey);
       _prefs.remove(_lockoutUntilKey);
-      // Migrate legacy unsalted hash to salted
-      if (storedSalt == null) {
-        setPin(pin);
+      // Auto-upgrade to PBKDF2 if on older version
+      if (version < _pinVersion) {
+        await setPin(pin);
+        if (kDebugMode) debugPrint('VaultService: PIN upgraded to PBKDF2 v$_pinVersion');
       }
       return true;
     }
@@ -137,17 +230,19 @@ class VaultService {
 
   /// Change PIN (requires old PIN verification)
   Future<bool> changePin(String oldPin, String newPin) async {
-    if (!verifyPin(oldPin)) return false;
+    if (!await verifyPin(oldPin)) return false;
     await setPin(newPin);
     return true;
   }
 
   /// Remove vault PIN and disable vault
   Future<void> removeVault() async {
-    await _prefs.remove(_pinHashKey);
-    await _prefs.remove(_pinSaltKey);
+    await _secureStorage.delete(key: _pinHashKey);
+    await _secureStorage.delete(key: _pinSaltKey);
+    await _secureStorage.delete(key: _pinVersionKey);
     await _prefs.setBool(_vaultEnabledKey, false);
     await _prefs.setBool(_biometricEnabledKey, false);
+    _isSetUpCache = false;
   }
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -258,7 +353,7 @@ class VaultService {
         final file = File(_photos[idx].filePath);
         if (await file.exists()) await file.delete();
       } catch (e) {
-        debugPrint('VaultService: Failed to delete photo file: $e');
+        if (kDebugMode) debugPrint('VaultService: Failed to delete photo file: $e');
       }
       _photos.removeAt(idx);
       await _persistPhotos();
@@ -276,7 +371,7 @@ class VaultService {
         final List<dynamic> jsonList = json.decode(jsonString);
         _photos = jsonList.map((j) => VaultPhoto.fromJson(j)).toList();
       } catch (e) {
-        debugPrint('VaultService._loadPhotos: JSON decode failed: $e');
+        if (kDebugMode) debugPrint('VaultService._loadPhotos: JSON decode failed: $e');
         _photos = [];
       }
     }
@@ -294,7 +389,7 @@ class VaultService {
         final file = File(photo.filePath);
         if (await file.exists()) await file.delete();
       } catch (e) {
-        debugPrint('VaultService: Failed to delete photo file: $e');
+        if (kDebugMode) debugPrint('VaultService: Failed to delete photo file: $e');
       }
     }
     _photos.clear();
