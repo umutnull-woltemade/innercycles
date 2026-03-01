@@ -40,8 +40,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
     final canBio = await service.canUseBiometrics();
     if (!canBio) return;
 
-    final isEn = StorageService.loadLanguage() == AppLanguage.en;
-    final language = AppLanguage.fromIsEn(isEn);
+    final language = StorageService.loadLanguage();
     final success = await service.authenticateWithBiometrics(
       reason: L10nService.get('app_lock.app_lock.unlock_innercycles', language),
     );
@@ -90,7 +89,6 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
-    final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
@@ -171,9 +169,9 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildBioButton(isDark, isEn),
+                        _buildBioButton(isDark, language),
                         _buildDigitButton(0, isDark),
-                        _buildDeleteButton(isDark, isEn),
+                        _buildDeleteButton(isDark, language),
                       ],
                     ),
                   ],
@@ -232,8 +230,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
     );
   }
 
-  Widget _buildDeleteButton(bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildDeleteButton(bool isDark, AppLanguage language) {
     return Semantics(
       label: L10nService.get('app_lock.app_lock.delete', language),
       button: true,
@@ -256,8 +253,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
     );
   }
 
-  Widget _buildBioButton(bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildBioButton(bool isDark, AppLanguage language) {
     return Semantics(
       label: L10nService.get('app_lock.app_lock.unlock_with_biometrics', language),
       button: true,

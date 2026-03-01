@@ -747,8 +747,7 @@ class _NotFoundScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isEn = ui.PlatformDispatcher.instance.locale.languageCode != 'tr';
-    final language = AppLanguage.fromIsEn(isEn);
+    final language.isEn = ui.PlatformDispatcher.instance.locale.languageCode != 'tr';
 
     return Scaffold(
       backgroundColor: Colors.black,

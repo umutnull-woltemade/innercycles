@@ -12,18 +12,17 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class MoodStatsStrip extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const MoodStatsStrip({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = AppLanguage.fromIsEn(isEn);
     final streakAsync = ref.watch(streakStatsProvider);
     final moodAsync = ref.watch(moodCheckinServiceProvider);
     final journalAsync = ref.watch(journalServiceProvider);
@@ -132,7 +131,6 @@ class MoodStatsStrip extends ConsumerWidget {
   }
 
   String _moodCountLabel(WidgetRef ref) {
-    final language = AppLanguage.fromIsEn(isEn);
     final moodAsync = ref.watch(moodCheckinServiceProvider);
     final count = moodAsync.whenOrNull(
           data: (service) => service.getAllEntries().length,
@@ -142,7 +140,6 @@ class MoodStatsStrip extends ConsumerWidget {
   }
 
   String _moodLabel(int mood) {
-    final language = AppLanguage.fromIsEn(isEn);
     final lang = language;
     switch (mood) {
       case 1:

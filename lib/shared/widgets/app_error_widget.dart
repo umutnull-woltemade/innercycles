@@ -25,7 +25,7 @@ class AppErrorWidget extends StatelessWidget {
     return AppLanguage.en;
   }
 
-  bool get _isEn => _platformLanguage == AppLanguage.en;
+  bool get _isEn => _platformLanguage.isEn;
 
   /// Safely fetch an L10n string, falling back to [fallback] / [fallbackTr]
   /// if L10nService hasn't been initialized yet.
@@ -44,7 +44,7 @@ class AppErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(_isEn);
+    final language = _platformLanguage;
     if (kDebugMode) {
       debugPrint(
         'AppErrorWidget: Rendering error fallback for: ${details.exception}',

@@ -33,7 +33,6 @@ class EnergyMapScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isEn = language == AppLanguage.en;
     final energyAsync = ref.watch(energyMapProvider);
 
     return Scaffold(
@@ -95,7 +94,7 @@ class EnergyMapScreen extends ConsumerWidget {
                     data: (data) {
                       if (data == null) {
                         return SliverToBoxAdapter(
-                          child: _EmptyState(isDark: isDark, isEn: isEn),
+                          child: _EmptyState(isDark: isDark, language: language),
                         );
                       }
                       return SliverList(
@@ -103,19 +102,19 @@ class EnergyMapScreen extends ConsumerWidget {
                           _SummaryHeader(
                             data: data,
                             isDark: isDark,
-                            isEn: isEn,
+                            language: language,
                           ),
                           const SizedBox(height: 20),
-                          _HeatmapGrid(data: data, isDark: isDark, isEn: isEn),
+                          _HeatmapGrid(data: data, isDark: isDark, language: language),
                           const SizedBox(height: 24),
-                          _DailyChart(data: data, isDark: isDark, isEn: isEn),
+                          _DailyChart(data: data, isDark: isDark, language: language),
                           const SizedBox(height: 24),
-                          _InsightTips(data: data, isDark: isDark, isEn: isEn),
+                          _InsightTips(data: data, isDark: isDark, language: language),
                           const SizedBox(height: 24),
                           ContentDisclaimer(language: language),
                           ToolEcosystemFooter(
                             currentToolId: 'energyMap',
-                            isEn: isEn,
+                            language: language,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 40),
@@ -140,17 +139,16 @@ class EnergyMapScreen extends ConsumerWidget {
 class _SummaryHeader extends StatelessWidget {
   final EnergyMapData data;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _SummaryHeader({
     required this.data,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
@@ -167,7 +165,7 @@ class _SummaryHeader extends StatelessWidget {
           const SizedBox(width: 12),
           _StatChip(
             label: L10nService.get('energy.energy_map.best_day', language),
-            value: _dayLabel(data.bestDay, isEn),
+            value: _dayLabel(data.bestDay, language),
             color: AppColors.success,
             isDark: isDark,
           ),
@@ -175,7 +173,7 @@ class _SummaryHeader extends StatelessWidget {
           _StatChip(
             label: L10nService.get('energy.energy_map.strongest', language),
             value: data.strongestArea != null
-                ? (isEn
+                ? (language.isEn
                       ? data.strongestArea!.displayNameEn
                       : data.strongestArea!.displayNameTr)
                 : '-',
@@ -187,10 +185,10 @@ class _SummaryHeader extends StatelessWidget {
     ).animate().fadeIn(duration: 300.ms);
   }
 
-  String _dayLabel(int weekday, bool isEn) {
+  String _dayLabel(int weekday, AppLanguage language) {
     final en = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     final tr = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
-    return isEn ? en[weekday - 1] : tr[weekday - 1];
+    return language.isEn ? en[weekday - 1] : tr[weekday - 1];
   }
 }
 
@@ -243,18 +241,17 @@ class _StatChip extends StatelessWidget {
 class _HeatmapGrid extends StatelessWidget {
   final EnergyMapData data;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _HeatmapGrid({
     required this.data,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
-    final dayLabels = isEn
+    final dayLabels = language.isEn
         ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         : ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
 
@@ -425,17 +422,16 @@ class _HeatCell extends StatelessWidget {
 class _DailyChart extends StatelessWidget {
   final EnergyMapData data;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _DailyChart({
     required this.data,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: 16,
@@ -525,39 +521,38 @@ class _DailyChart extends StatelessWidget {
 class _InsightTips extends StatelessWidget {
   final EnergyMapData data;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _InsightTips({
     required this.data,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     final tips = <String>[];
 
     if (data.strongestArea != null) {
       tips.add(
-        isEn
+        language.isEn
             ? 'Your strongest area tends to be ${data.strongestArea!.displayNameEn}'
             : 'En güçlü alanın ${data.strongestArea!.displayNameTr} olma eğiliminde',
       );
     }
 
-    final bestDayLabel = isEn
+    final bestDayLabel = language.isEn
         ? _dayFullEn(data.bestDay)
         : _dayFullTr(data.bestDay);
     tips.add(
-      isEn
+      language.isEn
           ? 'You tend to rate higher on ${bestDayLabel}s'
           : '$bestDayLabel günleri daha yüksek puanlama eğilimindesin',
     );
 
     if (data.overallAverage > 0) {
       tips.add(
-        isEn
+        language.isEn
             ? 'Your overall average is ${data.overallAverage.toStringAsFixed(1)} out of 5'
             : 'Genel ortalamanız 5 üzerinden ${data.overallAverage.toStringAsFixed(1)}',
       );
@@ -655,13 +650,12 @@ class _InsightTips extends StatelessWidget {
 
 class _EmptyState extends StatelessWidget {
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
-  const _EmptyState({required this.isDark, required this.isEn});
+  const _EmptyState({required this.isDark, required this.language});
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return PremiumEmptyState(
       icon: Icons.grid_view_rounded,
       title: L10nService.get('energy.energy_map.your_energy_map_is_taking_shape', language),

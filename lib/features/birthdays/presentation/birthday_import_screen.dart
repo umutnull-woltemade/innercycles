@@ -44,7 +44,6 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isEn = language == AppLanguage.en;
 
     return Scaffold(
       body: CosmicBackground(
@@ -64,10 +63,10 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
                     switch (_step) {
                       _ImportStep.instructions => _buildInstructions(
                         isDark,
-                        isEn,
+                        language,
                       ),
-                      _ImportStep.preview => _buildPreview(isDark, isEn),
-                      _ImportStep.success => _buildSuccess(isDark, isEn),
+                      _ImportStep.preview => _buildPreview(isDark, language),
+                      _ImportStep.success => _buildSuccess(isDark, language),
                     },
                     const SizedBox(height: 40),
                   ]),
@@ -84,9 +83,8 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
   // STEP 1: Instructions
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildInstructions(bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
-    final steps = isEn
+  Widget _buildInstructions(bool isDark, AppLanguage language) {
+    final steps = language.isEn
         ? [
             'Go to Facebook Settings & Privacy > Settings',
             'Click "Download Your Information"',
@@ -233,9 +231,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
       final contacts = FacebookBirthdayImportService.parseJsonExport(content);
 
       if (contacts.isEmpty && mounted) {
-        final lang = ref.read(languageProvider);
-        final isEn = lang == AppLanguage.en;
-        final language = AppLanguage.fromIsEn(isEn);
+        final language = ref.read(languageProvider);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -272,8 +268,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
   // STEP 2: Preview
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildPreview(bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildPreview(bool isDark, AppLanguage language) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -282,7 +277,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
           children: [
             Flexible(
               child: GradientText(
-                isEn
+                language.isEn
                     ? '${_parsedContacts.length} Birthdays Found'
                     : '${_parsedContacts.length} Do\u{011F}um G\u{00FC}n\u{00FC} Bulundu',
                 variant: GradientTextVariant.gold,
@@ -324,7 +319,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
           final contact = _parsedContacts[index];
           final isSelected = _selectedIndices.contains(index);
 
-          final monthNames = isEn
+          final monthNames = language.isEn
               ? CommonStrings.monthsShortEn
               : CommonStrings.monthsShortTr;
 
@@ -429,7 +424,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
               child: _isLoading
                   ? const CupertinoActivityIndicator(radius: 10)
                   : Text(
-                      isEn
+                      language.isEn
                           ? 'Import ${_selectedIndices.length} Contacts'
                           : '${_selectedIndices.length} Ki\u{015F}iyi Aktar',
                       style: AppTypography.modernAccent(
@@ -474,9 +469,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
       });
     } catch (_) {
       if (mounted) {
-        final lang = ref.read(languageProvider);
-        final isEn = lang == AppLanguage.en;
-        final language = AppLanguage.fromIsEn(isEn);
+        final language = ref.read(languageProvider);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -493,8 +486,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
   // STEP 3: Success
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildSuccess(bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildSuccess(bool isDark, AppLanguage language) {
     return PremiumCard(
           style: PremiumCardStyle.gold,
           padding: const EdgeInsets.all(32),
@@ -512,7 +504,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
               ),
               const SizedBox(height: 8),
               Text(
-                isEn
+                language.isEn
                     ? '$_importedCount birthdays imported successfully'
                     : '$_importedCount do\u{011F}um g\u{00FC}n\u{00FC} ba\u{015F}ar\u{0131}yla aktar\u{0131}ld\u{0131}',
                 textAlign: TextAlign.center,

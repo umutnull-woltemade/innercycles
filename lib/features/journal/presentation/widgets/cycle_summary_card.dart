@@ -33,7 +33,6 @@ class CycleSummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     final color = kAreaColors[summary.area] ?? AppColors.auroraStart;
     final hasData = summary.rawPoints.isNotEmpty;
     final areaName = summary.area.localizedName(language);
@@ -244,7 +243,6 @@ class CycleSummaryCard extends StatelessWidget {
     CyclePhase phase,
     Color areaColor,
   ) {
-    final language = AppLanguage.fromIsEn(isEn);
     final phaseColor = _phaseColor(phase);
     final phaseIcon = _phaseIcon(phase);
     final phaseLabel = phase.label(language);
@@ -275,7 +273,6 @@ class CycleSummaryCard extends StatelessWidget {
   }
 
   Widget _buildTrendIndicator(BuildContext context, CycleTrend trend) {
-    final language = AppLanguage.fromIsEn(isEn);
     final trendColor = _trendColor(trend);
     final trendIcon = _trendIcon(trend);
     final trendLabel = trend.label(language);

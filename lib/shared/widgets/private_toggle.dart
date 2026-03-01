@@ -16,19 +16,18 @@ import '../../data/services/l10n_service.dart';
 class PrivateToggle extends ConsumerWidget {
   final bool isPrivate;
   final ValueChanged<bool> onChanged;
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const PrivateToggle({
     super.key,
     required this.isPrivate,
     required this.onChanged,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
   Future<void> _handleToggle(BuildContext context, WidgetRef ref, bool value) async {
-    final language = AppLanguage.fromIsEn(isEn);
     if (value) {
       // Turning ON — check vault setup
       final vaultService = await ref.read(vaultServiceProvider.future);
@@ -66,7 +65,6 @@ class PrivateToggle extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = AppLanguage.fromIsEn(isEn);
     return GestureDetector(
       onTap: () => _handleToggle(context, ref, !isPrivate),
       child: AnimatedContainer(

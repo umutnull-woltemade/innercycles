@@ -23,7 +23,6 @@ class StreakRecoveryBanner extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isEn = language == AppLanguage.en;
     final streakAsync = ref.watch(streakStatsProvider);
     final isPremium = ref.watch(isPremiumUserProvider);
 
@@ -91,7 +90,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              isEn
+                              language.isEn
                                   ? 'Your $longestStreak-day streak ended'
                                   : '$longestStreak günlük seri sona erdi',
                               style: AppTypography.displayFont.copyWith(

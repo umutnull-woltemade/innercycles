@@ -50,11 +50,10 @@ class _ShareCardGalleryScreenState
 
   ShareCardData _buildDataForTemplate(
     ShareCardTemplate template,
-    bool isEn,
+    bool language,
     int streak, {
     EmotionalCycleAnalysis? cycleAnalysis,
   }) {
-    final language = AppLanguage.fromIsEn(isEn);
     // Extract cycle position data when available
     String? cyclePhaseName;
     String? cyclePhaseDescription;
@@ -88,7 +87,7 @@ class _ShareCardGalleryScreenState
 
     return ShareCardTemplates.buildData(
       template: template,
-      language: AppLanguage.fromIsEn(isEn),
+      language: language,
       streak: streak,
       cyclePhaseName: cyclePhaseName,
       cyclePhaseDescription: cyclePhaseDescription,
@@ -101,8 +100,7 @@ class _ShareCardGalleryScreenState
   // SHARE ACTION
   // =========================================================================
 
-  Future<void> _onShare(bool isEn, AppLanguage language) async {
-    final language = AppLanguage.fromIsEn(isEn);
+  Future<void> _onShare(bool language, AppLanguage language) async {
     // Share cards are now FREE for all users (viral growth strategy).
     // Free users get a "Made with InnerCycles" watermark on their cards.
     // Premium users get clean cards without promotional watermark.
@@ -136,8 +134,7 @@ class _ShareCardGalleryScreenState
     }
   }
 
-  Future<void> _onCopy(bool isEn, ShareCardData cardData) async {
-    final language = AppLanguage.fromIsEn(isEn);
+  Future<void> _onCopy(bool language, ShareCardData cardData) async {
     final text =
         '${cardData.headline}\n${cardData.subtitle}'
         '${cardData.detail != null ? '\n${cardData.detail}' : ''}'
@@ -166,7 +163,6 @@ class _ShareCardGalleryScreenState
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
-    final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final streakAsync = ref.watch(journalStreakProvider);
     final streak = streakAsync.whenOrNull(data: (s) => s) ?? 0;
@@ -205,8 +201,8 @@ class _ShareCardGalleryScreenState
       ),
       body: CosmicBackground(
         child: _previewTemplate != null
-            ? _buildPreview(isDark, isEn, language, streak, cycleAnalysis)
-            : _buildGallery(isDark, isEn, streak, cycleAnalysis),
+            ? _buildPreview(isDark, language, language, streak, cycleAnalysis)
+            : _buildGallery(isDark, language, streak, cycleAnalysis),
       ),
     );
   }
@@ -217,23 +213,23 @@ class _ShareCardGalleryScreenState
 
   Widget _buildGallery(
     bool isDark,
-    bool isEn,
+    bool language,
     int streak,
     EmotionalCycleAnalysis? cycleAnalysis,
   ) {
     return Column(
       children: [
         // Category tabs
-        _buildCategoryTabs(isDark, isEn),
+        _buildCategoryTabs(isDark, language),
         const SizedBox(height: 16),
 
         // Card grid
-        Expanded(child: _buildCardGrid(isDark, isEn, streak, cycleAnalysis)),
+        Expanded(child: _buildCardGrid(isDark, language, streak, cycleAnalysis)),
       ],
     );
   }
 
-  Widget _buildCategoryTabs(bool isDark, bool isEn) {
+  Widget _buildCategoryTabs(bool isDark, bool language) {
     return SizedBox(
       height: 44,
       child: ListView.separated(
@@ -242,7 +238,6 @@ class _ShareCardGalleryScreenState
         itemCount: ShareCardCategory.values.length,
         separatorBuilder: (_, _) => const SizedBox(width: 8),
         itemBuilder: (context, index) {
-          final language = AppLanguage.fromIsEn(isEn);
           final category = ShareCardCategory.values[index];
           final isSelected = category == _selectedCategory;
           final accent = _categoryAccent(category);
@@ -314,7 +309,7 @@ class _ShareCardGalleryScreenState
 
   Widget _buildCardGrid(
     bool isDark,
-    bool isEn,
+    bool language,
     int streak,
     EmotionalCycleAnalysis? cycleAnalysis,
   ) {
@@ -330,11 +325,10 @@ class _ShareCardGalleryScreenState
       ),
       itemCount: templates.length,
       itemBuilder: (context, index) {
-        final language = AppLanguage.fromIsEn(isEn);
         final template = templates[index];
         final data = _buildDataForTemplate(
           template,
-          isEn,
+          language,
           streak,
           cycleAnalysis: cycleAnalysis,
         );
@@ -354,7 +348,7 @@ class _ShareCardGalleryScreenState
                       data: data,
                       accent: accent,
                       isDark: isDark,
-                      isEn: isEn,
+                      language: language,
                     )
                     .animate()
                     .fadeIn(duration: 400.ms, delay: (index * 80).ms)
@@ -377,16 +371,15 @@ class _ShareCardGalleryScreenState
 
   Widget _buildPreview(
     bool isDark,
-    bool isEn,
+    bool language,
     AppLanguage language,
     int streak,
     EmotionalCycleAnalysis? cycleAnalysis,
   ) {
-    final language = AppLanguage.fromIsEn(isEn);
     final template = _previewTemplate!;
     final data = _buildDataForTemplate(
       template,
-      isEn,
+      language,
       streak,
       cycleAnalysis: cycleAnalysis,
     );
@@ -432,7 +425,7 @@ class _ShareCardGalleryScreenState
                           repaintKey: _repaintKey,
                           isDark: isDark,
                           isPremium: isPremium,
-                          isEn: isEn,
+                          language: language,
                           displaySize: isStory ? 220 : 360,
                         )
                         .animate()
@@ -449,7 +442,7 @@ class _ShareCardGalleryScreenState
           const SizedBox(height: 16),
 
           // Action buttons
-          _buildActionButtons(isDark, isEn, language, data),
+          _buildActionButtons(isDark, language, language, data),
           const SizedBox(height: 24),
         ],
       ),
@@ -458,11 +451,10 @@ class _ShareCardGalleryScreenState
 
   Widget _buildActionButtons(
     bool isDark,
-    bool isEn,
+    bool language,
     AppLanguage language,
     ShareCardData cardData,
   ) {
-    final language = AppLanguage.fromIsEn(isEn);
     final accent = _previewTemplate != null
         ? ShareCardTemplates.accentColor(_previewTemplate!)
         : AppColors.auroraStart;
@@ -481,7 +473,7 @@ class _ShareCardGalleryScreenState
               isLoading: _isSharing,
               accentColor: accent,
               isDark: isDark,
-              onTap: () => _onShare(isEn, language),
+              onTap: () => _onShare(language, language),
             ),
           ),
           const SizedBox(width: 12),
@@ -492,7 +484,7 @@ class _ShareCardGalleryScreenState
               icon: Icons.copy_rounded,
               label: L10nService.get('sharing.share_gallery.copy', language),
               isDark: isDark,
-              onTap: () => _onCopy(isEn, cardData),
+              onTap: () => _onCopy(language, cardData),
             ),
           ),
         ],
@@ -529,7 +521,7 @@ class _ThumbnailCard extends StatelessWidget {
   final ShareCardData data;
   final Color accent;
   final bool isDark;
-  final bool isEn;
+  final bool language.isEn;
 
   const _ThumbnailCard({
     required this.template,
@@ -541,7 +533,6 @@ class _ThumbnailCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),

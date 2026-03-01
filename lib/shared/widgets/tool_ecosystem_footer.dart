@@ -22,13 +22,13 @@ import '../../data/providers/app_providers.dart';
 
 class ToolEcosystemFooter extends ConsumerWidget {
   final String currentToolId;
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const ToolEcosystemFooter({
     super.key,
     required this.currentToolId,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -43,7 +43,6 @@ class ToolEcosystemFooter extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = AppLanguage.fromIsEn(isEn);
     final manifest = ToolManifestRegistry.findById(currentToolId);
     if (manifest == null) return const SizedBox.shrink();
 
@@ -83,7 +82,6 @@ class ToolEcosystemFooter extends ConsumerWidget {
             scrollDirection: Axis.horizontal,
             itemCount: relatedTools.length,
             itemBuilder: (context, index) {
-              final language = AppLanguage.fromIsEn(isEn);
               final tool = relatedTools[index];
               final color =
                   _categoryColors[tool.category] ?? AppColors.auroraStart;

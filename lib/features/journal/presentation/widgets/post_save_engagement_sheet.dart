@@ -48,10 +48,9 @@ class PostSaveEngagementSheet extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
-    final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    final suggestions = _buildSuggestions(ref, isEn);
+    final suggestions = _buildSuggestions(ref, language);
 
     return Container(
       decoration: BoxDecoration(
@@ -120,7 +119,7 @@ class PostSaveEngagementSheet extends ConsumerWidget {
                         ),
                         if (currentStreak > 1)
                           Text(
-                            isEn
+                            language.isEn
                                 ? '$currentStreak day streak'
                                 : '$currentStreak g\u00fcnl\u00fck seri',
                             style: AppTypography.subtitle(
@@ -209,8 +208,7 @@ class PostSaveEngagementSheet extends ConsumerWidget {
     );
   }
 
-  List<_Suggestion> _buildSuggestions(WidgetRef ref, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  List<_Suggestion> _buildSuggestions(WidgetRef ref, bool language) {
     final suggestions = <_Suggestion>[];
 
     // Always suggest mood check-in (quick action)
@@ -242,7 +240,7 @@ class PostSaveEngagementSheet extends ConsumerWidget {
       suggestions.add(_Suggestion(
         icon: Icons.insights_rounded,
         title: L10nService.get('journal.post_save_engagement.explore_your_patterns', language),
-        subtitle: isEn
+        subtitle: language.isEn
             ? '$entryCount entries analyzed'
             : '$entryCount kay\u0131t analiz edildi',
         route: Routes.journalPatterns,

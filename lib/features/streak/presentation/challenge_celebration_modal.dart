@@ -16,23 +16,23 @@ import '../../../data/services/l10n_service.dart';
 /// Full-screen celebration modal for challenge completions.
 class ChallengeCelebrationModal extends StatefulWidget {
   final GrowthChallenge challenge;
-  final bool isEn;
+  final AppLanguage language;
 
   const ChallengeCelebrationModal({
     super.key,
     required this.challenge,
-    required this.isEn,
+    required this.language,
   });
 
   /// Show the celebration modal. Call after a challenge is completed.
-  static void show(BuildContext context, GrowthChallenge challenge, bool isEn) {
+  static void show(BuildContext context, GrowthChallenge challenge, AppLanguage language) {
     HapticFeedback.heavyImpact();
     showDialog(
       context: context,
       barrierDismissible: true,
       barrierColor: Colors.black54,
       builder: (_) =>
-          ChallengeCelebrationModal(challenge: challenge, isEn: isEn),
+          ChallengeCelebrationModal(challenge: challenge, language: language),
     );
   }
 
@@ -46,10 +46,9 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
   bool _isSharing = false;
 
   GrowthChallenge get challenge => widget.challenge;
-  bool get isEn => widget.isEn;
+  AppLanguage get language => widget.language;
 
   Future<void> _shareCard() async {
-    final language = AppLanguage.fromIsEn(isEn);
     setState(() => _isSharing = true);
     try {
       final boundary =
@@ -71,12 +70,11 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final title = challenge.localizedTitle(language);
 
     return Semantics(
-      label: isEn
+      label: language.isEn
           ? '$title challenge completed celebration'
           : '$title meydan okuma tamamlandı kutlaması',
       child: Dialog(

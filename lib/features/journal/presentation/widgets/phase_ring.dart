@@ -83,7 +83,7 @@ class _PhaseRingState extends State<PhaseRing>
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, _) {
-        final language = AppLanguage.fromIsEn(widget.isEn);
+        final language = widget.language;
         return SizedBox(
           width: widget.size,
           height: widget.size,

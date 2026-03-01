@@ -78,7 +78,6 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isEn = language == AppLanguage.en;
 
     return PremiumCard(
       style: PremiumCardStyle.subtle,
@@ -87,7 +86,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
         children: [
           // Header - tap to expand
           Semantics(
-            label: isEn
+            label: language.isEn
                 ? (_isExpanded
                       ? 'Collapse sleep quality'
                       : 'Expand sleep quality')
@@ -188,7 +187,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                       final isActive = quality == _selectedQuality;
                       return Semantics(
                         label:
-                            '${L10nService.get('sleep.sleep.sleep_quality_1', language)} $quality: ${_qualityLabel(quality, isEn)}',
+                            '${L10nService.get('sleep.sleep.sleep_quality_1', language)} $quality: ${_qualityLabel(quality, language)}',
                         button: true,
                         selected: isActive,
                         child: GestureDetector(
@@ -243,7 +242,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                     const SizedBox(height: 8),
                     Center(
                       child: Text(
-                        _qualityLabel(_selectedQuality, isEn),
+                        _qualityLabel(_selectedQuality, language),
                         style: AppTypography.subtitle(
                           fontSize: 13,
                           color: _qualityColor(_selectedQuality),
@@ -315,11 +314,11 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
     }
   }
 
-  String _qualityLabel(int quality, bool isEn) {
+  String _qualityLabel(int quality, AppLanguage language) {
     final labelsEn = ['Terrible', 'Poor', 'Fair', 'Good', 'Excellent'];
     final labelsTr = ['Berbat', 'Kötü', 'Orta', 'İyi', 'Mükemmel'];
     final idx = (quality - 1).clamp(0, labelsEn.length - 1);
-    return isEn ? labelsEn[idx] : labelsTr[idx];
+    return language.isEn ? labelsEn[idx] : labelsTr[idx];
   }
 
   Color _qualityColor(int quality) {

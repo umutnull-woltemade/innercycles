@@ -36,7 +36,6 @@ class LifeEventDetailScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(lifeEventServiceProvider);
 
     return Scaffold(
@@ -89,7 +88,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                 ),
               );
             }
-            return _buildContent(context, ref, event, isDark, isEn);
+            return _buildContent(context, ref, event, isDark, language);
           },
         ),
       ),
@@ -101,9 +100,8 @@ class LifeEventDetailScreen extends ConsumerWidget {
     WidgetRef ref,
     LifeEvent event,
     bool isDark,
-    bool isEn,
+    bool language,
   ) {
-    final language = AppLanguage.fromIsEn(isEn);
     final isPositive = event.type == LifeEventType.positive;
     final accentColor = isPositive ? AppColors.starGold : AppColors.amethyst;
     final preset = event.eventKey != null
@@ -111,7 +109,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
         : null;
     final emoji = preset?.emoji ?? (isPositive ? '\u{2728}' : '\u{1F4AD}');
 
-    final intensityLabels = isEn
+    final intensityLabels = language.isEn
         ? ['Subtle', 'Mild', 'Moderate', 'Strong', 'Life-Changing']
         : ['Hafif', 'Az', 'Orta', 'Güçlü', 'Hayat Değiştiren'];
 
@@ -142,7 +140,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                       event.note != null && event.note!.isNotEmpty
                       ? '\n"${event.note!.length > 80 ? '${event.note!.substring(0, 80)}...' : event.note!}"'
                       : '';
-                  final msg = isEn
+                  final msg = language.isEn
                       ? '${event.title} — $formatted$noteSnippet\n\nReflecting with InnerCycles.\n${AppConstants.appStoreUrl}\n#InnerCycles #LifeEvent'
                       : '${event.title} — $formatted$noteSnippet\n\nInnerCycles ile yansıma yapıyorum.\n${AppConstants.appStoreUrl}\n#InnerCycles';
                   SharePlus.instance.share(ShareParams(text: msg));
@@ -169,7 +167,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                   Icons.delete_outline_rounded,
                   color: AppColors.error,
                 ),
-                onPressed: () => _confirmDelete(context, ref, event, isEn),
+                onPressed: () => _confirmDelete(context, ref, event, language),
               ),
             ],
           ),
@@ -331,7 +329,6 @@ class LifeEventDetailScreen extends ConsumerWidget {
                         const SizedBox(height: 8),
                         GestureDetector(
                           onLongPress: () {
-                            final language = AppLanguage.fromIsEn(isEn);
                             Clipboard.setData(ClipboardData(text: note));
                             HapticService.buttonPress();
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -414,9 +411,8 @@ class LifeEventDetailScreen extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
     LifeEvent event,
-    bool isEn,
+    bool language,
   ) async {
-    final language = AppLanguage.fromIsEn(isEn);
     final confirmed = await GlassDialog.confirm(
       context,
       title: L10nService.get('life_events.life_event_detail.delete_event_1', language),

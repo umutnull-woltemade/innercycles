@@ -179,7 +179,6 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         if (!service.isOfferActive) return const SizedBox.shrink();
 
         final language = ref.watch(languageProvider);
-        final isEn = language == AppLanguage.en;
         final parts = service.countdownParts;
 
         return Container(
@@ -243,7 +242,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                   return Column(
                     children: [
                       Text(
-                        isEn
+                        language.isEn
                             ? 'Yearly plan: $introPrice (normally $regularPrice)'
                             : 'Yıllık plan: $introPrice (normalde $regularPrice)',
                         style: AppTypography.subtitle(
@@ -253,7 +252,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        isEn
+                        language.isEn
                             ? 'Auto-renews at $regularPrice after introductory period'
                             : 'Tanıtım döneminden sonra $regularPrice olarak otomatik yenilenir',
                         style: AppTypography.subtitle(
@@ -511,7 +510,6 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
 
   Widget _buildSocialProof(BuildContext context) {
     final language = ref.watch(languageProvider);
-    final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Row(
@@ -527,7 +525,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         const SizedBox(width: 6),
         Flexible(
           child: Text(
-            isEn
+            language.isEn
                 ? 'Your private journaling companion'
                 : 'Kişisel günlük arkadaşın',
             style: AppTypography.elegantAccent(
@@ -549,7 +547,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   // ════════════════════════════════════════════════════════════════════════════
 
   Widget _buildPlanSelection(BuildContext context) {
-    final isEn = ref.watch(languageProvider) == AppLanguage.en;
+    final language = ref.watch(languageProvider);
     return Column(
       children: [
         // Yearly — target plan
@@ -558,7 +556,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           isSelected: _selectedTier == PremiumTier.yearly,
           onTap: () => setState(() => _selectedTier = PremiumTier.yearly),
           isBestValue: true,
-          isEn: isEn,
+          language: language,
           priceOverride: ref
               .read(premiumProvider.notifier)
               .getProductPrice(PremiumTier.yearly),
@@ -570,7 +568,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           tier: PremiumTier.monthly,
           isSelected: _selectedTier == PremiumTier.monthly,
           onTap: () => setState(() => _selectedTier = PremiumTier.monthly),
-          isEn: isEn,
+          language: language,
           priceOverride:
               ref
                   .watch(paywallExperimentProvider)
@@ -1068,7 +1066,6 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
 
   Widget _buildTerms(BuildContext context) {
     final language = ref.watch(languageProvider);
-    final isEn = language == AppLanguage.en;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
       child: Column(
@@ -1095,7 +1092,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                     constraints: const BoxConstraints(minHeight: 44),
                     child: Center(
                       child: Text(
-                        isEn
+                        language.isEn
                             ? 'Privacy Policy'
                             : L10nService.get(
                                 'settings.privacy_policy',
@@ -1134,7 +1131,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                     constraints: const BoxConstraints(minHeight: 44),
                     child: Center(
                       child: Text(
-                        isEn
+                        language.isEn
                             ? 'Terms of Service'
                             : L10nService.get(
                                 'settings.terms_of_service',
@@ -1257,7 +1254,7 @@ class _PlanCard extends StatelessWidget {
   final VoidCallback onTap;
   final bool isBestValue;
   final String? priceOverride;
-  final bool isEn;
+  final AppLanguage language;
 
   const _PlanCard({
     required this.tier,
@@ -1270,7 +1267,6 @@ class _PlanCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return Stack(
       clipBehavior: Clip.none,
       children: [

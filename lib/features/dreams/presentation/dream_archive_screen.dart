@@ -111,13 +111,13 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
     return entries;
   }
 
-  String _formatMonthHeader(String key, bool isEn) {
+  String _formatMonthHeader(String key, AppLanguage language) {
     final parts = key.split('-');
     if (parts.length < 2) return key;
     final year = parts[0];
     final month = int.tryParse(parts[1]) ?? 1;
 
-    final months = isEn
+    final months = language.isEn
         ? CommonStrings.monthsFullEn
         : CommonStrings.monthsFullTr;
 
@@ -125,8 +125,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
     return '$monthName $year';
   }
 
-  String _formatDate(DateTime date, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  String _formatDate(DateTime date, AppLanguage language) {
     final day = date.day.toString().padLeft(2, '0');
     final month = date.month.toString().padLeft(2, '0');
     final year = date.year;
@@ -137,7 +136,6 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(dreamJournalServiceProvider);
 
     return Scaffold(
@@ -257,7 +255,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                             horizontal: AppConstants.spacingLg,
                             vertical: AppConstants.spacingSm,
                           ),
-                          child: _buildSearchBar(isDark, isEn),
+                          child: _buildSearchBar(isDark, language),
                         ),
                       ),
 
@@ -269,7 +267,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                               horizontal: AppConstants.spacingLg,
                             ),
                             child: Text(
-                              isEn
+                              language.isEn
                                   ? '${dreams.length} dreams'
                                   : '${dreams.length} rüya',
                               style: AppTypography.elegantAccent(
@@ -297,10 +295,10 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                           hasScrollBody: false,
                           child: ToolEmptyState(
                             icon: Icons.nightlight_round,
-                            title: isEn
+                            title: language.isEn
                                 ? 'Your dream journal awaits'
                                 : 'Rüya günlüğün seni bekliyor',
-                            description: isEn
+                            description: language.isEn
                                 ? 'Start capturing your dreams — the glossary is ready when you are.'
                                 : 'Rüyalarını kaydetmeye başla — sözlük hazır olduğunda burada.',
                             onStartTemplate: () =>
@@ -327,7 +325,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                                     AppConstants.spacingSm,
                                   ),
                                   child: GradientText(
-                                    _formatMonthHeader(monthKey, isEn),
+                                    _formatMonthHeader(monthKey, language),
                                     variant: GradientTextVariant.gold,
                                     style: AppTypography.displayFont.copyWith(
                                       fontSize: 15,
@@ -401,7 +399,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                                         child: _DreamCard(
                                           dream: dream,
                                           isDark: isDark,
-                                          isEn: isEn,
+                                          language: language,
                                           formatDate: _formatDate,
                                         ),
                                       ),
@@ -421,7 +419,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                           ),
                           child: ToolEcosystemFooter(
                             currentToolId: 'dreamArchive',
-                            isEn: isEn,
+                            language: language,
                             isDark: isDark,
                           ),
                         ),
@@ -456,8 +454,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
     });
   }
 
-  Widget _buildSearchBar(bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildSearchBar(bool isDark, AppLanguage language) {
     return Container(
       decoration: BoxDecoration(
         color: isDark
@@ -570,13 +567,13 @@ class _StatTile extends StatelessWidget {
 class _DreamCard extends StatelessWidget {
   final DreamEntry dream;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final String Function(DateTime, bool) formatDate;
 
   const _DreamCard({
     required this.dream,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.formatDate,
   });
 
@@ -584,7 +581,7 @@ class _DreamCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       button: true,
-      label: '${dream.title}, ${formatDate(dream.dreamDate, isEn)}',
+      label: '${dream.title}, ${formatDate(dream.dreamDate, language)}',
       child: GlassPanel(
         elevation: GlassElevation.g2,
         padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -622,7 +619,7 @@ class _DreamCard extends StatelessWidget {
 
             // Date
             Text(
-              formatDate(dream.dreamDate, isEn),
+              formatDate(dream.dreamDate, language),
               style: AppTypography.elegantAccent(
                 fontSize: 13,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,

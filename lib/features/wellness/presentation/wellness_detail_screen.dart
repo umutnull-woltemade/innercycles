@@ -27,7 +27,6 @@ class WellnessDetailScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isEn = language == AppLanguage.en;
     final scoreAsync = ref.watch(wellnessScoreProvider);
     final trendAsync = ref.watch(wellnessTrendProvider);
     final isPremium = ref.watch(isPremiumUserProvider);
@@ -92,12 +91,12 @@ class WellnessDetailScreen extends ConsumerWidget {
                         ),
                         data: (score) {
                           if (score == null) {
-                            return _buildEmptyState(context, isDark, isEn);
+                            return _buildEmptyState(context, isDark, language);
                           }
                           return _ScoreHero(
                             score: score,
                             isDark: isDark,
-                            isEn: isEn,
+                            language: language,
                           );
                         },
                       ),
@@ -113,7 +112,7 @@ class WellnessDetailScreen extends ConsumerWidget {
                           return _BreakdownDetail(
                             breakdown: score.breakdown,
                             isDark: isDark,
-                            isEn: isEn,
+                            language: language,
                           );
                         },
                       ),
@@ -131,7 +130,7 @@ class WellnessDetailScreen extends ConsumerWidget {
                           return _WeeklyTrendChart(
                             trend: trend,
                             isDark: isDark,
-                            isEn: isEn,
+                            language: language,
                             isPremium: isPremium,
                           );
                         },
@@ -140,13 +139,13 @@ class WellnessDetailScreen extends ConsumerWidget {
                       const SizedBox(height: 24),
 
                       // Tips
-                      _buildTips(isDark, isEn),
+                      _buildTips(isDark, language),
 
                       const SizedBox(height: 24),
                       ContentDisclaimer(language: language),
                       ToolEcosystemFooter(
                         currentToolId: 'wellnessDetail',
-                        isEn: isEn,
+                        language: language,
                         isDark: isDark,
                       ),
                       const SizedBox(height: 40),
@@ -161,8 +160,7 @@ class WellnessDetailScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildEmptyState(BuildContext context, bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildEmptyState(BuildContext context, bool isDark, AppLanguage language) {
     return PremiumEmptyState(
       icon: Icons.favorite_outline,
       title: L10nService.get('wellness.wellness_detail.your_wellness_score_is_building', language),
@@ -173,8 +171,7 @@ class WellnessDetailScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildTips(bool isDark, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  Widget _buildTips(bool isDark, AppLanguage language) {
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
@@ -224,17 +221,16 @@ class WellnessDetailScreen extends ConsumerWidget {
 class _ScoreHero extends StatelessWidget {
   final WellnessScore score;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _ScoreHero({
     required this.score,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return Center(
       child: Column(
         children: [
@@ -277,7 +273,7 @@ class _ScoreHero extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            _scoreLabel(score.score, isEn),
+            _scoreLabel(score.score, language),
             style: AppTypography.displayFont.copyWith(
               fontSize: 20,
               fontWeight: FontWeight.w600,
@@ -305,8 +301,7 @@ class _ScoreHero extends StatelessWidget {
     return AppColors.error;
   }
 
-  String _scoreLabel(int score, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  String _scoreLabel(int score, AppLanguage language) {
     if (score >= 80) return L10nService.get('wellness.wellness_detail.thriving', language);
     if (score >= 60) return L10nService.get('wellness.wellness_detail.good_balance', language);
     if (score >= 40) return L10nService.get('wellness.wellness_detail.room_to_grow', language);
@@ -318,17 +313,16 @@ class _ScoreHero extends StatelessWidget {
 class _BreakdownDetail extends StatelessWidget {
   final List<WellnessBreakdown> breakdown;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _BreakdownDetail({
     required this.breakdown,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
@@ -364,7 +358,7 @@ class _BreakdownDetail extends StatelessWidget {
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          _categoryLabel(b.category, isEn),
+                          _categoryLabel(b.category, language),
                           style: AppTypography.subtitle(
                             fontSize: 13,
                             color: isDark
@@ -434,8 +428,7 @@ class _BreakdownDetail extends StatelessWidget {
     }
   }
 
-  String _categoryLabel(String category, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  String _categoryLabel(String category, AppLanguage language) {
     switch (category) {
       case 'journal':
         return L10nService.get('wellness.wellness_detail.journal_rating', language);
@@ -464,19 +457,18 @@ class _BreakdownDetail extends StatelessWidget {
 class _WeeklyTrendChart extends StatelessWidget {
   final WellnessTrend trend;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final bool isPremium;
 
   const _WeeklyTrendChart({
     required this.trend,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.isPremium,
   });
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
@@ -511,7 +503,7 @@ class _WeeklyTrendChart extends StatelessWidget {
               ),
               const SizedBox(width: 4),
               Text(
-                _trendLabel(trend.direction, isEn),
+                _trendLabel(trend.direction, language),
                 style: AppTypography.elegantAccent(
                   fontSize: 12,
                   color: trend.direction == 'up'
@@ -586,8 +578,7 @@ class _WeeklyTrendChart extends StatelessWidget {
     );
   }
 
-  String _trendLabel(String direction, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  String _trendLabel(String direction, AppLanguage language) {
     switch (direction) {
       case 'up':
         return L10nService.get('wellness.wellness_detail.improving', language);

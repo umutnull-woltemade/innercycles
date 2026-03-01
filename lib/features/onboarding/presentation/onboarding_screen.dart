@@ -849,7 +849,6 @@ class _FirstCyclePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isEn = language == AppLanguage.en;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -966,7 +965,7 @@ class _FirstCyclePage extends StatelessWidget {
                             const SizedBox(height: 4),
                             Flexible(
                               child: Text(
-                                isEn
+                                language.isEn
                                     ? (_focusDescEn[area] ?? '')
                                     : (_focusDescTr[area] ?? ''),
                                 style: AppTypography.decorativeScript(
@@ -1042,7 +1041,6 @@ class _FirstMoodPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isEn = language == AppLanguage.en;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -1111,7 +1109,7 @@ class _FirstMoodPage extends StatelessWidget {
             children: MoodCheckinService.moodOptions.asMap().entries.map((entry) {
               final index = entry.key;
               final (mood, emoji, labelEn, labelTr) = entry.value;
-              final label = isEn ? labelEn : labelTr;
+              final label = language.isEn ? labelEn : labelTr;
               final isSelected = selectedMood == mood;
 
               return Semantics(
@@ -1735,7 +1733,6 @@ class _WelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isEn = language == AppLanguage.en;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -1840,17 +1837,17 @@ class _WelcomePage extends StatelessWidget {
               _FeatureHighlight(
                 icon: Icons.waves_rounded,
                 color: AppColors.amethyst,
-                label: isEn ? 'Emotional\nCycles' : 'Duygusal\nDöngüler',
+                label: language.isEn ? 'Emotional\nCycles' : 'Duygusal\nDöngüler',
               ),
               _FeatureHighlight(
                 icon: Icons.nights_stay_rounded,
                 color: AppColors.auroraStart,
-                label: isEn ? 'Dream\nJournal' : 'Rüya\nGünlüğü',
+                label: language.isEn ? 'Dream\nJournal' : 'Rüya\nGünlüğü',
               ),
               _FeatureHighlight(
                 icon: Icons.auto_graph_rounded,
                 color: AppColors.chartPink,
-                label: isEn ? 'Pattern\nInsights' : 'Kalıp\nİçgörüler',
+                label: language.isEn ? 'Pattern\nInsights' : 'Kalıp\nİçgörüler',
               ),
             ],
           ).glassEntrance(

@@ -31,7 +31,7 @@ class VoiceJournalService {
   /// Stream controller for error events.
   final _errorController = StreamController<String>.broadcast();
 
-  bool get _isEn => StorageService.loadLanguage() == AppLanguage.en;
+  AppLanguage get _language => StorageService.loadLanguage();
 
   /// The most recent recognized text from the current listening session.
   String _lastRecognizedText = '';
@@ -48,7 +48,7 @@ class VoiceJournalService {
 
   /// Internal initialization of the speech recognition engine.
   Future<void> _initialize() async {
-    final language = AppLanguage.fromIsEn(_isEn);
+    final language = _language;
     try {
       _isInitialized = await _speech.initialize(
         onError: _onError,
@@ -90,7 +90,7 @@ class VoiceJournalService {
   /// [localeId] - Optional locale for speech recognition (e.g. 'en_US', 'tr_TR').
   /// Returns true if listening started successfully.
   Future<bool> startListening({String? localeId}) async {
-    final language = AppLanguage.fromIsEn(_isEn);
+    final language = _language;
     if (!_isInitialized) {
       _errorController.add(
         L10nService.get('data.services.voice_journal.voice_input_is_not_available_on_this_dev', language),
@@ -128,7 +128,7 @@ class VoiceJournalService {
 
   /// Stop listening for speech input.
   Future<void> stopListening() async {
-    final language = AppLanguage.fromIsEn(_isEn);
+    final language = _language;
     if (!_isListening) return;
 
     try {
