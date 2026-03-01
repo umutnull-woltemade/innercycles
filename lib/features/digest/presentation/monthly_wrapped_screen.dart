@@ -348,7 +348,7 @@ class _Slide5Share extends StatelessWidget {
               final template = ShareCardTemplates.monthlyWrapped;
               final cardData = ShareCardTemplates.buildData(
                 template: template,
-                language: AppLanguage.fromIsEn(language),
+                language: language,
                 journalDays: data.totalEntries,
                 moodValues: data.dailyRatings.where((r) => r > 0).toList(),
               );
@@ -356,7 +356,7 @@ class _Slide5Share extends StatelessWidget {
                 context,
                 template: template,
                 data: cardData,
-                language: AppLanguage.fromIsEn(language),
+                language: language,
               );
             },
             expanded: true,

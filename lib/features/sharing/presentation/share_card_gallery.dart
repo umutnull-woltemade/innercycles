@@ -87,7 +87,7 @@ class _ShareCardGalleryScreenState
 
     return ShareCardTemplates.buildData(
       template: template,
-      language: AppLanguage.fromIsEn(language),
+      language: language,
       streak: streak,
       cyclePhaseName: cyclePhaseName,
       cyclePhaseDescription: cyclePhaseDescription,
