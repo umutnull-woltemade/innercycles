@@ -1657,6 +1657,7 @@
       "delete_account_1": "Hesabı Sil",
       "delete_your_account": "Hesabınızı silinsin mi?",
       "keep_account": "Hesabı Koru",
+      "no_internet_connection_please_try_again": "İnternet bağlantısı yok. Lütfen bağlanıp tekrar deneyin.",
       "offline": "Çevrimdışı",
       "pin_must_be_4_digits": "PIN 4 haneli olmalı",
       "pins_do_not_match": "PIN'ler eşleşmiyor",

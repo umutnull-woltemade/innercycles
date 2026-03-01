@@ -200,9 +200,15 @@ class LifeEventService with SupabaseSyncMixin {
         intensity: (row['intensity'] as int?) ?? 3,
       );
 
+      final remoteUpdatedAt =
+          DateTime.tryParse(row['updated_at']?.toString() ?? '');
+
       final existingIdx = _events.indexWhere((e) => e.id == id);
       if (existingIdx >= 0) {
-        _events[existingIdx] = event;
+        final localCreatedAt = _events[existingIdx].createdAt;
+        if (remoteUpdatedAt == null || remoteUpdatedAt.isAfter(localCreatedAt)) {
+          _events[existingIdx] = event;
+        }
       } else {
         _events.add(event);
       }

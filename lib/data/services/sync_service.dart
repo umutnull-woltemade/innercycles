@@ -142,6 +142,18 @@ class SyncService {
     _statusController.close();
   }
 
+  /// Clear all pending sync operations (call on sign-out to prevent cross-user contamination)
+  static Future<void> clearQueue() async {
+    final box = _syncBox;
+    if (box == null) return;
+    final count = box.length;
+    await box.clear();
+    _updateStatus(SyncStatus.idle);
+    if (kDebugMode && count > 0) {
+      debugPrint('SyncService: Cleared $count pending queue items on sign-out');
+    }
+  }
+
   /// Called when app resumes from background — triggers full sync
   static void onAppResumed() {
     if (kDebugMode) debugPrint('SyncService: App resumed — triggering sync');

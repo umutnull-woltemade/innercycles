@@ -332,9 +332,15 @@ class NoteToSelfService with SupabaseSyncMixin {
         isPrivate: row['is_private'] as bool? ?? false,
       );
 
+      final remoteUpdatedAt =
+          DateTime.tryParse(row['updated_at']?.toString() ?? '');
+
       final existingIdx = _notes.indexWhere((n) => n.id == id);
       if (existingIdx >= 0) {
-        _notes[existingIdx] = note;
+        final localUpdatedAt = _notes[existingIdx].updatedAt;
+        if (remoteUpdatedAt == null || remoteUpdatedAt.isAfter(localUpdatedAt)) {
+          _notes[existingIdx] = note;
+        }
       } else {
         _notes.add(note);
       }
@@ -369,9 +375,15 @@ class NoteToSelfService with SupabaseSyncMixin {
         customMessage: row['custom_message'] as String?,
       );
 
+      final remoteUpdatedAt =
+          DateTime.tryParse(row['updated_at']?.toString() ?? '');
+
       final existingIdx = _reminders.indexWhere((r) => r.id == id);
       if (existingIdx >= 0) {
-        _reminders[existingIdx] = reminder;
+        final localScheduledAt = _reminders[existingIdx].scheduledAt;
+        if (remoteUpdatedAt == null || remoteUpdatedAt.isAfter(localScheduledAt)) {
+          _reminders[existingIdx] = reminder;
+        }
       } else {
         _reminders.add(reminder);
       }

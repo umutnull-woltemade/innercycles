@@ -294,9 +294,15 @@ class CycleSyncService with SupabaseSyncMixin {
             [],
       );
 
+      final remoteUpdatedAt =
+          DateTime.tryParse(row['updated_at']?.toString() ?? '');
+
       final existingIdx = _periodLogs.indexWhere((l) => l.id == id);
       if (existingIdx >= 0) {
-        _periodLogs[existingIdx] = log;
+        final localStartDate = _periodLogs[existingIdx].periodStartDate;
+        if (remoteUpdatedAt == null || remoteUpdatedAt.isAfter(localStartDate)) {
+          _periodLogs[existingIdx] = log;
+        }
       } else {
         _periodLogs.add(log);
       }

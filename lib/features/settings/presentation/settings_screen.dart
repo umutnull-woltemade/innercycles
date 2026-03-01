@@ -23,6 +23,7 @@ import '../../../data/services/paywall_service.dart';
 import '../../../data/services/app_lock_service.dart';
 import '../../../data/services/auth_service.dart';
 import '../../../data/services/sync_service.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import '../../../shared/providers/sync_status_provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
@@ -691,6 +692,9 @@ class SettingsScreen extends ConsumerWidget {
     if (confirmed != true || !context.mounted) return;
 
     try {
+      // Clear sync queue before sign-out to prevent cross-user contamination
+      await SyncService.clearQueue();
+      await StorageService.clearAllData();
       await Supabase.instance.client.auth.signOut();
     } catch (e) {
       if (kDebugMode) debugPrint('Sign out error: $e');
@@ -758,6 +762,26 @@ class SettingsScreen extends ConsumerWidget {
         return;
       }
 
+      // Guard: require network connectivity for server-side deletion
+      final connectivityResult = await Connectivity().checkConnectivity();
+      if (connectivityResult.contains(ConnectivityResult.none)) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                L10nService.get('settings.settings.no_internet_connection_please_try_again', language),
+              ),
+              backgroundColor: AppColors.error,
+              behavior: SnackBarBehavior.floating,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+          );
+        }
+        return;
+      }
+
       // Call edge function to delete all user data + auth account
       final response = await Supabase.instance.client.functions.invoke(
         'delete-user-data',
@@ -767,13 +791,19 @@ class SettingsScreen extends ConsumerWidget {
       );
 
       if (response.status == 200) {
-        // Clear local data + vault photos
+        // Clear sync queue + local data + vault photos
+        await SyncService.clearQueue();
+        await StorageService.clearAllData();
         await Supabase.instance.client.auth.signOut();
         try {
           final appDir = await getApplicationDocumentsDirectory();
           final vaultDir = Directory('${appDir.path}/vault_photos');
           if (await vaultDir.exists()) {
             await vaultDir.delete(recursive: true);
+            // Verify deletion
+            if (await vaultDir.exists()) {
+              if (kDebugMode) debugPrint('Warning: vault_photos dir still exists after deletion');
+            }
           }
         } catch (e) { if (kDebugMode) debugPrint('Vault dir cleanup: $e'); }
         if (context.mounted) {
@@ -791,15 +821,14 @@ class SettingsScreen extends ConsumerWidget {
           );
         }
       } else {
-        // Fallback: sign out even if edge function fails
-        await Supabase.instance.client.auth.signOut();
+        // Edge function failed — do NOT sign out, let user retry
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
                 L10nService.get('settings.settings.account_deletion_requested_you_have_been', language),
               ),
-              backgroundColor: AppColors.surfaceLight,
+              backgroundColor: AppColors.error,
               behavior: SnackBarBehavior.floating,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -810,10 +839,6 @@ class SettingsScreen extends ConsumerWidget {
       }
     } catch (e) {
       if (kDebugMode) debugPrint('Delete account error: $e');
-      // Fallback: sign out even on error
-      try {
-        await Supabase.instance.client.auth.signOut();
-      } catch (e) { if (kDebugMode) debugPrint('Vault dir cleanup: $e'); }
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

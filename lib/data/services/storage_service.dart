@@ -370,9 +370,15 @@ class StorageService {
         relationship: row['relationship'] as String?,
       );
 
+      final remoteUpdatedAt =
+          DateTime.tryParse(row['updated_at']?.toString() ?? '');
+
       final idx = profiles.indexWhere((p) => p.id == id);
       if (idx >= 0) {
-        profiles[idx] = profile;
+        // Profiles lack updatedAt — accept remote if it has a timestamp
+        if (remoteUpdatedAt != null) {
+          profiles[idx] = profile;
+        }
       } else {
         profiles.add(profile);
       }

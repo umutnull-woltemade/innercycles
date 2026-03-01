@@ -809,9 +809,15 @@ class DreamJournalService with SupabaseSyncMixin {
             : null,
       );
 
+      final remoteUpdatedAt =
+          DateTime.tryParse(row['updated_at']?.toString() ?? '');
+
       final existingIdx = dreams.indexWhere((d) => d.id == id);
       if (existingIdx >= 0) {
-        dreams[existingIdx] = entry;
+        final localRecordedAt = dreams[existingIdx].recordedAt;
+        if (remoteUpdatedAt == null || remoteUpdatedAt.isAfter(localRecordedAt)) {
+          dreams[existingIdx] = entry;
+        }
       } else {
         dreams.add(entry);
       }

@@ -324,9 +324,16 @@ class JournalService with SupabaseSyncMixin {
         isPrivate: row['is_private'] as bool? ?? false,
       );
 
+      final remoteUpdatedAt =
+          DateTime.tryParse(row['updated_at']?.toString() ?? '');
+
       final existingIdx = _entries.indexWhere((e) => e.id == id);
       if (existingIdx >= 0) {
-        _entries[existingIdx] = entry;
+        // Only overwrite if remote is newer than local (timestamp-based conflict resolution)
+        final localCreatedAt = _entries[existingIdx].createdAt;
+        if (remoteUpdatedAt == null || remoteUpdatedAt.isAfter(localCreatedAt)) {
+          _entries[existingIdx] = entry;
+        }
       } else {
         _entries.add(entry);
       }

@@ -228,9 +228,15 @@ class BirthdayContactService with SupabaseSyncMixin {
         dayBeforeReminder: (row['day_before_reminder'] as bool?) ?? true,
       );
 
+      final remoteUpdatedAt =
+          DateTime.tryParse(row['updated_at']?.toString() ?? '');
+
       final existingIdx = _contacts.indexWhere((c) => c.id == id);
       if (existingIdx >= 0) {
-        _contacts[existingIdx] = contact;
+        final localCreatedAt = _contacts[existingIdx].createdAt;
+        if (remoteUpdatedAt == null || remoteUpdatedAt.isAfter(localCreatedAt)) {
+          _contacts[existingIdx] = contact;
+        }
       } else {
         _contacts.add(contact);
       }

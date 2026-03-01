@@ -1657,6 +1657,7 @@
       "delete_account_1": "Delete Account",
       "delete_your_account": "Delete your account?",
       "keep_account": "Keep Account",
+      "no_internet_connection_please_try_again": "Keine Internetverbindung. Bitte verbinden und erneut versuchen.",
       "offline": "Offline",
       "pin_must_be_4_digits": "PIN must be 4 digits",
       "pins_do_not_match": "PINs do not match",

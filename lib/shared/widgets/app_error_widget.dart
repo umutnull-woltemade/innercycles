@@ -21,7 +21,9 @@ class AppErrorWidget extends StatelessWidget {
       if (locale.languageCode == 'tr') return AppLanguage.tr;
       if (locale.languageCode == 'de') return AppLanguage.de;
       if (locale.languageCode == 'fr') return AppLanguage.fr;
-    } catch (_) {}
+    } catch (e) {
+      if (kDebugMode) debugPrint('AppErrorWidget: locale detection failed: $e');
+    }
     return AppLanguage.en;
   }
 

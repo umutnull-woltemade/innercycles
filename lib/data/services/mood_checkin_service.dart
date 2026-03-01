@@ -168,9 +168,15 @@ class MoodCheckinService with SupabaseSyncMixin {
         emoji: row['emoji'] as String? ?? '',
       );
 
+      final remoteUpdatedAt =
+          DateTime.tryParse(row['updated_at']?.toString() ?? '');
+
       final existingIdx = _entries.indexWhere((e) => e.id == id);
       if (existingIdx >= 0) {
-        _entries[existingIdx] = entry;
+        final localDate = _entries[existingIdx].date;
+        if (remoteUpdatedAt == null || remoteUpdatedAt.isAfter(localDate)) {
+          _entries[existingIdx] = entry;
+        }
       } else {
         _entries.add(entry);
       }
