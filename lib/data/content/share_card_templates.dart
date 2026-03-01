@@ -465,6 +465,75 @@ class ShareCardTemplates {
   );
 
   // =========================================================================
+  // STORY VARIANTS (9:16 Instagram Stories format)
+  // =========================================================================
+
+  static const storyStreakFlame = ShareCardTemplate(
+    id: 'streak_flame',
+    category: ShareCardCategory.pattern,
+    titleEn: 'Journal Streak',
+    titleTr: 'Günlük Serisi',
+    gradientColors: [Color(0xFF1A1508), Color(0xFF2D2410), Color(0xFF1A1208)],
+    layoutType: ShareCardLayout.badgeHero,
+    icon: Icons.local_fire_department_rounded,
+    badgeEn: 'STORY',
+    badgeTr: 'HİKAYE',
+    isStory: true,
+  );
+
+  static const storyMoodWave = ShareCardTemplate(
+    id: 'weekly_mood_wave',
+    category: ShareCardCategory.pattern,
+    titleEn: 'My Week in Feelings',
+    titleTr: 'Duygularla Geçen Haftam',
+    gradientColors: [Color(0xFF2D2119), Color(0xFF3D2E24), Color(0xFF1A1510)],
+    layoutType: ShareCardLayout.miniChart,
+    icon: Icons.waves_rounded,
+    badgeEn: 'STORY',
+    badgeTr: 'HİKAYE',
+    isStory: true,
+  );
+
+  static const storyReflection = ShareCardTemplate(
+    id: 'daily_reflection',
+    category: ShareCardCategory.wisdom,
+    titleEn: 'Daily Reflection',
+    titleTr: 'Günlük Düşünce',
+    gradientColors: [Color(0xFF2D2119), Color(0xFF241E19), Color(0xFF1A1510)],
+    layoutType: ShareCardLayout.quoteBlock,
+    icon: Icons.format_quote_rounded,
+    badgeEn: 'STORY',
+    badgeTr: 'HİKAYE',
+    isStory: true,
+  );
+
+  static const storyJournalMilestone = ShareCardTemplate(
+    id: 'journal_milestone',
+    category: ShareCardCategory.achievement,
+    titleEn: 'Journaling Milestone',
+    titleTr: 'Günlük Kilometre Taşı',
+    gradientColors: [Color(0xFF1A1508), Color(0xFF3D3018), Color(0xFF1A1208)],
+    layoutType: ShareCardLayout.badgeHero,
+    icon: Icons.menu_book_rounded,
+    badgeEn: 'STORY',
+    badgeTr: 'HİKAYE',
+    isStory: true,
+  );
+
+  static const storyEmotionalStyle = ShareCardTemplate(
+    id: 'emotional_archetype',
+    category: ShareCardCategory.identity,
+    titleEn: 'My Emotional Style',
+    titleTr: 'Duygusal Stilim',
+    gradientColors: [Color(0xFF2D241F), Color(0xFF3D322B), Color(0xFF1E1714)],
+    layoutType: ShareCardLayout.centered,
+    icon: Icons.cyclone_rounded,
+    badgeEn: 'STORY',
+    badgeTr: 'HİKAYE',
+    isStory: true,
+  );
+
+  // =========================================================================
   // TEMPLATE REGISTRY
   // =========================================================================
 
@@ -512,6 +581,12 @@ class ShareCardTemplates {
     // Monthly Wrapped & Question of the Day
     monthlyWrapped,
     questionOfTheDay,
+    // Story variants (9:16)
+    storyStreakFlame,
+    storyMoodWave,
+    storyReflection,
+    storyJournalMilestone,
+    storyEmotionalStyle,
   ];
 
   static List<ShareCardTemplate> byCategory(ShareCardCategory category) {

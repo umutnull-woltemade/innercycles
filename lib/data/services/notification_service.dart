@@ -404,9 +404,6 @@ class NotificationService {
   /// Call this on app launch — it schedules for today at 20:30.
   /// Should be canceled when user saves a journal entry.
   Future<void> scheduleStreakAtRisk({required int currentStreak}) async {
-    // Only notify if they have an active streak worth protecting
-    if (currentStreak < 2) return;
-
     _isEn = await _readIsEn();
     final language = AppLanguage.fromIsEn(_isEn);
 
@@ -423,10 +420,23 @@ class NotificationService {
     // If 8:30 PM already passed, don't schedule
     if (scheduledTime.isBefore(now)) return;
 
+    // Day 0/1 users get an encouraging first-day nudge instead
+    final String title;
+    final String body;
+    if (currentStreak < 2) {
+      title = _isEn ? 'Your first day!' : 'İlk günün!';
+      body = _isEn
+          ? 'A quick entry tonight starts your journaling streak'
+          : 'Bu akşam kısa bir giriş, yazma serini başlatır';
+    } else {
+      title = L10nService.getWithParams('data.services.notification.streak_at_risk_title', language, params: {'streak': '$currentStreak'});
+      body = L10nService.get('data.services.notification.a_quick_checkin_keeps_your_momentum_goin', language);
+    }
+
     await _notifications.zonedSchedule(
       id: journalStreakId,
-      title: L10nService.getWithParams('data.services.notification.streak_at_risk_title', language, params: {'streak': '$currentStreak'}),
-      body: L10nService.get('data.services.notification.a_quick_checkin_keeps_your_momentum_goin', language),
+      title: title,
+      body: body,
       scheduledDate: scheduledTime,
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(

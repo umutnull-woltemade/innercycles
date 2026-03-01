@@ -9,7 +9,7 @@
 # ════════════════════════════════════════════════════════════════════════════
 
 # ── TITLE (30 char max) ──────────────────────────────────────────────────
-title: "InnerCycles - Daily Journal"  # 29 chars — captures #1 keyword "journal"
+title: "InnerCycles: Journal & Diary"  # 28 chars — captures "journal" + "diary" (2 top category terms in title)
 
 # ── SUBTITLE (30 char max) ───────────────────────────────────────────────
 subtitle: "Mood Tracker & Self Reflection"  # 30 chars — captures "mood", "tracker", "self", "reflection"
@@ -18,14 +18,14 @@ subtitle: "Mood Tracker & Self Reflection"  # 30 chars — captures "mood", "tra
 # Do NOT repeat words from title/subtitle. Apple auto-combines tokens.
 # Singular forms only — Apple auto-indexes plurals.
 # "journal", "daily", "mood", "tracker", "self", "reflection" already in title/subtitle.
-keywords: "diary,dream,streak,wellness,mindfulness,pattern,gratitude,habit,mental,health,emotion,insight,prompt"
-# 100 chars — 13 unique terms, none repeat title/subtitle
+keywords: "dream,streak,wellness,mindfulness,pattern,gratitude,habit,mental,health,emotion,insight,private,sleep"
+# 100 chars — 13 unique terms. "diary" moved to title, "prompt" dropped. Added "private" + "sleep" (high volume)
 
 # ── SPANISH (MEXICO) LOCALE HACK ────────────────────────────────────────
 # US App Store indexes BOTH en-US and es-MX. Populate es-MX with additional
 # English keywords to effectively double indexable keyword space (160→320 chars).
-es_mx_keywords: "wellbeing,self-help,therapy,anxiety,stress,happiness,positivity,affirmation,breathe,relax,log,note"
-# 98 chars — 12 additional terms
+es_mx_keywords: "feelings,writing,growth,therapy,anxiety,stress,calm,mind,aware,goals,routine,check,note,ai,log"
+# 98 chars — 15 high-intent terms. Dropped low-value "positivity,affirmation,happiness,self-help"
 
 # ── CATEGORY ─────────────────────────────────────────────────────────────
 primary_category: "Lifestyle"
@@ -33,28 +33,28 @@ secondary_category: "Health & Fitness"
 
 # ── SCREENSHOT CAPTIONS (keyword-rich for OCR indexing) ──────────────────
 screenshot_captions:
-  1: "Your emotions have a rhythm — see patterns you never noticed before"
-  2: "Build a journaling streak — track your progress, celebrate milestones"
-  3: "Dreams decoded — record, search, and understand your dreams"
-  4: "Pattern-based insights — discover what your entries reveal about you"
-  5: "Your mood, visualized — spot trends across days, weeks, and months"
-  6: "Widgets on your Home Screen — streak, prompts, and mood at a glance"
-  7: "Beautiful dark and light themes — designed to feel calm and personal"
-  8: "Never forget a birthday — your personal birthday agenda, built in"
-  9: "Quick mood log from your wrist — Apple Watch companion included"
-  10: "Private. Secure. Yours. — your data, your control"
+  1: "Your emotions have patterns — a personal journal that helps you see them"
+  2: "Daily journaling streaks — track progress, celebrate milestones"
+  3: "Dream journal — record, search, and decode your dreams"
+  4: "Personalized reflections — discover what your mood patterns reveal"
+  5: "Mood tracker visualized — spot emotional trends across weeks and months"
+  6: "Home Screen widgets — your streak, daily prompt, and mood at a glance"
+  7: "Dark and light themes — a calm, private diary designed around you"
+  8: "Birthday agenda — never forget important dates, get reminders"
+  9: "Apple Watch mood log — track how you feel, right from your wrist"
+  10: "Private and secure — your journal, your data, your control"
 
 # ── PROMOTIONAL TEXT (170 chars, can be updated without review) ──────────
-promotional_text: "New: Personalized reflections, streak tracking, and iOS widgets. Understand yourself better, one entry at a time."
-# 111 chars — feature-forward, benefit-driven
+promotional_text: "New: Discover emotional patterns in your journal. Personalized reflections, mood tracking, dream journal, streak milestones, and iOS widgets. Private by design."
+# 160 chars — pattern-first hook, feature-rich, privacy closer
 
 # ── DESCRIPTION (iOS — not indexed, optimized for conversion) ────────────
 description: |
-  Understand yourself better, one entry at a time.
+  Your emotions have patterns. InnerCycles helps you see them.
 
-  InnerCycles is your personal space for daily journaling, mood tracking, and self-reflection. Discover patterns in your emotions, track your streaks, and grow with personalized insights — all in a beautifully designed, private journaling experience.
+  Track your moods, journal daily, decode your dreams, and discover what drives how you feel — with personalized reflections that connect the dots across your entries. Beautiful, private, and designed to grow with you.
 
-  Whether you journal every morning, track your moods throughout the day, or want to remember your dreams, InnerCycles adapts to your rhythm and helps you see the bigger picture of your inner life.
+  Whether you journal every morning, log moods throughout the day, or want to remember your dreams, InnerCycles adapts to your rhythm and reveals the bigger picture of your inner life.
 
   — DAILY JOURNALING —
   • Write freely with guided prompts or open entries
@@ -135,7 +135,7 @@ review_notes: |
 
   BIRTH DATE: Birth date is collected solely for age verification and birthday-themed reflection prompts. No astrological calculations are performed.
 
-  iOS WIDGETS: 5 widget types available (Daily Reflection, Mood Insight, Weekly Mood Grid, Cycle Position, Lock Screen). Data flows via App Groups (group.com.venusone.innercycles) and MethodChannel bridge.
+  iOS WIDGETS: 5 widget types available (Daily Reflection, Mood Insight, Weekly Mood Grid, Daily Focus, Lock Screen). Data flows via App Groups (group.com.venusone.innercycles) and MethodChannel bridge.
 
   APPLE WATCH: Companion app for quick mood logging. Data synced via WatchConnectivity.
 
@@ -145,9 +145,9 @@ review_notes: |
 
 # ── LOCALIZED METADATA (Turkish) ─────────────────────────────────────────
 tr:
-  title: "InnerCycles - Günlük"  # 21 chars
-  subtitle: "Ruh Hali Takibi & Günlük"  # 25 chars — captures "ruh hali", "takibi", "günlük"
-  keywords: "günlük,rüya,seri,sağlık,farkındalık,örüntü,minnettarlık,alışkanlık,duygu,içgörü,yazma,huzur,kişisel"
+  title: "InnerCycles: Günlük & Ruh Hali"  # 30 chars — max usage, captures "günlük" + "ruh hali" in title
+  subtitle: "Ruh Hali Takibi & Farkındalık"  # 29 chars — captures "takibi", "farkındalık" (mindfulness)
+  keywords: "rüya,seri,sağlık,örüntü,minnettarlık,alışkanlık,duygu,içgörü,yazma,huzur,kişisel,uyku,özel"
   description: |
     Kendini daha iyi anla, her giriş bir adım.
 
@@ -174,13 +174,15 @@ tr:
 de:
   title: "InnerCycles - Tagebuch"  # 22 chars
   subtitle: "Stimmungstracker & Tagebuch"  # 28 chars
-  keywords: "Tagebuch,Traum,Serie,Wellness,Achtsamkeit,Muster,Dankbarkeit,Gewohnheit,Gefühle,Einsicht,Schreiben,Meditation,Gesundheit,Ruhe"
+  keywords: "Traum,Serie,Wellness,Achtsamkeit,Muster,Gewohnheit,Gefühle,Einsicht,Schreiben,Gesundheit,Ruhe,Schlaf"
+  # 100 chars — removed "Tagebuch" (in title+subtitle), "Dankbarkeit", "Meditation". Added "Schlaf" (sleep)
 
 # ── LOCALIZED METADATA (French) ──────────────────────────────────────────
 fr:
-  title: "InnerCycles - Journal"  # 22 chars
-  subtitle: "Suivi d'Humeur & Journal"  # 25 chars
-  keywords: "journal intime,rêve,série,bien-être,pleine conscience,schéma,gratitude,habitude,émotion,insight,écriture,méditation,santé,calme"
+  title: "InnerCycles - Journal Intime"  # 29 chars — captures "journal intime" compound
+  subtitle: "Suivi d'Humeur & Bien-Être"  # 27 chars — captures "humeur", "bien-être"
+  keywords: "rêve,série,schéma,gratitude,habitude,émotion,écriture,santé,calme,sommeil,privé,vie,pensée,routine"
+  # 97 chars — removed "journal intime" (in title), "bien-être" (in subtitle). Added "sommeil,privé,vie,pensée,routine"
 
 # ── APP STORE CONNECT PRIVACY NUTRITION LABELS ────────────────────────────
 # Paste these values into App Store Connect → App Privacy → Data Types

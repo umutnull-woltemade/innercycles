@@ -52,7 +52,7 @@ class ShareCardRenderer extends StatelessWidget {
 
   /// Whether this template uses the 9:16 Instagram Stories aspect ratio
   bool get _isStoryRatio =>
-      template.layoutType == ShareCardLayout.cyclePosition;
+      template.isStory || template.layoutType == ShareCardLayout.cyclePosition;
 
   /// Effective card width
   double get _cardWidth => displaySize;

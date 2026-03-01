@@ -35,6 +35,9 @@ enum ReviewTrigger {
 
   /// Reached 25+ entries (deep engagement)
   deepEngagement,
+
+  /// User successfully shared a journal card or insight
+  shareCompleted,
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -47,8 +50,8 @@ class ReviewService {
   static const String _hasReviewedKey = 'review_has_reviewed';
   static const String _triggersUsedKey = 'review_triggers_used';
 
-  /// Minimum days between review prompts
-  static const int _cooldownDays = 90;
+  /// Tiered cooldown: first prompt = 0 days, second = 45 days, third+ = 90 days
+  static const List<int> _tieredCooldownDays = [0, 45, 90];
 
   /// Minimum journal entries before pattern-based trigger
   static const int _minEntriesForPattern = 7;
@@ -160,15 +163,26 @@ class ReviewService {
         return true;
       case ReviewTrigger.deepEngagement:
         return journalEntryCount >= 25;
+      case ReviewTrigger.shareCompleted:
+        return true;
     }
   }
 
-  /// Check if the cooldown period (90 days) has expired.
+  /// Get the cooldown days for the current prompt number (tiered).
+  int get _currentCooldownDays {
+    final prompts = totalPromptsShown;
+    if (prompts >= _tieredCooldownDays.length) {
+      return _tieredCooldownDays.last;
+    }
+    return _tieredCooldownDays[prompts];
+  }
+
+  /// Check if the tiered cooldown period has expired.
   bool _isCooldownExpired() {
     final last = lastPromptDate;
     if (last == null) return true;
     final daysSinceLastPrompt = DateTime.now().difference(last).inDays;
-    return daysSinceLastPrompt >= _cooldownDays;
+    return daysSinceLastPrompt >= _currentCooldownDays;
   }
 
   /// Request the in-app review and persist the prompt state.
@@ -224,7 +238,7 @@ class ReviewService {
     final last = lastPromptDate;
     if (last == null) return 0;
     final daysSince = DateTime.now().difference(last).inDays;
-    final remaining = _cooldownDays - daysSince;
+    final remaining = _currentCooldownDays - daysSince;
     return remaining > 0 ? remaining : 0;
   }
 }

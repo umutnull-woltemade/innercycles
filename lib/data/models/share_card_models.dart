@@ -70,6 +70,7 @@ class ShareCardTemplate {
   final IconData icon;
   final String badgeEn;
   final String badgeTr;
+  final bool isStory;
 
   const ShareCardTemplate({
     required this.id,
@@ -81,6 +82,7 @@ class ShareCardTemplate {
     required this.icon,
     required this.badgeEn,
     required this.badgeTr,
+    this.isStory = false,
   });
 
   String title(AppLanguage language) => language == AppLanguage.en ? titleEn : titleTr;

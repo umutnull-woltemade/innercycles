@@ -606,7 +606,7 @@ class _PromotionalBannerStackState
     final entryCount =
         journalAsync.whenOrNull(data: (s) => s.getAllEntries().length) ?? 0;
 
-    if (entryCount < 5) return null;
+    if (entryCount < 3) return null;
 
     return FutureBuilder<bool>(
       future: _recentlyDismissed(),

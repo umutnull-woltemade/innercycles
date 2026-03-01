@@ -388,7 +388,7 @@ class _ShareCardGalleryScreenState
       streak,
       cycleAnalysis: cycleAnalysis,
     );
-    final isStory = template.layoutType == ShareCardLayout.cyclePosition;
+    final isStory = template.isStory || template.layoutType == ShareCardLayout.cyclePosition;
     final isPremium = ref.watch(premiumProvider).isPremium;
 
     return SafeArea(
