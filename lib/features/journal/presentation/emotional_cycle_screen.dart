@@ -93,6 +93,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
     final cycleServiceAsync = ref.watch(emotionalCycleServiceProvider);
     final analysisAsync = ref.watch(emotionalCycleAnalysisProvider);
 
@@ -140,7 +141,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 return _buildLockedView(
                   context,
                   isDark,
-                  language,
+                  isEn,
                   cycleService.entriesNeeded(),
                   cycleService.entryCount,
                 );
@@ -154,7 +155,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 cycleService,
                 analysis,
                 isDark,
-                language,
+                isEn,
               );
             },
           ),
@@ -170,10 +171,11 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
   Widget _buildLockedView(
     BuildContext context,
     bool isDark,
-    bool language,
+    bool isEn,
     int needed,
     int current,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     return CupertinoScrollbar(
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(
@@ -262,7 +264,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      language.isEn
+                      isEn
                           ? 'Pattern detection requires a minimum of 7 entries across 5 days. You have $current so far.'
                           : 'Kalıp tespiti en az 7 kayıt ve 5 gün gerektirir. Şu ana kadar $current kaydın var.',
                       style: AppTypography.subtitle(
@@ -356,8 +358,9 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     EmotionalCycleService cycleService,
     EmotionalCycleAnalysis analysis,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final now = DateTime.now();
     final bool hasEnoughForFull = analysis.totalEntries >= 30;
     final int displayDays = hasEnoughForFull ? 30 : 14;
@@ -388,7 +391,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                           phase: analysis.overallPhase!,
                           arc: analysis.overallArc,
                           isDark: isDark,
-                          language: language,
+                          isEn: isEn,
                         ),
                       )
                       .animate()
@@ -432,7 +435,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 _buildHeroWaveSection(
                   context,
                   isDark,
-                  language,
+                  isEn,
                   chartData,
                   displayDays,
                 ).animate().fadeIn(duration: 500.ms),
@@ -442,7 +445,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 _buildLegend(
                   context,
                   isDark,
-                  language,
+                  isEn,
                 ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
                 const SizedBox(height: AppConstants.spacingXl),
 
@@ -467,7 +470,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                         child: CycleSummaryCard(
                           summary: summary,
                           isDark: isDark,
-                          language: language,
+                          isEn: isEn,
                         ),
                       )
                       .animate()
@@ -506,7 +509,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                       child: _buildInsightCard(
                         context,
                         isDark,
-                        language,
+                        isEn,
                         entry.value,
                       ),
                     ).animate().fadeIn(
@@ -522,7 +525,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 _buildShiftOutlookSection(
                   context,
                   isDark,
-                  language,
+                  isEn,
                 ).animate().fadeIn(delay: 850.ms, duration: 400.ms),
                 const SizedBox(height: AppConstants.spacingLg),
 
@@ -530,7 +533,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 _buildPatternLoopSection(
                   context,
                   isDark,
-                  language,
+                  isEn,
                 ).animate().fadeIn(delay: 900.ms, duration: 400.ms),
                 const SizedBox(height: AppConstants.spacingLg),
 
@@ -538,7 +541,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 _buildShareButton(
                   context,
                   isDark,
-                  language,
+                  isEn,
                 ).animate().fadeIn(delay: 950.ms, duration: 400.ms),
 
                 // PREMIUM GATE
@@ -547,7 +550,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                   _buildPremiumGate(
                     context,
                     isDark,
-                    language,
+                    isEn,
                     analysis.totalEntries,
                   ).animate().fadeIn(delay: 1000.ms, duration: 400.ms),
                 ],
@@ -570,10 +573,11 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
   Widget _buildHeroWaveSection(
     BuildContext context,
     bool isDark,
-    bool language,
+    bool isEn,
     Map<FocusArea, List<CycleDataPoint>> chartData,
     int displayDays,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final hasData = chartData.values.any((list) => list.isNotEmpty);
     return PremiumCard(
       style: PremiumCardStyle.aurora,
@@ -635,7 +639,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                   areaData: chartData,
                   visibleAreas: _visibleAreas,
                   isDark: isDark,
-                  language: language,
+                  isEn: isEn,
                   displayDays: displayDays,
                   animationProgress: _waveAnimation.value,
                   onPointSelected: (info) =>
@@ -645,7 +649,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
             ),
           if (_selectedPoint != null) ...[
             const SizedBox(height: AppConstants.spacingSm),
-            _buildSelectedPointInfo(context, isDark, language),
+            _buildSelectedPointInfo(context, isDark, isEn),
           ],
           if (hasData)
             Padding(
@@ -681,7 +685,8 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     );
   }
 
-  Widget _buildSelectedPointInfo(BuildContext context, bool isDark, bool language) {
+  Widget _buildSelectedPointInfo(BuildContext context, bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     if (_selectedPoint == null) return const SizedBox.shrink();
     final point = _selectedPoint!;
     final color = kAreaColors[point.area] ?? AppColors.auroraStart;
@@ -730,11 +735,12 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
   // LEGEND
   // ══════════════════════════════════════════════════════════════════════════
 
-  Widget _buildLegend(BuildContext context, bool isDark, bool language) {
+  Widget _buildLegend(BuildContext context, bool isDark, bool isEn) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
         children: FocusArea.values.map((area) {
+          final language = AppLanguage.fromIsEn(isEn);
           final isVisible = _visibleAreas.contains(area);
           final color = kAreaColors[area] ?? AppColors.auroraStart;
           final label = area.localizedName(language);
@@ -837,9 +843,10 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
   Widget _buildInsightCard(
     BuildContext context,
     bool isDark,
-    bool language,
+    bool isEn,
     CycleInsight insight,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final color = insight.relatedArea != null
         ? (kAreaColors[insight.relatedArea!] ?? AppColors.auroraStart)
         : AppColors.auroraStart;
@@ -895,8 +902,9 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
   Widget _buildShiftOutlookSection(
     BuildContext context,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final isPremium = ref.watch(isPremiumUserProvider);
     final outlookAsync = ref.watch(shiftOutlookProvider);
     return Column(
@@ -943,7 +951,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
             ),
             error: (_, _) => const SizedBox.shrink(),
             data: (outlook) =>
-                ShiftOutlookCard(outlook: outlook, isDark: isDark, language: language),
+                ShiftOutlookCard(outlook: outlook, isDark: isDark, isEn: isEn),
           )
         else
           Semantics(
@@ -1002,7 +1010,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
   Widget _buildPatternLoopSection(
     BuildContext context,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
     final loopAnalysisAsync = ref.watch(patternLoopAnalysisProvider);
     return loopAnalysisAsync.when(
@@ -1011,7 +1019,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
       data: (loopAnalysis) => PatternLoopAnalyzer(
         analysis: loopAnalysis,
         isDark: isDark,
-        language: language,
+        isEn: isEn,
       ),
     );
   }
@@ -1020,7 +1028,8 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
   // SHARE BUTTON
   // ══════════════════════════════════════════════════════════════════════════
 
-  Widget _buildShareButton(BuildContext context, bool isDark, bool language) {
+  Widget _buildShareButton(BuildContext context, bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -1078,9 +1087,10 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
   Widget _buildPremiumGate(
     BuildContext context,
     bool isDark,
-    bool language,
+    bool isEn,
     int totalEntries,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
@@ -1098,7 +1108,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           ),
           const SizedBox(height: AppConstants.spacingSm),
           Text(
-            language.isEn
+            isEn
                 ? 'You have $totalEntries entries. Log 30+ days for the full cycle view, or go premium.'
                 : '$totalEntries kaydın var. Tam döngü görünümü için 30+ gün kayıt yap veya premium\'a geç.',
             textAlign: TextAlign.center,

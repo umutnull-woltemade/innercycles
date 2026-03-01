@@ -17,16 +17,17 @@ import '../../../../data/services/l10n_service.dart';
 
 class ProfileVaultSection extends ConsumerWidget {
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const ProfileVaultSection({
     super.key,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

@@ -7,12 +7,12 @@ import '../../../../data/services/l10n_service.dart';
 
 /// Personal milestone strip showing the user's own journaling progress.
 class SocialProofStrip extends ConsumerWidget {
-  final AppLanguage language;
+  final bool isEn;
   final bool isDark;
 
   const SocialProofStrip({
     super.key,
-    required this.language,
+    required this.isEn,
     required this.isDark,
   });
 
@@ -60,6 +60,7 @@ class SocialProofStrip extends ConsumerWidget {
 
   /// Personal milestone message based on user's own entry count.
   String _milestoneMessage(int count) {
+    final language = AppLanguage.fromIsEn(isEn);
     final lang = language;
     final params = {'count': '$count'};
     String key;

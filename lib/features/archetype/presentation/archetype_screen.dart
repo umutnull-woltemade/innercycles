@@ -39,6 +39,7 @@ class ArchetypeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
 
     final archetypeAsync = ref.watch(archetypeServiceProvider);
     final journalAsync = ref.watch(journalServiceProvider);
@@ -133,7 +134,7 @@ class ArchetypeScreen extends ConsumerWidget {
 
                           if (!archetypeService.hasEnoughData(entries)) {
                             return SliverToBoxAdapter(
-                              child: _EmptyState(isDark: isDark, language: language),
+                              child: _EmptyState(isDark: isDark, isEn: isEn),
                             );
                           }
 
@@ -145,7 +146,7 @@ class ArchetypeScreen extends ConsumerWidget {
                           );
                           if (result == null) {
                             return SliverToBoxAdapter(
-                              child: _EmptyState(isDark: isDark, language: language),
+                              child: _EmptyState(isDark: isDark, isEn: isEn),
                             );
                           }
 
@@ -158,47 +159,47 @@ class ArchetypeScreen extends ConsumerWidget {
                               _DominantArchetypeCard(
                                 result: result,
                                 isDark: isDark,
-                                language: language,
+                                isEn: isEn,
                               ),
                               const SizedBox(height: 20),
                               _StrengthsShadowSection(
                                 archetype: result.dominant,
                                 isDark: isDark,
-                                language: language,
+                                isEn: isEn,
                               ),
                               const SizedBox(height: 20),
                               _GrowthTipCard(
                                 archetype: result.dominant,
                                 isDark: isDark,
-                                language: language,
+                                isEn: isEn,
                               ),
                               const SizedBox(height: 24),
                               if (history.isNotEmpty) ...[
                                 _EvolutionTimeline(
                                   snapshots: history,
                                   isDark: isDark,
-                                  language: language,
+                                  isEn: isEn,
                                 ),
                                 const SizedBox(height: 24),
                               ],
                               _BreakdownChart(
                                 breakdown: result.breakdown,
                                 isDark: isDark,
-                                language: language,
+                                isEn: isEn,
                               ),
                               const SizedBox(height: 20),
-                              _DisclaimerCard(isDark: isDark, language: language),
+                              _DisclaimerCard(isDark: isDark, isEn: isEn),
                               const SizedBox(height: 20),
                               _ShareArchetypeButton(
                                 archetype: result.dominant,
                                 isDark: isDark,
-                                language: language,
+                                isEn: isEn,
                               ),
                               const SizedBox(height: 20),
                               ContentDisclaimer(language: language),
                               ToolEcosystemFooter(
                                 currentToolId: 'archetype',
-                                language: language,
+                                isEn: isEn,
                                 isDark: isDark,
                               ),
                               const SizedBox(height: 40),
@@ -225,7 +226,7 @@ class ArchetypeScreen extends ConsumerWidget {
 class _DominantArchetypeCard extends StatelessWidget {
   final ArchetypeResult result;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _DominantArchetypeCard({
     required this.result,
@@ -235,6 +236,7 @@ class _DominantArchetypeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final archetype = result.dominant;
     final confidencePct = (result.confidence * 100).toStringAsFixed(0);
 
@@ -298,7 +300,7 @@ class _DominantArchetypeCard extends StatelessWidget {
 class _StrengthsShadowSection extends StatelessWidget {
   final Archetype archetype;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _StrengthsShadowSection({
     required this.archetype,
@@ -308,6 +310,7 @@ class _StrengthsShadowSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final strengths = archetype.getStrengths(language: language);
     final shadow = archetype.getShadow(language: language);
 
@@ -412,7 +415,7 @@ class _StrengthChip extends StatelessWidget {
 class _GrowthTipCard extends StatelessWidget {
   final Archetype archetype;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _GrowthTipCard({
     required this.archetype,
@@ -422,6 +425,7 @@ class _GrowthTipCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.aurora,
       padding: const EdgeInsets.all(20),
@@ -471,7 +475,7 @@ class _GrowthTipCard extends StatelessWidget {
 class _EvolutionTimeline extends StatelessWidget {
   final List<ArchetypeSnapshot> snapshots;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _EvolutionTimeline({
     required this.snapshots,
@@ -481,6 +485,7 @@ class _EvolutionTimeline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: 16,
@@ -515,7 +520,7 @@ class _EvolutionTimeline extends StatelessWidget {
                 final archetype = ArchetypeService.getArchetypeById(
                   snapshot.archetypeId,
                 );
-                final monthLabel = _monthLabel(snapshot.month, language);
+                final monthLabel = _monthLabel(snapshot.month, isEn);
                 return Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -569,7 +574,7 @@ class _EvolutionTimeline extends StatelessWidget {
     ).animate().fadeIn(delay: 250.ms, duration: 300.ms);
   }
 
-  String _monthLabel(int month, bool language) {
+  String _monthLabel(int month, bool isEn) {
     const en = [
       'Jan',
       'Feb',
@@ -598,7 +603,7 @@ class _EvolutionTimeline extends StatelessWidget {
       'Kas',
       'Ara',
     ];
-    return language.isEn ? en[month - 1] : tr[month - 1];
+    return isEn ? en[month - 1] : tr[month - 1];
   }
 }
 
@@ -609,7 +614,7 @@ class _EvolutionTimeline extends StatelessWidget {
 class _BreakdownChart extends StatelessWidget {
   final Map<String, double> breakdown;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _BreakdownChart({
     required this.breakdown,
@@ -619,6 +624,7 @@ class _BreakdownChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     // Sort archetypes by percentage descending
     final sortedIds = breakdown.keys.toList()
       ..sort((a, b) => (breakdown[b] ?? 0).compareTo(breakdown[a] ?? 0));
@@ -663,7 +669,7 @@ class _BreakdownChart extends StatelessWidget {
                 percentage: pct,
                 isTop: isTop,
                 isDark: isDark,
-                language: language,
+                isEn: isEn,
               ),
             );
           }),
@@ -678,7 +684,7 @@ class _BreakdownRow extends StatelessWidget {
   final double percentage;
   final bool isTop;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _BreakdownRow({
     required this.archetype,
@@ -690,6 +696,7 @@ class _BreakdownRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final barColor = isTop
         ? AppColors.starGold
         : AppColors.auroraStart.withValues(alpha: 0.7);
@@ -778,7 +785,7 @@ class _BreakdownRow extends StatelessWidget {
 
 class _DisclaimerCard extends StatelessWidget {
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _DisclaimerCard({required this.isDark, required this.isEn});
 
@@ -802,7 +809,7 @@ class _DisclaimerCard extends StatelessWidget {
           const SizedBox(width: 10),
           Expanded(
             child: Text(
-              language.isEn
+              isEn
                   ? 'Your archetype is based on your journal patterns and '
                         'is meant as a self-reflection tool, not a personality '
                         'test. It may shift as your entries evolve over time.'
@@ -828,12 +835,13 @@ class _DisclaimerCard extends StatelessWidget {
 
 class _EmptyState extends StatelessWidget {
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _EmptyState({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumEmptyState(
       icon: Icons.psychology_outlined,
       title: L10nService.get('archetype.archetype.your_archetype_is_waiting_to_emerge', language),
@@ -852,7 +860,7 @@ class _EmptyState extends StatelessWidget {
 class _ShareArchetypeButton extends StatelessWidget {
   final Archetype archetype;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _ShareArchetypeButton({
     required this.archetype,
@@ -862,6 +870,7 @@ class _ShareArchetypeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return GradientButton(
       label: L10nService.get('archetype.archetype.share_your_archetype', language),
       icon: Icons.share_rounded,
@@ -870,9 +879,10 @@ class _ShareArchetypeButton extends StatelessWidget {
         colors: [AppColors.amethyst, AppColors.starGold],
       ),
       onPressed: () {
+        final language = AppLanguage.fromIsEn(isEn);
         HapticFeedback.mediumImpact();
         final name = archetype.localizedName(language);
-        final text = language.isEn
+        final text = isEn
             ? 'My emotional archetype is "$name" — discovered through self-reflection with InnerCycles.\n\n'
                   'What\'s yours? Try it free:\nhttps://apps.apple.com/app/innercycles/id6758612716\n#InnerCycles #Archetype #SelfDiscovery'
             : 'Duygusal arketipim "$name" — InnerCycles ile kendimi keşfederek buldum.\n\n'

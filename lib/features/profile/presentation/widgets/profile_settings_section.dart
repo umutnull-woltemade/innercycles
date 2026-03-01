@@ -18,18 +18,19 @@ import '../../../../data/providers/app_providers.dart';
 
 class ProfileSettingsSection extends StatelessWidget {
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final bool isPremium;
 
   const ProfileSettingsSection({
     super.key,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.isPremium,
   });
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

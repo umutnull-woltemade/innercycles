@@ -37,6 +37,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
+    final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     final privateJournals = ref.watch(privateJournalEntriesProvider);
@@ -60,7 +61,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
                     button: true,
                     label: L10nService.get('vault.vault.vault_settings', language),
                     child: GestureDetector(
-                      onTap: () => _showVaultSettings(language, isDark),
+                      onTap: () => _showVaultSettings(isEn, isDark),
                       child: Padding(
                         padding: const EdgeInsets.only(right: 12),
                         child: Icon(
@@ -80,7 +81,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Tab bar
-                      _buildTabBar(language, isDark),
+                      _buildTabBar(isEn, isDark),
                       const SizedBox(height: 20),
                     ],
                   ),
@@ -89,7 +90,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
 
               // Content based on tab
               _buildContent(
-                language,
+                isEn,
                 isDark,
                 privateJournals,
                 privateNotes,
@@ -103,7 +104,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
       ),
       floatingActionButton: _selectedTab == 3
           ? FloatingActionButton(
-              onPressed: () => _addPhoto(language),
+              onPressed: () => _addPhoto(isEn),
               backgroundColor: AppColors.amethyst,
               child: const Icon(CupertinoIcons.camera, color: Colors.white),
             ).animate().fadeIn().scale(begin: const Offset(0.8, 0.8))
@@ -111,8 +112,8 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     );
   }
 
-  Widget _buildTabBar(AppLanguage language, bool isDark) {
-    final tabs = language.isEn
+  Widget _buildTabBar(bool isEn, bool isDark) {
+    final tabs = isEn
         ? ['All', 'Journals', 'Notes', 'Photos']
         : ['Tümü', 'Günlük', 'Notlar', 'Fotoğraflar'];
 
@@ -177,12 +178,13 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
   }
 
   Widget _buildContent(
-    AppLanguage language,
+    bool isEn,
     bool isDark,
     AsyncValue<List<JournalEntry>> journalsAsync,
     AsyncValue<List<NoteToSelf>> notesAsync,
     AsyncValue<List<VaultPhoto>> photosAsync,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final journals = journalsAsync.valueOrNull ?? [];
     final notes = notesAsync.valueOrNull ?? [];
     final photos = photosAsync.valueOrNull ?? [];
@@ -192,16 +194,16 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
         journals.isEmpty &&
         notes.isEmpty &&
         photos.isEmpty) {
-      return SliverToBoxAdapter(child: _buildEmptyState(language, isDark));
+      return SliverToBoxAdapter(child: _buildEmptyState(isEn, isDark));
     }
     if (_selectedTab == 1 && journals.isEmpty) {
-      return SliverToBoxAdapter(child: _buildEmptyState(language, isDark));
+      return SliverToBoxAdapter(child: _buildEmptyState(isEn, isDark));
     }
     if (_selectedTab == 2 && notes.isEmpty) {
-      return SliverToBoxAdapter(child: _buildEmptyState(language, isDark));
+      return SliverToBoxAdapter(child: _buildEmptyState(isEn, isDark));
     }
     if (_selectedTab == 3 && photos.isEmpty) {
-      return SliverToBoxAdapter(child: _buildEmptyState(language, isDark));
+      return SliverToBoxAdapter(child: _buildEmptyState(isEn, isDark));
     }
 
     final List<Widget> items = [];
@@ -217,7 +219,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
           ),
         );
         for (final entry in journals) {
-          items.add(_buildJournalCard(entry, language, isDark));
+          items.add(_buildJournalCard(entry, isEn, isDark));
         }
       }
     }
@@ -233,7 +235,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
           ),
         );
         for (final note in notes) {
-          items.add(_buildNoteCard(note, language, isDark));
+          items.add(_buildNoteCard(note, isEn, isDark));
         }
       }
     }
@@ -266,7 +268,8 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     );
   }
 
-  Widget _buildEmptyState(AppLanguage language, bool isDark) {
+  Widget _buildEmptyState(bool isEn, bool isDark) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 60),
       child: Column(
@@ -333,8 +336,9 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     );
   }
 
-  Widget _buildJournalCard(JournalEntry entry, AppLanguage language, bool isDark) {
-    final dayName = _dayName(entry.date, language);
+  Widget _buildJournalCard(JournalEntry entry, bool isEn, bool isDark) {
+    final language = AppLanguage.fromIsEn(isEn);
+    final dayName = _dayName(entry.date, isEn);
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
     final areaName = entry.focusArea.localizedName(language);
 
@@ -419,7 +423,8 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     );
   }
 
-  Widget _buildNoteCard(NoteToSelf note, AppLanguage language, bool isDark) {
+  Widget _buildNoteCard(NoteToSelf note, bool isEn, bool isDark) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: GestureDetector(
@@ -565,7 +570,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     }
   }
 
-  Future<void> _addPhoto(AppLanguage language) async {
+  Future<void> _addPhoto(bool isEn) async {
     final picker = ImagePicker();
     final picked = await picker.pickImage(
       source: ImageSource.gallery,
@@ -582,7 +587,8 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     ref.invalidate(vaultPhotoCountProvider);
   }
 
-  void _showVaultSettings(AppLanguage language, bool isDark) {
+  void _showVaultSettings(bool isEn, bool isDark) {
+    final language = AppLanguage.fromIsEn(isEn);
     showCupertinoModalPopup(
       context: context,
       builder: (ctx) => CupertinoActionSheet(
@@ -611,6 +617,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
             child: FutureBuilder(
               future: ref.read(vaultServiceProvider.future),
               builder: (_, snap) {
+                final language = AppLanguage.fromIsEn(isEn);
                 final enabled = snap.data?.isBiometricEnabled ?? false;
                 return Text(
                   enabled
@@ -629,10 +636,10 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     );
   }
 
-  String _dayName(DateTime date, AppLanguage language) {
+  String _dayName(DateTime date, bool isEn) {
     const en = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const tr = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
-    return (language.isEn ? en : tr)[date.weekday - 1];
+    return (isEn ? en : tr)[date.weekday - 1];
   }
 }
 

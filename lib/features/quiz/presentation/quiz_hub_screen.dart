@@ -33,6 +33,7 @@ class QuizHubScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
     final quizServiceAsync = ref.watch(quizEngineServiceProvider);
 
     return Scaffold(
@@ -65,6 +66,7 @@ class QuizHubScreen extends ConsumerWidget {
 
                     // Quiz cards
                     ...QuizContent.allQuizzes.asMap().entries.map((entry) {
+                      final language = AppLanguage.fromIsEn(isEn);
                       final index = entry.key;
                       final quiz = entry.value;
 
@@ -98,7 +100,7 @@ class QuizHubScreen extends ConsumerWidget {
                               isCompleted: isCompleted,
                               lastResultName: lastResultName,
                               isDark: isDark,
-                              language: language,
+                              isEn: isEn,
                               onTap: () => context.push(
                                 Routes.quizGeneric.replaceFirst(
                                   ':quizId',
@@ -122,7 +124,7 @@ class QuizHubScreen extends ConsumerWidget {
 
                     ToolEcosystemFooter(
                       currentToolId: 'quizHub',
-                      language: language,
+                      isEn: isEn,
                       isDark: isDark,
                     ),
                     const SizedBox(height: 40),
@@ -146,7 +148,7 @@ class _QuizCard extends StatelessWidget {
   final bool isCompleted;
   final String? lastResultName;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final VoidCallback onTap;
 
   const _QuizCard({
@@ -154,12 +156,13 @@ class _QuizCard extends StatelessWidget {
     required this.isCompleted,
     this.lastResultName,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       button: true,
       label: quiz.localizedTitle(language),
@@ -249,7 +252,7 @@ class _QuizCard extends StatelessWidget {
                     if (isCompleted && lastResultName != null) ...[
                       const SizedBox(height: AppConstants.spacingXs),
                       Text(
-                        language.isEn
+                        isEn
                             ? 'Your result: $lastResultName'
                             : 'Sonucunuz: $lastResultName',
                         style: AppTypography.elegantAccent(

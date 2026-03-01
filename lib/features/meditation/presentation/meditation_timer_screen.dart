@@ -154,6 +154,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
     final hasStarted = _totalSeconds > 0;
     final progress = _totalSeconds > 0
         ? 1.0 - (_remainingSeconds / _totalSeconds)
@@ -298,10 +299,10 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                     Semantics(
                                       liveRegion: _isRunning,
                                       label: hasStarted
-                                          ? (language.isEn
+                                          ? (isEn
                                                 ? '${_formatTime(_remainingSeconds)} remaining'
                                                 : '${_formatTime(_remainingSeconds)} kaldı')
-                                          : (language.isEn
+                                          : (isEn
                                                 ? '$_selectedMinutes minutes selected'
                                                 : '$_selectedMinutes dakika seçildi'),
                                       child: Column(

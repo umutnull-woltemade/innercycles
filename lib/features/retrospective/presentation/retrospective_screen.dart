@@ -67,6 +67,7 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
+    final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
@@ -75,19 +76,19 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
           child: Column(
             children: [
               // Step indicator
-              _StepIndicator(currentStep: _currentStep, isDark: isDark, language: language),
+              _StepIndicator(currentStep: _currentStep, isDark: isDark, isEn: isEn),
               Expanded(
                 child: PageView(
                   controller: _pageController,
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
                     _WelcomeStep(
-                      language: language,
+                      isEn: isEn,
                       isDark: isDark,
                       onContinue: () => _goToStep(1),
                     ),
                     _DaySelectionStep(
-                      language: language,
+                      isEn: isEn,
                       isDark: isDark,
                       selectedPresets: _selectedPresets,
                       onToggle: (key) {
@@ -102,7 +103,7 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
                       onContinue: () => _goToStep(2),
                     ),
                     _DateEntryStep(
-                      language: language,
+                      isEn: isEn,
                       isDark: isDark,
                       selectedPresets: _selectedPresets,
                       presetDates: _presetDates,
@@ -113,7 +114,7 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
                       onJournalTap: _openJournal,
                     ),
                     _SummaryStep(
-                      language: language,
+                      isEn: isEn,
                       isDark: isDark,
                       savedCount: _savedIds.length,
                       journalCount: _journalsSaved,
@@ -180,12 +181,13 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
 class _StepIndicator extends StatelessWidget {
   final int currentStep;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _StepIndicator({required this.currentStep, required this.isDark, this.isEn = true});
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       label: L10nService.getWithParams('retrospective.step_indicator', language, params: {'current': '${currentStep + 1}', 'total': '4'}),
       child: Padding(
@@ -219,18 +221,19 @@ class _StepIndicator extends StatelessWidget {
 // ════════════════════════════════════════════════════════════════════════════
 
 class _WelcomeStep extends StatelessWidget {
-  final AppLanguage language;
+  final bool isEn;
   final bool isDark;
   final VoidCallback onContinue;
 
   const _WelcomeStep({
-    required this.language,
+    required this.isEn,
     required this.isDark,
     required this.onContinue,
   });
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.all(32),
       child: Column(
@@ -283,14 +286,14 @@ class _WelcomeStep extends StatelessWidget {
 // ════════════════════════════════════════════════════════════════════════════
 
 class _DaySelectionStep extends StatelessWidget {
-  final AppLanguage language;
+  final bool isEn;
   final bool isDark;
   final Set<String> selectedPresets;
   final ValueChanged<String> onToggle;
   final VoidCallback onContinue;
 
   const _DaySelectionStep({
-    required this.language,
+    required this.isEn,
     required this.isDark,
     required this.selectedPresets,
     required this.onToggle,
@@ -299,6 +302,7 @@ class _DaySelectionStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       children: [
         Padding(
@@ -411,7 +415,7 @@ class _DaySelectionStep extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
           child: GradientButton.gold(
-            label: language.isEn
+            label: isEn
                 ? 'Continue (${selectedPresets.length} selected)'
                 : 'Devam (${selectedPresets.length} seçili)',
             onPressed: selectedPresets.isEmpty
@@ -433,7 +437,7 @@ class _DaySelectionStep extends StatelessWidget {
 // ════════════════════════════════════════════════════════════════════════════
 
 class _DateEntryStep extends StatelessWidget {
-  final AppLanguage language;
+  final bool isEn;
   final bool isDark;
   final Set<String> selectedPresets;
   final Map<String, DateTime> presetDates;
@@ -442,7 +446,7 @@ class _DateEntryStep extends StatelessWidget {
   final ValueChanged<String> onJournalTap;
 
   const _DateEntryStep({
-    required this.language,
+    required this.isEn,
     required this.isDark,
     required this.selectedPresets,
     required this.presetDates,
@@ -453,6 +457,7 @@ class _DateEntryStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final presets = selectedPresets
         .map((k) => ImportantDatePresets.getByKey(k))
         .where((p) => p != null)
@@ -558,7 +563,7 @@ class _DateEntryStep extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
           child: GradientButton.gold(
-            label: language.isEn
+            label: isEn
                 ? 'Save ${presetDates.length} memories'
                 : '${presetDates.length} anıyı kaydet',
             onPressed: presetDates.isEmpty
@@ -580,14 +585,14 @@ class _DateEntryStep extends StatelessWidget {
 // ════════════════════════════════════════════════════════════════════════════
 
 class _SummaryStep extends StatelessWidget {
-  final AppLanguage language;
+  final bool isEn;
   final bool isDark;
   final int savedCount;
   final int journalCount;
   final VoidCallback onDone;
 
   const _SummaryStep({
-    required this.language,
+    required this.isEn,
     required this.isDark,
     required this.savedCount,
     required this.journalCount,
@@ -596,6 +601,7 @@ class _SummaryStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.all(32),
       child: Column(

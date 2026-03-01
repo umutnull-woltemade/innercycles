@@ -32,6 +32,7 @@ class EntryDetailScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(journalServiceProvider);
 
     return Scaffold(
@@ -90,7 +91,7 @@ class EntryDetailScreen extends ConsumerWidget {
                   ),
                 );
               }
-              return _buildContent(context, ref, entry, isDark, language);
+              return _buildContent(context, ref, entry, isDark, isEn);
             },
           ),
         ),
@@ -103,10 +104,11 @@ class EntryDetailScreen extends ConsumerWidget {
     WidgetRef ref,
     JournalEntry entry,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final areaLabel = entry.focusArea.localizedName(language);
-    final names = language.isEn
+    final names = isEn
         ? entry.focusArea.subRatingNamesEn
         : entry.focusArea.subRatingNamesTr;
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
@@ -128,7 +130,7 @@ class EntryDetailScreen extends ConsumerWidget {
                   final noteSnippet = entry.note != null && entry.note!.isNotEmpty
                       ? '\n"${entry.note!.length > 100 ? '${entry.note!.substring(0, 100)}...' : entry.note!}"'
                       : '';
-                  final msg = language.isEn
+                  final msg = isEn
                       ? '$areaLabel — $stars$noteSnippet\n\nReflecting with InnerCycles.\n${AppConstants.appStoreUrl}\n#InnerCycles #Journaling'
                       : '$areaLabel — $stars$noteSnippet\n\nInnerCycles ile yansıma yapıyorum.\n${AppConstants.appStoreUrl}\n#InnerCycles';
                   SharePlus.instance.share(ShareParams(text: msg));
@@ -141,7 +143,7 @@ class EntryDetailScreen extends ConsumerWidget {
                 ),
               ),
               IconButton(
-                onPressed: () => _confirmDelete(context, ref, entry.id, language),
+                onPressed: () => _confirmDelete(context, ref, entry.id, isEn),
                 tooltip: L10nService.get('journal.entry_detail.delete_entry', language),
                 icon: Icon(Icons.delete_outline, color: AppColors.error),
               ),
@@ -167,7 +169,7 @@ class EntryDetailScreen extends ConsumerWidget {
                     names,
                     entry,
                     isDark,
-                    language: language,
+                    isEn: isEn,
                   ).glassListItem(context: context, index: 1),
                 if (entry.subRatings.isNotEmpty)
                   const SizedBox(height: AppConstants.spacingLg),
@@ -180,7 +182,7 @@ class EntryDetailScreen extends ConsumerWidget {
                     context,
                     entry.imagePath!,
                     isDark,
-                    language,
+                    isEn,
                   ).glassListItem(context: context, index: 2),
 
                 // Note
@@ -189,7 +191,7 @@ class EntryDetailScreen extends ConsumerWidget {
                     context,
                     entry.note!,
                     isDark,
-                    language,
+                    isEn,
                   ).glassListItem(context: context, index: 3),
               ]),
             ),
@@ -261,7 +263,7 @@ class EntryDetailScreen extends ConsumerWidget {
     Map<String, String> names,
     JournalEntry entry,
     bool isDark, {
-    bool language.isEn = true,
+    bool isEn = true,
   }) {
     return GlassPanel(
       elevation: GlassElevation.g2,
@@ -273,7 +275,7 @@ class EntryDetailScreen extends ConsumerWidget {
           final label = names[e.key] ?? e.key;
           final value = e.value;
           return Semantics(
-            label: language.isEn
+            label: isEn
                 ? '$label: $value out of 5'
                 : '$label: 5 üzerinden $value',
             child: Padding(
@@ -329,8 +331,9 @@ class EntryDetailScreen extends ConsumerWidget {
     BuildContext context,
     String imagePath,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final file = File(imagePath);
     try {
       if (!file.existsSync()) return const SizedBox.shrink();
@@ -359,8 +362,9 @@ class EntryDetailScreen extends ConsumerWidget {
     BuildContext context,
     String note,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     return GlassPanel(
       elevation: GlassElevation.g2,
       width: double.infinity,
@@ -381,6 +385,7 @@ class EntryDetailScreen extends ConsumerWidget {
           const SizedBox(height: AppConstants.spacingMd),
           GestureDetector(
             onLongPress: () {
+              final language = AppLanguage.fromIsEn(isEn);
               Clipboard.setData(ClipboardData(text: note));
               HapticService.buttonPress();
               ScaffoldMessenger.of(context).showSnackBar(
@@ -411,8 +416,9 @@ class EntryDetailScreen extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
     String id,
-    bool language,
+    bool isEn,
   ) async {
+    final language = AppLanguage.fromIsEn(isEn);
     final confirmed = await GlassDialog.confirm(
       context,
       title: L10nService.get('journal.entry_detail.delete_entry_1', language),

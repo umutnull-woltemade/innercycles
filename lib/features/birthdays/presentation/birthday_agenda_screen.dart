@@ -41,6 +41,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(birthdayContactServiceProvider);
 
     return Scaffold(
@@ -103,7 +104,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
               ],
             ),
           ),
-          data: (service) => _buildContent(context, service, isDark, language),
+          data: (service) => _buildContent(context, service, isDark, isEn),
         ),
       ),
     );
@@ -113,8 +114,9 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
     BuildContext context,
     BirthdayContactService service,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final allContacts = service.getAllContacts();
     final todayBirthdays = service.getTodayBirthdays();
     final birthdayMap = service.getBirthdayMap();
@@ -143,7 +145,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                   if (isEmpty) ...[
                     _EmptyState(
                       isDark: isDark,
-                      language: language,
+                      isEn: isEn,
                       onImport: () => context.push(Routes.birthdayImport),
                       onAdd: () => context.push(Routes.birthdayAdd),
                     ),
@@ -155,7 +157,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                     _TodayBanner(
                       contacts: todayBirthdays,
                       isDark: isDark,
-                      language: language,
+                      isEn: isEn,
                       onTap: (id) => context.push(
                         Routes.birthdayDetail.replaceFirst(':id', id),
                       ),
@@ -168,7 +170,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                     year: _selectedYear,
                     month: _selectedMonth,
                     isDark: isDark,
-                    language: language,
+                    isEn: isEn,
                     onPrevious: () {
                       final minYear = DateTime.now().year - 1;
                       HapticFeedback.selectionClick();
@@ -220,7 +222,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                     birthdayMap: birthdayMap,
                     selectedDay: _selectedDay,
                     isDark: isDark,
-                    language: language,
+                    isEn: isEn,
                     onDayTap: (day) {
                       HapticFeedback.lightImpact();
                       setState(() {
@@ -237,7 +239,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                       month: _selectedMonth,
                       birthdayMap: birthdayMap,
                       isDark: isDark,
-                      language: language,
+                      isEn: isEn,
                       onContactTap: (id) => context.push(
                         Routes.birthdayDetail.replaceFirst(':id', id),
                       ),
@@ -260,7 +262,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                       (contact) => _UpcomingCard(
                         contact: contact,
                         isDark: isDark,
-                        language: language,
+                        isEn: isEn,
                         onTap: () => context.push(
                           Routes.birthdayDetail.replaceFirst(':id', contact.id),
                         ),
@@ -272,7 +274,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                   // 6. Action buttons
                   _ActionButtons(
                     isDark: isDark,
-                    language: language,
+                    isEn: isEn,
                     onImport: () => context.push(Routes.birthdayImport),
                     onAdd: () => context.push(Routes.birthdayAdd),
                   ),
@@ -295,18 +297,19 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
 class _TodayBanner extends StatelessWidget {
   final List<BirthdayContact> contacts;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final ValueChanged<String> onTap;
 
   const _TodayBanner({
     required this.contacts,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(20),
@@ -383,7 +386,7 @@ class _MonthNav extends StatelessWidget {
   final int year;
   final int month;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final VoidCallback onPrevious;
   final VoidCallback onNext;
   final VoidCallback? onToday;
@@ -392,7 +395,7 @@ class _MonthNav extends StatelessWidget {
     required this.year,
     required this.month,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onPrevious,
     required this.onNext,
     this.onToday,
@@ -400,7 +403,8 @@ class _MonthNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final monthNames = language.isEn
+    final language = AppLanguage.fromIsEn(isEn);
+    final monthNames = isEn
         ? CommonStrings.monthsFullEn
         : CommonStrings.monthsFullTr;
     final now = DateTime.now();
@@ -470,7 +474,7 @@ class _BirthdayCalendarGrid extends StatelessWidget {
   final Map<String, List<BirthdayContact>> birthdayMap;
   final int? selectedDay;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final ValueChanged<int> onDayTap;
 
   const _BirthdayCalendarGrid({
@@ -479,7 +483,7 @@ class _BirthdayCalendarGrid extends StatelessWidget {
     required this.birthdayMap,
     this.selectedDay,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onDayTap,
   });
 
@@ -498,7 +502,7 @@ class _BirthdayCalendarGrid extends StatelessWidget {
           // Day headers
           Row(
             children:
-                (language.isEn
+                (isEn
                         ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
                         : ['Pt', 'Sa', '\u{00C7}a', 'Pe', 'Cu', 'Ct', 'Pa'])
                     .map(
@@ -641,7 +645,7 @@ class _SelectedDayDetail extends StatelessWidget {
   final int month;
   final Map<String, List<BirthdayContact>> birthdayMap;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final ValueChanged<String> onContactTap;
 
   const _SelectedDayDetail({
@@ -649,12 +653,13 @@ class _SelectedDayDetail extends StatelessWidget {
     required this.month,
     required this.birthdayMap,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onContactTap,
   });
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final dateKey =
         '${month.toString().padLeft(2, '0')}-${day.toString().padLeft(2, '0')}';
     final contacts = birthdayMap[dateKey] ?? [];
@@ -677,6 +682,7 @@ class _SelectedDayDetail extends StatelessWidget {
 
     return Column(
       children: contacts.map((contact) {
+        final language = AppLanguage.fromIsEn(isEn);
         return Padding(
           padding: const EdgeInsets.only(bottom: 8),
           child: GestureDetector(
@@ -747,18 +753,19 @@ class _SelectedDayDetail extends StatelessWidget {
 class _UpcomingCard extends StatelessWidget {
   final BirthdayContact contact;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final VoidCallback onTap;
 
   const _UpcomingCard({
     required this.contact,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final days = contact.daysUntilBirthday;
     final isToday = contact.isBirthdayToday;
 
@@ -849,19 +856,20 @@ class _UpcomingCard extends StatelessWidget {
 
 class _EmptyState extends StatelessWidget {
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final VoidCallback onImport;
   final VoidCallback onAdd;
 
   const _EmptyState({
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onImport,
     required this.onAdd,
   });
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.aurora,
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
@@ -891,7 +899,7 @@ class _EmptyState extends StatelessWidget {
           const SizedBox(height: 24),
           _ActionButtons(
             isDark: isDark,
-            language: language,
+            isEn: isEn,
             onImport: onImport,
             onAdd: onAdd,
           ),
@@ -907,19 +915,20 @@ class _EmptyState extends StatelessWidget {
 
 class _ActionButtons extends StatelessWidget {
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final VoidCallback onImport;
   final VoidCallback onAdd;
 
   const _ActionButtons({
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onImport,
     required this.onAdd,
   });
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       children: [
         // Import CTA

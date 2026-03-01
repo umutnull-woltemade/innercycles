@@ -51,6 +51,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(habitSuggestionServiceProvider);
 
     return Scaffold(
@@ -88,7 +89,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
               ],
             ),
           ),
-          data: (service) => _buildContent(context, service, isDark, language),
+          data: (service) => _buildContent(context, service, isDark, isEn),
         ),
       ),
     );
@@ -98,8 +99,9 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
     BuildContext context,
     HabitSuggestionService service,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final adoptedHabits = service.getAdoptedHabits();
     final completedCount = service.todayCompletedCount;
     final totalAdopted = adoptedHabits.length;
@@ -118,14 +120,14 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 if (adoptedHabits.isEmpty) ...[
-                  _EmptyState(isDark: isDark, language: language),
+                  _EmptyState(isDark: isDark, isEn: isEn),
                 ] else ...[
                   // Progress header
                   _ProgressHeader(
                     completed: completedCount,
                     total: totalAdopted,
                     isDark: isDark,
-                    language: language,
+                    isEn: isEn,
                   ),
                   const SizedBox(height: 20),
 
@@ -145,7 +147,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
                         streak: streak,
                         weekData: weekData,
                         isDark: isDark,
-                        language: language,
+                        isEn: isEn,
                         onToggle: () async {
                           HapticFeedback.mediumImpact();
                           if (isChecked) {
@@ -193,7 +195,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
 
                 ToolEcosystemFooter(
                   currentToolId: 'dailyHabits',
-                  language: language,
+                  isEn: isEn,
                   isDark: isDark,
                 ),
                 const SizedBox(height: 40),
@@ -214,17 +216,18 @@ class _ProgressHeader extends StatelessWidget {
   final int completed;
   final int total;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _ProgressHeader({
     required this.completed,
     required this.total,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final allDone = completed == total && total > 0;
     final progress = total > 0 ? completed / total : 0.0;
 
@@ -304,7 +307,7 @@ class _HabitCheckCard extends StatelessWidget {
   final int streak;
   final List<bool> weekData;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final VoidCallback onToggle;
 
   const _HabitCheckCard({
@@ -313,12 +316,13 @@ class _HabitCheckCard extends StatelessWidget {
     required this.streak,
     required this.weekData,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onToggle,
   });
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
@@ -446,7 +450,7 @@ class _HabitCheckCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              ...(language.isEn
+              ...(isEn
                       ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
                       : ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pa'])
                   .asMap()
@@ -507,12 +511,13 @@ class _HabitCheckCard extends StatelessWidget {
 
 class _EmptyState extends StatelessWidget {
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
-  const _EmptyState({required this.isDark, required this.language});
+  const _EmptyState({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumEmptyState(
       icon: Icons.playlist_add_check_rounded,
       title: L10nService.get('habits.daily_habits.your_habit_routine_starts_here', language),

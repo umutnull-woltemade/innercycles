@@ -35,6 +35,7 @@ class PromptLibraryScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(journalPromptServiceProvider);
 
     return Scaffold(
@@ -76,7 +77,7 @@ class PromptLibraryScreen extends ConsumerWidget {
           data: (service) => _PromptLibraryContent(
             service: service,
             isDark: isDark,
-            language: language,
+            isEn: isEn,
           ),
         ),
       ),
@@ -91,12 +92,12 @@ class PromptLibraryScreen extends ConsumerWidget {
 class _PromptLibraryContent extends StatefulWidget {
   final JournalPromptService service;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _PromptLibraryContent({
     required this.service,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -108,7 +109,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
 
   JournalPromptService get service => widget.service;
   bool get isDark => widget.isDark;
-  AppLanguage get language => widget.language;
+  bool get isEn => widget.isEn;
 
   List<JournalPrompt> get _filteredPrompts {
     if (_selectedCategory == null) {
@@ -119,6 +120,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final dailyPrompt = service.getDailyPrompt();
     final completionPercent = service.getCompletionPercent();
     final completedCount = service.getCompletedCount();
@@ -194,7 +196,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                 child: ToolEcosystemFooter(
                   currentToolId: 'promptLibrary',
-                  language: language,
+                  isEn: isEn,
                   isDark: isDark,
                 ),
               ),
@@ -211,6 +213,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildProgressBar(double percent, int completed, int total) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: 14,
@@ -263,6 +266,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildDailyPromptCard(JournalPrompt prompt) {
+    final language = AppLanguage.fromIsEn(isEn);
     final promptText = prompt.localizedPrompt(language);
     final isCompleted = service.isCompleted(prompt.id);
 
@@ -340,6 +344,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildCategoryChips() {
+    final language = AppLanguage.fromIsEn(isEn);
     return SizedBox(
       height: 42,
       child: ListView(
@@ -407,6 +412,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildPromptCard(JournalPrompt prompt, int index) {
+    final language = AppLanguage.fromIsEn(isEn);
     final promptText = prompt.localizedPrompt(language);
     final isCompleted = service.isCompleted(prompt.id);
 
@@ -513,6 +519,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
   // ══════════════════════════════════════════════════════════════════════════
 
   void _showPromptDetail(BuildContext context, JournalPrompt prompt) {
+    final language = AppLanguage.fromIsEn(isEn);
     final promptText = prompt.localizedPrompt(language);
     final isCompleted = service.isCompleted(prompt.id);
 
@@ -663,6 +670,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildDepthIndicator(PromptDepth depth) {
+    final language = AppLanguage.fromIsEn(isEn);
     Color color;
     String label;
 
@@ -696,6 +704,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
   }
 
   String _categoryLabel(PromptCategory category) {
+    final language = AppLanguage.fromIsEn(isEn);
     switch (category) {
       case PromptCategory.selfDiscovery:
         return L10nService.get('prompts.prompt_library.cycle_awareness', language);

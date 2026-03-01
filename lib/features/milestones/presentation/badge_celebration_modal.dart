@@ -18,23 +18,23 @@ import '../../../data/providers/app_providers.dart';
 /// Shows confetti particles, animated emoji, haptic feedback.
 class BadgeCelebrationModal extends StatefulWidget {
   final Milestone milestone;
-  final AppLanguage language;
+  final bool isEn;
 
   const BadgeCelebrationModal({
     super.key,
     required this.milestone,
-    required this.language,
+    required this.isEn,
   });
 
   /// Show the celebration modal for a newly earned badge.
-  static void show(BuildContext context, Milestone milestone, AppLanguage language) {
+  static void show(BuildContext context, Milestone milestone, bool isEn) {
     HapticFeedback.heavyImpact();
     showDialog(
       context: context,
       barrierDismissible: true,
       barrierColor: Colors.black54,
       builder: (_) =>
-          BadgeCelebrationModal(milestone: milestone, language: language),
+          BadgeCelebrationModal(milestone: milestone, isEn: isEn),
     );
   }
 
@@ -42,7 +42,7 @@ class BadgeCelebrationModal extends StatefulWidget {
   static Future<void> showSequential(
     BuildContext context,
     List<Milestone> milestones,
-    AppLanguage language,
+    bool isEn,
   ) async {
     for (final m in milestones) {
       if (!context.mounted) return;
@@ -51,7 +51,7 @@ class BadgeCelebrationModal extends StatefulWidget {
         context: context,
         barrierDismissible: true,
         barrierColor: Colors.black54,
-        builder: (_) => BadgeCelebrationModal(milestone: m, language: language),
+        builder: (_) => BadgeCelebrationModal(milestone: m, isEn: isEn),
       );
     }
   }
@@ -65,7 +65,7 @@ class _BadgeCelebrationModalState extends State<BadgeCelebrationModal>
   late final AnimationController _confettiController;
 
   Milestone get milestone => widget.milestone;
-  AppLanguage get language => widget.language;
+  bool get isEn => widget.isEn;
 
   @override
   void initState() {
@@ -83,11 +83,12 @@ class _BadgeCelebrationModalState extends State<BadgeCelebrationModal>
   }
 
   void _share() {
+    final language = AppLanguage.fromIsEn(isEn);
     HapticFeedback.lightImpact();
     final lang = language;
     final name = milestone.localizedName(lang);
     final desc = milestone.localizedDescription(lang);
-    final text = language.isEn
+    final text = isEn
         ? '${milestone.emoji} Badge Unlocked: $name\n\n$desc\n\n'
           'Track your growth: ${AppConstants.appStoreUrl}\n'
           '#InnerCycles #BadgeUnlocked #Journaling'
@@ -99,6 +100,7 @@ class _BadgeCelebrationModalState extends State<BadgeCelebrationModal>
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final lang = language;
     final name = milestone.localizedName(lang);
@@ -106,7 +108,7 @@ class _BadgeCelebrationModalState extends State<BadgeCelebrationModal>
     final category = milestone.category.displayName(lang);
 
     return Semantics(
-      label: language.isEn
+      label: isEn
           ? 'Badge unlocked: $name'
           : 'Rozet kazanıldı: $name',
       child: Stack(

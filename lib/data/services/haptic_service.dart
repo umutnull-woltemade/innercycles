@@ -101,4 +101,29 @@ class HapticService {
   static Future<void> cyclePhaseChanged() async {
     await HapticFeedback.mediumImpact();
   }
+
+  // ── Widget Library Patterns ────────────────────────────────────────
+
+  /// Toggle switched (CupertinoSwitch, checkbox)
+  static Future<void> toggleChanged() => selectionTap();
+
+  /// Long press registered
+  static Future<void> longPress() async {
+    await HapticFeedback.mediumImpact();
+  }
+
+  /// Swipe threshold crossed (dismissible hit point)
+  static Future<void> swipeThreshold() async {
+    await HapticFeedback.lightImpact();
+  }
+
+  /// Toast notification appeared
+  static Future<void> toastAppeared() async {
+    await HapticFeedback.lightImpact();
+  }
+
+  /// Scroll-to-top activated
+  static Future<void> scrollToTop() async {
+    await HapticFeedback.lightImpact();
+  }
 }

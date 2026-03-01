@@ -89,6 +89,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
   Future<void> _processPin() async {
     final vaultService = await ref.read(vaultServiceProvider.future);
     final language = ref.read(languageProvider);
+    final isEn = language == AppLanguage.en;
 
     if (!mounted) return;
     switch (_currentMode) {
@@ -106,7 +107,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
           // Check biometric availability and offer
           final canBio = await vaultService.canUseBiometrics();
           if (canBio && mounted) {
-            final enableBio = await _showBiometricDialog(language);
+            final enableBio = await _showBiometricDialog(isEn);
             if (enableBio) {
               await vaultService.setBiometricEnabled(true);
             }
@@ -154,7 +155,8 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
     context.go(Routes.vault);
   }
 
-  Future<bool> _showBiometricDialog(AppLanguage language) async {
+  Future<bool> _showBiometricDialog(bool isEn) async {
+    final language = AppLanguage.fromIsEn(isEn);
     final result = await showCupertinoDialog<bool>(
       context: context,
       builder: (ctx) => CupertinoAlertDialog(

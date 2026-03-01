@@ -38,6 +38,7 @@ class PatternsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
     final engineAsync = ref.watch(patternEngineServiceProvider);
 
     return Scaffold(
@@ -87,13 +88,13 @@ class PatternsScreen extends ConsumerWidget {
                 return _buildLockedView(
                   context,
                   isDark,
-                  language,
+                  isEn,
                   engine.entriesNeeded(),
                   engine.entryCount,
                 );
               }
 
-              return _buildPatternsView(context, ref, engine, isDark, language);
+              return _buildPatternsView(context, ref, engine, isDark, isEn);
             },
           ),
         ),
@@ -104,10 +105,11 @@ class PatternsScreen extends ConsumerWidget {
   Widget _buildLockedView(
     BuildContext context,
     bool isDark,
-    bool language,
+    bool isEn,
     int needed,
     int current,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final progress = (current / 7).clamp(0.0, 1.0);
 
     return CupertinoScrollbar(
@@ -116,7 +118,7 @@ class PatternsScreen extends ConsumerWidget {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          _buildAppBar(context, isDark, language),
+          _buildAppBar(context, isDark, isEn),
           SliverFillRemaining(
             hasScrollBody: false,
             child: Center(
@@ -225,7 +227,7 @@ class PatternsScreen extends ConsumerWidget {
                             ),
                             const SizedBox(height: 12),
                             Text(
-                              language.isEn
+                              isEn
                                   ? 'You have $current entries. $needed more to go!'
                                   : '$current kaydınız var. $needed tane daha!',
                               style: AppTypography.subtitle(
@@ -302,8 +304,9 @@ class PatternsScreen extends ConsumerWidget {
     WidgetRef ref,
     PatternEngineService engine,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     // Trigger review prompt at first pattern insight (post-frame)
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final reviewService = await ref.read(reviewServiceProvider.future);
@@ -342,7 +345,7 @@ class PatternsScreen extends ConsumerWidget {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          _buildAppBar(context, isDark, language),
+          _buildAppBar(context, isDark, isEn),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
@@ -352,7 +355,7 @@ class PatternsScreen extends ConsumerWidget {
                   context,
                   thisWeek,
                   isDark,
-                  language,
+                  isEn,
                 ).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: AppConstants.spacingXl),
 
@@ -363,7 +366,7 @@ class PatternsScreen extends ConsumerWidget {
                     thisWeek,
                     lastWeek,
                     isDark,
-                    language,
+                    isEn,
                     healthMap: isPremium ? healthMap : null,
                   ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
                 if (thisWeek.isNotEmpty)
@@ -378,12 +381,12 @@ class PatternsScreen extends ConsumerWidget {
                   _buildPremiumBlurOverlay(
                     context,
                     ref,
-                    language,
+                    isEn,
                     isDark,
                     child: Column(
                       children: [
                         if (trends.isNotEmpty)
-                          _buildTrends(context, trends, isDark, language),
+                          _buildTrends(context, trends, isDark, isEn),
                         if (trends.isNotEmpty)
                           const SizedBox(height: AppConstants.spacingLg),
                         if (correlations.isNotEmpty)
@@ -391,7 +394,7 @@ class PatternsScreen extends ConsumerWidget {
                             context,
                             correlations,
                             isDark,
-                            language,
+                            isEn,
                           ),
                         if (correlations.isNotEmpty)
                           const SizedBox(height: AppConstants.spacingLg),
@@ -400,7 +403,7 @@ class PatternsScreen extends ConsumerWidget {
                             context,
                             crossCorrelations,
                             isDark,
-                            language,
+                            isEn,
                           ),
                         if (gratitudeMood != null) ...[
                           const SizedBox(height: AppConstants.spacingLg),
@@ -408,7 +411,7 @@ class PatternsScreen extends ConsumerWidget {
                             context,
                             gratitudeMood,
                             isDark,
-                            language,
+                            isEn,
                           ),
                         ],
                       ],
@@ -422,7 +425,7 @@ class PatternsScreen extends ConsumerWidget {
                       context,
                       trends,
                       isDark,
-                      language,
+                      isEn,
                     ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
                   if (trends.isNotEmpty)
                     const SizedBox(height: AppConstants.spacingLg),
@@ -431,7 +434,7 @@ class PatternsScreen extends ConsumerWidget {
                       context,
                       correlations,
                       isDark,
-                      language,
+                      isEn,
                     ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
                   if (correlations.isNotEmpty)
                     const SizedBox(height: AppConstants.spacingLg),
@@ -440,7 +443,7 @@ class PatternsScreen extends ConsumerWidget {
                       context,
                       crossCorrelations,
                       isDark,
-                      language,
+                      isEn,
                     ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
                   if (gratitudeMood != null) ...[
                     const SizedBox(height: AppConstants.spacingLg),
@@ -448,7 +451,7 @@ class PatternsScreen extends ConsumerWidget {
                       context,
                       gratitudeMood,
                       isDark,
-                      language,
+                      isEn,
                     ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
                   ],
                 ],
@@ -456,7 +459,7 @@ class PatternsScreen extends ConsumerWidget {
                 _ShadowWorkSuggestion(
                   engine: engine,
                   isDark: isDark,
-                  language: language,
+                  isEn: isEn,
                 ),
                 ContentDisclaimer(
                   language: language,
@@ -474,10 +477,11 @@ class PatternsScreen extends ConsumerWidget {
   Widget _buildPremiumBlurOverlay(
     BuildContext context,
     WidgetRef ref,
-    bool language,
+    bool isEn,
     bool isDark, {
     required Widget child,
   }) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       button: true,
       label: L10nService.get('journal.patterns.see_full_analysis', language),
@@ -567,7 +571,8 @@ class PatternsScreen extends ConsumerWidget {
     );
   }
 
-  GlassSliverAppBar _buildAppBar(BuildContext context, bool isDark, bool language) {
+  GlassSliverAppBar _buildAppBar(BuildContext context, bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     return GlassSliverAppBar(title: L10nService.get('journal.patterns.your_patterns', language));
   }
 
@@ -575,8 +580,9 @@ class PatternsScreen extends ConsumerWidget {
     BuildContext context,
     Map<FocusArea, double> averages,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       height: 200,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -592,7 +598,7 @@ class PatternsScreen extends ConsumerWidget {
         image: true,
         child: CustomPaint(
           size: const Size(double.infinity, 170),
-          painter: _CycleArcsPainter(averages, isDark, language),
+          painter: _CycleArcsPainter(averages, isDark, isEn),
         ),
       ),
     );
@@ -614,9 +620,10 @@ class PatternsScreen extends ConsumerWidget {
     Map<FocusArea, double> thisWeek,
     Map<FocusArea, double> lastWeek,
     bool isDark,
-    bool language, {
+    bool isEn, {
     Map<FocusArea, DimensionHealth>? healthMap,
   }) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -639,7 +646,7 @@ class PatternsScreen extends ConsumerWidget {
             final dimensionHealth = healthMap?[entry.key];
 
             return Semantics(
-              label: language.isEn
+              label: isEn
                   ? '$label: ${entry.value.toStringAsFixed(1)} out of 5'
                   : '$label: 5 üzerinden ${entry.value.toStringAsFixed(1)}',
               child: Padding(
@@ -719,8 +726,9 @@ class PatternsScreen extends ConsumerWidget {
     BuildContext context,
     List<TrendInsight> trends,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -747,7 +755,7 @@ class PatternsScreen extends ConsumerWidget {
                 : t.direction == TrendDirection.down
                 ? AppColors.error
                 : AppColors.starGold;
-            final msg = language.isEn ? t.getMessageEn() : t.getMessageTr();
+            final msg = isEn ? t.getMessageEn() : t.getMessageTr();
 
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
@@ -780,8 +788,9 @@ class PatternsScreen extends ConsumerWidget {
     BuildContext context,
     List<CorrelationInsight> correlations,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -798,7 +807,7 @@ class PatternsScreen extends ConsumerWidget {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           ...correlations.map((c) {
-            final msg = language.isEn ? c.getMessageEn() : c.getMessageTr();
+            final msg = isEn ? c.getMessageEn() : c.getMessageTr();
             if (msg.isEmpty) return const SizedBox.shrink();
 
             return Padding(
@@ -832,8 +841,9 @@ class PatternsScreen extends ConsumerWidget {
     BuildContext context,
     List<CrossCorrelation> crossCorrelations,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -880,7 +890,7 @@ class PatternsScreen extends ConsumerWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        language.isEn ? cc.shortDisplayEn() : cc.shortDisplayTr(),
+                        isEn ? cc.shortDisplayEn() : cc.shortDisplayTr(),
                         style: AppTypography.modernAccent(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
@@ -913,7 +923,7 @@ class PatternsScreen extends ConsumerWidget {
                         SizedBox(
                           width: 50,
                           child: Text(
-                            language.isEn
+                            isEn
                                 ? '${cc.sampleSize} days'
                                 : '${cc.sampleSize} gün',
                             style: AppTypography.subtitle(
@@ -970,8 +980,9 @@ class PatternsScreen extends ConsumerWidget {
     BuildContext context,
     GratitudeMoodComparison comparison,
     bool isDark,
-    bool language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final isPositiveLift = comparison.lift > 0.2;
     final accentColor = isPositiveLift
         ? AppColors.success
@@ -1009,7 +1020,7 @@ class PatternsScreen extends ConsumerWidget {
                   days: comparison.daysWithGratitude,
                   color: accentColor,
                   isDark: isDark,
-                  language: language,
+                  isEn: isEn,
                 ),
               ),
               Container(
@@ -1029,7 +1040,7 @@ class PatternsScreen extends ConsumerWidget {
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
                   isDark: isDark,
-                  language: language,
+                  isEn: isEn,
                 ),
               ),
             ],
@@ -1037,7 +1048,7 @@ class PatternsScreen extends ConsumerWidget {
           const SizedBox(height: AppConstants.spacingMd),
           // Human-readable insight
           Text(
-            language.isEn ? comparison.getInsightEn() : comparison.getInsightTr(),
+            isEn ? comparison.getInsightEn() : comparison.getInsightTr(),
             style: AppTypography.decorativeScript(
               fontSize: 13,
               color: isDark
@@ -1057,8 +1068,9 @@ class PatternsScreen extends ConsumerWidget {
     required int days,
     required Color color,
     required bool isDark,
-    required bool language,
+    required bool isEn,
   }) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       children: [
         Text(
@@ -1101,7 +1113,7 @@ class PatternsScreen extends ConsumerWidget {
 class _CycleArcsPainter extends CustomPainter {
   final Map<FocusArea, double> averages;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   static const _colors = AppColors.focusAreaPalette;
 
@@ -1109,6 +1121,7 @@ class _CycleArcsPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    final language = AppLanguage.fromIsEn(isEn);
     final center = Offset(size.width / 2, size.height);
     final maxRadius = size.height * 0.9;
 
@@ -1175,7 +1188,7 @@ class _CycleArcsPainter extends CustomPainter {
 class _ShadowWorkSuggestion extends StatelessWidget {
   final PatternEngineService engine;
   final bool isDark;
-  final bool language.isEn;
+  final bool isEn;
 
   const _ShadowWorkSuggestion({
     required this.engine,
@@ -1185,6 +1198,7 @@ class _ShadowWorkSuggestion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final trends = engine.detectTrends();
     final weakAreas = trends
         .where((t) => t.direction == TrendDirection.down)
@@ -1208,7 +1222,7 @@ class _ShadowWorkSuggestion extends StatelessWidget {
           context.push(Routes.shadowWork);
         },
         child: Semantics(
-          label: language.isEn
+          label: isEn
               ? 'Shadow work suggestion: ${top.displayNameEn}'
               : 'Gölge çalışması önerisi: ${top.displayNameTr}',
           button: true,
@@ -1228,7 +1242,7 @@ class _ShadowWorkSuggestion extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        language.isEn
+                        isEn
                             ? 'Your patterns suggest exploring: ${top.displayNameEn}'
                             : 'Kalıpların keşfetmeni öneriyor: ${top.displayNameTr}',
                         style: AppTypography.modernAccent(

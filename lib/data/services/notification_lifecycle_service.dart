@@ -104,7 +104,7 @@ class NotificationLifecycleService {
   NotificationLifecycleService._(this._prefs, this._notificationService);
 
   /// Whether the user's language is English (false = Turkish).
-  AppLanguage get _language => StorageService.loadLanguage();
+  bool get _isEn => (_prefs.getInt('app_language') ?? 0) == 0;
 
   /// Initialize the notification lifecycle service.
   static Future<NotificationLifecycleService> init() async {
@@ -525,7 +525,8 @@ class NotificationLifecycleService {
     LifecycleNotificationType type,
     JournalService journalService,
   ) {
-    final language = _language;
+    final isEn = _isEn;
+    final language = AppLanguage.fromIsEn(isEn);
     switch (type) {
       case LifecycleNotificationType.challengeCompleted:
         return _NotificationContent(
@@ -621,7 +622,7 @@ class NotificationLifecycleService {
         final idx7 = DateTime.now().day % pool7En.length;
         return _NotificationContent(
           title: L10nService.get('data.services.notification_lifecycle.one_sentence_counts', language),
-          body: language.isEn ? pool7En[idx7] : pool7Tr[idx7],
+          body: isEn ? pool7En[idx7] : pool7Tr[idx7],
         );
 
       case LifecycleNotificationType.reEngagement14Day:
@@ -646,7 +647,7 @@ class NotificationLifecycleService {
         final idx30 = DateTime.now().day % pool30En.length;
         return _NotificationContent(
           title: L10nService.get('data.services.notification_lifecycle.welcome_back', language),
-          body: language.isEn ? pool30En[idx30] : pool30Tr[idx30],
+          body: isEn ? pool30En[idx30] : pool30Tr[idx30],
         );
 
       case LifecycleNotificationType.wrappedReady:

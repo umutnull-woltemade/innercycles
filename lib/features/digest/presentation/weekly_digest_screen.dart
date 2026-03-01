@@ -4,7 +4,7 @@
 // A comprehensive weekly recap showing entry count, average mood, top focus
 // area, streak status, mood trend, and best day highlight.
 //
-// Supports EN/TR bilingual via inline language.isEn pattern. Screenshot-shareable
+// Supports EN/TR bilingual via inline isEn pattern. Screenshot-shareable
 // via RepaintBoundary + toImage + native share sheet.
 // ============================================================================
 
@@ -55,7 +55,8 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
   // SHARE ACTION
   // ==========================================================================
 
-  Future<void> _shareDigest(AppLanguage language) async {
+  Future<void> _shareDigest(bool isEn) async {
+    final language = AppLanguage.fromIsEn(isEn);
     final boundary =
         _repaintKey.currentContext?.findRenderObject()
             as RenderRepaintBoundary?;
@@ -93,7 +94,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
   // HELPERS
   // ==========================================================================
 
-  String _weekdayNameFull(int weekday, AppLanguage language) {
+  String _weekdayNameFull(int weekday, bool isEn) {
     const enDays = [
       '',
       'Monday',
@@ -115,7 +116,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
       'Pazar',
     ];
     if (weekday < 1 || weekday > 7) return '';
-    return language.isEn ? enDays[weekday] : trDays[weekday];
+    return isEn ? enDays[weekday] : trDays[weekday];
   }
 
   Color _moodColor(double rating) {
@@ -190,6 +191,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
     final digestDataAsync = ref.watch(weeklyDigestDataProvider);
 
     return Scaffold(
@@ -197,12 +199,12 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         child: SafeArea(
           child: digestDataAsync.when(
             loading: () => const CosmicLoadingIndicator(),
-            error: (_, _) => _buildEmptyState(context, isDark, language),
+            error: (_, _) => _buildEmptyState(context, isDark, isEn),
             data: (data) {
               if (data == null) {
-                return _buildEmptyState(context, isDark, language);
+                return _buildEmptyState(context, isDark, isEn);
               }
-              return _buildDigestView(context, data, isDark, language);
+              return _buildDigestView(context, data, isDark, isEn);
             },
           ),
         ),
@@ -214,7 +216,8 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
   // EMPTY STATE
   // ==========================================================================
 
-  Widget _buildEmptyState(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildEmptyState(BuildContext context, bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     return CupertinoScrollbar(
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(
@@ -248,8 +251,9 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     BuildContext context,
     WeeklyDigestData data,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     return CupertinoScrollbar(
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(
@@ -263,7 +267,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                 button: true,
                 label: L10nService.get('digest.weekly_digest.share_weekly_debrief', language),
                 child: IconButton(
-                  onPressed: _isSharing ? null : () => _shareDigest(language),
+                  onPressed: _isSharing ? null : () => _shareDigest(isEn),
                   icon: _isSharing
                       ? const CupertinoActivityIndicator(radius: 10)
                       : const Icon(Icons.ios_share, color: AppColors.starGold),
@@ -285,7 +289,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                     child: Column(
                       children: [
                         // 1) Week header
-                        _buildWeekHeader(context, data, isDark, language)
+                        _buildWeekHeader(context, data, isDark, isEn)
                             .animate()
                             .fadeIn(duration: 500.ms)
                             .slideY(
@@ -296,7 +300,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                         const SizedBox(height: AppConstants.spacingLg),
 
                         // 2) Entry count + comparison
-                        _buildEntryComparison(context, data, isDark, language)
+                        _buildEntryComparison(context, data, isDark, isEn)
                             .animate()
                             .fadeIn(delay: 100.ms, duration: 500.ms)
                             .slideY(
@@ -308,7 +312,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                         const SizedBox(height: AppConstants.spacingMd),
 
                         // 3) Stats row: Avg mood, Streak, Top Area
-                        _buildStatsRow(context, data, isDark, language)
+                        _buildStatsRow(context, data, isDark, isEn)
                             .animate()
                             .fadeIn(delay: 200.ms, duration: 500.ms)
                             .slideY(
@@ -321,7 +325,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
 
                         // 4) Top focus area with percentage
                         if (data.topFocusArea != null)
-                          _buildTopFocusArea(context, data, isDark, language)
+                          _buildTopFocusArea(context, data, isDark, isEn)
                               .animate()
                               .fadeIn(delay: 300.ms, duration: 500.ms)
                               .slideY(
@@ -334,7 +338,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                           const SizedBox(height: AppConstants.spacingLg),
 
                         // 5) Mood trend
-                        _buildMoodTrend(context, data, isDark, language)
+                        _buildMoodTrend(context, data, isDark, isEn)
                             .animate()
                             .fadeIn(delay: 400.ms, duration: 500.ms)
                             .slideY(
@@ -347,7 +351,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
 
                         // 6) Best day highlight
                         if (data.bestDay != null)
-                          _buildBestDay(context, data, isDark, language)
+                          _buildBestDay(context, data, isDark, isEn)
                               .animate()
                               .fadeIn(delay: 500.ms, duration: 500.ms)
                               .slideY(
@@ -361,7 +365,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
 
                         // 7) Focus area breakdown
                         if (data.areaAverages.isNotEmpty)
-                          _buildAreaBreakdown(context, data, isDark, language)
+                          _buildAreaBreakdown(context, data, isDark, isEn)
                               .animate()
                               .fadeIn(delay: 600.ms, duration: 500.ms)
                               .slideY(
@@ -374,7 +378,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                           const SizedBox(height: AppConstants.spacingLg),
 
                         // 8) Highlight insight
-                        _buildHighlightInsight(context, data, isDark, language)
+                        _buildHighlightInsight(context, data, isDark, isEn)
                             .animate()
                             .fadeIn(delay: 700.ms, duration: 500.ms)
                             .slideY(
@@ -395,7 +399,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                 ),
 
                 // Monthly Wrapped CTA
-                _buildMonthlyWrappedLink(context, isDark, language),
+                _buildMonthlyWrappedLink(context, isDark, isEn),
                 const SizedBox(height: AppConstants.spacingMd),
 
                 // Disclaimer (outside RepaintBoundary)
@@ -418,8 +422,9 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
   Widget _buildMonthlyWrappedLink(
     BuildContext context,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     return GestureDetector(
       onTap: () => context.push(Routes.monthlyWrapped),
       child: PremiumCard(
@@ -462,8 +467,9 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     BuildContext context,
     WeeklyDigestData data,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final dateFormat = DateFormat('MMM d');
     final range =
         '${dateFormat.format(data.weekStart)} - ${dateFormat.format(data.weekEnd)}';
@@ -521,8 +527,9 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     BuildContext context,
     WeeklyDigestData data,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final diff = data.entriesThisWeek - data.entriesLastWeek;
     final hasComparison = data.entriesLastWeek > 0;
 
@@ -535,13 +542,13 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
       comparisonColor = AppColors.starGold;
       comparisonIcon = Icons.star_outline;
     } else if (diff > 0) {
-      comparisonText = language.isEn
+      comparisonText = isEn
           ? '$diff more than last week'
           : 'Geçen haftaya göre $diff fazla';
       comparisonColor = AppColors.success;
       comparisonIcon = Icons.arrow_upward;
     } else if (diff < 0) {
-      comparisonText = language.isEn
+      comparisonText = isEn
           ? '${diff.abs()} fewer than last week'
           : 'Geçen haftaya göre ${diff.abs()} az';
       comparisonColor = AppColors.warning;
@@ -553,7 +560,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     }
 
     return Semantics(
-      label: language.isEn
+      label: isEn
           ? '${data.entriesThisWeek} entries this week. $comparisonText'
           : '${data.entriesThisWeek} kayıt bu hafta. $comparisonText',
       child: Container(
@@ -638,8 +645,9 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     BuildContext context,
     WeeklyDigestData data,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Row(
       children: [
         // Average Mood
@@ -677,15 +685,16 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     BuildContext context,
     WeeklyDigestData data,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final area = data.topFocusArea!;
     final areaName = area.localizedName(language);
     final color = _focusAreaColor(area);
     final pct = data.topFocusAreaPercentage;
 
     return Semantics(
-      label: language.isEn
+      label: isEn
           ? 'Top focus area: $areaName, ${pct.toStringAsFixed(0)} percent'
           : 'En çok odaklanılan alan: $areaName, yüzde ${pct.toStringAsFixed(0)}',
       child: Container(
@@ -767,8 +776,9 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     BuildContext context,
     WeeklyDigestData data,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final icon = _moodTrendIcon(data.moodTrend);
     final color = _moodTrendColor(data.moodTrend);
     final message = _moodTrendMessage(data.moodTrend);
@@ -777,7 +787,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         : '';
 
     return Semantics(
-      label: language.isEn
+      label: isEn
           ? 'Mood trend ${changeStr.isNotEmpty ? changeStr : ''}: ${message.$1}'
           : 'Ruh hali eğilimi ${changeStr.isNotEmpty ? changeStr : ''}: ${message.$2}',
       child: Container(
@@ -830,7 +840,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    language.isEn ? message.$1 : message.$2,
+                    isEn ? message.$1 : message.$2,
                     style: AppTypography.decorativeScript(
                       fontSize: 13,
                       color: isDark
@@ -855,14 +865,15 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     BuildContext context,
     WeeklyDigestData data,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     final bestDate = data.bestDay!;
-    final dayName = _weekdayNameFull(bestDate.weekday, language);
+    final dayName = _weekdayNameFull(bestDate.weekday, isEn);
     final dateStr = DateFormat('MMM d').format(bestDate);
 
     return Semantics(
-      label: language.isEn
+      label: isEn
           ? 'Best day: $dayName, $dateStr. Average rating: ${data.bestDayRating} out of 5'
           : 'En iyi gün: $dayName, $dateStr. Ortalama puan: ${data.bestDayRating} üzeri 5',
       child: Container(
@@ -923,7 +934,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    language.isEn
+                    isEn
                         ? 'Average rating: ${data.bestDayRating}/5'
                         : 'Ortalama puan: ${data.bestDayRating}/5',
                     style: AppTypography.elegantAccent(
@@ -951,8 +962,9 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     BuildContext context,
     WeeklyDigestData data,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -988,7 +1000,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
             final label = area.localizedName(language);
 
             return Semantics(
-              label: language.isEn
+              label: isEn
                   ? '$label: ${avg.toStringAsFixed(1)} out of 5, $count entries'
                   : '$label: 5 üzerinden ${avg.toStringAsFixed(1)}, $count kayıt',
               child: Padding(
@@ -1069,10 +1081,11 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     BuildContext context,
     WeeklyDigestData data,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
-      label: language.isEn
+      label: isEn
           ? 'Weekly insight: ${data.localizedHighlightInsight(language)}'
           : 'Haftalık içgörü: ${data.localizedHighlightInsight(language)}',
       child: Container(

@@ -17,7 +17,7 @@ class ProfileStatsDashboard extends StatelessWidget {
   final int challenges;
   final int totalWords;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const ProfileStatsDashboard({
     super.key,
@@ -27,11 +27,12 @@ class ProfileStatsDashboard extends StatelessWidget {
     required this.challenges,
     this.totalWords = 0,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.aurora,
       padding: const EdgeInsets.symmetric(

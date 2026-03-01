@@ -12,18 +12,19 @@ import '../../../../data/providers/app_providers.dart';
 /// Triggers native App Store review dialog via in_app_review.
 class ProfileRateSection extends StatelessWidget {
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final int totalEntries;
 
   const ProfileRateSection({
     super.key,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.totalEntries,
   });
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     // Only show after meaningful engagement (5+ entries)
     if (totalEntries < 5) return const SizedBox.shrink();
 

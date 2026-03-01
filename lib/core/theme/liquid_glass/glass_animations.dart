@@ -128,4 +128,59 @@ extension GlassAnimations on Widget {
     final delay = (staggerDelay ?? const Duration(milliseconds: 50)) * index;
     return glassEntrance(delay: delay);
   }
+
+  /// Error shake animation for validation failures.
+  /// 3 oscillations over 300ms, returns to original position.
+  /// Completely skipped when reduced motion is on.
+  Widget glassShake({
+    BuildContext? context,
+    Duration? duration,
+    double offset = 6,
+  }) {
+    if (context != null && MediaQuery.of(context).disableAnimations) {
+      return this;
+    }
+    return animate()
+        .moveX(
+          begin: 0,
+          end: offset,
+          duration: const Duration(milliseconds: 50),
+          curve: Curves.easeInOut,
+        )
+        .then()
+        .moveX(
+          begin: offset,
+          end: -offset,
+          duration: const Duration(milliseconds: 50),
+          curve: Curves.easeInOut,
+        )
+        .then()
+        .moveX(
+          begin: -offset,
+          end: offset * 0.6,
+          duration: const Duration(milliseconds: 50),
+          curve: Curves.easeInOut,
+        )
+        .then()
+        .moveX(
+          begin: offset * 0.6,
+          end: -offset * 0.6,
+          duration: const Duration(milliseconds: 50),
+          curve: Curves.easeInOut,
+        )
+        .then()
+        .moveX(
+          begin: -offset * 0.6,
+          end: offset * 0.3,
+          duration: const Duration(milliseconds: 50),
+          curve: Curves.easeInOut,
+        )
+        .then()
+        .moveX(
+          begin: offset * 0.3,
+          end: 0,
+          duration: const Duration(milliseconds: 50),
+          curve: Curves.easeOut,
+        );
+  }
 }

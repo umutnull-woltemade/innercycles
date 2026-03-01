@@ -15,17 +15,18 @@ import '../../../../data/providers/app_providers.dart';
 
 class HomeHeader extends StatelessWidget {
   final String userName;
-  final AppLanguage language;
+  final bool isEn;
   final bool isDark;
 
   const HomeHeader({
     super.key,
     required this.userName,
-    required this.language,
+    required this.isEn,
     required this.isDark,
   });
 
   String _getGreeting() {
+    final language = AppLanguage.fromIsEn(isEn);
     final hour = DateTime.now().hour;
     if (hour < 12) return L10nService.get('today.home_header.good_morning', language);
     if (hour < 18) return L10nService.get('today.home_header.good_afternoon', language);
@@ -33,6 +34,7 @@ class HomeHeader extends StatelessWidget {
   }
 
   String _getFormattedDate() {
+    final language = AppLanguage.fromIsEn(isEn);
     final now = DateTime.now();
     final lang = language;
     final dayKeys = ['common.date.day_mon', 'common.date.day_tue', 'common.date.day_wed', 'common.date.day_thu', 'common.date.day_fri', 'common.date.day_sat', 'common.date.day_sun'];
@@ -53,6 +55,7 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final greeting = _getGreeting();
     final dateStr = _getFormattedDate();
     final insight = ContentRotationService.getDailyInsight();
@@ -126,7 +129,7 @@ class HomeHeader extends StatelessWidget {
                     ],
                     const SizedBox(height: 6),
                     Text(
-                      language.isEn ? insight.en : insight.tr,
+                      isEn ? insight.en : insight.tr,
                       style: AppTypography.decorativeScript(
                         fontSize: 15,
                         fontWeight: FontWeight.w400,

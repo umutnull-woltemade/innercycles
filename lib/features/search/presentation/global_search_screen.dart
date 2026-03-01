@@ -140,6 +140,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
 
     return Scaffold(
       backgroundColor: isDark ? AppColors.deepSpace : AppColors.lightBackground,
@@ -244,15 +245,15 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                 ),
 
                 // Tab bar (only when searching)
-                if (_query.isNotEmpty) _buildTabBar(isDark, language),
+                if (_query.isNotEmpty) _buildTabBar(isDark, isEn),
 
                 // Content
                 Expanded(
                   child: _query.isEmpty
-                      ? _buildEmptyState(isDark, language)
+                      ? _buildEmptyState(isDark, isEn)
                       : _totalResults == 0
-                          ? _buildNoResults(isDark, language)
-                          : _buildSearchResults(isDark, language),
+                          ? _buildNoResults(isDark, isEn)
+                          : _buildSearchResults(isDark, isEn),
                 ),
               ],
             ),
@@ -262,7 +263,8 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
     );
   }
 
-  Widget _buildTabBar(bool isDark, AppLanguage language) {
+  Widget _buildTabBar(bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     final tabs = [
       (
         _SearchTab.all,
@@ -333,7 +335,8 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
     ).animate().fadeIn(duration: 200.ms);
   }
 
-  Widget _buildEmptyState(bool isDark, AppLanguage language) {
+  Widget _buildEmptyState(bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     return SingleChildScrollView(
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -341,7 +344,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Tag cloud
-          _TagCloudSection(isDark: isDark, language: language, onTagTapped: (tag) {
+          _TagCloudSection(isDark: isDark, isEn: isEn, onTagTapped: (tag) {
             _searchController.text = tag;
             _onQueryChanged(tag);
           }),
@@ -407,7 +410,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             final tool = entry.value;
             return Padding(
               padding: const EdgeInsets.only(bottom: 4),
-              child: _ToolResultTile(tool: tool, isDark: isDark, language: language)
+              child: _ToolResultTile(tool: tool, isDark: isDark, isEn: isEn)
                   .animate()
                   .fadeIn(
                     delay: Duration(milliseconds: 150 + entry.key * 40),
@@ -420,7 +423,8 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
     );
   }
 
-  Widget _buildSearchResults(bool isDark, AppLanguage language) {
+  Widget _buildSearchResults(bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     return ListView(
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -439,7 +443,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             final e = entry.value;
             return Padding(
               padding: const EdgeInsets.only(bottom: 6),
-              child: _JournalResultTile(entry: e, isDark: isDark, language: language)
+              child: _JournalResultTile(entry: e, isDark: isDark, isEn: isEn)
                   .animate()
                   .fadeIn(
                     delay: Duration(milliseconds: entry.key * 30),
@@ -464,7 +468,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             final n = entry.value;
             return Padding(
               padding: const EdgeInsets.only(bottom: 6),
-              child: _NoteResultTile(note: n, isDark: isDark, language: language)
+              child: _NoteResultTile(note: n, isDark: isDark, isEn: isEn)
                   .animate()
                   .fadeIn(
                     delay: Duration(milliseconds: entry.key * 30),
@@ -489,7 +493,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             final d = entry.value;
             return Padding(
               padding: const EdgeInsets.only(bottom: 6),
-              child: _DreamResultTile(dream: d, isDark: isDark, language: language)
+              child: _DreamResultTile(dream: d, isDark: isDark, isEn: isEn)
                   .animate()
                   .fadeIn(
                     delay: Duration(milliseconds: entry.key * 30),
@@ -513,7 +517,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                 (tool) => Padding(
                   padding: const EdgeInsets.only(bottom: 4),
                   child:
-                      _ToolResultTile(tool: tool, isDark: isDark, language: language),
+                      _ToolResultTile(tool: tool, isDark: isDark, isEn: isEn),
                 ),
               ),
         ],
@@ -550,7 +554,8 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
     );
   }
 
-  Widget _buildNoResults(bool isDark, AppLanguage language) {
+  Widget _buildNoResults(bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -601,17 +606,18 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
 
 class _TagCloudSection extends ConsumerWidget {
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final ValueChanged<String> onTagTapped;
 
   const _TagCloudSection({
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onTagTapped,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final language = AppLanguage.fromIsEn(isEn);
     final journalAsync = ref.watch(journalServiceProvider);
     final notesAsync = ref.watch(notesToSelfServiceProvider);
 
@@ -676,16 +682,17 @@ class _TagCloudSection extends ConsumerWidget {
 class _JournalResultTile extends StatelessWidget {
   final JournalEntry entry;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _JournalResultTile({
     required this.entry,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     final areaName =
         entry.focusArea.localizedName(language);
     final dateStr =
@@ -809,12 +816,12 @@ class _JournalResultTile extends StatelessWidget {
 class _NoteResultTile extends StatelessWidget {
   final NoteToSelf note;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _NoteResultTile({
     required this.note,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -909,12 +916,12 @@ class _NoteResultTile extends StatelessWidget {
 class _DreamResultTile extends StatelessWidget {
   final DreamEntry dream;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _DreamResultTile({
     required this.dream,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -1024,16 +1031,17 @@ class _DreamResultTile extends StatelessWidget {
 class _ToolResultTile extends StatelessWidget {
   final ToolManifest tool;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _ToolResultTile({
     required this.tool,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       label: tool.localizedName(language),
       hint: L10nService.get('search.global_search.double_tap_to_open', language),

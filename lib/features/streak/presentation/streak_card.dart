@@ -23,13 +23,14 @@ class StreakCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
+    final isEn = language == AppLanguage.en;
     final streakAsync = ref.watch(streakStatsProvider);
 
     return streakAsync.when(
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (stats) =>
-          _StreakCardContent(stats: stats, isDark: isDark, language: language),
+          _StreakCardContent(stats: stats, isDark: isDark, isEn: isEn),
     );
   }
 }
@@ -37,18 +38,19 @@ class StreakCard extends ConsumerWidget {
 class _StreakCardContent extends StatelessWidget {
   final StreakStats stats;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _StreakCardContent({
     required this.stats,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
   Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
-      label: language.isEn
+      label: isEn
           ? 'Streak: ${stats.currentStreak} days. Tap for details'
           : 'Seri: ${stats.currentStreak} gün. Detaylar için dokun',
       button: true,
@@ -96,7 +98,7 @@ class _StreakCardContent extends StatelessWidget {
                         ),
                         if (stats.currentStreak > 0)
                           Text(
-                            language.isEn
+                            isEn
                                 ? '${stats.currentStreak} day${stats.currentStreak == 1 ? '' : 's'} in a row'
                                 : '${stats.currentStreak} gün üst üste',
                             style: AppTypography.decorativeScript(
@@ -159,12 +161,12 @@ class _StreakCardContent extends StatelessWidget {
               const SizedBox(height: 16),
 
               // Weekly mini-calendar
-              _WeekCalendar(isDark: isDark, language: language),
+              _WeekCalendar(isDark: isDark, isEn: isEn),
 
               // 14-day chain visualization
               if (stats.currentStreak > 0) ...[
                 const SizedBox(height: 14),
-                _StreakChain(isDark: isDark, language: language),
+                _StreakChain(isDark: isDark, isEn: isEn),
               ],
 
               // Share streak button (show when streak >= 3)
@@ -178,7 +180,7 @@ class _StreakCardContent extends StatelessWidget {
                     child: GestureDetector(
                     onTap: () {
                       HapticService.buttonPress();
-                      final msg = language.isEn
+                      final msg = isEn
                           ? '\u{1F525} ${stats.currentStreak}-day reflection streak on InnerCycles! Journaling daily is changing how I see my patterns.\n\n${AppConstants.appStoreUrl}\n#InnerCycles #Streak #Journaling'
                           : '\u{1F525} InnerCycles\'da ${stats.currentStreak} günlük yansıma serisi! Her gün günlük tutmak örüntülerimi görme şeklimi değiştiriyor.\n\n${AppConstants.appStoreUrl}\n#InnerCycles';
                       SharePlus.instance.share(ShareParams(text: msg));
@@ -214,7 +216,7 @@ class _StreakCardContent extends StatelessWidget {
                   current: stats.currentStreak,
                   target: stats.nextMilestone!,
                   isDark: isDark,
-                  language: language,
+                  isEn: isEn,
                 ),
               ],
             ],
@@ -228,9 +230,9 @@ class _StreakCardContent extends StatelessWidget {
 /// Weekly mini-calendar showing check marks for each day
 class _WeekCalendar extends ConsumerWidget {
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
-  const _WeekCalendar({required this.isDark, required this.language});
+  const _WeekCalendar({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -241,7 +243,7 @@ class _WeekCalendar extends ConsumerWidget {
       error: (_, _) => const SizedBox.shrink(),
       data: (service) {
         final weekData = service.getWeekCalendar();
-        final dayLabels = language.isEn
+        final dayLabels = isEn
             ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
             : ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pa'];
         final now = DateTime.now();
@@ -328,13 +330,13 @@ class _MilestoneProgress extends StatelessWidget {
   final int current;
   final int target;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _MilestoneProgress({
     required this.current,
     required this.target,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -349,7 +351,7 @@ class _MilestoneProgress extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              language.isEn
+              isEn
                   ? '$remaining day${remaining == 1 ? '' : 's'} to $target-day milestone'
                   : '$target günlük hedefe $remaining gün',
               style: AppTypography.decorativeScript(
@@ -368,7 +370,7 @@ class _MilestoneProgress extends StatelessWidget {
         ),
         const SizedBox(height: 6),
         Semantics(
-          label: language.isEn
+          label: isEn
               ? '${(progress * 100).round()}% to next milestone'
               : 'Sonraki kilometre taşına %${(progress * 100).round()}',
           child: ClipRRect(
@@ -391,9 +393,9 @@ class _MilestoneProgress extends StatelessWidget {
 /// 14-day "Don't Break the Chain" visualization
 class _StreakChain extends ConsumerWidget {
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
-  const _StreakChain({required this.isDark, required this.language});
+  const _StreakChain({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -401,6 +403,7 @@ class _StreakChain extends ConsumerWidget {
 
     return journalAsync.maybeWhen(
       data: (journal) {
+        final language = AppLanguage.fromIsEn(isEn);
         final now = DateTime.now();
         final startDay = DateTime(now.year, now.month, now.day - 13);
         final endDay = DateTime(now.year, now.month, now.day);
@@ -541,10 +544,11 @@ class StreakMilestoneCelebration {
   static Future<void> show(
     BuildContext context, {
     required int milestone,
-    required AppLanguage language,
+    required bool isEn,
   }) async {
+    final language = AppLanguage.fromIsEn(isEn);
     HapticFeedback.heavyImpact();
-    final message = language.isEn
+    final message = isEn
         ? StreakService.getMilestoneMessageEn(milestone)
         : StreakService.getMilestoneMessageTr(milestone);
 
@@ -561,6 +565,7 @@ class StreakMilestoneCelebration {
         );
       },
       pageBuilder: (ctx, anim, secondAnim) {
+        final language = AppLanguage.fromIsEn(isEn);
         final isDark = Theme.of(ctx).brightness == Brightness.dark;
         return Center(
           child: Material(
@@ -659,7 +664,7 @@ class StreakMilestoneCelebration {
                   GestureDetector(
                     onTap: () {
                       HapticService.buttonPress();
-                      final msg = language.isEn
+                      final msg = isEn
                           ? '\u{1F3C6} Just hit a $milestone-day reflection streak on InnerCycles! Self-discovery through daily journaling.\n\n${AppConstants.appStoreUrl}\n#InnerCycles #Milestone #Journaling'
                           : '\u{1F3C6} InnerCycles\'da $milestone günlük yansıma serisi hedefe ulaştım! Günlük tutarak kendini keşfet.\n\n${AppConstants.appStoreUrl}\n#InnerCycles';
                       SharePlus.instance.share(ShareParams(text: msg));
