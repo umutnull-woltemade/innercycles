@@ -24,13 +24,14 @@ class ProfileReferralSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final referralAsync = ref.watch(referralServiceProvider);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('profile.profile_referral.invite_earn', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('profile.profile_referral.invite_earn', language),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 17,
@@ -41,7 +42,7 @@ class ProfileReferralSection extends ConsumerWidget {
         const SizedBox(height: AppConstants.spacingMd),
         Semantics(
           button: true,
-          label: L10nService.get('profile.profile_referral.open_referral_program', isEn ? AppLanguage.en : AppLanguage.tr),
+          label: L10nService.get('profile.profile_referral.open_referral_program', language),
           child: GestureDetector(
             onTap: () => context.push(Routes.referralProgram),
             behavior: HitTestBehavior.opaque,
@@ -57,7 +58,7 @@ class ProfileReferralSection extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          L10nService.get('profile.profile_referral.invite_friends_get_premium', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('profile.profile_referral.invite_friends_get_premium', language),
                           style: AppTypography.subtitle(
                             fontSize: 14,
                             color: isDark
@@ -70,13 +71,14 @@ class ProfileReferralSection extends ConsumerWidget {
                           loading: () => const SizedBox.shrink(),
                           error: (_, _) => const SizedBox.shrink(),
                           data: (service) {
+                            final language = isEn ? AppLanguage.en : AppLanguage.tr;
                             final count = service.referralCount;
                             return Text(
                               count > 0
                                   ? (isEn
                                       ? '$count friend${count == 1 ? '' : 's'} invited'
                                       : '$count arkadaş davet edildi')
-                                  : (L10nService.get('profile.profile_referral.7_days_free_for_each_friend', isEn ? AppLanguage.en : AppLanguage.tr)),
+                                  : (L10nService.get('profile.profile_referral.7_days_free_for_each_friend', language)),
                               style: AppTypography.subtitle(
                                 fontSize: 12,
                                 color: isDark

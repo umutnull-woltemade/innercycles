@@ -808,6 +808,7 @@ class _BottomWatermark extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -859,7 +860,7 @@ class _BottomWatermark extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        L10nService.get('sharing.try_innercycles', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('sharing.try_innercycles', language),
                         style: AppTypography.elegantAccent(
                           fontSize: 11,
                           color: accent,
@@ -869,7 +870,7 @@ class _BottomWatermark extends StatelessWidget {
                     ),
                     // Brand name
                     Text(
-                      L10nService.get('sharing.made_with', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('sharing.made_with', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 10,
                         color: AppColors.textMuted,
@@ -905,6 +906,7 @@ class _CyclePositionLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     // Extract cycle day / cycle length from chartValues
     final cycleDay = data.chartValues != null && data.chartValues!.isNotEmpty
         ? data.chartValues![0]
@@ -933,7 +935,7 @@ class _CyclePositionLayout extends StatelessWidget {
             border: Border.all(color: accent.withValues(alpha: 0.3)),
           ),
           child: Text(
-            data.detail ?? L10nService.getWithParams('sharing.day_of_cycle', isEn ? AppLanguage.en : AppLanguage.tr, params: {'day': '${cycleDay.toInt()}', 'length': '${cycleLength.toInt()}'}),
+            data.detail ?? L10nService.getWithParams('sharing.day_of_cycle', language, params: {'day': '${cycleDay.toInt()}', 'length': '${cycleLength.toInt()}'}),
             style: AppTypography.elegantAccent(
               fontSize: 12,
               color: accent,
@@ -949,6 +951,7 @@ class _CyclePositionLayout extends StatelessWidget {
           duration: const Duration(milliseconds: 1200),
           curve: Curves.easeOutCubic,
           builder: (context, animatedProgress, child) {
+            final language = isEn ? AppLanguage.en : AppLanguage.tr;
             return SizedBox(
               width: arcSize,
               height: arcSize,
@@ -998,7 +1001,7 @@ class _CyclePositionLayout extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        L10nService.getWithParams('sharing.of_total', isEn ? AppLanguage.en : AppLanguage.tr, params: {'total': '${cycleLength.toInt()}'}),
+                        L10nService.getWithParams('sharing.of_total', language, params: {'total': '${cycleLength.toInt()}'}),
                         style: AppTypography.subtitle(
                           fontSize: 14,
                           color: AppColors.textMuted,

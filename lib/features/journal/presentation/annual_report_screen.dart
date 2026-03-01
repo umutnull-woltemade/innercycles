@@ -179,6 +179,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
   // =========================================================================
 
   Future<void> _shareReport(bool isEn) async {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final boundary =
         _repaintKey.currentContext?.findRenderObject()
             as RenderRepaintBoundary?;
@@ -199,7 +200,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
       final file = File('${tempDir.path}/innercycles_annual_report.png');
       await file.writeAsBytes(bytes);
 
-      final shareText = L10nService.get('journal.annual_report.my_year_in_review_with_innercycles_inner', isEn ? AppLanguage.en : AppLanguage.tr);
+      final shareText = L10nService.get('journal.annual_report.my_year_in_review_with_innercycles_inner', language);
 
       await SharePlus.instance.share(
         ShareParams(files: [XFile(file.path)], text: shareText),
@@ -245,14 +246,15 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
   }
 
   String _motivationalMessage(_AnnualReportData data, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     if (data.totalEntries >= 200) {
-      return L10nService.get('journal.annual_report.an_extraordinary_year_of_selfreflection', isEn ? AppLanguage.en : AppLanguage.tr);
+      return L10nService.get('journal.annual_report.an_extraordinary_year_of_selfreflection', language);
     } else if (data.totalEntries >= 100) {
-      return L10nService.get('journal.annual_report.you_showed_up_consistently_for_yourself', isEn ? AppLanguage.en : AppLanguage.tr);
+      return L10nService.get('journal.annual_report.you_showed_up_consistently_for_yourself', language);
     } else if (data.totalEntries >= 30) {
-      return L10nService.get('journal.annual_report.every_entry_you_wrote_was_a_step_toward', isEn ? AppLanguage.en : AppLanguage.tr);
+      return L10nService.get('journal.annual_report.every_entry_you_wrote_was_a_step_toward', language);
     } else {
-      return L10nService.get('journal.annual_report.you_began_building_selfawareness_this_ye', isEn ? AppLanguage.en : AppLanguage.tr);
+      return L10nService.get('journal.annual_report.you_began_building_selfawareness_this_ye', language);
     }
   }
 
@@ -329,13 +331,14 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isEn,
     int year,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return SafeArea(
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(title: L10nService.get('journal.annual_report.year_synthesis', isEn ? AppLanguage.en : AppLanguage.tr)),
+          GlassSliverAppBar(title: L10nService.get('journal.annual_report.year_synthesis', language)),
           SliverFillRemaining(
             hasScrollBody: false,
             child: Center(
@@ -344,9 +347,9 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                 title: isEn
                     ? 'Start journaling to unlock your $year story'
                     : '$year hikayeni açmak için yazmaya başla',
-                description: L10nService.get('journal.annual_report.your_yearinreview_will_come_alive_with_e', isEn ? AppLanguage.en : AppLanguage.tr),
+                description: L10nService.get('journal.annual_report.your_yearinreview_will_come_alive_with_e', language),
                 gradientVariant: GradientTextVariant.gold,
-                ctaLabel: L10nService.get('journal.annual_report.write_first_entry', isEn ? AppLanguage.en : AppLanguage.tr),
+                ctaLabel: L10nService.get('journal.annual_report.write_first_entry', language),
                 onCtaPressed: () => context.go(Routes.journal),
               ),
             ),
@@ -366,6 +369,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return SafeArea(
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(
@@ -373,14 +377,14 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: L10nService.get('journal.annual_report.year_synthesis_1', isEn ? AppLanguage.en : AppLanguage.tr),
+            title: L10nService.get('journal.annual_report.year_synthesis_1', language),
             actions: [
               IconButton(
                 onPressed: _isSharing ? null : () => _shareReport(isEn),
                 icon: _isSharing
                     ? const CupertinoActivityIndicator(radius: 10)
                     : const Icon(Icons.ios_share, color: AppColors.starGold),
-                tooltip: L10nService.get('journal.annual_report.share', isEn ? AppLanguage.en : AppLanguage.tr),
+                tooltip: L10nService.get('journal.annual_report.share', language),
               ),
             ],
           ),
@@ -496,6 +500,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
@@ -513,7 +518,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
           ),
           const SizedBox(height: 8),
           GradientText(
-            L10nService.get('journal.annual_report.your_year_synthesis', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('journal.annual_report.your_year_synthesis', language),
             variant: GradientTextVariant.aurora,
             style: AppTypography.elegantAccent(
               fontSize: 16,
@@ -527,14 +532,14 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
             children: [
               _StatBadge(
                 value: '${report.totalEntries}',
-                label: L10nService.get('journal.annual_report.entries', isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('journal.annual_report.entries', language),
                 color: AppColors.starGold,
                 isDark: isDark,
               ),
               const SizedBox(width: 16),
               _StatBadge(
                 value: report.overallAverageRating.toStringAsFixed(1),
-                label: L10nService.get('journal.annual_report.avg_rating', isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('journal.annual_report.avg_rating', language),
                 color: AppColors.auroraStart,
                 isDark: isDark,
               ),
@@ -555,6 +560,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -570,7 +576,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
               ),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('journal.annual_report.top_focus_areas', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('journal.annual_report.top_focus_areas', language),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
@@ -677,6 +683,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final maxRating = report.monthlyAverageRatings.values.isNotEmpty
         ? report.monthlyAverageRatings.values.reduce(max)
         : 5.0;
@@ -697,7 +704,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
               ),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('journal.annual_report.average_rating_by_month', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('journal.annual_report.average_rating_by_month', language),
                 variant: GradientTextVariant.aurora,
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
@@ -800,6 +807,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
@@ -828,7 +836,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  L10nService.get('journal.annual_report.longest_streak', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('journal.annual_report.longest_streak', language),
                   style: AppTypography.elegantAccent(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
@@ -866,6 +874,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final activeMonth = report.mostActiveMonth;
     if (activeMonth == null) return const SizedBox.shrink();
     final month = activeMonth.key;
@@ -899,7 +908,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  L10nService.get('journal.annual_report.most_active_month', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('journal.annual_report.most_active_month', language),
                   style: AppTypography.elegantAccent(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
@@ -919,7 +928,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  L10nService.getWithParams('journal.annual_report.entries_recorded', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$count'}),
+                  L10nService.getWithParams('journal.annual_report.entries_recorded', language, params: {'count': '$count'}),
                   style: AppTypography.elegantAccent(
                     fontSize: 12,
                     color: isDark

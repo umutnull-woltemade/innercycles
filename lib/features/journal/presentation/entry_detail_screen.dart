@@ -106,6 +106,7 @@ class EntryDetailScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final areaLabel = entry.focusArea.localizedName(isEn);
     final names = isEn
         ? entry.focusArea.subRatingNamesEn
@@ -134,7 +135,7 @@ class EntryDetailScreen extends ConsumerWidget {
                       : '$areaLabel — $stars$noteSnippet\n\nInnerCycles ile yansıma yapıyorum.\n${AppConstants.appStoreUrl}\n#InnerCycles';
                   SharePlus.instance.share(ShareParams(text: msg));
                 },
-                tooltip: L10nService.get('journal.entry_detail.share_entry', isEn ? AppLanguage.en : AppLanguage.tr),
+                tooltip: L10nService.get('journal.entry_detail.share_entry', language),
                 icon: Icon(
                   Icons.share_rounded,
                   color: AppColors.starGold,
@@ -143,7 +144,7 @@ class EntryDetailScreen extends ConsumerWidget {
               ),
               IconButton(
                 onPressed: () => _confirmDelete(context, ref, entry.id, isEn),
-                tooltip: L10nService.get('journal.entry_detail.delete_entry', isEn ? AppLanguage.en : AppLanguage.tr),
+                tooltip: L10nService.get('journal.entry_detail.delete_entry', language),
                 icon: Icon(Icons.delete_outline, color: AppColors.error),
               ),
             ],
@@ -332,6 +333,7 @@ class EntryDetailScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final file = File(imagePath);
     try {
       if (!file.existsSync()) return const SizedBox.shrink();
@@ -349,7 +351,7 @@ class EntryDetailScreen extends ConsumerWidget {
           width: double.infinity,
           fit: BoxFit.cover,
           cacheWidth: 800,
-          semanticLabel: L10nService.get('journal.entry_detail.journal_entry_photo', isEn ? AppLanguage.en : AppLanguage.tr),
+          semanticLabel: L10nService.get('journal.entry_detail.journal_entry_photo', language),
           errorBuilder: (_, _, _) => const SizedBox.shrink(),
         ),
       ),
@@ -362,6 +364,7 @@ class EntryDetailScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return GlassPanel(
       elevation: GlassElevation.g2,
       width: double.infinity,
@@ -371,7 +374,7 @@ class EntryDetailScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            (L10nService.get('journal.entry_detail.notes', isEn ? AppLanguage.en : AppLanguage.tr)).toUpperCase(),
+            (L10nService.get('journal.entry_detail.notes', language)).toUpperCase(),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 14,
@@ -382,11 +385,12 @@ class EntryDetailScreen extends ConsumerWidget {
           const SizedBox(height: AppConstants.spacingMd),
           GestureDetector(
             onLongPress: () {
+              final language = isEn ? AppLanguage.en : AppLanguage.tr;
               Clipboard.setData(ClipboardData(text: note));
               HapticService.buttonPress();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(L10nService.get('journal.entry_detail.entry_copied_to_clipboard', isEn ? AppLanguage.en : AppLanguage.tr)),
+                  content: Text(L10nService.get('journal.entry_detail.entry_copied_to_clipboard', language)),
                   duration: const Duration(seconds: 1),
                   backgroundColor: AppColors.success,
                 ),
@@ -414,12 +418,13 @@ class EntryDetailScreen extends ConsumerWidget {
     String id,
     bool isEn,
   ) async {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final confirmed = await GlassDialog.confirm(
       context,
-      title: L10nService.get('journal.entry_detail.delete_entry_1', isEn ? AppLanguage.en : AppLanguage.tr),
-      message: L10nService.get('journal.entry_detail.this_journal_entry_will_be_permanently_d', isEn ? AppLanguage.en : AppLanguage.tr),
-      cancelLabel: L10nService.get('journal.entry_detail.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
-      confirmLabel: L10nService.get('journal.entry_detail.delete', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('journal.entry_detail.delete_entry_1', language),
+      message: L10nService.get('journal.entry_detail.this_journal_entry_will_be_permanently_d', language),
+      cancelLabel: L10nService.get('journal.entry_detail.cancel', language),
+      confirmLabel: L10nService.get('journal.entry_detail.delete', language),
       isDestructive: true,
     );
     if (confirmed != true) return;

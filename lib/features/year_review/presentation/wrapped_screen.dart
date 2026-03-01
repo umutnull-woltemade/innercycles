@@ -402,6 +402,7 @@ class _IntroCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return _WrappedCardBase(
       gradientColors: [
         AppColors.starGold.withValues(alpha: 0.15),
@@ -419,7 +420,7 @@ class _IntroCard extends StatelessWidget {
           ).animate().scale(duration: 600.ms, curve: Curves.elasticOut),
           const SizedBox(height: 24),
           GradientText(
-                L10nService.get('year_review.wrapped.your_year_in_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('year_review.wrapped.your_year_in_patterns', language),
                 variant: GradientTextVariant.cosmic,
                 textAlign: TextAlign.center,
                 style: AppTypography.displayFont.copyWith(
@@ -447,17 +448,17 @@ class _IntroCard extends StatelessWidget {
             children: [
               _MiniStatColumn(
                 value: '${data.totalEntries}',
-                label: L10nService.get('year_review.wrapped.entries', isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('year_review.wrapped.entries', language),
               ),
               _MiniStatColumn(
                 value: '${data.totalJournalingDays}',
-                label: L10nService.get('year_review.wrapped.days', isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('year_review.wrapped.days', language),
               ),
             ],
           ).animate().fadeIn(delay: 600.ms, duration: 500.ms),
           const Spacer(flex: 3),
           Text(
-                L10nService.get('year_review.wrapped.swipe_to_explore', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('year_review.wrapped.swipe_to_explore', language),
                 style: AppTypography.subtitle(
                   fontSize: 13,
                   color: AppColors.textMuted,
@@ -490,6 +491,7 @@ class _EmotionalArcCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final arcColors = EmotionalGradient.emotionalGradient(data.averageMood);
 
     return _WrappedCardBase(
@@ -503,7 +505,7 @@ class _EmotionalArcCard extends StatelessWidget {
         children: [
           const Spacer(flex: 2),
           GradientText(
-            L10nService.get('year_review.wrapped.your_emotional_arc', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('year_review.wrapped.your_emotional_arc', language),
             variant: GradientTextVariant.aurora,
             style: AppTypography.elegantAccent(
               fontSize: 16,
@@ -574,9 +576,10 @@ class _IntenseWeekCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final weekStr = data.mostIntenseWeek != null
         ? _formatWeek(data.mostIntenseWeek!, isEn)
-        : (L10nService.get('year_review.wrapped.throughout_the_year', isEn ? AppLanguage.en : AppLanguage.tr));
+        : (L10nService.get('year_review.wrapped.throughout_the_year', language));
 
     return _WrappedCardBase(
       gradientColors: [
@@ -589,7 +592,7 @@ class _IntenseWeekCard extends StatelessWidget {
         children: [
           const Spacer(flex: 2),
           GradientText(
-            L10nService.get('year_review.wrapped.most_intense_week', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('year_review.wrapped.most_intense_week', language),
             variant: GradientTextVariant.amethyst,
             style: AppTypography.elegantAccent(
               fontSize: 16,
@@ -621,7 +624,7 @@ class _IntenseWeekCard extends StatelessWidget {
           ).animate().fadeIn(delay: 400.ms, duration: 500.ms),
           const SizedBox(height: 12),
           Text(
-            L10nService.get('year_review.wrapped.this_week_had_the_widest_range_of_emotio', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('year_review.wrapped.this_week_had_the_widest_range_of_emotio', language),
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 14,
@@ -659,6 +662,7 @@ class _FocusAreaCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final sorted = data.focusAreaCounts.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
     final maxVal = sorted.isNotEmpty ? sorted.first.value : 1;
@@ -674,7 +678,7 @@ class _FocusAreaCard extends StatelessWidget {
         children: [
           const Spacer(flex: 2),
           GradientText(
-            L10nService.get('year_review.wrapped.focus_area_map', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('year_review.wrapped.focus_area_map', language),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 16,
@@ -788,6 +792,7 @@ class _GrowthScoreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return _WrappedCardBase(
       gradientColors: [
         AppColors.amethyst.withValues(alpha: 0.15),
@@ -799,7 +804,7 @@ class _GrowthScoreCard extends StatelessWidget {
         children: [
           const Spacer(flex: 2),
           GradientText(
-            L10nService.get('year_review.wrapped.growth_score', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('year_review.wrapped.growth_score', language),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 16,
@@ -845,12 +850,13 @@ class _GrowthScoreCard extends StatelessWidget {
   }
 
   String _growthLabel(int score, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     if (score >= 70) {
-      return L10nService.get('year_review.wrapped.remarkable_growth_this_year', isEn ? AppLanguage.en : AppLanguage.tr);
+      return L10nService.get('year_review.wrapped.remarkable_growth_this_year', language);
     } else if (score >= 50) {
-      return L10nService.get('year_review.wrapped.steady_and_consistent_progress', isEn ? AppLanguage.en : AppLanguage.tr);
+      return L10nService.get('year_review.wrapped.steady_and_consistent_progress', language);
     }
-    return L10nService.get('year_review.wrapped.every_journey_has_its_rhythm', isEn ? AppLanguage.en : AppLanguage.tr);
+    return L10nService.get('year_review.wrapped.every_journey_has_its_rhythm', language);
   }
 }
 
@@ -871,6 +877,7 @@ class _BreakthroughCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return _WrappedCardBase(
       gradientColors: [
         AppColors.success.withValues(alpha: 0.15),
@@ -882,7 +889,7 @@ class _BreakthroughCard extends StatelessWidget {
         children: [
           const Spacer(flex: 2),
           GradientText(
-            L10nService.get('year_review.wrapped.breakthrough_moments', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('year_review.wrapped.breakthrough_moments', language),
             variant: GradientTextVariant.amethyst,
             style: AppTypography.elegantAccent(
               fontSize: 16,
@@ -898,7 +905,7 @@ class _BreakthroughCard extends StatelessWidget {
           ).animate().fadeIn(delay: 300.ms, duration: 500.ms),
           const SizedBox(height: 8),
           Text(
-            L10nService.get('year_review.wrapped.breakthroughs', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('year_review.wrapped.breakthroughs', language),
             style: AppTypography.elegantAccent(
               fontSize: 14,
               fontWeight: FontWeight.w500,
@@ -909,7 +916,7 @@ class _BreakthroughCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(
-              L10nService.get('year_review.wrapped.moments_where_your_mood_lifted_and_a_pos', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('year_review.wrapped.moments_where_your_mood_lifted_and_a_pos', language),
               textAlign: TextAlign.center,
               style: AppTypography.decorativeScript(
                 fontSize: 14,
@@ -941,6 +948,7 @@ class _TopPatternsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final patterns = data.topPatterns.take(3).toList();
 
     return _WrappedCardBase(
@@ -954,7 +962,7 @@ class _TopPatternsCard extends StatelessWidget {
         children: [
           const Spacer(flex: 2),
           GradientText(
-            L10nService.get('year_review.wrapped.your_top_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('year_review.wrapped.your_top_patterns', language),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 16,
@@ -965,7 +973,7 @@ class _TopPatternsCard extends StatelessWidget {
           const SizedBox(height: 28),
           if (patterns.isEmpty)
             Text(
-              L10nService.get('year_review.wrapped.keep_journaling_to_discover_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('year_review.wrapped.keep_journaling_to_discover_patterns', language),
               style: AppTypography.decorativeScript(
                 fontSize: 14,
                 color: AppColors.textSecondary,
@@ -1032,6 +1040,7 @@ class _TopPatternsCard extends StatelessWidget {
   }
 
   String _formatPattern(String raw, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     // Parse pattern codes like "focus_dominant:energy:42"
     final parts = raw.split(':');
     if (parts.isEmpty) return raw;
@@ -1058,15 +1067,15 @@ class _TopPatternsCard extends StatelessWidget {
             ? '$days-day journaling streak'
             : '$days günlük yazma serisi';
       case 'high_average':
-        return L10nService.get('year_review.wrapped.consistently_high_mood_average', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('year_review.wrapped.consistently_high_mood_average', language);
       case 'diverse_explorer':
-        return L10nService.get('year_review.wrapped.explored_multiple_focus_areas', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('year_review.wrapped.explored_multiple_focus_areas', language);
       case 'daily_journaler':
-        return L10nService.get('year_review.wrapped.journaled_every_single_day', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('year_review.wrapped.journaled_every_single_day', language);
       case 'dedicated_journaler':
       case 'committed_journaler':
         final count = parts.length > 1 ? parts[1] : '';
-        return L10nService.getWithParams('year_review.entries_this_year', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': count});
+        return L10nService.getWithParams('year_review.entries_this_year', language, params: {'count': count});
       default:
         return raw;
     }
@@ -1097,6 +1106,7 @@ class _ClosingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return _WrappedCardBase(
       gradientColors: [
         AppColors.starGold.withValues(alpha: 0.18),
@@ -1108,7 +1118,7 @@ class _ClosingCard extends StatelessWidget {
         children: [
           const Spacer(flex: 2),
           GradientText(
-                L10nService.get('year_review.wrapped.see_you_next_year', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('year_review.wrapped.see_you_next_year', language),
                 variant: GradientTextVariant.cosmic,
                 textAlign: TextAlign.center,
                 style: AppTypography.displayFont.copyWith(
@@ -1124,7 +1134,7 @@ class _ClosingCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(
-              L10nService.get('year_review.wrapped.every_entry_you_wrote_brought_you_closer', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('year_review.wrapped.every_entry_you_wrote_brought_you_closer', language),
               textAlign: TextAlign.center,
               style: AppTypography.decorativeScript(
                 fontSize: 15,
@@ -1135,7 +1145,7 @@ class _ClosingCard extends StatelessWidget {
           const Spacer(flex: 2),
           // Share button
           GradientButton.gold(
-                label: L10nService.get('year_review.wrapped.share_your_wrapped', isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('year_review.wrapped.share_your_wrapped', language),
                 icon: Icons.share_rounded,
                 onPressed: () {
                   HapticFeedback.selectionClick();
@@ -1181,6 +1191,7 @@ class _PremiumGateCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return _WrappedCardBase(
       gradientColors: [
         AppColors.starGold.withValues(alpha: 0.08),
@@ -1198,7 +1209,7 @@ class _PremiumGateCard extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           GradientText(
-            L10nService.get('year_review.wrapped.unlock_your_full_wrapped', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('year_review.wrapped.unlock_your_full_wrapped', language),
             variant: GradientTextVariant.gold,
             textAlign: TextAlign.center,
             style: AppTypography.displayFont.copyWith(
@@ -1208,7 +1219,7 @@ class _PremiumGateCard extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            L10nService.get('year_review.wrapped.5_more_cards_with_deeper_insights_await', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('year_review.wrapped.5_more_cards_with_deeper_insights_await', language),
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 14,

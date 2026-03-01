@@ -84,6 +84,9 @@ class QuizQuestion {
     required this.options,
     this.category,
   });
+
+  String localizedText(AppLanguage language) =>
+      language == AppLanguage.en ? text : textTr;
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -103,6 +106,9 @@ class QuizOption {
     required this.textTr,
     required this.scores,
   });
+
+  String localizedText(AppLanguage language) =>
+      language == AppLanguage.en ? text : textTr;
 }
 
 // ════════════════════════════════════════════════════════════════════════════

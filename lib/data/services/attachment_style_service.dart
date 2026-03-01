@@ -13,6 +13,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/attachment_style.dart';
+import '../providers/app_providers.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // QUIZ QUESTION MODEL
@@ -31,6 +32,12 @@ class AttachmentQuizQuestion {
     required this.optionsEn,
     required this.optionsTr,
   });
+
+  String localizedQuestion(AppLanguage language) =>
+      language == AppLanguage.en ? questionEn : questionTr;
+
+  Map<AttachmentStyle, String> localizedOptions(AppLanguage language) =>
+      language == AppLanguage.en ? optionsEn : optionsTr;
 }
 
 // ════════════════════════════════════════════════════════════════════════════

@@ -526,83 +526,84 @@ class NotificationLifecycleService {
     JournalService journalService,
   ) {
     final isEn = _isEn;
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     switch (type) {
       case LifecycleNotificationType.challengeCompleted:
         return _NotificationContent(
-          title: L10nService.get('data.services.notification_lifecycle.challenge_completed', isEn ? AppLanguage.en : AppLanguage.tr),
-          body: L10nService.get('data.services.notification_lifecycle.you_finished_a_challenge_share_your_achi', isEn ? AppLanguage.en : AppLanguage.tr),
+          title: L10nService.get('data.services.notification_lifecycle.challenge_completed', language),
+          body: L10nService.get('data.services.notification_lifecycle.you_finished_a_challenge_share_your_achi', language),
         );
 
       case LifecycleNotificationType.archetypeEvolution:
         return _NotificationContent(
-          title: L10nService.get('data.services.notification_lifecycle.your_archetype_shifted', isEn ? AppLanguage.en : AppLanguage.tr),
-          body: L10nService.get('data.services.notification_lifecycle.your_monthly_archetype_has_evolved_check', isEn ? AppLanguage.en : AppLanguage.tr),
+          title: L10nService.get('data.services.notification_lifecycle.your_archetype_shifted', language),
+          body: L10nService.get('data.services.notification_lifecycle.your_monthly_archetype_has_evolved_check', language),
         );
 
       case LifecycleNotificationType.patternDiscovery:
         return _NotificationContent(
-          title: L10nService.get('data.services.notification_lifecycle.new_pattern_found', isEn ? AppLanguage.en : AppLanguage.tr),
-          body: L10nService.get('data.services.notification_lifecycle.a_new_correlation_emerged_in_your_journa', isEn ? AppLanguage.en : AppLanguage.tr),
+          title: L10nService.get('data.services.notification_lifecycle.new_pattern_found', language),
+          body: L10nService.get('data.services.notification_lifecycle.a_new_correlation_emerged_in_your_journa', language),
         );
 
       case LifecycleNotificationType.shareReminder:
         return _NotificationContent(
-          title: L10nService.get('data.services.notification_lifecycle.celebrate_your_progress', isEn ? AppLanguage.en : AppLanguage.tr),
-          body: L10nService.get('data.services.notification_lifecycle.you_reached_a_milestone_recently_share_i', isEn ? AppLanguage.en : AppLanguage.tr),
+          title: L10nService.get('data.services.notification_lifecycle.celebrate_your_progress', language),
+          body: L10nService.get('data.services.notification_lifecycle.you_reached_a_milestone_recently_share_i', language),
         );
 
       case LifecycleNotificationType.monthlyWrappedReady:
         return _NotificationContent(
-          title: L10nService.get('data.services.notification_lifecycle.monthly_wrapped_ready', isEn ? AppLanguage.en : AppLanguage.tr),
-          body: L10nService.get('data.services.notification_lifecycle.your_monthly_recap_is_ready_to_review_se', isEn ? AppLanguage.en : AppLanguage.tr),
+          title: L10nService.get('data.services.notification_lifecycle.monthly_wrapped_ready', language),
+          body: L10nService.get('data.services.notification_lifecycle.your_monthly_recap_is_ready_to_review_se', language),
         );
 
       case LifecycleNotificationType.streakReminder:
         final streak = journalService.getCurrentStreak();
         return _NotificationContent(
-          title: L10nService.get('data.services.notification_lifecycle.your_streak_is_waiting', isEn ? AppLanguage.en : AppLanguage.tr),
-          body: L10nService.getWithParams('data.services.notification_lifecycle.streak_reminder_body', isEn ? AppLanguage.en : AppLanguage.tr, params: {'streak': '$streak'}),
+          title: L10nService.get('data.services.notification_lifecycle.your_streak_is_waiting', language),
+          body: L10nService.getWithParams('data.services.notification_lifecycle.streak_reminder_body', language, params: {'streak': '$streak'}),
         );
 
       case LifecycleNotificationType.insightTeaser:
         return _NotificationContent(
-          title: L10nService.get('data.services.notification_lifecycle.something_interesting', isEn ? AppLanguage.en : AppLanguage.tr),
-          body: L10nService.get('data.services.notification_lifecycle.something_interesting_emerged_in_your_pa', isEn ? AppLanguage.en : AppLanguage.tr),
+          title: L10nService.get('data.services.notification_lifecycle.something_interesting', language),
+          body: L10nService.get('data.services.notification_lifecycle.something_interesting_emerged_in_your_pa', language),
         );
 
       case LifecycleNotificationType.moodCheckIn:
         return _NotificationContent(
-          title: L10nService.get('data.services.notification_lifecycle.quick_checkin', isEn ? AppLanguage.en : AppLanguage.tr),
-          body: L10nService.get('data.services.notification_lifecycle.whats_present_for_you_right_now_a_quick', isEn ? AppLanguage.en : AppLanguage.tr),
+          title: L10nService.get('data.services.notification_lifecycle.quick_checkin', language),
+          body: L10nService.get('data.services.notification_lifecycle.whats_present_for_you_right_now_a_quick', language),
         );
 
       case LifecycleNotificationType.milestonesCelebration:
         final total = journalService.entryCount;
         return _NotificationContent(
-          title: L10nService.get('data.services.notification_lifecycle.milestone_reached', isEn ? AppLanguage.en : AppLanguage.tr),
-          body: L10nService.getWithParams('data.services.notification_lifecycle.milestone_body', isEn ? AppLanguage.en : AppLanguage.tr, params: {'total': '$total'}),
+          title: L10nService.get('data.services.notification_lifecycle.milestone_reached', language),
+          body: L10nService.getWithParams('data.services.notification_lifecycle.milestone_body', language, params: {'total': '$total'}),
         );
 
       case LifecycleNotificationType.seasonalTrigger:
         final moonData = MoonPhaseService.today();
         if (moonData.phase == MoonPhase.newMoon) {
           return _NotificationContent(
-            title: L10nService.get('data.services.notification_lifecycle.new_moon_tonight', isEn ? AppLanguage.en : AppLanguage.tr),
-            body: L10nService.get('data.services.notification_lifecycle.the_new_moon_is_tonight_a_perfect_time_f', isEn ? AppLanguage.en : AppLanguage.tr),
+            title: L10nService.get('data.services.notification_lifecycle.new_moon_tonight', language),
+            body: L10nService.get('data.services.notification_lifecycle.the_new_moon_is_tonight_a_perfect_time_f', language),
           );
         }
         if (moonData.phase == MoonPhase.fullMoon) {
           return _NotificationContent(
-            title: L10nService.get('data.services.notification_lifecycle.full_moon_tonight', isEn ? AppLanguage.en : AppLanguage.tr),
-            body: L10nService.get('data.services.notification_lifecycle.the_full_moon_is_tonight_a_wonderful_mom', isEn ? AppLanguage.en : AppLanguage.tr),
+            title: L10nService.get('data.services.notification_lifecycle.full_moon_tonight', language),
+            body: L10nService.get('data.services.notification_lifecycle.the_full_moon_is_tonight_a_wonderful_mom', language),
           );
         }
         return null;
 
       case LifecycleNotificationType.reEngagement3Day:
         return _NotificationContent(
-          title: L10nService.get('data.services.notification_lifecycle.your_journal_awaits', isEn ? AppLanguage.en : AppLanguage.tr),
-          body: L10nService.get('data.services.notification_lifecycle.your_journal_is_here_whenever_you_are_re', isEn ? AppLanguage.en : AppLanguage.tr),
+          title: L10nService.get('data.services.notification_lifecycle.your_journal_awaits', language),
+          body: L10nService.get('data.services.notification_lifecycle.your_journal_is_here_whenever_you_are_re', language),
         );
 
       case LifecycleNotificationType.reEngagement7Day:
@@ -620,14 +621,14 @@ class NotificationLifecycleService {
         ];
         final idx7 = DateTime.now().day % pool7En.length;
         return _NotificationContent(
-          title: L10nService.get('data.services.notification_lifecycle.one_sentence_counts', isEn ? AppLanguage.en : AppLanguage.tr),
+          title: L10nService.get('data.services.notification_lifecycle.one_sentence_counts', language),
           body: isEn ? pool7En[idx7] : pool7Tr[idx7],
         );
 
       case LifecycleNotificationType.reEngagement14Day:
         return _NotificationContent(
-          title: L10nService.get('data.services.notification_lifecycle.still_here_for_you', isEn ? AppLanguage.en : AppLanguage.tr),
-          body: L10nService.get('data.services.notification_lifecycle.your_patterns_are_still_here_ready_when', isEn ? AppLanguage.en : AppLanguage.tr),
+          title: L10nService.get('data.services.notification_lifecycle.still_here_for_you', language),
+          body: L10nService.get('data.services.notification_lifecycle.your_patterns_are_still_here_ready_when', language),
         );
 
       case LifecycleNotificationType.reEngagement30Day:
@@ -645,21 +646,21 @@ class NotificationLifecycleService {
         ];
         final idx30 = DateTime.now().day % pool30En.length;
         return _NotificationContent(
-          title: L10nService.get('data.services.notification_lifecycle.welcome_back', isEn ? AppLanguage.en : AppLanguage.tr),
+          title: L10nService.get('data.services.notification_lifecycle.welcome_back', language),
           body: isEn ? pool30En[idx30] : pool30Tr[idx30],
         );
 
       case LifecycleNotificationType.wrappedReady:
         final year = DateTime.now().year;
         return _NotificationContent(
-          title: L10nService.getWithParams('data.services.notification_lifecycle.wrapped_title', isEn ? AppLanguage.en : AppLanguage.tr, params: {'year': '$year'}),
-          body: L10nService.get('data.services.notification_lifecycle.see_your_year_in_patterns_your_personal', isEn ? AppLanguage.en : AppLanguage.tr),
+          title: L10nService.getWithParams('data.services.notification_lifecycle.wrapped_title', language, params: {'year': '$year'}),
+          body: L10nService.get('data.services.notification_lifecycle.see_your_year_in_patterns_your_personal', language),
         );
 
       case LifecycleNotificationType.weeklyDigest:
         return _NotificationContent(
-          title: L10nService.get('data.services.notification_lifecycle.weekly_reflection', isEn ? AppLanguage.en : AppLanguage.tr),
-          body: L10nService.get('data.services.notification_lifecycle.your_weekly_reflection_is_ready_to_revie', isEn ? AppLanguage.en : AppLanguage.tr),
+          title: L10nService.get('data.services.notification_lifecycle.weekly_reflection', language),
+          body: L10nService.get('data.services.notification_lifecycle.your_weekly_reflection_is_ready_to_revie', language),
         );
     }
   }

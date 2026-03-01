@@ -29,6 +29,7 @@ class OnThisDayBanner extends ConsumerWidget {
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (service) {
+        final language = isEn ? AppLanguage.en : AppLanguage.tr;
         final allEntries = service.getAllEntries();
         final now = DateTime.now();
         final onThisDayEntries = allEntries.where((e) {
@@ -48,7 +49,7 @@ class OnThisDayBanner extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
           child: Semantics(
             button: true,
-            label: L10nService.get('today.on_this_day.view_memories_from_this_day', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('today.on_this_day.view_memories_from_this_day', language),
             child: TapScale(
               onTap: () => context.push(Routes.memories),
               child: PremiumCard(

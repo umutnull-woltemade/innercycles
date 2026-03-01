@@ -26,18 +26,20 @@ class HomeHeader extends StatelessWidget {
   });
 
   String _getGreeting() {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final hour = DateTime.now().hour;
-    if (hour < 12) return L10nService.get('today.home_header.good_morning', isEn ? AppLanguage.en : AppLanguage.tr);
-    if (hour < 18) return L10nService.get('today.home_header.good_afternoon', isEn ? AppLanguage.en : AppLanguage.tr);
-    return L10nService.get('today.home_header.good_evening', isEn ? AppLanguage.en : AppLanguage.tr);
+    if (hour < 12) return L10nService.get('today.home_header.good_morning', language);
+    if (hour < 18) return L10nService.get('today.home_header.good_afternoon', language);
+    return L10nService.get('today.home_header.good_evening', language);
   }
 
   String _getFormattedDate() {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final now = DateTime.now();
-    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
+    final lang = language;
     final dayKeys = ['common.date.day_mon', 'common.date.day_tue', 'common.date.day_wed', 'common.date.day_thu', 'common.date.day_fri', 'common.date.day_sat', 'common.date.day_sun'];
     final dayName = L10nService.get(dayKeys[now.weekday - 1], lang);
-    final months = isEn ? CommonStrings.monthsShortEn : CommonStrings.monthsShortTr;
+    final months = CommonStrings.monthsShort(language);
     final monthName = months[now.month - 1];
     return L10nService.getWithParams('common.date.format_en', lang, params: {'day': dayName, 'month': monthName, 'date': '${now.day}'});
   }
@@ -53,6 +55,7 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final greeting = _getGreeting();
     final dateStr = _getFormattedDate();
     final insight = ContentRotationService.getDailyInsight();
@@ -141,7 +144,7 @@ class HomeHeader extends StatelessWidget {
               const SizedBox(width: 8),
               // Search icon
               Semantics(
-                label: L10nService.get('today.home_header.search', isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('today.home_header.search', language),
                 button: true,
                 child: TapScale(
                   onTap: () {
@@ -173,7 +176,7 @@ class HomeHeader extends StatelessWidget {
               const SizedBox(width: 8),
               // Avatar circle -> Settings
               Semantics(
-                label: L10nService.get('today.home_header.profile_settings', isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('today.home_header.profile_settings', language),
                 button: true,
                 child: TapScale(
                   onTap: () {

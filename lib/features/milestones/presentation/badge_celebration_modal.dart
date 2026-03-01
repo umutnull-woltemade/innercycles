@@ -83,8 +83,9 @@ class _BadgeCelebrationModalState extends State<BadgeCelebrationModal>
   }
 
   void _share() {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     HapticFeedback.lightImpact();
-    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
+    final lang = language;
     final name = milestone.localizedName(lang);
     final desc = milestone.localizedDescription(lang);
     final text = isEn
@@ -99,8 +100,9 @@ class _BadgeCelebrationModalState extends State<BadgeCelebrationModal>
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
+    final lang = language;
     final name = milestone.localizedName(lang);
     final desc = milestone.localizedDescription(lang);
     final category = milestone.category.displayName(lang);
@@ -293,7 +295,7 @@ class _BadgeCelebrationModalState extends State<BadgeCelebrationModal>
                             children: [
                               Expanded(
                                 child: GradientOutlinedButton(
-                                  label: L10nService.get('milestones.badge_celebration.share', isEn ? AppLanguage.en : AppLanguage.tr),
+                                  label: L10nService.get('milestones.badge_celebration.share', language),
                                   icon: Icons.share_rounded,
                                   variant: GradientTextVariant.gold,
                                   expanded: true,
@@ -309,7 +311,7 @@ class _BadgeCelebrationModalState extends State<BadgeCelebrationModal>
                               const SizedBox(width: 12),
                               Expanded(
                                 child: GradientButton.gold(
-                                  label: L10nService.get('milestones.badge_celebration.keep_going', isEn ? AppLanguage.en : AppLanguage.tr),
+                                  label: L10nService.get('milestones.badge_celebration.keep_going', language),
                                   onPressed: () =>
                                       Navigator.of(context).pop(),
                                   expanded: true,

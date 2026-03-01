@@ -24,6 +24,7 @@ class ProfileRateSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     // Only show after meaningful engagement (5+ entries)
     if (totalEntries < 5) return const SizedBox.shrink();
 
@@ -55,7 +56,7 @@ class ProfileRateSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GradientText(
-                  L10nService.get('profile.profile_rate.enjoying_innercycles', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('profile.profile_rate.enjoying_innercycles', language),
                   variant: GradientTextVariant.gold,
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 15,
@@ -64,7 +65,7 @@ class ProfileRateSection extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  L10nService.get('profile.profile_rate.a_quick_rating_helps_us_grow', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('profile.profile_rate.a_quick_rating_helps_us_grow', language),
                   style: AppTypography.subtitle(
                     fontSize: 13,
                     color: isDark
@@ -106,7 +107,7 @@ class ProfileRateSection extends StatelessWidget {
                 ],
               ),
               child: Text(
-                L10nService.get('profile.profile_rate.rate', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('profile.profile_rate.rate', language),
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,

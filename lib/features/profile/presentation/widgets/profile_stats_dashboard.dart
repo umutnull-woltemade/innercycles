@@ -32,6 +32,7 @@ class ProfileStatsDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.aurora,
       padding: const EdgeInsets.symmetric(
@@ -44,13 +45,13 @@ class ProfileStatsDashboard extends StatelessWidget {
           _StatColumn(
             emoji: '\u{1F525}',
             value: '$streak',
-            label: L10nService.get('profile.profile_stats_dashboard.streak', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('profile.profile_stats_dashboard.streak', language),
             color: AppColors.streakOrange,
           ),
           _StatColumn(
             emoji: '\u{1F4D3}',
             value: '$entries',
-            label: L10nService.get('profile.profile_stats_dashboard.entries', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('profile.profile_stats_dashboard.entries', language),
             color: AppColors.auroraStart,
           ),
           _StatColumn(
@@ -58,13 +59,13 @@ class ProfileStatsDashboard extends StatelessWidget {
             value: totalWords >= 1000
                 ? '${(totalWords / 1000).toStringAsFixed(1)}K'
                 : '$totalWords',
-            label: L10nService.get('profile.profile_stats_dashboard.words', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('profile.profile_stats_dashboard.words', language),
             color: AppColors.starGold,
           ),
           _StatColumn(
             emoji: '\u{1F3C6}',
             value: '$challenges',
-            label: L10nService.get('profile.profile_stats_dashboard.done', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('profile.profile_stats_dashboard.done', language),
             color: AppColors.amethyst,
           ),
         ],

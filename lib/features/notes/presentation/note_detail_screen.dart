@@ -1281,6 +1281,7 @@ class _ReminderForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
@@ -1312,7 +1313,7 @@ class _ReminderForm extends StatelessWidget {
                   Text(
                     reminderDate != null
                         ? _formatDate(reminderDate!, isEn)
-                        : (L10nService.get('notes.note_detail.pick_date_time', isEn ? AppLanguage.en : AppLanguage.tr)),
+                        : (L10nService.get('notes.note_detail.pick_date_time', language)),
                     style: AppTypography.subtitle(
                       fontSize: 14,
                       color: reminderDate != null
@@ -1329,7 +1330,7 @@ class _ReminderForm extends StatelessWidget {
 
           // Frequency chips
           Text(
-            L10nService.get('notes.note_detail.frequency', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('notes.note_detail.frequency', language),
             style: AppTypography.elegantAccent(
               fontSize: 12,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -1388,7 +1389,7 @@ class _ReminderForm extends StatelessWidget {
               color: isDark ? Colors.white : AppColors.lightTextPrimary,
             ),
             decoration: InputDecoration(
-              hintText: L10nService.get('notes.note_detail.custom_message_optional', isEn ? AppLanguage.en : AppLanguage.tr),
+              hintText: L10nService.get('notes.note_detail.custom_message_optional', language),
               hintStyle: AppTypography.subtitle(
                 color: isDark
                     ? AppColors.textMuted
@@ -1434,7 +1435,7 @@ class _ReminderForm extends StatelessWidget {
                 ),
                 alignment: Alignment.center,
                 child: Text(
-                  L10nService.get('notes.note_detail.set_reminder', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('notes.note_detail.set_reminder', language),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,

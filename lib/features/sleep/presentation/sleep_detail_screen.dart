@@ -195,6 +195,7 @@ class _SummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: 14,
@@ -206,19 +207,19 @@ class _SummaryCard extends StatelessWidget {
             value: summary.averageQuality > 0
                 ? summary.averageQuality.toStringAsFixed(1)
                 : '-',
-            label: L10nService.get('sleep.sleep_detail.average', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('sleep.sleep_detail.average', language),
             color: _qualityColor(summary.averageQuality),
             isDark: isDark,
           ),
           _StatItem(
             value: '${summary.nightsLogged}',
-            label: L10nService.get('sleep.sleep_detail.nights', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('sleep.sleep_detail.nights', language),
             color: AppColors.auroraStart,
             isDark: isDark,
           ),
           _StatItem(
             value: '${summary.bestNightQuality}/5',
-            label: L10nService.get('sleep.sleep_detail.best', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('sleep.sleep_detail.best', language),
             color: AppColors.success,
             isDark: isDark,
           ),
@@ -286,6 +287,7 @@ class _WeeklyChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final dayLabels = isEn
         ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         : ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
@@ -298,7 +300,7 @@ class _WeeklyChart extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('sleep.sleep_detail.last_7_days', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('sleep.sleep_detail.last_7_days', language),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -444,6 +446,7 @@ class _SleepTips extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final tips = isEn
         ? [
             'Maintain a consistent sleep schedule',
@@ -474,7 +477,7 @@ class _SleepTips extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('sleep.sleep_detail.sleep_tips', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('sleep.sleep_detail.sleep_tips', language),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 14,
@@ -610,12 +613,13 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumEmptyState(
       icon: Icons.bedtime_outlined,
-      title: L10nService.get('sleep.sleep_detail.your_sleep_story_is_waiting_to_begin', isEn ? AppLanguage.en : AppLanguage.tr),
-      description: L10nService.get('sleep.sleep_detail.log_your_sleep_quality_in_your_daily_jou', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('sleep.sleep_detail.your_sleep_story_is_waiting_to_begin', language),
+      description: L10nService.get('sleep.sleep_detail.log_your_sleep_quality_in_your_daily_jou', language),
       gradientVariant: GradientTextVariant.amethyst,
-      ctaLabel: L10nService.get('sleep.sleep_detail.write_journal_entry', isEn ? AppLanguage.en : AppLanguage.tr),
+      ctaLabel: L10nService.get('sleep.sleep_detail.write_journal_entry', language),
       onCtaPressed: () => context.go(Routes.journal),
     );
   }

@@ -526,11 +526,12 @@ class _PresetSelector extends StatelessWidget {
       spacing: 0,
       runSpacing: 8,
       children: BreathingPreset.values.map((preset) {
+        final language = isEn ? AppLanguage.en : AppLanguage.tr;
         final isSelected = preset == current;
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Semantics(
-            label: preset.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
+            label: preset.localizedName(language),
             button: true,
             selected: isSelected,
             child: GestureDetector(
@@ -555,7 +556,7 @@ class _PresetSelector extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  preset.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
+                  preset.localizedName(language),
                   style: AppTypography.elegantAccent(
                     fontSize: 12,
                     fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,

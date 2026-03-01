@@ -336,6 +336,9 @@ class CycleInsight {
     this.relatedArea,
     this.secondaryArea,
   });
+
+  String localizedMessage(AppLanguage language) =>
+      language == AppLanguage.en ? messageEn : messageTr;
 }
 
 /// Full emotional cycle analysis result

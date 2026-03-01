@@ -28,13 +28,14 @@ class TodayBirthdayBanner extends ConsumerWidget {
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (service) {
+        final language = isEn ? AppLanguage.en : AppLanguage.tr;
         final todayBirthdays = service.getTodayBirthdays();
         if (todayBirthdays.isEmpty) return const SizedBox.shrink();
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Semantics(
             button: true,
-            label: L10nService.get('today.today_birthday.view_birthday_agenda', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('today.today_birthday.view_birthday_agenda', language),
             child: TapScale(
               onTap: () => context.push(Routes.birthdayAgenda),
               child: PremiumCard(
@@ -86,7 +87,7 @@ class TodayBirthdayBanner extends ConsumerWidget {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            L10nService.get('today.today_birthday.u1f382_birthday_today', isEn ? AppLanguage.en : AppLanguage.tr),
+                            L10nService.get('today.today_birthday.u1f382_birthday_today', language),
                             style: AppTypography.subtitle(
                               fontSize: 14,
                               color: AppColors.starGold,

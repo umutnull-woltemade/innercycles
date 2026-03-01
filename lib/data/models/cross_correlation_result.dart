@@ -5,6 +5,8 @@
 // (e.g., sleep quality vs. next-day mood). Uses safe, non-predictive language.
 // ════════════════════════════════════════════════════════════════════════════
 
+import '../providers/app_providers.dart';
+
 /// A correlation result between two data dimensions from different services
 class CrossCorrelation {
   final String dimensionA;
@@ -55,4 +57,7 @@ class CrossCorrelation {
 
   String shortDisplayTr() =>
       '$dimensionA & $dimensionB: $strengthTr (r=${coefficient.toStringAsFixed(2)})';
+
+  String localizedInsightText(AppLanguage language) =>
+      language == AppLanguage.en ? insightTextEn : insightTextTr;
 }

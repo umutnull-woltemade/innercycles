@@ -39,6 +39,9 @@ class _QuizQuestion {
     required this.questionTr,
     required this.options,
   });
+
+  String localizedQuestion(AppLanguage language) =>
+      language == AppLanguage.en ? questionEn : questionTr;
 }
 
 class _QuizOption {
@@ -51,6 +54,9 @@ class _QuizOption {
     required this.textTr,
     required this.scores,
   });
+
+  String localizedText(AppLanguage language) =>
+      language == AppLanguage.en ? textEn : textTr;
 }
 
 const List<_QuizQuestion> _questions = [
@@ -279,6 +285,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
   }
 
   Widget _buildQuestion(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final question = _questions[_currentQuestion];
     final progress = (_currentQuestion + 1) / _questions.length;
 
@@ -293,7 +300,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
             child: TextButton(
               onPressed: _skipQuiz,
               child: Text(
-                L10nService.get('onboarding.archetype_quiz.skip', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('onboarding.archetype_quiz.skip', language),
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
                   color: AppColors.textMuted.withValues(alpha: 0.7),
@@ -333,7 +340,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
 
           // Question
           GradientText(
-            isEn ? question.questionEn : question.questionTr,
+            question.localizedQuestion(language),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 22,
@@ -350,7 +357,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
             return Padding(
               padding: const EdgeInsets.only(bottom: 12),
               child: Semantics(
-                label: isEn ? option.textEn : option.textTr,
+                label: option.localizedText(language),
                 button: true,
                 child: GestureDetector(
                   onTap: () => _selectOption(option),
@@ -360,7 +367,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                     padding: const EdgeInsets.all(16),
                     borderRadius: BorderRadius.circular(14),
                     child: Text(
-                      isEn ? option.textEn : option.textTr,
+                      option.localizedText(language),
                       style: AppTypography.subtitle(
                         fontSize: 16,
                         color: isDark
@@ -379,6 +386,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
   }
 
   Widget _buildResult(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     if (_result == null) {
       return Center(
         child: Column(
@@ -387,7 +395,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
             const CosmicLoadingIndicator(),
             const SizedBox(height: 12),
             Text(
-              L10nService.get('onboarding.archetype_quiz.discovering_your_archetype', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('onboarding.archetype_quiz.discovering_your_archetype', language),
               style: AppTypography.subtitle(
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
@@ -412,7 +420,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
 
           // Title
           Text(
-            L10nService.get('onboarding.archetype_quiz.your_inner_archetype', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('onboarding.archetype_quiz.your_inner_archetype', language),
             style: AppTypography.elegantAccent(
               fontSize: 14,
               color: AppColors.starGold,
@@ -466,7 +474,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GradientText(
-                  L10nService.get('onboarding.archetype_quiz.your_strengths', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('onboarding.archetype_quiz.your_strengths', language),
                   variant: GradientTextVariant.gold,
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 14,
@@ -522,7 +530,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GradientText(
-                  L10nService.get('onboarding.archetype_quiz.growth_tip', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('onboarding.archetype_quiz.growth_tip', language),
                   variant: GradientTextVariant.amethyst,
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 14,
@@ -550,7 +558,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
 
           // Continue button
           GradientButton.gold(
-            label: L10nService.get('onboarding.archetype_quiz.get_started', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('onboarding.archetype_quiz.get_started', language),
             onPressed: _goHome,
             expanded: true,
           ).glassEntrance(
@@ -563,7 +571,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
           TextButton(
             onPressed: _goHome,
             child: Text(
-              L10nService.get('onboarding.archetype_quiz.skip_for_now', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('onboarding.archetype_quiz.skip_for_now', language),
               style: AppTypography.elegantAccent(
                 fontSize: 14,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,

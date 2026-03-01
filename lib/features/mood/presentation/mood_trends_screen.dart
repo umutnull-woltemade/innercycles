@@ -90,6 +90,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     bool isEn,
     bool isPremium,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final allEntries = service.getAllEntries();
 
     // Empty state — inline mood check-in so users can start right here
@@ -101,7 +102,7 @@ class MoodTrendsScreen extends ConsumerWidget {
           ),
           slivers: [
             GlassSliverAppBar(
-              title: L10nService.get('mood.mood_trends.signal_dashboard', isEn ? AppLanguage.en : AppLanguage.tr),
+              title: L10nService.get('mood.mood_trends.signal_dashboard', language),
             ),
             SliverFillRemaining(
               hasScrollBody: false,
@@ -148,7 +149,7 @@ class MoodTrendsScreen extends ConsumerWidget {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(title: L10nService.get('mood.mood_trends.signal_dashboard_1', isEn ? AppLanguage.en : AppLanguage.tr)),
+          GlassSliverAppBar(title: L10nService.get('mood.mood_trends.signal_dashboard_1', language)),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
@@ -210,7 +211,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                 const SizedBox(height: AppConstants.spacingLg),
 
                 ContentDisclaimer(
-                  language: isEn ? AppLanguage.en : AppLanguage.tr,
+                  language: language,
                 ),
                 const SizedBox(height: 40),
               ]),
@@ -229,6 +230,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     bool isPremium, {
     required Widget child,
   }) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     if (isPremium) return child;
 
     return Stack(
@@ -265,7 +267,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                       ),
                       const SizedBox(height: 2),
                       GradientText(
-                        L10nService.get('mood.mood_trends.your_data_has_more_to_show', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('mood.mood_trends.your_data_has_more_to_show', language),
                         variant: GradientTextVariant.gold,
                         style: AppTypography.displayFont.copyWith(
                           fontSize: 13,
@@ -274,7 +276,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                       ),
                       const SizedBox(height: 4),
                       GradientButton.gold(
-                        label: L10nService.get('mood.mood_trends.upgrade_to_pro', isEn ? AppLanguage.en : AppLanguage.tr),
+                        label: L10nService.get('mood.mood_trends.upgrade_to_pro', language),
                         onPressed: () => showContextualPaywall(
                           context,
                           ref,
@@ -301,11 +303,12 @@ class MoodTrendsScreen extends ConsumerWidget {
     int total,
     bool isPremium,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Row(
       children: [
         Expanded(
           child: _StatTile(
-            label: L10nService.get('mood.mood_trends.7day_avg', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('mood.mood_trends.7day_avg', language),
             value: avg7 > 0 ? avg7.toStringAsFixed(1) : '-',
             isDark: isDark,
           ),
@@ -313,7 +316,7 @@ class MoodTrendsScreen extends ConsumerWidget {
         const SizedBox(width: AppConstants.spacingMd),
         Expanded(
           child: _StatTile(
-            label: L10nService.get('mood.mood_trends.30day_avg', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('mood.mood_trends.30day_avg', language),
             value: isPremium
                 ? (avg30 > 0 ? avg30.toStringAsFixed(1) : '-')
                 : 'PRO',
@@ -324,7 +327,7 @@ class MoodTrendsScreen extends ConsumerWidget {
         const SizedBox(width: AppConstants.spacingMd),
         Expanded(
           child: _StatTile(
-            label: L10nService.get('mood.mood_trends.total_logs', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('mood.mood_trends.total_logs', language),
             value: '$total',
             isDark: isDark,
           ),
@@ -340,6 +343,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     List<MoodEntry?> weekMoods,
     DateTime now,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final dayLabels = isEn
         ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         : ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
@@ -354,7 +358,7 @@ class MoodTrendsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('mood.mood_trends.this_week', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('mood.mood_trends.this_week', language),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -425,6 +429,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     List<MoodEntry?> weekMoods,
     int totalLogs,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     if (totalLogs < 3) return const SizedBox.shrink();
 
     return Align(
@@ -451,7 +456,7 @@ class MoodTrendsScreen extends ConsumerWidget {
             ),
             const SizedBox(width: 4),
             Text(
-              L10nService.get('mood.mood_trends.share_week', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('mood.mood_trends.share_week', language),
               style: AppTypography.elegantAccent(
                 fontSize: 12,
                 color: AppColors.starGold.withValues(alpha: 0.7),
@@ -471,12 +476,13 @@ class MoodTrendsScreen extends ConsumerWidget {
     Map<int, int> distribution,
     int maxCount,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final labels = [
-      (1, '😔', L10nService.get('mood.mood_trends.struggling', isEn ? AppLanguage.en : AppLanguage.tr)),
-      (2, '😐', L10nService.get('mood.mood_trends.low', isEn ? AppLanguage.en : AppLanguage.tr)),
-      (3, '🙂', L10nService.get('mood.mood_trends.okay', isEn ? AppLanguage.en : AppLanguage.tr)),
-      (4, '😊', L10nService.get('mood.mood_trends.good', isEn ? AppLanguage.en : AppLanguage.tr)),
-      (5, '🤩', L10nService.get('mood.mood_trends.great', isEn ? AppLanguage.en : AppLanguage.tr)),
+      (1, '😔', L10nService.get('mood.mood_trends.struggling', language)),
+      (2, '😐', L10nService.get('mood.mood_trends.low', language)),
+      (3, '🙂', L10nService.get('mood.mood_trends.okay', language)),
+      (4, '😊', L10nService.get('mood.mood_trends.good', language)),
+      (5, '🤩', L10nService.get('mood.mood_trends.great', language)),
     ];
 
     return GlassPanel(
@@ -487,7 +493,7 @@ class MoodTrendsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('mood.mood_trends.last_30_days', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('mood.mood_trends.last_30_days', language),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -568,6 +574,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     bool isEn,
     List<MoodEntry> entries,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return GlassPanel(
       elevation: GlassElevation.g2,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -576,7 +583,7 @@ class MoodTrendsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('mood.mood_trends.recent_checkins', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('mood.mood_trends.recent_checkins', language),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -659,6 +666,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return GlassPanel(
       elevation: GlassElevation.g1,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -667,7 +675,7 @@ class MoodTrendsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('mood.mood_trends.go_deeper', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('mood.mood_trends.go_deeper', language),
             variant: GradientTextVariant.amethyst,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -678,52 +686,40 @@ class MoodTrendsScreen extends ConsumerWidget {
           _buildToolTile(
             context,
             isDark,
-            isEn,
             icon: Icons.favorite_rounded,
             color: AppColors.amethyst,
-            titleEn: 'Cycle Sync',
-            titleTr: 'Döngü Senkronu',
-            subtitleEn: 'How your cycle shapes your emotions',
-            subtitleTr: 'Döngün duygularını nasıl şekillendiriyor',
+            title: isEn ? 'Cycle Sync' : 'Döngü Senkronu',
+            subtitle: isEn ? 'How your cycle shapes your emotions' : 'Döngün duygularını nasıl şekillendiriyor',
             route: Routes.cycleSync,
           ),
           const SizedBox(height: 8),
           _buildToolTile(
             context,
             isDark,
-            isEn,
             icon: Icons.psychology_rounded,
             color: AppColors.amethyst,
-            titleEn: 'Shadow Work',
-            titleTr: 'Gölge Çalışması',
-            subtitleEn: 'Explore hidden emotional patterns',
-            subtitleTr: 'Gizli duygusal kalıpları keşfet',
+            title: isEn ? 'Shadow Work' : 'Gölge Çalışması',
+            subtitle: isEn ? 'Explore hidden emotional patterns' : 'Gizli duygusal kalıpları keşfet',
             route: Routes.shadowWork,
           ),
           const SizedBox(height: 8),
           _buildToolTile(
             context,
             isDark,
-            isEn,
             icon: Icons.waves_rounded,
             color: AppColors.auroraStart,
-            titleEn: 'Emotional Cycles',
-            titleTr: 'Duygusal Döngüler',
-            subtitleEn: 'Recurring patterns over time',
-            subtitleTr: 'Zaman içinde tekrarlanan kalıplar',
+            title: isEn ? 'Emotional Cycles' : 'Duygusal Döngüler',
+            subtitle: isEn ? 'Recurring patterns over time' : 'Zaman içinde tekrarlanan kalıplar',
             route: Routes.emotionalCycles,
           ),
           const SizedBox(height: 8),
           _buildToolTile(
             context,
             isDark,
-            isEn,
             icon: Icons.calendar_month_rounded,
             color: AppColors.starGold,
-            titleEn: 'Heatmap Timeline',
-            titleTr: 'Isı Haritası Zaman Çizelgesi',
-            subtitleEn: 'Visualize your journaling activity',
-            subtitleTr: 'Günlük aktiviteni görselleştir',
+            title: isEn ? 'Heatmap Timeline' : 'Isı Haritası Zaman Çizelgesi',
+            subtitle: isEn ? 'Visualize your journaling activity' : 'Günlük aktiviteni görselleştir',
             route: Routes.calendarHeatmap,
           ),
         ],
@@ -733,14 +729,11 @@ class MoodTrendsScreen extends ConsumerWidget {
 
   Widget _buildToolTile(
     BuildContext context,
-    bool isDark,
-    bool isEn, {
+    bool isDark, {
     required IconData icon,
     required Color color,
-    required String titleEn,
-    required String titleTr,
-    required String subtitleEn,
-    required String subtitleTr,
+    required String title,
+    required String subtitle,
     required String route,
   }) {
     return GestureDetector(
@@ -749,7 +742,7 @@ class MoodTrendsScreen extends ConsumerWidget {
         context.push(route);
       },
       child: Semantics(
-        label: isEn ? titleEn : titleTr,
+        label: title,
         button: true,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -766,7 +759,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      isEn ? titleEn : titleTr,
+                      title,
                       style: AppTypography.modernAccent(
                         fontSize: 14,
                         color: isDark
@@ -776,7 +769,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                       ),
                     ),
                     Text(
-                      isEn ? subtitleEn : subtitleTr,
+                      subtitle,
                       style: AppTypography.subtitle(
                         fontSize: 11,
                         color: isDark
@@ -868,6 +861,7 @@ class _EmptyStateMoodCheckin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -901,7 +895,7 @@ class _EmptyStateMoodCheckin extends StatelessWidget {
         const SizedBox(height: 20),
 
         GradientText(
-          L10nService.get('mood.mood_trends.start_your_first_checkin', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('mood.mood_trends.start_your_first_checkin', language),
           variant: GradientTextVariant.amethyst,
           textAlign: TextAlign.center,
           style: AppTypography.displayFont.copyWith(
@@ -913,7 +907,7 @@ class _EmptyStateMoodCheckin extends StatelessWidget {
         const SizedBox(height: 8),
 
         Text(
-          L10nService.get('mood.mood_trends.tap_how_you_feel_your_dashboard_lights_u', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('mood.mood_trends.tap_how_you_feel_your_dashboard_lights_u', language),
           textAlign: TextAlign.center,
           style: AppTypography.decorativeScript(
             fontSize: 14,
@@ -934,7 +928,7 @@ class _EmptyStateMoodCheckin extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                L10nService.get('mood.mood_trends.how_are_you_feeling_right_now', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('mood.mood_trends.how_are_you_feeling_right_now', language),
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
@@ -948,8 +942,9 @@ class _EmptyStateMoodCheckin extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: MoodCheckinService.moodOptions.map((option) {
                   final (mood, emoji, labelEn, labelTr) = option;
+                  final label = isEn ? labelEn : labelTr;
                   return Semantics(
-                    label: isEn ? labelEn : labelTr,
+                    label: label,
                     button: true,
                     child: GestureDetector(
                       onTap: () async {
@@ -962,7 +957,7 @@ class _EmptyStateMoodCheckin extends StatelessWidget {
                           AppSymbol.card(emoji),
                           const SizedBox(height: 4),
                           Text(
-                            isEn ? labelEn : labelTr,
+                            label,
                             style: AppTypography.elegantAccent(
                               fontSize: 10,
                               color: isDark

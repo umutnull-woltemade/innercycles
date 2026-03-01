@@ -1260,6 +1260,7 @@ class _PlanCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -1271,7 +1272,7 @@ class _PlanCard extends StatelessWidget {
               ? AppColors.starGold.withValues(alpha: 0.2)
               : null,
           child: Semantics(
-            label: '${tier.localizedDisplayName(isEn ? AppLanguage.en : AppLanguage.tr)}${isSelected ? ' ${L10nService.get('common.selected', isEn ? AppLanguage.en : AppLanguage.tr)}' : ''}',
+            label: '${tier.localizedDisplayName(language)}${isSelected ? ' ${L10nService.get('common.selected', language)}' : ''}',
             button: true,
             selected: isSelected,
             child: Material(
@@ -1312,7 +1313,7 @@ class _PlanCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              tier.localizedDisplayName(isEn ? AppLanguage.en : AppLanguage.tr),
+                              tier.localizedDisplayName(language),
                               style: AppTypography.modernAccent(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,

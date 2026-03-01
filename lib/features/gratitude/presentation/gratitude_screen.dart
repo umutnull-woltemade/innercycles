@@ -260,6 +260,7 @@ class _WeeklyStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
@@ -269,19 +270,19 @@ class _WeeklyStats extends StatelessWidget {
         children: [
           _Stat(
             value: '${summary.daysWithGratitude}',
-            label: L10nService.get('gratitude.gratitude.days', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('gratitude.gratitude.days', language),
             color: AppColors.starGold,
             isDark: isDark,
           ),
           _Stat(
             value: '${summary.totalItems}',
-            label: L10nService.get('gratitude.gratitude.items', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('gratitude.gratitude.items', language),
             color: AppColors.success,
             isDark: isDark,
           ),
           _Stat(
             value: '${summary.topThemes.length}',
-            label: L10nService.get('gratitude.gratitude.themes', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('gratitude.gratitude.themes', language),
             color: AppColors.auroraStart,
             isDark: isDark,
           ),
@@ -345,6 +346,7 @@ class _TodaySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final prompts = isEn
         ? [
             'I am grateful for...',
@@ -369,7 +371,7 @@ class _TodaySection extends StatelessWidget {
               Icon(Icons.favorite_outline, size: 18, color: AppColors.starGold),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('gratitude.todays_gratitude', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('gratitude.todays_gratitude', language),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 17,
@@ -432,8 +434,8 @@ class _TodaySection extends StatelessWidget {
           const SizedBox(height: 4),
           GradientButton.gold(
             label: hasEntry
-                ? (L10nService.get('gratitude.gratitude.update', isEn ? AppLanguage.en : AppLanguage.tr))
-                : (L10nService.get('gratitude.gratitude.save_gratitude', isEn ? AppLanguage.en : AppLanguage.tr)),
+                ? (L10nService.get('gratitude.gratitude.update', language))
+                : (L10nService.get('gratitude.gratitude.save_gratitude', language)),
             onPressed: onSave,
             expanded: true,
           ),
@@ -456,6 +458,7 @@ class _ThemeCloud extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
@@ -464,7 +467,7 @@ class _ThemeCloud extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('gratitude.gratitude.this_weeks_themes', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('gratitude.gratitude.this_weeks_themes', language),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,

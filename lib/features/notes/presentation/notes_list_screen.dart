@@ -457,6 +457,7 @@ class _NotesStatsBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 4, 20, 0),
       child: Row(
@@ -464,7 +465,7 @@ class _NotesStatsBar extends StatelessWidget {
           _StatPill(
             icon: CupertinoIcons.doc_text,
             value: '$total',
-            label: L10nService.get('notes.notes_list.notes_1', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('notes.notes_list.notes_1', language),
             isDark: isDark,
           ),
           const SizedBox(width: 10),
@@ -472,7 +473,7 @@ class _NotesStatsBar extends StatelessWidget {
             _StatPill(
               icon: CupertinoIcons.pin_fill,
               value: '$pinnedCount',
-              label: L10nService.get('notes.notes_list.pinned_1', isEn ? AppLanguage.en : AppLanguage.tr),
+              label: L10nService.get('notes.notes_list.pinned_1', language),
               isDark: isDark,
               accentColor: AppColors.starGold,
             ),
@@ -482,7 +483,7 @@ class _NotesStatsBar extends StatelessWidget {
             _StatPill(
               icon: CupertinoIcons.tag,
               value: '$tagCount',
-              label: L10nService.get('notes.notes_list.tags', isEn ? AppLanguage.en : AppLanguage.tr),
+              label: L10nService.get('notes.notes_list.tags', language),
               isDark: isDark,
               accentColor: AppColors.amethyst,
             ),
@@ -589,12 +590,13 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     if (hasNotes) {
       // Filtered empty
       return PremiumEmptyState(
         icon: CupertinoIcons.search,
-        title: L10nService.get('notes.notes_list.no_notes_matched_your_search', isEn ? AppLanguage.en : AppLanguage.tr),
-        description: L10nService.get('notes.notes_list.try_a_different_search_term', isEn ? AppLanguage.en : AppLanguage.tr),
+        title: L10nService.get('notes.notes_list.no_notes_matched_your_search', language),
+        description: L10nService.get('notes.notes_list.try_a_different_search_term', language),
         gradientVariant: GradientTextVariant.aurora,
       );
     }
@@ -644,7 +646,7 @@ class _EmptyState extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              L10nService.get('notes.notes_list.capture_your_thoughts', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('notes.notes_list.capture_your_thoughts', language),
               style: AppTypography.displayFont.copyWith(
                 fontSize: 24,
                 fontWeight: FontWeight.w600,
@@ -656,7 +658,7 @@ class _EmptyState extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              L10nService.get('notes.notes_list.quick_notes_reminders_ideas_neverything', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('notes.notes_list.quick_notes_reminders_ideas_neverything', language),
               style: AppTypography.decorativeScript(
                 fontSize: 14,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -694,7 +696,7 @@ class _EmptyState extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          L10nService.get('notes.notes_list.write_your_first_note', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('notes.notes_list.write_your_first_note', language),
                           style: AppTypography.displayFont.copyWith(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
@@ -736,6 +738,7 @@ class _NoteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Dismissible(
       key: ValueKey(note.id),
       direction: DismissDirection.endToStart,
@@ -783,7 +786,7 @@ class _NoteCard extends StatelessWidget {
                     Expanded(
                       child: Text(
                         note.title.isEmpty
-                            ? (L10nService.get('notes.notes_list.untitled', isEn ? AppLanguage.en : AppLanguage.tr))
+                            ? (L10nService.get('notes.notes_list.untitled', language))
                             : note.title,
                         style: AppTypography.displayFont.copyWith(
                           fontSize: 15,
@@ -882,19 +885,20 @@ class _NoteCard extends StatelessWidget {
   }
 
   String _formatDate(DateTime dt, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final now = DateTime.now();
     final diff = now.difference(dt);
     if (diff.inMinutes < 1) {
-      return L10nService.get('notes.notes_list.now', isEn ? AppLanguage.en : AppLanguage.tr);
+      return L10nService.get('notes.notes_list.now', language);
     }
     if (diff.inMinutes < 60) {
-      return L10nService.getWithParams('common.time.minutes_short', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '${diff.inMinutes}'});
+      return L10nService.getWithParams('common.time.minutes_short', language, params: {'count': '${diff.inMinutes}'});
     }
     if (diff.inHours < 24) {
-      return L10nService.getWithParams('common.time.hours_short', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '${diff.inHours}'});
+      return L10nService.getWithParams('common.time.hours_short', language, params: {'count': '${diff.inHours}'});
     }
     if (diff.inDays < 7) {
-      return L10nService.getWithParams('common.time.days_short', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '${diff.inDays}'});
+      return L10nService.getWithParams('common.time.days_short', language, params: {'count': '${diff.inDays}'});
     }
     final months = isEn
         ? CommonStrings.monthsShortEn
@@ -978,6 +982,7 @@ class _AnimatedFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return GestureDetector(
           onTap: onPressed,
           child: Container(
@@ -1002,7 +1007,7 @@ class _AnimatedFAB extends StatelessWidget {
                 const Icon(CupertinoIcons.plus, size: 20, color: Colors.white),
                 const SizedBox(width: 8),
                 Text(
-                  L10nService.get('notes.notes_list.new_note', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('notes.notes_list.new_note', language),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,

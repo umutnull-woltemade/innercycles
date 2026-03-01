@@ -83,6 +83,7 @@ class _PhaseRingState extends State<PhaseRing>
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, _) {
+        final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
         return SizedBox(
           width: widget.size,
           height: widget.size,
@@ -91,7 +92,7 @@ class _PhaseRingState extends State<PhaseRing>
             children: [
               // Background ring
               Semantics(
-                label: L10nService.get('journal.phase_ring.emotional_phase_ring', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('journal.phase_ring.emotional_phase_ring', language),
                 image: true,
                 child: CustomPaint(
                   size: Size(widget.size, widget.size),
@@ -115,7 +116,7 @@ class _PhaseRingState extends State<PhaseRing>
                   const SizedBox(height: 6),
                   // Phase label
                   Text(
-                    widget.phase.label(widget.isEn ? AppLanguage.en : AppLanguage.tr),
+                    widget.phase.label(language),
                     style: AppTypography.displayFont.copyWith(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -129,7 +130,7 @@ class _PhaseRingState extends State<PhaseRing>
                   if (widget.arc != null) ...[
                     const SizedBox(height: 2),
                     Text(
-                      widget.arc!.label(widget.isEn ? AppLanguage.en : AppLanguage.tr),
+                      widget.arc!.label(language),
                       style: AppTypography.elegantAccent(
                         fontSize: 11,
                         color: phaseColor.withValues(alpha: 0.8),

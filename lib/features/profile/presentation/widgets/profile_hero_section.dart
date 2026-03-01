@@ -56,6 +56,7 @@ class _ProfileHeroSectionState extends State<ProfileHeroSection>
 
   @override
   Widget build(BuildContext context) {
+    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
     return Column(
       children: [
         // Animated avatar with rotating aurora ring
@@ -191,7 +192,7 @@ class _ProfileHeroSectionState extends State<ProfileHeroSection>
                   Positioned(
                     bottom: 4,
                     child: Text(
-                      L10nService.get('profile.profile_hero.growth_score', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('profile.profile_hero.growth_score', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,

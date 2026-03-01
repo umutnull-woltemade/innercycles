@@ -371,6 +371,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
   }
 
   Widget _buildHabitSuggestions(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final categories = _categoriesForTime(_selectedTime);
     final suggestions = allHabitSuggestions
         .where((h) => categories.contains(h.category))
@@ -383,7 +384,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          L10nService.get('rituals.ritual_create.suggestions', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('rituals.ritual_create.suggestions', language),
           style: AppTypography.elegantAccent(
             fontSize: 12,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -394,7 +395,8 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
           spacing: 6,
           runSpacing: 6,
           children: suggestions.map((habit) {
-            final title = habit.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr);
+            final language = isEn ? AppLanguage.en : AppLanguage.tr;
+            final title = habit.localizedTitle(language);
             return Semantics(
               label: title,
               button: true,
@@ -478,10 +480,11 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
 
     if (itemNames.isEmpty) {
       final isEn = ref.read(languageProvider) == AppLanguage.en;
+      final language = isEn ? AppLanguage.en : AppLanguage.tr;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            L10nService.get('rituals.ritual_create.add_at_least_one_ritual_item', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('rituals.ritual_create.add_at_least_one_ritual_item', language),
           ),
           backgroundColor: AppColors.warning,
           behavior: SnackBarBehavior.floating,

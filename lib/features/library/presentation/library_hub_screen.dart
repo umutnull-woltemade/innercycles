@@ -184,8 +184,9 @@ class _CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Semantics(
-      label: category.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
+      label: category.localizedName(language),
       button: true,
       child: GestureDetector(
         onTap: () {
@@ -204,7 +205,7 @@ class _CategoryCard extends StatelessWidget {
               const SizedBox(width: AppConstants.spacingLg),
               Expanded(
                 child: GradientText(
-                  category.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
+                  category.localizedName(language),
                   variant: GradientTextVariant.gold,
                   style: AppTypography.elegantAccent(
                     fontSize: 15,

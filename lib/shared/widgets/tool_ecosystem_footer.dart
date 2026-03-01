@@ -43,6 +43,7 @@ class ToolEcosystemFooter extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final manifest = ToolManifestRegistry.findById(currentToolId);
     if (manifest == null) return const SizedBox.shrink();
 
@@ -66,7 +67,7 @@ class ToolEcosystemFooter extends ConsumerWidget {
         ),
         const SizedBox(height: AppConstants.spacingLg),
         Text(
-          L10nService.get('shared.tool_ecosystem_footer.related_tools', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('shared.tool_ecosystem_footer.related_tools', language),
           style: AppTypography.displayFont.copyWith(
             fontSize: 15,
             fontWeight: FontWeight.w600,
@@ -82,6 +83,7 @@ class ToolEcosystemFooter extends ConsumerWidget {
             scrollDirection: Axis.horizontal,
             itemCount: relatedTools.length,
             itemBuilder: (context, index) {
+              final language = isEn ? AppLanguage.en : AppLanguage.tr;
               final tool = relatedTools[index];
               final color =
                   _categoryColors[tool.category] ?? AppColors.auroraStart;
@@ -91,7 +93,7 @@ class ToolEcosystemFooter extends ConsumerWidget {
                     ),
                     child: Semantics(
                       button: true,
-                      label: tool.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
+                      label: tool.localizedName(language),
                       child: GestureDetector(
                         onTap: () {
                           HapticFeedback.selectionClick();
@@ -132,7 +134,7 @@ class ToolEcosystemFooter extends ConsumerWidget {
                               ),
                               const Spacer(),
                               Text(
-                                tool.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
+                                tool.localizedName(language),
                                 style: AppTypography.modernAccent(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,

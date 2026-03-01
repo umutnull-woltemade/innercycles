@@ -247,6 +247,7 @@ class _StatsBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: 14,
@@ -256,19 +257,19 @@ class _StatsBar extends StatelessWidget {
         children: [
           _StatItem(
             value: '$active',
-            label: L10nService.get('challenges.challenge_list.active', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('challenges.challenge_list.active', language),
             color: AppColors.starGold,
             isDark: isDark,
           ),
           _StatItem(
             value: '$completed',
-            label: L10nService.get('challenges.challenge_list.completed_1', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('challenges.challenge_list.completed_1', language),
             color: AppColors.success,
             isDark: isDark,
           ),
           _StatItem(
             value: '$total',
-            label: L10nService.get('challenges.challenge_list.total', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('challenges.challenge_list.total', language),
             color: AppColors.auroraStart,
             isDark: isDark,
           ),
@@ -357,6 +358,7 @@ class _ChallengeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final isLocked = challenge.isPremium && !isPremium;
     final hasProgress = progress != null && !progress!.isCompleted;
 
@@ -384,7 +386,7 @@ class _ChallengeCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          challenge.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
+                          challenge.localizedTitle(language),
                           style: AppTypography.displayFont.copyWith(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -423,7 +425,7 @@ class _ChallengeCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    challenge.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
+                    challenge.localizedDescription(language),
                     style: AppTypography.decorativeScript(
                       fontSize: 12,
                       color: isDark
@@ -467,7 +469,7 @@ class _ChallengeCard extends StatelessWidget {
             const SizedBox(width: 8),
             if (hasProgress && onIncrement != null)
               Semantics(
-                label: L10nService.get('challenges.challenge_list.increment_progress', isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('challenges.challenge_list.increment_progress', language),
                 button: true,
                 child: GestureDetector(
                   onTap: onIncrement,
@@ -495,7 +497,7 @@ class _ChallengeCard extends StatelessWidget {
               )
             else if (!isCompleted && !hasProgress && onStart != null)
               Semantics(
-                label: L10nService.get('challenges.challenge_list.start_challenge', isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('challenges.challenge_list.start_challenge', language),
                 button: true,
                 child: GestureDetector(
                   onTap: onStart,
@@ -511,7 +513,7 @@ class _ChallengeCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
-                        L10nService.get('challenges.challenge_list.start', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('challenges.challenge_list.start', language),
                         style: AppTypography.elegantAccent(
                           fontSize: 12,
                           color: AppColors.auroraStart,

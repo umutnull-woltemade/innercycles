@@ -180,6 +180,7 @@ class _SeasonHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.aurora,
       padding: const EdgeInsets.all(24),
@@ -188,7 +189,7 @@ class _SeasonHeader extends StatelessWidget {
           AppSymbol.hero(module.emoji),
           const SizedBox(height: 12),
           GradientText(
-            module.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
+            module.localizedName(language),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 24,
@@ -197,7 +198,7 @@ class _SeasonHeader extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            module.localizedTheme(isEn ? AppLanguage.en : AppLanguage.tr),
+            module.localizedTheme(language),
             style: AppTypography.decorativeScript(
               fontSize: 15,
               color: isDark
@@ -220,7 +221,7 @@ class _SeasonHeader extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '${(completion * 100).round()}% ${L10nService.get('seasonal.seasonal_reflection.complete', isEn ? AppLanguage.en : AppLanguage.tr)}',
+            '${(completion * 100).round()}% ${L10nService.get('seasonal.seasonal_reflection.complete', language)}',
             style: AppTypography.modernAccent(
               fontSize: 12,
               fontWeight: FontWeight.w600,
@@ -263,6 +264,7 @@ class _PromptCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: PremiumCard(
@@ -303,7 +305,7 @@ class _PromptCard extends StatelessWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    prompt.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
+                    prompt.localizedTitle(language),
                     style:
                         AppTypography.modernAccent(
                           fontSize: 15,
@@ -322,7 +324,7 @@ class _PromptCard extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              prompt.localizedPrompt(isEn ? AppLanguage.en : AppLanguage.tr),
+              prompt.localizedPrompt(language),
               style: AppTypography.decorativeScript(
                 fontSize: 13,
                 color: isDark
@@ -335,7 +337,7 @@ class _PromptCard extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: GradientOutlinedButton(
-                  label: L10nService.get('seasonal.seasonal_reflection.mark_complete', isEn ? AppLanguage.en : AppLanguage.tr),
+                  label: L10nService.get('seasonal.seasonal_reflection.mark_complete', language),
                   icon: Icons.check_rounded,
                   variant: GradientTextVariant.aurora,
                   fontSize: 13,
@@ -358,6 +360,7 @@ class _AllSeasonsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final current = SeasonalReflectionService.currentSeason();
 
     return PremiumCard(
@@ -368,7 +371,7 @@ class _AllSeasonsRow extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            L10nService.get('seasonal.seasonal_reflection.all_seasons', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('seasonal.seasonal_reflection.all_seasons', language),
             style: AppTypography.modernAccent(
               fontSize: 14,
               fontWeight: FontWeight.w600,
@@ -381,6 +384,7 @@ class _AllSeasonsRow extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: SeasonalReflectionService.allModules.map((m) {
+              final language = isEn ? AppLanguage.en : AppLanguage.tr;
               final isCurrent = m.season == current;
               return Column(
                 children: [
@@ -409,7 +413,7 @@ class _AllSeasonsRow extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    m.localizedName(isEn ? AppLanguage.en : AppLanguage.tr).split(' ').first,
+                    m.localizedName(language).split(' ').first,
                     style: AppTypography.elegantAccent(
                       fontSize: 11,
                       fontWeight: isCurrent ? FontWeight.w600 : FontWeight.w400,

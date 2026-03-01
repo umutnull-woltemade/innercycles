@@ -167,6 +167,7 @@ class _WhatsNewSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final bgColor = isDark ? AppColors.surfaceDark : AppColors.lightSurface;
     final textColor = isDark
         ? AppColors.textPrimary
@@ -216,7 +217,7 @@ class _WhatsNewSheet extends StatelessWidget {
 
               // ---- Header ----
               GradientText(
-                    L10nService.get('whats_new.title', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('whats_new.title', language),
                     variant: GradientTextVariant.aurora,
                     style: AppTypography.displayFont.copyWith(
                       fontSize: 24,
@@ -228,7 +229,7 @@ class _WhatsNewSheet extends StatelessWidget {
                   .slideY(begin: -0.2, duration: 400.ms, curve: Curves.easeOut),
               const SizedBox(height: 4),
               Text(
-                L10nService.get('whats_new.whats_new.latest_features_and_improvements', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('whats_new.whats_new.latest_features_and_improvements', language),
                 style: AppTypography.decorativeScript(
                   fontSize: 14,
                   color: subtextColor,
@@ -280,7 +281,7 @@ class _WhatsNewSheet extends StatelessWidget {
                                 ),
                               ),
                               child: Text(
-                                L10nService.get('whats_new.whats_new.got_it', isEn ? AppLanguage.en : AppLanguage.tr),
+                                L10nService.get('whats_new.whats_new.got_it', language),
                                 style: AppTypography.subtitle(
                                   fontSize: 16,
                                   color: Colors.white,

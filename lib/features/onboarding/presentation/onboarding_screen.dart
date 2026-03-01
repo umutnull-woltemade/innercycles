@@ -1111,10 +1111,11 @@ class _FirstMoodPage extends StatelessWidget {
             children: MoodCheckinService.moodOptions.asMap().entries.map((entry) {
               final index = entry.key;
               final (mood, emoji, labelEn, labelTr) = entry.value;
+              final label = isEn ? labelEn : labelTr;
               final isSelected = selectedMood == mood;
 
               return Semantics(
-                label: isEn ? labelEn : labelTr,
+                label: label,
                 button: true,
                 selected: isSelected,
                 child: GestureDetector(
@@ -1155,7 +1156,7 @@ class _FirstMoodPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 6),
                         Text(
-                          isEn ? labelEn : labelTr,
+                          label,
                           style: AppTypography.elegantAccent(
                             fontSize: 11,
                             color: isSelected
@@ -1839,23 +1840,17 @@ class _WelcomePage extends StatelessWidget {
               _FeatureHighlight(
                 icon: Icons.waves_rounded,
                 color: AppColors.amethyst,
-                labelEn: 'Emotional\nCycles',
-                labelTr: 'Duygusal\nDöngüler',
-                isEn: isEn,
+                label: isEn ? 'Emotional\nCycles' : 'Duygusal\nDöngüler',
               ),
               _FeatureHighlight(
                 icon: Icons.nights_stay_rounded,
                 color: AppColors.auroraStart,
-                labelEn: 'Dream\nJournal',
-                labelTr: 'Rüya\nGünlüğü',
-                isEn: isEn,
+                label: isEn ? 'Dream\nJournal' : 'Rüya\nGünlüğü',
               ),
               _FeatureHighlight(
                 icon: Icons.auto_graph_rounded,
                 color: AppColors.chartPink,
-                labelEn: 'Pattern\nInsights',
-                labelTr: 'Kalıp\nİçgörüler',
-                isEn: isEn,
+                label: isEn ? 'Pattern\nInsights' : 'Kalıp\nİçgörüler',
               ),
             ],
           ).glassEntrance(
@@ -1931,16 +1926,12 @@ class _WelcomePage extends StatelessWidget {
 class _FeatureHighlight extends StatelessWidget {
   final IconData icon;
   final Color color;
-  final String labelEn;
-  final String labelTr;
-  final bool isEn;
+  final String label;
 
   const _FeatureHighlight({
     required this.icon,
     required this.color,
-    required this.labelEn,
-    required this.labelTr,
-    required this.isEn,
+    required this.label,
   });
 
   @override
@@ -1965,7 +1956,7 @@ class _FeatureHighlight extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          isEn ? labelEn : labelTr,
+          label,
           style: AppTypography.elegantAccent(
             fontSize: 14,
             fontWeight: FontWeight.w500,

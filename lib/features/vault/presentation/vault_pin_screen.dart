@@ -157,21 +157,22 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
   }
 
   Future<bool> _showBiometricDialog(bool isEn) async {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final result = await showCupertinoDialog<bool>(
       context: context,
       builder: (ctx) => CupertinoAlertDialog(
-        title: Text(L10nService.get('vault.vault_pin.enable_face_id', isEn ? AppLanguage.en : AppLanguage.tr)),
+        title: Text(L10nService.get('vault.vault_pin.enable_face_id', language)),
         content: Text(
-          L10nService.get('vault.vault_pin.use_face_id_to_quickly_access_your_vault', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('vault.vault_pin.use_face_id_to_quickly_access_your_vault', language),
         ),
         actions: [
           CupertinoDialogAction(
-            child: Text(L10nService.get('vault.vault_pin.not_now', isEn ? AppLanguage.en : AppLanguage.tr)),
+            child: Text(L10nService.get('vault.vault_pin.not_now', language)),
             onPressed: () => Navigator.pop(ctx, false),
           ),
           CupertinoDialogAction(
             isDefaultAction: true,
-            child: Text(L10nService.get('vault.vault_pin.enable', isEn ? AppLanguage.en : AppLanguage.tr)),
+            child: Text(L10nService.get('vault.vault_pin.enable', language)),
             onPressed: () => Navigator.pop(ctx, true),
           ),
         ],

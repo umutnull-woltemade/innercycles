@@ -243,18 +243,20 @@ class _Slide2Focus extends StatelessWidget {
   });
 
   String _areaName(FocusArea? area, bool isEn) {
-    if (area == null) return L10nService.get('digest.monthly_wrapped.balanced', isEn ? AppLanguage.en : AppLanguage.tr);
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    if (area == null) return L10nService.get('digest.monthly_wrapped.balanced', language);
     return area.localizedName(isEn);
   }
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return _SlideBase(
       emoji: '\u{1F3AF}',
       title: isEn
           ? 'You focused most on ${_areaName(data.dominantArea, true)}'
           : 'En çok ${_areaName(data.dominantArea, false)} odağındaydın',
-      subtitle: L10nService.get('digest.monthly_wrapped.this_area_drew_your_attention_more_than', isEn ? AppLanguage.en : AppLanguage.tr),
+      subtitle: L10nService.get('digest.monthly_wrapped.this_area_drew_your_attention_more_than', language),
       isDark: isDark,
     );
   }
@@ -299,10 +301,11 @@ class _Slide4Insight extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return _SlideBase(
       emoji: '\u{1F4A1}',
       title: data.personalInsight(isEn),
-      subtitle: L10nService.get('digest.monthly_wrapped.based_on_your_monthly_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
+      subtitle: L10nService.get('digest.monthly_wrapped.based_on_your_monthly_patterns', language),
       isDark: isDark,
     );
   }
@@ -321,6 +324,7 @@ class _Slide5Share extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Padding(
       padding: const EdgeInsets.all(32),
       child: Column(
@@ -334,7 +338,7 @@ class _Slide5Share extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           GradientText(
-            L10nService.get('digest.monthly_wrapped.your_month_at_a_glance', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('digest.monthly_wrapped.your_month_at_a_glance', language),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 24,
@@ -343,7 +347,7 @@ class _Slide5Share extends StatelessWidget {
           ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
           const SizedBox(height: 32),
           GradientButton.gold(
-            label: L10nService.get('digest.monthly_wrapped.share_your_month', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('digest.monthly_wrapped.share_your_month', language),
             icon: Icons.share_rounded,
             onPressed: () {
               final template = ShareCardTemplates.monthlyWrapped;

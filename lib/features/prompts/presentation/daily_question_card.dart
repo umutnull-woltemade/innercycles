@@ -37,12 +37,13 @@ class DailyQuestionCard extends ConsumerWidget {
 
     return promptAsync.maybeWhen(
       data: (service) {
+        final language = isEn ? AppLanguage.en : AppLanguage.tr;
         final prompt = service.getDailyPrompt();
-        final questionText = prompt.localizedPrompt(isEn ? AppLanguage.en : AppLanguage.tr);
+        final questionText = prompt.localizedPrompt(language);
 
         return Semantics(
           label:
-              '${L10nService.get('prompts.daily_question.question_of_the_day', isEn ? AppLanguage.en : AppLanguage.tr)}: $questionText',
+              '${L10nService.get('prompts.daily_question.question_of_the_day', language)}: $questionText',
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
             child: PremiumCard(
@@ -76,7 +77,7 @@ class DailyQuestionCard extends ConsumerWidget {
                   const SizedBox(height: 14),
                   // Label — small caps
                   Text(
-                    L10nService.get('prompts.daily_question.question_of_the_day_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('prompts.daily_question.question_of_the_day_1', language),
                     style: AppTypography.elegantAccent(
                       fontSize: 10,
                       color: AppColors.amethyst.withValues(alpha: 0.6),
@@ -89,7 +90,7 @@ class DailyQuestionCard extends ConsumerWidget {
                     children: [
                       Expanded(
                         child: GradientOutlinedButton(
-                          label: L10nService.get('prompts.daily_question.write', isEn ? AppLanguage.en : AppLanguage.tr),
+                          label: L10nService.get('prompts.daily_question.write', language),
                           icon: Icons.edit_note_rounded,
                           variant: GradientTextVariant.aurora,
                           fontSize: 13,
@@ -110,7 +111,7 @@ class DailyQuestionCard extends ConsumerWidget {
                       const SizedBox(width: 10),
                       Expanded(
                         child: GradientOutlinedButton(
-                          label: L10nService.get('prompts.daily_question.share', isEn ? AppLanguage.en : AppLanguage.tr),
+                          label: L10nService.get('prompts.daily_question.share', language),
                           icon: Icons.share_rounded,
                           variant: GradientTextVariant.amethyst,
                           fontSize: 13,

@@ -114,6 +114,7 @@ class _InsightsDiscoveryScreenState
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final daily = service.getDailyModule();
     final modules = _getFilteredModules(service);
 
@@ -125,13 +126,13 @@ class _InsightsDiscoveryScreenState
         slivers: [
           // App Bar
           GlassSliverAppBar(
-            title: L10nService.get('insight.insights_discovery.discover_insights', isEn ? AppLanguage.en : AppLanguage.tr),
+            title: L10nService.get('insight.insights_discovery.discover_insights', language),
             actions: [
               // Bookmark filter toggle
               IconButton(
                 tooltip: _showBookmarksOnly
-                    ? (L10nService.get('insight.insights_discovery.show_all_insights', isEn ? AppLanguage.en : AppLanguage.tr))
-                    : (L10nService.get('insight.insights_discovery.show_bookmarks', isEn ? AppLanguage.en : AppLanguage.tr)),
+                    ? (L10nService.get('insight.insights_discovery.show_all_insights', language))
+                    : (L10nService.get('insight.insights_discovery.show_bookmarks', language)),
                 icon: Icon(
                   _showBookmarksOnly
                       ? Icons.bookmark_rounded
@@ -181,7 +182,7 @@ class _InsightsDiscoveryScreenState
                 padding: const EdgeInsets.all(40),
                 child: Center(
                   child: Text(
-                    L10nService.get('insight.insights_discovery.no_insights_found', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('insight.insights_discovery.no_insights_found', language),
                     style: AppTypography.decorativeScript(
                       fontSize: 14,
                       color: isDark
@@ -236,6 +237,7 @@ class _InsightsDiscoveryScreenState
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final progress = service.readProgress;
     final read = service.readCount;
     final total = service.totalCount;
@@ -247,7 +249,7 @@ class _InsightsDiscoveryScreenState
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              L10nService.get('insight.insights_discovery.reading_progress', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('insight.insights_discovery.reading_progress', language),
               style: AppTypography.elegantAccent(
                 fontSize: 11,
                 fontWeight: FontWeight.w600,
@@ -291,6 +293,7 @@ class _InsightsDiscoveryScreenState
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Semantics(
       button: true,
       label: isEn
@@ -322,7 +325,7 @@ class _InsightsDiscoveryScreenState
                   const SizedBox(width: 10),
                   Expanded(
                     child: GradientText(
-                      L10nService.get('insight.insights_discovery.todays_insight', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('insight.insights_discovery.todays_insight', language),
                       variant: GradientTextVariant.gold,
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 13,
@@ -335,7 +338,7 @@ class _InsightsDiscoveryScreenState
               ),
               const SizedBox(height: 14),
               GradientText(
-                module.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
+                module.localizedTitle(language),
                 variant: GradientTextVariant.aurora,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 20,
@@ -344,7 +347,7 @@ class _InsightsDiscoveryScreenState
               ),
               const SizedBox(height: 8),
               Text(
-                module.localizedSummary(isEn ? AppLanguage.en : AppLanguage.tr),
+                module.localizedSummary(language),
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: AppTypography.decorativeScript(
@@ -360,7 +363,7 @@ class _InsightsDiscoveryScreenState
                 children: [
                   _buildCategoryPill(module.category, isDark, isEn),
                   Text(
-                    L10nService.get('insight.insights_discovery.tap_to_read', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('insight.insights_discovery.tap_to_read', language),
                     style: AppTypography.elegantAccent(
                       fontSize: 11,
                       fontWeight: FontWeight.w500,
@@ -384,12 +387,13 @@ class _InsightsDiscoveryScreenState
   // ═══════════════════════════════════════════════════════════════
 
   Widget _buildCategoryChips(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
           _buildChip(
-            label: L10nService.get('insight.insights_discovery.all', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('insight.insights_discovery.all', language),
             isSelected: _selectedCategory == null,
             isDark: isDark,
             onTap: () => setState(() => _selectedCategory = null),
@@ -471,12 +475,13 @@ class _InsightsDiscoveryScreenState
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final isRead = service.isRead(module.id);
     final isBookmarked = service.isBookmarked(module.id);
 
     return Semantics(
       button: true,
-      label: module.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
+      label: module.localizedTitle(language),
       child: GestureDetector(
         onTap: () => _openModuleDetail(module, service),
         child: PremiumCard(
@@ -501,7 +506,7 @@ class _InsightsDiscoveryScreenState
                   const SizedBox(width: 10),
                   Expanded(
                     child: Text(
-                      module.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
+                      module.localizedTitle(language),
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -513,7 +518,7 @@ class _InsightsDiscoveryScreenState
                   ),
                   // Share button
                   ShareInsightButton(
-                    insightText: module.localizedSummary(isEn ? AppLanguage.en : AppLanguage.tr),
+                    insightText: module.localizedSummary(language),
                     iconSize: 16,
                   ),
                   const SizedBox(width: 4),
@@ -521,8 +526,8 @@ class _InsightsDiscoveryScreenState
                   Semantics(
                     button: true,
                     label: isBookmarked
-                        ? (L10nService.get('insight.insights_discovery.remove_bookmark', isEn ? AppLanguage.en : AppLanguage.tr))
-                        : (L10nService.get('insight.insights_discovery.add_bookmark', isEn ? AppLanguage.en : AppLanguage.tr)),
+                        ? (L10nService.get('insight.insights_discovery.remove_bookmark', language))
+                        : (L10nService.get('insight.insights_discovery.add_bookmark', language)),
                     child: GestureDetector(
                       onTap: () async {
                         HapticFeedback.lightImpact();
@@ -547,7 +552,7 @@ class _InsightsDiscoveryScreenState
               ),
               const SizedBox(height: 8),
               Text(
-                module.localizedSummary(isEn ? AppLanguage.en : AppLanguage.tr),
+                module.localizedSummary(language),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: AppTypography.decorativeScript(

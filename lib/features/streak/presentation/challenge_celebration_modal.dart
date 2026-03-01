@@ -49,6 +49,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
   bool get isEn => widget.isEn;
 
   Future<void> _shareCard() async {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     setState(() => _isSharing = true);
     try {
       final boundary =
@@ -56,12 +57,12 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
               as RenderRepaintBoundary?;
       if (boundary == null) return;
 
-      final title = challenge.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr);
+      final title = challenge.localizedTitle(language);
       await InstagramShareService.shareCosmicContent(
         boundary: boundary,
-        shareText: L10nService.getWithParams('sharing.share_challenge_text', isEn ? AppLanguage.en : AppLanguage.tr, params: {'emoji': challenge.emoji, 'title': title, 'appStoreUrl': AppConstants.appStoreUrl}),
-        hashtags: L10nService.get('sharing.hashtags_challenge_complete', isEn ? AppLanguage.en : AppLanguage.tr),
-        language: isEn ? AppLanguage.en : AppLanguage.tr,
+        shareText: L10nService.getWithParams('sharing.share_challenge_text', language, params: {'emoji': challenge.emoji, 'title': title, 'appStoreUrl': AppConstants.appStoreUrl}),
+        hashtags: L10nService.get('sharing.hashtags_challenge_complete', language),
+        language: language,
       );
     } finally {
       if (mounted) setState(() => _isSharing = false);
@@ -70,8 +71,9 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final title = challenge.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr);
+    final title = challenge.localizedTitle(language);
 
     return Semantics(
       label: isEn
@@ -140,7 +142,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
 
                   // Title
                   GradientText(
-                        L10nService.get('streak.challenge_celebration.challenge_completed', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('streak.challenge_celebration.challenge_completed', language),
                         variant: GradientTextVariant.gold,
                         style: AppTypography.displayFont.copyWith(
                           fontSize: 20,
@@ -168,7 +170,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
 
                   // Message
                   Text(
-                    L10nService.get('streak.challenge_celebration.you_showed_real_commitment', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('streak.challenge_celebration.you_showed_real_commitment', language),
                     textAlign: TextAlign.center,
                     style: AppTypography.decorativeScript(
                       fontSize: 15,
@@ -211,7 +213,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
                         children: [
                           Expanded(
                             child: GradientOutlinedButton(
-                              label: L10nService.get('streak.challenge_celebration.share', isEn ? AppLanguage.en : AppLanguage.tr),
+                              label: L10nService.get('streak.challenge_celebration.share', language),
                               icon: _isSharing ? null : Icons.share_rounded,
                               variant: GradientTextVariant.gold,
                               expanded: true,
@@ -227,7 +229,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
                           const SizedBox(width: 12),
                           Expanded(
                             child: GradientButton.gold(
-                              label: L10nService.get('streak.challenge_celebration.continue', isEn ? AppLanguage.en : AppLanguage.tr),
+                              label: L10nService.get('streak.challenge_celebration.continue', language),
                               onPressed: () => Navigator.of(context).pop(),
                               expanded: true,
                             ),

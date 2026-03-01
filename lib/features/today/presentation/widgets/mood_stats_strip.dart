@@ -23,6 +23,7 @@ class MoodStatsStrip extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final streakAsync = ref.watch(streakStatsProvider);
     final moodAsync = ref.watch(moodCheckinServiceProvider);
     final journalAsync = ref.watch(journalServiceProvider);
@@ -43,7 +44,7 @@ class MoodStatsStrip extends ConsumerWidget {
     final moodEmoji = todayMood?.emoji;
     final moodText = todayMood != null
         ? _moodLabel(todayMood.mood)
-        : (L10nService.get('today.mood_stats_strip.check_in', isEn ? AppLanguage.en : AppLanguage.tr));
+        : (L10nService.get('today.mood_stats_strip.check_in', language));
     final hasNoMood = todayMood == null;
 
     return Padding(
@@ -78,7 +79,7 @@ class MoodStatsStrip extends ConsumerWidget {
                 child: _StripPill(
                   icon: Icons.local_fire_department_rounded,
                   iconColor: AppColors.streakOrange,
-                  label: L10nService.getWithParams('today.mood_stats.streak_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$streakCount'}),
+                  label: L10nService.getWithParams('today.mood_stats.streak_label', language, params: {'count': '$streakCount'}),
                   isDark: isDark,
                   onTap: () {
                     HapticService.selectionTap();
@@ -92,7 +93,7 @@ class MoodStatsStrip extends ConsumerWidget {
                 child: _StripPill(
                   icon: Icons.auto_stories_rounded,
                   iconColor: AppColors.amethyst,
-                  label: L10nService.getWithParams('today.mood_stats.entries_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$entryCount'}),
+                  label: L10nService.getWithParams('today.mood_stats.entries_label', language, params: {'count': '$entryCount'}),
                   isDark: isDark,
                   onTap: () {
                     HapticService.selectionTap();
@@ -131,16 +132,18 @@ class MoodStatsStrip extends ConsumerWidget {
   }
 
   String _moodCountLabel(WidgetRef ref) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final moodAsync = ref.watch(moodCheckinServiceProvider);
     final count = moodAsync.whenOrNull(
           data: (service) => service.getAllEntries().length,
         ) ??
         0;
-    return L10nService.getWithParams('today.mood_stats.mood_count', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$count'});
+    return L10nService.getWithParams('today.mood_stats.mood_count', language, params: {'count': '$count'});
   }
 
   String _moodLabel(int mood) {
-    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final lang = language;
     switch (mood) {
       case 1:
         return L10nService.get('today.mood_stats.mood_low', lang);

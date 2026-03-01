@@ -80,6 +80,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
   }
 
   Widget _buildSection(bool isDark, bool isEn, GratitudeService service) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       child: Column(
@@ -120,7 +121,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             GradientText(
-                              L10nService.get('gratitude.gratitude.gratitude', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('gratitude.gratitude.gratitude', language),
                               variant: GradientTextVariant.gold,
                               style: AppTypography.displayFont.copyWith(
                                 fontSize: 15,
@@ -128,7 +129,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                               ),
                             ),
                             Text(
-                              L10nService.get('gratitude.gratitude.what_went_well_today', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('gratitude.gratitude.what_went_well_today', language),
                               style: AppTypography.decorativeScript(
                                 fontSize: 12,
                                 color: isDark
@@ -175,11 +176,13 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
     bool isEn,
     GratitudeService service,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
       child: Column(
         children: [
           ...List.generate(_controllers.length, (index) {
+            final language = isEn ? AppLanguage.en : AppLanguage.tr;
             return Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: Row(
@@ -204,7 +207,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                             : AppColors.lightTextPrimary,
                       ),
                       decoration: InputDecoration(
-                        hintText: L10nService.get('gratitude.gratitude.im_grateful_for', isEn ? AppLanguage.en : AppLanguage.tr),
+                        hintText: L10nService.get('gratitude.gratitude.im_grateful_for', language),
                         hintStyle: AppTypography.subtitle(
                           fontSize: 14,
                           color: isDark
@@ -234,7 +237,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
               },
               icon: Icon(Icons.add, size: 18, color: AppColors.success),
               label: Text(
-                L10nService.get('gratitude.gratitude.add_another', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('gratitude.gratitude.add_another', language),
                 style: AppTypography.elegantAccent(
                   fontSize: 13,
                   color: AppColors.success,
@@ -256,7 +259,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      L10nService.get('gratitude.gratitude.premium_add_up_to_3_gratitude_items_them', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('gratitude.gratitude.premium_add_up_to_3_gratitude_items_them', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: AppColors.starGold,
@@ -324,6 +327,7 @@ class _GratitudeSummaryContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
@@ -335,7 +339,7 @@ class _GratitudeSummaryContent extends StatelessWidget {
               Icon(Icons.favorite_rounded, size: 18, color: AppColors.success),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('gratitude.gratitude.this_weeks_gratitude', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('gratitude.gratitude.this_weeks_gratitude', language),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 14,

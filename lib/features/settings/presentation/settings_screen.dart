@@ -716,7 +716,6 @@ class SettingsScreen extends ConsumerWidget {
     WidgetRef ref,
     AppLanguage language,
   ) async {
-    final isEn = language == AppLanguage.en;
     final confirmed = await GlassDialog.confirm(
       context,
       title: L10nService.get('settings.settings.delete_account', language),
@@ -746,7 +745,7 @@ class SettingsScreen extends ConsumerWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                L10nService.get('settings.no_active_session', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('settings.no_active_session', language),
               ),
               backgroundColor: AppColors.error,
               behavior: SnackBarBehavior.floating,
@@ -781,7 +780,7 @@ class SettingsScreen extends ConsumerWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                L10nService.get('settings.account_deleted', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('settings.account_deleted', language),
               ),
               backgroundColor: AppColors.surfaceLight,
               behavior: SnackBarBehavior.floating,
@@ -1270,6 +1269,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (service) {
+        final language = isEn ? AppLanguage.en : AppLanguage.tr;
         final isEnabled = service.isEnabled;
 
         return _GroupedContainer(
@@ -1319,8 +1319,8 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                     ),
                     Semantics(
                       label: isEnabled
-                          ? L10nService.get('settings.app_lock_enabled', isEn ? AppLanguage.en : AppLanguage.tr)
-                          : L10nService.get('settings.app_lock_disabled', isEn ? AppLanguage.en : AppLanguage.tr),
+                          ? L10nService.get('settings.app_lock_enabled', language)
+                          : L10nService.get('settings.app_lock_disabled', language),
                       toggled: isEnabled,
                       child: CupertinoSwitch(
                         value: isEnabled,

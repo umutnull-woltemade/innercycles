@@ -126,10 +126,11 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
   }
 
   String _formatDate(DateTime date, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final day = date.day.toString().padLeft(2, '0');
     final month = date.month.toString().padLeft(2, '0');
     final year = date.year;
-    return L10nService.getWithParams('common.date_format.mdy', isEn ? AppLanguage.en : AppLanguage.tr, params: {'month': month, 'day': day, 'year': '$year'});
+    return L10nService.getWithParams('common.date_format.mdy', language, params: {'month': month, 'day': day, 'year': '$year'});
   }
 
   @override
@@ -296,15 +297,15 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                           hasScrollBody: false,
                           child: ToolEmptyState(
                             icon: Icons.nightlight_round,
-                            titleEn: 'Your dream journal awaits',
-                            titleTr: 'Rüya günlüğün seni bekliyor',
-                            descriptionEn:
-                                'Start capturing your dreams — the glossary is ready when you are.',
-                            descriptionTr:
-                                'Rüyalarını kaydetmeye başla — sözlük hazır olduğunda burada.',
+                            title: isEn
+                                ? 'Your dream journal awaits'
+                                : 'Rüya günlüğün seni bekliyor',
+                            description: isEn
+                                ? 'Start capturing your dreams — the glossary is ready when you are.'
+                                : 'Rüyalarını kaydetmeye başla — sözlük hazır olduğunda burada.',
                             onStartTemplate: () =>
                                 context.push(Routes.dreamInterpretation),
-                            isEn: isEn,
+                            language: language,
                             isDark: isDark,
                           ),
                         )
@@ -456,6 +457,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
   }
 
   Widget _buildSearchBar(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Container(
       decoration: BoxDecoration(
         color: isDark
@@ -476,7 +478,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: L10nService.get('dreams.dream_archive.search_by_symbol_or_theme', isEn ? AppLanguage.en : AppLanguage.tr),
+          hintText: L10nService.get('dreams.dream_archive.search_by_symbol_or_theme', language),
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -486,7 +488,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
           ),
           suffixIcon: _searchQuery.isNotEmpty
               ? IconButton(
-                  tooltip: L10nService.get('dreams.dream_archive.clear_search', isEn ? AppLanguage.en : AppLanguage.tr),
+                  tooltip: L10nService.get('dreams.dream_archive.clear_search', language),
                   icon: Icon(
                     Icons.cancel,
                     color: isDark

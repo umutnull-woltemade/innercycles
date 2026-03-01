@@ -32,6 +32,7 @@ class ShiftOutlookCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     if (!outlook.hasValidOutlook) {
       return _buildNoOutlook(context);
     }
@@ -65,7 +66,7 @@ class ShiftOutlookCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      L10nService.get('journal.shift_outlook.shift_outlook', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('journal.shift_outlook.shift_outlook', language),
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 16,
                         color: isDark
@@ -75,7 +76,7 @@ class ShiftOutlookCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${window.confidence.label(isEn ? AppLanguage.en : AppLanguage.tr)} ${L10nService.get('journal.shift_outlook.confidence', isEn ? AppLanguage.en : AppLanguage.tr)}',
+                      '${window.confidence.label(language)} ${L10nService.get('journal.shift_outlook.confidence', language)}',
                       style: AppTypography.elegantAccent(
                         fontSize: 11,
                         color: _confidenceColor(window.confidence),
@@ -98,7 +99,7 @@ class ShiftOutlookCard extends StatelessWidget {
                   border: Border.all(color: phaseColor.withValues(alpha: 0.3)),
                 ),
                 child: Text(
-                  '~${window.estimatedDaysUntilShift}${L10nService.get('common.unit.days_abbr', isEn ? AppLanguage.en : AppLanguage.tr)}',
+                  '~${window.estimatedDaysUntilShift}${L10nService.get('common.unit.days_abbr', language)}',
                   style: AppTypography.modernAccent(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
@@ -124,7 +125,7 @@ class ShiftOutlookCard extends StatelessWidget {
 
           // Description
           Text(
-            window.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
+            window.localizedDescription(language),
             style: AppTypography.decorativeScript(
               fontSize: 14,
               color: isDark
@@ -150,7 +151,7 @@ class ShiftOutlookCard extends StatelessWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    window.localizedAction(isEn ? AppLanguage.en : AppLanguage.tr),
+                    window.localizedAction(language),
                     style: AppTypography.decorativeScript(
                       fontSize: 13,
                       color: isDark
@@ -167,7 +168,7 @@ class ShiftOutlookCard extends StatelessWidget {
           if (outlook.activeSignals.isNotEmpty) ...[
             const SizedBox(height: AppConstants.spacingMd),
             Text(
-              L10nService.get('journal.shift_outlook.supporting_signals', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('journal.shift_outlook.supporting_signals', language),
               style: AppTypography.modernAccent(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
@@ -193,7 +194,7 @@ class ShiftOutlookCard extends StatelessWidget {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        signal.localizedSignal(isEn ? AppLanguage.en : AppLanguage.tr),
+                        signal.localizedSignal(language),
                         style: AppTypography.decorativeScript(
                           fontSize: 12,
                           color: isDark
@@ -219,12 +220,13 @@ class ShiftOutlookCard extends StatelessWidget {
     Color currentColor,
     Color nextColor,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Row(
       children: [
         // Current phase badge
         _buildPhaseBadge(
           context,
-          current.label(isEn ? AppLanguage.en : AppLanguage.tr),
+          current.label(language),
           currentColor,
           true,
         ),
@@ -240,7 +242,7 @@ class ShiftOutlookCard extends StatelessWidget {
         // Next phase badge
         _buildPhaseBadge(
           context,
-          next.label(isEn ? AppLanguage.en : AppLanguage.tr),
+          next.label(language),
           nextColor,
           false,
         ),
@@ -275,6 +277,7 @@ class ShiftOutlookCard extends StatelessWidget {
   }
 
   Widget _buildNoOutlook(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -288,7 +291,7 @@ class ShiftOutlookCard extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              L10nService.get('journal.shift_outlook.not_enough_data_for_shift_outlook_yet', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('journal.shift_outlook.not_enough_data_for_shift_outlook_yet', language),
               style: AppTypography.decorativeScript(
                 fontSize: 14,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,

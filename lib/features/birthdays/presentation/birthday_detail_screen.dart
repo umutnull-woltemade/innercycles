@@ -104,6 +104,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final monthNames = isEn
         ? CommonStrings.monthsFullEn
         : CommonStrings.monthsFullTr;
@@ -118,7 +119,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
             title: contact.name,
             actions: [
               IconButton(
-                tooltip: L10nService.get('birthdays.birthday_detail.share_birthday', isEn ? AppLanguage.en : AppLanguage.tr),
+                tooltip: L10nService.get('birthdays.birthday_detail.share_birthday', language),
                 icon: Icon(
                   Icons.share_rounded,
                   color: AppColors.starGold,
@@ -135,7 +136,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                 },
               ),
               IconButton(
-                tooltip: L10nService.get('birthdays.birthday_detail.edit_birthday', isEn ? AppLanguage.en : AppLanguage.tr),
+                tooltip: L10nService.get('birthdays.birthday_detail.edit_birthday', language),
                 icon: Icon(
                   Icons.edit_rounded,
                   color: isDark
@@ -254,7 +255,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GradientText(
-                          L10nService.get('birthdays.birthday_detail.note', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('birthdays.birthday_detail.note', language),
                           variant: GradientTextVariant.gold,
                           style: AppTypography.displayFont.copyWith(
                             fontSize: 14,
@@ -263,16 +264,17 @@ class BirthdayDetailScreen extends ConsumerWidget {
                         ),
                         const SizedBox(height: 8),
                         Semantics(
-                          label: L10nService.get('birthdays.birthday_detail.long_press_to_copy_note', isEn ? AppLanguage.en : AppLanguage.tr),
+                          label: L10nService.get('birthdays.birthday_detail.long_press_to_copy_note', language),
                           child: GestureDetector(
                           onLongPress: () {
+                            final language = isEn ? AppLanguage.en : AppLanguage.tr;
                             Clipboard.setData(
                               ClipboardData(text: contact.note!),
                             );
                             HapticService.buttonPress();
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text(L10nService.get('birthdays.birthday_detail.birthday_note_copied', isEn ? AppLanguage.en : AppLanguage.tr)),
+                                content: Text(L10nService.get('birthdays.birthday_detail.birthday_note_copied', language)),
                                 duration: const Duration(seconds: 1),
                                 backgroundColor: AppColors.success,
                               ),
@@ -303,7 +305,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       GradientText(
-                        L10nService.get('birthdays.birthday_detail.reminders', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('birthdays.birthday_detail.reminders', language),
                         variant: GradientTextVariant.gold,
                         style: AppTypography.displayFont.copyWith(
                           fontSize: 14,
@@ -314,7 +316,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                       _toggleRow(
                         isDark,
                         icon: Icons.cake_rounded,
-                        label: L10nService.get('birthdays.birthday_detail.birthday_notification', isEn ? AppLanguage.en : AppLanguage.tr),
+                        label: L10nService.get('birthdays.birthday_detail.birthday_notification', language),
                         value: contact.notificationsEnabled,
                         onChanged: (v) => _updateNotificationSetting(
                           ref,
@@ -326,7 +328,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                       _toggleRow(
                         isDark,
                         icon: Icons.notifications_active_rounded,
-                        label: L10nService.get('birthdays.birthday_detail.day_before', isEn ? AppLanguage.en : AppLanguage.tr),
+                        label: L10nService.get('birthdays.birthday_detail.day_before', language),
                         value: contact.dayBeforeReminder,
                         onChanged: (v) => _updateNotificationSetting(
                           ref,
@@ -352,7 +354,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                       size: 18,
                     ),
                     label: Text(
-                      L10nService.get('birthdays.birthday_detail.delete_contact', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('birthdays.birthday_detail.delete_contact', language),
                       style: AppTypography.modernAccent(
                         color: AppColors.error,
                         fontWeight: FontWeight.w500,
@@ -370,6 +372,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
   }
 
   Widget _buildCountdownCard(BirthdayContact contact, bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final days = contact.daysUntilBirthday;
     final isToday = contact.isBirthdayToday;
 
@@ -385,7 +388,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
           const SizedBox(height: 12),
           if (isToday) ...[
             GradientText(
-              L10nService.get('birthdays.birthday_detail.happy_birthday', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('birthdays.birthday_detail.happy_birthday', language),
               variant: GradientTextVariant.gold,
               style: AppTypography.displayFont.copyWith(
                 fontSize: 22,
@@ -404,7 +407,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
               ),
             ),
             Text(
-              L10nService.get('birthdays.birthday_detail.days_left', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('birthdays.birthday_detail.days_left', language),
               style: AppTypography.decorativeScript(
                 fontSize: 16,
                 color: isDark
@@ -487,16 +490,18 @@ class BirthdayDetailScreen extends ConsumerWidget {
     BirthdayContact contact,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     GlassDialog.confirm(
       context,
-      title: L10nService.get('birthdays.birthday_detail.delete_contact_1', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('birthdays.birthday_detail.delete_contact_1', language),
       message: isEn
           ? 'Are you sure you want to delete ${contact.name}?'
           : '${contact.name} ki\u{015F}isini silmek istedi\u{011F}inizden emin misiniz?',
-      cancelLabel: L10nService.get('birthdays.birthday_detail.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
-      confirmLabel: L10nService.get('birthdays.birthday_detail.delete', isEn ? AppLanguage.en : AppLanguage.tr),
+      cancelLabel: L10nService.get('birthdays.birthday_detail.cancel', language),
+      confirmLabel: L10nService.get('birthdays.birthday_detail.delete', language),
       isDestructive: true,
       onConfirm: () async {
+        final language = isEn ? AppLanguage.en : AppLanguage.tr;
         try {
           final service = await ref.read(birthdayContactServiceProvider.future);
           await service.deleteContact(contact.id);
@@ -508,7 +513,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
-                  L10nService.get('birthdays.birthday_detail.couldnt_delete_this_contact_please_try_a', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('birthdays.birthday_detail.couldnt_delete_this_contact_please_try_a', language),
                 ),
               ),
             );

@@ -186,6 +186,7 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
 
   @override
   Widget build(BuildContext context) {
+    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
     return RefreshIndicator(
       onRefresh: _handleRefresh,
       color: AppColors.auroraStart,
@@ -199,7 +200,7 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
           ),
           slivers: [
             GlassSliverAppBar(
-              title: L10nService.get('blind_spot.blind_spot.what_your_journal_reveals', (widget.isEn ? AppLanguage.en : AppLanguage.tr)),
+              title: L10nService.get('blind_spot.blind_spot.what_your_journal_reveals', (language)),
             ),
             if (!widget.hasEnough)
               SliverFillRemaining(
@@ -239,7 +240,7 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
                     ),
                     const SizedBox(height: 24),
                     ContentDisclaimer(
-                      language: (widget.isEn ? AppLanguage.en : AppLanguage.tr),
+                      language: (language),
                     ),
                     const SizedBox(height: 20),
                     _ShareInsightsButton(
@@ -281,6 +282,7 @@ class _NotEnoughData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final remaining = 14 - entryCount;
 
     return Padding(
@@ -297,7 +299,7 @@ class _NotEnoughData extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            L10nService.get('blind_spot.blind_spot.a_little_more_journaling_to_go', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('blind_spot.blind_spot.a_little_more_journaling_to_go', language),
             style: AppTypography.displayFont.copyWith(
               fontSize: 22,
               fontWeight: FontWeight.w600,
@@ -349,7 +351,7 @@ class _NotEnoughData extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  L10nService.getWithParams('blind_spot.entry_count_progress', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$entryCount'}),
+                  L10nService.getWithParams('blind_spot.entry_count_progress', language, params: {'count': '$entryCount'}),
                   style: AppTypography.modernAccent(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -382,6 +384,7 @@ class _OverallInsightCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.aurora,
       borderRadius: 20,
@@ -406,7 +409,7 @@ class _OverallInsightCard extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: GradientText(
-                  L10nService.get('blind_spot.blind_spot.your_overview', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('blind_spot.blind_spot.your_overview', language),
                   variant: GradientTextVariant.aurora,
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 17,
@@ -419,7 +422,7 @@ class _OverallInsightCard extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            isEn ? report.overallInsightEn : report.overallInsightTr,
+            report.localizedOverallInsight(language),
             style: AppTypography.decorativeScript(
               fontSize: 14,
               color: isDark
@@ -478,6 +481,7 @@ class _BlindSpotsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     if (spots.isEmpty) {
       return PremiumCard(
         style: PremiumCardStyle.subtle,
@@ -492,7 +496,7 @@ class _BlindSpotsList extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: Text(
-                L10nService.get('blind_spot.blind_spot.no_blind_spots_detected_at_this_time_kee', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('blind_spot.blind_spot.no_blind_spots_detected_at_this_time_kee', language),
                 style: AppTypography.decorativeScript(
                   fontSize: 14,
                   color: isDark
@@ -510,7 +514,7 @@ class _BlindSpotsList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('blind_spot.blind_spot.blind_spots', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('blind_spot.blind_spot.blind_spots', language),
           variant: GradientTextVariant.amethyst,
           style: AppTypography.displayFont.copyWith(
             fontSize: 16,
@@ -562,9 +566,10 @@ class _BlindSpotCardState extends State<_BlindSpotCard>
     final spot = widget.spot;
     final isDark = widget.isDark;
     final isEn = widget.isEn;
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
 
     return Semantics(
-      label: isEn ? spot.typeEn : spot.typeTr,
+      label: spot.localizedType(language),
       button: true,
       child: GestureDetector(
         onTap: () {
@@ -621,7 +626,7 @@ class _BlindSpotCardState extends State<_BlindSpotCard>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          isEn ? spot.typeEn : spot.typeTr,
+                          spot.localizedType(language),
                           style: AppTypography.modernAccent(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
@@ -654,7 +659,7 @@ class _BlindSpotCardState extends State<_BlindSpotCard>
                 secondChild: Padding(
                   padding: const EdgeInsets.only(top: 14),
                   child: Text(
-                    isEn ? spot.insightEn : spot.insightTr,
+                    spot.localizedInsight(language),
                     style: AppTypography.decorativeScript(
                       fontSize: 13,
                       color: isDark
@@ -760,13 +765,14 @@ class _SeverityIndicator extends StatelessWidget {
   }
 
   String get _label {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     switch (severity) {
       case BlindSpotSeverity.low:
-        return L10nService.get('blind_spot.blind_spot.subtle', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('blind_spot.blind_spot.subtle', language);
       case BlindSpotSeverity.medium:
-        return L10nService.get('blind_spot.blind_spot.notable', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('blind_spot.blind_spot.notable', language);
       case BlindSpotSeverity.high:
-        return L10nService.get('blind_spot.blind_spot.significant', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('blind_spot.blind_spot.significant', language);
     }
   }
 }
@@ -788,6 +794,7 @@ class _GrowthSuggestionsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final suggestions = isEn
         ? report.growthSuggestionsEn
         : report.growthSuggestionsTr;
@@ -814,7 +821,7 @@ class _GrowthSuggestionsCard extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               GradientText(
-                L10nService.get('blind_spot.blind_spot.growth_suggestions', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('blind_spot.blind_spot.growth_suggestions', language),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 16,
@@ -889,8 +896,9 @@ class _ShareInsightsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return GradientButton(
-      label: L10nService.get('blind_spot.blind_spot.share_your_insights', isEn ? AppLanguage.en : AppLanguage.tr),
+      label: L10nService.get('blind_spot.blind_spot.share_your_insights', language),
       icon: Icons.share_rounded,
       expanded: true,
       gradient: const LinearGradient(

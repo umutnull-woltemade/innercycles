@@ -20,29 +20,25 @@ import '../../data/providers/app_providers.dart';
 
 class ToolEmptyState extends StatelessWidget {
   final IconData icon;
-  final String titleEn;
-  final String titleTr;
-  final String descriptionEn;
-  final String descriptionTr;
+  final String title;
+  final String description;
   final int currentEntries;
   final int requiredEntries;
   final VoidCallback? onSeeExample;
   final VoidCallback? onStartTemplate;
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const ToolEmptyState({
     super.key,
     required this.icon,
-    required this.titleEn,
-    required this.titleTr,
-    required this.descriptionEn,
-    required this.descriptionTr,
+    required this.title,
+    required this.description,
     this.currentEntries = 0,
     this.requiredEntries = 0,
     this.onSeeExample,
     this.onStartTemplate,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -66,7 +62,7 @@ class ToolEmptyState extends StatelessWidget {
               ),
               const SizedBox(height: AppConstants.spacingLg),
               Text(
-                isEn ? titleEn : titleTr,
+                title,
                 textAlign: TextAlign.center,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 18,
@@ -78,7 +74,7 @@ class ToolEmptyState extends StatelessWidget {
               ),
               const SizedBox(height: AppConstants.spacingMd),
               Text(
-                isEn ? descriptionEn : descriptionTr,
+                description,
                 textAlign: TextAlign.center,
                 style: AppTypography.decorativeScript(
                   fontSize: 14,
@@ -123,7 +119,7 @@ class ToolEmptyState extends StatelessWidget {
               const SizedBox(height: AppConstants.spacingXl),
               if (onStartTemplate != null)
                 GradientButton(
-                  label: L10nService.get('shared.ecosystems.start_with_template', isEn ? AppLanguage.en : AppLanguage.tr),
+                  label: L10nService.get('shared.ecosystems.start_with_template', language),
                   onPressed: onStartTemplate,
                   expanded: true,
                   gradient: const LinearGradient(
@@ -135,7 +131,7 @@ class ToolEmptyState extends StatelessWidget {
                 TextButton(
                   onPressed: onSeeExample,
                   child: Text(
-                    L10nService.get('shared.ecosystems.see_example', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('shared.ecosystems.see_example', language),
                     style: AppTypography.elegantAccent(
                       color: isDark
                           ? AppColors.textSecondary

@@ -48,6 +48,7 @@ class VoiceJournalService {
 
   /// Internal initialization of the speech recognition engine.
   Future<void> _initialize() async {
+    final language = _isEn ? AppLanguage.en : AppLanguage.tr;
     try {
       _isInitialized = await _speech.initialize(
         onError: _onError,
@@ -56,7 +57,7 @@ class VoiceJournalService {
     } catch (e) {
       _isInitialized = false;
       _errorController.add(
-        L10nService.get('data.services.voice_journal.failed_to_initialize_voice_input', _isEn ? AppLanguage.en : AppLanguage.tr),
+        L10nService.get('data.services.voice_journal.failed_to_initialize_voice_input', language),
       );
     }
   }
@@ -89,9 +90,10 @@ class VoiceJournalService {
   /// [localeId] - Optional locale for speech recognition (e.g. 'en_US', 'tr_TR').
   /// Returns true if listening started successfully.
   Future<bool> startListening({String? localeId}) async {
+    final language = _isEn ? AppLanguage.en : AppLanguage.tr;
     if (!_isInitialized) {
       _errorController.add(
-        L10nService.get('data.services.voice_journal.voice_input_is_not_available_on_this_dev', _isEn ? AppLanguage.en : AppLanguage.tr),
+        L10nService.get('data.services.voice_journal.voice_input_is_not_available_on_this_dev', language),
       );
       return false;
     }
@@ -118,7 +120,7 @@ class VoiceJournalService {
       return true;
     } catch (e) {
       _errorController.add(
-        L10nService.get('data.services.voice_journal.could_not_start_listening', _isEn ? AppLanguage.en : AppLanguage.tr),
+        L10nService.get('data.services.voice_journal.could_not_start_listening', language),
       );
       return false;
     }
@@ -126,13 +128,14 @@ class VoiceJournalService {
 
   /// Stop listening for speech input.
   Future<void> stopListening() async {
+    final language = _isEn ? AppLanguage.en : AppLanguage.tr;
     if (!_isListening) return;
 
     try {
       await _speech.stop();
     } catch (e) {
       _errorController.add(
-        L10nService.get('data.services.voice_journal.error_stopping_voice_input', _isEn ? AppLanguage.en : AppLanguage.tr),
+        L10nService.get('data.services.voice_journal.error_stopping_voice_input', language),
       );
     } finally {
       _isListening = false;

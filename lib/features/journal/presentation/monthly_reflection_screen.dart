@@ -259,6 +259,7 @@ class _MonthlyReflectionScreenState
     required bool isDark,
     required bool isEn,
   }) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return ClipRRect(
       borderRadius: BorderRadius.circular(AppConstants.radiusLg),
       child: Stack(
@@ -295,7 +296,7 @@ class _MonthlyReflectionScreenState
                     ),
                     const SizedBox(height: 8),
                     GradientText(
-                      L10nService.get('journal.monthly_reflection.access_your_full_monthly_report', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('journal.monthly_reflection.access_your_full_monthly_report', language),
                       variant: GradientTextVariant.gold,
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 14,
@@ -304,7 +305,7 @@ class _MonthlyReflectionScreenState
                     ),
                     const SizedBox(height: 12),
                     GradientButton.gold(
-                      label: L10nService.get('journal.monthly_reflection.see_full_report', isEn ? AppLanguage.en : AppLanguage.tr),
+                      label: L10nService.get('journal.monthly_reflection.see_full_report', language),
                       onPressed: () => showContextualPaywall(
                         context,
                         ref,
@@ -322,6 +323,7 @@ class _MonthlyReflectionScreenState
   }
 
   Widget _buildMonthSelector(BuildContext context, bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final months = isEn
         ? [
             'January',
@@ -370,7 +372,7 @@ class _MonthlyReflectionScreenState
                 }
               });
             },
-            tooltip: L10nService.get('journal.monthly_reflection.previous_month', isEn ? AppLanguage.en : AppLanguage.tr),
+            tooltip: L10nService.get('journal.monthly_reflection.previous_month', language),
             icon: Icon(
               Icons.chevron_left,
               color: isDark
@@ -403,7 +405,7 @@ class _MonthlyReflectionScreenState
                 });
               }
             },
-            tooltip: L10nService.get('journal.monthly_reflection.next_month', isEn ? AppLanguage.en : AppLanguage.tr),
+            tooltip: L10nService.get('journal.monthly_reflection.next_month', language),
             icon: Icon(
               Icons.chevron_right,
               color: isDark
@@ -422,6 +424,7 @@ class _MonthlyReflectionScreenState
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
@@ -460,7 +463,7 @@ class _MonthlyReflectionScreenState
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  L10nService.get('journal.monthly_reflection.this_month_is_waiting_for_your_first_ref', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('journal.monthly_reflection.this_month_is_waiting_for_your_first_ref', language),
                   style: AppTypography.decorativeScript(
                     fontSize: 14,
                     color: isDark
@@ -473,7 +476,7 @@ class _MonthlyReflectionScreenState
                   onTap: () => context.go(Routes.journal),
                   behavior: HitTestBehavior.opaque,
                   child: Text(
-                    L10nService.get('journal.monthly_reflection.write_your_first_entry', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('journal.monthly_reflection.write_your_first_entry', language),
                     style: AppTypography.modernAccent(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -489,7 +492,7 @@ class _MonthlyReflectionScreenState
             _buildHighlight(
               context,
               isDark,
-              L10nService.get('journal.monthly_reflection.strongest_area', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('journal.monthly_reflection.strongest_area', language),
               summary.strongestArea?.localizedName(isEn) ?? '',
               Icons.star,
               AppColors.success,
@@ -501,7 +504,7 @@ class _MonthlyReflectionScreenState
             _buildHighlight(
               context,
               isDark,
-              L10nService.get('journal.monthly_reflection.needs_attention', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('journal.monthly_reflection.needs_attention', language),
               summary.weakestArea?.localizedName(isEn) ?? '',
               Icons.info_outline,
               AppColors.warning,
@@ -511,7 +514,7 @@ class _MonthlyReflectionScreenState
           _buildHighlight(
             context,
             isDark,
-            L10nService.get('journal.monthly_reflection.current_streak', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('journal.monthly_reflection.current_streak', language),
             isEn
                 ? '${summary.currentStreak} days'
                 : '${summary.currentStreak} gün',
@@ -562,12 +565,13 @@ class _MonthlyReflectionScreenState
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final theme = allMonthlyThemes.firstWhere(
       (t) => t.month == month,
       orElse: () => allMonthlyThemes.first,
     );
 
-    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
+    final lang = language;
     final prompts = theme.localizedWeeklyPrompts(lang);
     final tip = theme.localizedWellnessTip(lang);
 
@@ -605,7 +609,7 @@ class _MonthlyReflectionScreenState
           ),
           const SizedBox(height: 16),
           Text(
-            L10nService.get('journal.monthly_reflection.weekly_prompts', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('journal.monthly_reflection.weekly_prompts', language),
             style: AppTypography.elegantAccent(
               fontSize: 12,
               fontWeight: FontWeight.w600,
@@ -615,13 +619,14 @@ class _MonthlyReflectionScreenState
           ),
           const SizedBox(height: 8),
           ...List.generate(prompts.length, (i) {
+            final language = isEn ? AppLanguage.en : AppLanguage.tr;
             return Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${L10nService.get('common.week_abbr', isEn ? AppLanguage.en : AppLanguage.tr)}${i + 1}',
+                    '${L10nService.get('common.week_abbr', language)}${i + 1}',
                     style: AppTypography.modernAccent(
                       fontSize: 11,
                       fontWeight: FontWeight.w700,
@@ -681,6 +686,7 @@ class _MonthlyReflectionScreenState
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -688,7 +694,7 @@ class _MonthlyReflectionScreenState
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('journal.monthly_reflection.area_breakdown', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('journal.monthly_reflection.area_breakdown', language),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 14,

@@ -103,6 +103,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final isPositive = event.type == LifeEventType.positive;
     final accentColor = isPositive ? AppColors.starGold : AppColors.amethyst;
     final preset = event.eventKey != null
@@ -126,10 +127,10 @@ class LifeEventDetailScreen extends ConsumerWidget {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: L10nService.get('life_events.life_event_detail.life_event', isEn ? AppLanguage.en : AppLanguage.tr),
+            title: L10nService.get('life_events.life_event_detail.life_event', language),
             actions: [
               IconButton(
-                tooltip: L10nService.get('life_events.life_event_detail.share_event', isEn ? AppLanguage.en : AppLanguage.tr),
+                tooltip: L10nService.get('life_events.life_event_detail.share_event', language),
                 icon: Icon(
                   Icons.share_rounded,
                   color: AppColors.starGold,
@@ -148,7 +149,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                 },
               ),
               IconButton(
-                tooltip: L10nService.get('life_events.life_event_detail.edit_event', isEn ? AppLanguage.en : AppLanguage.tr),
+                tooltip: L10nService.get('life_events.life_event_detail.edit_event', language),
                 icon: Icon(
                   Icons.edit_rounded,
                   color: isDark
@@ -163,7 +164,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                 },
               ),
               IconButton(
-                tooltip: L10nService.get('life_events.life_event_detail.delete_event', isEn ? AppLanguage.en : AppLanguage.tr),
+                tooltip: L10nService.get('life_events.life_event_detail.delete_event', language),
                 icon: Icon(
                   Icons.delete_outline_rounded,
                   color: AppColors.error,
@@ -185,7 +186,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                       height: 200,
                       width: double.infinity,
                       fit: BoxFit.cover,
-                      semanticLabel: L10nService.get('life_events.life_event_detail.event_photo', isEn ? AppLanguage.en : AppLanguage.tr),
+                      semanticLabel: L10nService.get('life_events.life_event_detail.event_photo', language),
                       errorBuilder: (_, _, _) => const SizedBox.shrink(),
                     ),
                   ).animate().fadeIn(duration: 400.ms),
@@ -241,7 +242,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                     Expanded(
                       child: _infoCard(
                         icon: Icons.calendar_today_rounded,
-                        label: L10nService.get('life_events.life_event_detail.date', isEn ? AppLanguage.en : AppLanguage.tr),
+                        label: L10nService.get('life_events.life_event_detail.date', language),
                         value: formatted,
                         isDark: isDark,
                       ),
@@ -250,7 +251,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                     Expanded(
                       child: _infoCard(
                         icon: Icons.speed_rounded,
-                        label: L10nService.get('life_events.life_event_detail.intensity', isEn ? AppLanguage.en : AppLanguage.tr),
+                        label: L10nService.get('life_events.life_event_detail.intensity', language),
                         value:
                             intensityLabels[(event.intensity - 1).clamp(0, 4)],
                         isDark: isDark,
@@ -270,7 +271,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GradientText(
-                          L10nService.get('life_events.life_event_detail.emotions', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('life_events.life_event_detail.emotions', language),
                           variant: GradientTextVariant.amethyst,
                           style: AppTypography.elegantAccent(
                             fontSize: 13,
@@ -320,7 +321,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GradientText(
-                          L10nService.get('life_events.life_event_detail.reflection', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('life_events.life_event_detail.reflection', language),
                           variant: GradientTextVariant.amethyst,
                           style: AppTypography.elegantAccent(
                             fontSize: 13,
@@ -330,11 +331,12 @@ class LifeEventDetailScreen extends ConsumerWidget {
                         const SizedBox(height: 8),
                         GestureDetector(
                           onLongPress: () {
+                            final language = isEn ? AppLanguage.en : AppLanguage.tr;
                             Clipboard.setData(ClipboardData(text: note));
                             HapticService.buttonPress();
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text(L10nService.get('life_events.life_event_detail.event_copied_to_clipboard', isEn ? AppLanguage.en : AppLanguage.tr)),
+                                content: Text(L10nService.get('life_events.life_event_detail.event_copied_to_clipboard', language)),
                                 duration: const Duration(seconds: 1),
                                 backgroundColor: AppColors.success,
                               ),
@@ -414,12 +416,13 @@ class LifeEventDetailScreen extends ConsumerWidget {
     LifeEvent event,
     bool isEn,
   ) async {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final confirmed = await GlassDialog.confirm(
       context,
-      title: L10nService.get('life_events.life_event_detail.delete_event_1', isEn ? AppLanguage.en : AppLanguage.tr),
-      message: L10nService.get('life_events.life_event_detail.this_life_event_will_be_permanently_dele', isEn ? AppLanguage.en : AppLanguage.tr),
-      cancelLabel: L10nService.get('life_events.life_event_detail.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
-      confirmLabel: L10nService.get('life_events.life_event_detail.delete', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('life_events.life_event_detail.delete_event_1', language),
+      message: L10nService.get('life_events.life_event_detail.this_life_event_will_be_permanently_dele', language),
+      cancelLabel: L10nService.get('life_events.life_event_detail.cancel', language),
+      confirmLabel: L10nService.get('life_events.life_event_detail.delete', language),
       isDestructive: true,
     );
     if (confirmed != true) return;

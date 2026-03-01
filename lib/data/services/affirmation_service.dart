@@ -10,6 +10,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../providers/app_providers.dart';
 
 // ════════════════════════════════════════════════════════════════
 // AFFIRMATION CATEGORY ENUM
@@ -93,6 +94,8 @@ class Affirmation {
     required this.textTr,
     required this.category,
   });
+
+  String localizedText(AppLanguage language) => language == AppLanguage.en ? textEn : textTr;
 
   Map<String, dynamic> toJson() => {
     'id': id,

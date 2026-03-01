@@ -16,6 +16,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/journal_entry.dart';
+import '../providers/app_providers.dart';
 
 // ══════════════════════════════════════════════════════════════════════════
 // ENUMS
@@ -86,6 +87,12 @@ class BlindSpot {
         DateTime.tryParse(json['discoveredDate']?.toString() ?? '') ??
         DateTime.now(),
   );
+
+  String localizedType(AppLanguage language) =>
+      language == AppLanguage.en ? typeEn : typeTr;
+
+  String localizedInsight(AppLanguage language) =>
+      language == AppLanguage.en ? insightEn : insightTr;
 }
 
 class BlindSpotReport {
@@ -132,6 +139,9 @@ class BlindSpotReport {
         (json['growthSuggestionsTr'] as List?)?.whereType<String>().toList() ??
         [],
   );
+
+  String localizedOverallInsight(AppLanguage language) =>
+      language == AppLanguage.en ? overallInsightEn : overallInsightTr;
 }
 
 // ══════════════════════════════════════════════════════════════════════════

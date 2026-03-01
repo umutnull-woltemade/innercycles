@@ -221,6 +221,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final streak = shadowService.getStreak();
     final breakthroughs = shadowService.getBreakthroughCount();
     final totalEntries = shadowService.totalEntries;
@@ -241,7 +242,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           GradientText(
-            L10nService.get('shadow_work.shadow_work.explore_your_inner_landscape', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('shadow_work.shadow_work.explore_your_inner_landscape', language),
             variant: GradientTextVariant.amethyst,
             textAlign: TextAlign.center,
             style: AppTypography.displayFont.copyWith(
@@ -251,7 +252,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
           ),
           const SizedBox(height: 8),
           Text(
-            L10nService.get('shadow_work.shadow_work.shadow_work_helps_you_understand_hidden', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('shadow_work.shadow_work.shadow_work_helps_you_understand_hidden', language),
             style: AppTypography.subtitle(
               fontSize: 14,
               color: isDark
@@ -269,19 +270,19 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                 _buildStatChip(
                   context,
                   '$totalEntries',
-                  L10nService.get('shadow_work.shadow_work.entries', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('shadow_work.shadow_work.entries', language),
                   isDark,
                 ),
                 _buildStatChip(
                   context,
                   '$streak',
-                  L10nService.get('shadow_work.shadow_work.streak', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('shadow_work.shadow_work.streak', language),
                   isDark,
                 ),
                 _buildStatChip(
                   context,
                   '$breakthroughs',
-                  L10nService.get('shadow_work.shadow_work.insights', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('shadow_work.shadow_work.insights', language),
                   isDark,
                 ),
               ],
@@ -326,6 +327,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
   // ═══════════════════════════════════════════════════════════════════════
 
   Widget _buildArchetypeSelector(BuildContext context, bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return GlassPanel(
       elevation: GlassElevation.g2,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -334,7 +336,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('shadow_work.shadow_work.choose_an_archetype', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('shadow_work.shadow_work.choose_an_archetype', language),
             variant: GradientTextVariant.amethyst,
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,
@@ -428,6 +430,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final entryCount = shadowService
         .getEntriesByArchetype(_selectedArchetype)
         .length;
@@ -457,7 +460,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               const SizedBox(width: 8),
               Expanded(
                 child: GradientText(
-                  L10nService.get('shadow_work.todays_prompt', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('shadow_work.todays_prompt', language),
                   variant: GradientTextVariant.amethyst,
                   style: AppTypography.elegantAccent(
                     fontSize: 14,
@@ -483,7 +486,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            prompt.localizedPrompt(isEn ? AppLanguage.en : AppLanguage.tr),
+            prompt.localizedPrompt(language),
             style: AppTypography.decorativeScript(
               fontSize: 17,
               fontWeight: FontWeight.w500,
@@ -526,7 +529,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      L10nService.get('shadow_work.shadow_work.begin_writing', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('shadow_work.shadow_work.begin_writing', language),
                       style: AppTypography.modernAccent(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
@@ -554,6 +557,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final entryCount = shadowService
         .getEntriesByArchetype(_selectedArchetype)
         .length;
@@ -583,7 +587,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               height: 1.6,
             ),
             decoration: InputDecoration(
-              hintText: L10nService.get('shadow_work.shadow_work.write_freely_without_judgment', isEn ? AppLanguage.en : AppLanguage.tr),
+              hintText: L10nService.get('shadow_work.shadow_work.write_freely_without_judgment', language),
               hintStyle: AppTypography.subtitle(
                 color: isDark
                     ? AppColors.textSecondary.withValues(alpha: 0.5)
@@ -613,7 +617,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
             ),
           ),
           Semantics(
-            label: L10nService.get('shadow_work.shadow_work.intensity_slider', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('shadow_work.shadow_work.intensity_slider', language),
             value: '$_intensity',
             child: SliderTheme(
               data: SliderTheme.of(context).copyWith(
@@ -642,7 +646,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               setState(() => _breakthroughMoment = !_breakthroughMoment);
             },
             child: Semantics(
-              label: L10nService.get('shadow_work.shadow_work.breakthrough_moment_toggle', isEn ? AppLanguage.en : AppLanguage.tr),
+              label: L10nService.get('shadow_work.shadow_work.breakthrough_moment_toggle', language),
               toggled: _breakthroughMoment,
               child: ConstrainedBox(
                 constraints: const BoxConstraints(minHeight: 44),
@@ -662,7 +666,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        L10nService.get('shadow_work.shadow_work.this_was_a_breakthrough_moment', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('shadow_work.shadow_work.this_was_a_breakthrough_moment', language),
                         style:
                             AppTypography.subtitle(
                               fontSize: 12,
@@ -692,12 +696,13 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               onTap: !_hasText
                   ? null
                   : () async {
+                      final language = isEn ? AppLanguage.en : AppLanguage.tr;
                       HapticFeedback.mediumImpact();
                       final entry = ShadowWorkEntry(
                         id: '${DateTime.now().millisecondsSinceEpoch}',
                         date: DateTime.now(),
                         archetype: _selectedArchetype,
-                        prompt: prompt.localizedPrompt(isEn ? AppLanguage.en : AppLanguage.tr),
+                        prompt: prompt.localizedPrompt(language),
                         response: _responseController.text.trim(),
                         intensity: _intensity,
                         breakthroughMoment: _breakthroughMoment,
@@ -715,7 +720,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                            L10nService.get('shadow_work.shadow_work.shadow_work_entry_saved', isEn ? AppLanguage.en : AppLanguage.tr),
+                            L10nService.get('shadow_work.shadow_work.shadow_work_entry_saved', language),
                           ),
                           backgroundColor: AppColors.success,
                           behavior: SnackBarBehavior.floating,
@@ -757,7 +762,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        L10nService.get('shadow_work.shadow_work.save_entry', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('shadow_work.shadow_work.save_entry', language),
                         style: AppTypography.modernAccent(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
@@ -786,6 +791,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final stats =
         shadowService.getArchetypeStats() as Map<ShadowArchetype, int>;
     if (stats.isEmpty) return const SizedBox.shrink();
@@ -810,7 +816,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               ),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('shadow_work.shadow_work.your_shadow_map', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('shadow_work.shadow_work.your_shadow_map', language),
                 variant: GradientTextVariant.amethyst,
                 style: AppTypography.modernAccent(
                   fontSize: 14,
@@ -905,6 +911,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final entries = (shadowService.getEntries() as List<ShadowWorkEntry>)
         .take(5)
         .toList();
@@ -930,7 +937,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               ),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('shadow_work.shadow_work.recent_entries', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('shadow_work.shadow_work.recent_entries', language),
                 variant: GradientTextVariant.amethyst,
                 style: AppTypography.modernAccent(
                   fontSize: 14,
@@ -941,12 +948,13 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           ...entries.map((entry) {
+            final language = isEn ? AppLanguage.en : AppLanguage.tr;
             final daysAgo = DateTime.now().difference(entry.date).inDays;
             final dateLabel = daysAgo == 0
-                ? (L10nService.get('shadow_work.shadow_work.today', isEn ? AppLanguage.en : AppLanguage.tr))
+                ? (L10nService.get('shadow_work.shadow_work.today', language))
                 : daysAgo == 1
-                ? (L10nService.get('shadow_work.shadow_work.yesterday', isEn ? AppLanguage.en : AppLanguage.tr))
-                : (L10nService.getWithParams('shadow_work.days_ago', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$daysAgo'}));
+                ? (L10nService.get('shadow_work.shadow_work.yesterday', language))
+                : (L10nService.getWithParams('shadow_work.days_ago', language, params: {'count': '$daysAgo'}));
 
             return Padding(
               padding: const EdgeInsets.only(bottom: 12),
@@ -981,7 +989,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                             ),
                             if (entry.breakthroughMoment)
                               Semantics(
-                                label: L10nService.get('shadow_work.shadow_work.breakthrough_moment', isEn ? AppLanguage.en : AppLanguage.tr),
+                                label: L10nService.get('shadow_work.shadow_work.breakthrough_moment', language),
                                 child: Icon(
                                   Icons.lightbulb_rounded,
                                   size: 14,
@@ -1051,6 +1059,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
     bool isPremium, {
     required Widget child,
   }) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     if (isPremium) return child;
 
     return Stack(
@@ -1079,7 +1088,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                   Icon(Icons.lock_outline, size: 28, color: _shadowGold),
                   const SizedBox(height: 8),
                   GradientText(
-                    L10nService.get('shadow_work.shadow_work.unlock_your_shadow_map', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('shadow_work.shadow_work.unlock_your_shadow_map', language),
                     variant: GradientTextVariant.gold,
                     style: AppTypography.elegantAccent(
                       fontSize: 15,
@@ -1114,7 +1123,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                         ],
                       ),
                       child: Text(
-                        L10nService.get('common.upgrade_to_pro', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('common.upgrade_to_pro', language),
                         style: AppTypography.modernAccent(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,

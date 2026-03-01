@@ -44,6 +44,7 @@ class AppErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = _isEn ? AppLanguage.en : AppLanguage.tr;
     if (kDebugMode) {
       debugPrint(
         'AppErrorWidget: Rendering error fallback for: ${details.exception}',
@@ -196,7 +197,7 @@ class AppErrorWidget extends StatelessWidget {
                 // Secondary action - reload page (web only)
                 if (kIsWeb)
                   Semantics(
-                    label: L10nService.get('error.reload_page', _isEn ? AppLanguage.en : AppLanguage.tr),
+                    label: L10nService.get('error.reload_page', language),
                     button: true,
                     child: GestureDetector(
                       onTap: () {

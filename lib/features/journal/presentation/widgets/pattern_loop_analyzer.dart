@@ -31,6 +31,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     if (analysis.detectedLoops.isEmpty) {
       return _buildEmpty(context);
     }
@@ -40,7 +41,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
       children: [
         // Section header
         Text(
-          L10nService.get('journal.pattern_loop_analyzer.pattern_loops', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('journal.pattern_loop_analyzer.pattern_loops', language),
           style: AppTypography.displayFont.copyWith(
             fontSize: 18,
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
@@ -49,7 +50,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          L10nService.get('journal.pattern_loop_analyzer.behavioral_patterns_detected_in_your_ent', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('journal.pattern_loop_analyzer.behavioral_patterns_detected_in_your_ent', language),
           style: AppTypography.decorativeScript(
             fontSize: 13,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -80,6 +81,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
   }
 
   Widget _buildEmpty(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -93,7 +95,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              L10nService.get('journal.pattern_loop_analyzer.keep_journaling_to_discover_your_behavio', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('journal.pattern_loop_analyzer.keep_journaling_to_discover_your_behavio', language),
               style: AppTypography.decorativeScript(
                 fontSize: 14,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -106,6 +108,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
   }
 
   Widget _buildBreakdown(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final positive =
         analysis.reinforcementBreakdown[ReinforcementType.positive] ?? 0;
     final negative =
@@ -127,7 +130,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
         children: [
           if (positive > 0)
             _buildBreakdownChip(
-              L10nService.get('journal.pattern_loop_analyzer.positive', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('journal.pattern_loop_analyzer.positive', language),
               positive,
               AppColors.success,
             ),
@@ -135,14 +138,14 @@ class PatternLoopAnalyzer extends StatelessWidget {
             const SizedBox(width: 8),
           if (negative > 0)
             _buildBreakdownChip(
-              L10nService.get('journal.pattern_loop_analyzer.negative', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('journal.pattern_loop_analyzer.negative', language),
               negative,
               AppColors.warning,
             ),
           if (negative > 0 && neutral > 0) const SizedBox(width: 8),
           if (neutral > 0)
             _buildBreakdownChip(
-              L10nService.get('journal.pattern_loop_analyzer.neutral', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('journal.pattern_loop_analyzer.neutral', language),
               neutral,
               AppColors.textMuted,
             ),
@@ -195,6 +198,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
   @override
   Widget build(BuildContext context) {
     final isEn = widget.isEn;
+    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
     final loop = widget.loop;
     final color = _reinforcementColor(loop.reinforcementType);
     final areaColor = kAreaColors[loop.primaryArea] ?? AppColors.auroraStart;
@@ -284,7 +288,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            loop.localizedInsight(widget.isEn ? AppLanguage.en : AppLanguage.tr),
+                            loop.localizedInsight(language),
                             style: AppTypography.decorativeScript(
                               fontSize: 13,
                               color: widget.isDark
@@ -330,6 +334,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
   }
 
   Widget _buildLoopChain(BuildContext context, PatternLoop loop, Color color) {
+    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
     final stages = [
       loop.trigger,
       loop.emotionalShift,
@@ -375,7 +380,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
           Row(
             children: [
               Text(
-                L10nService.get('journal.pattern_loop_analyzer.strength', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('journal.pattern_loop_analyzer.strength', language),
                 style: AppTypography.elegantAccent(
                   fontSize: 11,
                   color: widget.isDark
@@ -414,6 +419,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
 
           // 5-stage chain
           ...stages.asMap().entries.map((entry) {
+            final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
             final idx = entry.key;
             final stage = entry.value;
             final isLast = idx == stages.length - 1;
@@ -464,7 +470,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            stage.localizedLabel(widget.isEn ? AppLanguage.en : AppLanguage.tr),
+                            stage.localizedLabel(language),
                             style: AppTypography.displayFont.copyWith(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
@@ -475,7 +481,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                           ),
                           if (stage.descriptionEn != null)
                             Text(
-                              stage.localizedDescription(widget.isEn ? AppLanguage.en : AppLanguage.tr) ?? stage.descriptionEn!,
+                              stage.localizedDescription(language) ?? stage.descriptionEn!,
                               style: AppTypography.decorativeScript(
                                 fontSize: 12,
                                 color: widget.isDark
@@ -509,7 +515,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                   const SizedBox(width: 6),
                   Expanded(
                     child: Text(
-                      loop.localizedAction(widget.isEn ? AppLanguage.en : AppLanguage.tr) ?? loop.actionEn!,
+                      loop.localizedAction(language) ?? loop.actionEn!,
                       style: AppTypography.decorativeScript(
                         fontSize: 12,
                         color: widget.isDark

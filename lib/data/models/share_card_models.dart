@@ -19,17 +19,18 @@ enum ShareCardCategory {
   reflection;
 
   String label(bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     switch (this) {
       case ShareCardCategory.identity:
-        return L10nService.get('data.models.share_models.identity', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.models.share_models.identity', language);
       case ShareCardCategory.pattern:
-        return L10nService.get('data.models.share_models.patterns', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.models.share_models.patterns', language);
       case ShareCardCategory.achievement:
-        return L10nService.get('data.models.share_models.achievements', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.models.share_models.achievements', language);
       case ShareCardCategory.wisdom:
-        return L10nService.get('data.models.share_models.wisdom', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.models.share_models.wisdom', language);
       case ShareCardCategory.reflection:
-        return L10nService.get('data.models.share_models.reflection', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.models.share_models.reflection', language);
     }
   }
 

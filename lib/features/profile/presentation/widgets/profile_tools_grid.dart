@@ -49,11 +49,12 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
   }
 
   List<ToolManifest> _getFilteredTools(SmartRouterService? service) {
+    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
     var tools = ToolManifestRegistry.all;
 
     if (_searchQuery.isNotEmpty) {
       tools = tools.where((t) {
-        final name = t.localizedName(widget.isEn ? AppLanguage.en : AppLanguage.tr).toLowerCase();
+        final name = t.localizedName(language).toLowerCase();
         return name.contains(_searchQuery);
       }).toList();
     }
@@ -69,6 +70,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
 
   @override
   Widget build(BuildContext context) {
+    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
     final smartRouterAsync = ref.watch(smartRouterServiceProvider);
     final isPremium = ref.watch(isPremiumUserProvider);
     final service = smartRouterAsync.whenOrNull(data: (s) => s);
@@ -79,7 +81,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
       children: [
         // Section header
         GradientText(
-          L10nService.get('profile.profile_tools_grid.tools', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('profile.profile_tools_grid.tools', language),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 17,
@@ -115,6 +117,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildSuggestedSection(bool isPremium) {
+    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
     final suggestedTools = ToolManifestRegistry.all
         .where((t) => _suggestedToolIds.contains(t.id))
         .toList();
@@ -125,7 +128,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('profile.profile_tools_grid.suggested_for_you', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('profile.profile_tools_grid.suggested_for_you', language),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 15,
@@ -154,6 +157,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
   }
 
   Widget _buildSuggestionCard(ToolManifest tool, bool isPremium) {
+    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
     return GestureDetector(
       onTap: () {
         HapticFeedback.lightImpact();
@@ -179,7 +183,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
               AppSymbol.card(tool.icon),
               const SizedBox(height: AppConstants.spacingSm),
               Text(
-                tool.localizedName(widget.isEn ? AppLanguage.en : AppLanguage.tr),
+                tool.localizedName(language),
                 style: AppTypography.subtitle(
                   fontSize: 12,
                   color: widget.isDark
@@ -191,7 +195,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
               ),
               const SizedBox(height: 2),
               Text(
-                tool.localizedValueProposition(widget.isEn ? AppLanguage.en : AppLanguage.tr),
+                tool.localizedValueProposition(language),
                 style: AppTypography.decorativeScript(
                   fontSize: 11,
                   color: widget.isDark
@@ -213,6 +217,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildSearchBar() {
+    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
@@ -234,7 +239,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
               : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: L10nService.get('profile.profile_tools_grid.search_by_name_or_category', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+          hintText: L10nService.get('profile.profile_tools_grid.search_by_name_or_category', language),
           hintStyle: AppTypography.subtitle(
             color: widget.isDark
                 ? AppColors.textMuted
@@ -249,7 +254,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
           ),
           suffixIcon: _searchController.text.isNotEmpty
               ? IconButton(
-                  tooltip: L10nService.get('profile.profile_tools_grid.clear_search', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+                  tooltip: L10nService.get('profile.profile_tools_grid.clear_search', language),
                   onPressed: () {
                     _searchController.clear();
                     setState(() => _searchQuery = '');
@@ -278,6 +283,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildCategoryTabs() {
+    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
     final isAll = !_isFavoritesFilter && _selectedCategory == null;
 
     return SingleChildScrollView(
@@ -286,7 +292,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
       child: Row(
         children: [
           _buildChip(
-            L10nService.get('profile.profile_tools_grid.all', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('profile.profile_tools_grid.all', language),
             isActive: isAll,
             onTap: () => setState(() {
               _selectedCategory = null;
@@ -295,7 +301,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
           ),
           const SizedBox(width: AppConstants.spacingSm),
           _buildChip(
-            L10nService.get('profile.profile_tools_grid.favorites_u2b50', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('profile.profile_tools_grid.favorites_u2b50', language),
             isActive: _isFavoritesFilter,
             onTap: () => setState(() {
               _isFavoritesFilter = true;
@@ -436,6 +442,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
   }
 
   Widget _buildEmptyState() {
+    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: AppConstants.spacingHuge),
       child: Column(
@@ -452,8 +459,8 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
           const SizedBox(height: AppConstants.spacingLg),
           Text(
             _isFavoritesFilter
-                ? (L10nService.get('profile.profile_tools_grid.no_favorites_yet', widget.isEn ? AppLanguage.en : AppLanguage.tr))
-                : (L10nService.get('profile.profile_tools_grid.no_tools_found', widget.isEn ? AppLanguage.en : AppLanguage.tr)),
+                ? (L10nService.get('profile.profile_tools_grid.no_favorites_yet', language))
+                : (L10nService.get('profile.profile_tools_grid.no_tools_found', language)),
             style: AppTypography.displayFont.copyWith(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -480,19 +487,20 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
   // ══════════════════════════════════════════════════════════════════════════
 
   String _categoryLabel(ToolCategory category) {
+    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
     switch (category) {
       case ToolCategory.journal:
-        return L10nService.get('profile.profile_tools_grid.journal', widget.isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('profile.profile_tools_grid.journal', language);
       case ToolCategory.analysis:
-        return L10nService.get('profile.profile_tools_grid.analysis', widget.isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('profile.profile_tools_grid.analysis', language);
       case ToolCategory.discovery:
-        return L10nService.get('profile.profile_tools_grid.discovery', widget.isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('profile.profile_tools_grid.discovery', language);
       case ToolCategory.support:
-        return L10nService.get('profile.profile_tools_grid.support', widget.isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('profile.profile_tools_grid.support', language);
       case ToolCategory.reference:
-        return L10nService.get('profile.profile_tools_grid.reference', widget.isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('profile.profile_tools_grid.reference', language);
       case ToolCategory.data:
-        return L10nService.get('profile.profile_tools_grid.data', widget.isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('profile.profile_tools_grid.data', language);
     }
   }
 }
@@ -562,6 +570,7 @@ class _ProfileToolCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final isFavorite = smartRouterAsync.whenOrNull(
           data: (service) => service.isFavorite(tool.id),
         ) ??
@@ -571,7 +580,7 @@ class _ProfileToolCard extends StatelessWidget {
 
     return Semantics(
       button: true,
-      label: tool.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
+      label: tool.localizedName(language),
       child: GestureDetector(
         onTap: () {
           HapticFeedback.lightImpact();
@@ -637,8 +646,8 @@ class _ProfileToolCard extends StatelessWidget {
                             Semantics(
                               button: true,
                               label: isFavorite
-                                  ? (L10nService.get('profile.profile_tools_grid.remove_from_favorites', isEn ? AppLanguage.en : AppLanguage.tr))
-                                  : (L10nService.get('profile.profile_tools_grid.add_to_favorites', isEn ? AppLanguage.en : AppLanguage.tr)),
+                                  ? (L10nService.get('profile.profile_tools_grid.remove_from_favorites', language))
+                                  : (L10nService.get('profile.profile_tools_grid.add_to_favorites', language)),
                               child: GestureDetector(
                                 onTap: onFavoriteToggle,
                                 behavior: HitTestBehavior.opaque,
@@ -667,7 +676,7 @@ class _ProfileToolCard extends StatelessWidget {
                         ),
                         const SizedBox(height: AppConstants.spacingSm),
                         Text(
-                          tool.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
+                          tool.localizedName(language),
                           style: AppTypography.subtitle(
                             fontSize: 13,
                             color: isDark
@@ -679,7 +688,7 @@ class _ProfileToolCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          tool.localizedValueProposition(isEn ? AppLanguage.en : AppLanguage.tr),
+                          tool.localizedValueProposition(language),
                           style: AppTypography.decorativeScript(
                             fontSize: 11,
                             color: isDark

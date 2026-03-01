@@ -16,24 +16,26 @@ enum EmotionalArc {
   transforming;
 
   String label(bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     switch (this) {
       case EmotionalArc.rising:
-        return L10nService.get('data.models.wrapped_data.rising', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.models.wrapped_data.rising', language);
       case EmotionalArc.steady:
-        return L10nService.get('data.models.wrapped_data.steady', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.models.wrapped_data.steady', language);
       case EmotionalArc.transforming:
-        return L10nService.get('data.models.wrapped_data.transforming', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.models.wrapped_data.transforming', language);
     }
   }
 
   String description(bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     switch (this) {
       case EmotionalArc.rising:
-        return L10nService.get('data.models.wrapped_data.your_emotional_trajectory_has_been_climb', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.models.wrapped_data.your_emotional_trajectory_has_been_climb', language);
       case EmotionalArc.steady:
-        return L10nService.get('data.models.wrapped_data.you_maintained_a_grounded_stable_emotion', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.models.wrapped_data.you_maintained_a_grounded_stable_emotion', language);
       case EmotionalArc.transforming:
-        return L10nService.get('data.models.wrapped_data.your_emotional_landscape_has_been_shifti', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.models.wrapped_data.your_emotional_landscape_has_been_shifti', language);
     }
   }
 }

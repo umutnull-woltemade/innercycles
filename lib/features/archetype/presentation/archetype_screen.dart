@@ -236,6 +236,7 @@ class _DominantArchetypeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final archetype = result.dominant;
     final confidencePct = (result.confidence * 100).toStringAsFixed(0);
 
@@ -266,7 +267,7 @@ class _DominantArchetypeCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(
-              L10nService.getWithParams('archetype.alignment_pct', isEn ? AppLanguage.en : AppLanguage.tr, params: {'pct': confidencePct}),
+              L10nService.getWithParams('archetype.alignment_pct', language, params: {'pct': confidencePct}),
               style: AppTypography.elegantAccent(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
@@ -309,6 +310,7 @@ class _StrengthsShadowSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final strengths = archetype.getStrengths(isEnglish: isEn);
     final shadow = archetype.getShadow(isEnglish: isEn);
 
@@ -324,7 +326,7 @@ class _StrengthsShadowSection extends StatelessWidget {
               Icon(Icons.auto_awesome, size: 18, color: AppColors.starGold),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('archetype.archetype.strengths', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('archetype.archetype.strengths', language),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.elegantAccent(
                   fontSize: 16,
@@ -354,7 +356,7 @@ class _StrengthsShadowSection extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('archetype.archetype.shadow_side', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('archetype.archetype.shadow_side', language),
                 variant: GradientTextVariant.amethyst,
                 style: AppTypography.elegantAccent(
                   fontSize: 16,
@@ -423,6 +425,7 @@ class _GrowthTipCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.aurora,
       padding: const EdgeInsets.all(20),
@@ -440,7 +443,7 @@ class _GrowthTipCard extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('archetype.archetype.growth_insight', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('archetype.archetype.growth_insight', language),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.elegantAccent(
                   fontSize: 16,
@@ -482,6 +485,7 @@ class _EvolutionTimeline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: 16,
@@ -498,7 +502,7 @@ class _EvolutionTimeline extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('archetype.archetype.evolution_timeline', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('archetype.archetype.evolution_timeline', language),
                 variant: GradientTextVariant.aurora,
                 style: AppTypography.elegantAccent(
                   fontSize: 16,
@@ -620,6 +624,7 @@ class _BreakdownChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     // Sort archetypes by percentage descending
     final sortedIds = breakdown.keys.toList()
       ..sort((a, b) => (breakdown[b] ?? 0).compareTo(breakdown[a] ?? 0));
@@ -640,7 +645,7 @@ class _BreakdownChart extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                L10nService.get('archetype.archetype.full_archetype_breakdown', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('archetype.archetype.full_archetype_breakdown', language),
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -835,12 +840,13 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumEmptyState(
       icon: Icons.psychology_outlined,
-      title: L10nService.get('archetype.archetype.your_archetype_is_waiting_to_emerge', isEn ? AppLanguage.en : AppLanguage.tr),
-      description: L10nService.get('archetype.archetype.add_at_least_3_entries_to_surface_your_d', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('archetype.archetype.your_archetype_is_waiting_to_emerge', language),
+      description: L10nService.get('archetype.archetype.add_at_least_3_entries_to_surface_your_d', language),
       gradientVariant: GradientTextVariant.amethyst,
-      ctaLabel: L10nService.get('archetype.archetype.write_first_entry', isEn ? AppLanguage.en : AppLanguage.tr),
+      ctaLabel: L10nService.get('archetype.archetype.write_first_entry', language),
       onCtaPressed: () => context.go(Routes.journal),
     );
   }
@@ -863,16 +869,18 @@ class _ShareArchetypeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return GradientButton(
-      label: L10nService.get('archetype.archetype.share_your_archetype', isEn ? AppLanguage.en : AppLanguage.tr),
+      label: L10nService.get('archetype.archetype.share_your_archetype', language),
       icon: Icons.share_rounded,
       expanded: true,
       gradient: const LinearGradient(
         colors: [AppColors.amethyst, AppColors.starGold],
       ),
       onPressed: () {
+        final language = isEn ? AppLanguage.en : AppLanguage.tr;
         HapticFeedback.mediumImpact();
-        final name = archetype.localizedName(isEn ? AppLanguage.en : AppLanguage.tr);
+        final name = archetype.localizedName(language);
         final text = isEn
             ? 'My emotional archetype is "$name" — discovered through self-reflection with InnerCycles.\n\n'
                   'What\'s yours? Try it free:\nhttps://apps.apple.com/app/innercycles/id6758612716\n#InnerCycles #Archetype #SelfDiscovery'

@@ -162,15 +162,12 @@ class _NotificationScheduleScreenState
                           _buildNotificationCard(
                             context: context,
                             isDark: isDark,
-                            isEn: isEn,
                             icon: Icons.wb_sunny_outlined,
                             iconColor: AppColors.starGold,
-                            titleEn: 'Daily Reflection',
-                            titleTr: 'Günlük Yansıma',
-                            subtitleEn:
-                                'A morning reminder to journal your cycle position',
-                            subtitleTr:
-                                'Döngü pozisyonunu kaydetmen için sabah hatırlatıcısı',
+                            title: isEn ? 'Daily Reflection' : 'Günlük Yansıma',
+                            subtitle: isEn
+                                ? 'A morning reminder to journal your cycle position'
+                                : 'Döngü pozisyonunu kaydetmen için sabah hatırlatıcısı',
                             enabled: _settings?.dailyReflectionEnabled ?? false,
                             onToggle: _toggleDailyReflection,
                             timeWidget:
@@ -184,15 +181,12 @@ class _NotificationScheduleScreenState
                           _buildNotificationCard(
                             context: context,
                             isDark: isDark,
-                            isEn: isEn,
                             icon: Icons.nightlight_round_outlined,
                             iconColor: AppColors.auroraStart,
-                            titleEn: 'Evening Reflection',
-                            titleTr: 'Akşam Yansıması',
-                            subtitleEn:
-                                'End-of-day prompt to capture your emotional state',
-                            subtitleTr:
-                                'Duygusal durumunu kaydetmen için gün sonu hatırlatıcısı',
+                            title: isEn ? 'Evening Reflection' : 'Akşam Yansıması',
+                            subtitle: isEn
+                                ? 'End-of-day prompt to capture your emotional state'
+                                : 'Duygusal durumunu kaydetmen için gün sonu hatırlatıcısı',
                             enabled:
                                 _settings?.eveningReflectionEnabled ?? false,
                             onToggle: _toggleEveningReflection,
@@ -203,15 +197,12 @@ class _NotificationScheduleScreenState
                           _buildNotificationCard(
                             context: context,
                             isDark: isDark,
-                            isEn: isEn,
                             icon: Icons.auto_awesome_outlined,
                             iconColor: AppColors.auroraEnd,
-                            titleEn: 'Daily Journal Prompt',
-                            titleTr: 'Günlük Soru',
-                            subtitleEn:
-                                'A fresh journaling question to inspire your writing',
-                            subtitleTr:
-                                'Yazmanıza ilham verecek günlük bir soru',
+                            title: isEn ? 'Daily Journal Prompt' : 'Günlük Soru',
+                            subtitle: isEn
+                                ? 'A fresh journaling question to inspire your writing'
+                                : 'Yazmanıza ilham verecek günlük bir soru',
                             enabled: _settings?.journalPromptEnabled ?? false,
                             onToggle: _toggleJournalPrompt,
                             timeWidget: _settings?.journalPromptEnabled == true
@@ -224,15 +215,12 @@ class _NotificationScheduleScreenState
                           _buildNotificationCard(
                             context: context,
                             isDark: isDark,
-                            isEn: isEn,
                             icon: Icons.spa_outlined,
                             iconColor: AppColors.auroraEnd,
-                            titleEn: 'Wellness Reminders',
-                            titleTr: 'Sağlık Hatırlatıcıları',
-                            subtitleEn:
-                                'Gentle nudges for breathing, hydration & movement',
-                            subtitleTr:
-                                'Nefes, su ve hareket için nazik hatırlatmalar',
+                            title: isEn ? 'Wellness Reminders' : 'Sağlık Hatırlatıcıları',
+                            subtitle: isEn
+                                ? 'Gentle nudges for breathing, hydration & movement'
+                                : 'Nefes, su ve hareket için nazik hatırlatmalar',
                             enabled:
                                 _settings?.wellnessRemindersEnabled ?? false,
                             onToggle: _toggleWellness,
@@ -261,6 +249,7 @@ class _NotificationScheduleScreenState
   }
 
   Widget _buildPermissionBanner(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Padding(
       padding: const EdgeInsets.only(bottom: AppConstants.spacingLg),
       child: GlassPanel(
@@ -277,7 +266,7 @@ class _NotificationScheduleScreenState
             ),
             const SizedBox(height: AppConstants.spacingMd),
             GradientText(
-              L10nService.get('settings.notification_schedule.notifications_are_disabled', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('settings.notification_schedule.notifications_are_disabled', language),
               variant: GradientTextVariant.gold,
               style: AppTypography.displayFont.copyWith(
                 fontSize: 18,
@@ -286,7 +275,7 @@ class _NotificationScheduleScreenState
             ),
             const SizedBox(height: AppConstants.spacingSm),
             Text(
-              L10nService.get('settings.notification_schedule.enable_notifications_to_receive_journali', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('settings.notification_schedule.enable_notifications_to_receive_journali', language),
               textAlign: TextAlign.center,
               style: AppTypography.decorativeScript(
                 fontSize: 13,
@@ -295,7 +284,7 @@ class _NotificationScheduleScreenState
             ),
             const SizedBox(height: AppConstants.spacingMd),
             GradientButton.gold(
-              label: L10nService.get('settings.notification_schedule.enable_notifications', isEn ? AppLanguage.en : AppLanguage.tr),
+              label: L10nService.get('settings.notification_schedule.enable_notifications', language),
               onPressed: _requestPermission,
               expanded: true,
             ),
@@ -308,13 +297,10 @@ class _NotificationScheduleScreenState
   Widget _buildNotificationCard({
     required BuildContext context,
     required bool isDark,
-    required bool isEn,
     required IconData icon,
     required Color iconColor,
-    required String titleEn,
-    required String titleTr,
-    required String subtitleEn,
-    required String subtitleTr,
+    required String title,
+    required String subtitle,
     required bool enabled,
     required Future<void> Function(bool) onToggle,
     Widget? timeWidget,
@@ -342,7 +328,7 @@ class _NotificationScheduleScreenState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      isEn ? titleEn : titleTr,
+                      title,
                       style: AppTypography.subtitle(
                         fontSize: 15,
                         color: isDark
@@ -352,7 +338,7 @@ class _NotificationScheduleScreenState
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      isEn ? subtitleEn : subtitleTr,
+                      subtitle,
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: isDark
@@ -380,6 +366,7 @@ class _NotificationScheduleScreenState
   }
 
   Widget _buildTimePicker(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final time =
         _settings?.dailyReflectionTime ?? const TimeOfDay(hour: 9, minute: 0);
     final formatted = time.format(context);
@@ -406,7 +393,7 @@ class _NotificationScheduleScreenState
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                L10nService.get('settings.notification_schedule.reminder_time', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('settings.notification_schedule.reminder_time', language),
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
                   color: isDark
@@ -436,6 +423,7 @@ class _NotificationScheduleScreenState
   }
 
   Widget _buildJournalPromptTimePicker(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final time =
         _settings?.journalPromptTime ?? const TimeOfDay(hour: 10, minute: 0);
     final formatted = time.format(context);
@@ -462,7 +450,7 @@ class _NotificationScheduleScreenState
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                L10nService.get('settings.notification_schedule.prompt_time', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('settings.notification_schedule.prompt_time', language),
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
                   color: isDark

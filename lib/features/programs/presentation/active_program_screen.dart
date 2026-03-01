@@ -85,6 +85,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                 ),
               ),
               data: (service) {
+                final language = isEn ? AppLanguage.en : AppLanguage.tr;
                 final program = GuidedProgramService.allPrograms.firstWhere(
                   (p) => p.id == widget.programId,
                   orElse: () => GuidedProgramService.allPrograms.first,
@@ -99,7 +100,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                     ),
                     slivers: [
                       GlassSliverAppBar(
-                        title: program.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
+                        title: program.localizedTitle(language),
                       ),
                       SliverPadding(
                         padding: const EdgeInsets.all(16),
@@ -186,10 +187,11 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
     _reflectionController.clear();
     if (mounted) {
       final isEn = ref.read(languageProvider) == AppLanguage.en;
+      final language = isEn ? AppLanguage.en : AppLanguage.tr;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            L10nService.getWithParams('programs.day_complete', isEn ? AppLanguage.en : AppLanguage.tr, params: {'day': '$dayNumber'}),
+            L10nService.getWithParams('programs.day_complete', language, params: {'day': '$dayNumber'}),
           ),
           backgroundColor: AppColors.success,
           behavior: SnackBarBehavior.floating,
@@ -221,6 +223,7 @@ class _ProgramHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final completed = progress?.completedDays.length ?? 0;
 
     return PremiumCard(
@@ -231,7 +234,7 @@ class _ProgramHeader extends StatelessWidget {
           AppSymbol.hero(program.emoji),
           const SizedBox(height: 12),
           Text(
-            program.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
+            program.localizedDescription(language),
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 14,
@@ -245,13 +248,13 @@ class _ProgramHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _MiniStat(
-                label: L10nService.get('programs.active_program.duration', isEn ? AppLanguage.en : AppLanguage.tr),
-                value: '${program.durationDays} ${L10nService.get('programs.active_program.days', isEn ? AppLanguage.en : AppLanguage.tr)}',
+                label: L10nService.get('programs.active_program.duration', language),
+                value: '${program.durationDays} ${L10nService.get('programs.active_program.days', language)}',
                 isDark: isDark,
               ),
               const SizedBox(width: 24),
               _MiniStat(
-                label: L10nService.get('programs.active_program.completed', isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('programs.active_program.completed', language),
                 value: '$completed / ${program.durationDays}',
                 isDark: isDark,
               ),
@@ -384,6 +387,7 @@ class _TodayPromptCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(20),
@@ -402,7 +406,7 @@ class _TodayPromptCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  '${L10nService.get('programs.active_program.day', isEn ? AppLanguage.en : AppLanguage.tr)} ${day.dayNumber}',
+                  '${L10nService.get('programs.active_program.day', language)} ${day.dayNumber}',
                   style: AppTypography.elegantAccent(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
@@ -413,7 +417,7 @@ class _TodayPromptCard extends StatelessWidget {
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
-                  day.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
+                  day.localizedTitle(language),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
@@ -427,7 +431,7 @@ class _TodayPromptCard extends StatelessWidget {
           ),
           const SizedBox(height: 14),
           Text(
-            day.localizedPrompt(isEn ? AppLanguage.en : AppLanguage.tr),
+            day.localizedPrompt(language),
             style: AppTypography.decorativeScript(
               fontSize: 15,
               color: isDark
@@ -458,6 +462,7 @@ class _ReflectionInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       showGradientBorder: false,
@@ -470,7 +475,7 @@ class _ReflectionInput extends StatelessWidget {
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: L10nService.get('programs.active_program.write_your_reflection_here_optional', isEn ? AppLanguage.en : AppLanguage.tr),
+          hintText: L10nService.get('programs.active_program.write_your_reflection_here_optional', language),
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -504,10 +509,11 @@ class _CompleteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return GradientButton(
       label: isAlreadyDone
-          ? (L10nService.get('programs.active_program.completed_1', isEn ? AppLanguage.en : AppLanguage.tr))
-          : (L10nService.get('programs.active_program.complete_today', isEn ? AppLanguage.en : AppLanguage.tr)),
+          ? (L10nService.get('programs.active_program.completed_1', language))
+          : (L10nService.get('programs.active_program.complete_today', language)),
       onPressed: isAlreadyDone ? null : onComplete,
       expanded: true,
       gradient: LinearGradient(
@@ -532,6 +538,7 @@ class _CompletedBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Container(
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
@@ -548,7 +555,7 @@ class _CompletedBanner extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               GradientText(
-                L10nService.get('programs.active_program.program_completed', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('programs.active_program.program_completed', language),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 18,
@@ -557,7 +564,7 @@ class _CompletedBanner extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                L10nService.get('programs.active_program.you_have_finished_this_guided_program_we', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('programs.active_program.you_have_finished_this_guided_program_we', language),
                 textAlign: TextAlign.center,
                 style: AppTypography.decorativeScript(
                   fontSize: 14,
@@ -587,6 +594,7 @@ class _NotStartedBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -596,7 +604,7 @@ class _NotStartedBanner extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Text(
-        L10nService.get('programs.active_program.this_program_hasnt_been_started_yet', isEn ? AppLanguage.en : AppLanguage.tr),
+        L10nService.get('programs.active_program.this_program_hasnt_been_started_yet', language),
         textAlign: TextAlign.center,
         style: AppTypography.decorativeScript(
           fontSize: 14,

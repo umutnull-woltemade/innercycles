@@ -269,6 +269,7 @@ class _ProgramCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final isLocked = program.isPremium && !isPremium && !isFirstTasteFree;
     final hasProgress = progress != null && !progress!.isCompleted;
     final completionPercent = hasProgress
@@ -278,7 +279,7 @@ class _ProgramCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Semantics(
-        label: program.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
+        label: program.localizedTitle(language),
         button: true,
         child: GestureDetector(
           onTap: () {
@@ -322,7 +323,7 @@ class _ProgramCard extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              program.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
+                              program.localizedTitle(language),
                               style: AppTypography.displayFont.copyWith(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
@@ -378,7 +379,7 @@ class _ProgramCard extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text(
-                                L10nService.get('programs.program_list.free', isEn ? AppLanguage.en : AppLanguage.tr),
+                                L10nService.get('programs.program_list.free', language),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w700,
@@ -390,7 +391,7 @@ class _ProgramCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        program.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
+                        program.localizedDescription(language),
                         style: AppTypography.decorativeScript(
                           fontSize: 12,
                           color: isDark
@@ -431,7 +432,7 @@ class _ProgramCard extends StatelessWidget {
                       ] else if (!isCompleted && !isLocked) ...[
                         const SizedBox(height: 4),
                         Text(
-                          '${program.durationDays} ${L10nService.get('programs.program_list.days', isEn ? AppLanguage.en : AppLanguage.tr)}',
+                          '${program.durationDays} ${L10nService.get('programs.program_list.days', language)}',
                           style: AppTypography.elegantAccent(
                             fontSize: 11,
                             color: AppColors.auroraStart,

@@ -112,9 +112,10 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
   }
 
   List<ToolManifest> _filterTools(List<ToolManifest> tools, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     if (_searchQuery.isEmpty) return tools;
     return tools.where((tool) {
-      final name = tool.localizedName(isEn ? AppLanguage.en : AppLanguage.tr).toLowerCase();
+      final name = tool.localizedName(language).toLowerCase();
       return name.contains(_searchQuery);
     }).toList();
   }
@@ -195,6 +196,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
   }
 
   Widget _buildSearchBar(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
@@ -215,7 +217,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: L10nService.get('tools.tool_catalog.search_by_name_or_category', isEn ? AppLanguage.en : AppLanguage.tr),
+          hintText: L10nService.get('tools.tool_catalog.search_by_name_or_category', language),
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -226,7 +228,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
           ),
           suffixIcon: _searchController.text.isNotEmpty
               ? IconButton(
-                  tooltip: L10nService.get('tools.tool_catalog.clear_search', isEn ? AppLanguage.en : AppLanguage.tr),
+                  tooltip: L10nService.get('tools.tool_catalog.clear_search', language),
                   onPressed: () {
                     _searchController.clear();
                     setState(() => _searchQuery = '');
@@ -251,6 +253,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
   }
 
   Widget _buildEmptySearch(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: AppConstants.spacingHuge),
       child: Column(
@@ -264,7 +267,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Text(
-            L10nService.get('tools.tool_catalog.no_tools_found', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('tools.tool_catalog.no_tools_found', language),
             style: AppTypography.displayFont.copyWith(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -328,6 +331,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
   }
 
   Widget _buildCategoryHeader(_CategoryInfo info, bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Container(
       padding: const EdgeInsets.symmetric(vertical: AppConstants.spacingSm),
       decoration: BoxDecoration(
@@ -361,7 +365,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
           AppSymbol(info.emoji, size: AppSymbolSize.sm),
           const SizedBox(width: AppConstants.spacingSm),
           GradientText(
-            info.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
+            info.localizedName(language),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 19,
@@ -474,6 +478,7 @@ class _ToolCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final isFavorite =
         smartRouterAsync.whenOrNull(
           data: (service) => service.isFavorite(tool.id),
@@ -482,7 +487,7 @@ class _ToolCard extends StatelessWidget {
 
     return Semantics(
       button: true,
-      label: tool.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
+      label: tool.localizedName(language),
       child: GestureDetector(
         onTap: () {
           HapticFeedback.lightImpact();
@@ -530,8 +535,8 @@ class _ToolCard extends StatelessWidget {
                   Semantics(
                     button: true,
                     label: isFavorite
-                        ? (L10nService.get('tools.tool_catalog.remove_from_favorites', isEn ? AppLanguage.en : AppLanguage.tr))
-                        : (L10nService.get('tools.tool_catalog.add_to_favorites', isEn ? AppLanguage.en : AppLanguage.tr)),
+                        ? (L10nService.get('tools.tool_catalog.remove_from_favorites', language))
+                        : (L10nService.get('tools.tool_catalog.add_to_favorites', language)),
                     child: GestureDetector(
                       onTap: onFavoriteToggle,
                       behavior: HitTestBehavior.opaque,
@@ -560,7 +565,7 @@ class _ToolCard extends StatelessWidget {
               ),
               const SizedBox(height: AppConstants.spacingSm),
               Text(
-                tool.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
+                tool.localizedName(language),
                 style: AppTypography.subtitle(
                   fontSize: 14,
                   color: isDark
@@ -572,7 +577,7 @@ class _ToolCard extends StatelessWidget {
               ),
               const SizedBox(height: 2),
               Text(
-                tool.localizedValueProposition(isEn ? AppLanguage.en : AppLanguage.tr),
+                tool.localizedValueProposition(language),
                 style: AppTypography.decorativeScript(
                   fontSize: 12,
                   color: isDark

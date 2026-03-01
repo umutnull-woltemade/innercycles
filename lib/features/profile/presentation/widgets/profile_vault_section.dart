@@ -27,11 +27,12 @@ class ProfileVaultSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('profile.profile_vault.vault_security', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('profile.profile_vault.vault_security', language),
           variant: GradientTextVariant.amethyst,
           style: AppTypography.elegantAccent(
             fontSize: 17,
@@ -48,7 +49,7 @@ class ProfileVaultSection extends ConsumerWidget {
               // Private Vault
               _VaultRow(
                 emoji: '\u{1F510}',
-                label: L10nService.get('profile.profile_vault.private_vault', isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('profile.profile_vault.private_vault', language),
                 isDark: isDark,
                 onTap: () => _navigateToVault(context, ref),
               ),
@@ -71,7 +72,7 @@ class ProfileVaultSection extends ConsumerWidget {
               // App Lock
               _VaultRow(
                 emoji: '\u{1F512}',
-                label: L10nService.get('profile.profile_vault.app_lock', isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('profile.profile_vault.app_lock', language),
                 isDark: isDark,
                 onTap: () => context.push(Routes.appLock),
               ),

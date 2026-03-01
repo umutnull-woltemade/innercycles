@@ -175,6 +175,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     int needed,
     int current,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return CupertinoScrollbar(
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(
@@ -182,7 +183,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         ),
         slivers: [
           GlassSliverAppBar(
-            title: L10nService.get('journal.emotional_cycle.your_inner_cycles', isEn ? AppLanguage.en : AppLanguage.tr),
+            title: L10nService.get('journal.emotional_cycle.your_inner_cycles', language),
           ),
           SliverFillRemaining(
             hasScrollBody: false,
@@ -251,7 +252,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      L10nService.get('journal.emotional_cycle.your_cycles_are_forming', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('journal.emotional_cycle.your_cycles_are_forming', language),
                       style: AppTypography.modernAccent(
                         fontSize: 24,
                         color: isDark
@@ -330,7 +331,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                         ),
                         icon: const Icon(Icons.edit_note, size: 20),
                         label: Text(
-                          L10nService.get('journal.emotional_cycle.start_journaling', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('journal.emotional_cycle.start_journaling', language),
                           style: AppTypography.modernAccent(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -359,6 +360,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final now = DateTime.now();
     final bool hasEnoughForFull = analysis.totalEntries >= 30;
     final int displayDays = hasEnoughForFull ? 30 : 14;
@@ -375,7 +377,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         ),
         slivers: [
           GlassSliverAppBar(
-            title: L10nService.get('journal.emotional_cycle.your_inner_cycles_1', isEn ? AppLanguage.en : AppLanguage.tr),
+            title: L10nService.get('journal.emotional_cycle.your_inner_cycles_1', language),
             largeTitleMode: true,
           ),
           SliverPadding(
@@ -415,7 +417,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                         ),
                       ),
                       child: Text(
-                        analysis.overallPhase!.description(isEn ? AppLanguage.en : AppLanguage.tr),
+                        analysis.overallPhase!.description(language),
                         textAlign: TextAlign.center,
                         style: AppTypography.decorativeScript(
                           fontSize: 13,
@@ -449,7 +451,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
 
                 // SUMMARY CARDS
                 GradientText(
-                  L10nService.get('journal.emotional_cycle.your_dimensions', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('journal.emotional_cycle.your_dimensions', language),
                   variant: GradientTextVariant.aurora,
                   style: AppTypography.elegantAccent(
                     fontSize: 16,
@@ -489,7 +491,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 // INSIGHTS
                 if (analysis.insights.isNotEmpty) ...[
                   Text(
-                    L10nService.get('journal.emotional_cycle.cycle_insights', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('journal.emotional_cycle.cycle_insights', language),
                     style: AppTypography.displayFont.copyWith(
                       fontSize: 18,
                       color: isDark
@@ -553,7 +555,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                   ).animate().fadeIn(delay: 1000.ms, duration: 400.ms),
                 ],
                 ContentDisclaimer(
-                  language: isEn ? AppLanguage.en : AppLanguage.tr,
+                  language: language,
                 ),
                 const SizedBox(height: 48),
               ]),
@@ -575,6 +577,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     Map<FocusArea, List<CycleDataPoint>> chartData,
     int displayDays,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final hasData = chartData.values.any((list) => list.isNotEmpty);
     return PremiumCard(
       style: PremiumCardStyle.aurora,
@@ -588,7 +591,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
               const Icon(Icons.waves, color: AppColors.auroraStart, size: 20),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.getWithParams('journal.emotional_cycle.last_n_days', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$displayDays'}),
+                L10nService.getWithParams('journal.emotional_cycle.last_n_days', language, params: {'count': '$displayDays'}),
                 variant: GradientTextVariant.aurora,
                 style: AppTypography.modernAccent(
                   fontSize: 15,
@@ -615,7 +618,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      L10nService.get('journal.emotional_cycle.start_journaling_to_see_your_cycles', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('journal.emotional_cycle.start_journaling_to_see_your_cycles', language),
                       style: AppTypography.decorativeScript(
                         fontSize: 14,
                         color: isDark
@@ -655,7 +658,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    L10nService.getWithParams('journal.emotional_cycle.days_ago', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$displayDays'}),
+                    L10nService.getWithParams('journal.emotional_cycle.days_ago', language, params: {'count': '$displayDays'}),
                     style: AppTypography.elegantAccent(
                       fontSize: 10,
                       color: isDark
@@ -665,7 +668,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     ),
                   ),
                   Text(
-                    L10nService.get('journal.emotional_cycle.today', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('journal.emotional_cycle.today', language),
                     style: AppTypography.elegantAccent(
                       fontSize: 10,
                       color: isDark
@@ -736,6 +739,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
       scrollDirection: Axis.horizontal,
       child: Row(
         children: FocusArea.values.map((area) {
+          final language = isEn ? AppLanguage.en : AppLanguage.tr;
           final isVisible = _visibleAreas.contains(area);
           final color = kAreaColors[area] ?? AppColors.auroraStart;
           final label = area.localizedName(isEn);
@@ -743,7 +747,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
             padding: const EdgeInsets.only(right: AppConstants.spacingSm),
             child: Semantics(
               label:
-                  '$label ${isVisible ? L10nService.get('common.accessibility.visible', isEn ? AppLanguage.en : AppLanguage.tr) : L10nService.get('common.accessibility.hidden', isEn ? AppLanguage.en : AppLanguage.tr)}',
+                  '$label ${isVisible ? L10nService.get('common.accessibility.visible', language) : L10nService.get('common.accessibility.hidden', language)}',
               toggled: isVisible,
               button: true,
               child: GestureDetector(
@@ -841,6 +845,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     bool isEn,
     CycleInsight insight,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final color = insight.relatedArea != null
         ? (kAreaColors[insight.relatedArea!] ?? AppColors.auroraStart)
         : AppColors.auroraStart;
@@ -863,7 +868,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              isEn ? insight.messageEn : insight.messageTr,
+              insight.localizedMessage(language),
               style: AppTypography.decorativeScript(
                 fontSize: 14,
                 color: isDark
@@ -898,6 +903,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final isPremium = ref.watch(isPremiumUserProvider);
     final outlookAsync = ref.watch(shiftOutlookProvider);
     return Column(
@@ -906,7 +912,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         Row(
           children: [
             Text(
-              L10nService.get('journal.emotional_cycle.shift_outlook', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('journal.emotional_cycle.shift_outlook', language),
               style: AppTypography.displayFont.copyWith(
                 fontSize: 18,
                 color: isDark
@@ -949,7 +955,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         else
           Semantics(
             button: true,
-            label: L10nService.get('journal.emotional_cycle.access_shift_outlook', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('journal.emotional_cycle.access_shift_outlook', language),
             child: GestureDetector(
               onTap: () {
                 HapticFeedback.lightImpact();
@@ -973,7 +979,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        L10nService.get('journal.emotional_cycle.access_shift_outlook_to_see_when_your_em', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('journal.emotional_cycle.access_shift_outlook_to_see_when_your_em', language),
                         style: AppTypography.decorativeScript(
                           fontSize: 13,
                           color: isDark
@@ -1022,6 +1028,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildShareButton(BuildContext context, bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -1038,7 +1045,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         ],
       ),
       child: Semantics(
-        label: L10nService.get('journal.emotional_cycle.share_my_inner_cycles', isEn ? AppLanguage.en : AppLanguage.tr),
+        label: L10nService.get('journal.emotional_cycle.share_my_inner_cycles', language),
         button: true,
         child: Material(
           color: Colors.transparent,
@@ -1056,7 +1063,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                   const Icon(Icons.share, color: Colors.white, size: 20),
                   const SizedBox(width: 10),
                   Text(
-                    L10nService.get('journal.emotional_cycle.share_my_inner_cycles_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('journal.emotional_cycle.share_my_inner_cycles_1', language),
                     style: AppTypography.modernAccent(
                       color: Colors.white,
                       fontSize: 16,
@@ -1082,6 +1089,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     bool isEn,
     int totalEntries,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
@@ -1090,7 +1098,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           const Icon(Icons.lock_outline, color: AppColors.starGold, size: 36),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            L10nService.get('journal.emotional_cycle.access_full_30day_view', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('journal.emotional_cycle.access_full_30day_view', language),
             style: AppTypography.displayFont.copyWith(
               fontSize: 18,
               color: AppColors.starGold,
@@ -1112,7 +1120,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           ),
           const SizedBox(height: AppConstants.spacingLg),
           GradientOutlinedButton(
-            label: L10nService.get('journal.emotional_cycle.go_pro', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('journal.emotional_cycle.go_pro', language),
             variant: GradientTextVariant.gold,
             expanded: true,
             fontSize: 16,

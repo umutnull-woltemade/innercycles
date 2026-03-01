@@ -165,10 +165,11 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildPhotoSection(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Center(
       child: Semantics(
         button: true,
-        label: L10nService.get('birthdays.birthday_add.change_photo', isEn ? AppLanguage.en : AppLanguage.tr),
+        label: L10nService.get('birthdays.birthday_add.change_photo', language),
         child: GestureDetector(
           onTap: _pickImage,
           child: Column(
@@ -180,7 +181,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
             ),
             const SizedBox(height: 8),
             Text(
-              L10nService.get('birthdays.birthday_add.tap_to_change_photo', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('birthdays.birthday_add.tap_to_change_photo', language),
               style: AppTypography.elegantAccent(
                 fontSize: 12,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -219,11 +220,12 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildNameField(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('birthdays.birthday_add.name', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('birthdays.birthday_add.name', language),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(fontSize: 14, letterSpacing: 1.5),
         ),
@@ -237,7 +239,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
           decoration: InputDecoration(
-            hintText: L10nService.get('birthdays.birthday_add.friends_name', isEn ? AppLanguage.en : AppLanguage.tr),
+            hintText: L10nService.get('birthdays.birthday_add.friends_name', language),
             hintStyle: AppTypography.subtitle(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -264,6 +266,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildDateSection(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final monthNames = isEn
         ? CommonStrings.monthsFullEn
         : CommonStrings.monthsFullTr;
@@ -275,7 +278,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('birthdays.birthday_add.birthday', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('birthdays.birthday_add.birthday', language),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(fontSize: 14, letterSpacing: 1.5),
         ),
@@ -378,7 +381,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                           : AppColors.lightTextPrimary,
                     ),
                     hint: Text(
-                      L10nService.get('birthdays.birthday_add.year_optional', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('birthdays.birthday_add.year_optional', language),
                       style: AppTypography.subtitle(
                         color: isDark
                             ? AppColors.textMuted
@@ -389,7 +392,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                       DropdownMenuItem<int?>(
                         value: null,
                         child: Text(
-                          L10nService.get('birthdays.birthday_add.not_specified', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('birthdays.birthday_add.not_specified', language),
                           style: AppTypography.subtitle(
                             color: isDark
                                 ? AppColors.textMuted
@@ -437,11 +440,12 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildRelationshipSection(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('birthdays.birthday_add.relationship', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('birthdays.birthday_add.relationship', language),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(fontSize: 14, letterSpacing: 1.5),
         ),
@@ -514,11 +518,12 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildNoteField(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('birthdays.birthday_add.note_optional', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('birthdays.birthday_add.note_optional', language),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(fontSize: 14, letterSpacing: 1.5),
         ),
@@ -532,7 +537,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
           decoration: InputDecoration(
-            hintText: L10nService.get('birthdays.birthday_add.gift_ideas_memories', isEn ? AppLanguage.en : AppLanguage.tr),
+            hintText: L10nService.get('birthdays.birthday_add.gift_ideas_memories', language),
             hintStyle: AppTypography.subtitle(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -556,18 +561,19 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildNotificationToggles(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('birthdays.birthday_add.reminders', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('birthdays.birthday_add.reminders', language),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(fontSize: 14, letterSpacing: 1.5),
         ),
         const SizedBox(height: 10),
         _toggleRow(
           isDark,
-          label: L10nService.get('birthdays.birthday_add.birthday_notification', isEn ? AppLanguage.en : AppLanguage.tr),
+          label: L10nService.get('birthdays.birthday_add.birthday_notification', language),
           value: _notificationsEnabled,
           onChanged: (v) => setState(() {
             _notificationsEnabled = v;
@@ -577,7 +583,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         const SizedBox(height: 8),
         _toggleRow(
           isDark,
-          label: L10nService.get('birthdays.birthday_add.day_before_reminder', isEn ? AppLanguage.en : AppLanguage.tr),
+          label: L10nService.get('birthdays.birthday_add.day_before_reminder', language),
           value: _dayBeforeReminder,
           onChanged: (v) => setState(() {
             _dayBeforeReminder = v;
@@ -622,6 +628,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildSaveButton(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final canSave = _nameController.text.trim().isNotEmpty && !_isSaving;
 
     return GestureDetector(
@@ -652,8 +659,8 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
               ? const CupertinoActivityIndicator(radius: 10)
               : Text(
                   _isEditing
-                      ? (L10nService.get('birthdays.birthday_add.update_contact', isEn ? AppLanguage.en : AppLanguage.tr))
-                      : (L10nService.get('birthdays.birthday_add.save_contact', isEn ? AppLanguage.en : AppLanguage.tr)),
+                      ? (L10nService.get('birthdays.birthday_add.update_contact', language))
+                      : (L10nService.get('birthdays.birthday_add.save_contact', language)),
                   style: AppTypography.modernAccent(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
@@ -728,12 +735,11 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
       }
     } catch (_) {
       if (mounted) {
-        final lang = ref.read(languageProvider);
-        final isEn = lang == AppLanguage.en;
+        final language = ref.read(languageProvider);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              L10nService.get('birthdays.birthday_add.couldnt_save_this_contact_please_try_aga', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('birthdays.birthday_add.couldnt_save_this_contact_please_try_aga', language),
             ),
           ),
         );

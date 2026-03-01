@@ -55,6 +55,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
   bool _isSharing = false;
 
   Future<void> _share() async {
+    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
     setState(() => _isSharing = true);
     try {
       final boundary =
@@ -62,13 +63,13 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
               as RenderRepaintBoundary?;
       if (boundary == null) return;
 
-      final shareText = L10nService.getWithParams('sharing.share_card_text', widget.isEn ? AppLanguage.en : AppLanguage.tr, params: {'headline': widget.data.headline, 'appStoreUrl': AppConstants.appStoreUrl});
+      final shareText = L10nService.getWithParams('sharing.share_card_text', language, params: {'headline': widget.data.headline, 'appStoreUrl': AppConstants.appStoreUrl});
 
       await InstagramShareService.shareCosmicContent(
         boundary: boundary,
         shareText: shareText,
-        hashtags: L10nService.get('sharing.hashtags_self_reflection', widget.isEn ? AppLanguage.en : AppLanguage.tr),
-        language: widget.isEn ? AppLanguage.en : AppLanguage.tr,
+        hashtags: L10nService.get('sharing.hashtags_self_reflection', language),
+        language: language,
       );
 
       if (mounted) Navigator.of(context).pop();
@@ -79,6 +80,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final accent = ShareCardTemplates.accentColor(widget.template);
 
@@ -238,7 +240,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
 
                 // Share button
                 GradientButton(
-                  label: L10nService.get('shared.share.share', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+                  label: L10nService.get('shared.share.share', language),
                   icon: Icons.share_rounded,
                   onPressed: _isSharing ? null : _share,
                   isLoading: _isSharing,

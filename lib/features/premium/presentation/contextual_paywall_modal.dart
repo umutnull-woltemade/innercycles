@@ -368,6 +368,7 @@ class _ContextualPaywallSheetState
   }
 
   Widget _buildPriceAnchor(bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final experiment = ref
         .watch(paywallExperimentProvider)
         .whenOrNull(data: (e) => e);
@@ -377,10 +378,10 @@ class _ContextualPaywallSheetState
     final monthlyLabel =
         experiment?.monthlyPriceLabel ??
         dynamicMonthly ??
-        L10nService.get('premium.pricing.monthly', isEn ? AppLanguage.en : AppLanguage.tr);
+        L10nService.get('premium.pricing.monthly', language);
     final yearlyLabel =
         experiment?.yearlyMonthlyEquivalent ??
-        L10nService.get('premium.pricing.yearly_monthly', isEn ? AppLanguage.en : AppLanguage.tr);
+        L10nService.get('premium.pricing.yearly_monthly', language);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -457,6 +458,7 @@ class _ContextualPaywallSheetState
   }
 
   Widget _buildSocialProof(bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -468,7 +470,7 @@ class _ContextualPaywallSheetState
         const SizedBox(width: 6),
         Flexible(
           child: Text(
-            L10nService.get('premium.contextual_paywall.surface_patterns_from_your_entries_with', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('premium.contextual_paywall.surface_patterns_from_your_entries_with', language),
             style: AppTypography.decorativeScript(
               color: Colors.white.withValues(alpha: 0.5),
               fontSize: 12,
@@ -482,6 +484,7 @@ class _ContextualPaywallSheetState
   }
 
   Widget _buildValueRecap(bool isEn, Color accentColor) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final entryCount =
         widget.entryCount ??
         ref.read(journalServiceProvider).valueOrNull?.entryCount ??
@@ -502,7 +505,7 @@ class _ContextualPaywallSheetState
       items.add(
         _ValueItem(
           Icons.edit_note_outlined,
-          L10nService.getWithParams('premium.entry_count', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$entryCount'}),
+          L10nService.getWithParams('premium.entry_count', language, params: {'count': '$entryCount'}),
         ),
       );
     }
@@ -510,7 +513,7 @@ class _ContextualPaywallSheetState
       items.add(
         _ValueItem(
           Icons.local_fire_department_outlined,
-          L10nService.getWithParams('premium.day_streak', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$streakDays'}),
+          L10nService.getWithParams('premium.day_streak', language, params: {'count': '$streakDays'}),
         ),
       );
     }
@@ -518,7 +521,7 @@ class _ContextualPaywallSheetState
       items.add(
         _ValueItem(
           Icons.nights_stay_outlined,
-          L10nService.getWithParams('premium.dream_count', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$dreamCount'}),
+          L10nService.getWithParams('premium.dream_count', language, params: {'count': '$dreamCount'}),
         ),
       );
     }
@@ -533,7 +536,7 @@ class _ContextualPaywallSheetState
       child: Column(
         children: [
           Text(
-            L10nService.get('premium.contextual_paywall.your_investment_so_far', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('premium.contextual_paywall.your_investment_so_far', language),
             style: AppTypography.elegantAccent(
               fontSize: 11,
               letterSpacing: 1.0,
@@ -574,28 +577,29 @@ class _ContextualPaywallSheetState
   }
 
   _PaywallConfig _getConfig(bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     switch (widget.paywallContext) {
       case PaywallContext.patterns:
         return _PaywallConfig(
           icon: Icons.psychology_outlined,
           accentColor: AppColors.starGold,
-          headline: L10nService.get('premium.contextual_paywall.your_data_has_more_to_show', isEn ? AppLanguage.en : AppLanguage.tr),
-          subtitle: L10nService.get('premium.contextual_paywall.your_entries_hold_patterns_you_cant_see', isEn ? AppLanguage.en : AppLanguage.tr),
+          headline: L10nService.get('premium.contextual_paywall.your_data_has_more_to_show', language),
+          subtitle: L10nService.get('premium.contextual_paywall.your_entries_hold_patterns_you_cant_see', language),
           detail: widget.entryCount != null
               ? (isEn
                     ? '${widget.entryCount} entries analyzed'
                     : '${widget.entryCount} kayıt analiz edildi')
               : null,
-          cta: L10nService.get('premium.contextual_paywall.discover_my_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
+          cta: L10nService.get('premium.contextual_paywall.discover_my_patterns', language),
         );
 
       case PaywallContext.dreams:
         return _PaywallConfig(
           icon: Icons.nightlight_round,
           accentColor: AppColors.mediumSlateBlue,
-          headline: L10nService.get('premium.contextual_paywall.your_dream_has_more_to_say', isEn ? AppLanguage.en : AppLanguage.tr),
-          subtitle: L10nService.get('premium.contextual_paywall.4_more_interpretation_perspectives_avail', isEn ? AppLanguage.en : AppLanguage.tr),
-          cta: L10nService.get('premium.contextual_paywall.access_all_perspectives', isEn ? AppLanguage.en : AppLanguage.tr),
+          headline: L10nService.get('premium.contextual_paywall.your_dream_has_more_to_say', language),
+          subtitle: L10nService.get('premium.contextual_paywall.4_more_interpretation_perspectives_avail', language),
+          cta: L10nService.get('premium.contextual_paywall.access_all_perspectives', language),
         );
 
       case PaywallContext.streakFreeze:
@@ -605,13 +609,13 @@ class _ContextualPaywallSheetState
           headline: isEn
               ? "Don't lose what you've built"
               : 'İnşa ettiğini kaybetme',
-          subtitle: L10nService.get('premium.contextual_paywall.freeze_your_streak_and_pick_up_where_you', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('premium.contextual_paywall.freeze_your_streak_and_pick_up_where_you', language),
           detail: widget.streakDays != null
               ? (isEn
                     ? '${widget.streakDays}-day streak at risk'
                     : '${widget.streakDays} günlük seri risk altında')
               : null,
-          cta: L10nService.get('premium.contextual_paywall.protect_my_streak', isEn ? AppLanguage.en : AppLanguage.tr),
+          cta: L10nService.get('premium.contextual_paywall.protect_my_streak', language),
         );
 
       case PaywallContext.monthlyReport:
@@ -621,73 +625,73 @@ class _ContextualPaywallSheetState
           headline: isEn
               ? "You've done the work. See the growth."
               : 'Emeği verdin. Büyümeyi gör.',
-          subtitle: L10nService.get('premium.contextual_paywall.your_monthly_reflection_report_distills', isEn ? AppLanguage.en : AppLanguage.tr),
-          cta: L10nService.get('premium.contextual_paywall.view_my_report', isEn ? AppLanguage.en : AppLanguage.tr),
+          subtitle: L10nService.get('premium.contextual_paywall.your_monthly_reflection_report_distills', language),
+          cta: L10nService.get('premium.contextual_paywall.view_my_report', language),
         );
 
       case PaywallContext.export:
         return _PaywallConfig(
           icon: Icons.download_rounded,
           accentColor: AppColors.exportGreen,
-          headline: L10nService.get('premium.contextual_paywall.your_data_belongs_to_you', isEn ? AppLanguage.en : AppLanguage.tr),
+          headline: L10nService.get('premium.contextual_paywall.your_data_belongs_to_you', language),
           subtitle: isEn
               ? 'Export your complete journal history in any format. All ${widget.entryCount ?? ''} entries, yours to keep.'
               : 'Tüm günlük geçmişini istediğin formatta dışa aktar. ${widget.entryCount ?? ''} kayıt, senin.',
-          cta: L10nService.get('premium.contextual_paywall.export_everything', isEn ? AppLanguage.en : AppLanguage.tr),
+          cta: L10nService.get('premium.contextual_paywall.export_everything', language),
         );
 
       case PaywallContext.adRemoval:
         return _PaywallConfig(
           icon: Icons.visibility_off,
           accentColor: AppColors.amethyst,
-          headline: L10nService.get('premium.contextual_paywall.your_reflection_space_uninterrupted', isEn ? AppLanguage.en : AppLanguage.tr),
-          subtitle: L10nService.get('premium.contextual_paywall.remove_all_ads_and_focus_on_what_matters', isEn ? AppLanguage.en : AppLanguage.tr),
-          cta: L10nService.get('premium.contextual_paywall.go_adfree', isEn ? AppLanguage.en : AppLanguage.tr),
+          headline: L10nService.get('premium.contextual_paywall.your_reflection_space_uninterrupted', language),
+          subtitle: L10nService.get('premium.contextual_paywall.remove_all_ads_and_focus_on_what_matters', language),
+          cta: L10nService.get('premium.contextual_paywall.go_adfree', language),
         );
 
       case PaywallContext.programs:
         return _PaywallConfig(
           icon: Icons.school_rounded,
           accentColor: AppColors.greenAccent,
-          headline: L10nService.get('premium.contextual_paywall.go_deeper_with_guided_growth', isEn ? AppLanguage.en : AppLanguage.tr),
-          subtitle: L10nService.get('premium.contextual_paywall.structured_multiday_sequences_designed_t', isEn ? AppLanguage.en : AppLanguage.tr),
-          cta: L10nService.get('premium.contextual_paywall.start_program', isEn ? AppLanguage.en : AppLanguage.tr),
+          headline: L10nService.get('premium.contextual_paywall.go_deeper_with_guided_growth', language),
+          subtitle: L10nService.get('premium.contextual_paywall.structured_multiday_sequences_designed_t', language),
+          cta: L10nService.get('premium.contextual_paywall.start_program', language),
         );
 
       case PaywallContext.challenges:
         return _PaywallConfig(
           icon: Icons.emoji_events_rounded,
           accentColor: AppColors.celestialGold,
-          headline: L10nService.get('premium.contextual_paywall.push_your_limits', isEn ? AppLanguage.en : AppLanguage.tr),
-          subtitle: L10nService.get('premium.contextual_paywall.pro_growth_challenges_that_elevate_your', isEn ? AppLanguage.en : AppLanguage.tr),
-          cta: L10nService.get('premium.contextual_paywall.accept_challenge', isEn ? AppLanguage.en : AppLanguage.tr),
+          headline: L10nService.get('premium.contextual_paywall.push_your_limits', language),
+          subtitle: L10nService.get('premium.contextual_paywall.pro_growth_challenges_that_elevate_your', language),
+          cta: L10nService.get('premium.contextual_paywall.accept_challenge', language),
         );
 
       case PaywallContext.cycleSync:
         return _PaywallConfig(
           icon: Icons.favorite_rounded,
           accentColor: AppColors.amethyst,
-          headline: L10nService.get('premium.contextual_paywall.understand_your_cycle_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
-          subtitle: L10nService.get('premium.contextual_paywall.see_how_your_emotional_patterns_align_wi', isEn ? AppLanguage.en : AppLanguage.tr),
-          cta: L10nService.get('premium.contextual_paywall.access_cycle_insights', isEn ? AppLanguage.en : AppLanguage.tr),
+          headline: L10nService.get('premium.contextual_paywall.understand_your_cycle_patterns', language),
+          subtitle: L10nService.get('premium.contextual_paywall.see_how_your_emotional_patterns_align_wi', language),
+          cta: L10nService.get('premium.contextual_paywall.access_cycle_insights', language),
         );
 
       case PaywallContext.shadowWork:
         return _PaywallConfig(
           icon: Icons.psychology_rounded,
           accentColor: AppColors.amethyst,
-          headline: L10nService.get('premium.contextual_paywall.explore_your_hidden_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
-          subtitle: L10nService.get('premium.contextual_paywall.guided_shadow_work_helps_you_understand', isEn ? AppLanguage.en : AppLanguage.tr),
-          cta: L10nService.get('premium.contextual_paywall.access_shadow_work', isEn ? AppLanguage.en : AppLanguage.tr),
+          headline: L10nService.get('premium.contextual_paywall.explore_your_hidden_patterns', language),
+          subtitle: L10nService.get('premium.contextual_paywall.guided_shadow_work_helps_you_understand', language),
+          cta: L10nService.get('premium.contextual_paywall.access_shadow_work', language),
         );
 
       case PaywallContext.general:
         return _PaywallConfig(
           icon: Icons.psychology_outlined,
           accentColor: AppColors.starGold,
-          headline: L10nService.get('premium.contextual_paywall.your_data_has_more_to_show_1', isEn ? AppLanguage.en : AppLanguage.tr),
-          subtitle: L10nService.get('premium.contextual_paywall.no_ai_no_cloud_just_your_words_revealing', isEn ? AppLanguage.en : AppLanguage.tr),
-          cta: L10nService.get('premium.contextual_paywall.discover_my_patterns_1', isEn ? AppLanguage.en : AppLanguage.tr),
+          headline: L10nService.get('premium.contextual_paywall.your_data_has_more_to_show_1', language),
+          subtitle: L10nService.get('premium.contextual_paywall.no_ai_no_cloud_just_your_words_revealing', language),
+          cta: L10nService.get('premium.contextual_paywall.discover_my_patterns_1', language),
         );
     }
   }

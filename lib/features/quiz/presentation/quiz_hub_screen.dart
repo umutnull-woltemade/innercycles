@@ -66,6 +66,7 @@ class QuizHubScreen extends ConsumerWidget {
 
                     // Quiz cards
                     ...QuizContent.allQuizzes.asMap().entries.map((entry) {
+                      final language = isEn ? AppLanguage.en : AppLanguage.tr;
                       final index = entry.key;
                       final quiz = entry.value;
 
@@ -85,7 +86,7 @@ class QuizHubScreen extends ConsumerWidget {
                         if (lastResult != null) {
                           final dim = quiz.dimensions[lastResult.resultType];
                           if (dim != null) {
-                            lastResultName = dim.localizedName(isEn ? AppLanguage.en : AppLanguage.tr);
+                            lastResultName = dim.localizedName(language);
                           }
                         }
                       }
@@ -161,10 +162,11 @@ class _QuizCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Semantics(
       button: true,
-      label: quiz.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
-      hint: isCompleted ? (L10nService.get('quiz.quiz_hub.completed', isEn ? AppLanguage.en : AppLanguage.tr)) : null,
+      label: quiz.localizedTitle(language),
+      hint: isCompleted ? (L10nService.get('quiz.quiz_hub.completed', language)) : null,
       child: GestureDetector(
         onTap: onTap,
         child: PremiumCard(
@@ -199,7 +201,7 @@ class _QuizCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            quiz.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
+                            quiz.localizedTitle(language),
                             style: AppTypography.displayFont.copyWith(
                               fontSize: 16,
                               color: isDark
@@ -224,7 +226,7 @@ class _QuizCard extends StatelessWidget {
                               ),
                             ),
                             child: Text(
-                              L10nService.get('quiz.quiz_hub.completed_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('quiz.quiz_hub.completed_1', language),
                               style: AppTypography.elegantAccent(
                                 fontSize: 11,
                                 color: AppColors.auroraStart,
@@ -236,7 +238,7 @@ class _QuizCard extends StatelessWidget {
                     ),
                     const SizedBox(height: AppConstants.spacingXs),
                     Text(
-                      quiz.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
+                      quiz.localizedDescription(language),
                       style: AppTypography.subtitle(
                         fontSize: 12,
                         color: isDark

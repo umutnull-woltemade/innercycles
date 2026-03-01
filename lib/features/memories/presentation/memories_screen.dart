@@ -270,21 +270,20 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
   }
 
   Widget _buildEmptyState(BuildContext context, bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return CustomScrollView(
       slivers: [
-        GlassSliverAppBar(title: L10nService.get('memories.memories.memories_1', isEn ? AppLanguage.en : AppLanguage.tr)),
+        GlassSliverAppBar(title: L10nService.get('memories.memories.memories_1', language)),
         SliverFillRemaining(
           hasScrollBody: false,
           child: ToolEmptyState(
             icon: Icons.photo_library_outlined,
-            titleEn: 'No memories yet',
-            titleTr: 'Hen\u00fcz an\u0131 yok',
-            descriptionEn:
-                'Start journaling to build your memories collection.',
-            descriptionTr:
-                'An\u0131lar\u0131n\u0131 olu\u015fturmak i\u00e7in g\u00fcnl\u00fck yazmaya ba\u015fla.',
+            title: isEn ? 'No memories yet' : 'Hen\u00fcz an\u0131 yok',
+            description: isEn
+                ? 'Start journaling to build your memories collection.'
+                : 'An\u0131lar\u0131n\u0131 olu\u015fturmak i\u00e7in g\u00fcnl\u00fck yazmaya ba\u015fla.',
             onStartTemplate: () => context.go(Routes.journal),
-            isEn: isEn,
+            language: language,
             isDark: isDark,
           ),
         ),
@@ -332,6 +331,7 @@ class _MemoriesStatsHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: 14,
@@ -341,19 +341,19 @@ class _MemoriesStatsHeader extends StatelessWidget {
         children: [
           _MiniStat(
             value: '$totalEntries',
-            label: L10nService.get('memories.memories.entries', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('memories.memories.entries', language),
             color: AppColors.auroraStart,
             isDark: isDark,
           ),
           _MiniStat(
             value: '$photoEntries',
-            label: L10nService.get('memories.memories.photos', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('memories.memories.photos', language),
             color: AppColors.starGold,
             isDark: isDark,
           ),
           _MiniStat(
             value: firstDate,
-            label: L10nService.get('memories.memories.since', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('memories.memories.since', language),
             color: AppColors.success,
             isDark: isDark,
             isSmallValue: true,
@@ -424,6 +424,7 @@ class _OnThisDayCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final hasPhoto = _hasValidPhoto(entry);
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
 
@@ -451,7 +452,7 @@ class _OnThisDayCard extends StatelessWidget {
                   File(entry.imagePath!),
                   fit: BoxFit.cover,
                   cacheWidth: 400,
-                  semanticLabel: L10nService.get('memories.memories.memory_photo', isEn ? AppLanguage.en : AppLanguage.tr),
+                  semanticLabel: L10nService.get('memories.memories.memory_photo', language),
                   errorBuilder: (_, _, _) => _placeholderIcon(),
                 ),
               )
@@ -632,6 +633,7 @@ class _MemoryCard extends StatelessWidget {
   }
 
   Widget _buildPhotoCard(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
     final areaLabel = entry.focusArea.localizedName(isEn);
 
@@ -651,7 +653,7 @@ class _MemoryCard extends StatelessWidget {
                   File(entry.imagePath!),
                   fit: BoxFit.cover,
                   cacheWidth: 800,
-                  semanticLabel: L10nService.get('memories.memories.memory_photo_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                  semanticLabel: L10nService.get('memories.memories.memory_photo_1', language),
                   errorBuilder: (_, _, _) => Container(
                     color: isDark
                         ? AppColors.surfaceDark

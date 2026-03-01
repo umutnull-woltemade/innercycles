@@ -85,6 +85,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildInstructions(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final steps = isEn
         ? [
             'Go to Facebook Settings & Privacy > Settings',
@@ -113,7 +114,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GradientText(
-                L10nService.get('birthdays.birthday_import.how_to_export_from_facebook', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('birthdays.birthday_import.how_to_export_from_facebook', language),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 16,
@@ -197,7 +198,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          L10nService.get('birthdays.birthday_import.select_json_file', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('birthdays.birthday_import.select_json_file', language),
                           style: AppTypography.modernAccent(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
@@ -234,10 +235,11 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
       if (contacts.isEmpty && mounted) {
         final lang = ref.read(languageProvider);
         final isEn = lang == AppLanguage.en;
+        final language = isEn ? AppLanguage.en : AppLanguage.tr;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              L10nService.get('birthdays.birthday_import.no_birthdays_found_in_this_file_try_a_di', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('birthdays.birthday_import.no_birthdays_found_in_this_file_try_a_di', language),
             ),
           ),
         );
@@ -253,12 +255,11 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
       });
     } catch (_) {
       if (mounted) {
-        final lang = ref.read(languageProvider);
-        final isEn = lang == AppLanguage.en;
+        final language = ref.read(languageProvider);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              L10nService.get('birthdays.birthday_import.couldnt_read_this_file_make_sure_its_a_v', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('birthdays.birthday_import.couldnt_read_this_file_make_sure_its_a_v', language),
             ),
           ),
         );
@@ -272,6 +273,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildPreview(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -307,8 +309,8 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
               },
               child: Text(
                 _selectedIndices.length == _parsedContacts.length
-                    ? (L10nService.get('birthdays.birthday_import.deselect_all', isEn ? AppLanguage.en : AppLanguage.tr))
-                    : (L10nService.get('birthdays.birthday_import.select_all', isEn ? AppLanguage.en : AppLanguage.tr)),
+                    ? (L10nService.get('birthdays.birthday_import.deselect_all', language))
+                    : (L10nService.get('birthdays.birthday_import.select_all', language)),
                 style: AppTypography.modernAccent(
                   color: AppColors.starGold,
                   fontWeight: FontWeight.w600,
@@ -474,10 +476,11 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
       if (mounted) {
         final lang = ref.read(languageProvider);
         final isEn = lang == AppLanguage.en;
+        final language = isEn ? AppLanguage.en : AppLanguage.tr;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              L10nService.get('birthdays.birthday_import.birthday_import_failed_please_check_your', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('birthdays.birthday_import.birthday_import_failed_please_check_your', language),
             ),
           ),
         );
@@ -491,6 +494,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildSuccess(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
           style: PremiumCardStyle.gold,
           padding: const EdgeInsets.all(32),
@@ -499,7 +503,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
               const AppSymbol.hero('\u{1F389}'),
               const SizedBox(height: 16),
               GradientText(
-                L10nService.get('birthdays.birthday_import.import_complete', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('birthdays.birthday_import.import_complete', language),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 20,
@@ -534,7 +538,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    L10nService.get('birthdays.birthday_import.view_birthdays', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('birthdays.birthday_import.view_birthdays', language),
                     style: AppTypography.modernAccent(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,

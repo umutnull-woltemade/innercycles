@@ -89,12 +89,13 @@ class _CheckinView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.aurora,
       child: Column(
         children: [
           Text(
-            L10nService.get('mood.mood_checkin.whats_present_for_you_right_now', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('mood.mood_checkin.whats_present_for_you_right_now', language),
             style: AppTypography.displayFont.copyWith(
               fontSize: 15,
               fontWeight: FontWeight.w600,
@@ -108,8 +109,9 @@ class _CheckinView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: MoodCheckinService.moodOptions.map((option) {
               final (mood, emoji, labelEn, labelTr) = option;
+              final label = isEn ? labelEn : labelTr;
               return Semantics(
-                label: isEn ? labelEn : labelTr,
+                label: label,
                 button: true,
                 child: GestureDetector(
                   onTap: () => onSelect(mood, emoji),
@@ -119,7 +121,7 @@ class _CheckinView extends StatelessWidget {
                       AppSymbol.card(emoji),
                       const SizedBox(height: 4),
                       Text(
-                        isEn ? labelEn : labelTr,
+                        label,
                         style: AppTypography.elegantAccent(
                           fontSize: 10,
                           color: isDark
@@ -154,6 +156,7 @@ class _LoggedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final nowTime = DateTime.now();
     return PremiumCard(
       style: PremiumCardStyle.subtle,
@@ -169,7 +172,7 @@ class _LoggedView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      L10nService.get('mood.mood_checkin.todays_mood', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('mood.mood_checkin.todays_mood', language),
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -252,17 +255,18 @@ class _LoggedView extends StatelessWidget {
   }
 
   String _moodLabel(int mood, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     switch (mood) {
       case 1:
-        return L10nService.get('mood.mood_checkin.struggling', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('mood.mood_checkin.struggling', language);
       case 2:
-        return L10nService.get('mood.mood_checkin.low', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('mood.mood_checkin.low', language);
       case 3:
-        return L10nService.get('mood.mood_checkin.okay', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('mood.mood_checkin.okay', language);
       case 4:
-        return L10nService.get('mood.mood_checkin.good', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('mood.mood_checkin.good', language);
       case 5:
-        return L10nService.get('mood.mood_checkin.great', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('mood.mood_checkin.great', language);
       default:
         return '';
     }
@@ -323,6 +327,7 @@ class _ThankYouView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final suggestions = _getSuggestedEmotions(todayMood.mood);
 
     return PremiumCard(
@@ -347,7 +352,7 @@ class _ThankYouView extends StatelessWidget {
               const SizedBox(width: 14),
               Expanded(
                 child: Text(
-                  L10nService.get('mood.mood_checkin.mood_logged_get_more_specific', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('mood.mood_checkin.mood_logged_get_more_specific', language),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -363,6 +368,7 @@ class _ThankYouView extends StatelessWidget {
             spacing: 6,
             runSpacing: 6,
             children: suggestions.take(6).map((emotion) {
+              final language = isEn ? AppLanguage.en : AppLanguage.tr;
               return Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 10,
@@ -380,7 +386,7 @@ class _ThankYouView extends StatelessWidget {
                     AppSymbol.inline(emotion.emoji),
                     const SizedBox(width: 4),
                     Text(
-                      emotion.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
+                      emotion.localizedName(language),
                       style: AppTypography.elegantAccent(
                         fontSize: 11,
                         color: isDark

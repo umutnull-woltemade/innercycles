@@ -124,6 +124,7 @@ class DailyPulseCard extends ConsumerWidget {
 
   // ── FOCUS PULSE (compact circles) ──
   Widget? _buildFocusPulse(BuildContext context, Map<FocusArea, double> averages) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     if (averages.isEmpty) return null;
 
     return Column(
@@ -132,7 +133,7 @@ class DailyPulseCard extends ConsumerWidget {
         Row(
           children: [
             GradientText(
-              L10nService.get('today.daily_pulse.focus_pulse', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('today.daily_pulse.focus_pulse', language),
               variant: GradientTextVariant.gold,
               style: AppTypography.displayFont.copyWith(
                 fontSize: 14,
@@ -143,7 +144,7 @@ class DailyPulseCard extends ConsumerWidget {
             const Spacer(),
             Semantics(
               button: true,
-              label: L10nService.get('today.daily_pulse.view_details', isEn ? AppLanguage.en : AppLanguage.tr),
+              label: L10nService.get('today.daily_pulse.view_details', language),
               child: GestureDetector(
                 onTap: () {
                   HapticService.selectionTap();
@@ -151,7 +152,7 @@ class DailyPulseCard extends ConsumerWidget {
                 },
                 behavior: HitTestBehavior.opaque,
                 child: Text(
-                  L10nService.get('today.daily_pulse.details', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('today.daily_pulse.details', language),
                   style: AppTypography.subtitle(
                     fontSize: 13,
                     color: isDark
@@ -318,6 +319,7 @@ class DailyPulseCard extends ConsumerWidget {
     bool hasFull,
     Map<FocusArea, double> averages,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     if (!hasFull || averages.isEmpty) return null;
 
     FocusArea weakestArea = averages.keys.first;
@@ -351,7 +353,7 @@ class DailyPulseCard extends ConsumerWidget {
             ),
             const SizedBox(width: 6),
             GradientText(
-              L10nService.getWithParams('today.daily_pulse.try_for_area', isEn ? AppLanguage.en : AppLanguage.tr, params: {'area': areaLabel}),
+              L10nService.getWithParams('today.daily_pulse.try_for_area', language, params: {'area': areaLabel}),
               variant: GradientTextVariant.amethyst,
               style: AppTypography.elegantAccent(
                 fontSize: 12,
@@ -362,7 +364,7 @@ class DailyPulseCard extends ConsumerWidget {
         ),
         const SizedBox(height: 6),
         Text(
-          prompt.localizedPrompt(isEn ? AppLanguage.en : AppLanguage.tr),
+          prompt.localizedPrompt(language),
           style: AppTypography.decorativeScript(
             fontSize: 14,
             color: isDark
@@ -379,12 +381,13 @@ class DailyPulseCard extends ConsumerWidget {
     final archetypeAsync = ref.watch(archetypeServiceProvider);
     return archetypeAsync.maybeWhen(
       data: (archetypeService) {
+        final language = isEn ? AppLanguage.en : AppLanguage.tr;
         String text;
         IconData icon;
         final history = archetypeService.getArchetypeHistory();
         if (history.isEmpty) {
           icon = Icons.auto_awesome_outlined;
-          text = L10nService.get('today.daily_pulse.each_entry_builds_your_pattern_library_s', isEn ? AppLanguage.en : AppLanguage.tr);
+          text = L10nService.get('today.daily_pulse.each_entry_builds_your_pattern_library_s', language);
         } else {
           icon = Icons.psychology_outlined;
           final latestId = history.last.archetypeId;
@@ -459,17 +462,18 @@ class DailyPulseCard extends ConsumerWidget {
   }
 
   String _areaLabel(FocusArea area) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     switch (area) {
       case FocusArea.energy:
-        return L10nService.get('today.daily_pulse.energy', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('today.daily_pulse.energy', language);
       case FocusArea.focus:
-        return L10nService.get('today.daily_pulse.focus', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('today.daily_pulse.focus', language);
       case FocusArea.emotions:
-        return L10nService.get('today.daily_pulse.emotions', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('today.daily_pulse.emotions', language);
       case FocusArea.decisions:
-        return L10nService.get('today.daily_pulse.decisions', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('today.daily_pulse.decisions', language);
       case FocusArea.social:
-        return L10nService.get('today.daily_pulse.social', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('today.daily_pulse.social', language);
     }
   }
 

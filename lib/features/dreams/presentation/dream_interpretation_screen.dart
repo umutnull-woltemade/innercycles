@@ -1704,13 +1704,12 @@ ${_getPersonalAdvice(sign)}''';
 
   void _showDiscardDialog() async {
     final language = ref.read(languageProvider);
-    final isEn = language == AppLanguage.en;
     final confirmed = await GlassDialog.confirm(
       context,
-      title: L10nService.get('dreams.dream_interpretation.leave_conversation', isEn ? AppLanguage.en : AppLanguage.tr),
-      message: L10nService.get('dreams.dream_interpretation.you_have_an_active_dream_session_are_you', isEn ? AppLanguage.en : AppLanguage.tr),
-      cancelLabel: L10nService.get('dreams.dream_interpretation.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
-      confirmLabel: L10nService.get('dreams.dream_interpretation.discard', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('dreams.dream_interpretation.leave_conversation', language),
+      message: L10nService.get('dreams.dream_interpretation.you_have_an_active_dream_session_are_you', language),
+      cancelLabel: L10nService.get('dreams.dream_interpretation.cancel', language),
+      confirmLabel: L10nService.get('dreams.dream_interpretation.discard', language),
       isDestructive: true,
     );
     if (confirmed == true && mounted) {

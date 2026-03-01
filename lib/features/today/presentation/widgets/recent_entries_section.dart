@@ -38,6 +38,7 @@ class RecentEntriesSection extends ConsumerWidget {
 
     return journalAsync.maybeWhen(
       data: (service) {
+        final language = isEn ? AppLanguage.en : AppLanguage.tr;
         final entries = service.getRecentEntries(5);
         if (entries.isEmpty) return const SizedBox.shrink();
 
@@ -53,7 +54,7 @@ class RecentEntriesSection extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GradientText(
-                      L10nService.get('today.recent_entries.recent_entries', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('today.recent_entries.recent_entries', language),
                       variant: GradientTextVariant.aurora,
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 17,
@@ -62,7 +63,7 @@ class RecentEntriesSection extends ConsumerWidget {
                       ),
                     ),
                     Semantics(
-                      label: L10nService.get('today.recent_entries.see_all_entries', isEn ? AppLanguage.en : AppLanguage.tr),
+                      label: L10nService.get('today.recent_entries.see_all_entries', language),
                       button: true,
                       child: GestureDetector(
                         onTap: () {
@@ -75,7 +76,7 @@ class RecentEntriesSection extends ConsumerWidget {
                           child: Align(
                             alignment: Alignment.centerRight,
                             child: Text(
-                              L10nService.get('today.recent_entries.see_all', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('today.recent_entries.see_all', language),
                               style: AppTypography.subtitle(
                                 fontSize: 14,
                                 color: isDark
@@ -263,17 +264,18 @@ class RecentEntriesSection extends ConsumerWidget {
   }
 
   String _focusAreaLabel(FocusArea area) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     switch (area) {
       case FocusArea.energy:
-        return L10nService.get('today.recent_entries.energy', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('today.recent_entries.energy', language);
       case FocusArea.focus:
-        return L10nService.get('today.recent_entries.focus', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('today.recent_entries.focus', language);
       case FocusArea.emotions:
-        return L10nService.get('today.recent_entries.emotions', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('today.recent_entries.emotions', language);
       case FocusArea.decisions:
-        return L10nService.get('today.recent_entries.decisions', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('today.recent_entries.decisions', language);
       case FocusArea.social:
-        return L10nService.get('today.recent_entries.social', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('today.recent_entries.social', language);
     }
   }
 }

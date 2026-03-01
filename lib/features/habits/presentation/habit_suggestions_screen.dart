@@ -107,6 +107,7 @@ class _HabitSuggestionsScreenState
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final dailyHabit = service.getDailyHabit();
 
     // Build filtered list
@@ -127,14 +128,14 @@ class _HabitSuggestionsScreenState
         slivers: [
           // ═══ APP BAR ═══
           GlassSliverAppBar(
-            title: L10nService.get('habits.habit_suggestions.microhabits', isEn ? AppLanguage.en : AppLanguage.tr),
+            title: L10nService.get('habits.habit_suggestions.microhabits', language),
             largeTitleMode: true,
             actions: [
               // Bookmark filter toggle
               IconButton(
                 tooltip: _showBookmarksOnly
-                    ? (L10nService.get('habits.habit_suggestions.show_all_habits', isEn ? AppLanguage.en : AppLanguage.tr))
-                    : (L10nService.get('habits.habit_suggestions.show_bookmarks', isEn ? AppLanguage.en : AppLanguage.tr)),
+                    ? (L10nService.get('habits.habit_suggestions.show_all_habits', language))
+                    : (L10nService.get('habits.habit_suggestions.show_bookmarks', language)),
                 icon: Icon(
                   _showBookmarksOnly
                       ? Icons.bookmark_rounded
@@ -195,7 +196,7 @@ class _HabitSuggestionsScreenState
                 child: Row(
                   children: [
                     _CategoryChip(
-                      label: L10nService.get('habits.habit_suggestions.all', isEn ? AppLanguage.en : AppLanguage.tr),
+                      label: L10nService.get('habits.habit_suggestions.all', language),
                       emoji: '✨',
                       isSelected:
                           _selectedCategory == null && !_showBookmarksOnly,
@@ -245,7 +246,7 @@ class _HabitSuggestionsScreenState
                 padding: const EdgeInsets.all(40),
                 child: Center(
                   child: Text(
-                    L10nService.get('habits.habit_suggestions.your_bookmark_list_is_ready_for_habits', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('habits.habit_suggestions.your_bookmark_list_is_ready_for_habits', language),
                     style: AppTypography.subtitle(
                       color: isDark
                           ? AppColors.textMuted
@@ -345,11 +346,12 @@ class _DailySpotlightCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final isTried = service.isTried(habit.id);
     final isAdopted = service.isAdopted(habit.id);
 
     return Semantics(
-      label: habit.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
+      label: habit.localizedTitle(language),
       button: true,
       child: GestureDetector(
         onTap: onTap,
@@ -398,7 +400,7 @@ class _DailySpotlightCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GradientText(
-                          L10nService.get('habits.habit_suggestions.todays_habit', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('habits.habit_suggestions.todays_habit', language),
                           variant: GradientTextVariant.aurora,
                           style: AppTypography.displayFont.copyWith(
                             fontSize: 12,
@@ -407,7 +409,7 @@ class _DailySpotlightCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 2),
                         GradientText(
-                          habit.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
+                          habit.localizedTitle(language),
                           variant: GradientTextVariant.gold,
                           style: AppTypography.displayFont.copyWith(
                             fontSize: 17,
@@ -433,8 +435,8 @@ class _DailySpotlightCard extends StatelessWidget {
                       ),
                       child: Text(
                         isAdopted
-                            ? (L10nService.get('habits.habit_suggestions.adopted', isEn ? AppLanguage.en : AppLanguage.tr))
-                            : (L10nService.get('habits.habit_suggestions.tried', isEn ? AppLanguage.en : AppLanguage.tr)),
+                            ? (L10nService.get('habits.habit_suggestions.adopted', language))
+                            : (L10nService.get('habits.habit_suggestions.tried', language)),
                         style: AppTypography.modernAccent(
                           fontSize: 10,
                           fontWeight: FontWeight.w600,
@@ -448,7 +450,7 @@ class _DailySpotlightCard extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               Text(
-                habit.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
+                habit.localizedDescription(language),
                 style: AppTypography.decorativeScript(
                   fontSize: 13,
                   color: isDark
@@ -510,7 +512,7 @@ class _DailySpotlightCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          '${habit.durationMinutes} ${L10nService.get('habits.habit_suggestions.min', isEn ? AppLanguage.en : AppLanguage.tr)}',
+                          '${habit.durationMinutes} ${L10nService.get('habits.habit_suggestions.min', language)}',
                           style: AppTypography.subtitle(
                             fontSize: 10,
                             color: isDark
@@ -524,7 +526,7 @@ class _DailySpotlightCard extends StatelessWidget {
                   const Spacer(),
                   if (!isTried)
                     Semantics(
-                      label: L10nService.get('habits.habit_suggestions.try_this_habit', isEn ? AppLanguage.en : AppLanguage.tr),
+                      label: L10nService.get('habits.habit_suggestions.try_this_habit', language),
                       button: true,
                       child: GestureDetector(
                         onTap: () async {
@@ -547,7 +549,7 @@ class _DailySpotlightCard extends StatelessWidget {
                             ),
                           ),
                           child: Text(
-                            L10nService.get('habits.habit_suggestions.try_it', isEn ? AppLanguage.en : AppLanguage.tr),
+                            L10nService.get('habits.habit_suggestions.try_it', language),
                             style: AppTypography.modernAccent(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
@@ -584,6 +586,7 @@ class _ProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final tried = service.triedCount;
     final adopted = service.adoptedCount;
     final total = service.totalCount;
@@ -598,7 +601,7 @@ class _ProgressBar extends StatelessWidget {
           Row(
             children: [
               Text(
-                L10nService.get('habits.habit_suggestions.habits_explored', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('habits.habit_suggestions.habits_explored', language),
                 style: AppTypography.elegantAccent(
                   fontSize: 13,
                   color: isDark
@@ -754,12 +757,13 @@ class _HabitCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final isTried = service.isTried(habit.id);
     final isAdopted = service.isAdopted(habit.id);
     final isBookmarked = service.isBookmarked(habit.id);
 
     return Semantics(
-      label: habit.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
+      label: habit.localizedTitle(language),
       button: true,
       child: GestureDetector(
         onTap: onTap,
@@ -807,7 +811,7 @@ class _HabitCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            habit.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
+                            habit.localizedTitle(language),
                             style: AppTypography.displayFont.copyWith(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
@@ -841,7 +845,7 @@ class _HabitCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 3),
                         Text(
-                          '${habit.durationMinutes} ${L10nService.get('habits.habit_suggestions.min_1', isEn ? AppLanguage.en : AppLanguage.tr)}',
+                          '${habit.durationMinutes} ${L10nService.get('habits.habit_suggestions.min_1', language)}',
                           style: AppTypography.subtitle(
                             fontSize: 11,
                             color: isDark
@@ -874,8 +878,8 @@ class _HabitCard extends StatelessWidget {
                           const SizedBox(width: 3),
                           Text(
                             isAdopted
-                                ? (L10nService.get('habits.habit_suggestions.adopted_1', isEn ? AppLanguage.en : AppLanguage.tr))
-                                : (L10nService.get('habits.habit_suggestions.tried_1', isEn ? AppLanguage.en : AppLanguage.tr)),
+                                ? (L10nService.get('habits.habit_suggestions.adopted_1', language))
+                                : (L10nService.get('habits.habit_suggestions.tried_1', language)),
                             style: AppTypography.subtitle(
                               fontSize: 11,
                               color: isAdopted
@@ -970,6 +974,7 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
       minChildSize: 0.3,
       maxChildSize: 0.85,
       builder: (context, scrollController) {
+        final language = isEn ? AppLanguage.en : AppLanguage.tr;
         return ClipRRect(
           borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
           child: BackdropFilter(
@@ -1039,7 +1044,7 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                                 ),
                               ),
                               Text(
-                                '${habit.durationMinutes} ${L10nService.get('habits.habit_suggestions.minutes', isEn ? AppLanguage.en : AppLanguage.tr)}',
+                                '${habit.durationMinutes} ${L10nService.get('habits.habit_suggestions.minutes', language)}',
                                 style: AppTypography.subtitle(
                                   fontSize: 11,
                                   color: isDark
@@ -1053,8 +1058,8 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                         // Bookmark button
                         IconButton(
                           tooltip: _isBookmarked
-                              ? (L10nService.get('habits.habit_suggestions.remove_bookmark', isEn ? AppLanguage.en : AppLanguage.tr))
-                              : (L10nService.get('habits.habit_suggestions.bookmark', isEn ? AppLanguage.en : AppLanguage.tr)),
+                              ? (L10nService.get('habits.habit_suggestions.remove_bookmark', language))
+                              : (L10nService.get('habits.habit_suggestions.bookmark', language)),
                           icon: Icon(
                             _isBookmarked
                                 ? Icons.bookmark_rounded
@@ -1082,7 +1087,7 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
 
                     // Title
                     Text(
-                      habit.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
+                      habit.localizedTitle(language),
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 22,
                         fontWeight: FontWeight.w700,
@@ -1096,7 +1101,7 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
 
                     // Description
                     Text(
-                      habit.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
+                      habit.localizedDescription(language),
                       style: AppTypography.decorativeScript(
                         fontSize: 15,
                         color: isDark
@@ -1113,8 +1118,8 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                         Expanded(
                           child: _ActionButton(
                             label: _isTried
-                                ? (L10nService.get('habits.habit_suggestions.tried_2', isEn ? AppLanguage.en : AppLanguage.tr))
-                                : (L10nService.get('habits.habit_suggestions.mark_as_tried', isEn ? AppLanguage.en : AppLanguage.tr)),
+                                ? (L10nService.get('habits.habit_suggestions.tried_2', language))
+                                : (L10nService.get('habits.habit_suggestions.mark_as_tried', language)),
                             icon: _isTried
                                 ? Icons.check_rounded
                                 : Icons.touch_app_rounded,
@@ -1136,8 +1141,8 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                         Expanded(
                           child: _ActionButton(
                             label: _isAdopted
-                                ? (L10nService.get('habits.habit_suggestions.adopted_2', isEn ? AppLanguage.en : AppLanguage.tr))
-                                : (L10nService.get('habits.habit_suggestions.adopt_this_habit', isEn ? AppLanguage.en : AppLanguage.tr)),
+                                ? (L10nService.get('habits.habit_suggestions.adopted_2', language))
+                                : (L10nService.get('habits.habit_suggestions.adopt_this_habit', language)),
                             icon: _isAdopted
                                 ? Icons.check_circle_rounded
                                 : Icons.favorite_border_rounded,

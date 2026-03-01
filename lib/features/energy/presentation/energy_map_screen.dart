@@ -150,13 +150,14 @@ class _SummaryHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
       child: Row(
         children: [
           _StatChip(
-            label: L10nService.get('energy.energy_map.average', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('energy.energy_map.average', language),
             value: data.overallAverage > 0
                 ? data.overallAverage.toStringAsFixed(1)
                 : '-',
@@ -165,14 +166,14 @@ class _SummaryHeader extends StatelessWidget {
           ),
           const SizedBox(width: 12),
           _StatChip(
-            label: L10nService.get('energy.energy_map.best_day', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('energy.energy_map.best_day', language),
             value: _dayLabel(data.bestDay, isEn),
             color: AppColors.success,
             isDark: isDark,
           ),
           const SizedBox(width: 12),
           _StatChip(
-            label: L10nService.get('energy.energy_map.strongest', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('energy.energy_map.strongest', language),
             value: data.strongestArea != null
                 ? (isEn
                       ? data.strongestArea!.displayNameEn
@@ -252,6 +253,7 @@ class _HeatmapGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final dayLabels = isEn
         ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         : ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
@@ -264,7 +266,7 @@ class _HeatmapGrid extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('energy.energy_map.energy_by_day_area', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('energy.energy_map.energy_by_day_area', language),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -344,7 +346,7 @@ class _HeatmapGrid extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                L10nService.get('energy.energy_map.low', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('energy.energy_map.low', language),
                 style: AppTypography.subtitle(
                   fontSize: 10,
                   color: isDark
@@ -367,7 +369,7 @@ class _HeatmapGrid extends StatelessWidget {
               ),
               const SizedBox(width: 4),
               Text(
-                L10nService.get('energy.energy_map.high', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('energy.energy_map.high', language),
                 style: AppTypography.subtitle(
                   fontSize: 10,
                   color: isDark
@@ -433,6 +435,7 @@ class _DailyChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: 16,
@@ -441,7 +444,7 @@ class _DailyChart extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('energy.energy_map.last_28_days', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('energy.energy_map.last_28_days', language),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -483,7 +486,7 @@ class _DailyChart extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                L10nService.get('energy.energy_map.4_weeks_ago', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('energy.energy_map.4_weeks_ago', language),
                 style: AppTypography.subtitle(
                   fontSize: 10,
                   color: isDark
@@ -492,7 +495,7 @@ class _DailyChart extends StatelessWidget {
                 ),
               ),
               Text(
-                L10nService.get('energy.energy_map.today', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('energy.energy_map.today', language),
                 style: AppTypography.subtitle(
                   fontSize: 10,
                   color: isDark
@@ -532,6 +535,7 @@ class _InsightTips extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final tips = <String>[];
 
     if (data.strongestArea != null) {
@@ -575,7 +579,7 @@ class _InsightTips extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('energy.energy_map.observations', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('energy.energy_map.observations', language),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 14,
@@ -657,12 +661,13 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumEmptyState(
       icon: Icons.grid_view_rounded,
-      title: L10nService.get('energy.energy_map.your_energy_map_is_taking_shape', isEn ? AppLanguage.en : AppLanguage.tr),
-      description: L10nService.get('energy.energy_map.add_at_least_5_entries_to_see_your_energ', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('energy.energy_map.your_energy_map_is_taking_shape', language),
+      description: L10nService.get('energy.energy_map.add_at_least_5_entries_to_see_your_energ', language),
       gradientVariant: GradientTextVariant.aurora,
-      ctaLabel: L10nService.get('energy.energy_map.write_first_entry', isEn ? AppLanguage.en : AppLanguage.tr),
+      ctaLabel: L10nService.get('energy.energy_map.write_first_entry', language),
       onCtaPressed: () => context.go(Routes.journal),
     );
   }

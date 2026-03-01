@@ -13,6 +13,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/journal_entry.dart';
+import '../providers/app_providers.dart';
 import 'journal_service.dart';
 import 'pattern_engine_service.dart';
 
@@ -62,6 +63,9 @@ class WeeklyDigestData {
     required this.areaAverages,
     required this.areaCounts,
   });
+
+  String localizedHighlightInsight(AppLanguage language) =>
+      language == AppLanguage.en ? highlightInsightEn : highlightInsightTr;
 
   Map<String, dynamic> toJson() => {
     'weekStart': weekStart.toIso8601String(),

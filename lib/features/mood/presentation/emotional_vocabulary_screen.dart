@@ -156,12 +156,13 @@ class _EmotionalVocabularyScreenState
   }
 
   Widget _buildFamilyChips(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
           _FamilyChip(
-            label: L10nService.get('mood.emotional_vocabulary.all', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('mood.emotional_vocabulary.all', language),
             emoji: '🎭',
             isSelected: _selectedFamily == null,
             isDark: isDark,
@@ -186,6 +187,7 @@ class _EmotionalVocabularyScreenState
   }
 
   Widget _buildSearchBar(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Container(
       decoration: BoxDecoration(
         color: isDark
@@ -205,7 +207,7 @@ class _EmotionalVocabularyScreenState
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: L10nService.get('mood.emotional_vocabulary.find_a_feeling', isEn ? AppLanguage.en : AppLanguage.tr),
+          hintText: L10nService.get('mood.emotional_vocabulary.find_a_feeling', language),
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -215,7 +217,7 @@ class _EmotionalVocabularyScreenState
           ),
           suffixIcon: _searchQuery.isNotEmpty
               ? IconButton(
-                  tooltip: L10nService.get('mood.emotional_vocabulary.clear_search', isEn ? AppLanguage.en : AppLanguage.tr),
+                  tooltip: L10nService.get('mood.emotional_vocabulary.clear_search', language),
                   icon: Icon(
                     Icons.cancel,
                     color: isDark
@@ -329,10 +331,11 @@ class _EmotionCardState extends State<_EmotionCard> {
     final e = widget.emotion;
     final isDark = widget.isDark;
     final isEn = widget.isEn;
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
 
     return Semantics(
       button: true,
-      label: e.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
+      label: e.localizedName(language),
       child: GestureDetector(
         onTap: () => setState(() => _isExpanded = !_isExpanded),
         child: GlassPanel(
@@ -351,7 +354,7 @@ class _EmotionCardState extends State<_EmotionCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          e.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
+                          e.localizedName(language),
                           style: AppTypography.displayFont.copyWith(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -413,7 +416,7 @@ class _EmotionCardState extends State<_EmotionCard> {
               if (_isExpanded) ...[
                 const SizedBox(height: AppConstants.spacingMd),
                 Text(
-                  e.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
+                  e.localizedDescription(language),
                   style: AppTypography.decorativeScript(
                     fontSize: 14,
                     color: isDark
@@ -444,7 +447,7 @@ class _EmotionCardState extends State<_EmotionCard> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              L10nService.get('mood.emotional_vocabulary.body_sensation', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('mood.emotional_vocabulary.body_sensation', language),
                               style: AppTypography.elegantAccent(
                                 fontSize: 11,
                                 color: AppColors.auroraStart,
@@ -453,7 +456,7 @@ class _EmotionCardState extends State<_EmotionCard> {
                             ),
                             const SizedBox(height: 2),
                             Text(
-                              e.localizedBodySensation(isEn ? AppLanguage.en : AppLanguage.tr),
+                              e.localizedBodySensation(language),
                               style: AppTypography.decorativeScript(
                                 fontSize: 13,
                                 color: isDark

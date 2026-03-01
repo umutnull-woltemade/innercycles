@@ -265,6 +265,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
   }
 
   Widget _buildSearchBar(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Container(
       decoration: BoxDecoration(
         color: isDark
@@ -290,7 +291,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: L10nService.get('journal.archive.search_by_date_mood_or_text', isEn ? AppLanguage.en : AppLanguage.tr),
+          hintText: L10nService.get('journal.archive.search_by_date_mood_or_text', language),
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -300,7 +301,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
           ),
           suffixIcon: _searchQuery.isNotEmpty
               ? IconButton(
-                  tooltip: L10nService.get('journal.archive.clear_search', isEn ? AppLanguage.en : AppLanguage.tr),
+                  tooltip: L10nService.get('journal.archive.clear_search', language),
                   icon: Icon(
                     Icons.cancel,
                     color: isDark
@@ -325,12 +326,13 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
   }
 
   Widget _buildFilterChips(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
           _buildChip(
-            L10nService.get('journal.archive.all', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('journal.archive.all', language),
             _filterArea == null,
             () => setState(() => _filterArea = null),
             isDark,
@@ -358,11 +360,12 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
     bool isDark, {
     bool isEn = true,
   }) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Padding(
       padding: const EdgeInsets.only(right: 8),
       child: Semantics(
         button: true,
-        label: L10nService.getWithParams('journal.archive.filter_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'label': label}),
+        label: L10nService.getWithParams('journal.archive.filter_label', language, params: {'label': label}),
         child: GestureDetector(
           onTap: onTap,
           child: ConstrainedBox(
@@ -406,6 +409,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final areaLabel = entry.focusArea.localizedName(isEn);
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
 
@@ -413,7 +417,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
       padding: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       child: Semantics(
         button: true,
-        label: L10nService.getWithParams('journal.archive.entry_semantics_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'area': areaLabel, 'date': dateStr}),
+        label: L10nService.getWithParams('journal.archive.entry_semantics_label', language, params: {'area': areaLabel, 'date': dateStr}),
         child: GestureDetector(
           onTap: () {
             HapticFeedback.lightImpact();
@@ -490,8 +494,9 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                         const SizedBox(height: 2),
                         Text(
                           () {
+                            final language = isEn ? AppLanguage.en : AppLanguage.tr;
                             final words = entry.note!.trim().split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
-                            return L10nService.getWithParams('journal.archive.word_count', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$words'});
+                            return L10nService.getWithParams('journal.archive.word_count', language, params: {'count': '$words'});
                           }(),
                           style: AppTypography.elegantAccent(
                             fontSize: 11,

@@ -33,6 +33,7 @@ class CycleSummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final color = kAreaColors[summary.area] ?? AppColors.auroraStart;
     final hasData = summary.rawPoints.isNotEmpty;
     final areaName = summary.area.localizedName(isEn);
@@ -110,7 +111,7 @@ class CycleSummaryCard extends StatelessWidget {
                   _buildStatChip(
                     context,
                     icon: Icons.waves,
-                    label: '~${summary.cycleLengthDays}${L10nService.get('common.unit.days_abbr', isEn ? AppLanguage.en : AppLanguage.tr)}',
+                    label: '~${summary.cycleLengthDays}${L10nService.get('common.unit.days_abbr', language)}',
                     color: color,
                   ),
 
@@ -134,7 +135,7 @@ class CycleSummaryCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  L10nService.get('journal.cycle_summary.current_avg', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('journal.cycle_summary.current_avg', language),
                   style: AppTypography.elegantAccent(
                     fontSize: 11,
                     color: isDark
@@ -243,9 +244,10 @@ class CycleSummaryCard extends StatelessWidget {
     CyclePhase phase,
     Color areaColor,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final phaseColor = _phaseColor(phase);
     final phaseIcon = _phaseIcon(phase);
-    final phaseLabel = phase.label(isEn ? AppLanguage.en : AppLanguage.tr);
+    final phaseLabel = phase.label(language);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -273,9 +275,10 @@ class CycleSummaryCard extends StatelessWidget {
   }
 
   Widget _buildTrendIndicator(BuildContext context, CycleTrend trend) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final trendColor = _trendColor(trend);
     final trendIcon = _trendIcon(trend);
-    final trendLabel = trend.label(isEn ? AppLanguage.en : AppLanguage.tr);
+    final trendLabel = trend.label(language);
 
     return Row(
       mainAxisSize: MainAxisSize.min,

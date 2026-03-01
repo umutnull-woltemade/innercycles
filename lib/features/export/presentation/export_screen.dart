@@ -287,6 +287,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
   }
 
   Future<void> _copyToClipboard(bool isPremium, bool isEn) async {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     // GUARDRAIL: Double-check entitlement with RevenueCat before clipboard export
     if (isPremium) {
       final verified = await ref
@@ -318,7 +319,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(L10nService.get('export.export.export_data_copied_to_clipboard', isEn ? AppLanguage.en : AppLanguage.tr)),
+          content: Text(L10nService.get('export.export.export_data_copied_to_clipboard', language)),
           backgroundColor: AppColors.success,
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(
@@ -344,6 +345,7 @@ class _InfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: 14,
@@ -355,8 +357,8 @@ class _InfoCard extends StatelessWidget {
           Expanded(
             child: Text(
               isPremium
-                  ? (L10nService.get('export.export.export_your_full_journal_history_in_any', isEn ? AppLanguage.en : AppLanguage.tr))
-                  : (L10nService.get('export.export.free_last_7_days_as_text_upgrade_for_ful', isEn ? AppLanguage.en : AppLanguage.tr)),
+                  ? (L10nService.get('export.export.export_your_full_journal_history_in_any', language))
+                  : (L10nService.get('export.export.free_last_7_days_as_text_upgrade_for_ful', language)),
               style: AppTypography.decorativeScript(
                 fontSize: 13,
                 color: isDark
@@ -386,6 +388,7 @@ class _EntryCountCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: 14,
@@ -404,7 +407,7 @@ class _EntryCountCard extends StatelessWidget {
                 ),
               ),
               Text(
-                L10nService.get('export.export.total_entries', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('export.export.total_entries', language),
                 style: AppTypography.elegantAccent(
                   fontSize: 11,
                   color: isDark
@@ -425,7 +428,7 @@ class _EntryCountCard extends StatelessWidget {
                 ),
               ),
               Text(
-                L10nService.get('export.export.will_export', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('export.export.will_export', language),
                 style: AppTypography.elegantAccent(
                   fontSize: 11,
                   color: isDark
@@ -458,6 +461,7 @@ class _LockedEntriesCta extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Semantics(
       button: true,
       label: isEn
@@ -527,7 +531,7 @@ class _LockedEntriesCta extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Text(
-                  L10nService.get('export.export.access', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('export.export.access', language),
                   style: AppTypography.modernAccent(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,

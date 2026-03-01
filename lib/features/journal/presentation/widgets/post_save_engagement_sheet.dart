@@ -210,29 +210,30 @@ class PostSaveEngagementSheet extends ConsumerWidget {
   }
 
   List<_Suggestion> _buildSuggestions(WidgetRef ref, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final suggestions = <_Suggestion>[];
 
     // Always suggest mood check-in (quick action)
     suggestions.add(_Suggestion(
       icon: Icons.mood_rounded,
-      title: L10nService.get('journal.post_save_engagement.log_your_mood', isEn ? AppLanguage.en : AppLanguage.tr),
-      subtitle: L10nService.get('journal.post_save_engagement.quick_1tap_checkin', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('journal.post_save_engagement.log_your_mood', language),
+      subtitle: L10nService.get('journal.post_save_engagement.quick_1tap_checkin', language),
       route: Routes.today,
     ));
 
     // Dream journal
     suggestions.add(_Suggestion(
       icon: Icons.nightlight_round,
-      title: L10nService.get('journal.post_save_engagement.record_a_dream', isEn ? AppLanguage.en : AppLanguage.tr),
-      subtitle: L10nService.get('journal.post_save_engagement.capture_it_before_it_fades', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('journal.post_save_engagement.record_a_dream', language),
+      subtitle: L10nService.get('journal.post_save_engagement.capture_it_before_it_fades', language),
       route: Routes.dreamInterpretation,
     ));
 
     // Notes to self
     suggestions.add(_Suggestion(
       icon: Icons.sticky_note_2_outlined,
-      title: L10nService.get('journal.post_save_engagement.write_a_note_to_yourself', isEn ? AppLanguage.en : AppLanguage.tr),
-      subtitle: L10nService.get('journal.post_save_engagement.thoughts_reminders_ideas', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('journal.post_save_engagement.write_a_note_to_yourself', language),
+      subtitle: L10nService.get('journal.post_save_engagement.thoughts_reminders_ideas', language),
       route: Routes.noteCreate,
     ));
 
@@ -240,7 +241,7 @@ class PostSaveEngagementSheet extends ConsumerWidget {
     if (entryCount >= 5) {
       suggestions.add(_Suggestion(
         icon: Icons.insights_rounded,
-        title: L10nService.get('journal.post_save_engagement.explore_your_patterns', isEn ? AppLanguage.en : AppLanguage.tr),
+        title: L10nService.get('journal.post_save_engagement.explore_your_patterns', language),
         subtitle: isEn
             ? '$entryCount entries analyzed'
             : '$entryCount kay\u0131t analiz edildi',
@@ -252,8 +253,8 @@ class PostSaveEngagementSheet extends ConsumerWidget {
     if (entryCount >= 10) {
       suggestions.add(_Suggestion(
         icon: Icons.card_giftcard_rounded,
-        title: L10nService.get('journal.post_save_engagement.invite_a_friend', isEn ? AppLanguage.en : AppLanguage.tr),
-        subtitle: L10nService.get('journal.post_save_engagement.you_both_get_7_days_premium_free', isEn ? AppLanguage.en : AppLanguage.tr),
+        title: L10nService.get('journal.post_save_engagement.invite_a_friend', language),
+        subtitle: L10nService.get('journal.post_save_engagement.you_both_get_7_days_premium_free', language),
         route: Routes.referralProgram,
       ));
     }
@@ -261,8 +262,8 @@ class PostSaveEngagementSheet extends ConsumerWidget {
     // Gratitude
     suggestions.add(_Suggestion(
       icon: Icons.volunteer_activism_rounded,
-      title: L10nService.get('journal.post_save_engagement.gratitude_journal', isEn ? AppLanguage.en : AppLanguage.tr),
-      subtitle: L10nService.get('journal.post_save_engagement.end_your_day_with_gratitude', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('journal.post_save_engagement.gratitude_journal', language),
+      subtitle: L10nService.get('journal.post_save_engagement.end_your_day_with_gratitude', language),
       route: Routes.gratitudeJournal,
     ));
 

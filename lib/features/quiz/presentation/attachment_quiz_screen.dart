@@ -185,6 +185,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
   }
 
   Widget _buildQuizAppBar(BuildContext context, bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppConstants.spacingSm,
@@ -193,7 +194,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
       child: Row(
         children: [
           IconButton(
-            tooltip: L10nService.get('quiz.attachment_quiz.back', isEn ? AppLanguage.en : AppLanguage.tr),
+            tooltip: L10nService.get('quiz.attachment_quiz.back', language),
             onPressed: () {
               if (_currentPage > 0) {
                 _pageController.previousPage(
@@ -214,7 +215,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
           ),
           Expanded(
             child: Text(
-              L10nService.get('quiz.attachment_quiz.attachment_style', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('quiz.attachment_quiz.attachment_style', language),
               textAlign: TextAlign.center,
               style: AppTypography.displayFont.copyWith(
                 fontSize: 22,
@@ -265,8 +266,9 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
     bool isEn,
   ) {
     final question = AttachmentStyleService.questions[index];
-    final questionText = isEn ? question.questionEn : question.questionTr;
-    final options = isEn ? question.optionsEn : question.optionsTr;
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final questionText = question.localizedQuestion(language);
+    final options = question.localizedOptions(language);
 
     // Ordered list of styles for consistent mapping
     final styleOrder = [
@@ -437,6 +439,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildResultView(BuildContext context, bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final result = _result!;
     final style = result.attachmentStyle;
 
@@ -447,7 +450,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
         ),
         slivers: [
           // App bar
-          GlassSliverAppBar(title: L10nService.get('quiz.attachment_quiz.your_reflection', isEn ? AppLanguage.en : AppLanguage.tr)),
+          GlassSliverAppBar(title: L10nService.get('quiz.attachment_quiz.your_reflection', language)),
 
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -468,7 +471,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
                 // Strengths
                 _buildListSection(
                   context,
-                  title: L10nService.get('quiz.attachment_quiz.your_strengths', isEn ? AppLanguage.en : AppLanguage.tr),
+                  title: L10nService.get('quiz.attachment_quiz.your_strengths', language),
                   items: style.localizedStrengths(isEn),
                   icon: Icons.star_rounded,
                   color: AppColors.starGold,
@@ -479,7 +482,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
                 // Growth areas
                 _buildListSection(
                   context,
-                  title: L10nService.get('quiz.attachment_quiz.growth_areas', isEn ? AppLanguage.en : AppLanguage.tr),
+                  title: L10nService.get('quiz.attachment_quiz.growth_areas', language),
                   items: style.localizedGrowthAreas(isEn),
                   icon: Icons.spa_rounded,
                   color: AppColors.amethyst,
@@ -617,11 +620,12 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          L10nService.get('quiz.attachment_quiz.full_breakdown', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('quiz.attachment_quiz.full_breakdown', language),
           style: AppTypography.displayFont.copyWith(
             fontSize: 18,
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
@@ -777,8 +781,9 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildShareButton(BuildContext context, bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return GradientButton(
-      label: L10nService.get('quiz.attachment_quiz.share_your_result', isEn ? AppLanguage.en : AppLanguage.tr),
+      label: L10nService.get('quiz.attachment_quiz.share_your_result', language),
       icon: Icons.share_rounded,
       onPressed: () {
         if (_result == null) return;
@@ -797,8 +802,9 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
   }
 
   Widget _buildGoDeeperButton(BuildContext context, bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return GradientOutlinedButton(
-      label: L10nService.get('quiz.attachment_quiz.go_deeper_premium', isEn ? AppLanguage.en : AppLanguage.tr),
+      label: L10nService.get('quiz.attachment_quiz.go_deeper_premium', language),
       icon: Icons.auto_awesome,
       variant: GradientTextVariant.gold,
       expanded: true,
@@ -816,13 +822,14 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
   }
 
   Widget _buildRetakeButton(BuildContext context, bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return SizedBox(
       width: double.infinity,
       height: 48,
       child: TextButton(
         onPressed: _restartQuiz,
         child: Text(
-          L10nService.get('quiz.attachment_quiz.retake_quiz', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('quiz.attachment_quiz.retake_quiz', language),
           style: AppTypography.elegantAccent(
             fontSize: 15,
             color: AppColors.textSecondary,

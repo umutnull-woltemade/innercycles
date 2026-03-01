@@ -54,6 +54,7 @@ class _ShareCardGalleryScreenState
     int streak, {
     EmotionalCycleAnalysis? cycleAnalysis,
   }) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     // Extract cycle position data when available
     String? cyclePhaseName;
     String? cyclePhaseDescription;
@@ -63,7 +64,7 @@ class _ShareCardGalleryScreenState
     if (cycleAnalysis != null && template.id == 'cycle_position') {
       final phase = cycleAnalysis.overallPhase;
       if (phase != null) {
-        final lang = isEn ? AppLanguage.en : AppLanguage.tr;
+        final lang = language;
         cyclePhaseName = phase.label(lang);
         cyclePhaseDescription = phase.description(lang);
       }
@@ -101,6 +102,7 @@ class _ShareCardGalleryScreenState
   // =========================================================================
 
   Future<void> _onShare(bool isEn, AppLanguage language) async {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     // Share cards are now FREE for all users (viral growth strategy).
     // Free users get a "Made with InnerCycles" watermark on their cards.
     // Premium users get clean cards without promotional watermark.
@@ -113,12 +115,12 @@ class _ShareCardGalleryScreenState
 
     setState(() => _isSharing = true);
 
-    final shareText = L10nService.get('sharing.share_gallery.check_out_my_innercycles_card_innercycle', isEn ? AppLanguage.en : AppLanguage.tr);
+    final shareText = L10nService.get('sharing.share_gallery.check_out_my_innercycles_card_innercycle', language);
 
     final result = await InstagramShareService.shareCosmicContent(
       boundary: boundary,
       shareText: shareText,
-      hashtags: L10nService.get('sharing.hashtags_journaling', isEn ? AppLanguage.en : AppLanguage.tr),
+      hashtags: L10nService.get('sharing.hashtags_journaling', language),
       language: language,
     );
 
@@ -126,7 +128,7 @@ class _ShareCardGalleryScreenState
     setState(() => _isSharing = false);
 
     if (result.success) {
-      _showSnackBar(L10nService.get('sharing.share_gallery.shared_successfully', isEn ? AppLanguage.en : AppLanguage.tr));
+      _showSnackBar(L10nService.get('sharing.share_gallery.shared_successfully', language));
     } else if (result.error == ShareError.dismissed) {
       // user cancelled
     } else {
@@ -135,13 +137,14 @@ class _ShareCardGalleryScreenState
   }
 
   Future<void> _onCopy(bool isEn, ShareCardData cardData) async {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final text =
         '${cardData.headline}\n${cardData.subtitle}'
         '${cardData.detail != null ? '\n${cardData.detail}' : ''}'
         '\n\n- InnerCycles';
     await Clipboard.setData(ClipboardData(text: text));
     if (!mounted) return;
-    _showSnackBar(L10nService.get('sharing.share_gallery.copied_to_clipboard', isEn ? AppLanguage.en : AppLanguage.tr));
+    _showSnackBar(L10nService.get('sharing.share_gallery.copied_to_clipboard', language));
   }
 
   void _showSnackBar(String message) {
@@ -239,6 +242,7 @@ class _ShareCardGalleryScreenState
         itemCount: ShareCardCategory.values.length,
         separatorBuilder: (_, _) => const SizedBox(width: 8),
         itemBuilder: (context, index) {
+          final language = isEn ? AppLanguage.en : AppLanguage.tr;
           final category = ShareCardCategory.values[index];
           final isSelected = category == _selectedCategory;
           final accent = _categoryAccent(category);
@@ -246,7 +250,7 @@ class _ShareCardGalleryScreenState
           return Semantics(
             button: true,
             selected: isSelected,
-            label: L10nService.getWithParams('sharing.category_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'name': category.label(isEn)}),
+            label: L10nService.getWithParams('sharing.category_label', language, params: {'name': category.label(isEn)}),
             child: GestureDetector(
               onTap: () {
                 HapticFeedback.selectionClick();
@@ -326,6 +330,7 @@ class _ShareCardGalleryScreenState
       ),
       itemCount: templates.length,
       itemBuilder: (context, index) {
+        final language = isEn ? AppLanguage.en : AppLanguage.tr;
         final template = templates[index];
         final data = _buildDataForTemplate(
           template,
@@ -337,7 +342,7 @@ class _ShareCardGalleryScreenState
 
         return Semantics(
           button: true,
-          label: L10nService.getWithParams('sharing.preview_card', isEn ? AppLanguage.en : AppLanguage.tr, params: {'name': template.title(isEn)}),
+          label: L10nService.getWithParams('sharing.preview_card', language, params: {'name': template.title(isEn)}),
           child: GestureDetector(
             onTap: () {
               HapticFeedback.lightImpact();
@@ -377,6 +382,7 @@ class _ShareCardGalleryScreenState
     int streak,
     EmotionalCycleAnalysis? cycleAnalysis,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final template = _previewTemplate!;
     final data = _buildDataForTemplate(
       template,
@@ -403,7 +409,7 @@ class _ShareCardGalleryScreenState
                     : AppColors.lightTextSecondary,
               ),
               label: Text(
-                L10nService.get('sharing.share_gallery.back_to_gallery', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('sharing.share_gallery.back_to_gallery', language),
                 style: AppTypography.subtitle(
                   fontSize: 13,
                   color: isDark
@@ -456,6 +462,7 @@ class _ShareCardGalleryScreenState
     AppLanguage language,
     ShareCardData cardData,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final accent = _previewTemplate != null
         ? ShareCardTemplates.accentColor(_previewTemplate!)
         : AppColors.auroraStart;
@@ -469,7 +476,7 @@ class _ShareCardGalleryScreenState
             flex: 2,
             child: _ActionButton(
               icon: Icons.share_rounded,
-              label: L10nService.get('sharing.share_gallery.share', isEn ? AppLanguage.en : AppLanguage.tr),
+              label: L10nService.get('sharing.share_gallery.share', language),
               isPrimary: true,
               isLoading: _isSharing,
               accentColor: accent,
@@ -483,7 +490,7 @@ class _ShareCardGalleryScreenState
           Expanded(
             child: _ActionButton(
               icon: Icons.copy_rounded,
-              label: L10nService.get('sharing.share_gallery.copy', isEn ? AppLanguage.en : AppLanguage.tr),
+              label: L10nService.get('sharing.share_gallery.copy', language),
               isDark: isDark,
               onTap: () => _onCopy(isEn, cardData),
             ),

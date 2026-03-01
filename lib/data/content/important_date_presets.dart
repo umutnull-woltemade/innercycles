@@ -15,17 +15,18 @@ enum ImportantDateCategory {
   reflective;
 
   String label(bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     switch (this) {
       case ImportantDateCategory.personalMilestone:
-        return L10nService.get('data.content.important_date_presets.personal_milestones', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.content.important_date_presets.personal_milestones', language);
       case ImportantDateCategory.relationship:
-        return L10nService.get('data.content.important_date_presets.relationships', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.content.important_date_presets.relationships', language);
       case ImportantDateCategory.challenge:
-        return L10nService.get('data.content.important_date_presets.challenges', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.content.important_date_presets.challenges', language);
       case ImportantDateCategory.growth:
-        return L10nService.get('data.content.important_date_presets.growth', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.content.important_date_presets.growth', language);
       case ImportantDateCategory.reflective:
-        return L10nService.get('data.content.important_date_presets.reflective', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.content.important_date_presets.reflective', language);
     }
   }
 }

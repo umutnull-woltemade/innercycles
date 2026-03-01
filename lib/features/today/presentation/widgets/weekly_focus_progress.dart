@@ -42,6 +42,7 @@ class WeeklyFocusProgress extends ConsumerWidget {
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (service) {
+        final language = isEn ? AppLanguage.en : AppLanguage.tr;
         final now = DateTime.now();
         final weekStart = now.subtract(Duration(days: now.weekday - 1));
         final allEntries = service.getAllEntries();
@@ -67,7 +68,7 @@ class WeeklyFocusProgress extends ConsumerWidget {
               Flexible(
                 flex: 0,
                 child: Text(
-                  L10nService.get('today.weekly_focus_progress.week', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('today.weekly_focus_progress.week', language),
                   style: AppTypography.elegantAccent(
                     fontSize: 12,
                     color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,

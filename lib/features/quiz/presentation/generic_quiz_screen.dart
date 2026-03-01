@@ -200,6 +200,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppConstants.spacingSm,
@@ -208,7 +209,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
       child: Row(
         children: [
           IconButton(
-            tooltip: L10nService.get('quiz.generic_quiz.back', isEn ? AppLanguage.en : AppLanguage.tr),
+            tooltip: L10nService.get('quiz.generic_quiz.back', language),
             onPressed: () {
               if (_currentPage > 0) {
                 _pageController.previousPage(
@@ -229,7 +230,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
           ),
           Expanded(
             child: Text(
-              definition.localizedTitle(isEn ? AppLanguage.en : AppLanguage.tr),
+              definition.localizedTitle(language),
               textAlign: TextAlign.center,
               style: AppTypography.displayFont.copyWith(
                 fontSize: 22,
@@ -281,7 +282,8 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
     bool isEn,
   ) {
     final question = definition.questions[index];
-    final questionText = isEn ? question.text : question.textTr;
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
+    final questionText = question.localizedText(language);
     final selectedAnswer = _answers.length > index ? _answers[index] : -1;
 
     return CustomScrollView(
@@ -310,7 +312,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
               const SizedBox(height: AppConstants.spacingXl),
               ...List.generate(question.options.length, (optionIndex) {
                 final option = question.options[optionIndex];
-                final optionText = isEn ? option.text : option.textTr;
+                final optionText = option.localizedText(language);
                 final isSelected = selectedAnswer == optionIndex;
 
                 return Padding(
@@ -443,6 +445,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final result = _result!;
     final winningDim = definition.dimensions[result.resultType];
     if (winningDim == null) return const SizedBox.shrink();
@@ -453,7 +456,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(title: L10nService.get('quiz.generic_quiz.your_result', isEn ? AppLanguage.en : AppLanguage.tr)),
+          GlassSliverAppBar(title: L10nService.get('quiz.generic_quiz.your_result', language)),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
@@ -487,8 +490,8 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
                 if (winningDim.strengthsEn.isNotEmpty) ...[
                   _buildListSection(
                     context,
-                    title: L10nService.get('quiz.generic_quiz.your_strengths', isEn ? AppLanguage.en : AppLanguage.tr),
-                    items: winningDim.localizedStrengths(isEn ? AppLanguage.en : AppLanguage.tr),
+                    title: L10nService.get('quiz.generic_quiz.your_strengths', language),
+                    items: winningDim.localizedStrengths(language),
                     icon: Icons.star_rounded,
                     color: AppColors.starGold,
                     isDark: isDark,
@@ -500,8 +503,8 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
                 if (winningDim.growthAreasEn.isNotEmpty) ...[
                   _buildListSection(
                     context,
-                    title: L10nService.get('quiz.generic_quiz.growth_areas', isEn ? AppLanguage.en : AppLanguage.tr),
-                    items: winningDim.localizedGrowthAreas(isEn ? AppLanguage.en : AppLanguage.tr),
+                    title: L10nService.get('quiz.generic_quiz.growth_areas', language),
+                    items: winningDim.localizedGrowthAreas(language),
                     icon: Icons.spa_rounded,
                     color: AppColors.amethyst,
                     isDark: isDark,
@@ -565,6 +568,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final percentage = (result.percentageFor(result.resultType) * 100)
         .toStringAsFixed(0);
 
@@ -590,7 +594,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
               AppSymbol.hero(dim.emoji),
               const SizedBox(height: AppConstants.spacingMd),
               Text(
-                dim.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
+                dim.localizedName(language),
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 20,
                   color: dim.color,
@@ -609,7 +613,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
               ),
               const SizedBox(height: AppConstants.spacingLg),
               Text(
-                dim.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
+                dim.localizedDescription(language),
                 style: AppTypography.decorativeScript(
                   fontSize: 15,
                   color: isDark
@@ -633,11 +637,12 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          L10nService.get('quiz.generic_quiz.full_breakdown', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('quiz.generic_quiz.full_breakdown', language),
           style: AppTypography.displayFont.copyWith(
             fontSize: 18,
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
@@ -673,6 +678,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
     required bool isDark,
     required bool isEn,
   }) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -681,7 +687,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
           children: [
             Expanded(
               child: Text(
-                dim.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
+                dim.localizedName(language),
                 style: AppTypography.subtitle(
                   fontSize: 14,
                   color: isDark
@@ -794,8 +800,9 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildRetakeButton(BuildContext context, bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return GradientButton(
-      label: L10nService.get('quiz.generic_quiz.retake_quiz', isEn ? AppLanguage.en : AppLanguage.tr),
+      label: L10nService.get('quiz.generic_quiz.retake_quiz', language),
       icon: Icons.refresh_rounded,
       onPressed: _restartQuiz,
       expanded: true,
@@ -806,13 +813,14 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
   }
 
   Widget _buildBackToHubButton(BuildContext context, bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return SizedBox(
       width: double.infinity,
       height: 48,
       child: TextButton(
         onPressed: () => context.go(Routes.quizHub),
         child: Text(
-          L10nService.get('quiz.generic_quiz.back_to_all_quizzes', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('quiz.generic_quiz.back_to_all_quizzes', language),
           style: AppTypography.elegantAccent(
             fontSize: 15,
             color: AppColors.textSecondary,

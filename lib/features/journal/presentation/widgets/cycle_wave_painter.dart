@@ -66,6 +66,7 @@ class _CycleWaveChartState extends State<CycleWaveChart> {
 
   @override
   Widget build(BuildContext context) {
+    final language = widget.isEn ? AppLanguage.en : AppLanguage.tr;
     return GestureDetector(
       onTapDown: (details) => _handleTap(details.localPosition),
       onPanUpdate: (details) => _handleTap(details.localPosition),
@@ -77,7 +78,7 @@ class _CycleWaveChartState extends State<CycleWaveChart> {
         });
       },
       child: Semantics(
-        label: L10nService.get('journal.cycle_wave_painter.emotional_cycle_wave_chart', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+        label: L10nService.get('journal.cycle_wave_painter.emotional_cycle_wave_chart', language),
         image: true,
         child: RepaintBoundary(
           child: CustomPaint(

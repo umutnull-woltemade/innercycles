@@ -41,8 +41,9 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
     if (!canBio) return;
 
     final isEn = StorageService.loadLanguage() == AppLanguage.en;
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final success = await service.authenticateWithBiometrics(
-      reason: L10nService.get('app_lock.app_lock.unlock_innercycles', isEn ? AppLanguage.en : AppLanguage.tr),
+      reason: L10nService.get('app_lock.app_lock.unlock_innercycles', language),
     );
     if (success && mounted) {
       context.go(Routes.today);
@@ -232,8 +233,9 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
   }
 
   Widget _buildDeleteButton(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Semantics(
-      label: L10nService.get('app_lock.app_lock.delete', isEn ? AppLanguage.en : AppLanguage.tr),
+      label: L10nService.get('app_lock.app_lock.delete', language),
       button: true,
       child: GestureDetector(
         onTap: _onDelete,
@@ -255,8 +257,9 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
   }
 
   Widget _buildBioButton(bool isDark, bool isEn) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Semantics(
-      label: L10nService.get('app_lock.app_lock.unlock_with_biometrics', isEn ? AppLanguage.en : AppLanguage.tr),
+      label: L10nService.get('app_lock.app_lock.unlock_with_biometrics', language),
       button: true,
       child: GestureDetector(
         onTap: () {
