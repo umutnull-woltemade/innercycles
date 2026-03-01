@@ -235,25 +235,35 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                 ],
               ),
               const SizedBox(height: 6),
-              // TODO: Pull prices from RevenueCat package info instead of hardcoding
-              Text(
-                isEn
-                    ? 'Yearly plan: \$14.99/yr (normally \$29.99)'
-                    : 'Yıllık plan: \$14.99/yıl (normalde \$29.99)',
-                style: AppTypography.subtitle(
-                  fontSize: 12,
-                  color: AppColors.textSecondary,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                isEn
-                    ? 'Auto-renews at \$29.99/yr after introductory period'
-                    : 'Tanıtım döneminden sonra \$29.99/yıl olarak otomatik yenilenir',
-                style: AppTypography.subtitle(
-                  fontSize: 10,
-                  color: AppColors.textSecondary,
-                ),
+              Builder(
+                builder: (_) {
+                  final premiumNotifier = ref.read(premiumProvider.notifier);
+                  final introPrice = premiumNotifier.getIntroPrice(PremiumTier.yearly) ?? '\$14.99/yr';
+                  final regularPrice = premiumNotifier.getProductPrice(PremiumTier.yearly) ?? '\$29.99/yr';
+                  return Column(
+                    children: [
+                      Text(
+                        isEn
+                            ? 'Yearly plan: $introPrice (normally $regularPrice)'
+                            : 'Yıllık plan: $introPrice (normalde $regularPrice)',
+                        style: AppTypography.subtitle(
+                          fontSize: 12,
+                          color: AppColors.textSecondary,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        isEn
+                            ? 'Auto-renews at $regularPrice after introductory period'
+                            : 'Tanıtım döneminden sonra $regularPrice olarak otomatik yenilenir',
+                        style: AppTypography.subtitle(
+                          fontSize: 10,
+                          color: AppColors.textSecondary,
+                        ),
+                      ),
+                    ],
+                  );
+                },
               ),
             ],
           ),

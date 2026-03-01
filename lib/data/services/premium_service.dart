@@ -36,7 +36,7 @@ extension PremiumTierExtension on PremiumTier {
     }
   }
 
-  // TODO: Replace hardcoded prices with RevenueCat getProductPrice() values
+  /// Hardcoded fallback prices (used when RevenueCat products aren't loaded)
   String get price {
     switch (this) {
       case PremiumTier.free:
@@ -632,6 +632,16 @@ class PremiumNotifier extends Notifier<PremiumState> {
     for (final product in state.availableProducts) {
       if (product.identifier == tier.productId) {
         return product.priceString;
+      }
+    }
+    return null;
+  }
+
+  /// Get introductory offer price by tier
+  String? getIntroPrice(PremiumTier tier) {
+    for (final product in state.availableProducts) {
+      if (product.identifier == tier.productId) {
+        return product.introductoryPrice?.priceString;
       }
     }
     return null;
