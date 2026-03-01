@@ -844,39 +844,44 @@ class _BottomWatermark extends StatelessWidget {
                   ),
                 )
               // Free: promotional watermark — every share = free ad
-              : Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              : Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    // Download CTA
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: accent.withValues(alpha: 0.12),
-                        border: Border.all(
-                          color: accent.withValues(alpha: 0.25),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // Download CTA
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: accent.withValues(alpha: 0.12),
+                            border: Border.all(
+                              color: accent.withValues(alpha: 0.25),
+                            ),
+                          ),
+                          child: Text(
+                            L10nService.get('sharing.try_innercycles', language),
+                            style: AppTypography.elegantAccent(
+                              fontSize: 11,
+                              color: accent,
+                              letterSpacing: 0.4,
+                            ),
+                          ),
                         ),
-                      ),
-                      child: Text(
-                        L10nService.get('sharing.try_innercycles', language),
-                        style: AppTypography.elegantAccent(
-                          fontSize: 11,
-                          color: accent,
-                          letterSpacing: 0.4,
+                        // App Store URL
+                        Text(
+                          'innercycles.app',
+                          style: AppTypography.elegantAccent(
+                            fontSize: 10,
+                            color: accent.withValues(alpha: 0.6),
+                            letterSpacing: 0.5,
+                          ),
                         ),
-                      ),
-                    ),
-                    // Brand name
-                    Text(
-                      L10nService.get('sharing.made_with', language),
-                      style: AppTypography.elegantAccent(
-                        fontSize: 10,
-                        color: AppColors.textMuted,
-                        letterSpacing: 0.8,
-                      ),
+                      ],
                     ),
                   ],
                 ),

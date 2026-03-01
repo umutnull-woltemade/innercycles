@@ -354,7 +354,7 @@
   },
   "home": {
     "greeting": "Merhaba, {name}!",
-    "todays_cosmic_message": "Bugünün Döngü Pozisyonu",
+    "todays_cosmic_message": "Bugünün Günlük Odağı",
     "chips": {
       "dream": "Rüya",
       "journal": "Günlük",

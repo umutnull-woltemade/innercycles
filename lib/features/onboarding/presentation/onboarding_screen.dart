@@ -37,13 +37,14 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 // Quiz data moved to standalone ArchetypeQuizScreen (post-onboarding)
 
 // ════════════════════════════════════════════════════════════════════════════
-// ONBOARDING SCREEN — 5-Step Focused Flow
+// ONBOARDING SCREEN — 6-Step Focused Flow
 // ════════════════════════════════════════════════════════════════════════════
 //   Page 0: Welcome — Branding + 3 feature highlights
 //   Page 1: Identity — Name + Apple Sign-In
 //   Page 2: First Cycle — Focus area selection
 //   Page 3: First Mood — Quick mood check-in (seeds data for trends)
-//   Page 4: Permission + Start — Notifications + CTA
+//   Page 4: Premium — Soft paywall with skip option
+//   Page 5: Permission + Start — Notifications + CTA
 // ════════════════════════════════════════════════════════════════════════════
 
 class OnboardingScreen extends ConsumerStatefulWidget {
@@ -65,7 +66,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   bool _isCompleting = false;
   String _referralCode = '';
 
-  static const int _totalPages = 5; // 1 welcome + 4 setup
+  static const int _totalPages = 6; // 1 welcome + 4 setup + 1 paywall
   static const int _valuePropCount = 1;
 
   @override
@@ -181,6 +182,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     if (step == 0) return _userName == null || _userName!.isEmpty;
     if (step == 1) return _selectedFocusArea == null;
     if (step == 2) return _selectedMood == null;
+    if (step == 3) return true; // Paywall page is always skippable
     return false;
   }
 
@@ -283,6 +285,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           language: language,
         );
       case 4:
+        return _PaywallPage(
+          onSkip: _nextPage,
+          language: language,
+        );
+      case 5:
         return _PermissionStartPage(
           notificationsRequested: _notificationsRequested,
           onRequestNotifications: _requestNotifications,
@@ -1208,7 +1215,158 @@ class _FirstMoodPage extends StatelessWidget {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// STEP 3: PERMISSION + START
+// STEP 3: PREMIUM PAYWALL (soft — always skippable)
+// ════════════════════════════════════════════════════════════════════════════
+
+class _PaywallPage extends StatelessWidget {
+  final VoidCallback onSkip;
+  final AppLanguage language;
+
+  const _PaywallPage({
+    required this.onSkip,
+    required this.language,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isEn = language == AppLanguage.en;
+
+    final features = [
+      (Icons.insights_rounded, isEn ? 'Personalized Reflections' : 'Kişiselleştirilmiş Yansımalar', isEn ? 'AI-powered insights from your entries' : 'Girişlerinden güçlü içgörüler'),
+      (Icons.auto_graph_rounded, isEn ? 'Advanced Patterns' : 'Gelişmiş Örüntüler', isEn ? 'Deep emotional trend detection' : 'Derin duygusal eğilim tespiti'),
+      (Icons.all_inclusive_rounded, isEn ? 'Unlimited Entries' : 'Sınırsız Giriş', isEn ? 'Journal and dream logs without limits' : 'Sınırsız günlük ve rüya kaydı'),
+      (Icons.block_rounded, isEn ? 'Ad-Free Experience' : 'Reklamsız Deneyim', isEn ? 'Focus on you, not ads' : 'Reklamlara değil, kendine odaklan'),
+    ];
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            const SizedBox(height: 24),
+
+            // Crown icon
+            Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: RadialGradient(
+                  colors: [
+                    AppColors.starGold.withValues(alpha: 0.15),
+                    Colors.transparent,
+                  ],
+                ),
+              ),
+              child: Icon(
+                Icons.workspace_premium_rounded,
+                size: 40,
+                color: AppColors.starGold,
+              ),
+            ).animate().scale(
+              begin: const Offset(0.8, 0.8),
+              end: const Offset(1, 1),
+              duration: 500.ms,
+              curve: Curves.easeOutBack,
+            ),
+
+            const SizedBox(height: 20),
+
+            GradientText(
+              isEn ? 'Unlock Your Full Potential' : 'Tam Potansiyelini Aç',
+              variant: GradientTextVariant.gold,
+              style: AppTypography.displayFont.copyWith(
+                fontSize: 26,
+                fontWeight: FontWeight.w700,
+              ),
+              textAlign: TextAlign.center,
+            ),
+
+            const SizedBox(height: 8),
+
+            Text(
+              isEn
+                  ? 'Get deeper insights and unlimited journaling'
+                  : 'Daha derin içgörüler ve sınırsız günlük',
+              style: AppTypography.subtitle(
+                fontSize: 15,
+                color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              ),
+              textAlign: TextAlign.center,
+            ),
+
+            const SizedBox(height: 28),
+
+            // Feature list
+            ...features.asMap().entries.map((entry) {
+              final i = entry.key;
+              final (icon, title, desc) = entry.value;
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 14),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.starGold.withValues(alpha: isDark ? 0.1 : 0.08),
+                      ),
+                      child: Icon(icon, size: 20, color: AppColors.starGold),
+                    ),
+                    const SizedBox(width: 14),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            title,
+                            style: AppTypography.displayFont.copyWith(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                            ),
+                          ),
+                          Text(
+                            desc,
+                            style: AppTypography.subtitle(
+                              fontSize: 13,
+                              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ).animate(delay: (100 + i * 80).ms).fadeIn(duration: 300.ms).slideX(begin: 0.1, end: 0);
+            }),
+
+            const SizedBox(height: 24),
+
+            // CTA — navigate to premium screen
+            GradientButton.gold(
+              label: isEn ? 'See Plans' : 'Planları Gör',
+              icon: Icons.arrow_forward_rounded,
+              width: double.infinity,
+              onPressed: () {
+                HapticFeedback.lightImpact();
+                context.push(Routes.premium);
+              },
+            ),
+
+            const SizedBox(height: 8),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// STEP 4: PERMISSION + START
 // ════════════════════════════════════════════════════════════════════════════
 
 class _PermissionStartPage extends StatefulWidget {

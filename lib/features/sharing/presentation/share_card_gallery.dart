@@ -20,6 +20,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/emotional_cycle_service.dart';
 import '../../../data/services/instagram_share_service.dart';
 import '../../../data/services/premium_service.dart';
+import '../../../data/services/review_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import 'widgets/share_card_renderer.dart';
@@ -128,6 +129,9 @@ class _ShareCardGalleryScreenState
 
     if (result.success) {
       _showSnackBar(L10nService.get('sharing.share_gallery.shared_successfully', language));
+      // Trigger review prompt after successful share
+      ReviewService.init().then((rs) =>
+        rs.checkAndPromptReview(ReviewTrigger.shareCompleted));
     } else if (result.error == ShareError.dismissed) {
       // user cancelled
     } else {

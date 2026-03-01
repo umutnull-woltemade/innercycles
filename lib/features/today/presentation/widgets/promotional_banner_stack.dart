@@ -86,7 +86,11 @@ class _PromotionalBannerStackState
     final weeklyWidget = _buildWeeklyShare();
     if (weeklyWidget != null) banners.add(weeklyWidget);
 
-    // 6. Invite Friends (referral-powered)
+    // 6. Seasonal Marketing Hook
+    final seasonalWidget = _buildSeasonalHook();
+    if (seasonalWidget != null) banners.add(seasonalWidget);
+
+    // 7. Invite Friends (referral-powered)
     final inviteWidget = _buildInviteFriends();
     if (inviteWidget != null) banners.add(inviteWidget);
 
@@ -575,6 +579,113 @@ class _PromotionalBannerStackState
                       L10nService.get('today.promotional_stack.share_your_weeks_insights', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 14,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 14,
+                color: isDark
+                    ? AppColors.textMuted
+                    : AppColors.lightTextMuted,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  // ── SEASONAL MARKETING HOOK ──
+  Widget? _buildSeasonalHook() {
+    final now = DateTime.now();
+    final m = now.month;
+    final d = now.day;
+
+    String? titleEn, titleTr, subtitleEn, subtitleTr;
+    IconData icon = Icons.auto_awesome;
+    String route = Routes.journal;
+
+    // New Year (Jan 1-7)
+    if (m == 1 && d <= 7) {
+      titleEn = 'New Year, New Journal';
+      titleTr = 'Yeni Yıl, Yeni Günlük';
+      subtitleEn = 'Start your ${now.year} journaling practice today';
+      subtitleTr = '${now.year} yazma pratiğine bugün başla';
+      icon = Icons.celebration_rounded;
+    }
+    // Valentine's / Self-Love (Feb 10-15)
+    else if (m == 2 && d >= 10 && d <= 15) {
+      titleEn = 'A Love Letter to Yourself';
+      titleTr = 'Kendine Bir Aşk Mektubu';
+      subtitleEn = 'Reflect on what makes you, you';
+      subtitleTr = 'Seni sen yapan şeyleri düşün';
+      icon = Icons.favorite_rounded;
+    }
+    // Mental Health Month (May 1-31)
+    else if (m == 5) {
+      titleEn = 'Mental Health Awareness Month';
+      titleTr = 'Ruh Sağlığı Farkındalık Ayı';
+      subtitleEn = 'Your journal is your safe space';
+      subtitleTr = 'Günlüğün senin güvenli alanın';
+      icon = Icons.psychology_rounded;
+    }
+    // Back to School / Fresh Start (Sep 1-15)
+    else if (m == 9 && d <= 15) {
+      titleEn = 'Fresh Start Season';
+      titleTr = 'Yeni Başlangıç Mevsimi';
+      subtitleEn = 'Set your intentions for the season ahead';
+      subtitleTr = 'Önündeki mevsim için niyetlerini belirle';
+      icon = Icons.eco_rounded;
+    }
+
+    if (titleEn == null) return null;
+
+    final title = isEn ? titleEn : titleTr!;
+    final subtitle = isEn ? subtitleEn! : subtitleTr!;
+
+    return Semantics(
+      button: true,
+      label: title,
+      child: TapScale(
+        onTap: () {
+          HapticService.buttonPress();
+          context.push(route);
+        },
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: isDark
+                ? AppColors.auroraStart.withValues(alpha: 0.08)
+                : AppColors.auroraStart.withValues(alpha: 0.05),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Row(
+            children: [
+              Icon(icon, size: 28, color: AppColors.starGold),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    GradientText(
+                      title,
+                      variant: GradientTextVariant.gold,
+                      style: AppTypography.displayFont.copyWith(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      subtitle,
+                      style: AppTypography.elegantAccent(
+                        fontSize: 13,
                         color: isDark
                             ? AppColors.textMuted
                             : AppColors.lightTextMuted,

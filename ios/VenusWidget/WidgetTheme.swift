@@ -84,7 +84,7 @@ struct WidgetStrings {
     var mood: String { isEnglish ? "Mood" : "Ruh Hali" }
     var energy: String { isEnglish ? "Energy" : "Enerji" }
     var weeklyTrend: String { isEnglish ? "Weekly Trend" : "Haftalik Egilim" }
-    var cyclePosition: String { isEnglish ? "Cycle Position" : "Dongu Konumu" }
+    var cyclePosition: String { isEnglish ? "Daily Focus" : "Gunluk Odak" }
     var weeklyMood: String { isEnglish ? "Weekly Mood" : "Haftalik Ruh Hali" }
     var appName: String { "InnerCycles" }
     var logMood: String { isEnglish ? "Quick Log" : "Hizli Kayit" }

@@ -354,7 +354,7 @@
   },
   "home": {
     "greeting": "Hi, {name}!",
-    "todays_cosmic_message": "Today's Cycle Position",
+    "todays_cosmic_message": "Today's Daily Focus",
     "chips": {
       "dream": "Dream",
       "journal": "Journal",
@@ -1692,7 +1692,7 @@
     "reading": "Reading",
     "analysis": "Insight Analysis",
     "cosmic_energy": "Your Cycle Energy",
-    "daily_cosmic_energy": "Today's Cycle Position",
+    "daily_cosmic_energy": "Today's Daily Focus",
     "cosmic_overview": "Cycle Overview",
     "cosmic_harmony": "Cycle Harmony",
     "mood": "Mood",

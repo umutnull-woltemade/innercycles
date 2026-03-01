@@ -240,8 +240,8 @@ struct CyclePositionWidget: Widget {
         StaticConfiguration(kind: kind, provider: CyclePositionProvider()) { entry in
             CyclePositionWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Cycle Position")
-        .description("See where you are in your emotional cycle.")
+        .configurationDisplayName("Daily Focus")
+        .description("See your daily focus and emotional rhythm.")
         .supportedFamilies([.systemSmall, .systemMedium])
     }
 }

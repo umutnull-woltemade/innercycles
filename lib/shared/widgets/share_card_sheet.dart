@@ -15,6 +15,7 @@ import '../../shared/widgets/gradient_button.dart';
 import '../../data/models/share_card_models.dart';
 import '../../data/content/share_card_templates.dart';
 import '../../data/services/instagram_share_service.dart';
+import '../../data/services/review_service.dart';
 import '../../core/constants/app_constants.dart';
 import '../../data/providers/app_providers.dart';
 import '../../data/services/l10n_service.dart';
@@ -73,6 +74,10 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
       );
 
       if (mounted) Navigator.of(context).pop();
+
+      // Trigger review prompt after successful share
+      ReviewService.init().then((rs) =>
+        rs.checkAndPromptReview(ReviewTrigger.shareCompleted));
     } finally {
       if (mounted) setState(() => _isSharing = false);
     }
