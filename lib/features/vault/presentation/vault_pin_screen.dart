@@ -92,6 +92,22 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
     final isEn = language == AppLanguage.en;
 
     if (!mounted) return;
+
+    // Check lockout before processing verify attempts
+    if (_currentMode == _PinMode.verify && vaultService.isLockedOut) {
+      final remaining = vaultService.remainingLockoutTime;
+      final minutes = remaining.inMinutes;
+      final seconds = remaining.inSeconds % 60;
+      HapticService.error();
+      setState(() {
+        _pin = '';
+        _error = isEn
+            ? 'Too many attempts. Try again in ${minutes}m ${seconds}s'
+            : 'Çok fazla deneme. ${minutes}dk ${seconds}sn sonra tekrar deneyin';
+      });
+      return;
+    }
+
     switch (_currentMode) {
       case _PinMode.setup:
         _firstPin = _pin;
@@ -139,9 +155,20 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
           }
         } else {
           HapticService.error();
+          final attemptsLeft = vaultService.remainingAttempts;
           setState(() {
             _pin = '';
-            _error = L10nService.get('vault.vault_pin.that_pin_didnt_match_try_again', language);
+            if (vaultService.isLockedOut) {
+              final remaining = vaultService.remainingLockoutTime;
+              final minutes = remaining.inMinutes;
+              final seconds = remaining.inSeconds % 60;
+              _error = isEn
+                  ? 'Too many attempts. Try again in ${minutes}m ${seconds}s'
+                  : 'Çok fazla deneme. ${minutes}dk ${seconds}sn sonra tekrar deneyin';
+            } else {
+              _error = '${L10nService.get('vault.vault_pin.that_pin_didnt_match_try_again', language)}'
+                  ' ($attemptsLeft ${isEn ? 'left' : 'kaldı'})';
+            }
           });
         }
         break;
@@ -349,7 +376,10 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
   }
 
   Widget _buildDigitButton(int digit, bool isDark) {
-    return GestureDetector(
+    return Semantics(
+      label: '$digit',
+      button: true,
+      child: GestureDetector(
       onTap: () => _onDigitTap(digit),
       child: Container(
         width: 72,
@@ -369,11 +399,15 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
           ),
         ),
       ),
+    ),
     );
   }
 
   Widget _buildDeleteButton(bool isDark) {
-    return GestureDetector(
+    return Semantics(
+      label: 'Delete',
+      button: true,
+      child: GestureDetector(
       onTap: _onDelete,
       child: SizedBox(
         width: 72,
@@ -386,6 +420,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
           ),
         ),
       ),
+    ),
     );
   }
 }

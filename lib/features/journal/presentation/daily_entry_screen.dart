@@ -922,17 +922,22 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     ).glassListItem(context: context, index: 4);
   }
 
+  static const int _maxTags = 20;
+
   void _addTag() {
     final tag = _tagController.text.trim();
-    if (tag.isNotEmpty && !_tags.contains(tag)) {
-      HapticService.buttonPress();
-      setState(() {
-        _tags.add(tag);
-        _hasChanges = true;
-      });
-      _tagController.clear();
-      _scheduleDraftSave();
+    if (tag.isEmpty || _tags.contains(tag)) return;
+    if (_tags.length >= _maxTags) {
+      HapticService.error();
+      return;
     }
+    HapticService.buttonPress();
+    setState(() {
+      _tags.add(tag);
+      _hasChanges = true;
+    });
+    _tagController.clear();
+    _scheduleDraftSave();
   }
 
   Widget _buildTagSection(bool isDark, bool isEn) {
@@ -981,11 +986,14 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                               });
                               _scheduleDraftSave();
                             },
-                            child: Icon(
-                              Icons.close_rounded,
-                              size: 16,
-                              color: (isDark ? Colors.white : Colors.black)
-                                  .withValues(alpha: 0.3),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Icon(
+                                Icons.close_rounded,
+                                size: 16,
+                                color: (isDark ? Colors.white : Colors.black)
+                                    .withValues(alpha: 0.3),
+                              ),
                             ),
                           ),
                         ],
@@ -1002,6 +1010,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
               Expanded(
                 child: TextField(
                   controller: _tagController,
+                  maxLength: 50,
                   textCapitalization: TextCapitalization.words,
                   style: AppTypography.subtitle(
                     fontSize: 14,
@@ -1034,8 +1043,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
               GestureDetector(
                 onTap: _addTag,
                 child: Container(
-                  width: 38,
-                  height: 38,
+                  width: 44,
+                  height: 44,
                   decoration: BoxDecoration(
                     color: AppColors.starGold.withValues(alpha: 0.1),
                     shape: BoxShape.circle,
@@ -1206,9 +1215,19 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           _hasChanges = true;
         });
         _scheduleDraftSave();
-      } catch (_) {
-        // File copy failed (disk full, permission denied, etc.)
+      } catch (e) {
+        if (kDebugMode) debugPrint('DailyEntry: Image copy failed: $e');
         if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              ref.read(languageProvider) == AppLanguage.en
+                  ? 'Could not save photo. Please try again.'
+                  : 'Fotoğraf kaydedilemedi. Lütfen tekrar deneyin.',
+            ),
+            duration: const Duration(seconds: 3),
+          ),
+        );
       }
     }
   }

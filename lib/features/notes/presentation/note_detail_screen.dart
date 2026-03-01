@@ -194,16 +194,21 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
     if (mounted) context.pop();
   }
 
+  static const int _maxTags = 20;
+
   void _addTag() {
     final tag = _tagController.text.trim();
-    if (tag.isNotEmpty && !_tags.contains(tag)) {
-      HapticService.buttonPress();
-      setState(() {
-        _tags.add(tag);
-        _hasChanges = true;
-      });
-      _tagController.clear();
+    if (tag.isEmpty || _tags.contains(tag)) return;
+    if (_tags.length >= _maxTags) {
+      HapticService.error();
+      return;
     }
+    HapticService.buttonPress();
+    setState(() {
+      _tags.add(tag);
+      _hasChanges = true;
+    });
+    _tagController.clear();
   }
 
   Future<void> _addReminder(NoteToSelfService service, bool isPremium) async {
@@ -435,6 +440,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                   Expanded(
                                     child: TextField(
                                       controller: _titleController,
+                                      maxLength: 200,
                                       textCapitalization:
                                           TextCapitalization.sentences,
                                       textInputAction: TextInputAction.next,
@@ -506,6 +512,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                               // ═══════════════════════════════════════
                               TextField(
                                 controller: _contentController,
+                                maxLength: 5000,
                                 maxLines: null,
                                 minLines: 8,
                                 textCapitalization:
@@ -600,6 +607,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                         Expanded(
                                           child: TextField(
                                             controller: _tagController,
+                                            maxLength: 50,
                                             style: AppTypography.subtitle(
                                               fontSize: 14,
                                               color: isDark
@@ -1385,6 +1393,7 @@ class _ReminderForm extends StatelessWidget {
           // Custom message
           TextField(
             controller: messageController,
+            maxLength: 200,
             style: AppTypography.subtitle(
               fontSize: 14,
               color: isDark ? Colors.white : AppColors.lightTextPrimary,

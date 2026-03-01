@@ -6,6 +6,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
@@ -83,6 +84,18 @@ class JournalService with SupabaseSyncMixin {
 
   /// Delete an entry by ID
   Future<void> deleteEntry(String id) async {
+    final entry = _entries.where((e) => e.id == id).firstOrNull;
+
+    // Clean up associated image file
+    if (entry?.imagePath != null) {
+      try {
+        final file = File(entry!.imagePath!);
+        if (await file.exists()) await file.delete();
+      } catch (e) {
+        if (kDebugMode) debugPrint('JournalService: Failed to delete image: $e');
+      }
+    }
+
     _entries.removeWhere((e) => e.id == id);
     _sortedCache = null;
     await _persistEntries();

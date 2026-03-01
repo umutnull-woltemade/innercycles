@@ -232,6 +232,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         const SizedBox(height: 8),
         TextField(
           controller: _nameController,
+          maxLength: 100,
           onChanged: (_) => setState(() => _hasChanges = true),
           textCapitalization: TextCapitalization.words,
           keyboardType: TextInputType.name,
@@ -271,8 +272,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         ? CommonStrings.monthsFullEn
         : CommonStrings.monthsFullTr;
 
-    final daysInMonth = DateTime(2024, _selectedMonth + 1, 0).day;
-    if (_selectedDay > daysInMonth) _selectedDay = daysInMonth;
+    final daysInMonth = DateTime(_selectedYear ?? 2000, _selectedMonth + 1, 0).day;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -310,11 +310,15 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                       );
                     }),
                     onChanged: (v) {
-                      if (v != null)
+                      if (v != null) {
                         setState(() {
                           _selectedMonth = v;
+                          // Clamp day to valid range for new month
+                          final maxDay = DateTime(_selectedYear ?? 2000, v + 1, 0).day;
+                          if (_selectedDay > maxDay) _selectedDay = maxDay;
                           _hasChanges = true;
                         });
+                      }
                       HapticFeedback.selectionClick();
                     },
                   ),
@@ -400,7 +404,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                           ),
                         ),
                       ),
-                      ...List.generate(80, (i) {
+                      ...List.generate(120, (i) {
                         final year = DateTime.now().year - i;
                         return DropdownMenuItem(
                           value: year,
@@ -410,6 +414,9 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                     ],
                     onChanged: (v) => setState(() {
                       _selectedYear = v;
+                      // Clamp day to valid range for new year
+                      final maxDay = DateTime(v ?? 2000, _selectedMonth + 1, 0).day;
+                      if (_selectedDay > maxDay) _selectedDay = maxDay;
                       _hasChanges = true;
                     }),
                   ),
@@ -530,6 +537,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         const SizedBox(height: 8),
         TextField(
           controller: _noteController,
+          maxLength: 500,
           onChanged: (_) => setState(() => _hasChanges = true),
           maxLines: 3,
           textCapitalization: TextCapitalization.sentences,

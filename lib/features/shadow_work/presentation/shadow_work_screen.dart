@@ -577,6 +577,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
           // Response text field
           TextField(
             controller: _responseController,
+            maxLength: 5000,
             maxLines: 8,
             minLines: 4,
             style: AppTypography.subtitle(

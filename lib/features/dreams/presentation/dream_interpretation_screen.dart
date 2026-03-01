@@ -2430,6 +2430,7 @@ ${_getPersonalAdvice(sign)}''';
                     },
                     child: TextField(
                       controller: _dreamController,
+                      maxLength: 5000,
                       style: AppTypography.subtitle(
                         color: isDark
                             ? AppColors.textPrimary
