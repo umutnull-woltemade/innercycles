@@ -2157,29 +2157,29 @@ ${_getPersonalAdvice(sign)}''';
                             label: L10nService.get('dreams.dream_interpretation.copy', language),
                             child: GestureDetector(
                               behavior: HitTestBehavior.opaque,
-                            onTap: () {
-                              Clipboard.setData(ClipboardData(text: message.text));
-                              HapticService.buttonPress();
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(L10nService.get('dreams.dream_interpretation.copied', language)),
-                                  duration: const Duration(seconds: 1),
-                                  backgroundColor: AppColors.success,
+                              onTap: () {
+                                Clipboard.setData(ClipboardData(text: message.text));
+                                HapticService.buttonPress();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(L10nService.get('dreams.dream_interpretation.copied', language)),
+                                    duration: const Duration(seconds: 1),
+                                    backgroundColor: AppColors.success,
+                                  ),
+                                );
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(12),
+                                child: Icon(
+                                  Icons.content_copy_rounded,
+                                  size: 16,
+                                  color: isDark
+                                      ? AppColors.textMuted
+                                      : AppColors.lightTextMuted,
                                 ),
-                              );
-                            },
-                            child: Tooltip(
-                              message: L10nService.get('dreams.dream_interpretation.copy', language),
-                              child: Icon(
-                                Icons.content_copy_rounded,
-                                size: 14,
-                                color: isDark
-                                    ? AppColors.textMuted
-                                    : AppColors.lightTextMuted,
                               ),
                             ),
                           ),
-                        ),
                         ),
                       ],
                     ],

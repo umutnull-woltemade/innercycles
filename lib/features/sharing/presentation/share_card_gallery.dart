@@ -250,7 +250,7 @@ class _ShareCardGalleryScreenState
           return Semantics(
             button: true,
             selected: isSelected,
-            label: L10nService.getWithParams('sharing.category_label', language, params: {'name': category.label(language)}),
+            label: L10nService.getWithParams('sharing.category_label', language, params: {'name': category.label(language.isEn)}),
             child: GestureDetector(
               onTap: () {
                 HapticFeedback.selectionClick();
@@ -292,7 +292,7 @@ class _ShareCardGalleryScreenState
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      category.label(language),
+                      category.label(language.isEn),
                       style: AppTypography.subtitle(
                         fontSize: 13,
                         color: isSelected
@@ -342,7 +342,7 @@ class _ShareCardGalleryScreenState
 
         return Semantics(
           button: true,
-          label: L10nService.getWithParams('sharing.preview_card', language, params: {'name': template.title(language)}),
+          label: L10nService.getWithParams('sharing.preview_card', language, params: {'name': template.title(language.isEn)}),
           child: GestureDetector(
             onTap: () {
               HapticFeedback.lightImpact();
@@ -580,7 +580,7 @@ class _ThumbnailCard extends StatelessWidget {
                 border: Border.all(color: accent.withValues(alpha: 0.4)),
               ),
               child: Text(
-                template.badge(language),
+                template.badge(language.isEn),
                 style: AppTypography.elegantAccent(
                   fontSize: 10,
                   color: accent,
@@ -600,7 +600,7 @@ class _ThumbnailCard extends StatelessWidget {
                   Icon(template.icon, color: accent, size: 32),
                   const SizedBox(height: 10),
                   Text(
-                    template.title(language),
+                    template.title(language.isEn),
                     textAlign: TextAlign.center,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -613,7 +613,7 @@ class _ThumbnailCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    template.category.label(language),
+                    template.category.label(language.isEn),
                     style: AppTypography.elegantAccent(
                       fontSize: 10,
                       color: AppColors.textMuted,
