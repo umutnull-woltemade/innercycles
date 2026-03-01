@@ -34,7 +34,6 @@ class ProgramListScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isEn = language == AppLanguage.en;
     final isPremium = ref.watch(isPremiumUserProvider);
     final serviceAsync = ref.watch(guidedProgramServiceProvider);
 
@@ -133,9 +132,9 @@ class ProgramListScreen extends ConsumerWidget {
                                     isCompleted: false,
                                     isPremium: isPremium,
                                     isDark: isDark,
-                                    isEn: isEn,
+                                    language: language,
                                     onTap: () => context.push(
-                                      '${Routes.programs}/${p.id}',
+                                      Routes.programDetail.replaceFirst(':id', p.id),
                                     ),
                                   ),
                                 ),
@@ -169,7 +168,7 @@ class ProgramListScreen extends ConsumerWidget {
                               isPremium: isPremium,
                               isFirstTasteFree: allowFirstTaste && !isPremium,
                               isDark: isDark,
-                              isEn: isEn,
+                              language: language,
                               onTap: () {
                                 if (p.isPremium && !isPremium) {
                                   if (allowFirstTaste) {
@@ -179,7 +178,7 @@ class ProgramListScreen extends ConsumerWidget {
                                     );
                                     if (service.getProgress(p.id) != null) {
                                       context.push(
-                                        '${Routes.programs}/${p.id}',
+                                        Routes.programDetail.replaceFirst(':id', p.id),
                                       );
                                     } else {
                                       _startProgram(
@@ -187,7 +186,7 @@ class ProgramListScreen extends ConsumerWidget {
                                         ref,
                                         service,
                                         p,
-                                        isEn,
+                                        language,
                                       );
                                     }
                                     return;
@@ -200,16 +199,16 @@ class ProgramListScreen extends ConsumerWidget {
                                   return;
                                 }
                                 if (service.getProgress(p.id) != null) {
-                                  context.push('${Routes.programs}/${p.id}');
+                                  context.push(Routes.programDetail.replaceFirst(':id', p.id));
                                 } else {
-                                  _startProgram(context, ref, service, p, isEn);
+                                  _startProgram(context, ref, service, p, language);
                                 }
                               },
                             );
                           }),
                           ToolEcosystemFooter(
                             currentToolId: 'programList',
-                            isEn: isEn,
+                            language: language,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 40),
@@ -231,13 +230,13 @@ class ProgramListScreen extends ConsumerWidget {
     WidgetRef ref,
     GuidedProgramService service,
     GuidedProgram program,
-    bool isEn,
+    AppLanguage language,
   ) async {
     await service.startProgram(program.id);
     ref.invalidate(guidedProgramServiceProvider);
     HapticFeedback.mediumImpact();
     if (context.mounted) {
-      context.push('${Routes.programs}/${program.id}');
+      context.push(Routes.programDetail.replaceFirst(':id', program.id));
     }
   }
 }
@@ -253,7 +252,7 @@ class _ProgramCard extends StatelessWidget {
   final bool isPremium;
   final bool isFirstTasteFree;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final VoidCallback onTap;
 
   const _ProgramCard({
@@ -263,13 +262,12 @@ class _ProgramCard extends StatelessWidget {
     required this.isPremium,
     this.isFirstTasteFree = false,
     required this.isDark,
-    required this.isEn,
+    required this.language,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     final isLocked = program.isPremium && !isPremium && !isFirstTasteFree;
     final hasProgress = progress != null && !progress!.isCompleted;
     final completionPercent = hasProgress
