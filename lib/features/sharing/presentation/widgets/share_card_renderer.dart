@@ -149,7 +149,7 @@ class ShareCardRenderer extends StatelessWidget {
             Positioned(
               top: 20,
               right: 20,
-              child: _BadgePill(text: template.badge(language), color: accent),
+              child: _BadgePill(text: template.badge(language.isEn), color: accent),
             ),
 
             // Main content by layout type
