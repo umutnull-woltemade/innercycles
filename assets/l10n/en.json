@@ -4035,6 +4035,7 @@
       "friends_name": "Friend\\'s name",
       "gift_ideas_memories": "Gift ideas, memories...",
       "name": "Name",
+      "name_required": "Please enter a name",
       "not_specified": "Not specified",
       "note_optional": "Note (Optional)",
       "relationship": "Relationship",

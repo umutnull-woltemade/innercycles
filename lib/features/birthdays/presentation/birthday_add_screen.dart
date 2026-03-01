@@ -678,6 +678,17 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
 
   Future<void> _save() async {
     if (_isSaving) return;
+    if (_nameController.text.trim().isEmpty) {
+      final language = ref.read(languageProvider);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            L10nService.get('birthdays.birthday_add.name_required', language),
+          ),
+        ),
+      );
+      return;
+    }
     setState(() => _isSaving = true);
 
     try {

@@ -256,7 +256,9 @@ class VaultService {
       try {
         final file = File(_photos[idx].filePath);
         if (await file.exists()) await file.delete();
-      } catch (_) {}
+      } catch (e) {
+        debugPrint('VaultService: Failed to delete photo file: $e');
+      }
       _photos.removeAt(idx);
       await _persistPhotos();
     }
@@ -290,7 +292,9 @@ class VaultService {
       try {
         final file = File(photo.filePath);
         if (await file.exists()) await file.delete();
-      } catch (_) {}
+      } catch (e) {
+        debugPrint('VaultService: Failed to delete photo file: $e');
+      }
     }
     _photos.clear();
     await _prefs.remove(_photosKey);
