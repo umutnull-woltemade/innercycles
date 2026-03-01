@@ -5,6 +5,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:uuid/uuid.dart';
+import '../providers/app_providers.dart';
 
 /// The four phases of a menstrual/hormonal cycle
 enum CyclePhase {
@@ -42,6 +43,9 @@ enum CyclePhase {
 
   String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 
+  String localizedDisplayName(AppLanguage language) =>
+      language == AppLanguage.en ? displayNameEn : displayNameTr;
+
   String get descriptionEn {
     switch (this) {
       case CyclePhase.menstrual:
@@ -67,6 +71,9 @@ enum CyclePhase {
         return 'Yansıma ve içe dönüş';
     }
   }
+
+  String localizedDescription(AppLanguage language) =>
+      language == AppLanguage.en ? descriptionEn : descriptionTr;
 }
 
 /// Flow intensity for period days
@@ -96,6 +103,9 @@ enum FlowIntensity {
         return 'Yoğun';
     }
   }
+
+  String localizedName(AppLanguage language) =>
+      language == AppLanguage.en ? displayNameEn : displayNameTr;
 }
 
 /// A record of a period start event

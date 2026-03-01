@@ -380,7 +380,7 @@ class _ThankYouView extends StatelessWidget {
                     AppSymbol.inline(emotion.emoji),
                     const SizedBox(width: 4),
                     Text(
-                      isEn ? emotion.nameEn : emotion.nameTr,
+                      emotion.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 11,
                         color: isDark

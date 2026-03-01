@@ -872,7 +872,7 @@ class _ShareArchetypeButton extends StatelessWidget {
       ),
       onPressed: () {
         HapticFeedback.mediumImpact();
-        final name = isEn ? archetype.nameEn : archetype.nameTr;
+        final name = archetype.localizedName(isEn ? AppLanguage.en : AppLanguage.tr);
         final text = isEn
             ? 'My emotional archetype is "$name" — discovered through self-reflection with InnerCycles.\n\n'
                   'What\'s yours? Try it free:\nhttps://apps.apple.com/app/innercycles/id6758612716\n#InnerCycles #Archetype #SelfDiscovery'

@@ -306,7 +306,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
             const SizedBox(height: 4),
             if (phase != null)
               Text(
-                isEn ? phase.descriptionEn : phase.descriptionTr,
+                phase.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.subtitle(
                   fontSize: 12,
                   color: isDark
@@ -781,7 +781,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   ),
                   const Spacer(),
                   Text(
-                    isEn ? phase.descriptionEn : phase.descriptionTr,
+                    phase.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 11,
                       color: isDark

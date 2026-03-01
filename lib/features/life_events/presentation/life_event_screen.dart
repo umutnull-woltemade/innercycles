@@ -312,7 +312,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                 HapticService.selectionTap();
                 setState(() {
                   _selectedPreset = preset;
-                  _titleController.text = isEn ? preset.nameEn : preset.nameTr;
+                  _titleController.text = preset.localizedName(isEn ? AppLanguage.en : AppLanguage.tr);
                   // Pre-fill suggested emotions
                   if (_emotionTags.isEmpty) {
                     _emotionTags.addAll(preset.defaultEmotions.take(3));
@@ -345,7 +345,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                     AppSymbol(preset.emoji, size: AppSymbolSize.sm),
                     const SizedBox(width: 6),
                     Text(
-                      isEn ? preset.nameEn : preset.nameTr,
+                      preset.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
                         fontWeight: isSelected
@@ -818,7 +818,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
 
   Widget _buildSaveButton(bool isDark, bool isEn) {
     final title = _selectedPreset != null
-        ? (isEn ? _selectedPreset!.nameEn : _selectedPreset!.nameTr)
+        ? _selectedPreset!.localizedName(isEn ? AppLanguage.en : AppLanguage.tr)
         : _titleController.text.trim();
     final canSave = title.isNotEmpty && !_isSaving;
 
@@ -853,9 +853,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
 
   Future<void> _save() async {
     final title = _selectedPreset != null
-        ? (ref.read(languageProvider) == AppLanguage.en
-              ? _selectedPreset!.nameEn
-              : _selectedPreset!.nameTr)
+        ? _selectedPreset!.localizedName(ref.read(languageProvider))
         : _titleController.text.trim();
     if (title.isEmpty) return;
 

@@ -1242,7 +1242,7 @@ class _ShadowWorkSuggestion extends StatelessWidget {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        isEn ? top.descriptionEn : top.descriptionTr,
+                        top.localizedDescription(isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.subtitle(
                           fontSize: 11,
                           color: isDark

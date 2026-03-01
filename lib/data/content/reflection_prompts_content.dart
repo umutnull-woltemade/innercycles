@@ -4,6 +4,8 @@
 /// Apple App Store 4.3(b) compliant. No predictions. Reflective/educational only.
 library;
 
+import '../providers/app_providers.dart';
+
 class ReflectionPrompt {
   final String id;
   final String
@@ -21,6 +23,12 @@ class ReflectionPrompt {
     required this.followUpEn,
     required this.followUpTr,
   });
+
+  String localizedPrompt(AppLanguage language) =>
+      language == AppLanguage.en ? promptEn : promptTr;
+
+  String localizedFollowUp(AppLanguage language) =>
+      language == AppLanguage.en ? followUpEn : followUpTr;
 }
 
 const List<ReflectionPrompt> allReflectionPrompts = [

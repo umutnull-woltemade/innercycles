@@ -95,6 +95,12 @@ enum BreathingPreset {
   }
 
   int get totalCycleSeconds => phases.fold(0, (sum, p) => sum + p.seconds);
+
+  String localizedName(AppLanguage language) =>
+      language == AppLanguage.en ? nameEn() : nameTr();
+
+  String localizedDesc(AppLanguage language) =>
+      language == AppLanguage.en ? descEn() : descTr();
 }
 
 enum PhaseType { inhale, hold, exhale }
@@ -129,6 +135,9 @@ class BreathPhase {
         return 'Nefes Ver';
     }
   }
+
+  String localizedLabel(AppLanguage language) =>
+      language == AppLanguage.en ? labelEn() : labelTr();
 }
 
 class BreathingTimerScreen extends ConsumerStatefulWidget {
@@ -278,7 +287,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                         ),
                         const SizedBox(height: 12),
                         Text(
-                          isEn ? _preset.descEn() : _preset.descTr(),
+                          _preset.localizedDesc(language),
                           style: AppTypography.decorativeScript(
                             fontSize: 13,
                             color: isDark
@@ -521,7 +530,7 @@ class _PresetSelector extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Semantics(
-            label: isEn ? preset.nameEn() : preset.nameTr(),
+            label: preset.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
             button: true,
             selected: isSelected,
             child: GestureDetector(
@@ -546,7 +555,7 @@ class _PresetSelector extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  isEn ? preset.nameEn() : preset.nameTr(),
+                  preset.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.elegantAccent(
                     fontSize: 12,
                     fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,

@@ -112,7 +112,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
   List<ToolManifest> _filterTools(List<ToolManifest> tools, bool isEn) {
     if (_searchQuery.isEmpty) return tools;
     return tools.where((tool) {
-      final name = isEn ? tool.nameEn.toLowerCase() : tool.nameTr.toLowerCase();
+      final name = tool.localizedName(isEn ? AppLanguage.en : AppLanguage.tr).toLowerCase();
       return name.contains(_searchQuery);
     }).toList();
   }
@@ -480,7 +480,7 @@ class _ToolCard extends StatelessWidget {
 
     return Semantics(
       button: true,
-      label: isEn ? tool.nameEn : tool.nameTr,
+      label: tool.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
       child: GestureDetector(
         onTap: () {
           HapticFeedback.lightImpact();
@@ -558,7 +558,7 @@ class _ToolCard extends StatelessWidget {
               ),
               const SizedBox(height: AppConstants.spacingSm),
               Text(
-                isEn ? tool.nameEn : tool.nameTr,
+                tool.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.subtitle(
                   fontSize: 14,
                   color: isDark
@@ -570,7 +570,7 @@ class _ToolCard extends StatelessWidget {
               ),
               const SizedBox(height: 2),
               Text(
-                isEn ? tool.valuePropositionEn : tool.valuePropositionTr,
+                tool.localizedValueProposition(isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.decorativeScript(
                   fontSize: 12,
                   color: isDark

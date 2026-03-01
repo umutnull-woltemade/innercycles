@@ -362,7 +362,7 @@ class DailyPulseCard extends ConsumerWidget {
         ),
         const SizedBox(height: 6),
         Text(
-          isEn ? prompt.promptEn : prompt.promptTr,
+          prompt.localizedPrompt(isEn ? AppLanguage.en : AppLanguage.tr),
           style: AppTypography.decorativeScript(
             fontSize: 14,
             color: isDark

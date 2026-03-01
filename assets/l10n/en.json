@@ -99,7 +99,8 @@
     },
     "years": "years",
     "home": "Home",
-    "dismiss": "Dismiss"
+    "dismiss": "Dismiss",
+    "selected": "selected"
   },
   "greetings": {
     "night": "Still up? Good time to write.",

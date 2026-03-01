@@ -15,6 +15,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/journal_entry.dart';
+import '../providers/app_providers.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // ARCHETYPE MODEL
@@ -71,6 +72,27 @@ class Archetype {
       isEnglish ? growthAreasEn : growthAreasTr;
   String getDailyIntentionStyle({bool isEnglish = true}) =>
       isEnglish ? dailyIntentionStyleEn : dailyIntentionStyleTr;
+
+  String localizedName(AppLanguage language) =>
+      language == AppLanguage.en ? nameEn : nameTr;
+
+  String localizedDescription(AppLanguage language) =>
+      language == AppLanguage.en ? descriptionEn : descriptionTr;
+
+  List<String> localizedStrengths(AppLanguage language) =>
+      language == AppLanguage.en ? strengthsEn : strengthsTr;
+
+  String localizedShadow(AppLanguage language) =>
+      language == AppLanguage.en ? shadowEn : shadowTr;
+
+  String localizedGrowthTip(AppLanguage language) =>
+      language == AppLanguage.en ? growthTipEn : growthTipTr;
+
+  List<String> localizedGrowthAreas(AppLanguage language) =>
+      language == AppLanguage.en ? growthAreasEn : growthAreasTr;
+
+  String localizedDailyIntentionStyle(AppLanguage language) =>
+      language == AppLanguage.en ? dailyIntentionStyleEn : dailyIntentionStyleTr;
 
   Map<String, dynamic> toJson() => {
     'id': id,

@@ -6,6 +6,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import '../models/life_event.dart';
+import '../providers/app_providers.dart';
 
 class LifeEventPreset {
   final String key;
@@ -23,6 +24,9 @@ class LifeEventPreset {
     required this.category,
     this.defaultEmotions = const [],
   });
+
+  String localizedName(AppLanguage language) =>
+      language == AppLanguage.en ? nameEn : nameTr;
 }
 
 class LifeEventPresets {

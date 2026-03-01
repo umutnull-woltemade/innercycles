@@ -7,6 +7,7 @@
 
 import 'package:flutter/foundation.dart';
 import '../../core/constants/routes.dart';
+import '../providers/app_providers.dart';
 
 enum ToolCategory { journal, analysis, discovery, support, reference, data }
 
@@ -32,6 +33,9 @@ class ToolTemplate {
     required this.labelTr,
     this.prefillData = const {},
   });
+
+  String localizedLabel(AppLanguage language) =>
+      language == AppLanguage.en ? labelEn : labelTr;
 }
 
 class NextToolSuggestion {
@@ -48,6 +52,9 @@ class NextToolSuggestion {
     required this.reasonTr,
     this.priority = 50,
   });
+
+  String localizedReason(AppLanguage language) =>
+      language == AppLanguage.en ? reasonEn : reasonTr;
 }
 
 class ToolEmptyState {
@@ -62,6 +69,9 @@ class ToolEmptyState {
     required this.whyUsefulTr,
     this.requiredEntries = 0,
   });
+
+  String localizedWhyUseful(AppLanguage language) =>
+      language == AppLanguage.en ? whyUsefulEn : whyUsefulTr;
 }
 
 class ToolManifest {
@@ -107,6 +117,12 @@ class ToolManifest {
 
   String get labelEn => nameEn;
   String get labelTr => nameTr;
+
+  String localizedName(AppLanguage language) =>
+      language == AppLanguage.en ? nameEn : nameTr;
+
+  String localizedValueProposition(AppLanguage language) =>
+      language == AppLanguage.en ? valuePropositionEn : valuePropositionTr;
 }
 
 // ════════════════════════════════════════════════════════════════════════════

@@ -51,6 +51,12 @@ class ImportantDatePreset {
 
   String name(bool isEn) => isEn ? nameEn : nameTr;
   String prompt(bool isEn) => isEn ? promptEn : promptTr;
+
+  String localizedName(AppLanguage language) =>
+      language == AppLanguage.en ? nameEn : nameTr;
+
+  String localizedPrompt(AppLanguage language) =>
+      language == AppLanguage.en ? promptEn : promptTr;
 }
 
 class ImportantDatePresets {

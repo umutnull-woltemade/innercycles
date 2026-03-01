@@ -264,7 +264,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildDailyPromptCard(JournalPrompt prompt) {
-    final promptText = isEn ? prompt.promptEn : prompt.promptTr;
+    final promptText = prompt.localizedPrompt(isEn ? AppLanguage.en : AppLanguage.tr);
     final isCompleted = service.isCompleted(prompt.id);
 
     return PremiumCard(
@@ -408,7 +408,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildPromptCard(JournalPrompt prompt, int index) {
-    final promptText = isEn ? prompt.promptEn : prompt.promptTr;
+    final promptText = prompt.localizedPrompt(isEn ? AppLanguage.en : AppLanguage.tr);
     final isCompleted = service.isCompleted(prompt.id);
 
     return Container(
@@ -514,7 +514,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
   // ══════════════════════════════════════════════════════════════════════════
 
   void _showPromptDetail(BuildContext context, JournalPrompt prompt) {
-    final promptText = isEn ? prompt.promptEn : prompt.promptTr;
+    final promptText = prompt.localizedPrompt(isEn ? AppLanguage.en : AppLanguage.tr);
     final isCompleted = service.isCompleted(prompt.id);
 
     showModalBottomSheet(

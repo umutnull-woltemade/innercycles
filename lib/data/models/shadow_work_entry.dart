@@ -4,6 +4,8 @@
 // Tracks shadow work journal entries for guided self-exploration.
 // ════════════════════════════════════════════════════════════════════════════
 
+import '../providers/app_providers.dart';
+
 /// The eight shadow archetypes for guided exploration
 enum ShadowArchetype {
   innerCritic,
@@ -60,6 +62,9 @@ enum ShadowArchetype {
 
   String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 
+  String localizedDisplayName(AppLanguage language) =>
+      language == AppLanguage.en ? displayNameEn : displayNameTr;
+
   String get descriptionEn {
     switch (this) {
       case ShadowArchetype.innerCritic:
@@ -101,6 +106,9 @@ enum ShadowArchetype {
         return 'Kendini ihmal ederek başkalarına bakma';
     }
   }
+
+  String localizedDescription(AppLanguage language) =>
+      language == AppLanguage.en ? descriptionEn : descriptionTr;
 
   String get iconEmoji {
     switch (this) {
@@ -154,6 +162,8 @@ enum ShadowDepth {
 
   String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 
+  String localizedDisplayName(AppLanguage language) =>
+      language == AppLanguage.en ? displayNameEn : displayNameTr;
 }
 
 /// A single shadow work journal entry

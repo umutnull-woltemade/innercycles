@@ -53,9 +53,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
 
     if (_searchQuery.isNotEmpty) {
       tools = tools.where((t) {
-        final name = widget.isEn
-            ? t.nameEn.toLowerCase()
-            : t.nameTr.toLowerCase();
+        final name = t.localizedName(widget.isEn ? AppLanguage.en : AppLanguage.tr).toLowerCase();
         return name.contains(_searchQuery);
       }).toList();
     }
@@ -181,7 +179,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
               AppSymbol.card(tool.icon),
               const SizedBox(height: AppConstants.spacingSm),
               Text(
-                widget.isEn ? tool.nameEn : tool.nameTr,
+                tool.localizedName(widget.isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.subtitle(
                   fontSize: 12,
                   color: widget.isDark
@@ -193,9 +191,7 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
               ),
               const SizedBox(height: 2),
               Text(
-                widget.isEn
-                    ? tool.valuePropositionEn
-                    : tool.valuePropositionTr,
+                tool.localizedValueProposition(widget.isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.decorativeScript(
                   fontSize: 11,
                   color: widget.isDark
@@ -575,7 +571,7 @@ class _ProfileToolCard extends StatelessWidget {
 
     return Semantics(
       button: true,
-      label: isEn ? tool.nameEn : tool.nameTr,
+      label: tool.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
       child: GestureDetector(
         onTap: () {
           HapticFeedback.lightImpact();
@@ -671,7 +667,7 @@ class _ProfileToolCard extends StatelessWidget {
                         ),
                         const SizedBox(height: AppConstants.spacingSm),
                         Text(
-                          isEn ? tool.nameEn : tool.nameTr,
+                          tool.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.subtitle(
                             fontSize: 13,
                             color: isDark
@@ -683,9 +679,7 @@ class _ProfileToolCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          isEn
-                              ? tool.valuePropositionEn
-                              : tool.valuePropositionTr,
+                          tool.localizedValueProposition(isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.decorativeScript(
                             fontSize: 11,
                             color: isDark

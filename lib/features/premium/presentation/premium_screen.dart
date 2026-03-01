@@ -1271,7 +1271,7 @@ class _PlanCard extends StatelessWidget {
               ? AppColors.starGold.withValues(alpha: 0.2)
               : null,
           child: Semantics(
-            label: '${tier.localizedDisplayName(isEn ? AppLanguage.en : AppLanguage.tr)}${isSelected ? (isEn ? ' selected' : ' seçili') : ''}',
+            label: '${tier.localizedDisplayName(isEn ? AppLanguage.en : AppLanguage.tr)}${isSelected ? ' ${L10nService.get('common.selected', isEn ? AppLanguage.en : AppLanguage.tr)}' : ''}',
             button: true,
             selected: isSelected,
             child: Material(

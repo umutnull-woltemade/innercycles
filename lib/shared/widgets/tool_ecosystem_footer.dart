@@ -91,7 +91,7 @@ class ToolEcosystemFooter extends ConsumerWidget {
                     ),
                     child: Semantics(
                       button: true,
-                      label: isEn ? tool.nameEn : tool.nameTr,
+                      label: tool.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
                       child: GestureDetector(
                         onTap: () {
                           HapticFeedback.selectionClick();
@@ -132,7 +132,7 @@ class ToolEcosystemFooter extends ConsumerWidget {
                               ),
                               const Spacer(),
                               Text(
-                                isEn ? tool.nameEn : tool.nameTr,
+                                tool.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
                                 style: AppTypography.modernAccent(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,

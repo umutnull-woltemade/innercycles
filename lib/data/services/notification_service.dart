@@ -341,7 +341,7 @@ class NotificationService {
     // Get today's deterministic prompt
     final promptService = await JournalPromptService.init();
     final prompt = promptService.getDailyPrompt();
-    final body = _isEn ? prompt.promptEn : prompt.promptTr;
+    final body = prompt.localizedPrompt(_isEn ? AppLanguage.en : AppLanguage.tr);
 
     await _notifications.zonedSchedule(
       id: journalPromptId,

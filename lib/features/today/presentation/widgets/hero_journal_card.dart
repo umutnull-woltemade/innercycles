@@ -31,7 +31,7 @@ class HeroJournalCard extends ConsumerWidget {
     return promptAsync.maybeWhen(
       data: (service) {
         final prompt = service.getDailyPrompt();
-        final questionText = isEn ? prompt.promptEn : prompt.promptTr;
+        final questionText = prompt.localizedPrompt(isEn ? AppLanguage.en : AppLanguage.tr);
 
         return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),

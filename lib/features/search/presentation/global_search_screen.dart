@@ -1036,7 +1036,7 @@ class _ToolResultTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: isEn ? tool.nameEn : tool.nameTr,
+      label: tool.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
       hint: L10nService.get('search.global_search.double_tap_to_open', isEn ? AppLanguage.en : AppLanguage.tr),
       button: true,
       child: GestureDetector(
@@ -1056,7 +1056,7 @@ class _ToolResultTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      isEn ? tool.nameEn : tool.nameTr,
+                      tool.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
@@ -1066,9 +1066,7 @@ class _ToolResultTile extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      isEn
-                          ? tool.valuePropositionEn
-                          : tool.valuePropositionTr,
+                      tool.localizedValueProposition(isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.decorativeScript(
                         fontSize: 12,
                         color: isDark

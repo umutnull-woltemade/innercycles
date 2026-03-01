@@ -55,6 +55,9 @@ enum EmotionFamily {
 
   String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 
+  String localizedDisplayName(AppLanguage language) =>
+      language == AppLanguage.en ? displayNameEn : displayNameTr;
+
   String get emoji {
     switch (this) {
       case joy:
@@ -101,6 +104,9 @@ enum EmotionIntensity {
   }
 
   String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+
+  String localizedDisplayName(AppLanguage language) =>
+      language == AppLanguage.en ? displayNameEn : displayNameTr;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

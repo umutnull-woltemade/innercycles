@@ -10,6 +10,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../content/reflection_prompts_content.dart';
+import '../providers/app_providers.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // ENUMS
@@ -54,6 +55,9 @@ class JournalPrompt {
     'category': category.name,
     'depth': depth.name,
   };
+
+  String localizedPrompt(AppLanguage language) =>
+      language == AppLanguage.en ? promptEn : promptTr;
 
   factory JournalPrompt.fromJson(Map<String, dynamic> json) => JournalPrompt(
     id: json['id'] as String? ?? '',
