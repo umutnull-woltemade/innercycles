@@ -162,7 +162,7 @@ class AdminAuthService {
     try {
       final session = jsonDecode(sessionJson) as Map<String, dynamic>;
       final expiresAt = DateTime.fromMillisecondsSinceEpoch(
-        session['expiresAt'] as int,
+        (session['expiresAt'] as num).toInt(),
       );
       return DateTime.now().isBefore(expiresAt);
     } catch (e) {
