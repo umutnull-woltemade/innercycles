@@ -67,6 +67,8 @@ class _CategoryInfo {
     required this.nameEn,
     required this.nameTr,
   });
+  String localizedName(AppLanguage language) =>
+      language == AppLanguage.en ? nameEn : nameTr;
 }
 
 PaywallContext _paywallContextForTool(String toolId) {
@@ -359,7 +361,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
           AppSymbol(info.emoji, size: AppSymbolSize.sm),
           const SizedBox(width: AppConstants.spacingSm),
           GradientText(
-            isEn ? info.nameEn : info.nameTr,
+            info.localizedName(isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 19,

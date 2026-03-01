@@ -6,6 +6,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import '../models/cycle_entry.dart';
+import '../providers/app_providers.dart';
 
 class CyclePrompt {
   final String promptEn;
@@ -17,6 +18,9 @@ class CyclePrompt {
     required this.promptTr,
     required this.phase,
   });
+
+  String localizedPrompt(AppLanguage language) =>
+      language == AppLanguage.en ? promptEn : promptTr;
 }
 
 class CyclePromptsContent {

@@ -2119,7 +2119,7 @@ class _CyclePhasePromptHint extends ConsumerWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    isEn ? prompt.promptEn : prompt.promptTr,
+                    prompt.localizedPrompt(isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.decorativeScript(
                       fontSize: 14,
                       color: isDark
