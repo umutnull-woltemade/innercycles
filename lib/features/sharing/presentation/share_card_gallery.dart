@@ -101,8 +101,7 @@ class _ShareCardGalleryScreenState
   // SHARE ACTION
   // =========================================================================
 
-  Future<void> _onShare(bool isEn, AppLanguage language) async {
-    final language = AppLanguage.fromIsEn(isEn);
+  Future<void> _onShare(AppLanguage language) async {
     // Share cards are now FREE for all users (viral growth strategy).
     // Free users get a "Made with InnerCycles" watermark on their cards.
     // Premium users get clean cards without promotional watermark.
@@ -136,8 +135,7 @@ class _ShareCardGalleryScreenState
     }
   }
 
-  Future<void> _onCopy(bool isEn, ShareCardData cardData) async {
-    final language = AppLanguage.fromIsEn(isEn);
+  Future<void> _onCopy(AppLanguage language, ShareCardData cardData) async {
     final text =
         '${cardData.headline}\n${cardData.subtitle}'
         '${cardData.detail != null ? '\n${cardData.detail}' : ''}'
@@ -481,7 +479,7 @@ class _ShareCardGalleryScreenState
               isLoading: _isSharing,
               accentColor: accent,
               isDark: isDark,
-              onTap: () => _onShare(isEn, language),
+              onTap: () => _onShare(language),
             ),
           ),
           const SizedBox(width: 12),
@@ -492,7 +490,7 @@ class _ShareCardGalleryScreenState
               icon: Icons.copy_rounded,
               label: L10nService.get('sharing.share_gallery.copy', language),
               isDark: isDark,
-              onTap: () => _onCopy(isEn, cardData),
+              onTap: () => _onCopy(language, cardData),
             ),
           ),
         ],
