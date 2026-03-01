@@ -77,7 +77,7 @@ class MilestoneScreen extends ConsumerWidget {
             ),
           ),
           data: (service) =>
-              _MilestoneBody(service: service, language: language, isDark: isDark),
+              _MilestoneBody(service: service, isEn: isEn, isDark: isDark),
         ),
       ),
     );
@@ -90,12 +90,12 @@ class MilestoneScreen extends ConsumerWidget {
 
 class _MilestoneBody extends StatefulWidget {
   final MilestoneService service;
-  final AppLanguage language;
+  final bool isEn;
   final bool isDark;
 
   const _MilestoneBody({
     required this.service,
-    required this.language,
+    required this.isEn,
     required this.isDark,
   });
 
@@ -107,7 +107,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   MilestoneCategory? _selectedCategory;
 
   MilestoneService get service => widget.service;
-  AppLanguage get language => widget.language;
+  bool get isEn => widget.isEn;
   bool get isDark => widget.isDark;
 
   @override
@@ -172,7 +172,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: ToolEcosystemFooter(
                 currentToolId: 'milestones',
-                language: language,
+                isEn: isEn,
                 isDark: isDark,
               ),
             ),
@@ -196,7 +196,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
     final progress = service.getProgress();
 
     return Semantics(
-      label: language.isEn
+      label: isEn
           ? '$earned of $total milestones earned, ${(progress * 100).round()} percent complete'
           : '$total rozetin $earned tanesi kazanıldı, yüzde ${(progress * 100).round()} tamamlandı',
       child: Container(
@@ -284,7 +284,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    language.isEn
+                    isEn
                         ? '${(progress * 100).round()}% complete'
                         : '%${(progress * 100).round()} tamamlandı',
                     style: AppTypography.subtitle(
@@ -318,7 +318,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
     if (earned >= total) {
       return L10nService.get('milestones.milestone.you_earned_them_all', language);
     }
-    return language.isEn
+    return isEn
         ? '$remaining more to discover'
         : '$remaining tane daha keşfedilecek';
   }
@@ -345,7 +345,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
             padding: const EdgeInsets.only(right: 8),
             child: Semantics(
               label: selected
-                  ? (language.isEn
+                  ? (isEn
                         ? '$label filter, selected'
                         : '$label filtresi, seçili')
                   : (L10nService.getWithParams('milestones.filter_label', language, params: {'label': label})),
@@ -402,10 +402,10 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
 
     return Semantics(
           label: earned
-              ? (language.isEn
+              ? (isEn
                     ? '$name badge, earned. Double tap to view details'
                     : '$name rozeti, kazanıldı. Ayrıntıları görmek için iki kez dokun')
-              : (language.isEn
+              : (isEn
                     ? '$name badge, locked. ${_getCategoryHint(milestone.category)}'
                     : '$name rozeti, kilitli. ${_getCategoryHint(milestone.category)}'),
           button: earned,
@@ -678,9 +678,9 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                           ),
                           const SizedBox(width: 6),
                           Text(
-                            language.isEn
-                                ? 'Earned ${_formatDate(earnedDate, language)}'
-                                : 'Kazanıldı: ${_formatDate(earnedDate, language)}',
+                            isEn
+                                ? 'Earned ${_formatDate(earnedDate, isEn)}'
+                                : 'Kazanıldı: ${_formatDate(earnedDate, isEn)}',
                             style: AppTypography.subtitle(
                               fontSize: 13,
                               color: AppColors.success,
@@ -728,8 +728,8 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
     );
   }
 
-  String _formatDate(DateTime date, AppLanguage language) {
-    final months = language.isEn
+  String _formatDate(DateTime date, bool isEn) {
+    final months = isEn
         ? [
             'Jan',
             'Feb',

@@ -1735,7 +1735,7 @@ ${_getPersonalAdvice(sign)}''';
                 Expanded(child: _buildChatArea(isDark)),
                 _buildInputArea(
                   isDark,
-                  language: ref.watch(languageProvider) == AppLanguage.en,
+                  isEn: ref.watch(languageProvider) == AppLanguage.en,
                 ),
               ],
             ),
@@ -1849,7 +1849,7 @@ ${_getPersonalAdvice(sign)}''';
             IconButton(
               onPressed: () {
                 HapticService.buttonPress();
-                final language = ref.read(languageProvider);
+                final isEn = ref.read(languageProvider) == AppLanguage.en;
                 final interpretations = _messages
                     .where((m) => !m.isUser && m.text.isNotEmpty)
                     .map((m) => m.text)
@@ -1858,7 +1858,7 @@ ${_getPersonalAdvice(sign)}''';
                 final snippet = interpretations.length > 300
                     ? '${interpretations.substring(0, 300)}...'
                     : interpretations;
-                final msg = language.isEn
+                final msg = isEn
                     ? 'My dream reflection:\n\n$snippet\n\nExploring dreams with InnerCycles.\n${AppConstants.appStoreUrl}\n#InnerCycles #DreamJournal'
                     : 'Rüya yansımam:\n\n$snippet\n\nInnerCycles ile rüyaları keşfediyorum.\n${AppConstants.appStoreUrl}\n#InnerCycles';
                 SharePlus.instance.share(ShareParams(text: msg));
@@ -2196,7 +2196,7 @@ ${_getPersonalAdvice(sign)}''';
               padding: const EdgeInsets.only(left: 42),
               child: _buildLockedPerspectivesCard(
                 message.lockedPerspectiveCount,
-                language,
+                isEn,
                 isDark,
               ),
             ),
@@ -2206,7 +2206,7 @@ ${_getPersonalAdvice(sign)}''';
     ).glassListItem(context: context, index: index);
   }
 
-  Widget _buildLockedPerspectivesCard(int lockedCount, AppLanguage language, bool isDark) {
+  Widget _buildLockedPerspectivesCard(int lockedCount, bool isEn, bool isDark) {
     final language = AppLanguage.fromIsEn(isEn);
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
@@ -2274,7 +2274,7 @@ ${_getPersonalAdvice(sign)}''';
                     ),
                     const SizedBox(height: 8),
                     GradientText(
-                      language.isEn
+                      isEn
                           ? '$lockedCount more perspectives available'
                           : '$lockedCount perspektif daha mevcut',
                       variant: GradientTextVariant.amethyst,
@@ -2395,7 +2395,7 @@ ${_getPersonalAdvice(sign)}''';
     );
   }
 
-  Widget _buildInputArea(bool isDark, {bool language.isEn = true}) {
+  Widget _buildInputArea(bool isDark, {bool isEn = true}) {
     final language = AppLanguage.fromIsEn(isEn);
     return Container(
       padding: const EdgeInsets.all(16),

@@ -91,7 +91,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              language.isEn
+                              isEn
                                   ? 'Your $longestStreak-day streak ended'
                                   : '$longestStreak günlük seri sona erdi',
                               style: AppTypography.displayFont.copyWith(

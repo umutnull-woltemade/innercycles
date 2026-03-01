@@ -50,7 +50,7 @@ class _ShareCardGalleryScreenState
 
   ShareCardData _buildDataForTemplate(
     ShareCardTemplate template,
-    AppLanguage language,
+    bool isEn,
     int streak, {
     EmotionalCycleAnalysis? cycleAnalysis,
   }) {
@@ -88,7 +88,7 @@ class _ShareCardGalleryScreenState
 
     return ShareCardTemplates.buildData(
       template: template,
-      language: language,
+      language: AppLanguage.fromIsEn(isEn),
       streak: streak,
       cyclePhaseName: cyclePhaseName,
       cyclePhaseDescription: cyclePhaseDescription,
@@ -203,8 +203,8 @@ class _ShareCardGalleryScreenState
       ),
       body: CosmicBackground(
         child: _previewTemplate != null
-            ? _buildPreview(isDark, language, language, streak, cycleAnalysis)
-            : _buildGallery(isDark, language, streak, cycleAnalysis),
+            ? _buildPreview(isDark, isEn, language, streak, cycleAnalysis)
+            : _buildGallery(isDark, isEn, streak, cycleAnalysis),
       ),
     );
   }
@@ -215,23 +215,23 @@ class _ShareCardGalleryScreenState
 
   Widget _buildGallery(
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     int streak,
     EmotionalCycleAnalysis? cycleAnalysis,
   ) {
     return Column(
       children: [
         // Category tabs
-        _buildCategoryTabs(isDark, language),
+        _buildCategoryTabs(isDark, isEn),
         const SizedBox(height: 16),
 
         // Card grid
-        Expanded(child: _buildCardGrid(isDark, language, streak, cycleAnalysis)),
+        Expanded(child: _buildCardGrid(isDark, isEn, streak, cycleAnalysis)),
       ],
     );
   }
 
-  Widget _buildCategoryTabs(bool isDark, AppLanguage language) {
+  Widget _buildCategoryTabs(bool isDark, bool isEn) {
     return SizedBox(
       height: 44,
       child: ListView.separated(
@@ -312,7 +312,7 @@ class _ShareCardGalleryScreenState
 
   Widget _buildCardGrid(
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     int streak,
     EmotionalCycleAnalysis? cycleAnalysis,
   ) {
@@ -332,7 +332,7 @@ class _ShareCardGalleryScreenState
         final template = templates[index];
         final data = _buildDataForTemplate(
           template,
-          language,
+          isEn,
           streak,
           cycleAnalysis: cycleAnalysis,
         );
@@ -352,7 +352,7 @@ class _ShareCardGalleryScreenState
                       data: data,
                       accent: accent,
                       isDark: isDark,
-                      language: language,
+                      isEn: isEn,
                     )
                     .animate()
                     .fadeIn(duration: 400.ms, delay: (index * 80).ms)
@@ -375,7 +375,7 @@ class _ShareCardGalleryScreenState
 
   Widget _buildPreview(
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     AppLanguage language,
     int streak,
     EmotionalCycleAnalysis? cycleAnalysis,
@@ -384,7 +384,7 @@ class _ShareCardGalleryScreenState
     final template = _previewTemplate!;
     final data = _buildDataForTemplate(
       template,
-      language,
+      isEn,
       streak,
       cycleAnalysis: cycleAnalysis,
     );
@@ -430,7 +430,7 @@ class _ShareCardGalleryScreenState
                           repaintKey: _repaintKey,
                           isDark: isDark,
                           isPremium: isPremium,
-                          language: language,
+                          isEn: isEn,
                           displaySize: isStory ? 220 : 360,
                         )
                         .animate()
@@ -447,7 +447,7 @@ class _ShareCardGalleryScreenState
           const SizedBox(height: 16),
 
           // Action buttons
-          _buildActionButtons(isDark, language, language, data),
+          _buildActionButtons(isDark, isEn, language, data),
           const SizedBox(height: 24),
         ],
       ),
@@ -456,7 +456,7 @@ class _ShareCardGalleryScreenState
 
   Widget _buildActionButtons(
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     AppLanguage language,
     ShareCardData cardData,
   ) {
@@ -527,14 +527,14 @@ class _ThumbnailCard extends StatelessWidget {
   final ShareCardData data;
   final Color accent;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _ThumbnailCard({
     required this.template,
     required this.data,
     required this.accent,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override

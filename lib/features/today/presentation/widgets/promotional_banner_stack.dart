@@ -19,12 +19,12 @@ import '../../../../data/services/introductory_offer_service.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class PromotionalBannerStack extends ConsumerStatefulWidget {
-  final AppLanguage language;
+  final bool isEn;
   final bool isDark;
 
   const PromotionalBannerStack({
     super.key,
-    required this.language,
+    required this.isEn,
     required this.isDark,
   });
 
@@ -39,7 +39,7 @@ class _PromotionalBannerStackState
   static const _cooldownDays = 14;
   bool _inviteDismissed = false;
 
-  AppLanguage get language => widget.language;
+  bool get isEn => widget.isEn;
   bool get isDark => widget.isDark;
 
   Future<bool> _recentlyDismissed() async {
@@ -390,7 +390,7 @@ class _PromotionalBannerStackState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     GradientText(
-                      language.isEn
+                      isEn
                           ? 'Your ${DateTime.now().year} Wrapped is ready!'
                           : '${DateTime.now().year} Wrapped\'ın hazır!',
                       variant: GradientTextVariant.cosmic,
@@ -435,7 +435,7 @@ class _PromotionalBannerStackState
     }
 
     final lastMonth = now.month == 1 ? 12 : now.month - 1;
-    final monthNames = language.isEn
+    final monthNames = isEn
         ? ['', ...CommonStrings.monthsFullEn]
         : ['', ...CommonStrings.monthsFullTr];
 
@@ -460,7 +460,7 @@ class _PromotionalBannerStackState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     GradientText(
-                      language.isEn
+                      isEn
                           ? 'Your ${monthNames[lastMonth]} Wrapped'
                           : '${monthNames[lastMonth]} Özetin Hazır',
                       variant: GradientTextVariant.amethyst,
@@ -486,7 +486,7 @@ class _PromotionalBannerStackState
               GestureDetector(
                 onTap: () {
                   HapticService.buttonPress();
-                  final shareText = language.isEn
+                  final shareText = isEn
                       ? 'My ${monthNames[lastMonth]} wrapped is here!\n\n'
                         'See your month in patterns with InnerCycles.\n'
                         '#InnerCycles #MonthlyWrapped #Journaling'

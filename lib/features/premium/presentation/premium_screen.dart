@@ -243,7 +243,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                   return Column(
                     children: [
                       Text(
-                        language.isEn
+                        isEn
                             ? 'Yearly plan: $introPrice (normally $regularPrice)'
                             : 'Yıllık plan: $introPrice (normalde $regularPrice)',
                         style: AppTypography.subtitle(
@@ -253,7 +253,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        language.isEn
+                        isEn
                             ? 'Auto-renews at $regularPrice after introductory period'
                             : 'Tanıtım döneminden sonra $regularPrice olarak otomatik yenilenir',
                         style: AppTypography.subtitle(
@@ -527,7 +527,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         const SizedBox(width: 6),
         Flexible(
           child: Text(
-            language.isEn
+            isEn
                 ? 'Your private journaling companion'
                 : 'Kişisel günlük arkadaşın',
             style: AppTypography.elegantAccent(
@@ -549,7 +549,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   // ════════════════════════════════════════════════════════════════════════════
 
   Widget _buildPlanSelection(BuildContext context) {
-    final language = ref.watch(languageProvider);
+    final isEn = ref.watch(languageProvider) == AppLanguage.en;
     return Column(
       children: [
         // Yearly — target plan
@@ -558,7 +558,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           isSelected: _selectedTier == PremiumTier.yearly,
           onTap: () => setState(() => _selectedTier = PremiumTier.yearly),
           isBestValue: true,
-          language: language,
+          isEn: isEn,
           priceOverride: ref
               .read(premiumProvider.notifier)
               .getProductPrice(PremiumTier.yearly),
@@ -570,7 +570,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           tier: PremiumTier.monthly,
           isSelected: _selectedTier == PremiumTier.monthly,
           onTap: () => setState(() => _selectedTier = PremiumTier.monthly),
-          language: language,
+          isEn: isEn,
           priceOverride:
               ref
                   .watch(paywallExperimentProvider)
@@ -1095,7 +1095,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                     constraints: const BoxConstraints(minHeight: 44),
                     child: Center(
                       child: Text(
-                        language.isEn
+                        isEn
                             ? 'Privacy Policy'
                             : L10nService.get(
                                 'settings.privacy_policy',
@@ -1134,7 +1134,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                     constraints: const BoxConstraints(minHeight: 44),
                     child: Center(
                       child: Text(
-                        language.isEn
+                        isEn
                             ? 'Terms of Service'
                             : L10nService.get(
                                 'settings.terms_of_service',
@@ -1257,7 +1257,7 @@ class _PlanCard extends StatelessWidget {
   final VoidCallback onTap;
   final bool isBestValue;
   final String? priceOverride;
-  final AppLanguage language;
+  final bool isEn;
 
   const _PlanCard({
     required this.tier,

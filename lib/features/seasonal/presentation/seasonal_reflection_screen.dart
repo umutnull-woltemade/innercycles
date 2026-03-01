@@ -113,7 +113,7 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                             module: module,
                             completion: completion,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           ),
                           const SizedBox(height: 20),
 
@@ -125,7 +125,7 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                               prompt: prompt,
                               isCompleted: isCompleted,
                               isDark: isDark,
-                              language: language,
+                              isEn: isEn,
                               onComplete: () async {
                                 await service.completePrompt(prompt.index);
                                 if (!context.mounted) return;
@@ -140,12 +140,12 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                           const SizedBox(height: 24),
 
                           // All seasons overview
-                          _AllSeasonsRow(isDark: isDark, language: language),
+                          _AllSeasonsRow(isDark: isDark, isEn: isEn),
                           const SizedBox(height: 24),
                           ContentDisclaimer(language: language),
                           ToolEcosystemFooter(
                             currentToolId: 'seasonalReflection',
-                            language: language,
+                            isEn: isEn,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 40),
@@ -169,13 +169,13 @@ class _SeasonHeader extends StatelessWidget {
   final SeasonalModule module;
   final double completion;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _SeasonHeader({
     required this.module,
     required this.completion,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -251,14 +251,14 @@ class _PromptCard extends StatelessWidget {
   final SeasonalPrompt prompt;
   final bool isCompleted;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final VoidCallback onComplete;
 
   const _PromptCard({
     required this.prompt,
     required this.isCompleted,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onComplete,
   });
 
@@ -354,9 +354,9 @@ class _PromptCard extends StatelessWidget {
 
 class _AllSeasonsRow extends StatelessWidget {
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
-  const _AllSeasonsRow({required this.isDark, required this.language});
+  const _AllSeasonsRow({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {

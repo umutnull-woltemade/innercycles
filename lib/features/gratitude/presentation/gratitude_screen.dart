@@ -154,7 +154,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                             _WeeklyStats(
                               summary: summary,
                               isDark: isDark,
-                              language: language,
+                              isEn: isEn,
                             ),
                             const SizedBox(height: 20),
 
@@ -163,7 +163,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                               controllers: _controllers,
                               hasEntry: today != null,
                               isDark: isDark,
-                              language: language,
+                              isEn: isEn,
                               onSave: () async {
                                 final items = _controllers
                                     .map((c) => c.text.trim())
@@ -200,7 +200,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                               _ThemeCloud(
                                 themes: summary.topThemes,
                                 isDark: isDark,
-                                language: language,
+                                isEn: isEn,
                               ),
                               const SizedBox(height: 24),
                             ],
@@ -228,7 +228,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
 
                             ToolEcosystemFooter(
                               currentToolId: 'gratitude',
-                              language: language,
+                              isEn: isEn,
                               isDark: isDark,
                             ),
                             const SizedBox(height: 40),
@@ -250,12 +250,12 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
 class _WeeklyStats extends StatelessWidget {
   final GratitudeSummary summary;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _WeeklyStats({
     required this.summary,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -333,21 +333,21 @@ class _TodaySection extends StatelessWidget {
   final List<TextEditingController> controllers;
   final bool hasEntry;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final VoidCallback onSave;
 
   const _TodaySection({
     required this.controllers,
     required this.hasEntry,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onSave,
   });
 
   @override
   Widget build(BuildContext context) {
     final language = AppLanguage.fromIsEn(isEn);
-    final prompts = language.isEn
+    final prompts = isEn
         ? [
             'I am grateful for...',
             'Something that made me smile...',
@@ -448,12 +448,12 @@ class _TodaySection extends StatelessWidget {
 class _ThemeCloud extends StatelessWidget {
   final Map<String, int> themes;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _ThemeCloud({
     required this.themes,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override

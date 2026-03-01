@@ -128,7 +128,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                 challengeService,
                 gratitudeService,
                 isDark,
-                language,
+                isEn,
               );
             },
           ),
@@ -144,7 +144,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     GrowthChallengeService? challengeService,
     GratitudeService? gratitudeService,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     final now = DateTime.now();
@@ -185,7 +185,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                 // ═══════════════════════════════════════════════════════
                 // GROWTH SCORE HERO CARD
                 // ═══════════════════════════════════════════════════════
-                _buildGrowthScoreCard(context, growthScore, isDark, language)
+                _buildGrowthScoreCard(context, growthScore, isDark, isEn)
                     .animate()
                     .fadeIn(duration: 400.ms)
                     .slideY(
@@ -205,7 +205,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                   currentStreak,
                   longestStreak,
                   isDark,
-                  language,
+                  isEn,
                 ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
                 const SizedBox(height: AppConstants.spacingXl),
 
@@ -222,7 +222,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                   completedChallenges,
                   gratitudeCount,
                   isDark,
-                  language,
+                  isEn,
                 ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
                 const SizedBox(height: AppConstants.spacingXl),
 
@@ -232,7 +232,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                 _buildExploreSection(
                   context,
                   isDark,
-                  language,
+                  isEn,
                 ).animate().fadeIn(delay: 250.ms, duration: 400.ms),
                 const SizedBox(height: AppConstants.spacingXl),
 
@@ -246,7 +246,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                   completedChallenges,
                   gratitudeCount,
                   isDark,
-                  language,
+                  isEn,
                 ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
                 const SizedBox(height: AppConstants.spacingXl),
 
@@ -259,14 +259,14 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                   currentStreak,
                   entries.length,
                   isDark,
-                  language,
+                  isEn,
                 ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
                 ContentDisclaimer(
                   language: language,
                 ),
                 ToolEcosystemFooter(
                   currentToolId: 'growthDashboard',
-                  language: language,
+                  isEn: isEn,
                   isDark: isDark,
                 ),
                 const SizedBox(height: 40),
@@ -321,7 +321,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     BuildContext context,
     int score,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingXl),
@@ -419,7 +419,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           const SizedBox(height: AppConstants.spacingLg),
           // Motivational message
           Text(
-            _getScoreMessage(score, language),
+            _getScoreMessage(score, isEn),
             style: AppTypography.decorativeScript(
               fontSize: 14,
               color: Colors.white.withValues(alpha: 0.9),
@@ -432,7 +432,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     );
   }
 
-  String _getScoreMessage(int score, AppLanguage language) {
+  String _getScoreMessage(int score, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     if (score >= 80) {
       return L10nService.get('growth.growth_dashboard.outstanding_you_are_deeply_committed_to', language);
@@ -456,7 +456,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     int currentStreak,
     int longestStreak,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
@@ -592,7 +592,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     int completedChallenges,
     int gratitudeCount,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     final milestones = _buildMilestoneData(
@@ -603,7 +603,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       focusAreasCoveredThisMonth: focusAreasCoveredThisMonth,
       completedChallenges: completedChallenges,
       gratitudeCount: gratitudeCount,
-      language: language,
+      isEn: isEn,
     );
 
     return Column(
@@ -631,7 +631,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           itemCount: milestones.length,
           itemBuilder: (context, index) {
             final milestone = milestones[index];
-            return _buildMilestoneCard(context, milestone, isDark, language, index);
+            return _buildMilestoneCard(context, milestone, isDark, isEn, index);
           },
         ),
       ],
@@ -642,7 +642,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     BuildContext context,
     _Milestone milestone,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     int index,
   ) {
     final unlocked = milestone.unlocked;
@@ -758,7 +758,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     required int focusAreasCoveredThisMonth,
     required int completedChallenges,
     required int gratitudeCount,
-    required AppLanguage language,
+    required bool isEn,
   }) {
     final language = AppLanguage.fromIsEn(isEn);
     final maxStreak = math.max(currentStreak, longestStreak);
@@ -775,7 +775,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         title: L10nService.get('growth.growth_dashboard.7day_observer', language),
         unlocked: maxStreak >= 7,
         progressHint: maxStreak < 7
-            ? language.isEn
+            ? isEn
                   ? '${7 - maxStreak} more to activate'
                   : '${7 - maxStreak} gün daha'
             : '',
@@ -785,7 +785,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         title: L10nService.get('growth.growth_dashboard.pattern_seeker', language),
         unlocked: entries.length >= 7,
         progressHint: entries.length < 7
-            ? language.isEn
+            ? isEn
                   ? '${7 - entries.length} more entries'
                   : '${7 - entries.length} kayıt daha'
             : '',
@@ -795,7 +795,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         title: L10nService.get('growth.growth_dashboard.dream_logger', language),
         unlocked: dreamCount >= 3,
         progressHint: dreamCount < 3
-            ? language.isEn
+            ? isEn
                   ? '${3 - dreamCount} more dreams'
                   : '${3 - dreamCount} rüya daha'
             : '',
@@ -805,7 +805,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         title: L10nService.get('growth.growth_dashboard.challenge_completer', language),
         unlocked: completedChallenges >= 3,
         progressHint: completedChallenges < 3
-            ? language.isEn
+            ? isEn
                   ? '${3 - completedChallenges} challenges left'
                   : '${3 - completedChallenges} görev kaldı'
             : '',
@@ -815,7 +815,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         title: L10nService.get('growth.growth_dashboard.gratitude_streak', language),
         unlocked: gratitudeCount >= 7,
         progressHint: gratitudeCount < 7
-            ? language.isEn
+            ? isEn
                   ? '${7 - gratitudeCount} gratitude entries'
                   : '${7 - gratitudeCount} şükran kaydı'
             : '',
@@ -825,7 +825,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         title: L10nService.get('growth.growth_dashboard.30day_streak', language),
         unlocked: maxStreak >= 30,
         progressHint: maxStreak < 30
-            ? language.isEn
+            ? isEn
                   ? '${30 - maxStreak} more to activate'
                   : '${30 - maxStreak} gün daha'
             : '',
@@ -835,7 +835,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         title: L10nService.get('growth.growth_dashboard.self_aware', language),
         unlocked: focusAreasCoveredThisMonth >= 5,
         progressHint: focusAreasCoveredThisMonth < 5
-            ? language.isEn
+            ? isEn
                   ? '${5 - focusAreasCoveredThisMonth} more areas'
                   : '${5 - focusAreasCoveredThisMonth} alan daha'
             : '',
@@ -853,7 +853,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
   // EXPLORE GROWTH TOOLS
   // ══════════════════════════════════════════════════════════════════════════
 
-  Widget _buildExploreSection(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildExploreSection(BuildContext context, bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     final tools = [
       _GrowthTool(
@@ -1002,7 +1002,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     int completedChallenges,
     int gratitudeCount,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     // Most tracked focus area this month
@@ -1142,19 +1142,19 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     int streak,
     int totalEntries,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     return GradientButton.gold(
       label: L10nService.get('growth.growth_dashboard.share_your_progress_1', language),
       icon: Icons.share,
-      onPressed: () => _shareProgress(score, streak, totalEntries, language),
+      onPressed: () => _shareProgress(score, streak, totalEntries, isEn),
       expanded: true,
     );
   }
 
-  void _shareProgress(int score, int streak, int totalEntries, AppLanguage language) {
-    final text = language.isEn
+  void _shareProgress(int score, int streak, int totalEntries, bool isEn) {
+    final text = isEn
         ? 'My InnerCycles Growth Score: $score/100\n'
               'Current streak: $streak days\n'
               'Total entries: $totalEntries\n\n'

@@ -128,8 +128,8 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
       body: CosmicBackground(
         child: SafeArea(
           child: _showResult && _result != null
-              ? _buildResultView(context, isDark, language)
-              : _buildQuizView(context, isDark, language),
+              ? _buildResultView(context, isDark, isEn)
+              : _buildQuizView(context, isDark, isEn),
         ),
       ),
     );
@@ -139,11 +139,11 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
   // QUIZ VIEW
   // ══════════════════════════════════════════════════════════════════════════
 
-  Widget _buildQuizView(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildQuizView(BuildContext context, bool isDark, bool isEn) {
     return Column(
       children: [
         // App bar area
-        _buildQuizAppBar(context, isDark, language),
+        _buildQuizAppBar(context, isDark, isEn),
 
         // Progress indicator
         _buildProgressBar(isDark),
@@ -155,7 +155,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
             horizontal: AppConstants.spacingLg,
           ),
           child: Text(
-            language.isEn
+            isEn
                 ? 'Question ${_currentPage + 1} of $_totalPages'
                 : 'Soru ${_currentPage + 1} / $_totalPages',
             style: AppTypography.subtitle(
@@ -176,7 +176,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
             },
             itemCount: _totalPages,
             itemBuilder: (context, index) {
-              return _buildQuestionPage(context, index, isDark, language);
+              return _buildQuestionPage(context, index, isDark, isEn);
             },
           ),
         ),
@@ -184,7 +184,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
     );
   }
 
-  Widget _buildQuizAppBar(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildQuizAppBar(BuildContext context, bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -263,7 +263,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
     BuildContext context,
     int index,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final question = AttachmentStyleService.questions[index];
     final language = AppLanguage.fromIsEn(isEn);
@@ -438,7 +438,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
   // RESULT VIEW
   // ══════════════════════════════════════════════════════════════════════════
 
-  Widget _buildResultView(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildResultView(BuildContext context, bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     final result = _result!;
     final style = result.attachmentStyle;
@@ -457,15 +457,15 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 // Disclaimer
-                _buildDisclaimer(context, isDark, language),
+                _buildDisclaimer(context, isDark, isEn),
                 const SizedBox(height: AppConstants.spacingXl),
 
                 // Primary style card
-                _buildPrimaryStyleCard(context, style, result, isDark, language),
+                _buildPrimaryStyleCard(context, style, result, isDark, isEn),
                 const SizedBox(height: AppConstants.spacingXl),
 
                 // Percentage breakdown
-                _buildPercentageBreakdown(context, result, isDark, language),
+                _buildPercentageBreakdown(context, result, isDark, isEn),
                 const SizedBox(height: AppConstants.spacingXl),
 
                 // Strengths
@@ -491,11 +491,11 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
                 const SizedBox(height: AppConstants.spacingXxl),
 
                 // Action buttons
-                _buildShareButton(context, isDark, language),
+                _buildShareButton(context, isDark, isEn),
                 const SizedBox(height: AppConstants.spacingMd),
-                _buildGoDeeperButton(context, isDark, language),
+                _buildGoDeeperButton(context, isDark, isEn),
                 const SizedBox(height: AppConstants.spacingMd),
-                _buildRetakeButton(context, isDark, language),
+                _buildRetakeButton(context, isDark, isEn),
                 const SizedBox(height: AppConstants.spacingHuge),
               ]),
             ),
@@ -505,7 +505,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
     );
   }
 
-  Widget _buildDisclaimer(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildDisclaimer(BuildContext context, bool isDark, bool isEn) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
@@ -524,7 +524,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
           const SizedBox(width: AppConstants.spacingSm),
           Expanded(
             child: Text(
-              language.isEn
+              isEn
                   ? 'This is a self-reflection tool for personal awareness, '
                         'not a clinical assessment.'
                   : 'Bu, klinik bir değerlendirme değil, kişisel farkındalık '
@@ -545,7 +545,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
     AttachmentStyle style,
     AttachmentQuizResult result,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     final percentage = (result.percentageFor(style) * 100).toStringAsFixed(0);
@@ -619,7 +619,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
     BuildContext context,
     AttachmentQuizResult result,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     return Column(
@@ -645,7 +645,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
               percentage: percentage,
               percentText: percentText,
               isDark: isDark,
-              language: language,
+              isEn: isEn,
             ),
           );
         }),
@@ -659,7 +659,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
     required double percentage,
     required String percentText,
     required bool isDark,
-    required AppLanguage language,
+    required bool isEn,
   }) {
     final language = AppLanguage.fromIsEn(isEn);
     return Column(
@@ -782,7 +782,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
   // ACTION BUTTONS
   // ══════════════════════════════════════════════════════════════════════════
 
-  Widget _buildShareButton(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildShareButton(BuildContext context, bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return GradientButton(
       label: L10nService.get('quiz.attachment_quiz.share_your_result', language),
@@ -791,7 +791,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
         if (_result == null) return;
         final style = _result!.attachmentStyle;
         final pct = (_result!.percentageFor(style) * 100).toStringAsFixed(0);
-        final text = language.isEn
+        final text = isEn
             ? 'I discovered my attachment style: ${style.displayNameEn} ($pct%)\n\nUnderstanding your patterns is the first step to growth.\n\nExplore yours with InnerCycles'
             : 'Bağlanma stilimi keşfettim: ${style.displayNameTr} (%$pct)\n\nKalıplarını anlamak büyümenin ilk adımıdır.\n\nInnerCycles ile keşfet';
         SharePlus.instance.share(ShareParams(text: text));
@@ -803,7 +803,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
     ).animate().fadeIn(duration: 500.ms, delay: 800.ms);
   }
 
-  Widget _buildGoDeeperButton(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildGoDeeperButton(BuildContext context, bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return GradientOutlinedButton(
       label: L10nService.get('quiz.attachment_quiz.go_deeper_premium', language),
@@ -823,7 +823,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
     ).animate().fadeIn(duration: 500.ms, delay: 900.ms);
   }
 
-  Widget _buildRetakeButton(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildRetakeButton(BuildContext context, bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return SizedBox(
       width: double.infinity,

@@ -277,11 +277,11 @@ class CycleCorrelationService {
     final weakPhase = topInsight.weakestPhase;
 
     if (strongPhase == phase) {
-      return language.isEn
+      return isEn
           ? 'Your $areaName tends to be stronger during this phase of your cycle.'
           : '$areaName, döngünüzün bu evresinde daha güçlü olma eğiliminde.';
     } else if (weakPhase == phase) {
-      return language.isEn
+      return isEn
           ? 'Your $areaName may need extra attention during this phase.'
           : '$areaName, bu evrede ekstra ilgi gerektirebilir.';
     }

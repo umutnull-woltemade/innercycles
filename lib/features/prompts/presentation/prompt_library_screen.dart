@@ -77,7 +77,7 @@ class PromptLibraryScreen extends ConsumerWidget {
           data: (service) => _PromptLibraryContent(
             service: service,
             isDark: isDark,
-            language: language,
+            isEn: isEn,
           ),
         ),
       ),
@@ -92,12 +92,12 @@ class PromptLibraryScreen extends ConsumerWidget {
 class _PromptLibraryContent extends StatefulWidget {
   final JournalPromptService service;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _PromptLibraryContent({
     required this.service,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -109,7 +109,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
 
   JournalPromptService get service => widget.service;
   bool get isDark => widget.isDark;
-  AppLanguage get language => widget.language;
+  bool get isEn => widget.isEn;
 
   List<JournalPrompt> get _filteredPrompts {
     if (_selectedCategory == null) {
@@ -196,7 +196,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                 child: ToolEcosystemFooter(
                   currentToolId: 'promptLibrary',
-                  language: language,
+                  isEn: isEn,
                   isDark: isDark,
                 ),
               ),

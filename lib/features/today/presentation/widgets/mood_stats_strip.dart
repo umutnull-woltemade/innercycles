@@ -12,12 +12,12 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class MoodStatsStrip extends ConsumerWidget {
-  final AppLanguage language;
+  final bool isEn;
   final bool isDark;
 
   const MoodStatsStrip({
     super.key,
-    required this.language,
+    required this.isEn,
     required this.isDark,
   });
 

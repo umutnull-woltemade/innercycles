@@ -40,7 +40,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
     final canBio = await service.canUseBiometrics();
     if (!canBio) return;
 
-    final language = StorageService.loadLanguage();
+    final isEn = StorageService.loadLanguage() == AppLanguage.en;
     final language = AppLanguage.fromIsEn(isEn);
     final success = await service.authenticateWithBiometrics(
       reason: L10nService.get('app_lock.app_lock.unlock_innercycles', language),
@@ -171,9 +171,9 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildBioButton(isDark, language),
+                        _buildBioButton(isDark, isEn),
                         _buildDigitButton(0, isDark),
-                        _buildDeleteButton(isDark, language),
+                        _buildDeleteButton(isDark, isEn),
                       ],
                     ),
                   ],
@@ -232,7 +232,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
     );
   }
 
-  Widget _buildDeleteButton(bool isDark, AppLanguage language) {
+  Widget _buildDeleteButton(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       label: L10nService.get('app_lock.app_lock.delete', language),
@@ -256,7 +256,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
     );
   }
 
-  Widget _buildBioButton(bool isDark, AppLanguage language) {
+  Widget _buildBioButton(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       label: L10nService.get('app_lock.app_lock.unlock_with_biometrics', language),

@@ -47,7 +47,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
     super.dispose();
   }
 
-  Future<void> _applyCode(ReferralService service, AppLanguage language) async {
+  Future<void> _applyCode(ReferralService service, bool isEn) async {
     final language = AppLanguage.fromIsEn(isEn);
     final code = _codeController.text.trim();
     if (code.isEmpty) return;
@@ -80,7 +80,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final language = ref.watch(languageProvider);
+    final isEn = ref.watch(languageProvider) == AppLanguage.en;
     final language = AppLanguage.fromIsEn(isEn);
     final referralAsync = ref.watch(referralServiceProvider);
 
@@ -107,30 +107,30 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
                   data: (service) => SliverList(
                     delegate: SliverChildListDelegate([
                       // Hero header
-                      _buildHeroHeader(language, isDark),
+                      _buildHeroHeader(isEn, isDark),
                       const SizedBox(height: AppConstants.spacingXl),
 
                       // Your code card
-                      _buildYourCodeCard(service, language, isDark),
+                      _buildYourCodeCard(service, isEn, isDark),
                       const SizedBox(height: AppConstants.spacingLg),
 
                       // Share button
-                      _buildShareButton(service, language)
+                      _buildShareButton(service, isEn)
                           .glassListItem(context: context, index: 2),
                       const SizedBox(height: AppConstants.spacingXl),
 
                       // Stats
-                      _buildStatsRow(service, language, isDark)
+                      _buildStatsRow(service, isEn, isDark)
                           .glassListItem(context: context, index: 3),
                       const SizedBox(height: AppConstants.spacingXl),
 
                       // Milestones
-                      _buildMilestones(service, language, isDark)
+                      _buildMilestones(service, isEn, isDark)
                           .glassListItem(context: context, index: 4),
                       const SizedBox(height: AppConstants.spacingXl),
 
                       // Enter a code
-                      _buildEnterCodeSection(service, language, isDark)
+                      _buildEnterCodeSection(service, isEn, isDark)
                           .glassListItem(context: context, index: 5),
                       const SizedBox(height: AppConstants.spacingHuge),
                     ]),
@@ -144,7 +144,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
     );
   }
 
-  Widget _buildHeroHeader(AppLanguage language, bool isDark) {
+  Widget _buildHeroHeader(bool isEn, bool isDark) {
     final language = AppLanguage.fromIsEn(isEn);
     return Column(
       children: [
@@ -179,7 +179,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
     );
   }
 
-  Widget _buildYourCodeCard(ReferralService service, AppLanguage language, bool isDark) {
+  Widget _buildYourCodeCard(ReferralService service, bool isEn, bool isDark) {
     final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.gold,
@@ -251,7 +251,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
         );
   }
 
-  Widget _buildShareButton(ReferralService service, AppLanguage language) {
+  Widget _buildShareButton(ReferralService service, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return GradientButton.gold(
       label: L10nService.get('referral.referral.share_invite_link', language),
@@ -266,7 +266,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
     );
   }
 
-  Widget _buildStatsRow(ReferralService service, AppLanguage language, bool isDark) {
+  Widget _buildStatsRow(ReferralService service, bool isEn, bool isDark) {
     final language = AppLanguage.fromIsEn(isEn);
     final info = service.info;
     return PremiumCard(
@@ -305,7 +305,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
     );
   }
 
-  Widget _buildMilestones(ReferralService service, AppLanguage language, bool isDark) {
+  Widget _buildMilestones(ReferralService service, bool isEn, bool isDark) {
     final language = AppLanguage.fromIsEn(isEn);
     final count = service.referralCount;
 
@@ -342,7 +342,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
 
   Widget _buildEnterCodeSection(
     ReferralService service,
-    AppLanguage language,
+    bool isEn,
     bool isDark,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
@@ -433,7 +433,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
                     : (L10nService.get('referral.referral.apply_code', language)),
                 expanded: true,
                 onPressed:
-                    _isApplying ? null : () => _applyCode(service, language),
+                    _isApplying ? null : () => _applyCode(service, isEn),
               ),
               if (_applyMessage != null) ...[
                 const SizedBox(height: 12),

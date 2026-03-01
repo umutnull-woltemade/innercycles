@@ -44,7 +44,7 @@ class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
             todayMood: todayMood,
             weekMoods: weekMoods,
             isDark: isDark,
-            language: language,
+            isEn: isEn,
           );
         }
 
@@ -53,13 +53,13 @@ class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
             todayMood: todayMood,
             weekMoods: weekMoods,
             isDark: isDark,
-            language: language,
+            isEn: isEn,
           );
         }
 
         return _CheckinView(
           isDark: isDark,
-          language: language,
+          isEn: isEn,
           onSelect: (mood, emoji) async {
             await service.logMood(mood, emoji);
             HapticService.moodSelected();
@@ -78,12 +78,12 @@ class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
 
 class _CheckinView extends StatelessWidget {
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final Function(int, String) onSelect;
 
   const _CheckinView({
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onSelect,
   });
 
@@ -109,7 +109,7 @@ class _CheckinView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: MoodCheckinService.moodOptions.map((option) {
               final (mood, emoji, labelEn, labelTr) = option;
-              final label = language.isEn ? labelEn : labelTr;
+              final label = isEn ? labelEn : labelTr;
               return Semantics(
                 label: label,
                 button: true,
@@ -145,13 +145,13 @@ class _LoggedView extends StatelessWidget {
   final MoodEntry todayMood;
   final List<MoodEntry?> weekMoods;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _LoggedView({
     required this.todayMood,
     required this.weekMoods,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -182,7 +182,7 @@ class _LoggedView extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      _moodLabel(todayMood.mood, language),
+                      _moodLabel(todayMood.mood, isEn),
                       style: AppTypography.decorativeScript(
                         fontSize: 12,
                         color: isDark
@@ -201,7 +201,7 @@ class _LoggedView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: List.generate(7, (i) {
               final entry = weekMoods[i];
-              final dayLabels = language.isEn
+              final dayLabels = isEn
                   ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
                   : ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pa'];
               final day = nowTime.subtract(Duration(days: 6 - i));
@@ -254,7 +254,7 @@ class _LoggedView extends StatelessWidget {
     ).animate().fadeIn(duration: 300.ms);
   }
 
-  String _moodLabel(int mood, AppLanguage language) {
+  String _moodLabel(int mood, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     switch (mood) {
       case 1:
@@ -294,13 +294,13 @@ class _ThankYouView extends StatelessWidget {
   final MoodEntry todayMood;
   final List<MoodEntry?> weekMoods;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _ThankYouView({
     required this.todayMood,
     required this.weekMoods,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   /// Map mood level (1-5) to relevant emotion families for granular suggestion

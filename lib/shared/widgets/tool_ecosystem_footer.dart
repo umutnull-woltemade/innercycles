@@ -22,13 +22,13 @@ import '../../data/providers/app_providers.dart';
 
 class ToolEcosystemFooter extends ConsumerWidget {
   final String currentToolId;
-  final AppLanguage language;
+  final bool isEn;
   final bool isDark;
 
   const ToolEcosystemFooter({
     super.key,
     required this.currentToolId,
-    required this.language,
+    required this.isEn,
     required this.isDark,
   });
 

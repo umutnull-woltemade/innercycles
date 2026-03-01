@@ -111,13 +111,13 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
     return entries;
   }
 
-  String _formatMonthHeader(String key, AppLanguage language) {
+  String _formatMonthHeader(String key, bool isEn) {
     final parts = key.split('-');
     if (parts.length < 2) return key;
     final year = parts[0];
     final month = int.tryParse(parts[1]) ?? 1;
 
-    final months = language.isEn
+    final months = isEn
         ? CommonStrings.monthsFullEn
         : CommonStrings.monthsFullTr;
 
@@ -125,7 +125,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
     return '$monthName $year';
   }
 
-  String _formatDate(DateTime date, AppLanguage language) {
+  String _formatDate(DateTime date, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     final day = date.day.toString().padLeft(2, '0');
     final month = date.month.toString().padLeft(2, '0');
@@ -257,7 +257,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                             horizontal: AppConstants.spacingLg,
                             vertical: AppConstants.spacingSm,
                           ),
-                          child: _buildSearchBar(isDark, language),
+                          child: _buildSearchBar(isDark, isEn),
                         ),
                       ),
 
@@ -269,7 +269,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                               horizontal: AppConstants.spacingLg,
                             ),
                             child: Text(
-                              language.isEn
+                              isEn
                                   ? '${dreams.length} dreams'
                                   : '${dreams.length} rüya',
                               style: AppTypography.elegantAccent(
@@ -297,10 +297,10 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                           hasScrollBody: false,
                           child: ToolEmptyState(
                             icon: Icons.nightlight_round,
-                            title: language.isEn
+                            title: isEn
                                 ? 'Your dream journal awaits'
                                 : 'Rüya günlüğün seni bekliyor',
-                            description: language.isEn
+                            description: isEn
                                 ? 'Start capturing your dreams — the glossary is ready when you are.'
                                 : 'Rüyalarını kaydetmeye başla — sözlük hazır olduğunda burada.',
                             onStartTemplate: () =>
@@ -327,7 +327,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                                     AppConstants.spacingSm,
                                   ),
                                   child: GradientText(
-                                    _formatMonthHeader(monthKey, language),
+                                    _formatMonthHeader(monthKey, isEn),
                                     variant: GradientTextVariant.gold,
                                     style: AppTypography.displayFont.copyWith(
                                       fontSize: 15,
@@ -401,7 +401,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                                         child: _DreamCard(
                                           dream: dream,
                                           isDark: isDark,
-                                          language: language,
+                                          isEn: isEn,
                                           formatDate: _formatDate,
                                         ),
                                       ),
@@ -421,7 +421,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                           ),
                           child: ToolEcosystemFooter(
                             currentToolId: 'dreamArchive',
-                            language: language,
+                            isEn: isEn,
                             isDark: isDark,
                           ),
                         ),
@@ -456,7 +456,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
     });
   }
 
-  Widget _buildSearchBar(bool isDark, AppLanguage language) {
+  Widget _buildSearchBar(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return Container(
       decoration: BoxDecoration(
@@ -570,13 +570,13 @@ class _StatTile extends StatelessWidget {
 class _DreamCard extends StatelessWidget {
   final DreamEntry dream;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final String Function(DateTime, bool) formatDate;
 
   const _DreamCard({
     required this.dream,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.formatDate,
   });
 
@@ -584,7 +584,7 @@ class _DreamCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       button: true,
-      label: '${dream.title}, ${formatDate(dream.dreamDate, language)}',
+      label: '${dream.title}, ${formatDate(dream.dreamDate, isEn)}',
       child: GlassPanel(
         elevation: GlassElevation.g2,
         padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -622,7 +622,7 @@ class _DreamCard extends StatelessWidget {
 
             // Date
             Text(
-              formatDate(dream.dreamDate, language),
+              formatDate(dream.dreamDate, isEn),
               style: AppTypography.elegantAccent(
                 fontSize: 13,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,

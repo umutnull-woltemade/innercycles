@@ -90,11 +90,11 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen>
     return Scaffold(
       body: widget.navigationShell,
       extendBody: true,
-      bottomNavigationBar: _buildBottomBar(isDark, language),
+      bottomNavigationBar: _buildBottomBar(isDark, isEn),
     );
   }
 
-  Widget _buildBottomBar(bool isDark, AppLanguage language) {
+  Widget _buildBottomBar(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     final currentIndex = widget.navigationShell.currentIndex;
 

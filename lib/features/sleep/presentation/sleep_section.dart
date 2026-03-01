@@ -87,7 +87,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
         children: [
           // Header - tap to expand
           Semantics(
-            label: language.isEn
+            label: isEn
                 ? (_isExpanded
                       ? 'Collapse sleep quality'
                       : 'Expand sleep quality')
@@ -188,7 +188,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                       final isActive = quality == _selectedQuality;
                       return Semantics(
                         label:
-                            '${L10nService.get('sleep.sleep.sleep_quality_1', language)} $quality: ${_qualityLabel(quality, language)}',
+                            '${L10nService.get('sleep.sleep.sleep_quality_1', language)} $quality: ${_qualityLabel(quality, isEn)}',
                         button: true,
                         selected: isActive,
                         child: GestureDetector(
@@ -243,7 +243,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                     const SizedBox(height: 8),
                     Center(
                       child: Text(
-                        _qualityLabel(_selectedQuality, language),
+                        _qualityLabel(_selectedQuality, isEn),
                         style: AppTypography.subtitle(
                           fontSize: 13,
                           color: _qualityColor(_selectedQuality),
@@ -315,11 +315,11 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
     }
   }
 
-  String _qualityLabel(int quality, AppLanguage language) {
+  String _qualityLabel(int quality, bool isEn) {
     final labelsEn = ['Terrible', 'Poor', 'Fair', 'Good', 'Excellent'];
     final labelsTr = ['Berbat', 'Kötü', 'Orta', 'İyi', 'Mükemmel'];
     final idx = (quality - 1).clamp(0, labelsEn.length - 1);
-    return language.isEn ? labelsEn[idx] : labelsTr[idx];
+    return isEn ? labelsEn[idx] : labelsTr[idx];
   }
 
   Color _qualityColor(int quality) {

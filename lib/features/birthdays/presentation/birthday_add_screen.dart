@@ -119,19 +119,19 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                     padding: const EdgeInsets.all(16),
                     sliver: SliverList(
                       delegate: SliverChildListDelegate([
-                        _buildPhotoSection(isDark, language),
+                        _buildPhotoSection(isDark, isEn),
                         const SizedBox(height: 20),
-                        _buildNameField(isDark, language),
+                        _buildNameField(isDark, isEn),
                         const SizedBox(height: 20),
-                        _buildDateSection(isDark, language),
+                        _buildDateSection(isDark, isEn),
                         const SizedBox(height: 20),
-                        _buildRelationshipSection(isDark, language),
+                        _buildRelationshipSection(isDark, isEn),
                         const SizedBox(height: 20),
-                        _buildNoteField(isDark, language),
+                        _buildNoteField(isDark, isEn),
                         const SizedBox(height: 20),
-                        _buildNotificationToggles(isDark, language),
+                        _buildNotificationToggles(isDark, isEn),
                         const SizedBox(height: 32),
-                        _buildSaveButton(isDark, language),
+                        _buildSaveButton(isDark, isEn),
                         const SizedBox(height: 40),
                       ]),
                     ),
@@ -164,7 +164,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
   // PHOTO
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildPhotoSection(bool isDark, AppLanguage language) {
+  Widget _buildPhotoSection(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return Center(
       child: Semantics(
@@ -219,7 +219,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
   // NAME
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildNameField(bool isDark, AppLanguage language) {
+  Widget _buildNameField(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -265,9 +265,9 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
   // DATE PICKER (Month + Day + optional Year)
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildDateSection(bool isDark, AppLanguage language) {
+  Widget _buildDateSection(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
-    final monthNames = language.isEn
+    final monthNames = isEn
         ? CommonStrings.monthsFullEn
         : CommonStrings.monthsFullTr;
 
@@ -439,7 +439,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
   // RELATIONSHIP
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildRelationshipSection(bool isDark, AppLanguage language) {
+  Widget _buildRelationshipSection(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -517,7 +517,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
   // NOTE
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildNoteField(bool isDark, AppLanguage language) {
+  Widget _buildNoteField(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -560,7 +560,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
   // NOTIFICATION TOGGLES
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildNotificationToggles(bool isDark, AppLanguage language) {
+  Widget _buildNotificationToggles(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -627,7 +627,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
   // SAVE BUTTON
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildSaveButton(bool isDark, AppLanguage language) {
+  Widget _buildSaveButton(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     final canSave = _nameController.text.trim().isNotEmpty && !_isSaving;
 

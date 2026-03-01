@@ -15,13 +15,13 @@ import '../../../../data/providers/app_providers.dart';
 
 class HomeHeader extends StatelessWidget {
   final String userName;
-  final AppLanguage language;
+  final bool isEn;
   final bool isDark;
 
   const HomeHeader({
     super.key,
     required this.userName,
-    required this.language,
+    required this.isEn,
     required this.isDark,
   });
 
@@ -129,7 +129,7 @@ class HomeHeader extends StatelessWidget {
                     ],
                     const SizedBox(height: 6),
                     Text(
-                      language.isEn ? insight.en : insight.tr,
+                      isEn ? insight.en : insight.tr,
                       style: AppTypography.decorativeScript(
                         fontSize: 15,
                         fontWeight: FontWeight.w400,

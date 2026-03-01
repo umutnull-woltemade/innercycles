@@ -3,7 +3,7 @@
 // ============================================================================
 // A shareable, animated year-in-review screen showing the user's emotional
 // journey through their journal entries. Uses safe, non-predictive language.
-// Supports EN/TR via inline language.isEn pattern. Screenshot-shareable via
+// Supports EN/TR via inline isEn pattern. Screenshot-shareable via
 // RepaintBoundary + toImage + native share sheet.
 // ============================================================================
 
@@ -178,7 +178,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
   // SHARE ACTION
   // =========================================================================
 
-  Future<void> _shareReport(AppLanguage language) async {
+  Future<void> _shareReport(bool isEn) async {
     final language = AppLanguage.fromIsEn(isEn);
     final boundary =
         _repaintKey.currentContext?.findRenderObject()
@@ -216,18 +216,18 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
   // HELPERS
   // =========================================================================
 
-  String _monthName(int month, AppLanguage language) {
+  String _monthName(int month, bool isEn) {
     final enMonths = ['', ...CommonStrings.monthsShortEn];
     final trMonths = ['', ...CommonStrings.monthsShortTr];
     if (month < 1 || month > 12) return '';
-    return language.isEn ? enMonths[month] : trMonths[month];
+    return isEn ? enMonths[month] : trMonths[month];
   }
 
-  String _monthNameFull(int month, AppLanguage language) {
+  String _monthNameFull(int month, bool isEn) {
     final enMonths = ['', ...CommonStrings.monthsFullEn];
     final trMonths = ['', ...CommonStrings.monthsFullTr];
     if (month < 1 || month > 12) return '';
-    return language.isEn ? enMonths[month] : trMonths[month];
+    return isEn ? enMonths[month] : trMonths[month];
   }
 
   Color _focusAreaColor(FocusArea area) {
@@ -245,7 +245,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     }
   }
 
-  String _motivationalMessage(_AnnualReportData data, AppLanguage language) {
+  String _motivationalMessage(_AnnualReportData data, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     if (data.totalEntries >= 200) {
       return L10nService.get('journal.annual_report.an_extraordinary_year_of_selfreflection', language);
@@ -311,10 +311,10 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
             final report = _computeReport(service, reportYear);
 
             if (report == null) {
-              return _buildEmptyState(context, isDark, language, reportYear);
+              return _buildEmptyState(context, isDark, isEn, reportYear);
             }
 
-            return _buildReportView(context, report, isDark, language);
+            return _buildReportView(context, report, isDark, isEn);
           },
         ),
       ),
@@ -328,7 +328,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
   Widget _buildEmptyState(
     BuildContext context,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     int year,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
@@ -344,7 +344,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
             child: Center(
               child: PremiumEmptyState(
                 icon: Icons.auto_stories_outlined,
-                title: language.isEn
+                title: isEn
                     ? 'Start journaling to unlock your $year story'
                     : '$year hikayeni açmak için yazmaya başla',
                 description: L10nService.get('journal.annual_report.your_yearinreview_will_come_alive_with_e', language),
@@ -367,7 +367,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     BuildContext context,
     _AnnualReportData report,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     return SafeArea(
@@ -380,7 +380,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
             title: L10nService.get('journal.annual_report.year_synthesis_1', language),
             actions: [
               IconButton(
-                onPressed: _isSharing ? null : () => _shareReport(language),
+                onPressed: _isSharing ? null : () => _shareReport(isEn),
                 icon: _isSharing
                     ? const CupertinoActivityIndicator(radius: 10)
                     : const Icon(Icons.ios_share, color: AppColors.starGold),
@@ -401,7 +401,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                     child: Column(
                       children: [
                         // 1) Year title + total entries
-                        _buildYearHeader(context, report, isDark, language)
+                        _buildYearHeader(context, report, isDark, isEn)
                             .animate()
                             .fadeIn(duration: 500.ms)
                             .slideY(
@@ -412,7 +412,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                         const SizedBox(height: AppConstants.spacingXl),
 
                         // 2) Top 3 focus areas
-                        _buildTopFocusAreas(context, report, isDark, language)
+                        _buildTopFocusAreas(context, report, isDark, isEn)
                             .animate()
                             .fadeIn(delay: 150.ms, duration: 500.ms)
                             .slideY(
@@ -424,7 +424,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                         const SizedBox(height: AppConstants.spacingXl),
 
                         // 3) Monthly mood chart
-                        _buildMonthlyChart(context, report, isDark, language)
+                        _buildMonthlyChart(context, report, isDark, isEn)
                             .animate()
                             .fadeIn(delay: 300.ms, duration: 500.ms)
                             .slideY(
@@ -436,7 +436,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                         const SizedBox(height: AppConstants.spacingXl),
 
                         // 4) Longest streak
-                        _buildStreakCard(context, report, isDark, language)
+                        _buildStreakCard(context, report, isDark, isEn)
                             .animate()
                             .fadeIn(delay: 450.ms, duration: 500.ms)
                             .slideY(
@@ -449,7 +449,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
 
                         // 5) Most active month
                         if (report.mostActiveMonth != null)
-                          _buildMostActiveMonth(context, report, isDark, language)
+                          _buildMostActiveMonth(context, report, isDark, isEn)
                               .animate()
                               .fadeIn(delay: 600.ms, duration: 500.ms)
                               .slideY(
@@ -462,7 +462,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                           const SizedBox(height: AppConstants.spacingXl),
 
                         // 6) Motivational summary
-                        _buildMotivationalSummary(context, report, isDark, language)
+                        _buildMotivationalSummary(context, report, isDark, isEn)
                             .animate()
                             .fadeIn(delay: 750.ms, duration: 500.ms)
                             .slideY(
@@ -498,7 +498,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     BuildContext context,
     _AnnualReportData report,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
@@ -558,7 +558,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     BuildContext context,
     _AnnualReportData report,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
@@ -681,7 +681,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     BuildContext context,
     _AnnualReportData report,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     final maxRating = report.monthlyAverageRatings.values.isNotEmpty
@@ -776,7 +776,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                         const SizedBox(height: 4),
                         // Month label
                         Text(
-                          _monthName(month, language),
+                          _monthName(month, isEn),
                           style: AppTypography.elegantAccent(
                             fontSize: 10,
                             fontWeight: FontWeight.w500,
@@ -805,7 +805,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     BuildContext context,
     _AnnualReportData report,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
@@ -847,7 +847,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  language.isEn
+                  isEn
                       ? '${report.longestStreak} consecutive days'
                       : '${report.longestStreak} ardışık gün',
                   style: AppTypography.displayFont.copyWith(
@@ -872,7 +872,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     BuildContext context,
     _AnnualReportData report,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     final activeMonth = report.mostActiveMonth;
@@ -919,7 +919,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  _monthNameFull(month, language),
+                  _monthNameFull(month, isEn),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 22,
                     fontWeight: FontWeight.w800,
@@ -952,7 +952,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     BuildContext context,
     _AnnualReportData report,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     return PremiumCard(
       style: PremiumCardStyle.amethyst,
@@ -962,7 +962,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
           Icon(Icons.auto_awesome, color: AppColors.starGold, size: 32),
           const SizedBox(height: 12),
           Text(
-            _motivationalMessage(report, language),
+            _motivationalMessage(report, isEn),
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 17,

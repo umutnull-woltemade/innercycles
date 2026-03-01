@@ -299,10 +299,10 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                     Semantics(
                                       liveRegion: _isRunning,
                                       label: hasStarted
-                                          ? (language.isEn
+                                          ? (isEn
                                                 ? '${_formatTime(_remainingSeconds)} remaining'
                                                 : '${_formatTime(_remainingSeconds)} kaldı')
-                                          : (language.isEn
+                                          : (isEn
                                                 ? '$_selectedMinutes minutes selected'
                                                 : '$_selectedMinutes dakika seçildi'),
                                       child: Column(

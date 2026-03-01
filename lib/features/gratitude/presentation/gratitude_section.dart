@@ -74,12 +74,12 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
       error: (_, _) => const SizedBox.shrink(),
       data: (service) {
         _loadExisting(service);
-        return _buildSection(isDark, language, service);
+        return _buildSection(isDark, isEn, service);
       },
     );
   }
 
-  Widget _buildSection(bool isDark, AppLanguage language, GratitudeService service) {
+  Widget _buildSection(bool isDark, bool isEn, GratitudeService service) {
     final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
       style: PremiumCardStyle.subtle,
@@ -87,7 +87,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
         children: [
           // Toggle header
           Semantics(
-            label: language.isEn
+            label: isEn
                 ? (_isExpanded ? 'Collapse gratitude' : 'Expand gratitude')
                 : (_isExpanded ? 'Şükranı daralt' : 'Şükranı genişlet'),
             button: true,
@@ -160,7 +160,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
           // Expanded content
           AnimatedCrossFade(
             firstChild: const SizedBox(width: double.infinity),
-            secondChild: _buildGratitudeFields(isDark, language, service),
+            secondChild: _buildGratitudeFields(isDark, isEn, service),
             crossFadeState: _isExpanded
                 ? CrossFadeState.showSecond
                 : CrossFadeState.showFirst,
@@ -173,7 +173,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
 
   Widget _buildGratitudeFields(
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     GratitudeService service,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
@@ -307,7 +307,7 @@ class GratitudeSummaryCard extends ConsumerWidget {
         return _GratitudeSummaryContent(
           summary: summary,
           isDark: isDark,
-          language: language,
+          isEn: isEn,
         );
       },
     );
@@ -317,12 +317,12 @@ class GratitudeSummaryCard extends ConsumerWidget {
 class _GratitudeSummaryContent extends StatelessWidget {
   final GratitudeSummary summary;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _GratitudeSummaryContent({
     required this.summary,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -350,7 +350,7 @@ class _GratitudeSummaryContent extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            language.isEn
+            isEn
                 ? '${summary.totalItems} gratitude items across ${summary.daysWithGratitude} days'
                 : '${summary.daysWithGratitude} günde ${summary.totalItems} şükran maddesi',
             style: AppTypography.decorativeScript(

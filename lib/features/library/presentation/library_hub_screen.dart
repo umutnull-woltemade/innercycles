@@ -123,7 +123,7 @@ class LibraryHubScreen extends ConsumerWidget {
                             child: _CategoryCard(
                               category: cat,
                               isDark: isDark,
-                              language: language,
+                              isEn: isEn,
                             ),
                           )
                           .animate()
@@ -141,7 +141,7 @@ class LibraryHubScreen extends ConsumerWidget {
 
                     ToolEcosystemFooter(
                       currentToolId: 'libraryHub',
-                      language: language,
+                      isEn: isEn,
                       isDark: isDark,
                     ),
                     const SizedBox(height: AppConstants.spacingHuge),
@@ -175,11 +175,11 @@ class _LibraryCategory {
 class _CategoryCard extends StatelessWidget {
   final _LibraryCategory category;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   const _CategoryCard({
     required this.category,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override

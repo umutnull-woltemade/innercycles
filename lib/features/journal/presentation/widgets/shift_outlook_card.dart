@@ -19,14 +19,14 @@ import '../../../../data/providers/app_providers.dart';
 class ShiftOutlookCard extends StatelessWidget {
   final ShiftOutlook outlook;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final VoidCallback? onTapDetails;
 
   const ShiftOutlookCard({
     super.key,
     required this.outlook,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     this.onTapDetails,
   });
 

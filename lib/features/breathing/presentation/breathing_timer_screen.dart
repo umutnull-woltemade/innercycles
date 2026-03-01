@@ -280,7 +280,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                         // Preset selector
                         _PresetSelector(
                           current: _preset,
-                          language: language,
+                          isEn: isEn,
                           isDark: isDark,
                           enabled: !_isRunning,
                           onChanged: (p) => setState(() => _preset = p),
@@ -301,7 +301,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                         // Breath circle
                         Semantics(
                           label: _isRunning && currentPhase != null
-                              ? (language.isEn
+                              ? (isEn
                                     ? '${currentPhase.labelEn()}, $_phaseCountdown seconds'
                                     : '${currentPhase.labelTr()}, $_phaseCountdown saniye')
                               : (L10nService.get('breathing.breathing_timer.breathing_circle_tap_start_to_begin', language)),
@@ -349,7 +349,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                                       if (_isRunning &&
                                           currentPhase != null) ...[
                                         Text(
-                                          language.isEn
+                                          isEn
                                               ? currentPhase.labelEn()
                                               : currentPhase.labelTr(),
                                           style: AppTypography.decorativeScript(
@@ -391,7 +391,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                         // Cycle counter
                         if (_completedCycles > 0) ...[
                           Text(
-                            language.isEn
+                            isEn
                                 ? '$_completedCycles ${_completedCycles == 1 ? 'cycle' : 'cycles'} completed'
                                 : '$_completedCycles döngü tamamlandı',
                             style: AppTypography.subtitle(
@@ -404,10 +404,10 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                             GestureDetector(
                               onTap: () {
                                 HapticService.buttonPress();
-                                final presetName = language.isEn
+                                final presetName = isEn
                                     ? _preset.nameEn()
                                     : _preset.nameTr();
-                                final msg = language.isEn
+                                final msg = isEn
                                     ? 'Just completed $_completedCycles cycles of $presetName breathing on InnerCycles. Feeling centered.\n\n${AppConstants.appStoreUrl}\n#InnerCycles #Breathing #Mindfulness'
                                     : 'InnerCycles\'da $_completedCycles döngü $presetName nefes egzersizi tamamladım. Kendimi merkezde hissediyorum.\n\n${AppConstants.appStoreUrl}\n#InnerCycles';
                                 SharePlus.instance.share(ShareParams(text: msg));
@@ -506,14 +506,14 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
 
 class _PresetSelector extends StatelessWidget {
   final BreathingPreset current;
-  final AppLanguage language;
+  final bool isEn;
   final bool isDark;
   final bool enabled;
   final ValueChanged<BreathingPreset> onChanged;
 
   const _PresetSelector({
     required this.current,
-    required this.language,
+    required this.isEn,
     required this.isDark,
     required this.enabled,
     required this.onChanged,

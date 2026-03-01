@@ -100,7 +100,7 @@ class QuizHubScreen extends ConsumerWidget {
                               isCompleted: isCompleted,
                               lastResultName: lastResultName,
                               isDark: isDark,
-                              language: language,
+                              isEn: isEn,
                               onTap: () => context.push(
                                 Routes.quizGeneric.replaceFirst(
                                   ':quizId',
@@ -124,7 +124,7 @@ class QuizHubScreen extends ConsumerWidget {
 
                     ToolEcosystemFooter(
                       currentToolId: 'quizHub',
-                      language: language,
+                      isEn: isEn,
                       isDark: isDark,
                     ),
                     const SizedBox(height: 40),
@@ -148,7 +148,7 @@ class _QuizCard extends StatelessWidget {
   final bool isCompleted;
   final String? lastResultName;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final VoidCallback onTap;
 
   const _QuizCard({
@@ -156,7 +156,7 @@ class _QuizCard extends StatelessWidget {
     required this.isCompleted,
     this.lastResultName,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onTap,
   });
 
@@ -252,7 +252,7 @@ class _QuizCard extends StatelessWidget {
                     if (isCompleted && lastResultName != null) ...[
                       const SizedBox(height: AppConstants.spacingXs),
                       Text(
-                        language.isEn
+                        isEn
                             ? 'Your result: $lastResultName'
                             : 'Sonucunuz: $lastResultName',
                         style: AppTypography.elegantAccent(

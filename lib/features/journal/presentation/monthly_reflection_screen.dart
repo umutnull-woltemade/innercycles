@@ -153,7 +153,7 @@ class _MonthlyReflectionScreenState
                           IconButton(
                             onPressed: () {
                               HapticService.buttonPress();
-                              final monthNames = language.isEn
+                              final monthNames = isEn
                                   ? CommonStrings.monthsShortEn
                                   : CommonStrings.monthsShortTr;
                               final monthLabel = monthNames[_selectedMonth - 1];
@@ -161,7 +161,7 @@ class _MonthlyReflectionScreenState
                               final strongest = strongestArea != null
                                   ? (strongestArea.localizedName(language))
                                   : null;
-                              final msg = language.isEn
+                              final msg = isEn
                                   ? 'My $monthLabel $_selectedYear reflection:\n${summary.totalEntries} entries${strongest != null ? '\nStrongest area: $strongest' : ''}\n\nTracking my patterns with InnerCycles.\n${AppConstants.appStoreUrl}\n#InnerCycles #MonthlyReflection'
                                   : '$monthLabel $_selectedYear yansımam:\n${summary.totalEntries} kayıt${strongest != null ? '\nEn güçlü alan: $strongest' : ''}\n\nInnerCycles ile örüntülerimi takip ediyorum.\n${AppConstants.appStoreUrl}\n#InnerCycles';
                               SharePlus.instance.share(ShareParams(text: msg));
@@ -180,7 +180,7 @@ class _MonthlyReflectionScreenState
                       sliver: SliverList(
                         delegate: SliverChildListDelegate([
                           // Month selector
-                          _buildMonthSelector(context, isDark, language),
+                          _buildMonthSelector(context, isDark, isEn),
                           const SizedBox(height: AppConstants.spacingXl),
 
                           // Summary card — always visible
@@ -188,7 +188,7 @@ class _MonthlyReflectionScreenState
                             context,
                             summary,
                             isDark,
-                            language,
+                            isEn,
                           ).animate().fadeIn(duration: 400.ms),
                           const SizedBox(height: AppConstants.spacingLg),
 
@@ -198,7 +198,7 @@ class _MonthlyReflectionScreenState
                               context,
                               _selectedMonth,
                               isDark,
-                              language,
+                              isEn,
                             ).animate().fadeIn(delay: 50.ms, duration: 400.ms)
                           else
                             _buildPremiumBlurOverlay(
@@ -206,10 +206,10 @@ class _MonthlyReflectionScreenState
                                 context,
                                 _selectedMonth,
                                 isDark,
-                                language,
+                                isEn,
                               ),
                               isDark: isDark,
-                              language: language,
+                              isEn: isEn,
                             ).animate().fadeIn(delay: 50.ms, duration: 400.ms),
                           const SizedBox(height: AppConstants.spacingLg),
 
@@ -220,7 +220,7 @@ class _MonthlyReflectionScreenState
                                 context,
                                 summary,
                                 isDark,
-                                language,
+                                isEn,
                               ).animate().fadeIn(
                                 delay: 100.ms,
                                 duration: 400.ms,
@@ -231,10 +231,10 @@ class _MonthlyReflectionScreenState
                                   context,
                                   summary,
                                   isDark,
-                                  language,
+                                  isEn,
                                 ),
                                 isDark: isDark,
-                                language: language,
+                                isEn: isEn,
                               ).animate().fadeIn(
                                 delay: 100.ms,
                                 duration: 400.ms,
@@ -257,7 +257,7 @@ class _MonthlyReflectionScreenState
   Widget _buildPremiumBlurOverlay({
     required Widget child,
     required bool isDark,
-    required AppLanguage language,
+    required bool isEn,
   }) {
     final language = AppLanguage.fromIsEn(isEn);
     return ClipRRect(
@@ -322,9 +322,9 @@ class _MonthlyReflectionScreenState
     );
   }
 
-  Widget _buildMonthSelector(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildMonthSelector(BuildContext context, bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
-    final months = language.isEn
+    final months = isEn
         ? [
             'January',
             'February',
@@ -422,7 +422,7 @@ class _MonthlyReflectionScreenState
     BuildContext context,
     MonthlySummary summary,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
@@ -436,7 +436,7 @@ class _MonthlyReflectionScreenState
               Icon(Icons.edit_note, color: AppColors.starGold, size: 24),
               const SizedBox(width: 12),
               Text(
-                language.isEn
+                isEn
                     ? '${summary.totalEntries} entries this month'
                     : 'Bu ay ${summary.totalEntries} kayıt',
                 style: AppTypography.modernAccent(
@@ -515,7 +515,7 @@ class _MonthlyReflectionScreenState
             context,
             isDark,
             L10nService.get('journal.monthly_reflection.current_streak', language),
-            language.isEn
+            isEn
                 ? '${summary.currentStreak} days'
                 : '${summary.currentStreak} gün',
             Icons.local_fire_department,
@@ -563,7 +563,7 @@ class _MonthlyReflectionScreenState
     BuildContext context,
     int month,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     final theme = allMonthlyThemes.firstWhere(
@@ -684,7 +684,7 @@ class _MonthlyReflectionScreenState
     BuildContext context,
     MonthlySummary summary,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     return PremiumCard(
@@ -705,7 +705,7 @@ class _MonthlyReflectionScreenState
           ...summary.averagesByArea.entries.map((e) {
             final label = e.key.localizedName(language);
             return Semantics(
-              label: language.isEn
+              label: isEn
                   ? '$label: ${e.value.toStringAsFixed(1)} out of 5'
                   : '$label: 5 üzerinden ${e.value.toStringAsFixed(1)}',
               child: Padding(

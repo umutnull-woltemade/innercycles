@@ -76,7 +76,7 @@ class MoodTrendsScreen extends ConsumerWidget {
             ),
           ),
           data: (service) =>
-              _buildContent(context, ref, service, isDark, language, isPremium),
+              _buildContent(context, ref, service, isDark, isEn, isPremium),
         ),
       ),
     );
@@ -87,7 +87,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     WidgetRef ref,
     MoodCheckinService service,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     bool isPremium,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
@@ -113,7 +113,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                     service: service,
                     ref: ref,
                     isDark: isDark,
-                    language: language,
+                    isEn: isEn,
                   ),
                 ),
               ),
@@ -158,7 +158,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                 _buildStatsRow(
                   context,
                   isDark,
-                  language,
+                  isEn,
                   avg7,
                   avg30,
                   allEntries.length,
@@ -167,10 +167,10 @@ class MoodTrendsScreen extends ConsumerWidget {
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Week view (FREE)
-                _buildWeekCard(context, isDark, language, weekMoods, now),
+                _buildWeekCard(context, isDark, isEn, weekMoods, now),
                 const SizedBox(height: 8),
                 // Share mood summary
-                _buildShareMoodRow(isDark, language, avg7, weekMoods, allEntries.length),
+                _buildShareMoodRow(isDark, isEn, avg7, weekMoods, allEntries.length),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Distribution chart (PREMIUM — blurred for free)
@@ -178,12 +178,12 @@ class MoodTrendsScreen extends ConsumerWidget {
                   context,
                   ref,
                   isDark,
-                  language,
+                  isEn,
                   isPremium,
                   child: _buildDistributionCard(
                     context,
                     isDark,
-                    language,
+                    isEn,
                     distribution,
                     maxCount,
                   ),
@@ -196,18 +196,18 @@ class MoodTrendsScreen extends ConsumerWidget {
                     context,
                     ref,
                     isDark,
-                    language,
+                    isEn,
                     isPremium,
                     child: _buildRecentCard(
                       context,
                       isDark,
-                      language,
+                      isEn,
                       allEntries.take(20).toList(),
                     ),
                   ),
                 // Deeper Tools Discovery
                 const SizedBox(height: AppConstants.spacingMd),
-                _buildDeeperToolsSection(context, isDark, language),
+                _buildDeeperToolsSection(context, isDark, isEn),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 ContentDisclaimer(
@@ -226,7 +226,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     bool isPremium, {
     required Widget child,
   }) {
@@ -297,7 +297,7 @@ class MoodTrendsScreen extends ConsumerWidget {
   Widget _buildStatsRow(
     BuildContext context,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     double avg7,
     double avg30,
     int total,
@@ -339,12 +339,12 @@ class MoodTrendsScreen extends ConsumerWidget {
   Widget _buildWeekCard(
     BuildContext context,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     List<MoodEntry?> weekMoods,
     DateTime now,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
-    final dayLabels = language.isEn
+    final dayLabels = isEn
         ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         : ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
 
@@ -386,10 +386,10 @@ class MoodTrendsScreen extends ConsumerWidget {
                   const SizedBox(height: 6),
                   Semantics(
                     label: mood != null
-                        ? (language.isEn
+                        ? (isEn
                               ? '${dayLabels[dayIndex]}: mood ${mood.mood} of 5'
                               : '${dayLabels[dayIndex]}: ruh hali ${mood.mood}/5')
-                        : (language.isEn
+                        : (isEn
                               ? '${dayLabels[dayIndex]}: no entry'
                               : '${dayLabels[dayIndex]}: kayıt yok'),
                     child: Container(
@@ -424,7 +424,7 @@ class MoodTrendsScreen extends ConsumerWidget {
 
   Widget _buildShareMoodRow(
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     double avg7,
     List<MoodEntry?> weekMoods,
     int totalLogs,
@@ -441,7 +441,7 @@ class MoodTrendsScreen extends ConsumerWidget {
           final emojis = weekMoods
               .map((m) => m?.emoji ?? '·')
               .join(' ');
-          final msg = language.isEn
+          final msg = isEn
               ? 'My mood this week: $emojis\n7-day average: ${avg7.toStringAsFixed(1)}/5 ($filledDays days tracked)\n\nTracking my emotional patterns with InnerCycles.\n${AppConstants.appStoreUrl}\n#InnerCycles #MoodTracking'
               : 'Bu haftaki ruh halim: $emojis\n7 günlük ortalama: ${avg7.toStringAsFixed(1)}/5 ($filledDays gün takip)\n\nInnerCycles ile duygusal örüntülerimi takip ediyorum.\n${AppConstants.appStoreUrl}\n#InnerCycles';
           SharePlus.instance.share(ShareParams(text: msg));
@@ -472,7 +472,7 @@ class MoodTrendsScreen extends ConsumerWidget {
   Widget _buildDistributionCard(
     BuildContext context,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     Map<int, int> distribution,
     int maxCount,
   ) {
@@ -571,7 +571,7 @@ class MoodTrendsScreen extends ConsumerWidget {
   Widget _buildRecentCard(
     BuildContext context,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     List<MoodEntry> entries,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
@@ -664,7 +664,7 @@ class MoodTrendsScreen extends ConsumerWidget {
   Widget _buildDeeperToolsSection(
     BuildContext context,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     return GlassPanel(
@@ -688,8 +688,8 @@ class MoodTrendsScreen extends ConsumerWidget {
             isDark,
             icon: Icons.favorite_rounded,
             color: AppColors.amethyst,
-            title: language.isEn ? 'Cycle Sync' : 'Döngü Senkronu',
-            subtitle: language.isEn ? 'How your cycle shapes your emotions' : 'Döngün duygularını nasıl şekillendiriyor',
+            title: isEn ? 'Cycle Sync' : 'Döngü Senkronu',
+            subtitle: isEn ? 'How your cycle shapes your emotions' : 'Döngün duygularını nasıl şekillendiriyor',
             route: Routes.cycleSync,
           ),
           const SizedBox(height: 8),
@@ -698,8 +698,8 @@ class MoodTrendsScreen extends ConsumerWidget {
             isDark,
             icon: Icons.psychology_rounded,
             color: AppColors.amethyst,
-            title: language.isEn ? 'Shadow Work' : 'Gölge Çalışması',
-            subtitle: language.isEn ? 'Explore hidden emotional patterns' : 'Gizli duygusal kalıpları keşfet',
+            title: isEn ? 'Shadow Work' : 'Gölge Çalışması',
+            subtitle: isEn ? 'Explore hidden emotional patterns' : 'Gizli duygusal kalıpları keşfet',
             route: Routes.shadowWork,
           ),
           const SizedBox(height: 8),
@@ -708,8 +708,8 @@ class MoodTrendsScreen extends ConsumerWidget {
             isDark,
             icon: Icons.waves_rounded,
             color: AppColors.auroraStart,
-            title: language.isEn ? 'Emotional Cycles' : 'Duygusal Döngüler',
-            subtitle: language.isEn ? 'Recurring patterns over time' : 'Zaman içinde tekrarlanan kalıplar',
+            title: isEn ? 'Emotional Cycles' : 'Duygusal Döngüler',
+            subtitle: isEn ? 'Recurring patterns over time' : 'Zaman içinde tekrarlanan kalıplar',
             route: Routes.emotionalCycles,
           ),
           const SizedBox(height: 8),
@@ -718,8 +718,8 @@ class MoodTrendsScreen extends ConsumerWidget {
             isDark,
             icon: Icons.calendar_month_rounded,
             color: AppColors.starGold,
-            title: language.isEn ? 'Heatmap Timeline' : 'Isı Haritası Zaman Çizelgesi',
-            subtitle: language.isEn ? 'Visualize your journaling activity' : 'Günlük aktiviteni görselleştir',
+            title: isEn ? 'Heatmap Timeline' : 'Isı Haritası Zaman Çizelgesi',
+            subtitle: isEn ? 'Visualize your journaling activity' : 'Günlük aktiviteni görselleştir',
             route: Routes.calendarHeatmap,
           ),
         ],
@@ -850,13 +850,13 @@ class _EmptyStateMoodCheckin extends StatelessWidget {
   final MoodCheckinService service;
   final WidgetRef ref;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _EmptyStateMoodCheckin({
     required this.service,
     required this.ref,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -942,7 +942,7 @@ class _EmptyStateMoodCheckin extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: MoodCheckinService.moodOptions.map((option) {
                   final (mood, emoji, labelEn, labelTr) = option;
-                  final label = language.isEn ? labelEn : labelTr;
+                  final label = isEn ? labelEn : labelTr;
                   return Semantics(
                     label: label,
                     button: true,

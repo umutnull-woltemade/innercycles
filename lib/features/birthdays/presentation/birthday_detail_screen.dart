@@ -90,7 +90,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                 ),
               );
             }
-            return _buildContent(context, ref, contact, isDark, language);
+            return _buildContent(context, ref, contact, isDark, isEn);
           },
         ),
       ),
@@ -102,10 +102,10 @@ class BirthdayDetailScreen extends ConsumerWidget {
     WidgetRef ref,
     BirthdayContact contact,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
-    final monthNames = language.isEn
+    final monthNames = isEn
         ? CommonStrings.monthsFullEn
         : CommonStrings.monthsFullTr;
 
@@ -129,7 +129,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                   HapticService.buttonPress();
                   final dateStr =
                       '${monthNames[contact.birthdayMonth - 1]} ${contact.birthdayDay}';
-                  final msg = language.isEn
+                  final msg = isEn
                       ? '${contact.name}\'s birthday is on $dateStr! \u{1F382}\n\nNever miss a birthday with InnerCycles.\n${AppConstants.appStoreUrl}\n#InnerCycles'
                       : '${contact.name} doğum günü: $dateStr! \u{1F382}\n\nInnerCycles ile hiçbir doğum gününü kaçırma.\n${AppConstants.appStoreUrl}\n#InnerCycles';
                   SharePlus.instance.share(ShareParams(text: msg));
@@ -188,7 +188,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                 if (contact.age != null)
                   Center(
                     child: Text(
-                      language.isEn
+                      isEn
                           ? '${contact.age} years old'
                           : '${contact.age} ya\u{015F}\u{0131}nda',
                       style: AppTypography.decorativeScript(
@@ -217,7 +217,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                 const SizedBox(height: 20),
 
                 // 3. Countdown Card
-                _buildCountdownCard(contact, isDark, language),
+                _buildCountdownCard(contact, isDark, isEn),
                 const SizedBox(height: 16),
 
                 // 4. Relationship Badge
@@ -346,7 +346,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                   child: TextButton.icon(
                     onPressed: () {
                       HapticService.buttonPress();
-                      _confirmDelete(context, ref, contact, language);
+                      _confirmDelete(context, ref, contact, isEn);
                     },
                     icon: Icon(
                       Icons.delete_outline_rounded,
@@ -371,7 +371,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildCountdownCard(BirthdayContact contact, bool isDark, AppLanguage language) {
+  Widget _buildCountdownCard(BirthdayContact contact, bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     final days = contact.daysUntilBirthday;
     final isToday = contact.isBirthdayToday;
@@ -488,13 +488,13 @@ class BirthdayDetailScreen extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
     BirthdayContact contact,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     GlassDialog.confirm(
       context,
       title: L10nService.get('birthdays.birthday_detail.delete_contact_1', language),
-      message: language.isEn
+      message: isEn
           ? 'Are you sure you want to delete ${contact.name}?'
           : '${contact.name} ki\u{015F}isini silmek istedi\u{011F}inizden emin misiniz?',
       cancelLabel: L10nService.get('birthdays.birthday_detail.cancel', language),

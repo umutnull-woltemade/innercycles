@@ -94,13 +94,13 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
               ],
             ),
           ),
-          data: (service) => _buildContent(service, isDark, language),
+          data: (service) => _buildContent(service, isDark, isEn),
         ),
       ),
     );
   }
 
-  Widget _buildContent(GrowthChallengeService service, bool isDark, AppLanguage language) {
+  Widget _buildContent(GrowthChallengeService service, bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     final allChallenges = GrowthChallengeService.allChallenges;
     final activeChallenges = allChallenges.where((c) {
@@ -141,7 +141,7 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
                   completed: completedChallenges.length,
                   total: allChallenges.length,
                   isDark: isDark,
-                  language: language,
+                  isEn: isEn,
                 ).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: AppConstants.spacingXl),
 
@@ -164,7 +164,7 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
                         challenge: challenge,
                         progress: progress,
                         isDark: isDark,
-                        language: language,
+                        isEn: isEn,
                       ),
                     ).animate().fadeIn(
                       delay: Duration(milliseconds: 150 + entry.key * 80),
@@ -184,14 +184,14 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
                   availableChallenges,
                   service,
                   isDark,
-                  language,
+                  isEn,
                 ),
                 const SizedBox(height: AppConstants.spacingXl),
 
                 // Completed
                 if (completedChallenges.isNotEmpty) ...[
                   _SectionTitle(
-                    title: language.isEn
+                    title: isEn
                         ? 'Completed (${completedChallenges.length})'
                         : 'Tamamlanan (${completedChallenges.length})',
                     isDark: isDark,
@@ -205,7 +205,7 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
                       child: _CompletedChallengeTile(
                         challenge: c,
                         isDark: isDark,
-                        language: language,
+                        isEn: isEn,
                       ),
                     ),
                   ),
@@ -213,7 +213,7 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
 
                 ToolEcosystemFooter(
                   currentToolId: 'challengeHub',
-                  language: language,
+                  isEn: isEn,
                   isDark: isDark,
                 ),
                 const SizedBox(height: AppConstants.spacingHuge),
@@ -230,7 +230,7 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
     List<GrowthChallenge> challenges,
     GrowthChallengeService service,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final rows = <Widget>[];
     for (int i = 0; i < challenges.length; i += 2) {
@@ -245,7 +245,7 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
                 child: _AvailableChallengeCard(
                   challenge: left,
                   isDark: isDark,
-                  language: language,
+                  isEn: isEn,
                   onStart: () => _startChallenge(service, left.id),
                 ),
               ),
@@ -255,7 +255,7 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
                     ? _AvailableChallengeCard(
                         challenge: right,
                         isDark: isDark,
-                        language: language,
+                        isEn: isEn,
                         onStart: () => _startChallenge(service, right.id),
                       )
                     : const SizedBox.shrink(),
@@ -340,13 +340,13 @@ class _StatsBar extends StatelessWidget {
   final int completed;
   final int total;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   const _StatsBar({
     required this.active,
     required this.completed,
     required this.total,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -427,12 +427,12 @@ class _ActiveChallengeCard extends StatelessWidget {
   final GrowthChallenge challenge;
   final ChallengeProgress progress;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   const _ActiveChallengeCard({
     required this.challenge,
     required this.progress,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -479,7 +479,7 @@ class _ActiveChallengeCard extends StatelessWidget {
                         final remaining = progress.targetCount - progress.currentCount;
                         final daysLeft = rate > 0 ? (remaining / rate).ceil() : 0;
                         return Text(
-                          language.isEn
+                          isEn
                               ? '~$daysLeft days left'
                               : '~$daysLeft gün kaldı',
                           style: AppTypography.elegantAccent(
@@ -529,12 +529,12 @@ class _ActiveChallengeCard extends StatelessWidget {
 class _AvailableChallengeCard extends StatelessWidget {
   final GrowthChallenge challenge;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final VoidCallback onStart;
   const _AvailableChallengeCard({
     required this.challenge,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onStart,
   });
 
@@ -543,7 +543,7 @@ class _AvailableChallengeCard extends StatelessWidget {
     final language = AppLanguage.fromIsEn(isEn);
     return Semantics(
       button: true,
-      label: language.isEn
+      label: isEn
           ? 'Start challenge: ${challenge.localizedTitle(AppLanguage.en)}'
           : 'Göreve başla: ${challenge.localizedTitle(AppLanguage.tr)}',
       child: PremiumCard(
@@ -593,7 +593,7 @@ class _AvailableChallengeCard extends StatelessWidget {
           ),
           const SizedBox(height: 2),
           Text(
-            language.isEn
+            isEn
                 ? '${challenge.targetCount} days'
                 : '${challenge.targetCount} g\u00fcn',
             style: AppTypography.elegantAccent(
@@ -621,11 +621,11 @@ class _AvailableChallengeCard extends StatelessWidget {
 class _CompletedChallengeTile extends StatelessWidget {
   final GrowthChallenge challenge;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   const _CompletedChallengeTile({
     required this.challenge,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -658,7 +658,7 @@ class _CompletedChallengeTile extends StatelessWidget {
               final language = AppLanguage.fromIsEn(isEn);
               HapticService.buttonPress();
               final title = challenge.localizedTitle(language);
-              final msg = language.isEn
+              final msg = isEn
                   ? 'I completed the "$title" challenge on InnerCycles! Personal growth through daily reflection.\n\n${AppConstants.appStoreUrl}\n#InnerCycles #ChallengeComplete'
                   : '"$title" görevini InnerCycles\'da tamamladım! Günlük yansıma ile kişisel gelişim.\n\n${AppConstants.appStoreUrl}\n#InnerCycles';
               SharePlus.instance.share(ShareParams(text: msg));

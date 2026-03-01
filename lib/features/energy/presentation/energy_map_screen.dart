@@ -95,7 +95,7 @@ class EnergyMapScreen extends ConsumerWidget {
                     data: (data) {
                       if (data == null) {
                         return SliverToBoxAdapter(
-                          child: _EmptyState(isDark: isDark, language: language),
+                          child: _EmptyState(isDark: isDark, isEn: isEn),
                         );
                       }
                       return SliverList(
@@ -103,19 +103,19 @@ class EnergyMapScreen extends ConsumerWidget {
                           _SummaryHeader(
                             data: data,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           ),
                           const SizedBox(height: 20),
-                          _HeatmapGrid(data: data, isDark: isDark, language: language),
+                          _HeatmapGrid(data: data, isDark: isDark, isEn: isEn),
                           const SizedBox(height: 24),
-                          _DailyChart(data: data, isDark: isDark, language: language),
+                          _DailyChart(data: data, isDark: isDark, isEn: isEn),
                           const SizedBox(height: 24),
-                          _InsightTips(data: data, isDark: isDark, language: language),
+                          _InsightTips(data: data, isDark: isDark, isEn: isEn),
                           const SizedBox(height: 24),
                           ContentDisclaimer(language: language),
                           ToolEcosystemFooter(
                             currentToolId: 'energyMap',
-                            language: language,
+                            isEn: isEn,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 40),
@@ -140,12 +140,12 @@ class EnergyMapScreen extends ConsumerWidget {
 class _SummaryHeader extends StatelessWidget {
   final EnergyMapData data;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _SummaryHeader({
     required this.data,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -167,7 +167,7 @@ class _SummaryHeader extends StatelessWidget {
           const SizedBox(width: 12),
           _StatChip(
             label: L10nService.get('energy.energy_map.best_day', language),
-            value: _dayLabel(data.bestDay, language),
+            value: _dayLabel(data.bestDay, isEn),
             color: AppColors.success,
             isDark: isDark,
           ),
@@ -175,7 +175,7 @@ class _SummaryHeader extends StatelessWidget {
           _StatChip(
             label: L10nService.get('energy.energy_map.strongest', language),
             value: data.strongestArea != null
-                ? (language.isEn
+                ? (isEn
                       ? data.strongestArea!.displayNameEn
                       : data.strongestArea!.displayNameTr)
                 : '-',
@@ -187,10 +187,10 @@ class _SummaryHeader extends StatelessWidget {
     ).animate().fadeIn(duration: 300.ms);
   }
 
-  String _dayLabel(int weekday, AppLanguage language) {
+  String _dayLabel(int weekday, bool isEn) {
     final en = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     final tr = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
-    return language.isEn ? en[weekday - 1] : tr[weekday - 1];
+    return isEn ? en[weekday - 1] : tr[weekday - 1];
   }
 }
 
@@ -243,18 +243,18 @@ class _StatChip extends StatelessWidget {
 class _HeatmapGrid extends StatelessWidget {
   final EnergyMapData data;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _HeatmapGrid({
     required this.data,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
   Widget build(BuildContext context) {
     final language = AppLanguage.fromIsEn(isEn);
-    final dayLabels = language.isEn
+    final dayLabels = isEn
         ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         : ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
 
@@ -425,12 +425,12 @@ class _HeatCell extends StatelessWidget {
 class _DailyChart extends StatelessWidget {
   final EnergyMapData data;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _DailyChart({
     required this.data,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -525,12 +525,12 @@ class _DailyChart extends StatelessWidget {
 class _InsightTips extends StatelessWidget {
   final EnergyMapData data;
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
   const _InsightTips({
     required this.data,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -540,24 +540,24 @@ class _InsightTips extends StatelessWidget {
 
     if (data.strongestArea != null) {
       tips.add(
-        language.isEn
+        isEn
             ? 'Your strongest area tends to be ${data.strongestArea!.displayNameEn}'
             : 'En güçlü alanın ${data.strongestArea!.displayNameTr} olma eğiliminde',
       );
     }
 
-    final bestDayLabel = language.isEn
+    final bestDayLabel = isEn
         ? _dayFullEn(data.bestDay)
         : _dayFullTr(data.bestDay);
     tips.add(
-      language.isEn
+      isEn
           ? 'You tend to rate higher on ${bestDayLabel}s'
           : '$bestDayLabel günleri daha yüksek puanlama eğilimindesin',
     );
 
     if (data.overallAverage > 0) {
       tips.add(
-        language.isEn
+        isEn
             ? 'Your overall average is ${data.overallAverage.toStringAsFixed(1)} out of 5'
             : 'Genel ortalamanız 5 üzerinden ${data.overallAverage.toStringAsFixed(1)}',
       );
@@ -655,9 +655,9 @@ class _InsightTips extends StatelessWidget {
 
 class _EmptyState extends StatelessWidget {
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
-  const _EmptyState({required this.isDark, required this.language});
+  const _EmptyState({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {

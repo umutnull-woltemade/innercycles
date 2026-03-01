@@ -238,7 +238,7 @@ class SettingsScreen extends ConsumerWidget {
                               _GroupedSeparator(isDark: isDark),
                               _SyncStatusTile(
                                 isDark: isDark,
-                                language: language == AppLanguage.en,
+                                isEn: language == AppLanguage.en,
                               ),
                             ],
                             _GroupedSeparator(isDark: isDark),
@@ -999,9 +999,9 @@ class _GroupedSeparator extends StatelessWidget {
 /// Sync status indicator tile for Settings → Account section
 class _SyncStatusTile extends ConsumerWidget {
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
 
-  const _SyncStatusTile({required this.isDark, required this.language});
+  const _SyncStatusTile({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

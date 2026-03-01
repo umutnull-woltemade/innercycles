@@ -85,11 +85,11 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
             ),
           ),
           data: (service) =>
-              _buildContent(context, service, isDark, language, isPremium),
+              _buildContent(context, service, isDark, isEn, isPremium),
         ),
       ),
       floatingActionButton: _AnimatedFAB(
-        language: language,
+        isEn: isEn,
         onPressed: () => context.push(Routes.lifeEventNew),
       ),
     );
@@ -99,7 +99,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
     BuildContext context,
     LifeEventService service,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     bool isPremium,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
@@ -142,23 +142,23 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
               sliver: SliverList(
                 delegate: SliverChildListDelegate([
                   // Filter chips
-                  _buildFilterChips(isDark, language),
+                  _buildFilterChips(isDark, isEn),
                   const SizedBox(height: 16),
 
                   if (events.isEmpty)
-                    _buildEmptyState(isDark, language)
+                    _buildEmptyState(isDark, isEn)
                   else ...[
                     for (int i = 0; i < sortedKeys.length; i++) ...[
                       _buildMonthHeader(
                         sortedKeys[i],
                         grouped[sortedKeys[i]]!.length,
                         isDark,
-                        language,
+                        isEn,
                       ),
                       const SizedBox(height: 8),
                       ...grouped[sortedKeys[i]]!.map(
                         (event) =>
-                            _buildEventCard(context, event, isDark, language),
+                            _buildEventCard(context, event, isDark, isEn),
                       ),
                       const SizedBox(height: 16),
                     ],
@@ -166,7 +166,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
 
                   // Premium gate message
                   if (!isPremium && service.eventCount > events.length)
-                    _buildPremiumGate(context, isDark, language),
+                    _buildPremiumGate(context, isDark, isEn),
 
                   ContentDisclaimer(
                     language: language,
@@ -181,7 +181,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
     );
   }
 
-  Widget _buildFilterChips(bool isDark, AppLanguage language) {
+  Widget _buildFilterChips(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return Row(
       children: [
@@ -246,11 +246,11 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
     );
   }
 
-  Widget _buildMonthHeader(String monthKey, int count, bool isDark, AppLanguage language) {
+  Widget _buildMonthHeader(String monthKey, int count, bool isDark, bool isEn) {
     final parts = monthKey.split('-');
     final year = parts[0];
     final monthIndex = int.tryParse(parts[1]) ?? 1;
-    final monthNames = language.isEn
+    final monthNames = isEn
         ? CommonStrings.monthsFullEn
         : CommonStrings.monthsFullTr;
 
@@ -288,7 +288,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
     BuildContext context,
     LifeEvent event,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     final isPositive = event.type == LifeEventType.positive;
@@ -417,7 +417,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
     );
   }
 
-  Widget _buildEmptyState(bool isDark, AppLanguage language) {
+  Widget _buildEmptyState(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return PremiumEmptyState(
       icon: Icons.auto_awesome_rounded,
@@ -429,7 +429,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
     );
   }
 
-  Widget _buildPremiumGate(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildPremiumGate(BuildContext context, bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
@@ -471,10 +471,10 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
 }
 
 class _AnimatedFAB extends StatelessWidget {
-  final AppLanguage language;
+  final bool isEn;
   final VoidCallback onPressed;
 
-  const _AnimatedFAB({required this.language, required this.onPressed});
+  const _AnimatedFAB({required this.isEn, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

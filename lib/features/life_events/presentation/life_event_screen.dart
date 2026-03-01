@@ -133,38 +133,38 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                     sliver: SliverList(
                       delegate: SliverChildListDelegate([
                         // 1. Event Type Selector
-                        _buildTypeSelector(isDark, language),
+                        _buildTypeSelector(isDark, isEn),
                         const SizedBox(height: 20),
 
                         // 2. Preset Picker or Custom Title
                         if (_selectedType != LifeEventType.custom)
-                          _buildPresetPicker(isDark, language)
+                          _buildPresetPicker(isDark, isEn)
                         else
-                          _buildCustomTitle(isDark, language),
+                          _buildCustomTitle(isDark, isEn),
                         const SizedBox(height: 20),
 
                         // 3. Date Picker
-                        _buildDatePicker(context, isDark, language),
+                        _buildDatePicker(context, isDark, isEn),
                         const SizedBox(height: 20),
 
                         // 4. Emotion Tags
-                        _buildEmotionTags(isDark, language),
+                        _buildEmotionTags(isDark, isEn),
                         const SizedBox(height: 20),
 
                         // 5. Intensity Slider
-                        _buildIntensitySlider(isDark, language),
+                        _buildIntensitySlider(isDark, isEn),
                         const SizedBox(height: 20),
 
                         // 6. Reflection Note
-                        _buildReflectionNote(isDark, language),
+                        _buildReflectionNote(isDark, isEn),
                         const SizedBox(height: 20),
 
                         // 7. Photo Upload
-                        _buildPhotoSection(isDark, language),
+                        _buildPhotoSection(isDark, isEn),
                         const SizedBox(height: 24),
 
                         // 8. Save Button
-                        _buildSaveButton(isDark, language),
+                        _buildSaveButton(isDark, isEn),
                         const SizedBox(height: 40),
                       ]),
                     ),
@@ -197,7 +197,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // 1. EVENT TYPE SELECTOR
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildTypeSelector(bool isDark, AppLanguage language) {
+  Widget _buildTypeSelector(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -282,7 +282,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // 2. PRESET PICKER
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildPresetPicker(bool isDark, AppLanguage language) {
+  Widget _buildPresetPicker(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     final presets = _selectedType == LifeEventType.positive
         ? LifeEventPresets.positive
@@ -376,7 +376,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // 2b. CUSTOM TITLE
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildCustomTitle(bool isDark, AppLanguage language) {
+  Widget _buildCustomTitle(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -425,7 +425,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // 3. DATE PICKER
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildDatePicker(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildDatePicker(BuildContext context, bool isDark, bool isEn) {
     final formatted =
         '${_selectedDate.day.toString().padLeft(2, '0')}/'
         '${_selectedDate.month.toString().padLeft(2, '0')}/'
@@ -489,7 +489,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // 4. EMOTION TAGS
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildEmotionTags(bool isDark, AppLanguage language) {
+  Widget _buildEmotionTags(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     const emotions = [
       'joy',
@@ -605,9 +605,9 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // 5. INTENSITY SLIDER
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildIntensitySlider(bool isDark, AppLanguage language) {
+  Widget _buildIntensitySlider(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
-    final labels = language.isEn
+    final labels = isEn
         ? ['Subtle', 'Mild', 'Moderate', 'Strong', 'Life-Changing']
         : ['Hafif', 'Az', 'Orta', 'Güçlü', 'Hayat Değiştiren'];
 
@@ -664,7 +664,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // 6. REFLECTION NOTE
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildReflectionNote(bool isDark, AppLanguage language) {
+  Widget _buildReflectionNote(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -714,7 +714,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // 7. PHOTO UPLOAD
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildPhotoSection(bool isDark, AppLanguage language) {
+  Widget _buildPhotoSection(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -827,7 +827,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // 8. SAVE BUTTON
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildSaveButton(bool isDark, AppLanguage language) {
+  Widget _buildSaveButton(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
     final title = _selectedPreset != null
         ? _selectedPreset!.localizedName(language)

@@ -12,13 +12,13 @@ import '../../../../data/providers/app_providers.dart';
 /// Triggers native App Store review dialog via in_app_review.
 class ProfileRateSection extends StatelessWidget {
   final bool isDark;
-  final AppLanguage language;
+  final bool isEn;
   final int totalEntries;
 
   const ProfileRateSection({
     super.key,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.totalEntries,
   });
 
