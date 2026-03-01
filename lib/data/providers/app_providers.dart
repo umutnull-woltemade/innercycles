@@ -45,7 +45,6 @@ import '../services/year_review_service.dart';
 // referral + intro offer providers defined in their service files
 import '../services/context_module_service.dart';
 import '../services/habit_suggestion_service.dart';
-import '../services/monthly_theme_service.dart';
 import '../services/app_lock_service.dart';
 import '../services/pattern_loop_service.dart';
 import '../services/shift_outlook_service.dart';
@@ -54,7 +53,6 @@ import '../services/cycle_sync_service.dart';
 import '../services/cycle_correlation_service.dart';
 import '../services/shadow_work_service.dart';
 // partner_sync_service removed (killed feature)
-import '../services/dream_journal_correlation_service.dart';
 import '../services/telemetry_service.dart';
 import '../services/progressive_unlock_service.dart';
 import '../services/life_event_service.dart';
@@ -717,8 +715,6 @@ final habitSuggestionServiceProvider = FutureProvider<HabitSuggestionService>((
 // MONTHLY THEME SERVICE PROVIDER
 // =============================================================================
 
-final monthlyThemeServiceProvider = FutureProvider<MonthlyThemeService>((
-  ref,
 ) async {
   return await MonthlyThemeService.init();
 });
@@ -823,32 +819,6 @@ final shadowWorkServiceProvider = FutureProvider<ShadowWorkService>((
 // DREAM-JOURNAL CORRELATION PROVIDERS (Dream-Mood Cross-Analysis)
 // =============================================================================
 
-final dreamJournalCorrelationServiceProvider =
-    FutureProvider<DreamJournalCorrelationService>((ref) async {
-      final dreamService = await ref.watch(dreamJournalServiceProvider.future);
-      final journalService = await ref.watch(journalServiceProvider.future);
-      return await DreamJournalCorrelationService.init(
-        dreamService: dreamService,
-        journalService: journalService,
-      );
-    });
-
-final dreamMoodCorrelationsProvider =
-    FutureProvider<List<DreamMoodCorrelation>>((ref) async {
-      final service = await ref.watch(
-        dreamJournalCorrelationServiceProvider.future,
-      );
-      return service.analyzeDreamMoodCorrelations();
-    });
-
-final topDreamMoodCorrelationsProvider =
-    FutureProvider<List<DreamMoodCorrelation>>((ref) async {
-      final service = await ref.watch(
-        dreamJournalCorrelationServiceProvider.future,
-      );
-      return service.getTopCorrelations(5);
-    });
-
 // =============================================================================
 // TELEMETRY SERVICE PROVIDER
 // =============================================================================
@@ -876,11 +846,6 @@ final lifeEventServiceProvider = FutureProvider<LifeEventService>((ref) async {
   return service;
 });
 
-final lifeEventCountProvider = FutureProvider<int>((ref) async {
-  final service = await ref.watch(lifeEventServiceProvider.future);
-  return service.eventCount;
-});
-
 // =============================================================================
 // BIRTHDAY CONTACT SERVICE PROVIDER
 // =============================================================================
@@ -903,16 +868,9 @@ final todayBirthdaysProvider = FutureProvider<List<BirthdayContact>>((
   return service.getTodayBirthdays();
 });
 
-final upcomingBirthdaysProvider = FutureProvider<List<BirthdayContact>>((
-  ref,
 ) async {
   final service = await ref.watch(birthdayContactServiceProvider.future);
   return service.getUpcomingBirthdays(withinDays: 30);
-});
-
-final birthdayContactCountProvider = FutureProvider<int>((ref) async {
-  final service = await ref.watch(birthdayContactServiceProvider.future);
-  return service.contactCount;
 });
 
 // =============================================================================
