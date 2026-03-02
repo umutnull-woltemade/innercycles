@@ -38,6 +38,7 @@ import '../../../shared/widgets/share_card_sheet.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../data/services/premium_service.dart';
 import '../../gratitude/presentation/gratitude_section.dart';
@@ -80,6 +81,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   bool _isSaving = false;
   bool _isPrivate = false;
   bool _hasChanges = false;
+  bool _showFirstVisitTip = false;
   String? _selectedImagePath;
   Timer? _autosaveTimer;
 
@@ -157,6 +159,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     _loadDraft();
     _noteController.addListener(_scheduleDraftSave);
     _noteController.addListener(_markChanged);
+    _checkFirstVisit();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
           .read(smartRouterServiceProvider)
@@ -165,6 +168,15 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           .read(ecosystemAnalyticsServiceProvider)
           .whenData((s) => s.trackToolOpen('journal', source: 'direct'));
     });
+  }
+
+  Future<void> _checkFirstVisit() async {
+    final prefs = await SharedPreferences.getInstance();
+    final seen = prefs.getBool('journal_first_visit_seen') ?? false;
+    if (!seen && mounted) {
+      setState(() => _showFirstVisitTip = true);
+      await prefs.setBool('journal_first_visit_seen', true);
+    }
   }
 
   void _initSubRatings() {
@@ -307,6 +319,43 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                         // Date selector
                         _buildDateSelector(context, isDark, isEn),
                         const SizedBox(height: AppConstants.spacingSm),
+
+                        // First-visit helper tip
+                        if (_showFirstVisitTip)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 12),
+                            child: PremiumCard(
+                              style: PremiumCardStyle.amethyst,
+                              padding: const EdgeInsets.all(12),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Icon(Icons.lightbulb_outline_rounded,
+                                      size: 18, color: AppColors.amethyst),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Text(
+                                      isEn
+                                          ? 'Choose a focus area that reflects your day, rate how it went, and add notes. Your patterns emerge over time!'
+                                          : 'Gününüzü yansıtan bir odak alanı seçin, nasıl geçtiğini puanlayın ve notlar ekleyin. Kalıplarınız zamanla ortaya çıkar!',
+                                      style: AppTypography.subtitle(
+                                        fontSize: 13,
+                                        color: isDark
+                                            ? AppColors.textSecondary
+                                            : AppColors.lightTextSecondary,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 6),
+                                  GestureDetector(
+                                    onTap: () => setState(() => _showFirstVisitTip = false),
+                                    child: Icon(Icons.close_rounded, size: 16,
+                                        color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ).animate().fadeIn(duration: 400.ms).slideY(begin: -0.1, duration: 400.ms),
 
                         const SizedBox(height: AppConstants.spacingMd),
 

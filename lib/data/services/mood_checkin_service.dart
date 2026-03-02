@@ -9,6 +9,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
+import '../content/signal_content.dart';
 import '../mixins/supabase_sync_mixin.dart';
 
 class MoodEntry {
@@ -17,6 +18,10 @@ class MoodEntry {
   final int mood; // 1-5
   final String emoji;
   final List<String> selectedEmotions; // granular emotion IDs from check-in
+  final String? quadrant; // SignalQuadrant name (fire/water/storm/shadow)
+  final String? signalId; // MoodSignal id (e.g. 'fire_alive')
+  final int? energy; // 1-10
+  final int? pleasantness; // 1-10
 
   const MoodEntry({
     required this.id,
@@ -24,14 +29,31 @@ class MoodEntry {
     required this.mood,
     required this.emoji,
     this.selectedEmotions = const [],
+    this.quadrant,
+    this.signalId,
+    this.energy,
+    this.pleasantness,
   });
 
-  MoodEntry copyWith({List<String>? selectedEmotions}) => MoodEntry(
+  /// Whether this entry was logged via the new signal system
+  bool get hasSignal => signalId != null;
+
+  MoodEntry copyWith({
+    List<String>? selectedEmotions,
+    String? quadrant,
+    String? signalId,
+    int? energy,
+    int? pleasantness,
+  }) => MoodEntry(
     id: id,
     date: date,
     mood: mood,
     emoji: emoji,
     selectedEmotions: selectedEmotions ?? this.selectedEmotions,
+    quadrant: quadrant ?? this.quadrant,
+    signalId: signalId ?? this.signalId,
+    energy: energy ?? this.energy,
+    pleasantness: pleasantness ?? this.pleasantness,
   );
 
   Map<String, dynamic> toJson() => {
@@ -40,6 +62,10 @@ class MoodEntry {
     'mood': mood,
     'emoji': emoji,
     if (selectedEmotions.isNotEmpty) 'selected_emotions': selectedEmotions,
+    if (quadrant != null) 'quadrant': quadrant,
+    if (signalId != null) 'signal_id': signalId,
+    if (energy != null) 'energy': energy,
+    if (pleasantness != null) 'pleasantness': pleasantness,
   };
 
   factory MoodEntry.fromJson(Map<String, dynamic> json) => MoodEntry(
@@ -52,6 +78,10 @@ class MoodEntry {
             ?.map((e) => e.toString())
             .toList() ??
         const [],
+    quadrant: json['quadrant'] as String?,
+    signalId: json['signal_id'] as String?,
+    energy: json['energy'] as int?,
+    pleasantness: json['pleasantness'] as int?,
   );
 }
 
@@ -82,7 +112,7 @@ class MoodCheckinService with SupabaseSyncMixin {
     (5, '🤩', 'Great', 'Harika'),
   ];
 
-  /// Log today's mood
+  /// Log today's mood (legacy 5-emoji path)
   Future<void> logMood(int mood, String emoji, {List<String> selectedEmotions = const []}) async {
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
@@ -109,14 +139,68 @@ class MoodCheckinService with SupabaseSyncMixin {
     await _persist();
 
     // Sync to Supabase
-    queueSync('UPSERT', entry.id, {
+    queueSync('UPSERT', entry.id, _buildSyncPayload(entry, today));
+  }
+
+  /// Log today's mood via signal system (quadrant + signal selection)
+  Future<void> logSignal(String signalId) async {
+    final signal = getSignalById(signalId);
+    if (signal == null) return;
+
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+
+    // Remove existing entry for today
+    _entries.removeWhere(
+      (e) =>
+          e.date.year == today.year &&
+          e.date.month == today.month &&
+          e.date.day == today.day,
+    );
+
+    final entry = MoodEntry(
+      id: _uuid.v4(),
+      date: today,
+      mood: signal.backwardCompatMood,
+      emoji: signal.emoji,
+      quadrant: signal.quadrant.name,
+      signalId: signal.id,
+      energy: signal.defaultEnergy,
+      pleasantness: signal.defaultPleasantness,
+    );
+    _entries.insert(0, entry);
+
+    if (_entries.length > 90) _entries = _entries.sublist(0, 90);
+    await _persist();
+
+    queueSync('UPSERT', entry.id, _buildSyncPayload(entry, today));
+  }
+
+  /// Get quadrant distribution over the last N days
+  Map<String, int> getQuadrantDistribution(int days) {
+    final cutoff = DateTime.now().subtract(Duration(days: days));
+    final counts = <String, int>{};
+    for (final e in _entries) {
+      if (e.date.isAfter(cutoff) && e.quadrant != null) {
+        counts[e.quadrant!] = (counts[e.quadrant!] ?? 0) + 1;
+      }
+    }
+    return counts;
+  }
+
+  Map<String, dynamic> _buildSyncPayload(MoodEntry entry, DateTime today) {
+    return {
       'id': entry.id,
       'date':
           '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}',
-      'mood': mood,
-      'emoji': emoji,
-      if (selectedEmotions.isNotEmpty) 'selected_emotions': selectedEmotions,
-    });
+      'mood': entry.mood,
+      'emoji': entry.emoji,
+      if (entry.selectedEmotions.isNotEmpty) 'selected_emotions': entry.selectedEmotions,
+      if (entry.quadrant != null) 'quadrant': entry.quadrant,
+      if (entry.signalId != null) 'signal_id': entry.signalId,
+      if (entry.energy != null) 'energy': entry.energy,
+      if (entry.pleasantness != null) 'pleasantness': entry.pleasantness,
+    };
   }
 
   /// Update today's mood entry with granular emotion selections
@@ -135,14 +219,7 @@ class MoodCheckinService with SupabaseSyncMixin {
     await _persist();
 
     // Sync updated emotions to Supabase
-    queueSync('UPSERT', updated.id, {
-      'id': updated.id,
-      'date':
-          '${updated.date.year}-${updated.date.month.toString().padLeft(2, '0')}-${updated.date.day.toString().padLeft(2, '0')}',
-      'mood': updated.mood,
-      'emoji': updated.emoji,
-      'selected_emotions': emotionIds,
-    });
+    queueSync('UPSERT', updated.id, _buildSyncPayload(updated, updated.date));
   }
 
   /// Get today's mood
@@ -213,6 +290,10 @@ class MoodCheckinService with SupabaseSyncMixin {
                 ?.map((e) => e.toString())
                 .toList() ??
             const [],
+        quadrant: row['quadrant'] as String?,
+        signalId: row['signal_id'] as String?,
+        energy: row['energy'] as int?,
+        pleasantness: row['pleasantness'] as int?,
       );
 
       final remoteUpdatedAt =

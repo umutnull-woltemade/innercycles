@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/content/emotional_vocabulary_content.dart';
@@ -24,6 +25,22 @@ class MoodCheckinCard extends ConsumerStatefulWidget {
 
 class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
   bool _justLogged = false;
+  bool _showFirstVisitTip = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkFirstVisit();
+  }
+
+  Future<void> _checkFirstVisit() async {
+    final prefs = await SharedPreferences.getInstance();
+    final seen = prefs.getBool('mood_first_visit_seen') ?? false;
+    if (!seen && mounted) {
+      setState(() => _showFirstVisitTip = true);
+      await prefs.setBool('mood_first_visit_seen', true);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +74,44 @@ class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
           );
         }
 
-        return _CheckinView(
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (_showFirstVisitTip)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: AppColors.amethyst.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.touch_app_rounded, size: 16, color: AppColors.amethyst),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          isEn
+                              ? 'Tap an emoji that matches how you feel right now. This builds your mood patterns over time.'
+                              : 'Şu anki hissinize uyan emojiyi seçin. Bu, zaman içinde ruh hali kalıplarınızı oluşturur.',
+                          style: AppTypography.subtitle(
+                            fontSize: 12,
+                            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      GestureDetector(
+                        onTap: () => setState(() => _showFirstVisitTip = false),
+                        child: Icon(Icons.close_rounded, size: 14,
+                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                      ),
+                    ],
+                  ),
+                ),
+              ).animate().fadeIn(duration: 400.ms),
+            _CheckinView(
           isDark: isDark,
           isEn: isEn,
           onSelect: (mood, emoji) async {
@@ -70,6 +124,8 @@ class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
               if (mounted) setState(() => _justLogged = false);
             });
           },
+        ),
+          ],
         );
       },
     );
