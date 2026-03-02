@@ -70,6 +70,8 @@ import '../models/vault_photo.dart';
 import '../services/smart_prompt_service.dart';
 import '../services/time_capsule_service.dart';
 import '../services/clarity_score_service.dart';
+import '../services/intention_service.dart';
+import '../services/values_service.dart';
 
 // =============================================================================
 // USER PROFILE PROVIDERS
@@ -376,6 +378,14 @@ final clarityScoreServiceProvider = FutureProvider<ClarityScoreService>((ref) as
     gratitudeService: gratitude,
     streakService: streak,
   );
+});
+
+final intentionServiceProvider = FutureProvider<IntentionService>((ref) async {
+  return IntentionService.init();
+});
+
+final valuesServiceProvider = FutureProvider<ValuesService>((ref) async {
+  return ValuesService.init();
 });
 
 final ritualStacksProvider = FutureProvider<List<RitualStack>>((ref) async {

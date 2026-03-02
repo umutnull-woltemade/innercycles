@@ -109,6 +109,8 @@ import '../../features/memories/presentation/memories_screen.dart';
 import '../../features/memories/presentation/emotional_timeline_screen.dart';
 import '../../features/journal/presentation/sprint_entry_screen.dart';
 import '../../features/journal/presentation/journal_query_screen.dart';
+import '../../features/growth/presentation/intentions_screen.dart';
+import '../../features/quiz/presentation/values_compass_screen.dart';
 import '../../features/tools/presentation/tool_catalog_screen.dart';
 import '../../features/wellness/presentation/wellness_detail_screen.dart';
 import '../../shared/widgets/main_shell_screen.dart';
@@ -316,6 +318,24 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.emotionalTimeline,
         pageBuilder: (context, state) => PageTransitions.fadeSlide(
           child: const EmotionalTimelineScreen(),
+          key: state.pageKey,
+        ),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
+      // INTENTIONS & VALUES
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.intentions,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const IntentionsScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.valuesCompass,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const ValuesCompassScreen(),
           key: state.pageKey,
         ),
       ),

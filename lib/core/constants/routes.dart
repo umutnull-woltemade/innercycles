@@ -30,6 +30,8 @@ class Routes {
   static const String journalArchive = '/journal/archive';
   static const String memories = '/memories';
   static const String emotionalTimeline = '/memories/timeline';
+  static const String intentions = '/intentions';
+  static const String valuesCompass = '/values-compass';
 
   // ════════════════════════════════════════════════════════════════
   // INSIGHT - Personal Reflection Assistant

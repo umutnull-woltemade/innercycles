@@ -14,6 +14,8 @@ import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../data/providers/app_providers.dart';
+import '../../../../data/models/journal_entry.dart';
+import '../../../../data/services/depth_drill_service.dart';
 import '../../../../data/services/haptic_service.dart';
 import '../../../../shared/widgets/gradient_text.dart';
 import '../../../../shared/widgets/share_nudge_chip.dart';
@@ -26,6 +28,8 @@ class PostSaveEngagementSheet extends ConsumerWidget {
   final int currentStreak;
   final int noteLength;
   final String? aiReflection;
+  final FocusArea? focusArea;
+  final String? entryId;
 
   const PostSaveEngagementSheet({
     super.key,
@@ -33,6 +37,8 @@ class PostSaveEngagementSheet extends ConsumerWidget {
     required this.currentStreak,
     this.noteLength = 0,
     this.aiReflection,
+    this.focusArea,
+    this.entryId,
   });
 
   /// Show the engagement sheet as a modal bottom sheet.
@@ -42,6 +48,8 @@ class PostSaveEngagementSheet extends ConsumerWidget {
     required int currentStreak,
     int noteLength = 0,
     String? aiReflection,
+    FocusArea? focusArea,
+    String? entryId,
   }) {
     return showModalBottomSheet<void>(
       context: context,
@@ -52,6 +60,8 @@ class PostSaveEngagementSheet extends ConsumerWidget {
         currentStreak: currentStreak,
         noteLength: noteLength,
         aiReflection: aiReflection,
+        focusArea: focusArea,
+        entryId: entryId,
       ),
     );
   }
@@ -286,6 +296,17 @@ class PostSaveEngagementSheet extends ConsumerWidget {
                     .fadeIn(delay: 200.ms, duration: 500.ms)
                     .slideY(begin: 0.05, duration: 400.ms, curve: Curves.easeOut),
                 const SizedBox(height: 16),
+              ],
+
+              // Depth drill question
+              if (focusArea != null) ...[
+                _DepthDrillSection(
+                  focusArea: focusArea!,
+                  entryId: entryId,
+                  isEn: isEn,
+                  isDark: isDark,
+                ),
+                const SizedBox(height: 14),
               ],
 
               // Section title
@@ -527,6 +548,101 @@ class _SuggestionTile extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _DepthDrillSection extends StatefulWidget {
+  final FocusArea focusArea;
+  final String? entryId;
+  final bool isEn;
+  final bool isDark;
+
+  const _DepthDrillSection({
+    required this.focusArea,
+    this.entryId,
+    required this.isEn,
+    required this.isDark,
+  });
+
+  @override
+  State<_DepthDrillSection> createState() => _DepthDrillSectionState();
+}
+
+class _DepthDrillSectionState extends State<_DepthDrillSection> {
+  late final DepthDrillQuestion _question;
+  bool _expanded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _question = DepthDrillService.getQuestion(widget.focusArea);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        GestureDetector(
+          onTap: () => setState(() => _expanded = !_expanded),
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(14),
+              gradient: LinearGradient(
+                colors: [
+                  AppColors.amethyst.withValues(alpha: 0.1),
+                  AppColors.auroraStart.withValues(alpha: 0.06),
+                ],
+              ),
+              border: Border.all(
+                color: AppColors.amethyst.withValues(alpha: 0.15),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.psychology_rounded,
+                        size: 16, color: AppColors.amethyst),
+                    const SizedBox(width: 8),
+                    Text(
+                      widget.isEn ? 'Go Deeper' : 'Derine Dal',
+                      style: AppTypography.subtitle(
+                        fontSize: 13,
+                        color: widget.isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ).copyWith(fontWeight: FontWeight.w600),
+                    ),
+                    const Spacer(),
+                    Icon(
+                      _expanded
+                          ? Icons.expand_less_rounded
+                          : Icons.expand_more_rounded,
+                      size: 18,
+                      color: AppColors.amethyst,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  _question.text(widget.isEn),
+                  style: AppTypography.decorativeScript(
+                    fontSize: 13,
+                    color: widget.isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ).animate().fadeIn(delay: 80.ms, duration: 300.ms),
+      ],
     );
   }
 }

@@ -1599,6 +1599,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           currentStreak: streak,
           noteLength: _noteController.text.trim().length,
           aiReflection: aiReflection,
+          focusArea: _selectedArea,
         );
       }
     } catch (e) {

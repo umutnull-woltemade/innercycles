@@ -76,6 +76,8 @@ import 'widgets/time_capsule_delivery_card.dart';
 import 'widgets/emotional_fingerprint_card.dart';
 import 'widgets/clarity_score_card.dart';
 import 'widgets/journal_query_teaser_card.dart';
+import 'widgets/intentions_board_card.dart';
+import 'widgets/value_of_week_card.dart';
 import 'widgets/premium_expiry_banner.dart';
 import 'widgets/sync_status_banner.dart';
 import 'widgets/win_back_offer_banner.dart';
@@ -775,6 +777,16 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 9l. Ask Your Journal Teaser
                   SliverToBoxAdapter(
                     child: JournalQueryTeaserCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9m. Weekly Intentions Board
+                  SliverToBoxAdapter(
+                    child: IntentionsBoardCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9n. Value of the Week
+                  SliverToBoxAdapter(
+                    child: ValueOfWeekCard(isEn: isEn, isDark: isDark),
                   ),
 
                   const SliverToBoxAdapter(child: SizedBox(height: 16)),
