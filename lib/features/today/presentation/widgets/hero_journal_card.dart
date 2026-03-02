@@ -7,6 +7,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../../data/providers/app_providers.dart';
+import '../../../../data/services/mood_checkin_service.dart';
 import '../../../../data/content/share_card_templates.dart';
 import '../../../../data/services/haptic_service.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -29,12 +30,12 @@ class HeroJournalCard extends ConsumerWidget {
     final moodAsync = ref.watch(moodCheckinServiceProvider);
     return moodAsync.whenOrNull(data: (service) {
       final week = service.getWeekMoods();
-      final recent = week.whereType<dynamic>().where((m) => m != null).toList();
+      final recent = week.whereType<MoodEntry>().toList();
       if (recent.length < 3) return null;
 
       // Check last 3 non-null moods
       final last3 = recent.reversed.take(3).toList().reversed.toList();
-      final moods = last3.map((m) => m.mood as int).toList();
+      final moods = last3.map((m) => m.mood).toList();
 
       // Trending down: each mood <= previous
       if (moods[0] > moods[1] && moods[1] > moods[2]) {

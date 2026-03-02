@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
+import '../../../../data/models/life_event.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/haptic_service.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -31,7 +32,7 @@ class LifeEventAnniversaryCard extends ConsumerWidget {
 
         // Find events with anniversaries today (1, 2, 3, 5, 10 years)
         final milestoneYears = [1, 2, 3, 5, 10];
-        MapEntry<int, dynamic>? anniversaryMatch;
+        MapEntry<int, LifeEvent>? anniversaryMatch;
 
         for (final event in allEvents) {
           for (final years in milestoneYears) {
@@ -58,7 +59,7 @@ class LifeEventAnniversaryCard extends ConsumerWidget {
           child: TapScale(
             onTap: () {
               HapticService.selectionTap();
-              context.push(Routes.lifeEventDetail.replaceFirst(':id', event.id as String));
+              context.push(Routes.lifeEventDetail.replaceFirst(':id', event.id));
             },
             child: PremiumCard(
               style: PremiumCardStyle.gold,
@@ -86,7 +87,7 @@ class LifeEventAnniversaryCard extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          event.title as String,
+                          event.title,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: AppTypography.modernAccent(

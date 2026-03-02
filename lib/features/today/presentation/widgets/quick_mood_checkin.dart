@@ -104,6 +104,7 @@ class _QuickMoodCheckinState extends ConsumerState<QuickMoodCheckin> {
     final moodService = ref.read(moodCheckinServiceProvider).valueOrNull;
     if (moodService != null) {
       await moodService.logMood(mood, emoji);
+      if (!mounted) return;
       ref.invalidate(moodCheckinServiceProvider);
     }
   }
