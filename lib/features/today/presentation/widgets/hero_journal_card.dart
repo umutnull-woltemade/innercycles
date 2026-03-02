@@ -190,7 +190,49 @@ class HeroJournalCard extends ConsumerWidget {
                         ).glassShimmer(context: context),
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 10),
+                    // Voice quick-capture shortcut
+                    Semantics(
+                      button: true,
+                      label: L10nService.get('today.hero_journal.start_writing_journal_entry', language),
+                      child: TapScale(
+                        onTap: () {
+                          HapticService.buttonPress();
+                          context.push(
+                            Routes.journal,
+                            extra: {'journalPrompt': questionText},
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.mic_rounded,
+                                size: 15,
+                                color: isDark
+                                    ? AppColors.amethyst.withValues(alpha: 0.7)
+                                    : AppColors.amethyst.withValues(alpha: 0.8),
+                              ),
+                              const SizedBox(width: 5),
+                              Text(
+                                isEn
+                                    ? 'or speak your thoughts'
+                                    : 'veya düşüncelerini seslendir',
+                                style: AppTypography.elegantAccent(
+                                  fontSize: 13,
+                                  color: isDark
+                                      ? AppColors.amethyst.withValues(alpha: 0.7)
+                                      : AppColors.amethyst.withValues(alpha: 0.8),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
                     // Share link
                     Semantics(
                       button: true,

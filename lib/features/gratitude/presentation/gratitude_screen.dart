@@ -205,6 +205,12 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                               const SizedBox(height: 24),
                             ],
 
+                            // Gratitude-Mood comparison insight
+                            _GratitudeMoodInsight(
+                              isDark: isDark,
+                              isEn: isEn,
+                            ),
+
                             // History
                             if (allEntries.isNotEmpty) ...[
                               GradientText(
@@ -579,6 +585,146 @@ class _HistoryCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// GRATITUDE-MOOD INSIGHT CARD
+// ════════════════════════════════════════════════════════════════════════════
+
+class _GratitudeMoodInsight extends ConsumerWidget {
+  final bool isDark;
+  final bool isEn;
+
+  const _GratitudeMoodInsight({
+    required this.isDark,
+    required this.isEn,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final comparisonAsync = ref.watch(gratitudeMoodComparisonProvider);
+
+    return comparisonAsync.maybeWhen(
+      data: (comparison) {
+        if (comparison == null || !comparison.isSignificant) {
+          return const SizedBox.shrink();
+        }
+        final insightText = isEn
+            ? comparison.getInsightEn()
+            : comparison.getInsightTr();
+
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 24),
+          child: PremiumCard(
+            style: PremiumCardStyle.aurora,
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GradientText(
+                  isEn
+                      ? 'Gratitude & Mood'
+                      : '\u{015E}\u{00FC}kran ve Ruh Hali',
+                  variant: GradientTextVariant.aurora,
+                  style: AppTypography.displayFont.copyWith(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                // Comparison bars
+                Row(
+                  children: [
+                    Expanded(
+                      child: _ComparisonBar(
+                        label: isEn ? 'With Gratitude' : '\u{015E}\u{00FC}kranla',
+                        value: comparison.moodWithGratitude,
+                        color: AppColors.starGold,
+                        isDark: isDark,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: _ComparisonBar(
+                        label: isEn ? 'Without' : '\u{015E}\u{00FC}krans\u{0131}z',
+                        value: comparison.moodWithoutGratitude,
+                        color: AppColors.textMuted,
+                        isDark: isDark,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  insightText,
+                  style: AppTypography.subtitle(
+                    fontSize: 13,
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+              ],
+            ),
+          ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
+        );
+      },
+      orElse: () => const SizedBox.shrink(),
+    );
+  }
+}
+
+class _ComparisonBar extends StatelessWidget {
+  final String label;
+  final double value;
+  final Color color;
+  final bool isDark;
+
+  const _ComparisonBar({
+    required this.label,
+    required this.value,
+    required this.color,
+    required this.isDark,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          value.toStringAsFixed(1),
+          style: AppTypography.displayFont.copyWith(
+            fontSize: 24,
+            fontWeight: FontWeight.w700,
+            color: color,
+          ),
+        ),
+        const SizedBox(height: 4),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(3),
+          child: LinearProgressIndicator(
+            value: (value / 5).clamp(0, 1),
+            minHeight: 6,
+            backgroundColor: (isDark
+                    ? AppColors.textMuted
+                    : AppColors.lightTextMuted)
+                .withValues(alpha: 0.12),
+            valueColor: AlwaysStoppedAnimation(color),
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          label,
+          style: AppTypography.elegantAccent(
+            fontSize: 11,
+            color: isDark
+                ? AppColors.textMuted
+                : AppColors.lightTextMuted,
+          ),
+        ),
+      ],
     );
   }
 }

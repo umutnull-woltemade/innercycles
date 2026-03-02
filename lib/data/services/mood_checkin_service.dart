@@ -16,19 +16,30 @@ class MoodEntry {
   final DateTime date;
   final int mood; // 1-5
   final String emoji;
+  final List<String> selectedEmotions; // granular emotion IDs from check-in
 
   const MoodEntry({
     required this.id,
     required this.date,
     required this.mood,
     required this.emoji,
+    this.selectedEmotions = const [],
   });
+
+  MoodEntry copyWith({List<String>? selectedEmotions}) => MoodEntry(
+    id: id,
+    date: date,
+    mood: mood,
+    emoji: emoji,
+    selectedEmotions: selectedEmotions ?? this.selectedEmotions,
+  );
 
   Map<String, dynamic> toJson() => {
     'id': id,
     'date': date.toIso8601String(),
     'mood': mood,
     'emoji': emoji,
+    if (selectedEmotions.isNotEmpty) 'selected_emotions': selectedEmotions,
   };
 
   factory MoodEntry.fromJson(Map<String, dynamic> json) => MoodEntry(
@@ -37,6 +48,10 @@ class MoodEntry {
     date: DateTime.tryParse(json['date']?.toString() ?? '') ?? DateTime.now(),
     mood: json['mood'] as int? ?? 3,
     emoji: json['emoji'] as String? ?? '',
+    selectedEmotions: (json['selected_emotions'] as List<dynamic>?)
+            ?.map((e) => e.toString())
+            .toList() ??
+        const [],
   );
 }
 
@@ -68,7 +83,7 @@ class MoodCheckinService with SupabaseSyncMixin {
   ];
 
   /// Log today's mood
-  Future<void> logMood(int mood, String emoji) async {
+  Future<void> logMood(int mood, String emoji, {List<String> selectedEmotions = const []}) async {
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
 
@@ -85,6 +100,7 @@ class MoodCheckinService with SupabaseSyncMixin {
       date: today,
       mood: mood,
       emoji: emoji,
+      selectedEmotions: selectedEmotions,
     );
     _entries.insert(0, entry);
 
@@ -99,6 +115,33 @@ class MoodCheckinService with SupabaseSyncMixin {
           '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}',
       'mood': mood,
       'emoji': emoji,
+      if (selectedEmotions.isNotEmpty) 'selected_emotions': selectedEmotions,
+    });
+  }
+
+  /// Update today's mood entry with granular emotion selections
+  Future<void> updateSelectedEmotions(List<String> emotionIds) async {
+    final now = DateTime.now();
+    final todayIdx = _entries.indexWhere(
+      (e) =>
+          e.date.year == now.year &&
+          e.date.month == now.month &&
+          e.date.day == now.day,
+    );
+    if (todayIdx < 0) return;
+
+    final updated = _entries[todayIdx].copyWith(selectedEmotions: emotionIds);
+    _entries[todayIdx] = updated;
+    await _persist();
+
+    // Sync updated emotions to Supabase
+    queueSync('UPSERT', updated.id, {
+      'id': updated.id,
+      'date':
+          '${updated.date.year}-${updated.date.month.toString().padLeft(2, '0')}-${updated.date.day.toString().padLeft(2, '0')}',
+      'mood': updated.mood,
+      'emoji': updated.emoji,
+      'selected_emotions': emotionIds,
     });
   }
 
@@ -166,6 +209,10 @@ class MoodCheckinService with SupabaseSyncMixin {
             DateTime.tryParse(row['date']?.toString() ?? '') ?? DateTime.now(),
         mood: row['mood'] as int? ?? 3,
         emoji: row['emoji'] as String? ?? '',
+        selectedEmotions: (row['selected_emotions'] as List<dynamic>?)
+                ?.map((e) => e.toString())
+                .toList() ??
+            const [],
       );
 
       final remoteUpdatedAt =

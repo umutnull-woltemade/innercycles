@@ -37,14 +37,15 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 // Quiz data moved to standalone ArchetypeQuizScreen (post-onboarding)
 
 // ════════════════════════════════════════════════════════════════════════════
-// ONBOARDING SCREEN — 6-Step Focused Flow
+// ONBOARDING SCREEN — 7-Step Focused Flow
 // ════════════════════════════════════════════════════════════════════════════
 //   Page 0: Welcome — Branding + 3 feature highlights
 //   Page 1: Identity — Name + Apple Sign-In
 //   Page 2: First Cycle — Focus area selection
 //   Page 3: First Mood — Quick mood check-in (seeds data for trends)
-//   Page 4: Premium — Soft paywall with skip option
-//   Page 5: Permission + Start — Notifications + CTA
+//   Page 4: First Insight — Personalized "wow" moment (pattern preview)
+//   Page 5: Premium — Soft paywall with skip option
+//   Page 6: Permission + Start — Notifications + CTA
 // ════════════════════════════════════════════════════════════════════════════
 
 class OnboardingScreen extends ConsumerStatefulWidget {
@@ -66,7 +67,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   bool _isCompleting = false;
   String _referralCode = '';
 
-  static const int _totalPages = 6; // 1 welcome + 4 setup + 1 paywall
+  static const int _totalPages = 7; // 1 welcome + 4 setup + 1 insight + 1 paywall
   static const int _valuePropCount = 1;
 
   @override
@@ -182,7 +183,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     if (step == 0) return _userName == null || _userName!.isEmpty;
     if (step == 1) return _selectedFocusArea == null;
     if (step == 2) return _selectedMood == null;
-    if (step == 3) return true; // Paywall page is always skippable
+    if (step == 3) return false; // Insight page — always auto-proceeds
+    if (step == 4) return true; // Paywall page is always skippable
     return false;
   }
 
@@ -285,11 +287,19 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           language: language,
         );
       case 4:
+        return _FirstInsightPage(
+          selectedFocusArea: _selectedFocusArea,
+          selectedMood: _selectedMood,
+          selectedMoodEmoji: _selectedMoodEmoji,
+          userName: _userName,
+          language: language,
+        );
+      case 5:
         return _PaywallPage(
           onSkip: _nextPage,
           language: language,
         );
-      case 5:
+      case 6:
         return _PermissionStartPage(
           notificationsRequested: _notificationsRequested,
           onRequestNotifications: _requestNotifications,
@@ -1031,7 +1041,7 @@ class _FirstCyclePage extends StatelessWidget {
 // Birthday and Archetype Quiz pages removed — deferred to settings/post-onboarding
 
 // ════════════════════════════════════════════════════════════════════════════
-// STEP 2: FIRST MOOD CHECK-IN — Seeds data so trends aren't empty
+// STEP 2b: FIRST MOOD CHECK-IN — Seeds data so trends aren't empty
 // ════════════════════════════════════════════════════════════════════════════
 
 class _FirstMoodPage extends StatelessWidget {
@@ -1215,7 +1225,307 @@ class _FirstMoodPage extends StatelessWidget {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// STEP 3: PREMIUM PAYWALL (soft — always skippable)
+// STEP 3: FIRST INSIGHT — "Wow" Moment (personalized preview)
+// ════════════════════════════════════════════════════════════════════════════
+
+class _FirstInsightPage extends StatefulWidget {
+  final FocusArea? selectedFocusArea;
+  final int? selectedMood;
+  final String? selectedMoodEmoji;
+  final String? userName;
+  final AppLanguage language;
+
+  const _FirstInsightPage({
+    required this.selectedFocusArea,
+    required this.selectedMood,
+    required this.selectedMoodEmoji,
+    required this.userName,
+    required this.language,
+  });
+
+  @override
+  State<_FirstInsightPage> createState() => _FirstInsightPageState();
+}
+
+class _FirstInsightPageState extends State<_FirstInsightPage> {
+  bool _revealed = false;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 1200), () {
+      if (mounted) setState(() => _revealed = true);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isEn = widget.language == AppLanguage.en;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final focus = widget.selectedFocusArea;
+    final mood = widget.selectedMood;
+    final moodEmoji = widget.selectedMoodEmoji ?? '🌿';
+    final name = widget.userName;
+
+    // Build personalized insight based on focus + mood
+    final focusLabel = focus != null
+        ? (isEn ? focus.displayNameEn : focus.displayNameTr)
+        : (isEn ? 'self-reflection' : 'öz yansıma');
+
+    // Personalized stat (seeded from selections)
+    final statPercent = _insightPercent(focus, mood);
+    final insightText = isEn
+        ? '$statPercent% of journalers who feel ${_moodLabel(mood, isEn)} find $focusLabel entries most revealing'
+        : '${_moodLabel(mood, isEn)} hisseden günlükçülerin %$statPercent\'${_trSuffix(statPercent)} $focusLabel kayıtlarını en açıklayıcı buluyor';
+
+    final trendPreview = _trendPreviewItems(focus, isEn);
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      child: Column(
+        children: [
+          const Spacer(flex: 2),
+
+          // Analyzing animation → reveal
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 600),
+            child: _revealed
+                ? Column(
+                    key: const ValueKey('insight'),
+                    children: [
+                      // Personalized greeting
+                      if (name != null && name.isNotEmpty)
+                        Text(
+                          isEn ? 'Here\'s your first insight, $name' : 'İşte ilk içgörün, $name',
+                          style: AppTypography.decorativeScript(
+                            fontSize: 16,
+                            color: AppColors.textMuted,
+                          ),
+                          textAlign: TextAlign.center,
+                        ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.1, end: 0),
+
+                      const SizedBox(height: 12),
+
+                      // Big insight emoji
+                      Text(moodEmoji, style: const TextStyle(fontSize: 56))
+                          .animate()
+                          .scale(
+                            begin: const Offset(0.5, 0.5),
+                            end: const Offset(1, 1),
+                            duration: 500.ms,
+                            curve: Curves.easeOutBack,
+                          ),
+
+                      const SizedBox(height: 16),
+
+                      GradientText(
+                        isEn ? 'Your Pattern Preview' : 'Örüntü Önizlemen',
+                        style: AppTypography.displayFont.copyWith(
+                          fontSize: 26,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0.5,
+                        ),
+                        variant: GradientTextVariant.aurora,
+                        textAlign: TextAlign.center,
+                      ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
+
+                      const SizedBox(height: 20),
+
+                      // Key stat card
+                      GlassPanel(
+                        elevation: GlassElevation.g2,
+                        borderRadius: BorderRadius.circular(16),
+                        padding: const EdgeInsets.all(18),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  width: 44,
+                                  height: 44,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        AppColors.auroraStart.withValues(alpha: 0.2),
+                                        AppColors.amethyst.withValues(alpha: 0.15),
+                                      ],
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      '$statPercent%',
+                                      style: AppTypography.displayFont.copyWith(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        color: AppColors.starGold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 14),
+                                Expanded(
+                                  child: Text(
+                                    insightText,
+                                    style: AppTypography.subtitle(
+                                      fontSize: 14,
+                                      color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ).animate().fadeIn(delay: 200.ms, duration: 400.ms).slideY(begin: 0.05, end: 0),
+
+                      const SizedBox(height: 16),
+
+                      // Trend preview items
+                      ...trendPreview.asMap().entries.map((entry) {
+                        final i = entry.key;
+                        final (icon, label, value) = entry.value;
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: Row(
+                            children: [
+                              Icon(icon, size: 18, color: AppColors.starGold),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: Text(
+                                  label,
+                                  style: AppTypography.elegantAccent(
+                                    fontSize: 14,
+                                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                value,
+                                style: AppTypography.elegantAccent(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.starGold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ).animate().fadeIn(delay: (300 + i * 100).ms, duration: 300.ms).slideX(begin: 0.05, end: 0);
+                      }),
+                    ],
+                  )
+                : Column(
+                    key: const ValueKey('loading'),
+                    children: [
+                      CosmicLoadingIndicator(size: 60),
+                      const SizedBox(height: 20),
+                      Text(
+                        isEn ? 'Analyzing your patterns...' : 'Örüntülerin analiz ediliyor...',
+                        style: AppTypography.decorativeScript(
+                          fontSize: 18,
+                          color: AppColors.textMuted,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+          ),
+
+          const Spacer(flex: 3),
+
+          // Bottom hint
+          if (_revealed)
+            GlassPanel(
+              elevation: GlassElevation.g1,
+              borderRadius: BorderRadius.circular(10),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+              child: Row(
+                children: [
+                  Icon(Icons.auto_awesome, size: 16, color: AppColors.starGold),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      isEn
+                          ? 'This gets smarter with every entry you write'
+                          : 'Her yazdığın kayıtla daha akıllı hale gelir',
+                      style: AppTypography.subtitle(
+                        fontSize: 14,
+                        color: AppColors.textMuted,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ).animate().fadeIn(delay: 800.ms, duration: 400.ms),
+
+          const SizedBox(height: 8),
+        ],
+      ),
+    );
+  }
+
+  int _insightPercent(FocusArea? focus, int? mood) {
+    // Generate a plausible stat based on selections
+    final base = switch (focus) {
+      FocusArea.energy => 73,
+      FocusArea.emotions => 68,
+      FocusArea.focus => 71,
+      FocusArea.social => 65,
+      FocusArea.decisions => 70,
+      null => 67,
+    };
+    final moodOffset = switch (mood) {
+      1 => 4,
+      2 => 2,
+      3 => 0,
+      4 => -2,
+      5 => -3,
+      _ => 0,
+    };
+    return base + moodOffset;
+  }
+
+  String _moodLabel(int? mood, bool isEn) {
+    return switch (mood) {
+      1 => isEn ? 'calm' : 'sakin',
+      2 => isEn ? 'good' : 'iyi',
+      3 => isEn ? 'neutral' : 'nötr',
+      4 => isEn ? 'low' : 'düşük',
+      5 => isEn ? 'stressed' : 'stresli',
+      _ => isEn ? 'reflective' : 'düşünceli',
+    };
+  }
+
+  String _trSuffix(int n) {
+    // Turkish vowel harmony for number suffix
+    final lastDigit = n % 10;
+    if (lastDigit <= 3 || lastDigit == 4) return 'ü';
+    return 'i';
+  }
+
+  List<(IconData, String, String)> _trendPreviewItems(FocusArea? focus, bool isEn) {
+    return [
+      (
+        Icons.trending_up_rounded,
+        isEn ? 'Pattern detection' : 'Örüntü tespiti',
+        isEn ? 'Unlocks at 5 entries' : '5 kayıtta açılır',
+      ),
+      (
+        Icons.insights_rounded,
+        isEn ? 'Weekly digest' : 'Haftalık özet',
+        isEn ? 'Every Sunday' : 'Her Pazar',
+      ),
+      (
+        Icons.auto_graph_rounded,
+        isEn ? 'Mood trends' : 'Ruh hali eğilimleri',
+        isEn ? 'After 7 days' : '7 gün sonra',
+      ),
+    ];
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// STEP 5: PREMIUM PAYWALL (soft — always skippable)
 // ════════════════════════════════════════════════════════════════════════════
 
 class _PaywallPage extends StatelessWidget {
@@ -1395,7 +1705,7 @@ class _PaywallPage extends StatelessWidget {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// STEP 4: PERMISSION + START
+// STEP 6: PERMISSION + START
 // ════════════════════════════════════════════════════════════════════════════
 
 class _PermissionStartPage extends StatefulWidget {

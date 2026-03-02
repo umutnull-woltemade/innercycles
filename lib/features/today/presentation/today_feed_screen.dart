@@ -46,6 +46,9 @@ import 'widgets/wellness_score_card.dart';
 import 'widgets/gratitude_quick_card.dart';
 import 'widgets/active_challenge_card.dart';
 import 'widgets/badge_unlock_banner.dart';
+import 'widgets/daily_habits_strip.dart';
+import 'widgets/daily_affirmation_card.dart';
+import 'widgets/pinned_notes_strip.dart';
 import '../../../data/services/l10n_service.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
@@ -469,6 +472,11 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: GratitudeQuickCard(isEn: isEn, isDark: isDark),
                   ),
 
+                  // 3e. Daily Habits Strip
+                  SliverToBoxAdapter(
+                    child: DailyHabitsStrip(isEn: isEn, isDark: isDark),
+                  ),
+
                   // Zone 1→2 primary divider
                   SliverToBoxAdapter(
                     child: _goldDivider(isDark, primary: true),
@@ -565,9 +573,19 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: WeeklyReflectionCard(isEn: isEn, isDark: isDark),
                   ),
 
+                  // 9d. Daily Affirmation
+                  SliverToBoxAdapter(
+                    child: DailyAffirmationCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9e. Pinned Notes
+                  SliverToBoxAdapter(
+                    child: PinnedNotesStrip(isEn: isEn, isDark: isDark),
+                  ),
+
                   const SliverToBoxAdapter(child: SizedBox(height: 8)),
 
-                  // 9c. Mood-Habit Correlation Insight
+                  // 9f. Mood-Habit Correlation Insight
                   SliverToBoxAdapter(
                     child: MoodHabitCorrelationCard(isEn: isEn, isDark: isDark),
                   ),

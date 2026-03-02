@@ -316,6 +316,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                         ),
                         const SizedBox(height: AppConstants.spacingMd),
                         _buildFocusAreaSelector(isDark, isEn),
+                        _buildContextModuleTeaser(isDark, isEn),
                         const SizedBox(height: AppConstants.spacingXl),
 
                         // Overall rating
@@ -592,6 +593,55 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         );
       }).toList(),
     ).glassListItem(context: context, index: 1);
+  }
+
+  Widget _buildContextModuleTeaser(bool isDark, bool isEn) {
+    final language = AppLanguage.fromIsEn(isEn);
+    final moduleAsync = ref.watch(contextModuleServiceProvider);
+
+    return moduleAsync.maybeWhen(
+      data: (service) {
+        final modules = service.getByFocusArea(_selectedArea.name);
+        if (modules.isEmpty) return const SizedBox.shrink();
+
+        final module = modules.first;
+        return Padding(
+          padding: const EdgeInsets.only(top: 8),
+          child: GestureDetector(
+            onTap: () => context.push(Routes.insightsDiscovery),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.lightbulb_outline_rounded,
+                  size: 14,
+                  color: AppColors.starGold.withValues(alpha: 0.7),
+                ),
+                const SizedBox(width: 6),
+                Expanded(
+                  child: Text(
+                    module.localizedTitle(language),
+                    style: AppTypography.elegantAccent(
+                      fontSize: 12,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: 10,
+                  color: AppColors.starGold.withValues(alpha: 0.5),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+      orElse: () => const SizedBox.shrink(),
+    );
   }
 
   Widget _buildRatingSlider(
@@ -1860,7 +1910,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         streakDays: streak,
         longestStreak: streak,
         focusAreasUsed: allEntries.map((e) => e.focusArea.name).toSet(),
-        deepEntryCount: allEntries.where((e) => e.overallRating >= 8).length,
+        deepEntryCount: allEntries.where((e) => e.overallRating >= 5).length,
         sharedInsight: false, // tracked elsewhere
       );
 

@@ -290,7 +290,7 @@ class _LoggedView extends StatelessWidget {
   }
 }
 
-class _ThankYouView extends StatelessWidget {
+class _ThankYouView extends ConsumerStatefulWidget {
   final MoodEntry todayMood;
   final List<MoodEntry?> weekMoods;
   final bool isDark;
@@ -302,6 +302,13 @@ class _ThankYouView extends StatelessWidget {
     required this.isDark,
     required this.isEn,
   });
+
+  @override
+  ConsumerState<_ThankYouView> createState() => _ThankYouViewState();
+}
+
+class _ThankYouViewState extends ConsumerState<_ThankYouView> {
+  final Set<String> _selected = {};
 
   /// Map mood level (1-5) to relevant emotion families for granular suggestion
   List<GranularEmotion> _getSuggestedEmotions(int mood) {
@@ -325,10 +332,23 @@ class _ThankYouView extends StatelessWidget {
         .toList();
   }
 
+  Future<void> _toggleEmotion(String emotionId) async {
+    setState(() {
+      if (_selected.contains(emotionId)) {
+        _selected.remove(emotionId);
+      } else {
+        _selected.add(emotionId);
+      }
+    });
+    // Persist selected emotions
+    final service = await ref.read(moodCheckinServiceProvider.future);
+    await service.updateSelectedEmotions(_selected.toList());
+  }
+
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
-    final suggestions = _getSuggestedEmotions(todayMood.mood);
+    final language = AppLanguage.fromIsEn(widget.isEn);
+    final suggestions = _getSuggestedEmotions(widget.todayMood.mood);
 
     return PremiumCard(
       style: PremiumCardStyle.subtle,
@@ -341,7 +361,7 @@ class _ThankYouView extends StatelessWidget {
           Row(
             children: [
               AppSymbol(
-                todayMood.emoji,
+                widget.todayMood.emoji,
                 size: AppSymbolSize.lg,
               ).animate().scale(
                 begin: const Offset(0.5, 0.5),
@@ -363,38 +383,52 @@ class _ThankYouView extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          // Granular emotion chips
+          // Granular emotion chips — tappable, selections persisted
           Wrap(
             spacing: 6,
             runSpacing: 6,
             children: suggestions.take(6).map((emotion) {
-              final language = AppLanguage.fromIsEn(isEn);
-              return Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 6,
-                ),
-                decoration: BoxDecoration(
-                  color: isDark
-                      ? Colors.white.withValues(alpha: 0.06)
-                      : Colors.black.withValues(alpha: 0.04),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    AppSymbol.inline(emotion.emoji),
-                    const SizedBox(width: 4),
-                    Text(
-                      emotion.localizedName(language),
-                      style: AppTypography.elegantAccent(
-                        fontSize: 11,
-                        color: isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary,
+              final isSelected = _selected.contains(emotion.id);
+              return GestureDetector(
+                onTap: () => _toggleEmotion(emotion.id),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    color: isSelected
+                        ? AppColors.starGold.withValues(alpha: 0.15)
+                        : widget.isDark
+                            ? Colors.white.withValues(alpha: 0.06)
+                            : Colors.black.withValues(alpha: 0.04),
+                    borderRadius: BorderRadius.circular(16),
+                    border: isSelected
+                        ? Border.all(
+                            color: AppColors.starGold.withValues(alpha: 0.4),
+                            width: 1,
+                          )
+                        : null,
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      AppSymbol.inline(emotion.emoji),
+                      const SizedBox(width: 4),
+                      Text(
+                        emotion.localizedName(language),
+                        style: AppTypography.elegantAccent(
+                          fontSize: 11,
+                          color: isSelected
+                              ? AppColors.starGold
+                              : widget.isDark
+                                  ? AppColors.textSecondary
+                                  : AppColors.lightTextSecondary,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               );
             }).toList(),
