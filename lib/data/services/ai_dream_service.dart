@@ -74,7 +74,7 @@ class AIDreamService {
           'detectedSymbols': symbolNames,
           'language': language == AppLanguage.en ? 'en' : 'tr',
         },
-      );
+      ).timeout(const Duration(seconds: 20));
 
       if (response.status != 200) {
         if (kDebugMode) {

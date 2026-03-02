@@ -73,7 +73,7 @@ class AIReflectionService {
           'language': language == AppLanguage.en ? 'en' : 'tr',
           'userName': userName,
         },
-      );
+      ).timeout(const Duration(seconds: 15));
 
       if (response.status != 200) {
         if (kDebugMode) {

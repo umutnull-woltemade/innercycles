@@ -82,7 +82,7 @@ class SmartPromptService {
           'currentStreak': currentStreak,
           'language': language == AppLanguage.en ? 'en' : 'tr',
         },
-      );
+      ).timeout(const Duration(seconds: 15));
 
       if (response.status != 200) {
         if (kDebugMode) {
