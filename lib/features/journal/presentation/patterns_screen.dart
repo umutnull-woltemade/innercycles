@@ -38,6 +38,8 @@ import 'widgets/pattern_outlook_panel.dart';
 class PatternsScreen extends ConsumerWidget {
   const PatternsScreen({super.key});
 
+  static bool _hasTriggeredReview = false;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
@@ -311,24 +313,27 @@ class PatternsScreen extends ConsumerWidget {
     bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
-    // Trigger review prompt at first pattern insight (post-frame)
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final reviewService = await ref.read(reviewServiceProvider.future);
-      await reviewService.checkAndPromptReview(
-        ReviewTrigger.patternDiscovered,
-        journalEntryCount: engine.entryCount,
-      );
-
-      // Show contextual paywall for non-premium users viewing patterns
-      if (!ref.read(isPremiumUserProvider) && context.mounted) {
-        showContextualPaywall(
-          context,
-          ref,
-          paywallContext: PaywallContext.patterns,
-          entryCount: engine.entryCount,
+    // Trigger review prompt at first pattern insight (post-frame, once only)
+    if (!_hasTriggeredReview) {
+      _hasTriggeredReview = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        final reviewService = await ref.read(reviewServiceProvider.future);
+        await reviewService.checkAndPromptReview(
+          ReviewTrigger.patternDiscovered,
+          journalEntryCount: engine.entryCount,
         );
-      }
-    });
+
+        // Show contextual paywall for non-premium users viewing patterns
+        if (!ref.read(isPremiumUserProvider) && context.mounted) {
+          showContextualPaywall(
+            context,
+            ref,
+            paywallContext: PaywallContext.patterns,
+            entryCount: engine.entryCount,
+          );
+        }
+      });
+    }
 
     final thisWeek = engine.getWeeklyAverages();
     final lastWeek = engine.getLastWeekAverages();

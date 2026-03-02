@@ -24,10 +24,12 @@ class Routes {
   static const String journal = '/journal';
   static const String journalEntryDetail = '/journal/entry/:id';
   static const String sprintEntry = '/journal/sprint';
+  static const String journalQuery = '/journal/query';
   static const String journalPatterns = '/journal/patterns';
   static const String journalMonthly = '/journal/monthly';
   static const String journalArchive = '/journal/archive';
   static const String memories = '/memories';
+  static const String emotionalTimeline = '/memories/timeline';
 
   // ════════════════════════════════════════════════════════════════
   // INSIGHT - Personal Reflection Assistant

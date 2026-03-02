@@ -19,6 +19,18 @@ class FingerprintData {
     this.streakLength = 0,
     this.journalHour = 12,
   });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is FingerprintData &&
+          dominantArea == other.dominantArea &&
+          avgMood == other.avgMood &&
+          streakLength == other.streakLength &&
+          journalHour == other.journalHour;
+
+  @override
+  int get hashCode => Object.hash(dominantArea, avgMood, streakLength, journalHour);
 }
 
 class EmotionalFingerprintPainter extends CustomPainter {

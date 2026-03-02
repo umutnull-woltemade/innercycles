@@ -60,33 +60,35 @@ class _SprintEntryScreenState extends ConsumerState<SprintEntryScreen>
   }
 
   Future<void> _finishSprint() async {
+    if (!mounted) return;
     HapticFeedback.heavyImpact();
     _focusNode.unfocus();
     final text = _textController.text.trim();
     final wordCount = text.isEmpty ? 0 : text.split(RegExp(r'\s+')).length;
 
     if (text.isNotEmpty) {
-      final journalAsync = ref.read(journalServiceProvider);
-      journalAsync.whenData((service) {
-        service.saveEntry(
+      try {
+        final service = await ref.read(journalServiceProvider.future);
+        await service.saveEntry(
           date: DateTime.now(),
           focusArea: FocusArea.emotions,
           overallRating: 3,
           note: text,
           tags: ['sprint'],
         );
-      });
+      } catch (_) {
+        // Silently continue — entry save failed but show summary anyway
+      }
     }
 
+    if (!mounted) return;
     setState(() {
       _isFinished = true;
       _isRunning = false;
     });
 
     // Show summary
-    if (mounted) {
-      _showSummary(wordCount);
-    }
+    _showSummary(wordCount);
   }
 
   void _showSummary(int wordCount) {
@@ -127,7 +129,7 @@ class _SprintEntryScreenState extends ConsumerState<SprintEntryScreen>
                   label: isEn ? 'time' : 'süre',
                 ),
                 _SummaryMetric(
-                  value: wordCount > 0 ? '${(wordCount / 1).round()}' : '0',
+                  value: '$wordCount',
                   label: isEn ? 'words/min' : 'kelime/dk',
                 ),
               ],

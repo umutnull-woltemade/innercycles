@@ -153,6 +153,50 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                         ),
                       ).animate().fadeIn(duration: 300.ms),
                     ),
+                    // Timeline link
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppConstants.spacingLg,
+                          vertical: 8,
+                        ),
+                        child: GestureDetector(
+                          onTap: () => context.push(Routes.emotionalTimeline),
+                          child: PremiumCard(
+                            style: PremiumCardStyle.subtle,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 12,
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(Icons.timeline_rounded,
+                                    size: 18, color: AppColors.auroraStart),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: Text(
+                                    isEn
+                                        ? 'View Your Emotional Timeline'
+                                        : 'Duygusal Zaman Çizelgeni',
+                                    style: AppTypography.subtitle(
+                                      fontSize: 13,
+                                      color: isDark
+                                          ? AppColors.textPrimary
+                                          : AppColors.lightTextPrimary,
+                                    ).copyWith(fontWeight: FontWeight.w600),
+                                  ),
+                                ),
+                                Icon(Icons.chevron_right_rounded,
+                                    size: 18,
+                                    color: isDark
+                                        ? AppColors.textMuted
+                                        : AppColors.lightTextMuted),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                     // On This Day
                     if (onThisDayEntries.isNotEmpty) ...[
                       SliverToBoxAdapter(

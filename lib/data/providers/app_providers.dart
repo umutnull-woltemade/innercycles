@@ -69,6 +69,7 @@ import '../services/vault_service.dart';
 import '../models/vault_photo.dart';
 import '../services/smart_prompt_service.dart';
 import '../services/time_capsule_service.dart';
+import '../services/clarity_score_service.dart';
 
 // =============================================================================
 // USER PROFILE PROVIDERS
@@ -358,6 +359,23 @@ final ritualServiceProvider = FutureProvider<RitualService>((ref) async {
 
 final timeCapsuleServiceProvider = FutureProvider<TimeCapsuleService>((ref) async {
   return await TimeCapsuleService.init();
+});
+
+final clarityScoreServiceProvider = FutureProvider<ClarityScoreService>((ref) async {
+  final journal = await ref.watch(journalServiceProvider.future);
+  final mood = await ref.watch(moodCheckinServiceProvider.future);
+  final ritual = await ref.watch(ritualServiceProvider.future);
+  final sleep = await ref.watch(sleepServiceProvider.future);
+  final gratitude = await ref.watch(gratitudeServiceProvider.future);
+  final streak = await ref.watch(streakServiceProvider.future);
+  return ClarityScoreService.init(
+    journalService: journal,
+    moodService: mood,
+    ritualService: ritual,
+    sleepService: sleep,
+    gratitudeService: gratitude,
+    streakService: streak,
+  );
 });
 
 final ritualStacksProvider = FutureProvider<List<RitualStack>>((ref) async {

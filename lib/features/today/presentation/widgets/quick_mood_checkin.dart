@@ -6,8 +6,10 @@ import '../../../../core/theme/app_typography.dart';
 import '../../../../data/content/signal_content.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/haptic_service.dart';
+import '../../../../data/services/signal_response_service.dart';
 import '../../../../shared/widgets/quadrant_selector.dart';
 import '../../../../shared/widgets/signal_picker.dart';
+import '../../../mood/presentation/widgets/signal_response_sheet.dart';
 
 /// Inline quick mood check-in row for the home feed.
 /// Two-step flow: 1) Pick quadrant  2) Pick signal within quadrant.
@@ -115,6 +117,18 @@ class _QuickMoodCheckinState extends ConsumerState<QuickMoodCheckin> {
       await moodService.logSignal(signalId);
       if (!mounted) return;
       ref.invalidate(moodCheckinServiceProvider);
+
+      // Show signal response sheet for low-mood quadrants
+      if (_selectedQuadrant != null &&
+          SignalResponseService.shouldShowResponse(_selectedQuadrant!)) {
+        if (!mounted) return;
+        SignalResponseSheet.show(
+          context,
+          quadrant: _selectedQuadrant!,
+          isEn: widget.isEn,
+          isDark: widget.isDark,
+        );
+      }
     }
   }
 }
