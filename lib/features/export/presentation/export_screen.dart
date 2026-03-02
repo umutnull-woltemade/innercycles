@@ -1,15 +1,17 @@
 // ════════════════════════════════════════════════════════════════════════════
 // EXPORT SCREEN - Data Export & Backup
 // ════════════════════════════════════════════════════════════════════════════
-// Export journal data as Text, CSV, or JSON.
+// Export journal data as Text, CSV, JSON, or PDF.
 // Free: last 7 days (text only). Premium: full history + all formats.
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
@@ -214,24 +216,28 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                       ),
                       const SizedBox(height: 8),
 
-                      // PDF format option (coming soon, premium)
+                      // PDF format option (premium)
                       _FormatOption(
-                        format: ExportFormat.text, // placeholder
+                        format: ExportFormat.pdf,
                         title: 'PDF',
                         subtitle: isEn
-                            ? 'Beautiful styled report · Coming soon'
-                            : 'Tasarımlı rapor · Yakında',
+                            ? 'Beautiful styled report'
+                            : 'Tasarımlı rapor',
                         icon: Icons.picture_as_pdf_outlined,
-                        isSelected: false,
-                        isLocked: true,
+                        isSelected: _selectedFormat == ExportFormat.pdf,
+                        isLocked: !isPremium,
                         isDark: isDark,
-                        onTap: () => showContextualPaywall(
-                          context,
-                          ref,
-                          paywallContext: PaywallContext.export,
-                          entryCount:
-                              exportAsync.valueOrNull?.totalEntries,
-                        ),
+                        onTap: isPremium
+                            ? () => setState(
+                                () => _selectedFormat = ExportFormat.pdf,
+                              )
+                            : () => showContextualPaywall(
+                                context,
+                                ref,
+                                paywallContext: PaywallContext.export,
+                                entryCount:
+                                    exportAsync.valueOrNull?.totalEntries,
+                              ),
                       ),
 
                       const SizedBox(height: 32),
@@ -299,15 +305,28 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
     setState(() => _isExporting = true);
 
     try {
-      final result = service.export(
+      final result = await service.export(
         format: _selectedFormat,
         isPremium: isPremium,
         language: AppLanguage.fromIsEn(isEn),
       );
 
-      await SharePlus.instance.share(
-        ShareParams(text: result.content, subject: result.fileName),
-      );
+      if (_selectedFormat == ExportFormat.pdf && result.pdfBytes != null) {
+        // Write PDF bytes to temp file and share as file
+        final dir = await getTemporaryDirectory();
+        final file = File('${dir.path}/${result.fileName}');
+        await file.writeAsBytes(result.pdfBytes!);
+        await SharePlus.instance.share(
+          ShareParams(
+            files: [XFile(file.path, mimeType: result.mimeType)],
+            subject: result.fileName,
+          ),
+        );
+      } else {
+        await SharePlus.instance.share(
+          ShareParams(text: result.content, subject: result.fileName),
+        );
+      }
       HapticFeedback.mediumImpact();
       ref.read(analyticsServiceProvider).logEvent('export_completed', {
         'format': _selectedFormat.name,
@@ -336,10 +355,31 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
     }
 
     if (!mounted) return;
+
+    // PDF cannot be copied to clipboard — prompt to use share instead
+    if (_selectedFormat == ExportFormat.pdf) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            isEn
+                ? 'PDF cannot be copied. Use Export & Share instead.'
+                : 'PDF kopyalanamaz. Dışa Aktar ve Paylaş\'ı kullanın.',
+          ),
+          backgroundColor: AppColors.starGold,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          duration: const Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+
     final service = ref.read(exportServiceProvider).valueOrNull;
     if (service == null) return;
 
-    final result = service.export(
+    final result = await service.export(
       format: _selectedFormat,
       isPremium: isPremium,
       language: AppLanguage.fromIsEn(isEn),
