@@ -181,6 +181,9 @@ class Routes {
   static const String archetypeGrowth = '/archetype/growth';
   static const String energyMapExplorer = '/energy/explorer';
   static const String bondTouchTimeline = '/bond/touches/:bondId';
+  static const String contextModuleLibrary = '/modules/library';
+  static const String programProgression = '/programs/progression';
+  static const String quizResultsArchive = '/quiz/results';
 
   // ════════════════════════════════════════════════════════════════
   // TIER 2 FEATURES

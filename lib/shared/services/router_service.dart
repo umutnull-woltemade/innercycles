@@ -145,6 +145,9 @@ import '../../features/mood/presentation/mood_archive_screen.dart';
 import '../../features/archetype/presentation/archetype_growth_screen.dart';
 import '../../features/energy/presentation/energy_map_explorer_screen.dart';
 import '../../features/bond/presentation/bond_touch_timeline_screen.dart';
+import '../../features/library/presentation/context_module_library_screen.dart';
+import '../../features/programs/presentation/program_progression_screen.dart';
+import '../../features/quiz/presentation/quiz_results_archive_screen.dart';
 import '../../features/tools/presentation/tool_catalog_screen.dart';
 import '../../features/wellness/presentation/wellness_detail_screen.dart';
 import '../../shared/widgets/main_shell_screen.dart';
@@ -931,6 +934,27 @@ final routerProvider = Provider<GoRouter>((ref) {
             key: state.pageKey,
           );
         },
+      ),
+      GoRoute(
+        path: Routes.contextModuleLibrary,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const ContextModuleLibraryScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.programProgression,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const ProgramProgressionScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.quizResultsArchive,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const QuizResultsArchiveScreen(),
+          key: state.pageKey,
+        ),
       ),
       GoRoute(
         path: Routes.weeklyDigest,
