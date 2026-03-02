@@ -86,6 +86,10 @@ import 'widgets/mood_board_card.dart';
 import 'widgets/growth_letter_card.dart';
 import 'widgets/word_cloud_mini_card.dart';
 import 'widgets/reflection_prompt_card.dart';
+import 'widgets/time_capsule_write_card.dart';
+import 'widgets/life_wheel_checkin_card.dart';
+import 'widgets/monthly_theme_card.dart';
+import 'widgets/fear_awareness_card.dart';
 import 'widgets/premium_expiry_banner.dart';
 import 'widgets/sync_status_banner.dart';
 import 'widgets/win_back_offer_banner.dart';
@@ -837,6 +841,26 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: ReflectionPromptCard(isEn: isEn, isDark: isDark),
                   ),
 
+                  // 9w. Time Capsule Write
+                  SliverToBoxAdapter(
+                    child: TimeCapsuleWriteCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9x. Life Wheel Check-In
+                  SliverToBoxAdapter(
+                    child: LifeWheelCheckinCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9y. Monthly Theme
+                  SliverToBoxAdapter(
+                    child: MonthlyThemeCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9z. Fear Awareness
+                  SliverToBoxAdapter(
+                    child: FearAwarenessCard(isEn: isEn, isDark: isDark),
+                  ),
+
                   const SliverToBoxAdapter(child: SizedBox(height: 16)),
 
                   // Gold divider
@@ -894,6 +918,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
         Positioned.fill(
           child: BondTouchReceivedOverlay(
             touchType: _incomingTouch!.touchType,
+            isEn: isEn,
             onDismissed: () => setState(() => _incomingTouch = null),
           ),
         ),

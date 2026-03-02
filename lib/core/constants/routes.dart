@@ -113,6 +113,10 @@ class Routes {
   static const String shareCardGallery = '/share-cards';
   static const String emotionalCycles = '/emotional-cycles';
   static const String growthDashboard = '/growth';
+  static const String timeCapsule = '/time-capsule';
+  static const String lifeWheel = '/life-wheel';
+  static const String monthlyTheme = '/monthly-theme';
+  static const String fearInventory = '/fear-inventory';
 
   // ════════════════════════════════════════════════════════════════
   // CYCLE SYNC (Hormonal × Emotional Pattern Tracking)

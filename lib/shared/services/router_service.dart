@@ -66,6 +66,10 @@ import '../../features/digest/presentation/monthly_wrapped_screen.dart';
 import '../../features/sharing/presentation/share_card_gallery.dart';
 import '../../features/habits/presentation/habit_suggestions_screen.dart';
 import '../../features/growth/presentation/growth_dashboard_screen.dart';
+import '../../features/growth/presentation/time_capsule_screen.dart';
+import '../../features/discovery/presentation/life_wheel_screen.dart';
+import '../../features/seasonal/presentation/monthly_theme_screen.dart';
+import '../../features/shadow_work/presentation/fear_inventory_screen.dart';
 import '../../features/digest/presentation/weekly_digest_screen.dart';
 import '../../features/affirmation/presentation/affirmation_library_screen.dart';
 import '../../features/archetype/presentation/archetype_screen.dart';
@@ -709,6 +713,34 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.growthDashboard,
         pageBuilder: (context, state) => PageTransitions.fadeSlide(
           child: const GrowthDashboardScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.timeCapsule,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const TimeCapsuleScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.lifeWheel,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const LifeWheelScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.monthlyTheme,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const MonthlyThemeScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.fearInventory,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const FearInventoryScreen(),
           key: state.pageKey,
         ),
       ),

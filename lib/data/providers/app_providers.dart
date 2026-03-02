@@ -79,6 +79,9 @@ import '../services/morning_pages_service.dart';
 import '../services/growth_letter_service.dart';
 import '../services/word_cloud_service.dart';
 import '../services/reflection_prompt_engine.dart';
+import '../services/life_wheel_service.dart';
+import '../services/monthly_theme_service.dart';
+import '../services/fear_inventory_service.dart';
 
 // =============================================================================
 // USER PROFILE PROVIDERS
@@ -424,6 +427,18 @@ final wordCloudServiceProvider = FutureProvider<WordCloudService>((ref) async {
 final reflectionPromptEngineProvider = FutureProvider<ReflectionPromptEngine>((ref) async {
   final moodService = await ref.watch(moodCheckinServiceProvider.future);
   return ReflectionPromptEngine(moodService);
+});
+
+final lifeWheelServiceProvider = FutureProvider<LifeWheelService>((ref) async {
+  return LifeWheelService.init();
+});
+
+final monthlyThemeServiceProvider = FutureProvider<MonthlyThemeService>((ref) async {
+  return MonthlyThemeService.init();
+});
+
+final fearInventoryServiceProvider = FutureProvider<FearInventoryService>((ref) async {
+  return FearInventoryService.init();
 });
 
 final ritualStacksProvider = FutureProvider<List<RitualStack>>((ref) async {
