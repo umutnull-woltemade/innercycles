@@ -13,6 +13,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:uuid/uuid.dart';
 import '../models/bond.dart';
 import '../mixins/supabase_sync_mixin.dart';
+import 'sync_service.dart';
 
 class BondService with SupabaseSyncMixin {
   @override
@@ -258,10 +259,15 @@ class BondService with SupabaseSyncMixin {
     } catch (e) {
       if (kDebugMode) debugPrint('[BondService] updatePrivacy error: $e');
       // Queue for retry when back online
-      queueSync('UPSERT', privacy.id, {
-        ...privacy.toJson(),
-        'user_id': _userId,
-      });
+      SyncService.queueOperation(
+        tableName: 'bond_privacy',
+        operation: 'UPSERT',
+        recordId: privacy.id,
+        payload: {
+          ...privacy.toJson(),
+          'user_id': _userId,
+        },
+      );
     }
   }
 

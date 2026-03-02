@@ -113,6 +113,7 @@ class RitualStatsScreen extends ConsumerWidget {
                           _CompletionGrid(
                             dayData: dayData,
                             isDark: isDark,
+                            isEn: isEn,
                           ),
 
                           const SizedBox(height: 24),
@@ -297,10 +298,12 @@ class _MiniStat extends StatelessWidget {
 class _CompletionGrid extends StatelessWidget {
   final Map<DateTime, double> dayData;
   final bool isDark;
+  final bool isEn;
 
   const _CompletionGrid({
     required this.dayData,
     required this.isDark,
+    required this.isEn,
   });
 
   @override
@@ -356,7 +359,7 @@ class _CompletionGrid extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                isDark ? 'Less' : 'Az',
+                isEn ? 'Less' : 'Az',
                 style: AppTypography.elegantAccent(
                   fontSize: 9,
                   color: isDark
@@ -381,7 +384,7 @@ class _CompletionGrid extends StatelessWidget {
               }),
               const SizedBox(width: 6),
               Text(
-                isDark ? 'More' : 'Çok',
+                isEn ? 'More' : 'Çok',
                 style: AppTypography.elegantAccent(
                   fontSize: 9,
                   color: isDark

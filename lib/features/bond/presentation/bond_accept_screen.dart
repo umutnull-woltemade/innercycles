@@ -52,6 +52,17 @@ class _BondAcceptScreenState extends ConsumerState<BondAcceptScreen> {
   @override
   void initState() {
     super.initState();
+    // Attach backspace handler to each FocusNode directly
+    for (var i = 0; i < _codeLength; i++) {
+      _focusNodes[i].onKeyEvent = (node, event) {
+        if (event is KeyDownEvent &&
+            event.logicalKey == LogicalKeyboardKey.backspace) {
+          _onBackspace(i);
+          return KeyEventResult.handled;
+        }
+        return KeyEventResult.ignored;
+      };
+    }
     if (widget.prefilledCode != null && widget.prefilledCode!.length == _codeLength) {
       for (var i = 0; i < _codeLength; i++) {
         _controllers[i].text = widget.prefilledCode![i].toUpperCase();
@@ -188,7 +199,6 @@ class _BondAcceptScreenState extends ConsumerState<BondAcceptScreen> {
                 isDark: isDark,
                 hasError: _errorMessage != null,
                 onChanged: (value) => _onDigitChanged(i, value),
-                onBackspace: () => _onBackspace(i),
               ),
             );
           }),
@@ -452,7 +462,6 @@ class _CodeInputField extends StatelessWidget {
   final bool isDark;
   final bool hasError;
   final ValueChanged<String> onChanged;
-  final VoidCallback onBackspace;
 
   const _CodeInputField({
     required this.controller,
@@ -460,7 +469,6 @@ class _CodeInputField extends StatelessWidget {
     required this.isDark,
     required this.hasError,
     required this.onChanged,
-    required this.onBackspace,
   });
 
   @override
@@ -470,15 +478,7 @@ class _CodeInputField extends StatelessWidget {
     return SizedBox(
       width: 46,
       height: 58,
-      child: KeyboardListener(
-        focusNode: focusNode,
-        onKeyEvent: (event) {
-          if (event is KeyDownEvent &&
-              event.logicalKey == LogicalKeyboardKey.backspace) {
-            onBackspace();
-          }
-        },
-        child: TextField(
+      child: TextField(
           controller: controller,
           focusNode: focusNode,
           maxLength: 1,
@@ -530,7 +530,6 @@ class _CodeInputField extends StatelessWidget {
           ),
           onChanged: onChanged,
         ),
-      ),
     );
   }
 }

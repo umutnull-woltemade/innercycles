@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/gratitude_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
@@ -46,17 +47,6 @@ class GratitudeInsightsScreen extends ConsumerWidget {
                 final day = now.subtract(Duration(days: 29 - i));
                 final dayKey = DateTime(day.year, day.month, day.day);
                 streakDays[dayKey] = service.getEntry(day) != null;
-              }
-
-              // Monthly counts for sparkline
-              final monthlyCounts = <double>[];
-              for (int m = 5; m >= 0; m--) {
-                final month = DateTime(now.year, now.month - m);
-                final count = entries.where((e) {
-                  final d = e.createdAt;
-                  return d.year == month.year && d.month == month.month;
-                }).length;
-                monthlyCounts.add(count.toDouble());
               }
 
               return CustomScrollView(
@@ -195,7 +185,7 @@ class GratitudeInsightsScreen extends ConsumerWidget {
 }
 
 class _SummaryHero extends StatelessWidget {
-  final dynamic summary; // GratitudeSummary
+  final GratitudeSummary summary;
   final int totalEntries;
   final bool isEn;
   final bool isDark;
