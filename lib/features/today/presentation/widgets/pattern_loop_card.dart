@@ -77,7 +77,7 @@ class PatternLoopCard extends ConsumerWidget {
           child: TapScale(
             onTap: () {
               HapticService.selectionTap();
-              context.push(Routes.emotionalCycles);
+              context.push(Routes.patternLoopArchive);
             },
             child: PremiumCard(
               style: isPositive

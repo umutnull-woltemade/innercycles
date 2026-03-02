@@ -133,6 +133,10 @@ import '../../features/quiz/presentation/attachment_style_result_screen.dart';
 import '../../features/rituals/presentation/ritual_stats_screen.dart';
 import '../../features/gratitude/presentation/gratitude_insights_screen.dart';
 import '../../features/shadow_work/presentation/shadow_work_archive_screen.dart';
+import '../../features/journal/presentation/pattern_health_screen.dart';
+import '../../features/habits/presentation/habit_adoption_screen.dart';
+import '../../features/wellness/presentation/wellness_history_screen.dart';
+import '../../features/journal/presentation/pattern_loop_archive_screen.dart';
 import '../../features/tools/presentation/tool_catalog_screen.dart';
 import '../../features/wellness/presentation/wellness_detail_screen.dart';
 import '../../shared/widgets/main_shell_screen.dart';
@@ -830,6 +834,34 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.shadowWorkArchive,
         pageBuilder: (context, state) => PageTransitions.fadeSlide(
           child: const ShadowWorkArchiveScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.patternHealth,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const PatternHealthScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.habitAdoption,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const HabitAdoptionScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.wellnessHistory,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const WellnessHistoryScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.patternLoopArchive,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const PatternLoopArchiveScreen(),
           key: state.pageKey,
         ),
       ),

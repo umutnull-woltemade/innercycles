@@ -167,6 +167,10 @@ class Routes {
   static const String ritualStats = '/rituals/stats';
   static const String gratitudeInsights = '/gratitude/insights';
   static const String shadowWorkArchive = '/shadow-work/archive';
+  static const String patternHealth = '/patterns/health';
+  static const String habitAdoption = '/habits/adoption';
+  static const String wellnessHistory = '/wellness/history';
+  static const String patternLoopArchive = '/patterns/loops';
   static const String gratitudeArchive = '/gratitude/archive';
   static const String sleepTrends = '/sleep/trends';
 

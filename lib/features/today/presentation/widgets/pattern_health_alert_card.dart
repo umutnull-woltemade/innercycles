@@ -40,7 +40,7 @@ class PatternHealthAlertCard extends ConsumerWidget {
           child: TapScale(
             onTap: () {
               HapticService.selectionTap();
-              context.push(Routes.journalPatterns);
+              context.push(Routes.patternHealth);
             },
             child: Container(
               padding: const EdgeInsets.all(14),
