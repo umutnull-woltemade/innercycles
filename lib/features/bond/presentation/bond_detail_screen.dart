@@ -323,8 +323,10 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
         const SizedBox(height: 20),
 
         // Touch type selector
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        Wrap(
+          alignment: WrapAlignment.center,
+          spacing: 0,
+          runSpacing: 8,
           children: TouchType.values.map((type) {
             final isSelected = type == _selectedTouchType;
             return Padding(
@@ -386,6 +388,7 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
         BondTouchButton(
           touchType: _selectedTouchType,
           isThrottled: _touchSent,
+          isEn: isEn,
           onSend: (_touchSent || partnerId.isEmpty)
               ? null
               : () => _sendTouch(bond.id, partnerId),

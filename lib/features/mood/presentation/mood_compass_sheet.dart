@@ -254,6 +254,8 @@ class _AxisLabel extends StatelessWidget {
         offset: offset,
         child: Text(
           text,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
             fontSize: 9,
             fontWeight: FontWeight.w500,

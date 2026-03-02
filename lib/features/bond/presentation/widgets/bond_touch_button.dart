@@ -12,12 +12,14 @@ import '../../../../data/services/haptic_service.dart';
 class BondTouchButton extends StatefulWidget {
   final TouchType touchType;
   final bool isThrottled;
+  final bool isEn;
   final VoidCallback? onSend;
 
   const BondTouchButton({
     super.key,
     required this.touchType,
     this.isThrottled = false,
+    this.isEn = true,
     this.onSend,
   });
 
@@ -176,7 +178,9 @@ class _BondTouchButtonState extends State<BondTouchButton>
           opacity: _isActive ? 1.0 : 0.4,
           duration: const Duration(milliseconds: 250),
           child: Text(
-            widget.isThrottled ? _throttledLabel(isDark) : widget.touchType.displayNameEn,
+            widget.isThrottled
+                ? (widget.isEn ? 'Sent' : 'Gönderildi')
+                : (widget.isEn ? widget.touchType.displayNameEn : widget.touchType.displayNameTr),
             style: AppTypography.subtitle(
               fontSize: 13,
               color: _isActive
@@ -189,5 +193,4 @@ class _BondTouchButtonState extends State<BondTouchButton>
     );
   }
 
-  String _throttledLabel(bool isDark) => 'Sent';
 }

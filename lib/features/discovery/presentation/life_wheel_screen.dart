@@ -260,8 +260,8 @@ class _AreaSlider extends StatelessWidget {
         children: [
           Text(area.emoji, style: const TextStyle(fontSize: 16)),
           const SizedBox(width: 8),
-          SizedBox(
-            width: 90,
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 90),
             child: Text(
               area.label(isEn),
               style: AppTypography.modernAccent(

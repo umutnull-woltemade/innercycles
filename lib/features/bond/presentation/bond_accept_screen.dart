@@ -475,8 +475,10 @@ class _CodeInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     final hasValue = controller.text.isNotEmpty;
 
+    final screenWidth = MediaQuery.of(context).size.width;
+    final fieldWidth = screenWidth < 375 ? 40.0 : 46.0;
     return SizedBox(
-      width: 46,
+      width: fieldWidth,
       height: 58,
       child: TextField(
           controller: controller,

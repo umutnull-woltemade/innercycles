@@ -247,7 +247,7 @@ class _BondEmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(32, 60, 32, 0),
+      padding: const EdgeInsets.fromLTRB(24, 60, 24, 0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
