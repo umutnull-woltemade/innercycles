@@ -28,6 +28,8 @@ import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tap_scale.dart';
 import 'package:go_router/go_router.dart';
 import '../../../data/services/analytics_service.dart';
+import '../../../data/providers/bond_providers.dart';
+
 class ProfileHubScreen extends ConsumerWidget {
   const ProfileHubScreen({super.key});
 
