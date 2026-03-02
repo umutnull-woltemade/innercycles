@@ -126,17 +126,17 @@ class FearEntry {
       };
 
   factory FearEntry.fromJson(Map<String, dynamic> json) => FearEntry(
-        id: json['id'] as String,
-        fearText: json['fearText'] as String,
+        id: json['id'] as String? ?? '',
+        fearText: json['fearText'] as String? ?? '',
         category: FearCategory.values.firstWhere(
           (c) => c.name == json['category'],
           orElse: () => FearCategory.unknown,
         ),
         intensity: json['intensity'] as int? ?? 3,
         reframeText: json['reframeText'] as String?,
-        createdAt: DateTime.parse(json['createdAt'] as String),
+        createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
         resolvedAt: json['resolvedAt'] != null
-            ? DateTime.parse(json['resolvedAt'] as String)
+            ? DateTime.tryParse(json['resolvedAt'].toString())
             : null,
       );
 }

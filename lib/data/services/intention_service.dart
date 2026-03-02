@@ -124,7 +124,16 @@ class IntentionService {
     if (json != null) {
       try {
         final list = jsonDecode(json) as List;
-        _intentions = list.map((e) => Intention.fromJson(e)).toList();
+        _intentions = list
+            .map((e) {
+              try {
+                return Intention.fromJson(e as Map<String, dynamic>);
+              } catch (_) {
+                return null;
+              }
+            })
+            .whereType<Intention>()
+            .toList();
       } catch (_) {
         _intentions = [];
       }

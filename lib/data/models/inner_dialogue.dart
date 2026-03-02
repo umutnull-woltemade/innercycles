@@ -123,7 +123,7 @@ class InnerDialogue {
 
   factory InnerDialogue.fromJson(Map<String, dynamic> json) {
     return InnerDialogue(
-      id: json['id'] as String,
+      id: json['id'] as String? ?? '',
       perspective: DialoguePerspective.values.firstWhere(
         (p) => p.name == json['perspective'],
         orElse: () => DialoguePerspective.heartMind,
@@ -131,7 +131,7 @@ class InnerDialogue {
       leftText: json['leftText'] as String? ?? '',
       rightText: json['rightText'] as String? ?? '',
       topic: json['topic'] as String?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
+      createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
     );
   }
 

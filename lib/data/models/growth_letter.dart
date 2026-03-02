@@ -86,14 +86,14 @@ class GrowthLetter {
 
   factory GrowthLetter.fromJson(Map<String, dynamic> json) {
     return GrowthLetter(
-      id: json['id'] as String,
+      id: json['id'] as String? ?? '',
       letterType: LetterType.values.firstWhere(
         (t) => t.name == json['letterType'],
         orElse: () => LetterType.toFutureSelf,
       ),
       title: json['title'] as String? ?? '',
       body: json['body'] as String? ?? '',
-      createdAt: DateTime.parse(json['createdAt'] as String),
+      createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
     );
   }
 

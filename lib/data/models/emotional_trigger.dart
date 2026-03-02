@@ -122,21 +122,22 @@ class EmotionalTrigger {
 
   factory EmotionalTrigger.fromJson(Map<String, dynamic> json) {
     return EmotionalTrigger(
-      id: json['id'] as String,
-      label: json['label'] as String,
+      id: json['id'] as String? ?? '',
+      label: json['label'] as String? ?? '',
       category: TriggerCategory.values.firstWhere(
         (c) => c.name == json['category'],
         orElse: () => TriggerCategory.environment,
       ),
       occurrences: (json['occurrences'] as List<dynamic>?)
-              ?.map((s) => DateTime.parse(s as String))
+              ?.map((s) => DateTime.tryParse(s?.toString() ?? ''))
+              .whereType<DateTime>()
               .toList() ??
           [],
       intensity: json['intensity'] as int? ?? 3,
       linkedEmotions: (json['linkedEmotions'] as List<dynamic>?)
               ?.cast<String>() ??
           [],
-      createdAt: DateTime.parse(json['createdAt'] as String),
+      createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
     );
   }
 }

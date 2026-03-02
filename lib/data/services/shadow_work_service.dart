@@ -150,7 +150,14 @@ class ShadowWorkService {
       try {
         final list = json.decode(jsonString) as List<dynamic>;
         _entries = list
-            .map((e) => ShadowWorkEntry.fromJson(e as Map<String, dynamic>))
+            .map((e) {
+              try {
+                return ShadowWorkEntry.fromJson(e as Map<String, dynamic>);
+              } catch (_) {
+                return null;
+              }
+            })
+            .whereType<ShadowWorkEntry>()
             .toList();
         _entries.sort((a, b) => b.date.compareTo(a.date));
       } catch (_) {

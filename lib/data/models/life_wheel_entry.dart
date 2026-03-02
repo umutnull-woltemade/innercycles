@@ -114,19 +114,19 @@ class LifeWheelEntry {
       };
 
   factory LifeWheelEntry.fromJson(Map<String, dynamic> json) {
-    final rawScores = json['scores'] as Map<String, dynamic>;
+    final rawScores = json['scores'] as Map<String, dynamic>? ?? {};
     final scoresMap = <LifeArea, int>{};
     for (final entry in rawScores.entries) {
       final area = LifeArea.values.where((a) => a.name == entry.key).firstOrNull;
       if (area != null) {
-        scoresMap[area] = entry.value as int;
+        scoresMap[area] = (entry.value as int?) ?? 5;
       }
     }
     return LifeWheelEntry(
-      id: json['id'] as String,
+      id: json['id'] as String? ?? '',
       scores: scoresMap,
       note: json['note'] as String?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
+      createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
     );
   }
 }

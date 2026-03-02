@@ -27,10 +27,10 @@ class MorningPageSession {
 
   factory MorningPageSession.fromJson(Map<String, dynamic> json) {
     return MorningPageSession(
-      dateKey: json['dateKey'] as String,
+      dateKey: json['dateKey'] as String? ?? '',
       durationMinutes: json['durationMinutes'] as int? ?? 0,
       wordCount: json['wordCount'] as int? ?? 0,
-      completedAt: DateTime.parse(json['completedAt'] as String),
+      completedAt: DateTime.tryParse(json['completedAt']?.toString() ?? '') ?? DateTime.now(),
     );
   }
 }
