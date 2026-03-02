@@ -264,6 +264,18 @@ class ShareCardTemplates {
     badgeTr: 'BİLGELİK',
   );
 
+  static const onThisDayMemory = ShareCardTemplate(
+    id: 'on_this_day_memory',
+    category: ShareCardCategory.wisdom,
+    titleEn: 'On This Day',
+    titleTr: 'Bugün Geçmişte',
+    gradientColors: [Color(0xFF2D1F24), Color(0xFF241920), Color(0xFF1A1015)],
+    layoutType: ShareCardLayout.quoteBlock,
+    icon: Icons.history_rounded,
+    badgeEn: 'MEMORY',
+    badgeTr: 'ANI',
+  );
+
   static const seasonalMessage = ShareCardTemplate(
     id: 'seasonal_message',
     category: ShareCardCategory.wisdom,
@@ -562,6 +574,7 @@ class ShareCardTemplates {
     dailyReflection,
     dreamInsight,
     patternWisdom,
+    onThisDayMemory,
     seasonalMessage,
     affirmation,
     // Wisdom (curated insights)
@@ -786,6 +799,14 @@ class ShareCardTemplates {
           subtitle: L10nService.get('data.content.share_templates.daily_reflection', language),
         );
 
+      case 'on_this_day_memory':
+        result = ShareCardData(
+          headline:
+              reflectionText ??
+              (isEn ? 'Looking back, looking forward' : 'Geriye bakarak, ileriye yürüyerek'),
+          subtitle: isEn ? 'On This Day' : 'Bugün Geçmişte',
+        );
+
       case 'dream_insight':
         result = ShareCardData(
           headline:
@@ -990,6 +1011,8 @@ class ShareCardTemplates {
       case 'growth_journey':
         return AppColors.success;
       case 'daily_reflection':
+        return AppColors.amethyst;
+      case 'on_this_day_memory':
         return AppColors.amethyst;
       case 'dream_insight':
         return AppColors.blueAccent;

@@ -5,10 +5,22 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
+import '../../../../data/models/journal_entry.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/habit_suggestion_service.dart';
 import '../../../../data/services/haptic_service.dart';
+import '../../../../data/services/pattern_engine_service.dart';
+import '../../../../data/content/habit_suggestions_content.dart';
 import '../../../../shared/widgets/tap_scale.dart';
+
+/// Maps journal FocusArea to habit category for adaptive suggestions
+const _focusToHabitCategory = <FocusArea, String>{
+  FocusArea.energy: 'physical',
+  FocusArea.focus: 'morning',
+  FocusArea.emotions: 'mindfulness',
+  FocusArea.decisions: 'reflective',
+  FocusArea.social: 'social',
+};
 
 class HabitSuggestionCard extends ConsumerWidget {
   final bool isEn;
@@ -23,10 +35,45 @@ class HabitSuggestionCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final serviceAsync = ref.watch(habitSuggestionServiceProvider);
+    final engineAsync = ref.watch(patternEngineServiceProvider);
 
     return serviceAsync.maybeWhen(
       data: (service) {
-        final habit = service.getDailyHabit();
+        // Try adaptive selection: weakest area → matching habit category
+        HabitSuggestion habit;
+        String? adaptiveReason;
+
+        final engine = engineAsync.valueOrNull;
+        if (engine != null && engine.hasEnoughData()) {
+          final trends = engine.detectTrends();
+          // Find the most declining area
+          final declining = trends.where((t) => t.direction == TrendDirection.down).toList();
+          if (declining.isNotEmpty) {
+            declining.sort((a, b) => b.changePercent.abs().compareTo(a.changePercent.abs()));
+            final weakArea = declining.first.area;
+            final targetCategory = _focusToHabitCategory[weakArea];
+            if (targetCategory != null) {
+              final pool = service.getByCategory(targetCategory);
+              // Pick deterministically by day (stable across refreshes)
+              if (pool.isNotEmpty) {
+                final dayIndex = DateTime.now().day % pool.length;
+                habit = pool[dayIndex];
+                adaptiveReason = isEn
+                    ? 'Suggested for your ${weakArea.displayNameEn.toLowerCase()} trend'
+                    : '${weakArea.displayNameTr} eğilimine göre önerildi';
+              } else {
+                habit = service.getDailyHabit();
+              }
+            } else {
+              habit = service.getDailyHabit();
+            }
+          } else {
+            habit = service.getDailyHabit();
+          }
+        } else {
+          habit = service.getDailyHabit();
+        }
+
         final progress = service.explorationProgress;
         final emoji = HabitSuggestionService.categoryEmoji(habit.category);
         final categoryName = isEn
@@ -75,23 +122,53 @@ class HabitSuggestionCard extends ConsumerWidget {
                           ),
                         ),
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 3,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: AppColors.success.withValues(alpha: 0.12),
-                        ),
-                        child: Text(
-                          '${(progress * 100).round()}%',
-                          style: AppTypography.elegantAccent(
-                            fontSize: 10,
-                            color: AppColors.success,
+                      if (adaptiveReason != null)
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 3,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: AppColors.amethyst.withValues(alpha: 0.12),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.auto_awesome,
+                                size: 10,
+                                color: AppColors.amethyst,
+                              ),
+                              const SizedBox(width: 3),
+                              Text(
+                                isEn ? 'FOR YOU' : 'SENİN İÇİN',
+                                style: AppTypography.elegantAccent(
+                                  fontSize: 9,
+                                  color: AppColors.amethyst,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      else
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 3,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: AppColors.success.withValues(alpha: 0.12),
+                          ),
+                          child: Text(
+                            '${(progress * 100).round()}%',
+                            style: AppTypography.elegantAccent(
+                              fontSize: 10,
+                              color: AppColors.success,
+                            ),
                           ),
                         ),
-                      ),
                     ],
                   ),
                   const SizedBox(height: 8),
@@ -117,6 +194,28 @@ class HabitSuggestionCard extends ConsumerWidget {
                           : AppColors.lightTextSecondary,
                     ),
                   ),
+                  if (adaptiveReason != null) ...[
+                    const SizedBox(height: 6),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.trending_down_rounded,
+                          size: 12,
+                          color: AppColors.amethyst.withValues(alpha: 0.7),
+                        ),
+                        const SizedBox(width: 4),
+                        Flexible(
+                          child: Text(
+                            adaptiveReason,
+                            style: AppTypography.elegantAccent(
+                              fontSize: 11,
+                              color: AppColors.amethyst.withValues(alpha: 0.8),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                   const SizedBox(height: 8),
                   Row(
                     children: [

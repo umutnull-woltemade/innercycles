@@ -59,6 +59,9 @@ class NotificationService {
   static const int referralRewardId = 13;
   static const int monthlyRecapId = 14;
   static const int weeklyInsightId = 15;
+  static const int moodCheckinReminderId = 16;
+  static const int sleepTrackingReminderId = 17;
+  static const int habitCompletionReminderId = 18;
 
   // Preference keys
   static const String _keyDailyEnabled = 'notification_daily_enabled';
@@ -70,6 +73,12 @@ class NotificationService {
       'notification_journal_prompt_enabled';
   static const String _keyJournalPromptTime =
       'notification_journal_prompt_time';
+  // ignore: unused_field
+  static const String _keyMoodCheckinEnabled = 'notification_mood_checkin_enabled';
+  // ignore: unused_field
+  static const String _keySleepTrackingEnabled = 'notification_sleep_tracking_enabled';
+  // ignore: unused_field
+  static const String _keyHabitReminderEnabled = 'notification_habit_reminder_enabled';
 
   /// Initialize the notification service
   Future<void> initialize() async {
@@ -989,6 +998,180 @@ class NotificationService {
         await scheduleBirthdayNotification(contact);
       }
     }
+  }
+
+  // ============== Mood Check-in Reminder ==============
+
+  /// Schedule daily mood check-in reminder at 2 PM.
+  Future<void> scheduleMoodCheckinReminder() async {
+    if (!_isInitialized) await initialize();
+    _isEn = await _readIsEn();
+    final language = AppLanguage.fromIsEn(_isEn);
+
+    final title = language == AppLanguage.en
+        ? 'How are you feeling?'
+        : 'Nas\u0131l hissediyorsun?';
+    final body = language == AppLanguage.en
+        ? 'A quick mood check-in takes 5 seconds and helps track your patterns.'
+        : 'H\u0131zl\u0131 bir ruh hali kayd\u0131 5 saniye s\u00fcrer ve \u00f6r\u00fcnt\u00fclerini takip etmene yard\u0131mc\u0131 olur.';
+
+    await _notifications.zonedSchedule(
+      id: moodCheckinReminderId,
+      title: title,
+      body: body,
+      scheduledDate: _nextInstanceOfTime(14, 0),
+      notificationDetails: NotificationDetails(
+        android: AndroidNotificationDetails(
+          'mood_checkin',
+          language == AppLanguage.en ? 'Mood Check-in' : 'Ruh Hali Kayd\u0131',
+          channelDescription: language == AppLanguage.en
+              ? 'Daily mood check-in reminders'
+              : 'G\u00fcnl\u00fck ruh hali kay\u0131t hat\u0131rlat\u0131c\u0131lar\u0131',
+          importance: Importance.defaultImportance,
+          priority: Priority.defaultPriority,
+          icon: '@mipmap/ic_launcher',
+          color: AppColors.starGold,
+        ),
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+        ),
+      ),
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      matchDateTimeComponents: DateTimeComponents.time,
+      payload: 'mood_checkin',
+    );
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyMoodCheckinEnabled, true);
+  }
+
+  Future<void> cancelMoodCheckinReminder() async {
+    await _notifications.cancel(id: moodCheckinReminderId);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyMoodCheckinEnabled, false);
+  }
+
+  Future<bool> isMoodCheckinReminderEnabled() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_keyMoodCheckinEnabled) ?? false;
+  }
+
+  // ============== Sleep Tracking Reminder ==============
+
+  /// Schedule daily sleep tracking reminder at 9 AM.
+  Future<void> scheduleSleepTrackingReminder() async {
+    if (!_isInitialized) await initialize();
+    _isEn = await _readIsEn();
+    final language = AppLanguage.fromIsEn(_isEn);
+
+    final title = language == AppLanguage.en
+        ? 'How did you sleep?'
+        : 'Nas\u0131l uyudun?';
+    final body = language == AppLanguage.en
+        ? 'Log your sleep quality to discover patterns between rest and mood.'
+        : 'Uyku kaliteni kaydet ve dinlenme ile ruh halin aras\u0131ndaki ba\u011flant\u0131lar\u0131 ke\u015ffet.';
+
+    await _notifications.zonedSchedule(
+      id: sleepTrackingReminderId,
+      title: title,
+      body: body,
+      scheduledDate: _nextInstanceOfTime(9, 0),
+      notificationDetails: NotificationDetails(
+        android: AndroidNotificationDetails(
+          'sleep_tracking',
+          language == AppLanguage.en ? 'Sleep Tracking' : 'Uyku Takibi',
+          channelDescription: language == AppLanguage.en
+              ? 'Daily sleep tracking reminders'
+              : 'G\u00fcnl\u00fck uyku takibi hat\u0131rlat\u0131c\u0131lar\u0131',
+          importance: Importance.defaultImportance,
+          priority: Priority.defaultPriority,
+          icon: '@mipmap/ic_launcher',
+          color: AppColors.amethyst,
+        ),
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+        ),
+      ),
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      matchDateTimeComponents: DateTimeComponents.time,
+      payload: 'sleep_tracking',
+    );
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keySleepTrackingEnabled, true);
+  }
+
+  Future<void> cancelSleepTrackingReminder() async {
+    await _notifications.cancel(id: sleepTrackingReminderId);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keySleepTrackingEnabled, false);
+  }
+
+  Future<bool> isSleepTrackingReminderEnabled() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_keySleepTrackingEnabled) ?? false;
+  }
+
+  // ============== Habit Completion Reminder ==============
+
+  /// Schedule daily habit completion reminder at 7 PM.
+  Future<void> scheduleHabitCompletionReminder() async {
+    if (!_isInitialized) await initialize();
+    _isEn = await _readIsEn();
+    final language = AppLanguage.fromIsEn(_isEn);
+
+    final title = language == AppLanguage.en
+        ? 'Complete your daily habits'
+        : 'G\u00fcnl\u00fck al\u0131\u015fkanl\u0131klar\u0131n\u0131 tamamla';
+    final body = language == AppLanguage.en
+        ? 'Small consistent actions shape who you become.'
+        : 'K\u00fc\u00e7\u00fck tutarl\u0131 ad\u0131mlar kim olaca\u011f\u0131n\u0131 \u015fekillendirir.';
+
+    await _notifications.zonedSchedule(
+      id: habitCompletionReminderId,
+      title: title,
+      body: body,
+      scheduledDate: _nextInstanceOfTime(19, 0),
+      notificationDetails: NotificationDetails(
+        android: AndroidNotificationDetails(
+          'habit_reminder',
+          language == AppLanguage.en ? 'Habit Reminders' : 'Al\u0131\u015fkanl\u0131k Hat\u0131rlat\u0131c\u0131lar\u0131',
+          channelDescription: language == AppLanguage.en
+              ? 'Daily habit completion reminders'
+              : 'G\u00fcnl\u00fck al\u0131\u015fkanl\u0131k tamamlama hat\u0131rlat\u0131c\u0131lar\u0131',
+          importance: Importance.defaultImportance,
+          priority: Priority.defaultPriority,
+          icon: '@mipmap/ic_launcher',
+          color: AppColors.success,
+        ),
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+        ),
+      ),
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      matchDateTimeComponents: DateTimeComponents.time,
+      payload: 'habit_reminder',
+    );
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyHabitReminderEnabled, true);
+  }
+
+  Future<void> cancelHabitCompletionReminder() async {
+    await _notifications.cancel(id: habitCompletionReminderId);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyHabitReminderEnabled, false);
+  }
+
+  Future<bool> isHabitReminderEnabled() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_keyHabitReminderEnabled) ?? false;
   }
 
   // ============== Utility Methods ==============
