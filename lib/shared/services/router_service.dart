@@ -137,6 +137,10 @@ import '../../features/journal/presentation/pattern_health_screen.dart';
 import '../../features/habits/presentation/habit_adoption_screen.dart';
 import '../../features/wellness/presentation/wellness_history_screen.dart';
 import '../../features/journal/presentation/pattern_loop_archive_screen.dart';
+import '../../features/dreams/presentation/dream_memory_analytics_screen.dart';
+import '../../features/journal/presentation/cross_correlation_screen.dart';
+import '../../features/journal/presentation/anomaly_detection_screen.dart';
+import '../../features/profile/presentation/journey_analytics_screen.dart';
 import '../../features/tools/presentation/tool_catalog_screen.dart';
 import '../../features/wellness/presentation/wellness_detail_screen.dart';
 import '../../shared/widgets/main_shell_screen.dart';
@@ -862,6 +866,34 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.patternLoopArchive,
         pageBuilder: (context, state) => PageTransitions.fadeSlide(
           child: const PatternLoopArchiveScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.dreamMemoryAnalytics,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const DreamMemoryAnalyticsScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.crossCorrelations,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const CrossCorrelationScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.anomalyDetection,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const AnomalyDetectionScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.journeyAnalytics,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const JourneyAnalyticsScreen(),
           key: state.pageKey,
         ),
       ),

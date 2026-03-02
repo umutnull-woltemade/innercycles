@@ -128,7 +128,10 @@ class RitualCompletion {
     required this.updatedAt,
   });
 
-  bool get isFullyComplete => completedItemIds.isNotEmpty;
+  bool get hasAnyCompletion => completedItemIds.isNotEmpty;
+
+  bool isFullyComplete(int totalItems) =>
+      totalItems > 0 && completedItemIds.length >= totalItems;
 
   double completionRate(int totalItems) {
     if (totalItems == 0) return 0;
@@ -316,6 +319,8 @@ class RitualService {
     int totalItems = 0;
     int completedItems = 0;
     final completionByTime = <RitualTime, double>{};
+    final timeTotal = <RitualTime, int>{};
+    final timeDone = <RitualTime, int>{};
 
     for (final stack in _stacks) {
       final comp = _completions['$dateKey:${stack.id}'];
@@ -325,9 +330,13 @@ class RitualService {
       totalItems += stackTotal;
       completedItems += stackDone;
 
-      completionByTime[stack.time] = stackTotal == 0
-          ? 0
-          : stackDone / stackTotal;
+      timeTotal[stack.time] = (timeTotal[stack.time] ?? 0) + stackTotal;
+      timeDone[stack.time] = (timeDone[stack.time] ?? 0) + stackDone;
+    }
+
+    for (final time in timeTotal.keys) {
+      final total = timeTotal[time]!;
+      completionByTime[time] = total == 0 ? 0 : timeDone[time]! / total;
     }
 
     return DailyRitualSummary(

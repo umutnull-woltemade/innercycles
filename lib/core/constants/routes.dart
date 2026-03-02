@@ -173,6 +173,10 @@ class Routes {
   static const String patternLoopArchive = '/patterns/loops';
   static const String gratitudeArchive = '/gratitude/archive';
   static const String sleepTrends = '/sleep/trends';
+  static const String dreamMemoryAnalytics = '/dreams/memory';
+  static const String crossCorrelations = '/patterns/correlations';
+  static const String anomalyDetection = '/patterns/anomalies';
+  static const String journeyAnalytics = '/profile/journey';
 
   // ════════════════════════════════════════════════════════════════
   // TIER 2 FEATURES

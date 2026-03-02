@@ -83,6 +83,7 @@ import '../services/life_wheel_service.dart';
 import '../services/monthly_theme_service.dart';
 import '../services/fear_inventory_service.dart';
 import '../services/dream_journal_correlation_service.dart';
+import '../services/dream_memory_service.dart';
 
 // =============================================================================
 // USER PROFILE PROVIDERS
@@ -302,6 +303,13 @@ final dreamJournalServiceProvider = FutureProvider<DreamJournalService>((
 final dreamCountProvider = FutureProvider<int>((ref) async {
   final service = await ref.watch(dreamJournalServiceProvider.future);
   return service.getDreamCount();
+});
+
+/// Dream Memory Service provider - symbol tracking & analysis
+final dreamMemoryServiceProvider = FutureProvider<DreamMemoryService>((
+  ref,
+) async {
+  return DreamMemoryService.init();
 });
 
 // =============================================================================
@@ -1091,3 +1099,4 @@ final privateNotesProvider = FutureProvider<List<NoteToSelf>>((ref) async {
   final service = await ref.watch(notesToSelfServiceProvider.future);
   return service.getPrivateNotes();
 });
+

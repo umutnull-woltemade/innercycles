@@ -50,7 +50,7 @@ class CrossCorrelationCard extends ConsumerWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
           child: TapScale(
-            onTap: () => context.push(Routes.moodTrends),
+            onTap: () => context.push(Routes.crossCorrelations),
             child: PremiumCard(
               style: PremiumCardStyle.aurora,
               padding: const EdgeInsets.all(14),

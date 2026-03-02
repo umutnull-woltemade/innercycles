@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/content/habit_suggestions_content.dart';
 import '../../../data/services/habit_suggestion_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -98,12 +99,12 @@ class HabitAdoptionScreen extends ConsumerWidget {
                                     service: service,
                                     isEn: isEn,
                                     isDark: isDark,
-                                    onToggle: () {
+                                    onToggle: () async {
                                       if (service
                                           .isCheckedToday(habit.id)) {
-                                        service.uncheckToday(habit.id);
+                                        await service.uncheckToday(habit.id);
                                       } else {
-                                        service.checkOffToday(habit.id);
+                                        await service.checkOffToday(habit.id);
                                       }
                                       ref.invalidate(
                                           habitSuggestionServiceProvider);
@@ -296,7 +297,7 @@ class _Stat extends StatelessWidget {
 }
 
 class _HabitTile extends StatelessWidget {
-  final dynamic habit; // HabitSuggestion
+  final HabitSuggestion habit;
   final HabitSuggestionService service;
   final bool isEn;
   final bool isDark;

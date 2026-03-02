@@ -375,6 +375,7 @@ class _StackCard extends ConsumerWidget {
     );
 
     if (confirmed == true) {
+      if (!context.mounted) return;
       final service = await ref.read(ritualServiceProvider.future);
       await service.deleteStack(stack.id);
       if (!context.mounted) return;
