@@ -105,7 +105,6 @@ import '../../features/wellness/presentation/wellness_detail_screen.dart';
 import '../../shared/widgets/main_shell_screen.dart';
 import '../../data/services/admin_auth_service.dart';
 import '../../data/services/storage_service.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
@@ -143,25 +142,6 @@ final routerProvider = Provider<GoRouter>((ref) {
       final onboardingDone = StorageService.loadOnboardingComplete();
       if (!onboardingDone) {
         return Routes.onboarding;
-      }
-
-      // AUTH: If Supabase is initialized and user signed out, redirect to onboarding
-      // (protects app content after explicit sign-out)
-      try {
-        final session = Supabase.instance.client.auth.currentSession;
-        if (session == null && onboardingDone) {
-          // User completed onboarding but has no auth session
-          // Allow access for users who never signed in (offline-first)
-          // Only redirect if they had a session before (i.e. explicit sign-out)
-          final hadPreviousSession = StorageService.loadUserProfile() != null;
-          if (hadPreviousSession) {
-            // Signed out — force re-onboarding
-            StorageService.saveOnboardingComplete(false);
-            return Routes.onboarding;
-          }
-        }
-      } catch (_) {
-        // Supabase not initialized yet — skip auth check
       }
 
       return null;

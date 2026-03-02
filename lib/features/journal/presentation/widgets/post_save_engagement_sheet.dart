@@ -318,6 +318,22 @@ class PostSaveEngagementSheet extends ConsumerWidget {
       ));
     }
 
+    // Breathing exercise
+    suggestions.add(_Suggestion(
+      icon: Icons.air_rounded,
+      title: isEn ? 'Breathing Exercise' : 'Nefes Egzersizi',
+      subtitle: isEn ? 'Wind down with guided breathing' : 'Nefes egzersiziyle rahatsızlığını gider',
+      route: Routes.breathing,
+    ));
+
+    // Rituals & habits
+    suggestions.add(_Suggestion(
+      icon: Icons.check_circle_outline_rounded,
+      title: isEn ? 'Check Rituals' : 'Ritüellerini Kontrol Et',
+      subtitle: isEn ? 'Mark your daily practices' : 'Günlük pratiklerini işaretle',
+      route: Routes.rituals,
+    ));
+
     // Gratitude
     suggestions.add(_Suggestion(
       icon: Icons.volunteer_activism_rounded,

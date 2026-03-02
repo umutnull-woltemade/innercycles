@@ -47,9 +47,16 @@ class MoodStatsStrip extends ConsumerWidget {
         : (L10nService.get('today.mood_stats_strip.check_in', language));
     final hasNoMood = todayMood == null;
 
+    // Get last 7 days' mood emojis
+    final weekMoods = moodAsync.whenOrNull(
+      data: (service) => service.getWeekMoods(),
+    );
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(24, 8, 24, 0),
-      child: PremiumCard(
+      child: Column(
+        children: [
+          PremiumCard(
         style: PremiumCardStyle.subtle,
         showGradientBorder: false,
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
@@ -118,6 +125,33 @@ class MoodStatsStrip extends ConsumerWidget {
             ],
           ),
         ),
+          ),
+          // Mood emoji trail (last 7 days)
+          if (weekMoods != null &&
+              weekMoods.where((m) => m != null).length >= 2)
+            Padding(
+              padding: const EdgeInsets.only(top: 6),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  for (int i = 0; i < weekMoods.length; i++) ...[
+                    if (i > 0) const SizedBox(width: 6),
+                    Text(
+                      weekMoods[i]?.emoji ?? '·',
+                      style: TextStyle(
+                        fontSize: weekMoods[i] != null ? 14 : 10,
+                        color: weekMoods[i] == null
+                            ? (isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted)
+                            : null,
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+        ],
       ),
     );
   }

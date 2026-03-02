@@ -24,9 +24,38 @@ class HeroJournalCard extends ConsumerWidget {
     required this.isDark,
   });
 
+  /// Detect recent mood trend direction from last 3 moods
+  String? _moodTrendSubtitle(WidgetRef ref) {
+    final moodAsync = ref.watch(moodCheckinServiceProvider);
+    return moodAsync.whenOrNull(data: (service) {
+      final week = service.getWeekMoods();
+      final recent = week.whereType<dynamic>().where((m) => m != null).toList();
+      if (recent.length < 3) return null;
+
+      // Check last 3 non-null moods
+      final last3 = recent.reversed.take(3).toList().reversed.toList();
+      final moods = last3.map((m) => m.mood as int).toList();
+
+      // Trending down: each mood <= previous
+      if (moods[0] > moods[1] && moods[1] > moods[2]) {
+        return isEn
+            ? 'Gentle reminder: tough days pass.'
+            : 'Nazik bir hatırlatma: zor günler geçer.';
+      }
+      // Trending up
+      if (moods[0] < moods[1] && moods[1] < moods[2]) {
+        return isEn
+            ? 'Your energy is rising — keep it going!'
+            : 'Enerjin yükseliyor — devam et!';
+      }
+      return null;
+    });
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final promptAsync = ref.watch(journalPromptServiceProvider);
+    final trendSubtitle = _moodTrendSubtitle(ref);
 
     return promptAsync.maybeWhen(
       data: (service) {
@@ -70,6 +99,19 @@ class HeroJournalCard extends ConsumerWidget {
                         letterSpacing: -0.1,
                       ),
                     ),
+                    if (trendSubtitle != null) ...[
+                      const SizedBox(height: 8),
+                      Text(
+                        trendSubtitle,
+                        textAlign: TextAlign.center,
+                        style: AppTypography.elegantAccent(
+                          fontSize: 12,
+                          color: isDark
+                              ? AppColors.amethyst.withValues(alpha: 0.8)
+                              : AppColors.amethyst.withValues(alpha: 0.9),
+                        ),
+                      ),
+                    ],
                     const SizedBox(height: 10),
                     Text(
                       L10nService.get('today.hero_journal.daily_reflection', language),

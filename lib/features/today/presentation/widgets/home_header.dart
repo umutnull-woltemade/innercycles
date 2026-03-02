@@ -17,12 +17,14 @@ class HomeHeader extends StatelessWidget {
   final String userName;
   final bool isEn;
   final bool isDark;
+  final int? yesterdayMoodScore;
 
   const HomeHeader({
     super.key,
     required this.userName,
     required this.isEn,
     required this.isDark,
+    this.yesterdayMoodScore,
   });
 
   String _getGreeting() {
@@ -59,6 +61,20 @@ class HomeHeader extends StatelessWidget {
     final greeting = _getGreeting();
     final dateStr = _getFormattedDate();
     final insight = ContentRotationService.getDailyInsight();
+
+    // Mood-aware subtitle: reference yesterday's emotional state
+    String? moodSubtitle;
+    if (yesterdayMoodScore != null) {
+      if (yesterdayMoodScore! <= 2) {
+        moodSubtitle = isEn
+            ? 'A fresh start awaits you today.'
+            : 'Bugün seni taze bir başlangıç bekliyor.';
+      } else if (yesterdayMoodScore! >= 4) {
+        moodSubtitle = isEn
+            ? 'Carry that great energy forward.'
+            : 'O güzel enerjiyi bugüne taşı.';
+      }
+    }
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(24, 20, 24, 8),
@@ -129,7 +145,7 @@ class HomeHeader extends StatelessWidget {
                     ],
                     const SizedBox(height: 6),
                     Text(
-                      isEn ? insight.en : insight.tr,
+                      moodSubtitle ?? (isEn ? insight.en : insight.tr),
                       style: AppTypography.decorativeScript(
                         fontSize: 15,
                         fontWeight: FontWeight.w400,

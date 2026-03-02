@@ -41,6 +41,7 @@ import 'widgets/mood_habit_correlation_card.dart';
 import 'widgets/weekly_reflection_card.dart';
 import 'widgets/focus_area_streak.dart';
 import 'widgets/year_progress_ring.dart';
+import 'widgets/welcome_banner.dart';
 import '../../../data/services/l10n_service.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
@@ -397,13 +398,31 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // ZONE 1: ANCHOR
                   // ═══════════════════════════════════════════════
 
-                  // 1. Header
+                  // 1. Header (mood-aware greeting)
                   SliverToBoxAdapter(
-                    child: HomeHeader(
-                      userName: userName,
-                      isEn: isEn,
-                      isDark: isDark,
-                    ).glassEntrance(context: context),
+                    child: Consumer(
+                      builder: (context, ref, _) {
+                        final moodAsync = ref.watch(moodCheckinServiceProvider);
+                        final yesterdayMood = moodAsync.whenOrNull(
+                          data: (service) {
+                            final week = service.getWeekMoods();
+                            // index 5 = yesterday (week is last 7 days, 6=today)
+                            return week.length >= 7 ? week[5]?.mood : null;
+                          },
+                        );
+                        return HomeHeader(
+                          userName: userName,
+                          isEn: isEn,
+                          isDark: isDark,
+                          yesterdayMoodScore: yesterdayMood,
+                        ).glassEntrance(context: context);
+                      },
+                    ),
+                  ),
+
+                  // 1b. Welcome Banner (new users only)
+                  SliverToBoxAdapter(
+                    child: WelcomeBanner(isEn: isEn, isDark: isDark),
                   ),
 
                   // 2. Hero Journal Card (promoted to #2)

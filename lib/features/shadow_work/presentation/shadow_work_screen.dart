@@ -26,6 +26,7 @@ import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../data/services/l10n_service.dart';
 
 class ShadowWorkScreen extends ConsumerStatefulWidget {
@@ -43,10 +44,35 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
   bool _isWriting = false;
   bool _hasText = false;
 
+  static const _sessionCountKey = 'shadow_work_session_count';
+
   @override
   void initState() {
     super.initState();
     _responseController.addListener(_onTextChanged);
+    _trackSessionAndShowPaywall();
+  }
+
+  Future<void> _trackSessionAndShowPaywall() async {
+    final prefs = await SharedPreferences.getInstance();
+    final count = (prefs.getInt(_sessionCountKey) ?? 0) + 1;
+    await prefs.setInt(_sessionCountKey, count);
+
+    // Show contextual paywall after 3rd session for non-premium users
+    if (count >= 3 && mounted) {
+      final isPremium = ref.read(isPremiumUserProvider);
+      if (!isPremium) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) {
+            showContextualPaywall(
+              context,
+              ref,
+              paywallContext: PaywallContext.shadowWork,
+            );
+          }
+        });
+      }
+    }
   }
 
   void _onTextChanged() {
