@@ -36,6 +36,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
   final _searchController = TextEditingController();
   Timer? _debounce;
   String _searchQuery = '';
+  String _filterType = 'all'; // all, lucid, recurring, nightmare
   List<DreamEntry>? _dreams;
   bool _isLoading = true;
 
@@ -185,7 +186,13 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                 _loadDreamsInitial(service);
               }
 
-              final dreams = _dreams ?? [];
+              final allDreams = _dreams ?? [];
+              final dreams = allDreams.where((d) {
+                if (_filterType == 'lucid') return d.isLucid;
+                if (_filterType == 'recurring') return d.isRecurring;
+                if (_filterType == 'nightmare') return d.isNightmare;
+                return true;
+              }).toList();
               final grouped = _groupByMonth(dreams);
 
               // Compute stats
@@ -276,6 +283,32 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                             vertical: AppConstants.spacingSm,
                           ),
                           child: _buildSearchBar(isDark, isEn),
+                        ),
+                      ),
+
+                      // Filter chips
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppConstants.spacingLg,
+                            vertical: AppConstants.spacingXs,
+                          ),
+                          child: SizedBox(
+                            height: 36,
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              physics: const BouncingScrollPhysics(),
+                              children: [
+                                _buildFilterChip(isEn ? 'All' : 'Tümü', 'all', isDark),
+                                const SizedBox(width: 8),
+                                _buildFilterChip(isEn ? 'Lucid' : 'Lüsid', 'lucid', isDark),
+                                const SizedBox(width: 8),
+                                _buildFilterChip(isEn ? 'Recurring' : 'Tekrarlayan', 'recurring', isDark),
+                                const SizedBox(width: 8),
+                                _buildFilterChip(isEn ? 'Nightmare' : 'Kabus', 'nightmare', isDark),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
 
@@ -472,6 +505,39 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
         });
       }
     });
+  }
+
+  Widget _buildFilterChip(String label, String type, bool isDark) {
+    final isSelected = _filterType == type;
+    return GestureDetector(
+      onTap: () => setState(() => _filterType = type),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: isSelected
+              ? AppColors.starGold.withValues(alpha: 0.2)
+              : (isDark
+                    ? Colors.white.withValues(alpha: 0.06)
+                    : Colors.black.withValues(alpha: 0.04)),
+          border: Border.all(
+            color: isSelected
+                ? AppColors.starGold.withValues(alpha: 0.5)
+                : Colors.transparent,
+          ),
+        ),
+        child: Text(
+          label,
+          style: AppTypography.modernAccent(
+            fontSize: 13,
+            fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+            color: isSelected
+                ? AppColors.starGold
+                : (isDark ? AppColors.textSecondary : AppColors.lightTextSecondary),
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _buildSearchBar(bool isDark, bool isEn) {

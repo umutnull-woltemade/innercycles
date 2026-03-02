@@ -35,6 +35,7 @@ class ArchiveScreen extends ConsumerStatefulWidget {
 class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
   FocusArea? _filterArea;
   String _searchQuery = '';
+  String _dateRange = 'all'; // all, 7d, 30d, 3m, year
   final _searchController = TextEditingController();
   Timer? _searchDebounce;
 
@@ -120,8 +121,21 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                   _cachedEntries = service.getAllEntries();
                 }
                 final searchLower = _searchQuery.toLowerCase();
+                final now = DateTime.now();
+                final dateFloor = _dateRange == '7d'
+                    ? now.subtract(const Duration(days: 7))
+                    : _dateRange == '30d'
+                        ? now.subtract(const Duration(days: 30))
+                        : _dateRange == '3m'
+                            ? now.subtract(const Duration(days: 90))
+                            : _dateRange == 'year'
+                                ? DateTime(now.year, 1, 1)
+                                : null;
                 final entries = _cachedEntries.where((e) {
                   if (_filterArea != null && e.focusArea != _filterArea) {
+                    return false;
+                  }
+                  if (dateFloor != null && e.date.isBefore(dateFloor)) {
                     return false;
                   }
                   if (searchLower.isNotEmpty) {
@@ -153,11 +167,28 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                           child: _buildSearchBar(isDark, isEn),
                         ),
                       ),
-                      // Filter chips
+                      // Focus area filter chips
                       SliverToBoxAdapter(
                         child: Padding(
-                          padding: const EdgeInsets.all(AppConstants.spacingLg),
+                          padding: const EdgeInsets.fromLTRB(
+                            AppConstants.spacingLg,
+                            AppConstants.spacingLg,
+                            AppConstants.spacingLg,
+                            AppConstants.spacingXs,
+                          ),
                           child: _buildFilterChips(isDark, isEn),
+                        ),
+                      ),
+                      // Date range filter chips
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(
+                            AppConstants.spacingLg,
+                            0,
+                            AppConstants.spacingLg,
+                            AppConstants.spacingMd,
+                          ),
+                          child: _buildDateRangeChips(isDark, isEn),
                         ),
                       ),
                       // Entry count
@@ -459,6 +490,59 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
             );
           }),
         ],
+      ),
+    );
+  }
+
+  Widget _buildDateRangeChips(bool isDark, bool isEn) {
+    final ranges = <String, String>{
+      'all': isEn ? 'All Time' : 'Tüm Zamanlar',
+      '7d': isEn ? 'Last 7 Days' : 'Son 7 Gün',
+      '30d': isEn ? 'Last 30 Days' : 'Son 30 Gün',
+      '3m': isEn ? 'Last 3 Months' : 'Son 3 Ay',
+      'year': isEn ? 'This Year' : 'Bu Yıl',
+    };
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: ranges.entries.map((e) {
+          final isSelected = _dateRange == e.key;
+          return Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: GestureDetector(
+              onTap: () => setState(() => _dateRange = e.key),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: isSelected
+                      ? AppColors.auroraStart.withValues(alpha: 0.2)
+                      : (isDark
+                            ? AppColors.surfaceDark.withValues(alpha: 0.3)
+                            : AppColors.lightSurfaceVariant.withValues(alpha: 0.5)),
+                  borderRadius: BorderRadius.circular(AppConstants.radiusFull),
+                  border: Border.all(
+                    color: isSelected
+                        ? AppColors.auroraStart.withValues(alpha: 0.5)
+                        : Colors.transparent,
+                  ),
+                ),
+                child: Text(
+                  e.value,
+                  style: AppTypography.elegantAccent(
+                    fontSize: 12,
+                    fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                    color: isSelected
+                        ? AppColors.auroraStart
+                        : (isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted),
+                    letterSpacing: 0.3,
+                  ),
+                ),
+              ),
+            ),
+          );
+        }).toList(),
       ),
     );
   }

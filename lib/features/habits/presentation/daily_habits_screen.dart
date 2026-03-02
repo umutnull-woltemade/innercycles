@@ -129,6 +129,15 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
                     isDark: isDark,
                     isEn: isEn,
                   ),
+                  const SizedBox(height: 16),
+
+                  // 12-week completion heatmap
+                  _HabitHeatmap(
+                    service: service,
+                    adoptedHabits: adoptedHabits,
+                    isDark: isDark,
+                    isEn: isEn,
+                  ),
                   const SizedBox(height: 20),
 
                   // Habit check-off cards
@@ -206,6 +215,166 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
       ),
     );
   }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 12-WEEK HABIT COMPLETION HEATMAP
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _HabitHeatmap extends StatelessWidget {
+  final HabitSuggestionService service;
+  final List<HabitSuggestion> adoptedHabits;
+  final bool isDark;
+  final bool isEn;
+
+  const _HabitHeatmap({
+    required this.service,
+    required this.adoptedHabits,
+    required this.isDark,
+    required this.isEn,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // Merge all adopted habit completion dates into a single set
+    final allDates = <String>{};
+    int bestStreak = 0;
+    int currentStreak = 0;
+    for (final habit in adoptedHabits) {
+      allDates.addAll(service.getCompletionDates(habit.id));
+      final s = service.getHabitStreak(habit.id);
+      if (s > bestStreak) bestStreak = s;
+      currentStreak += s;
+    }
+    // Aggregate current streak = average across habits
+    final avgStreak = adoptedHabits.isNotEmpty
+        ? (currentStreak / adoptedHabits.length).round()
+        : 0;
+
+    // Build 12-week (84 days) grid
+    final today = DateTime.now();
+    const totalDays = 84;
+    final cells = List.generate(totalDays, (i) {
+      final date = today.subtract(Duration(days: totalDays - 1 - i));
+      final key = '${date.year}-${date.month}-${date.day}';
+      final count = adoptedHabits.where((h) =>
+          service.getCompletionDates(h.id).contains(key)).length;
+      return _CellData(count: count, total: adoptedHabits.length);
+    });
+
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      padding: const EdgeInsets.all(14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              GradientText(
+                isEn ? 'Completion Heatmap' : 'Tamamlama Haritası',
+                variant: GradientTextVariant.aurora,
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const Spacer(),
+              Text(
+                isEn
+                    ? 'Best: $bestStreak days'
+                    : 'En iyi: $bestStreak gün',
+                style: AppTypography.elegantAccent(
+                  fontSize: 11,
+                  color: AppColors.success,
+                  letterSpacing: 0.3,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          // Grid: 12 columns (weeks), 7 rows (days)
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final cellSize = ((constraints.maxWidth - 11 * 2) / 12).floorToDouble();
+              return Wrap(
+                spacing: 2,
+                runSpacing: 2,
+                children: cells.map((cell) {
+                  final ratio = cell.total > 0 ? cell.count / cell.total : 0.0;
+                  final color = ratio == 0
+                      ? (isDark
+                            ? Colors.white.withValues(alpha: 0.04)
+                            : Colors.black.withValues(alpha: 0.03))
+                      : ratio < 0.5
+                          ? AppColors.auroraStart.withValues(alpha: 0.3)
+                          : ratio < 1.0
+                              ? AppColors.auroraStart.withValues(alpha: 0.6)
+                              : AppColors.success;
+                  return Container(
+                    width: cellSize,
+                    height: cellSize,
+                    decoration: BoxDecoration(
+                      color: color,
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                  );
+                }).toList(),
+              );
+            },
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              Text(
+                isEn ? 'Avg streak: $avgStreak days' : 'Ort. seri: $avgStreak gün',
+                style: AppTypography.elegantAccent(
+                  fontSize: 11,
+                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  letterSpacing: 0.3,
+                ),
+              ),
+              const Spacer(),
+              // Legend
+              _legendDot(isDark
+                  ? Colors.white.withValues(alpha: 0.04)
+                  : Colors.black.withValues(alpha: 0.03)),
+              const SizedBox(width: 3),
+              _legendDot(AppColors.auroraStart.withValues(alpha: 0.3)),
+              const SizedBox(width: 3),
+              _legendDot(AppColors.auroraStart.withValues(alpha: 0.6)),
+              const SizedBox(width: 3),
+              _legendDot(AppColors.success),
+              const SizedBox(width: 6),
+              Text(
+                isEn ? 'More' : 'Fazla',
+                style: AppTypography.elegantAccent(
+                  fontSize: 10,
+                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    ).animate().fadeIn(duration: 300.ms, delay: 100.ms);
+  }
+
+  Widget _legendDot(Color color) {
+    return Container(
+      width: 10,
+      height: 10,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(2),
+      ),
+    );
+  }
+}
+
+class _CellData {
+  final int count;
+  final int total;
+  const _CellData({required this.count, required this.total});
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

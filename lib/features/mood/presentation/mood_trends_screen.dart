@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -173,6 +174,12 @@ class MoodTrendsScreen extends ConsumerWidget {
                 // Share mood summary
                 _buildShareMoodRow(isDark, isEn, avg7, weekMoods, allEntries.length),
                 const SizedBox(height: AppConstants.spacingLg),
+
+                // Mood Stability Score
+                if (allEntries.length >= 7)
+                  _buildStabilityCard(isDark, isEn, allEntries),
+                if (allEntries.length >= 7)
+                  const SizedBox(height: AppConstants.spacingLg),
 
                 // Distribution chart (PREMIUM — blurred for free)
                 _buildPremiumSection(
@@ -436,6 +443,117 @@ class MoodTrendsScreen extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  Widget _buildStabilityCard(bool isDark, bool isEn, List<MoodEntry> entries) {
+    // Calculate stability from last 30 days
+    final now = DateTime.now();
+    final cutoff = now.subtract(const Duration(days: 30));
+    final recent = entries.where((e) => e.date.isAfter(cutoff)).toList();
+    if (recent.length < 3) return const SizedBox.shrink();
+
+    final moods = recent.map((e) => e.mood.toDouble()).toList();
+    final avg = moods.reduce((a, b) => a + b) / moods.length;
+    // Standard deviation
+    final variance = moods.map((m) => (m - avg) * (m - avg)).reduce((a, b) => a + b) / moods.length;
+    final stdDev = variance > 0 ? (variance * 1.0) : 0.0;
+    // Stability: 100 means perfectly stable, 0 means max variance
+    // Max possible std for 1-5 scale is 2.0
+    final stability = ((1 - math.sqrt(stdDev) / 2.0) * 100).round().clamp(0, 100);
+
+    final color = stability >= 70
+        ? AppColors.success
+        : stability >= 40
+            ? AppColors.auroraStart
+            : AppColors.warning;
+    final label = stability >= 70
+        ? (isEn ? 'Very Stable' : 'Çok Stabil')
+        : stability >= 40
+            ? (isEn ? 'Moderate' : 'Orta')
+            : (isEn ? 'Variable' : 'Değişken');
+
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              GradientText(
+                isEn ? 'Mood Stability' : 'Duygu Stabilitesi',
+                variant: GradientTextVariant.aurora,
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const Spacer(),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                decoration: BoxDecoration(
+                  color: color.withValues(alpha: 0.12),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  label,
+                  style: AppTypography.modernAccent(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: color,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              Text(
+                '$stability%',
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 36,
+                  fontWeight: FontWeight.w700,
+                  color: color,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(4),
+                      child: LinearProgressIndicator(
+                        value: stability / 100,
+                        minHeight: 8,
+                        backgroundColor: isDark
+                            ? Colors.white.withValues(alpha: 0.08)
+                            : Colors.black.withValues(alpha: 0.06),
+                        valueColor: AlwaysStoppedAnimation(color),
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      isEn
+                          ? 'Based on ${recent.length} entries in the last 30 days'
+                          : 'Son 30 günde ${recent.length} kayda dayalı',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 11,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                        letterSpacing: 0.3,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    ).animate().fadeIn(delay: 200.ms, duration: 300.ms);
   }
 
   Widget _buildShareMoodRow(

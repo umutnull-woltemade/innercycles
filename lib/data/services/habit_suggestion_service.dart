@@ -319,6 +319,11 @@ class HabitSuggestionService {
     return _getCheckDates(habitId).length;
   }
 
+  /// Get all completion date strings for a habit (format: YYYY-M-D)
+  Set<String> getCompletionDates(String habitId) {
+    return _getCheckDates(habitId).toSet();
+  }
+
   /// Get completions in the last 7 days for a habit (returns list of booleans, Mon-Sun)
   List<bool> getWeekCompletions(String habitId) {
     final dates = _getCheckDates(habitId).toSet();

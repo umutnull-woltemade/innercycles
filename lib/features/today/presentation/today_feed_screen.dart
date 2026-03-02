@@ -61,6 +61,7 @@ import 'widgets/attachment_quiz_banner.dart';
 import 'widgets/pattern_loop_card.dart';
 import 'widgets/shift_outlook_card.dart';
 import 'widgets/weekly_digest_mini_card.dart';
+import 'widgets/weekly_momentum_card.dart';
 import 'widgets/pattern_health_alert_card.dart';
 import 'widgets/habit_suggestion_card.dart';
 import 'widgets/sleep_quality_mini_card.dart';
@@ -69,6 +70,7 @@ import 'widgets/onboarding_checklist_card.dart';
 import 'widgets/journaling_tip_card.dart';
 import 'widgets/cross_correlation_card.dart';
 import 'widgets/premium_expiry_banner.dart';
+import 'widgets/win_back_offer_banner.dart';
 import '../../../data/services/l10n_service.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
@@ -526,7 +528,12 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: PremiumExpiryBanner(isEn: isEn, isDark: isDark),
                   ),
 
-                  // 4c. Streak Recovery Banner (conditional — after streak broken)
+                  // 4c. Win-Back Offer (lapsed free users, 14+ days away)
+                  SliverToBoxAdapter(
+                    child: WinBackOfferBanner(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 4d. Streak Recovery Banner (conditional — after streak broken)
                   const SliverToBoxAdapter(
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -712,6 +719,11 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 10. Weekly Digest Mini-Card
                   SliverToBoxAdapter(
                     child: WeeklyDigestMiniCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 10a2. Weekly Momentum Card
+                  SliverToBoxAdapter(
+                    child: WeeklyMomentumCard(isEn: isEn, isDark: isDark),
                   ),
 
                   // 10a. Community Pulse (anonymous social layer)
