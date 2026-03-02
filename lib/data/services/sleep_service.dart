@@ -170,6 +170,17 @@ class SleepService {
     );
   }
 
+  /// Get last 7 days of sleep qualities as a list (oldest first, 0 = no data)
+  List<double> getWeekQualities() {
+    final now = DateTime.now();
+    return List.generate(7, (i) {
+      final day = now.subtract(Duration(days: 6 - i));
+      final key =
+          '${day.year}-${day.month.toString().padLeft(2, '0')}-${day.day.toString().padLeft(2, '0')}';
+      return (_entries[key]?.quality ?? 0).toDouble();
+    });
+  }
+
   // ══════════════════════════════════════════════════════════════════════════
   // PERSISTENCE
   // ══════════════════════════════════════════════════════════════════════════

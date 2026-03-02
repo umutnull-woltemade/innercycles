@@ -20,6 +20,7 @@ import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/models/user_profile.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/analytics_service.dart';
 import '../../../data/services/auth_service.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/services/mood_checkin_service.dart';
@@ -157,6 +158,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           await referralService.applyCode(_referralCode.trim());
         } catch (e) { if (kDebugMode) debugPrint('Onboarding service init: $e'); }
       }
+
+      // Track onboarding completion
+      AnalyticsService().logEvent('onboarding_completed', {
+        'has_name': _userName != null && _userName!.isNotEmpty,
+        'has_focus_area': _selectedFocusArea != null,
+        'has_mood': _selectedMood != null,
+        'has_referral': _referralCode.trim().isNotEmpty,
+      });
 
       await Future.delayed(const Duration(milliseconds: 100));
 

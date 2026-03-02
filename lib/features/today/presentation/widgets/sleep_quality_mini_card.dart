@@ -7,6 +7,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/haptic_service.dart';
+import '../../../../shared/widgets/sparkline_chart.dart';
 import '../../../../shared/widgets/tap_scale.dart';
 
 class SleepQualityMiniCard extends ConsumerWidget {
@@ -174,17 +175,43 @@ class SleepQualityMiniCard extends ConsumerWidget {
                       ],
                     ),
                   ),
-                  // Trend indicator
+                  // Sparkline + Trend
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Icon(trendIcon, size: 16, color: trendColor),
-                      const SizedBox(height: 2),
-                      Text(
-                        trendLabel,
-                        style: AppTypography.elegantAccent(
-                          fontSize: 10,
-                          color: trendColor,
-                        ),
+                      Builder(
+                        builder: (context) {
+                          final serviceAsync = ref.watch(sleepServiceProvider);
+                          final weekData = serviceAsync.whenOrNull(
+                            data: (s) => s.getWeekQualities(),
+                          );
+                          if (weekData == null || weekData.where((v) => v > 0).length < 2) {
+                            return const SizedBox.shrink();
+                          }
+                          return SparklineChart(
+                            data: weekData.map((v) => v == 0 ? 0.0 : v).toList(),
+                            minValue: 0,
+                            maxValue: 5,
+                            lineColor: _qualityColor(summary.averageQuality),
+                            width: 60,
+                            height: 24,
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 4),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(trendIcon, size: 12, color: trendColor),
+                          const SizedBox(width: 3),
+                          Text(
+                            trendLabel,
+                            style: AppTypography.elegantAccent(
+                              fontSize: 10,
+                              color: trendColor,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

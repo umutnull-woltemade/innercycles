@@ -10,6 +10,7 @@ import '../../core/theme/app_colors.dart';
 import '../models/note_to_self.dart';
 import '../models/birthday_contact.dart';
 import 'journal_prompt_service.dart';
+import 'analytics_service.dart';
 import 'l10n_service.dart';
 import 'mood_checkin_service.dart';
 import '../providers/app_providers.dart';
@@ -217,6 +218,12 @@ class NotificationService {
           route = Routes.today;
         }
     }
+
+    // Track notification tap analytics
+    AnalyticsService().logEvent('notification_tapped', {
+      'payload': payload,
+      'route': route,
+    });
 
     // Use GoRouter for navigation (not Navigator 1.0 pushNamed)
     final ctx = navigatorKey.currentContext;

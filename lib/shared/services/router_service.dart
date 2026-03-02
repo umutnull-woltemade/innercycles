@@ -219,6 +219,13 @@ final routerProvider = Provider<GoRouter>((ref) {
                 path: Routes.moodTrends,
                 builder: (context, state) => const MoodTrendsScreen(),
               ),
+              GoRoute(
+                path: Routes.moodCompass,
+                pageBuilder: (context, state) => CustomTransitionPage(
+                  child: const SizedBox.shrink(), // Compass is a bottom sheet, not a page
+                  transitionsBuilder: (_, __, ___, child) => child,
+                ),
+              ),
             ],
           ),
           // Tab 3: Notes
