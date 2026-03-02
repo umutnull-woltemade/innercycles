@@ -27,6 +27,7 @@ import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../shared/widgets/glass_dialog.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../data/services/ai_dream_service.dart';
+import '../../../shared/widgets/ai_usage_badge.dart';
 import '../../../data/services/dream_interpretation_service.dart';
 import '../../../data/content/share_card_templates.dart';
 import '../../../shared/widgets/share_card_sheet.dart';
@@ -2686,6 +2687,23 @@ ${_getPersonalAdvice(sign)}''';
               ),
             ],
           ),
+          // AI usage indicator for free users
+          if (!ref.watch(isPremiumUserProvider))
+            Padding(
+              padding: const EdgeInsets.only(top: 6),
+              child: FutureBuilder<AIDreamService>(
+                future: AIDreamService.init(),
+                builder: (_, snap) {
+                  if (!snap.hasData) return const SizedBox.shrink();
+                  final svc = snap.data!;
+                  return AIUsageBadge(
+                    used: svc.weeklyUsage,
+                    limit: AIDreamService.freeWeeklyLimit,
+                    isDark: isDark,
+                  );
+                },
+              ),
+            ),
         ],
       ),
     );

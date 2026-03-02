@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,6 +36,21 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   PremiumTier _selectedTier = PremiumTier.yearly;
   bool _useRevenueCatPaywall = true;
   bool _isManagingSubscription = false;
+  Timer? _countdownTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    _countdownTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (mounted) setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _countdownTimer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -181,19 +198,27 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         final language = ref.watch(languageProvider);
         final isEn = language == AppLanguage.en;
         final parts = service.countdownParts;
+        final remaining = service.timeRemaining;
+        final isUrgent = remaining.inHours < 6;
+        final isCritical = remaining.inHours < 1;
+        final accentColor = isCritical
+            ? AppColors.error
+            : isUrgent
+                ? AppColors.warning
+                : AppColors.starGold;
 
-        return Container(
+        Widget banner = Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                AppColors.starGold.withValues(alpha: 0.15),
-                AppColors.celestialGold.withValues(alpha: 0.08),
+                accentColor.withValues(alpha: 0.15),
+                accentColor.withValues(alpha: 0.06),
               ],
             ),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: AppColors.starGold.withValues(alpha: 0.3),
+              color: accentColor.withValues(alpha: 0.3),
             ),
           ),
           child: Column(
@@ -201,19 +226,25 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('\u{1F525}', style: TextStyle(fontSize: 18)),
-                  const SizedBox(width: 8),
                   Text(
-                    L10nService.get('premium.premium.50_off_new_user_special', language),
-                    style: AppTypography.displayFont.copyWith(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.starGold,
+                    isCritical ? '\u{23F0}' : '\u{1F525}',
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                  const SizedBox(width: 8),
+                  Flexible(
+                    child: Text(
+                      L10nService.get('premium.premium.50_off_new_user_special', language),
+                      style: AppTypography.displayFont.copyWith(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: accentColor,
+                      ),
                     ),
                   ),
                 ],
               ),
               const SizedBox(height: 10),
+              // Live countdown digits
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -224,14 +255,12 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                       color: AppColors.textSecondary,
                     ),
                   ),
-                  Text(
-                    '${parts.hours}:${parts.minutes}:${parts.seconds}',
-                    style: AppTypography.displayFont.copyWith(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w800,
-                      color: AppColors.starGold,
-                    ),
-                  ),
+                  const SizedBox(width: 6),
+                  _IntroCountdownDigit(parts.hours, color: accentColor),
+                  _introCountdownSep(accentColor),
+                  _IntroCountdownDigit(parts.minutes, color: accentColor),
+                  _introCountdownSep(accentColor),
+                  _IntroCountdownDigit(parts.seconds, color: accentColor),
                 ],
               ),
               const SizedBox(height: 6),
@@ -268,7 +297,30 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
             ],
           ),
         ).animate().fadeIn(duration: 400.ms).slideY(begin: -0.1, end: 0);
+
+        // Pulse animation for urgent state
+        if (isUrgent) {
+          banner = banner
+              .animate(onPlay: (c) => c.repeat(reverse: true))
+              .scaleXY(end: 1.015, duration: 1200.ms, curve: Curves.easeInOut);
+        }
+
+        return banner;
       },
+    );
+  }
+
+  Widget _introCountdownSep(Color color) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 2),
+      child: Text(
+        ':',
+        style: AppTypography.displayFont.copyWith(
+          fontSize: 18,
+          fontWeight: FontWeight.w800,
+          color: color.withValues(alpha: 0.5),
+        ),
+      ),
     );
   }
 
@@ -1402,3 +1454,37 @@ class _BestValueBadge extends ConsumerWidget {
 }
 
 // _LifetimeBadge removed — lifetime tier killed from UI
+
+// ════════════════════════════════════════════════════════════════════════════
+// COUNTDOWN DIGIT — Used in intro offer banner with urgency color support
+// ════════════════════════════════════════════════════════════════════════════
+
+class _IntroCountdownDigit extends StatelessWidget {
+  final String value;
+  final Color color;
+
+  const _IntroCountdownDigit(this.value, {required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.15),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(
+          color: color.withValues(alpha: 0.2),
+          width: 0.5,
+        ),
+      ),
+      child: Text(
+        value,
+        style: AppTypography.displayFont.copyWith(
+          fontSize: 18,
+          fontWeight: FontWeight.w800,
+          color: color,
+        ),
+      ),
+    );
+  }
+}
