@@ -109,6 +109,17 @@ class JournalService with SupabaseSyncMixin {
     return _entries.where((e) => e.id == id).firstOrNull;
   }
 
+  /// Toggle favorite status for an entry
+  Future<void> toggleFavorite(String id) async {
+    final idx = _entries.indexWhere((e) => e.id == id);
+    if (idx < 0) return;
+    final entry = _entries[idx];
+    final updated = entry.copyWith(isFavorite: !entry.isFavorite);
+    _entries[idx] = updated;
+    _sortedCache = null;
+    await _persistEntries();
+  }
+
   /// Get all non-private entries, sorted by date descending (cached)
   List<JournalEntry> getAllEntries() {
     if (_sortedCache != null) return List.unmodifiable(_sortedCache!);

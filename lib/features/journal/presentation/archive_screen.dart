@@ -37,6 +37,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
   FocusArea? _filterArea;
   String _searchQuery = '';
   String _dateRange = 'all'; // all, 7d, 30d, 3m, year
+  bool _showOnlyFavorites = false;
   final _searchController = TextEditingController();
   Timer? _searchDebounce;
 
@@ -136,6 +137,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                                 ? DateTime(now.year, 1, 1)
                                 : null;
                 final entries = _cachedEntries.where((e) {
+                  if (_showOnlyFavorites && !e.isFavorite) return false;
                   if (_filterArea != null && e.focusArea != _filterArea) {
                     return false;
                   }
@@ -482,8 +484,15 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
         children: [
           _buildChip(
             L10nService.get('journal.archive.all', language),
-            _filterArea == null,
-            () => setState(() => _filterArea = null),
+            _filterArea == null && !_showOnlyFavorites,
+            () => setState(() { _filterArea = null; _showOnlyFavorites = false; }),
+            isDark,
+            isEn: isEn,
+          ),
+          _buildChip(
+            isEn ? '★ Favorites' : '★ Favoriler',
+            _showOnlyFavorites,
+            () => setState(() => _showOnlyFavorites = !_showOnlyFavorites),
             isDark,
             isEn: isEn,
           ),
@@ -718,6 +727,28 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                     ],
                   ),
                 ),
+                GestureDetector(
+                  onTap: () async {
+                    final service = ref.read(journalServiceProvider).valueOrNull;
+                    if (service != null) {
+                      await service.toggleFavorite(entry.id);
+                      _lastService = null;
+                      if (mounted) {
+                        setState(() {
+                          _cachedEntries = ref.read(journalServiceProvider).valueOrNull?.getAllEntries() ?? [];
+                        });
+                      }
+                    }
+                  },
+                  child: Icon(
+                    entry.isFavorite ? Icons.star_rounded : Icons.star_outline_rounded,
+                    size: 20,
+                    color: entry.isFavorite
+                        ? AppColors.starGold
+                        : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                  ),
+                ),
+                const SizedBox(width: 8),
                 Icon(
                   Icons.chevron_right,
                   color: isDark

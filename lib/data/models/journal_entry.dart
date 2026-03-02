@@ -138,6 +138,7 @@ class JournalEntry {
   final String? imagePath; // local file path to attached photo
   final List<String> tags; // user-defined tags
   final bool isPrivate; // vault-protected entry
+  final bool isFavorite; // bookmarked by user
 
   const JournalEntry({
     required this.id,
@@ -150,6 +151,7 @@ class JournalEntry {
     this.imagePath,
     this.tags = const [],
     this.isPrivate = false,
+    this.isFavorite = false,
   });
 
   JournalEntry copyWith({
@@ -163,6 +165,7 @@ class JournalEntry {
     String? imagePath,
     List<String>? tags,
     bool? isPrivate,
+    bool? isFavorite,
   }) {
     return JournalEntry(
       id: id ?? this.id,
@@ -175,6 +178,7 @@ class JournalEntry {
       imagePath: imagePath ?? this.imagePath,
       tags: tags ?? this.tags,
       isPrivate: isPrivate ?? this.isPrivate,
+      isFavorite: isFavorite ?? this.isFavorite,
     );
   }
 
@@ -189,6 +193,7 @@ class JournalEntry {
     'imagePath': imagePath,
     'tags': tags,
     'isPrivate': isPrivate,
+    'isFavorite': isFavorite,
   };
 
   factory JournalEntry.fromJson(Map<String, dynamic> json) => JournalEntry(
@@ -219,6 +224,7 @@ class JournalEntry {
             .toList() ??
         const [],
     isPrivate: json['isPrivate'] as bool? ?? false,
+    isFavorite: json['isFavorite'] as bool? ?? false,
   );
 
   /// Date key for grouping entries by day (yyyy-MM-dd)

@@ -157,6 +157,11 @@ class DataMigrationService {
                     '${m.date.year}-${m.date.month.toString().padLeft(2, '0')}-${m.date.day.toString().padLeft(2, '0')}',
                 'mood': m.mood,
                 'emoji': m.emoji,
+                if (m.quadrant != null) 'quadrant': m.quadrant,
+                if (m.signalId != null) 'signal_id': m.signalId,
+                if (m.energy != null) 'energy': m.energy,
+                if (m.pleasantness != null) 'pleasantness': m.pleasantness,
+                if (m.selectedEmotions.isNotEmpty) 'selected_emotions': m.selectedEmotions,
               },
             )
             .toList();

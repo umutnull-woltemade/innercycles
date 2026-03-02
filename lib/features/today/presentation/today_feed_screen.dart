@@ -73,6 +73,8 @@ import 'widgets/cross_correlation_card.dart';
 import 'widgets/premium_expiry_banner.dart';
 import 'widgets/sync_status_banner.dart';
 import 'widgets/win_back_offer_banner.dart';
+import 'widgets/mood_temporal_insight_card.dart';
+import 'widgets/gratitude_mood_correlation_card.dart';
 import '../../../data/services/l10n_service.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {

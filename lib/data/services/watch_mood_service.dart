@@ -16,12 +16,16 @@ class WatchMoodPing {
   final String label;
   final int rating;
   final DateTime timestamp;
+  final String? signalId;
+  final String? quadrant;
 
   const WatchMoodPing({
     required this.emoji,
     required this.label,
     required this.rating,
     required this.timestamp,
+    this.signalId,
+    this.quadrant,
   });
 
   /// How long ago this ping was logged.
