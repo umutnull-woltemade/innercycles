@@ -23,6 +23,7 @@ import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../shared/widgets/feature_discovery_tip.dart';
 import '../../../data/services/l10n_service.dart';
 
 class BlindSpotScreen extends ConsumerWidget {
@@ -201,6 +202,19 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
           slivers: [
             GlassSliverAppBar(
               title: L10nService.get('blind_spot.blind_spot.what_your_journal_reveals', (language)),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: FeatureDiscoveryTip(
+                  tipKey: 'blindSpotTip',
+                  tipText: widget.isEn
+                      ? 'Blind spots are patterns you might not notice on your own. Explore each one to grow.'
+                      : 'Kör noktalar kendi başına fark edemeyeceğin kalıplar. Büyümek için her birini keşfet.',
+                  icon: Icons.visibility_outlined,
+                  isDark: widget.isDark,
+                ),
+              ),
             ),
             if (!widget.hasEnough)
               SliverFillRemaining(

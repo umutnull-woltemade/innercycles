@@ -58,6 +58,8 @@ import 'widgets/seasonal_progress_ring.dart';
 import 'widgets/guided_program_card.dart';
 import 'widgets/referral_invite_card.dart';
 import 'widgets/attachment_quiz_banner.dart';
+import 'widgets/pattern_loop_card.dart';
+import 'widgets/shift_outlook_card.dart';
 import '../../../data/services/l10n_service.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
@@ -587,7 +589,17 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: BlindSpotDiscoveryCard(isEn: isEn, isDark: isDark),
                   ),
 
-                  // 8f. Weekly Community Challenge
+                  // 8f. Pattern Loop Card
+                  SliverToBoxAdapter(
+                    child: PatternLoopCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 8g. Shift Outlook Card
+                  SliverToBoxAdapter(
+                    child: ShiftOutlookCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 8h. Weekly Community Challenge
                   SliverToBoxAdapter(
                     child: CommunityChallengeCard(isEn: isEn, isDark: isDark),
                   ),

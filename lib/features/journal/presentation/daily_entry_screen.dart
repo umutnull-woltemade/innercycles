@@ -49,6 +49,7 @@ import 'widgets/post_save_engagement_sheet.dart';
 import 'widgets/voice_input_button.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/services/ai_reflection_service.dart';
+import '../../../data/services/pattern_engine_service.dart';
 
 class DailyEntryScreen extends ConsumerStatefulWidget {
   final DateTime? initialDate;
@@ -1357,7 +1358,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     setState(() => _isSaving = true);
     try {
       final service = await ref.read(journalServiceProvider.future);
-      await service.saveEntry(
+      final savedEntry = await service.saveEntry(
         date: _selectedDate,
         focusArea: _selectedArea,
         overallRating: _overallRating,
@@ -1367,6 +1368,25 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         tags: List<String>.from(_tags),
         isPrivate: _isPrivate,
       );
+
+      // Fire AI reflection in background (non-blocking)
+      String? aiReflection;
+      final isPremium = ref.read(isPremiumUserProvider);
+      try {
+        final aiService = await AIReflectionService.init();
+        if (isPremium || aiService.canRequestFree()) {
+          final language = ref.read(languageProvider);
+          final profile = ref.read(userProfileProvider);
+          aiReflection = await aiService.generateReflection(
+            entry: savedEntry,
+            journalService: service,
+            language: language,
+            userName: profile?.name,
+          ).timeout(const Duration(seconds: 8));
+        }
+      } catch (e) {
+        if (kDebugMode) debugPrint('AI reflection best-effort: $e');
+      }
 
       if (!mounted) return;
 
@@ -1406,6 +1426,9 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       try {
         await NotificationService().cancelStreakAtRisk();
       } catch (e) { if (kDebugMode) debugPrint('Daily entry best-effort: $e'); }
+
+      // Schedule proactive weekly insight notification from pattern engine
+      _scheduleWeeklyInsightNotification();
 
       // Check for review prompt at engagement milestones
       _checkReviewTrigger(service);
@@ -1457,12 +1480,13 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         HapticService.entryCompleted();
         final streak = service.getCurrentStreak();
 
-        // Show engagement bottom sheet instead of simple SnackBar
+        // Show engagement bottom sheet with optional AI reflection
         PostSaveEngagementSheet.show(
           context,
           entryCount: entryCount,
           currentStreak: streak,
           noteLength: _noteController.text.trim().length,
+          aiReflection: aiReflection,
         );
       }
     } catch (e) {
@@ -1496,6 +1520,46 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       if (kDebugMode)
         debugPrint('DailyEntry: notification lifecycle error: $e');
     }
+  }
+
+  /// Best-effort: pick the top pattern insight and schedule a Sunday notification.
+  void _scheduleWeeklyInsightNotification() {
+    ref.read(patternEngineServiceProvider).whenData((engine) async {
+      try {
+        final language = ref.read(languageProvider);
+
+        // Try anomalies first (most actionable), then trends
+        String? insightText;
+        final anomalies = engine.detectAnomalies();
+        if (anomalies.isNotEmpty) {
+          insightText = anomalies.first.getMessage(language);
+        } else {
+          final trends = engine.detectTrends();
+          final notable = trends.where(
+            (t) => t.direction != TrendDirection.stable,
+          ).toList();
+          if (notable.isNotEmpty) {
+            // Pick the largest absolute change
+            notable.sort(
+              (a, b) => b.changePercent.abs().compareTo(a.changePercent.abs()),
+            );
+            final top = notable.first;
+            insightText = language == AppLanguage.en
+                ? top.getMessageEn()
+                : top.getMessageTr();
+          }
+        }
+
+        if (insightText != null && insightText.isNotEmpty) {
+          await NotificationService().scheduleWeeklyInsight(
+            insightText: insightText,
+            language: language,
+          );
+        }
+      } catch (e) {
+        if (kDebugMode) debugPrint('Weekly insight schedule best-effort: $e');
+      }
+    });
   }
 
   Future<void> _checkReviewTrigger(dynamic service) async {

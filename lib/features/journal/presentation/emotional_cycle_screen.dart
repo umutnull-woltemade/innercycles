@@ -30,6 +30,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/feature_discovery_tip.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -452,6 +453,22 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           GlassSliverAppBar(
             title: L10nService.get('journal.emotional_cycle.your_inner_cycles_1', language),
             largeTitleMode: true,
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppConstants.spacingLg,
+                vertical: AppConstants.spacingMd,
+              ),
+              child: FeatureDiscoveryTip(
+                tipKey: 'emotionalCycleTip',
+                tipText: isEn
+                    ? 'Each wave shows how your inner rhythm moves across different life areas over time.'
+                    : 'Her dalga, iç ritiminizin zaman içinde farklı yaşam alanlarında nasıl hareket ettiğini gösterir.',
+                icon: Icons.waves_rounded,
+                isDark: isDark,
+              ),
+            ),
           ),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),

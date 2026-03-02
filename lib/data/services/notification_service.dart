@@ -58,6 +58,7 @@ class NotificationService {
   static const int onThisDayId = 12;
   static const int referralRewardId = 13;
   static const int monthlyRecapId = 14;
+  static const int weeklyInsightId = 15;
 
   // Preference keys
   static const String _keyDailyEnabled = 'notification_daily_enabled';
@@ -1031,6 +1032,67 @@ class NotificationService {
       journalPromptEnabled: prefs.getBool(_keyJournalPromptEnabled) ?? false,
       journalPromptTimeMinutes: prefs.getInt(_keyJournalPromptTime),
     );
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // PROACTIVE INSIGHT NOTIFICATION
+  // ══════════════════════════════════════════════════════════════════════════
+
+  /// Schedule a weekly pattern insight notification.
+  /// Fires Sunday at 18:00 with the given insight text.
+  Future<void> scheduleWeeklyInsight({
+    required String insightText,
+    AppLanguage language = AppLanguage.en,
+  }) async {
+    if (!_isInitialized) await initialize();
+
+    final title = language == AppLanguage.en
+        ? 'Weekly Pattern Insight'
+        : 'Haftalık Örüntü Keşfi';
+
+    // Schedule for next Sunday at 18:00
+    final now = tz.TZDateTime.now(tz.local);
+    var nextSunday = tz.TZDateTime(
+      tz.local,
+      now.year,
+      now.month,
+      now.day,
+      18,
+      0,
+    );
+    // Advance to next Sunday
+    while (nextSunday.weekday != DateTime.sunday || nextSunday.isBefore(now)) {
+      nextSunday = nextSunday.add(const Duration(days: 1));
+    }
+
+    await _notifications.zonedSchedule(
+      id: weeklyInsightId,
+      title: title,
+      body: insightText,
+      scheduledDate: nextSunday,
+      notificationDetails: NotificationDetails(
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+          threadIdentifier: 'insight',
+        ),
+        android: const AndroidNotificationDetails(
+          'insight',
+          'Pattern Insights',
+          channelDescription: 'Weekly pattern insights from your journal data',
+          importance: Importance.defaultImportance,
+          priority: Priority.defaultPriority,
+        ),
+      ),
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      payload: 'pattern_discovery',
+    );
+  }
+
+  /// Cancel the weekly insight notification.
+  Future<void> cancelWeeklyInsight() async {
+    await _notifications.cancel(id: weeklyInsightId);
   }
 }
 

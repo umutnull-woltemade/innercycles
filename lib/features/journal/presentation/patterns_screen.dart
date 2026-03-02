@@ -486,6 +486,10 @@ class PatternsScreen extends ConsumerWidget {
                 if (isPremium)
                   _EnergyHeatmapCard(isDark: isDark, isEn: isEn),
 
+                // Cycle Correlation (premium, requires cycle data)
+                if (isPremium)
+                  _CycleCorrelationCard(isDark: isDark, isEn: isEn),
+
                 // Shadow Work suggestion based on weak areas
                 _ShadowWorkSuggestion(
                   engine: engine,
@@ -1810,5 +1814,151 @@ class _EnergyHeatmapCard extends ConsumerWidget {
     const en = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const tr = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
     return isEn ? en[weekday - 1] : tr[weekday - 1];
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CYCLE CORRELATION CARD
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _CycleCorrelationCard extends ConsumerWidget {
+  final bool isDark;
+  final bool isEn;
+
+  const _CycleCorrelationCard({required this.isDark, required this.isEn});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final serviceAsync = ref.watch(cycleCorrelationServiceProvider);
+
+    return serviceAsync.maybeWhen(
+      data: (service) {
+        if (!service.hasEnoughData()) return const SizedBox.shrink();
+
+        final insights = service.getCorrelationInsights();
+        final significant = insights.where((i) => i.isSignificant).toList();
+        if (significant.isEmpty) return const SizedBox.shrink();
+
+        final language = AppLanguage.fromIsEn(isEn);
+        final top = significant.first;
+
+        final strongName = top.strongestPhase?.localizedName(language) ?? '';
+        final weakName = top.weakestPhase?.localizedName(language) ?? '';
+        final areaName = top.focusArea.localizedName(language);
+
+        return Padding(
+          padding: const EdgeInsets.only(
+            top: AppConstants.spacingLg,
+            bottom: AppConstants.spacingMd,
+          ),
+          child: Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: isDark
+                  ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                  : AppColors.lightSurfaceVariant.withValues(alpha: 0.5),
+              border: Border.all(
+                color: AppColors.auroraStart.withValues(alpha: 0.12),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.sync_alt_rounded,
+                      size: 16,
+                      color: AppColors.auroraStart,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      isEn
+                          ? 'Cycle × Emotion Correlation'
+                          : 'Döngü × Duygu Korelasyonu',
+                      style: AppTypography.modernAccent(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                // Top insight
+                Text(
+                  isEn
+                      ? 'Your $areaName tends to be strongest in the $strongName phase and lowest in the $weakName phase.'
+                      : '$areaName, $strongName evresinde en güçlü, $weakName evresinde en düşük olma eğiliminde.',
+                  style: AppTypography.subtitle(
+                    fontSize: 12,
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                // Phase averages row
+                Row(
+                  children: top.phaseAverages.entries.map((entry) {
+                    final phaseName = entry.key.localizedName(language);
+                    final avg = entry.value;
+                    return Expanded(
+                      child: Column(
+                        children: [
+                          Text(
+                            avg.toStringAsFixed(1),
+                            style: AppTypography.modernAccent(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w700,
+                              color: _ratingColor(avg),
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            phaseName,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: AppTypography.subtitle(
+                              fontSize: 10,
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                ),
+                if (significant.length > 1) ...[
+                  const SizedBox(height: 8),
+                  Text(
+                    isEn
+                        ? '${significant.length} areas show cycle correlation'
+                        : '${significant.length} alan döngü korelasyonu gösteriyor',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 11,
+                      color: AppColors.auroraStart,
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ).animate().fadeIn(delay: 200.ms, duration: 300.ms);
+      },
+      orElse: () => const SizedBox.shrink(),
+    );
+  }
+
+  Color _ratingColor(double avg) {
+    if (avg >= 4.0) return AppColors.success;
+    if (avg >= 3.0) return AppColors.starGold;
+    if (avg >= 2.0) return AppColors.celestialGold;
+    return AppColors.error;
   }
 }

@@ -16,6 +16,7 @@ import '../../../../data/services/smart_router_service.dart';
 import '../../../../shared/widgets/app_symbol.dart';
 import '../../../../shared/widgets/gradient_text.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/feature_discovery_tip.dart';
 import '../../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../../data/services/l10n_service.dart';
 import '../../../../data/providers/app_providers.dart';
@@ -90,6 +91,15 @@ class _ProfileToolsGridState extends ConsumerState<ProfileToolsGrid> {
           ),
         ),
         const SizedBox(height: AppConstants.spacingLg),
+
+        FeatureDiscoveryTip(
+          tipKey: 'toolsGridTip',
+          tipText: widget.isEn
+              ? 'Explore all tools below. Filter by category or search to find what you need.'
+              : 'Aşağıdaki tüm araçları keşfet. Kategoriye göre filtrele veya ihtiyacını ara.',
+          icon: Icons.apps_rounded,
+          isDark: widget.isDark,
+        ),
 
         // Suggested for You
         _buildSuggestedSection(isPremium),
