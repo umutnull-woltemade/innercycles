@@ -64,6 +64,17 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
       vsync: this,
       duration: const Duration(seconds: 4),
     );
+    _loadAmbientPreference();
+  }
+
+  Future<void> _loadAmbientPreference() async {
+    await _audioService.loadPreference();
+    if (mounted) {
+      setState(() {
+        _ambientSound = _audioService.savedPreference;
+        _ambientVolume = _audioService.volume;
+      });
+    }
   }
 
   @override
@@ -280,6 +291,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                             isDark: isDark,
                             onChanged: (s) {
                               setState(() => _ambientSound = s);
+                              _audioService.savePreference(s, _ambientVolume);
                               if (s != AmbientSound.none) {
                                 _audioService.play(s);
                                 Future.delayed(
@@ -295,6 +307,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                             onVolumeChanged: (v) {
                               setState(() => _ambientVolume = v);
                               _audioService.setVolume(v);
+                              _audioService.savePreference(_ambientSound, v);
                             },
                           ),
                         ],

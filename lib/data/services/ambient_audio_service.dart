@@ -11,6 +11,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../providers/app_providers.dart';
 
 enum AmbientSound {
@@ -66,12 +67,39 @@ class AmbientAudioService {
   AmbientAudioService._();
   static final AmbientAudioService instance = AmbientAudioService._();
 
+  static const _prefKeySound = 'ambient_sound_preference';
+  static const _prefKeyVolume = 'ambient_sound_volume';
+
   AudioPlayer? _player;
   AmbientSound _currentSound = AmbientSound.none;
   double _volume = 0.3;
+  AmbientSound _savedPreference = AmbientSound.none;
 
   AmbientSound get currentSound => _currentSound;
   double get volume => _volume;
+  AmbientSound get savedPreference => _savedPreference;
+
+  /// Load saved preference from SharedPreferences
+  Future<void> loadPreference() async {
+    final prefs = await SharedPreferences.getInstance();
+    final soundName = prefs.getString(_prefKeySound);
+    if (soundName != null) {
+      _savedPreference = AmbientSound.values.firstWhere(
+        (s) => s.name == soundName,
+        orElse: () => AmbientSound.none,
+      );
+    }
+    _volume = prefs.getDouble(_prefKeyVolume) ?? 0.3;
+  }
+
+  /// Save preference to SharedPreferences
+  Future<void> savePreference(AmbientSound sound, double vol) async {
+    _savedPreference = sound;
+    _volume = vol;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_prefKeySound, sound.name);
+    await prefs.setDouble(_prefKeyVolume, vol);
+  }
 
   Future<void> play(AmbientSound sound) async {
     await stop();
