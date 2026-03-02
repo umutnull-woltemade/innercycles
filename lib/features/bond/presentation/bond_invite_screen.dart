@@ -48,7 +48,7 @@ class _BondInviteScreenState extends ConsumerState<BondInviteScreen> {
             ),
             slivers: [
               GlassSliverAppBar(
-                title: isEn ? 'Create Bond' : 'Bag Olustur',
+                title: isEn ? 'Create Bond' : 'Bağ Oluştur',
                 useGradientTitle: true,
                 gradientVariant: GradientTextVariant.amethyst,
               ),
@@ -78,7 +78,7 @@ class _BondInviteScreenState extends ConsumerState<BondInviteScreen> {
       children: [
         // Section title
         GradientText(
-          isEn ? 'Choose Bond Type' : 'Bag Turunu Sec',
+          isEn ? 'Choose Bond Type' : 'Bağ Türünü Seç',
           variant: GradientTextVariant.gold,
           style: AppTypography.displayFont.copyWith(
             fontWeight: FontWeight.w600,
@@ -91,7 +91,7 @@ class _BondInviteScreenState extends ConsumerState<BondInviteScreen> {
         Text(
           isEn
               ? 'Select how you want to connect with this person.'
-              : 'Bu kisiyle nasil baglanmak istedigini sec.',
+              : 'Bu kişiyle nasıl bağlanmak istediğini seç.',
           style: AppTypography.subtitle(
             fontSize: 14,
             color: isDark
@@ -147,7 +147,7 @@ class _BondInviteScreenState extends ConsumerState<BondInviteScreen> {
 
         // Generate code button
         GradientButton.gold(
-          label: isEn ? 'Generate Invite Code' : 'Davet Kodu Olustur',
+          label: isEn ? 'Generate Invite Code' : 'Davet Kodu Oluştur',
           icon: Icons.link_rounded,
           expanded: true,
           isLoading: _isCreating,
@@ -196,7 +196,7 @@ class _BondInviteScreenState extends ConsumerState<BondInviteScreen> {
 
         // Success title
         GradientText(
-          isEn ? 'Code Created!' : 'Kod Olusturuldu!',
+          isEn ? 'Code Created!' : 'Kod Oluşturuldu!',
           variant: GradientTextVariant.gold,
           style: AppTypography.displayFont.copyWith(
             fontWeight: FontWeight.w600,
@@ -210,7 +210,7 @@ class _BondInviteScreenState extends ConsumerState<BondInviteScreen> {
         Text(
           isEn
               ? 'Share this code with your ${_selectedType?.displayNameEn.toLowerCase() ?? 'partner'} to connect.'
-              : 'Baglanmak icin bu kodu ${_selectedType?.displayNameTr.toLowerCase() ?? 'partner'}inle paylas.',
+              : 'Bağlanmak için bu kodu ${_selectedType?.displayNameTr.toLowerCase() ?? 'partner'}inle paylaş.',
           textAlign: TextAlign.center,
           style: AppTypography.subtitle(
             fontSize: 14,
@@ -242,7 +242,7 @@ class _BondInviteScreenState extends ConsumerState<BondInviteScreen> {
         const SizedBox(height: 32),
 
         // Done button
-        GradientButton(
+        GradientButton.gold(
           label: isEn ? 'Done' : 'Tamam',
           expanded: true,
           onPressed: () => context.pop(),
@@ -284,7 +284,7 @@ class _BondInviteScreenState extends ConsumerState<BondInviteScreen> {
         setState(() {
           _errorMessage = isEn
               ? 'Could not create invite. Please try again.'
-              : 'Davet olusturulamadi. Lutfen tekrar dene.';
+              : 'Davet oluşturulamadı. Lütfen tekrar dene.';
           _isCreating = false;
         });
       }
@@ -296,7 +296,7 @@ class _BondInviteScreenState extends ConsumerState<BondInviteScreen> {
         setState(() {
           _errorMessage = isEn
               ? 'Something went wrong. Please try again.'
-              : 'Bir seyler ters gitti. Lutfen tekrar dene.';
+              : 'Bir şeyler ters gitti. Lütfen tekrar dene.';
           _isCreating = false;
         });
       }
@@ -328,15 +328,15 @@ class _BondTypeCard extends StatelessWidget {
       case BondType.partner:
         return isEn
             ? 'Share your emotional world with your romantic partner.'
-            : 'Duygusal dunyanizi romantik partnerinizle paylasin.';
+            : 'Duygusal dünyanızı romantik partnerinizle paylaşın.';
       case BondType.bestFriend:
         return isEn
             ? 'Stay emotionally connected with your closest friend.'
-            : 'En yakin arkadasinizla duygusal olarak bagli kalin.';
+            : 'En yakın arkadaşınızla duygusal olarak bağlı kalın.';
       case BondType.sibling:
         return isEn
             ? 'Strengthen your sibling bond through shared moods.'
-            : 'Paylasilmis ruh halleriyle kardes baginizi guclendirin.';
+            : 'Paylaşılmış ruh halleriyle kardeş bağınızı güçlendirin.';
     }
   }
 

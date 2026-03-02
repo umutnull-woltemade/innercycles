@@ -71,8 +71,8 @@ class _SignalCalendarState extends State<SignalCalendar> {
             IconButton(
               icon: const Icon(Icons.chevron_right_rounded, size: 20),
               color: widget.isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-              onPressed: _displayMonth.month < DateTime.now().month ||
-                      _displayMonth.year < DateTime.now().year
+              onPressed: (_displayMonth.year < DateTime.now().year) ||
+                      (_displayMonth.year == DateTime.now().year && _displayMonth.month < DateTime.now().month)
                   ? () => setState(() {
                         _displayMonth = DateTime(_displayMonth.year, _displayMonth.month + 1);
                       })

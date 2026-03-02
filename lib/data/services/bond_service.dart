@@ -248,7 +248,7 @@ class BondService with SupabaseSyncMixin {
     }
   }
 
-  /// Update privacy settings
+  /// Update privacy settings (offline-safe via sync queue)
   Future<void> updatePrivacy(BondPrivacy privacy) async {
     try {
       await _supabase
@@ -257,6 +257,11 @@ class BondService with SupabaseSyncMixin {
           .eq('id', privacy.id);
     } catch (e) {
       if (kDebugMode) debugPrint('[BondService] updatePrivacy error: $e');
+      // Queue for retry when back online
+      queueSync('UPSERT', privacy.id, {
+        ...privacy.toJson(),
+        'user_id': _userId,
+      });
     }
   }
 

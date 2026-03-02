@@ -30,10 +30,22 @@ final bondRealtimeServiceProvider = FutureProvider<BondRealtimeService>((ref) as
 // DATA PROVIDERS
 // ═══════════════════════════════════════════════════════════════════════════
 
-/// Active bonds for current user
+/// Active bonds for current user — also subscribes to realtime updates
 final activeBondsProvider = FutureProvider<List<Bond>>((ref) async {
   final service = await ref.watch(bondServiceProvider.future);
-  return service.getActiveBonds();
+  final bonds = await service.getActiveBonds();
+
+  // Auto-subscribe to realtime for all active bonds
+  if (bonds.isNotEmpty) {
+    try {
+      final realtime = await ref.read(bondRealtimeServiceProvider.future);
+      realtime.subscribeToAll(bonds.map((b) => b.id).toList());
+    } catch (_) {
+      // Realtime is best-effort — don't block bonds loading
+    }
+  }
+
+  return bonds;
 });
 
 /// Count of active bonds

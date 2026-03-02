@@ -19,6 +19,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../core/constants/routes.dart';
 
 class BondAcceptScreen extends ConsumerStatefulWidget {
   final String? prefilledCode;
@@ -89,7 +90,7 @@ class _BondAcceptScreenState extends ConsumerState<BondAcceptScreen> {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: isEn ? 'Accept Bond' : 'Bag Kabul Et',
+                  title: isEn ? 'Accept Bond' : 'Bağ Kabul Et',
                   useGradientTitle: true,
                   gradientVariant: GradientTextVariant.amethyst,
                 ),
@@ -159,7 +160,7 @@ class _BondAcceptScreenState extends ConsumerState<BondAcceptScreen> {
         Text(
           isEn
               ? 'Enter the 6-character code shared by your bond partner.'
-              : 'Bag partnerinin paylastigi 6 karakterli kodu gir.',
+              : 'Bağ partnerinin paylaştığı 6 karakterli kodu gir.',
           textAlign: TextAlign.center,
           style: AppTypography.subtitle(
             fontSize: 14,
@@ -235,7 +236,7 @@ class _BondAcceptScreenState extends ConsumerState<BondAcceptScreen> {
 
         // Validate button
         GradientButton.gold(
-          label: isEn ? 'Connect' : 'Baglan',
+          label: isEn ? 'Connect' : 'Bağlan',
           icon: Icons.link_rounded,
           expanded: true,
           isLoading: _isValidating,
@@ -291,7 +292,7 @@ class _BondAcceptScreenState extends ConsumerState<BondAcceptScreen> {
 
         // Title
         GradientText(
-          isEn ? 'Bond Created!' : 'Bag Kuruldu!',
+          isEn ? 'Bond Created!' : 'Bağ Kuruldu!',
           variant: GradientTextVariant.gold,
           style: AppTypography.displayFont.copyWith(
             fontWeight: FontWeight.w600,
@@ -317,7 +318,7 @@ class _BondAcceptScreenState extends ConsumerState<BondAcceptScreen> {
                 ),
                 const SizedBox(width: 10),
                 Text(
-                  _acceptedBond!.bondType.displayNameEn,
+                  isEn ? _acceptedBond!.bondType.displayNameEn : _acceptedBond!.bondType.displayNameTr,
                   style: AppTypography.subtitle(
                     fontSize: 16,
                     color: isDark
@@ -336,7 +337,7 @@ class _BondAcceptScreenState extends ConsumerState<BondAcceptScreen> {
         Text(
           isEn
               ? 'You are now connected. Start sharing your moods and sending touches!'
-              : 'Artik baglisiniz. Ruh hallerini paylasma ve dokunuslar gondermeye basla!',
+              : 'Artık bağlısınız. Ruh hallerini paylaşma ve dokunuşlar göndermeye başla!',
           textAlign: TextAlign.center,
           style: AppTypography.subtitle(
             fontSize: 14,
@@ -351,13 +352,13 @@ class _BondAcceptScreenState extends ConsumerState<BondAcceptScreen> {
 
         // Go to bond hub
         GradientButton.gold(
-          label: isEn ? 'Go to Bonds' : 'Baglara Git',
+          label: isEn ? 'Go to Bonds' : 'Bağlara Git',
           icon: Icons.people_rounded,
           expanded: true,
           onPressed: () {
             HapticService.buttonPress();
             ref.invalidate(activeBondsProvider);
-            context.go('/bond');
+            context.go(Routes.bondHub);
           },
         )
             .animate(delay: 450.ms)
@@ -421,7 +422,7 @@ class _BondAcceptScreenState extends ConsumerState<BondAcceptScreen> {
         setState(() {
           _errorMessage = isEn
               ? 'Invalid or expired code. Please check and try again.'
-              : 'Gecersiz veya suresi dolmus kod. Kontrol edip tekrar dene.';
+              : 'Geçersiz veya süresi dolmuş kod. Kontrol edip tekrar dene.';
           _isValidating = false;
         });
       }
@@ -433,7 +434,7 @@ class _BondAcceptScreenState extends ConsumerState<BondAcceptScreen> {
         setState(() {
           _errorMessage = isEn
               ? 'Something went wrong. Please try again.'
-              : 'Bir seyler ters gitti. Lutfen tekrar dene.';
+              : 'Bir şeyler ters gitti. Lütfen tekrar dene.';
           _isValidating = false;
         });
       }

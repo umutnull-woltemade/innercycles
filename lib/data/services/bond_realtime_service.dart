@@ -21,6 +21,13 @@ class BondRealtimeService {
     return BondRealtimeService._();
   }
 
+  /// Subscribe to all active bonds (call after fetching bonds list)
+  void subscribeToAll(List<String> bondIds) {
+    for (final id in bondIds) {
+      subscribeToBond(id);
+    }
+  }
+
   SupabaseClient get _supabase => Supabase.instance.client;
   String? get _userId => _supabase.auth.currentUser?.id;
 
@@ -60,7 +67,7 @@ class BondRealtimeService {
         )
         .subscribe();
 
-    _channels['touches_$bondId'] = touchChannel;
+    _channels['bond_touches_$bondId'] = touchChannel;
 
     // Listen for bond status changes
     final bondChannel = _supabase
@@ -90,7 +97,7 @@ class BondRealtimeService {
 
   /// Unsubscribe from a specific bond's updates
   Future<void> unsubscribeFromBond(String bondId) async {
-    final touchChannel = _channels.remove('touches_$bondId');
+    final touchChannel = _channels.remove('bond_touches_$bondId');
     if (touchChannel != null) {
       await _supabase.removeChannel(touchChannel);
     }

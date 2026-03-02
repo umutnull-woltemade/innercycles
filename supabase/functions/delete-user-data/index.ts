@@ -47,7 +47,38 @@ serve(async (req: Request) => {
     // Admin client for deletion operations
     const adminClient = createClient(supabaseUrl, supabaseServiceKey);
 
+    // Track deletion results
+    const deletionResults: Record<string, string> = {};
+
     // Delete from all user data tables (order matters for foreign keys)
+    // Bond tables first (touches → bonds → auth.users dependency chain)
+    const bondTables = [
+      { table: "touches", columns: ["sender_id", "receiver_id"] },
+      { table: "bond_privacy", columns: ["user_id"] },
+      { table: "bond_invites", columns: ["creator_id"] },
+      { table: "weather_status", columns: ["user_id"] },
+    ];
+
+    for (const { table, columns } of bondTables) {
+      try {
+        for (const col of columns) {
+          await adminClient.from(table).delete().eq(col, userId);
+        }
+        deletionResults[table] = "deleted";
+      } catch {
+        deletionResults[table] = "skipped (table may not exist)";
+      }
+    }
+
+    // Delete bonds where user is either party
+    try {
+      await adminClient.from("bonds").delete().eq("user_a", userId);
+      await adminClient.from("bonds").delete().eq("user_b", userId);
+      deletionResults["bonds"] = "deleted";
+    } catch {
+      deletionResults["bonds"] = "skipped (table may not exist)";
+    }
+
     const tables = [
       "note_reminders",
       "sync_metadata",
@@ -60,8 +91,6 @@ serve(async (req: Request) => {
       "journal_entries",
       "user_profiles",
     ];
-
-    const deletionResults: Record<string, string> = {};
 
     for (const table of tables) {
       const { error } = await adminClient

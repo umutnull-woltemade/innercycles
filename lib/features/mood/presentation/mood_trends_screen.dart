@@ -28,6 +28,7 @@ import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../data/services/l10n_service.dart';
+import '../../../shared/widgets/signal_orb.dart';
 import 'widgets/signal_calendar.dart';
 
 class MoodTrendsScreen extends ConsumerWidget {
@@ -569,26 +570,38 @@ class MoodTrendsScreen extends ConsumerWidget {
                         : (isEn
                               ? '${dayLabels[dayIndex]}: no entry'
                               : '${dayLabels[dayIndex]}: kayıt yok'),
-                    child: Container(
-                      width: 36,
-                      height: 36,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: mood != null
-                            ? _moodColor(mood.mood).withValues(alpha: 0.2)
-                            : (isDark
-                                  ? AppColors.surfaceLight.withValues(
-                                      alpha: 0.1,
-                                    )
-                                  : AppColors.lightSurfaceVariant),
-                      ),
-                      child: Center(
-                        child: Text(
-                          mood?.emoji ?? '·',
-                          style: AppTypography.subtitle(fontSize: 18),
-                        ),
-                      ),
-                    ),
+                    child: mood != null && mood.hasSignal
+                        ? SizedBox(
+                            width: 36,
+                            height: 36,
+                            child: Center(
+                              child: SignalOrb.inline(
+                                signalId: mood.signalId,
+                                animate: false,
+                              ),
+                            ),
+                          )
+                        : Container(
+                            width: 36,
+                            height: 36,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: mood != null
+                                  ? _moodColor(mood.mood)
+                                      .withValues(alpha: 0.2)
+                                  : (isDark
+                                        ? AppColors.surfaceLight
+                                            .withValues(alpha: 0.1)
+                                        : AppColors.lightSurfaceVariant),
+                            ),
+                            child: Center(
+                              child: Text(
+                                mood?.emoji ?? '·',
+                                style:
+                                    AppTypography.subtitle(fontSize: 18),
+                              ),
+                            ),
+                          ),
                   ),
                 ],
               );
@@ -886,7 +899,12 @@ class MoodTrendsScreen extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: Row(
                 children: [
-                  AppSymbol.inline(entry.emoji),
+                  entry.hasSignal
+                      ? SignalOrb.inline(
+                          signalId: entry.signalId,
+                          animate: false,
+                        )
+                      : AppSymbol.inline(entry.emoji),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
@@ -937,15 +955,15 @@ class MoodTrendsScreen extends ConsumerWidget {
       case 1:
         return AppColors.error;
       case 2:
-        return AppColors.chartOrange;
+        return AppColors.warning;
       case 3:
-        return AppColors.starGold;
-      case 4:
-        return Colors.lightGreen;
-      case 5:
         return AppColors.auroraStart;
-      default:
+      case 4:
+        return AppColors.success;
+      case 5:
         return AppColors.starGold;
+      default:
+        return AppColors.textMuted;
     }
   }
 
@@ -963,7 +981,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     };
 
     for (final entry in allEntries) {
-      final hour = entry.date.hour;
+      final hour = entry.loggedHour;
       if (hour >= 6 && hour < 12) {
         buckets['morning']!.add(entry.mood);
       } else if (hour >= 12 && hour < 18) {
@@ -1459,7 +1477,7 @@ class _QuadrantDonutPainter extends CustomPainter {
       canvas.drawArc(
         Rect.fromCircle(center: center, radius: radius),
         startAngle,
-        sweepAngle - 0.04, // small gap between segments
+        math.max(sweepAngle - 0.04, 0.01), // small gap between segments
         false,
         paint,
       );

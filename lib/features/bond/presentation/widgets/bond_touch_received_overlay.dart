@@ -14,12 +14,14 @@ class BondTouchReceivedOverlay extends StatefulWidget {
   final TouchType touchType;
   final String? senderName;
   final VoidCallback? onDismissed;
+  final bool isEn;
 
   const BondTouchReceivedOverlay({
     super.key,
     required this.touchType,
     this.senderName,
     this.onDismissed,
+    this.isEn = true,
   });
 
   @override
@@ -139,7 +141,7 @@ class _BondTouchReceivedOverlayState extends State<BondTouchReceivedOverlay>
 
                     // Touch type name
                     Text(
-                      widget.touchType.displayNameEn,
+                      widget.isEn ? widget.touchType.displayNameEn : widget.touchType.displayNameTr,
                       style: AppTypography.elegantAccent(
                         fontSize: 22,
                         fontWeight: FontWeight.w300,
@@ -161,7 +163,7 @@ class _BondTouchReceivedOverlayState extends State<BondTouchReceivedOverlay>
 
                       // Sender name
                       Text(
-                        'from ${widget.senderName}',
+                        widget.isEn ? 'from ${widget.senderName}' : '${widget.senderName} tarafından',
                         style: AppTypography.subtitle(
                           fontSize: 15,
                           color: isDark
@@ -177,7 +179,7 @@ class _BondTouchReceivedOverlayState extends State<BondTouchReceivedOverlay>
 
                     // Tap to dismiss
                     Text(
-                      'Tap to dismiss',
+                      widget.isEn ? 'Tap to dismiss' : 'Kapatmak i\u00e7in dokun',
                       style: AppTypography.subtitle(
                         fontSize: 12,
                         color: isDark

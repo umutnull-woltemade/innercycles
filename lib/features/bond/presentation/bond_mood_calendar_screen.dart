@@ -50,7 +50,7 @@ class _BondMoodCalendarScreenState
           loading: () => const Center(child: CupertinoActivityIndicator()),
           error: (e, s) => Center(
             child: Text(
-              isEn ? 'Could not load bond' : 'Bag yuklenemedi',
+              isEn ? 'Could not load bond' : 'Bağ yüklenemedi',
               style: AppTypography.subtitle(
                 color: isDark
                     ? AppColors.textSecondary
@@ -64,7 +64,7 @@ class _BondMoodCalendarScreenState
             if (bond == null) {
               return Center(
                 child: Text(
-                  isEn ? 'Bond not found' : 'Bag bulunamadi',
+                  isEn ? 'Bond not found' : 'Bağ bulunamadı',
                   style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textSecondary
@@ -105,7 +105,7 @@ class _BondMoodCalendarScreenState
               child: Text(
                 isEn
                     ? 'See how your moods align with $partnerName.'
-                    : '$partnerName ile ruh hallerinizin nasil uyustugunu gorun.',
+                    : '$partnerName ile ruh hallerinizin nasıl uyuştuğunu görün.',
                 style: AppTypography.subtitle(
                   fontSize: 14,
                   color: isDark
@@ -224,7 +224,7 @@ class _BondMoodCalendarScreenState
               height: 200,
               child: Center(
                 child: Text(
-                  isEn ? 'Could not load mood data' : 'Ruh hali verileri yuklenemedi',
+                  isEn ? 'Could not load mood data' : 'Ruh hali verileri yüklenemedi',
                   style: AppTypography.subtitle(
                     fontSize: 13,
                     color: isDark
@@ -318,7 +318,7 @@ class _BondMoodCalendarScreenState
                   Text(
                     isEn
                         ? 'Partner mood calendar coming soon'
-                        : 'Partner ruh hali takvimi yakinda',
+                        : 'Partner ruh hali takvimi yakında',
                     style: AppTypography.subtitle(
                       fontSize: 13,
                       color: isDark
@@ -331,7 +331,7 @@ class _BondMoodCalendarScreenState
                   Text(
                     isEn
                         ? 'This feature will show your partner\'s mood history when they share it with you.'
-                        : 'Bu ozellik, partnerinizin sizinle paylastigi ruh hali gecmisini gosterecek.',
+                        : 'Bu özellik, partnerinizin sizinle paylaştığı ruh hali geçmişini gösterecek.',
                     style: AppTypography.subtitle(
                       fontSize: 12,
                       color: isDark

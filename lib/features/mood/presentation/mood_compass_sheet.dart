@@ -14,6 +14,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/content/signal_content.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/haptic_service.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/signal_orb.dart';
 
 /// Shows the mood compass as a modal bottom sheet.
@@ -133,28 +134,13 @@ class _MoodCompassSheetState extends ConsumerState<MoodCompassSheet> {
           if (_selectedId != null)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: SizedBox(
-                width: double.infinity,
-                height: 48,
-                child: ElevatedButton(
-                  onPressed: () {
-                    final signal = getSignalById(_selectedId!);
-                    if (signal != null) {
-                      Navigator.of(context).pop(signal);
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.starGold,
-                    foregroundColor: AppColors.deepSpace,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: Text(
-                    isEn ? 'Log Signal' : 'Sinyali Kaydet',
-                    style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
-                  ),
-                ),
+              child: GradientButton.gold(
+                label: isEn ? 'Log Signal' : 'Sinyali Kaydet',
+                expanded: true,
+                onPressed: () {
+                  final signal = getSignalById(_selectedId!);
+                  Navigator.of(context).pop(signal);
+                },
               ),
             ).animate().fadeIn(duration: 300.ms).slideY(begin: 0.2, end: 0),
         ],
@@ -186,8 +172,8 @@ class _MoodCompassSheetState extends ConsumerState<MoodCompassSheet> {
         final signal = signals[i];
         final angle = baseAngle + (i - 1.5) * (spread / 3);
         final r = radius * (0.7 + i * 0.1);
-        final x = center + r * math.cos(angle) - 16;
-        final y = center + r * math.sin(angle) - 16;
+        final x = center + r * math.cos(angle) - 12;
+        final y = center + r * math.sin(angle) - 12;
 
         widgets.add(
           Positioned(

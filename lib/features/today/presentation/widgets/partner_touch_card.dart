@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../data/providers/app_providers.dart';
@@ -44,7 +45,7 @@ class PartnerTouchCard extends ConsumerWidget {
             child: GestureDetector(
               onTap: () {
                 HapticService.selectionTap();
-                context.push('/bond/detail/${bond.id}');
+                context.push(Routes.bondDetail.replaceFirst(':bondId', bond.id));
               },
               behavior: HitTestBehavior.opaque,
               child: Row(

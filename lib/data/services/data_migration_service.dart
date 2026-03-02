@@ -161,6 +161,7 @@ class DataMigrationService {
                 if (m.signalId != null) 'signal_id': m.signalId,
                 if (m.energy != null) 'energy': m.energy,
                 if (m.pleasantness != null) 'pleasantness': m.pleasantness,
+                if (m.createdAt != null) 'created_at': m.createdAt!.toIso8601String(),
                 if (m.selectedEmotions.isNotEmpty) 'selected_emotions': m.selectedEmotions,
               },
             )

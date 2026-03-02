@@ -59,6 +59,8 @@ class WatchMoodService {
             'watch_mood_label',
             'watch_mood_rating',
             'watch_mood_timestamp',
+            'watch_mood_signal_id',
+            'watch_mood_quadrant',
           ],
         },
       );
@@ -72,6 +74,9 @@ class WatchMoodService {
 
       if (emoji == null || label == null || rating == null) return null;
 
+      final signalId = result['watch_mood_signal_id'] as String?;
+      final quadrant = result['watch_mood_quadrant'] as String?;
+
       return WatchMoodPing(
         emoji: emoji,
         label: label,
@@ -79,6 +84,8 @@ class WatchMoodService {
         timestamp: timestamp != null
             ? DateTime.fromMillisecondsSinceEpoch((timestamp * 1000).toInt())
             : DateTime.now(),
+        signalId: signalId,
+        quadrant: quadrant,
       );
     } catch (e) {
       if (kDebugMode) debugPrint('[WatchMoodService] Error reading watch mood: $e');

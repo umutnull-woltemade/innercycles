@@ -1476,6 +1476,25 @@ class NotificationService {
       id: _bondTouchBaseId + (DateTime.now().millisecondsSinceEpoch % 999),
       title: title,
       body: body,
+      notificationDetails: NotificationDetails(
+        android: AndroidNotificationDetails(
+          'bond_touches',
+          isEn ? 'Bond Touches' : 'Bağ Dokunuşları',
+          channelDescription: isEn
+              ? 'Notifications when your bond partner sends a touch'
+              : 'Bağ partneriniz dokunuş gönderdiğinde bildirimler',
+          importance: Importance.high,
+          priority: Priority.high,
+          icon: '@mipmap/ic_launcher',
+          color: AppColors.amethyst,
+        ),
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+        ),
+      ),
+      payload: 'bond_touch',
     );
   }
 
@@ -1495,6 +1514,25 @@ class NotificationService {
       id: _bondStatusBaseId,
       title: title,
       body: body,
+      notificationDetails: NotificationDetails(
+        android: AndroidNotificationDetails(
+          'bond_status',
+          isEn ? 'Bond Updates' : 'Bağ Güncellemeleri',
+          channelDescription: isEn
+              ? 'Bond creation and status notifications'
+              : 'Bağ oluşturma ve durum bildirimleri',
+          importance: Importance.high,
+          priority: Priority.high,
+          icon: '@mipmap/ic_launcher',
+          color: AppColors.amethyst,
+        ),
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+        ),
+      ),
+      payload: 'bond_formed',
     );
   }
 
@@ -1514,6 +1552,25 @@ class NotificationService {
       id: _bondStatusBaseId + 1,
       title: title,
       body: body,
+      notificationDetails: NotificationDetails(
+        android: AndroidNotificationDetails(
+          'bond_status',
+          isEn ? 'Bond Updates' : 'Bağ Güncellemeleri',
+          channelDescription: isEn
+              ? 'Bond creation and status notifications'
+              : 'Bağ oluşturma ve durum bildirimleri',
+          importance: Importance.high,
+          priority: Priority.high,
+          icon: '@mipmap/ic_launcher',
+          color: AppColors.warning,
+        ),
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+        ),
+      ),
+      payload: 'bond_dissolve',
     );
   }
 }

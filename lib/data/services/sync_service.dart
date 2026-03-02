@@ -39,8 +39,6 @@ class SyncService {
     'life_events',
     'cycle_period_logs',
     'birthday_contacts',
-    'bonds',
-    'touches',
     'bond_privacy',
   ];
 

@@ -11,6 +11,7 @@ ALTER TABLE mood_entries ADD COLUMN IF NOT EXISTS quadrant TEXT;
 ALTER TABLE mood_entries ADD COLUMN IF NOT EXISTS signal_id TEXT;
 ALTER TABLE mood_entries ADD COLUMN IF NOT EXISTS energy INTEGER;
 ALTER TABLE mood_entries ADD COLUMN IF NOT EXISTS pleasantness INTEGER;
+ALTER TABLE mood_entries ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ;
 
 -- Constraints (only validate when values present)
 ALTER TABLE mood_entries ADD CONSTRAINT mood_entries_energy_range

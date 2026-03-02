@@ -22,6 +22,7 @@ class MoodEntry {
   final String? signalId; // MoodSignal id (e.g. 'fire_alive')
   final int? energy; // 1-10
   final int? pleasantness; // 1-10
+  final DateTime? createdAt; // Full timestamp (date field is date-key only)
 
   const MoodEntry({
     required this.id,
@@ -33,10 +34,14 @@ class MoodEntry {
     this.signalId,
     this.energy,
     this.pleasantness,
+    this.createdAt,
   });
 
   /// Whether this entry was logged via the new signal system
   bool get hasSignal => signalId != null;
+
+  /// Actual hour the mood was logged (falls back to 12 for old entries)
+  int get loggedHour => createdAt?.hour ?? 12;
 
   MoodEntry copyWith({
     List<String>? selectedEmotions,
@@ -44,6 +49,7 @@ class MoodEntry {
     String? signalId,
     int? energy,
     int? pleasantness,
+    DateTime? createdAt,
   }) => MoodEntry(
     id: id,
     date: date,
@@ -54,6 +60,7 @@ class MoodEntry {
     signalId: signalId ?? this.signalId,
     energy: energy ?? this.energy,
     pleasantness: pleasantness ?? this.pleasantness,
+    createdAt: createdAt ?? this.createdAt,
   );
 
   Map<String, dynamic> toJson() => {
@@ -66,6 +73,7 @@ class MoodEntry {
     if (signalId != null) 'signal_id': signalId,
     if (energy != null) 'energy': energy,
     if (pleasantness != null) 'pleasantness': pleasantness,
+    if (createdAt != null) 'created_at': createdAt!.toIso8601String(),
   };
 
   factory MoodEntry.fromJson(Map<String, dynamic> json) => MoodEntry(
@@ -82,6 +90,9 @@ class MoodEntry {
     signalId: json['signal_id'] as String?,
     energy: json['energy'] as int?,
     pleasantness: json['pleasantness'] as int?,
+    createdAt: json['created_at'] != null
+        ? DateTime.tryParse(json['created_at'].toString())
+        : null,
   );
 }
 
@@ -131,6 +142,7 @@ class MoodCheckinService with SupabaseSyncMixin {
       mood: mood,
       emoji: emoji,
       selectedEmotions: selectedEmotions,
+      createdAt: now,
     );
     _entries.insert(0, entry);
 
@@ -167,6 +179,7 @@ class MoodCheckinService with SupabaseSyncMixin {
       signalId: signal.id,
       energy: signal.defaultEnergy,
       pleasantness: signal.defaultPleasantness,
+      createdAt: now,
     );
     _entries.insert(0, entry);
 
@@ -200,6 +213,7 @@ class MoodCheckinService with SupabaseSyncMixin {
       if (entry.signalId != null) 'signal_id': entry.signalId,
       if (entry.energy != null) 'energy': entry.energy,
       if (entry.pleasantness != null) 'pleasantness': entry.pleasantness,
+      if (entry.createdAt != null) 'created_at': entry.createdAt!.toIso8601String(),
     };
   }
 

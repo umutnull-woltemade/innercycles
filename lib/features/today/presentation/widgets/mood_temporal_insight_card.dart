@@ -35,7 +35,7 @@ class MoodTemporalInsightCard extends ConsumerWidget {
         int morningCount = 0, afternoonCount = 0, eveningCount = 0;
 
         for (final e in recent) {
-          final hour = e.date.hour;
+          final hour = e.loggedHour;
           if (hour >= 5 && hour < 12) {
             morningSum += e.mood;
             morningCount++;

@@ -163,6 +163,10 @@ class Routes {
   static const String shiftOutlook = '/mood/shift-outlook';
   static const String emotionalFingerprint = '/emotional-fingerprint';
   static const String cycleCorrelation = '/cycle/correlation';
+  static const String attachmentStyleResult = '/quiz/attachment-result';
+  static const String ritualStats = '/rituals/stats';
+  static const String gratitudeInsights = '/gratitude/insights';
+  static const String shadowWorkArchive = '/shadow-work/archive';
   static const String gratitudeArchive = '/gratitude/archive';
   static const String sleepTrends = '/sleep/trends';
 

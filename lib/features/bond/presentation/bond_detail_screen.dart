@@ -8,6 +8,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/models/bond.dart';
@@ -79,7 +80,7 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
           loading: () => const Center(child: CupertinoActivityIndicator()),
           error: (e, s) => Center(
             child: Text(
-              isEn ? 'Could not load bond' : 'Bag yuklenemedi',
+              isEn ? 'Could not load bond' : 'Bağ yüklenemedi',
               style: AppTypography.subtitle(
                 color: isDark
                     ? AppColors.textSecondary
@@ -92,7 +93,7 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
             if (bond == null) {
               return Center(
                 child: Text(
-                  isEn ? 'Bond not found' : 'Bag bulunamadi',
+                  isEn ? 'Bond not found' : 'Bağ bulunamadı',
                   style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textSecondary
@@ -127,11 +128,11 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
               // Mood calendar action
               Semantics(
                 button: true,
-                label: isEn ? 'View mood calendar' : 'Ruh hali takvimini gor',
+                label: isEn ? 'View mood calendar' : 'Ruh hali takvimini gör',
                 child: GestureDetector(
                   onTap: () {
                     HapticService.buttonPress();
-                    context.push('/bond/mood-calendar/${bond.id}');
+                    context.push(Routes.bondMoodCalendar.replaceFirst(':bondId', bond.id));
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(right: 12),
@@ -275,7 +276,7 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
               ),
               const SizedBox(width: 6),
               Text(
-                bond.bondType.displayNameEn,
+                isEn ? bond.bondType.displayNameEn : bond.bondType.displayNameTr,
                 style: AppTypography.subtitle(
                   fontSize: 14,
                   color: isDark
@@ -300,7 +301,7 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
       children: [
         // Section title
         GradientText(
-          isEn ? 'Send a Touch' : 'Dokunma Gonder',
+          isEn ? 'Send a Touch' : 'Dokunma Gönder',
           variant: GradientTextVariant.gold,
           style: AppTypography.displayFont.copyWith(
             fontWeight: FontWeight.w600,
@@ -311,7 +312,7 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
         Text(
           isEn
               ? 'Let them know you are thinking of them.'
-              : 'Onlari dusundugunu bildir.',
+              : 'Onları düşündüğünü bildir.',
           style: AppTypography.subtitle(
             fontSize: 13,
             color: isDark
@@ -407,7 +408,7 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
                       ),
                       const SizedBox(width: 6),
                       Text(
-                        isEn ? 'Touch sent!' : 'Dokunma gonderildi!',
+                        isEn ? 'Touch sent!' : 'Dokunma gönderildi!',
                         style: AppTypography.subtitle(
                           fontSize: 13,
                           color: AppColors.success,
@@ -449,7 +450,7 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
         Text(
           isEn
               ? 'Control what you share with your bond partner.'
-              : 'Bag partnerinle ne paylasmak istedigini kontrol et.',
+              : 'Bağ partnerinle ne paylaşmak istediğini kontrol et.',
           style: AppTypography.subtitle(
             fontSize: 13,
             color: isDark
@@ -468,37 +469,37 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
           )
         else ...[
           _PrivacyToggle(
-            label: isEn ? 'Share Mood' : 'Ruh Halini Paylas',
+            label: isEn ? 'Share Mood' : 'Ruh Halini Paylaş',
             description: isEn
                 ? 'Your daily mood signal will be visible'
-                : 'Gunluk ruh hali sinyalin gorunur olacak',
+                : 'Günlük ruh hali sinyalin görünür olacak',
             value: _privacy?.shareMood ?? true,
             isDark: isDark,
             onChanged: (val) => _updatePrivacyField(shareMood: val),
           ),
           const SizedBox(height: 8),
           _PrivacyToggle(
-            label: isEn ? 'Share Signal' : 'Sinyali Paylas',
+            label: isEn ? 'Share Signal' : 'Sinyali Paylaş',
             description: isEn
                 ? 'Your selected mood signal detail'
-                : 'Sectigin ruh hali sinyal detayi',
+                : 'Seçtiğin ruh hali sinyal detayı',
             value: _privacy?.shareSignal ?? true,
             isDark: isDark,
             onChanged: (val) => _updatePrivacyField(shareSignal: val),
           ),
           const SizedBox(height: 8),
           _PrivacyToggle(
-            label: isEn ? 'Share Streak' : 'Seriyi Paylas',
+            label: isEn ? 'Share Streak' : 'Seriyi Paylaş',
             description: isEn
                 ? 'Your journaling streak count'
-                : 'Gunluk yazma serisi sayisi',
+                : 'Günlük yazma serisi sayısı',
             value: _privacy?.shareStreak ?? false,
             isDark: isDark,
             onChanged: (val) => _updatePrivacyField(shareStreak: val),
           ),
           const SizedBox(height: 8),
           _PrivacyToggle(
-            label: isEn ? 'Allow Touches' : 'Dokunuslara Izin Ver',
+            label: isEn ? 'Allow Touches' : 'Dokunuşlara İzin Ver',
             description: isEn
                 ? 'Receive touch notifications from partner'
                 : 'Partnerden dokunma bildirimleri al',
@@ -526,19 +527,19 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
       child: Column(
         children: [
           _InfoRow(
-            label: isEn ? 'Bond Type' : 'Bag Turu',
+            label: isEn ? 'Bond Type' : 'Bağ Türü',
             value: bond.bondType.localizedName(language),
             isDark: isDark,
           ),
           const SizedBox(height: 10),
           _InfoRow(
-            label: isEn ? 'Connected Since' : 'Bagli Oldugunuz Tarih',
+            label: isEn ? 'Connected Since' : 'Bağlı Olduğunuz Tarih',
             value: createdDate,
             isDark: isDark,
           ),
           const SizedBox(height: 10),
           _InfoRow(
-            label: isEn ? 'Days Connected' : 'Bagli Gun',
+            label: isEn ? 'Days Connected' : 'Bağlı Gün',
             value: '$daysConnected',
             isDark: isDark,
           ),
@@ -568,7 +569,7 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 12),
           child: Text(
-            isEn ? 'Dissolve this bond' : 'Bu bagi coz',
+            isEn ? 'Dissolve this bond' : 'Bu bağı çöz',
             style: AppTypography.subtitle(
               fontSize: 14,
               color: AppColors.error.withValues(alpha: 0.7),
@@ -597,7 +598,7 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
                 child: Text(
                   isEn
                       ? 'Dissolving in ${bond.dissolveDaysRemaining} days'
-                      : '${bond.dissolveDaysRemaining} gun icinde cozulecek',
+                      : '${bond.dissolveDaysRemaining} gün içinde çözülecek',
                   style: AppTypography.subtitle(
                     fontSize: 14,
                     color: AppColors.warning,
@@ -610,7 +611,7 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
           Text(
             isEn
                 ? 'You can cancel the dissolution during the cooling period.'
-                : 'Soguma suresi icinde cozulmeyi iptal edebilirsin.',
+                : 'Soğuma süresi içinde çözülmeyi iptal edebilirsin.',
             style: AppTypography.subtitle(
               fontSize: 13,
               color: isDark
@@ -622,7 +623,7 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
           GestureDetector(
             onTap: () => _cancelDissolve(bond),
             child: Text(
-              isEn ? 'Cancel Dissolution' : 'Cozulmeyi Iptal Et',
+              isEn ? 'Cancel Dissolution' : 'Çözülmeyi İptal Et',
               style: AppTypography.subtitle(
                 fontSize: 14,
                 color: AppColors.success,
@@ -702,12 +703,12 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
   Future<void> _confirmDissolve(Bond bond, bool isEn) async {
     final confirmed = await GlassDialog.confirm(
       context,
-      title: isEn ? 'Dissolve Bond' : 'Bagi Coz',
+      title: isEn ? 'Dissolve Bond' : 'Bağı Çöz',
       message: isEn
           ? 'This will start a 7-day cooling period. After that, the bond will be permanently dissolved. You can cancel anytime during the cooling period.'
-          : 'Bu islem 7 gunluk bir soguma suresi baslatacak. Ardından bag kalici olarak cozulecek. Soguma suresi icinde iptal edebilirsin.',
-      cancelLabel: isEn ? 'Cancel' : 'Iptal',
-      confirmLabel: isEn ? 'Dissolve' : 'Coz',
+          : 'Bu işlem 7 günlük bir soğuma süresi başlatacak. Ardından bağ kalıcı olarak çözülecek. Soğuma süresi içinde iptal edebilirsin.',
+      cancelLabel: isEn ? 'Cancel' : 'İptal',
+      confirmLabel: isEn ? 'Dissolve' : 'Çöz',
       isDestructive: true,
       gradientVariant: GradientTextVariant.amethyst,
     );
@@ -829,23 +830,31 @@ class _InfoRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          label,
-          style: AppTypography.subtitle(
-            fontSize: 13,
-            color: isDark
-                ? AppColors.textSecondary
-                : AppColors.lightTextSecondary,
+        Flexible(
+          child: Text(
+            label,
+            overflow: TextOverflow.ellipsis,
+            style: AppTypography.subtitle(
+              fontSize: 13,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
+            ),
           ),
         ),
-        Text(
-          value,
-          style: AppTypography.subtitle(
-            fontSize: 13,
-            color: isDark
-                ? AppColors.textPrimary
-                : AppColors.lightTextPrimary,
-          ).copyWith(fontWeight: FontWeight.w600),
+        const SizedBox(width: 12),
+        Flexible(
+          child: Text(
+            value,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.end,
+            style: AppTypography.subtitle(
+              fontSize: 13,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+            ).copyWith(fontWeight: FontWeight.w600),
+          ),
         ),
       ],
     );

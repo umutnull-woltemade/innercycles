@@ -8,6 +8,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/models/bond.dart';
@@ -46,7 +47,7 @@ class _BondHubScreenState extends ConsumerState<BondHubScreen> {
             ),
             slivers: [
               GlassSliverAppBar(
-                title: isEn ? 'Bonds' : 'Baglar',
+                title: isEn ? 'Bonds' : 'Bağlar',
                 useGradientTitle: true,
                 gradientVariant: GradientTextVariant.amethyst,
               ),
@@ -57,7 +58,7 @@ class _BondHubScreenState extends ConsumerState<BondHubScreen> {
                   child: Text(
                     isEn
                         ? 'Share your inner world with the people who matter most.'
-                        : 'Ic dunya seni en cok onemseyen kisilerle paylas.',
+                        : 'İç dünyanı seni en çok önemseyen kişilerle paylaş.',
                     style: AppTypography.subtitle(
                       fontSize: 14,
                       color: isDark
@@ -134,7 +135,7 @@ class _BondHubScreenState extends ConsumerState<BondHubScreen> {
       ),
       child: FloatingActionButton(
         onPressed: () => _navigateToInvite(context),
-        tooltip: isEn ? 'Create Bond' : 'Bag Olustur',
+        tooltip: isEn ? 'Create Bond' : 'Bağ Oluştur',
         backgroundColor: Colors.transparent,
         elevation: 0,
         child: const Icon(
@@ -147,7 +148,7 @@ class _BondHubScreenState extends ConsumerState<BondHubScreen> {
 
   void _navigateToInvite(BuildContext context) {
     HapticService.buttonPress();
-    context.push('/bond/invite');
+    context.push(Routes.bondInvite);
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -174,7 +175,7 @@ class _BondHubScreenState extends ConsumerState<BondHubScreen> {
                 currentUserId: currentUserId,
                 onTap: () {
                   HapticService.selectionTap();
-                  context.push('/bond/detail/${bond.id}');
+                  context.push(Routes.bondDetail.replaceFirst(':bondId', bond.id));
                 },
               ),
             );
@@ -199,7 +200,7 @@ class _BondHubScreenState extends ConsumerState<BondHubScreen> {
             Text(
               isEn
                   ? 'Could not load your bonds'
-                  : 'Baglarin yuklenemedi',
+                  : 'Bağların yüklenemedi',
               textAlign: TextAlign.center,
               style: AppTypography.subtitle(
                 color: isDark
@@ -276,7 +277,7 @@ class _BondEmptyState extends StatelessWidget {
 
           // Title
           GradientText(
-            isEn ? 'No Bonds Yet' : 'Henuz Bag Yok',
+            isEn ? 'No Bonds Yet' : 'Henüz Bağ Yok',
             variant: GradientTextVariant.amethyst,
             style: AppTypography.displayFont.copyWith(
               fontWeight: FontWeight.w600,
@@ -291,7 +292,7 @@ class _BondEmptyState extends StatelessWidget {
           Text(
             isEn
                 ? 'Create a bond with your partner, best friend, or sibling to share moods and stay connected.'
-                : 'Partnerinle, en yakin arkadasinla veya kardesinle bag kurarak ruh halinizi paylasip bagli kalin.',
+                : 'Partnerinle, en yakın arkadaşınla veya kardeşinle bağ kurarak ruh halinizi paylaşıp bağlı kalın.',
             textAlign: TextAlign.center,
             style: AppTypography.subtitle(
               fontSize: 14,
@@ -306,7 +307,7 @@ class _BondEmptyState extends StatelessWidget {
 
           // CTA
           GradientButton.gold(
-            label: isEn ? 'Create Your First Bond' : 'Ilk Bagini Olustur',
+            label: isEn ? 'Create Your First Bond' : 'İlk Bağını Oluştur',
             icon: Icons.favorite_rounded,
             expanded: true,
             onPressed: onInvite,
@@ -324,7 +325,7 @@ class _BondEmptyState extends StatelessWidget {
           GestureDetector(
             onTap: () {
               HapticService.buttonPress();
-              context.push('/bond/accept');
+              context.push(Routes.bondAccept);
             },
             child: Text(
               isEn
