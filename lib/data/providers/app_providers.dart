@@ -513,6 +513,22 @@ final moodCheckinServiceProvider = FutureProvider<MoodCheckinService>((
 });
 
 // =============================================================================
+// SIGNAL PROVIDERS (derived from mood check-in)
+// =============================================================================
+
+/// Today's signal ID (null if not logged or legacy entry)
+final todaySignalProvider = FutureProvider<String?>((ref) async {
+  final service = await ref.watch(moodCheckinServiceProvider.future);
+  return service.getTodayMood()?.signalId;
+});
+
+/// Quadrant distribution for last 30 days
+final quadrantDistributionProvider = FutureProvider<Map<String, int>>((ref) async {
+  final service = await ref.watch(moodCheckinServiceProvider.future);
+  return service.getQuadrantDistribution(30);
+});
+
+// =============================================================================
 // APP LOCK PROVIDER
 // =============================================================================
 

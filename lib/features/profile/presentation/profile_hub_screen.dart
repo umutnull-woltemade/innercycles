@@ -27,12 +27,14 @@ import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tap_scale.dart';
 import 'package:go_router/go_router.dart';
+import '../../../data/services/analytics_service.dart';
 
 class ProfileHubScreen extends ConsumerWidget {
   const ProfileHubScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.read(analyticsServiceProvider).logScreenView('profile_hub');
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;

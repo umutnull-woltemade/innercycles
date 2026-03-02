@@ -33,6 +33,7 @@ import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
+import '../../../data/services/analytics_service.dart';
 import 'notification_settings_section.dart';
 
 class SettingsScreen extends ConsumerWidget {
@@ -40,6 +41,7 @@ class SettingsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.read(analyticsServiceProvider).logScreenView('settings');
     final language = ref.watch(languageProvider);
     final themeMode = ref.watch(themeModeProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -89,6 +91,7 @@ class SettingsScreen extends ConsumerWidget {
                                   ref.read(themeModeProvider.notifier).state =
                                       ThemeMode.light;
                                   StorageService.saveThemeMode(ThemeMode.light);
+                                  ref.read(analyticsServiceProvider).logEvent('theme_changed', {'theme': 'light'});
                                 },
                               ),
                             ),
@@ -106,6 +109,7 @@ class SettingsScreen extends ConsumerWidget {
                                   ref.read(themeModeProvider.notifier).state =
                                       ThemeMode.dark;
                                   StorageService.saveThemeMode(ThemeMode.dark);
+                                  ref.read(analyticsServiceProvider).logEvent('theme_changed', {'theme': 'dark'});
                                 },
                               ),
                             ),
@@ -221,6 +225,7 @@ class SettingsScreen extends ConsumerWidget {
                                                 .state =
                                             lang;
                                         StorageService.saveLanguage(lang);
+                                        ref.read(analyticsServiceProvider).logEvent('language_changed', {'language': lang == AppLanguage.en ? 'en' : 'tr'});
                                       },
                                       child: Container(
                                         padding: const EdgeInsets.symmetric(

@@ -461,6 +461,25 @@ class _ThankYouViewState extends ConsumerState<_ThankYouView> {
         ? getSignalById(widget.todayMood.signalId!)
         : null;
 
+    Widget orbWidget;
+    if (signal != null) {
+      orbWidget = SignalOrb(
+        signalId: signal.id,
+        size: SignalOrbSize.card,
+      );
+    } else {
+      orbWidget = AppSymbol(
+        widget.todayMood.emoji,
+        size: AppSymbolSize.lg,
+      );
+    }
+    orbWidget = orbWidget.animate().scale(
+      begin: const Offset(0.5, 0.5),
+      end: const Offset(1, 1),
+      duration: 300.ms,
+      curve: Curves.elasticOut,
+    );
+
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
@@ -471,26 +490,7 @@ class _ThankYouViewState extends ConsumerState<_ThankYouView> {
         children: [
           Row(
             children: [
-              if (signal != null)
-                SignalOrb(
-                  signalId: signal.id,
-                  size: SignalOrbSize.card,
-                ).animate().scale(
-                  begin: const Offset(0.5, 0.5),
-                  end: const Offset(1, 1),
-                  duration: 300.ms,
-                  curve: Curves.elasticOut,
-                )
-              else
-                AppSymbol(
-                  widget.todayMood.emoji,
-                  size: AppSymbolSize.lg,
-                ).animate().scale(
-                  begin: const Offset(0.5, 0.5),
-                  end: const Offset(1, 1),
-                  duration: 300.ms,
-                  curve: Curves.elasticOut,
-                ),
+              orbWidget,
               const SizedBox(width: 14),
               Expanded(
                 child: Text(

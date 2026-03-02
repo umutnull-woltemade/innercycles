@@ -24,6 +24,7 @@ import '../../../data/services/dream_journal_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../data/services/analytics_service.dart';
 import '../../../data/services/l10n_service.dart';
 
 enum _SearchTab { all, journal, notes, dreams }
@@ -54,6 +55,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
   @override
   void initState() {
     super.initState();
+    ref.read(analyticsServiceProvider).logScreenView('global_search');
     _loadRecentSearches();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) _focusNode.requestFocus();
@@ -127,6 +129,12 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
       _noteResults = notes;
       _dreamResults = dreams;
       _toolResults = tools;
+    });
+
+    final totalResults = journals.length + notes.length + dreams.length + tools.length;
+    ref.read(analyticsServiceProvider).logEvent('search_performed', {
+      'result_count': totalResults,
+      'has_results': totalResults > 0,
     });
   }
 

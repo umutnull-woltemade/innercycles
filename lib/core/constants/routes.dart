@@ -140,6 +140,7 @@ class Routes {
   // TRENDS & HISTORY
   // ════════════════════════════════════════════════════════════════
   static const String moodTrends = '/mood/trends';
+  static const String moodCompass = '/mood/compass';
   static const String gratitudeArchive = '/gratitude/archive';
   static const String sleepTrends = '/sleep/trends';
 

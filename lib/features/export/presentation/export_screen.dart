@@ -24,6 +24,7 @@ import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../data/services/analytics_service.dart';
 import '../../../data/services/l10n_service.dart';
 
 class ExportScreen extends ConsumerStatefulWidget {
@@ -36,6 +37,12 @@ class ExportScreen extends ConsumerStatefulWidget {
 class _ExportScreenState extends ConsumerState<ExportScreen> {
   ExportFormat _selectedFormat = ExportFormat.text;
   bool _isExporting = false;
+
+  @override
+  void initState() {
+    super.initState();
+    ref.read(analyticsServiceProvider).logScreenView('export');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -302,6 +309,10 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
         ShareParams(text: result.content, subject: result.fileName),
       );
       HapticFeedback.mediumImpact();
+      ref.read(analyticsServiceProvider).logEvent('export_completed', {
+        'format': _selectedFormat.name,
+        'is_premium': isPremium,
+      });
     } finally {
       if (mounted) setState(() => _isExporting = false);
     }

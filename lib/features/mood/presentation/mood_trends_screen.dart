@@ -338,6 +338,139 @@ class MoodTrendsScreen extends ConsumerWidget {
     );
   }
 
+  Widget _buildQuadrantDistribution(
+    bool isDark,
+    bool isEn,
+    MoodCheckinService service,
+  ) {
+    final language = AppLanguage.fromIsEn(isEn);
+    final dist = service.getQuadrantDistribution(30);
+    final total = dist.values.fold(0, (a, b) => a + b);
+    if (total == 0) return const SizedBox.shrink();
+
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          GradientText(
+            isEn ? 'Quadrant Distribution' : 'Kadran Dağılımı',
+            variant: GradientTextVariant.gold,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          Text(
+            isEn ? 'Last 30 days' : 'Son 30 gün',
+            style: AppTypography.subtitle(
+              fontSize: 12,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            ),
+          ),
+          const SizedBox(height: 16),
+          // Donut chart
+          SizedBox(
+            height: 120,
+            child: Row(
+              children: [
+                // Donut
+                SizedBox(
+                  width: 120,
+                  height: 120,
+                  child: CustomPaint(
+                    painter: _QuadrantDonutPainter(
+                      distribution: dist,
+                      total: total,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                // Legend
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      for (final q in SignalQuadrant.values)
+                        if ((dist[q.name] ?? 0) > 0)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 6),
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 10,
+                                  height: 10,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: q.color,
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: Text(
+                                    '${q.emoji} ${q.localizedName(language)}',
+                                    style: AppTypography.subtitle(
+                                      fontSize: 12,
+                                      color: isDark
+                                          ? AppColors.textSecondary
+                                          : AppColors.lightTextSecondary,
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  '${((dist[q.name]! / total) * 100).round()}%',
+                                  style: AppTypography.displayFont.copyWith(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
+                                    color: q.color,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ).animate().fadeIn(duration: 400.ms);
+  }
+
+  Widget _buildSignalCalendar(
+    bool isDark,
+    bool isEn,
+    List<MoodEntry> entries,
+    AppLanguage language,
+  ) {
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          GradientText(
+            isEn ? 'Signal Calendar' : 'Sinyal Takvimi',
+            variant: GradientTextVariant.gold,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 12),
+          SignalCalendar(
+            entries: entries,
+            language: language,
+            isDark: isDark,
+          ),
+        ],
+      ),
+    ).animate().fadeIn(duration: 400.ms);
+  }
+
   Widget _buildStatsRow(
     BuildContext context,
     bool isDark,
@@ -1291,4 +1424,50 @@ class _EmptyStateMoodCheckin extends StatelessWidget {
       ],
     );
   }
+}
+
+class _QuadrantDonutPainter extends CustomPainter {
+  final Map<String, int> distribution;
+  final int total;
+
+  _QuadrantDonutPainter({required this.distribution, required this.total});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final center = Offset(size.width / 2, size.height / 2);
+    final radius = math.min(size.width, size.height) / 2 - 8;
+    final strokeWidth = 16.0;
+
+    var startAngle = -math.pi / 2;
+    final order = ['fire', 'water', 'storm', 'shadow'];
+    final colors = {
+      'fire': AppColors.starGold,
+      'water': AppColors.waterCalm,
+      'storm': AppColors.stormAmber,
+      'shadow': AppColors.amethyst,
+    };
+
+    for (final key in order) {
+      final count = distribution[key] ?? 0;
+      if (count == 0) continue;
+      final sweepAngle = (count / total) * 2 * math.pi;
+      final paint = Paint()
+        ..color = colors[key]!
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = strokeWidth
+        ..strokeCap = StrokeCap.round;
+      canvas.drawArc(
+        Rect.fromCircle(center: center, radius: radius),
+        startAngle,
+        sweepAngle - 0.04, // small gap between segments
+        false,
+        paint,
+      );
+      startAngle += sweepAngle;
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _QuadrantDonutPainter oldDelegate) =>
+      oldDelegate.distribution != distribution || oldDelegate.total != total;
 }

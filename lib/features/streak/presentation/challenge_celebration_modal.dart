@@ -7,6 +7,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/services/growth_challenge_service.dart';
 import '../../../data/services/instagram_share_service.dart';
+import '../../../data/services/review_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_button.dart';
@@ -58,12 +59,16 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
       if (boundary == null) return;
 
       final title = challenge.localizedTitle(language);
-      await InstagramShareService.shareCosmicContent(
+      final result = await InstagramShareService.shareCosmicContent(
         boundary: boundary,
         shareText: L10nService.getWithParams('sharing.share_challenge_text', language, params: {'emoji': challenge.emoji, 'title': title, 'appStoreUrl': AppConstants.appStoreUrl}),
         hashtags: L10nService.get('sharing.hashtags_challenge_complete', language),
         language: language,
       );
+      if (result.success) {
+        ReviewService.init().then((rs) =>
+            rs.checkAndPromptReview(ReviewTrigger.shareCompleted));
+      }
     } finally {
       if (mounted) setState(() => _isSharing = false);
     }
