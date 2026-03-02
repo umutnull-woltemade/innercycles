@@ -143,8 +143,14 @@ class _GratitudeArchiveScreenState extends ConsumerState<GratitudeArchiveScreen>
     }
     final months = grouped.keys.toList()..sort((a, b) => b.compareTo(a));
 
-    return CupertinoScrollbar(
-      child: CustomScrollView(
+    return RefreshIndicator(
+      color: AppColors.starGold,
+      onRefresh: () async {
+        ref.invalidate(gratitudeServiceProvider);
+        await Future.delayed(const Duration(milliseconds: 300));
+      },
+      child: CupertinoScrollbar(
+        child: CustomScrollView(
         physics: const BouncingScrollPhysics(
           parent: AlwaysScrollableScrollPhysics(),
         ),
@@ -231,6 +237,7 @@ class _GratitudeArchiveScreenState extends ConsumerState<GratitudeArchiveScreen>
             ),
           ),
         ],
+      ),
       ),
     ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms);
   }

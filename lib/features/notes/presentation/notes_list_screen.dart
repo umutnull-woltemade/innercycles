@@ -156,8 +156,14 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                 allTags.addAll(note.tags);
               }
 
-              return CupertinoScrollbar(
-                child: CustomScrollView(
+              return RefreshIndicator(
+                color: AppColors.starGold,
+                onRefresh: () async {
+                  ref.invalidate(notesToSelfServiceProvider);
+                  await Future.delayed(const Duration(milliseconds: 300));
+                },
+                child: CupertinoScrollbar(
+                  child: CustomScrollView(
                   keyboardDismissBehavior:
                       ScrollViewKeyboardDismissBehavior.onDrag,
                   physics: const BouncingScrollPhysics(
@@ -406,6 +412,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                     const SliverToBoxAdapter(child: SizedBox(height: 100)),
                   ],
                 ),
+              ),
               );
             },
           ),

@@ -1451,6 +1451,71 @@ class NotificationService {
     await _notifications.cancel(id: premiumExpiry3DayId);
     await _notifications.cancel(id: premiumExpiry1DayId);
   }
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // BOND / TOUCH NOTIFICATIONS (IDs 52000-52999)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  static const int _bondTouchBaseId = 52000;
+  static const int _bondStatusBaseId = 52500;
+
+  /// Show instant notification for received touch
+  Future<void> showTouchReceivedNotification({
+    required String senderName,
+    required String touchTypeEmoji,
+    bool isEn = true,
+  }) async {
+    if (!_isInitialized) await initialize();
+
+    final title = isEn ? '$touchTypeEmoji Touch received' : '$touchTypeEmoji Dokunuş alındı';
+    final body = isEn
+        ? '$senderName sent you a warm touch'
+        : '$senderName sana sıcak bir dokunuş gönderdi';
+
+    await _notifications.show(
+      id: _bondTouchBaseId + (DateTime.now().millisecondsSinceEpoch % 999),
+      title: title,
+      body: body,
+    );
+  }
+
+  /// Show notification for bond formed
+  Future<void> showBondFormedNotification({
+    required String partnerName,
+    bool isEn = true,
+  }) async {
+    if (!_isInitialized) await initialize();
+
+    final title = isEn ? '💑 Bond created!' : '💑 Bağ oluşturuldu!';
+    final body = isEn
+        ? 'You and $partnerName are now connected'
+        : 'Sen ve $partnerName artık bağlısınız';
+
+    await _notifications.show(
+      id: _bondStatusBaseId,
+      title: title,
+      body: body,
+    );
+  }
+
+  /// Show notification for bond dissolve request
+  Future<void> showBondDissolveNotification({
+    required String partnerName,
+    bool isEn = true,
+  }) async {
+    if (!_isInitialized) await initialize();
+
+    final title = isEn ? 'Bond dissolving' : 'Bağ çözülüyor';
+    final body = isEn
+        ? '$partnerName requested to dissolve your bond. 7-day cooling period started.'
+        : '$partnerName bağınızı çözmeyi istedi. 7 günlük bekleme süresi başladı.';
+
+    await _notifications.show(
+      id: _bondStatusBaseId + 1,
+      title: title,
+      body: body,
+    );
+  }
 }
 
 /// Notification settings model
