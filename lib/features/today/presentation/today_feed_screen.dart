@@ -28,6 +28,7 @@ import 'widgets/home_header.dart';
 import 'widgets/hero_journal_card.dart';
 import 'widgets/mood_stats_strip.dart';
 import 'widgets/daily_pulse_card.dart';
+import 'widgets/anomaly_alert_card.dart';
 import 'widgets/recent_entries_section.dart';
 import 'widgets/today_birthday_banner.dart';
 import 'widgets/recent_life_events_section.dart';
@@ -45,10 +46,18 @@ import 'widgets/welcome_banner.dart';
 import 'widgets/wellness_score_card.dart';
 import 'widgets/gratitude_quick_card.dart';
 import 'widgets/active_challenge_card.dart';
+import 'widgets/streak_at_risk_banner.dart';
 import 'widgets/badge_unlock_banner.dart';
 import 'widgets/daily_habits_strip.dart';
 import 'widgets/daily_affirmation_card.dart';
 import 'widgets/pinned_notes_strip.dart';
+import 'widgets/community_pulse_card.dart';
+import 'widgets/community_challenge_card.dart';
+import 'widgets/blind_spot_discovery_card.dart';
+import 'widgets/seasonal_progress_ring.dart';
+import 'widgets/guided_program_card.dart';
+import 'widgets/referral_invite_card.dart';
+import 'widgets/attachment_quiz_banner.dart';
 import '../../../data/services/l10n_service.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
@@ -477,6 +486,11 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: DailyHabitsStrip(isEn: isEn, isDark: isDark),
                   ),
 
+                  // 3f. Seasonal Reflection Progress
+                  SliverToBoxAdapter(
+                    child: SeasonalProgressRing(isEn: isEn, isDark: isDark),
+                  ),
+
                   // Zone 1→2 primary divider
                   SliverToBoxAdapter(
                     child: _goldDivider(isDark, primary: true),
@@ -486,7 +500,12 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // ZONE 2: CORE
                   // ═══════════════════════════════════════════════
 
-                  // 4. Streak Recovery Banner (conditional)
+                  // 4. Streak At Risk Banner (proactive freeze visibility)
+                  SliverToBoxAdapter(
+                    child: StreakAtRiskBanner(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 4b. Streak Recovery Banner (conditional — after streak broken)
                   const SliverToBoxAdapter(
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -500,6 +519,14 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                       isEn: isEn,
                       isDark: isDark,
                     ).glassReveal(context: context, delay: 280.ms),
+                  ),
+
+                  // 5a. Anomaly Alert (significant deviations from baseline)
+                  SliverToBoxAdapter(
+                    child: AnomalyAlertCard(
+                      isEn: isEn,
+                      isDark: isDark,
+                    ),
                   ),
 
                   // 5b. Weekly Focus Progress
@@ -550,6 +577,21 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: ActiveChallengeCard(isEn: isEn, isDark: isDark),
                   ),
 
+                  // 8d. Guided Program Quick-Start
+                  SliverToBoxAdapter(
+                    child: GuidedProgramCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 8e. Blind Spot Discovery
+                  SliverToBoxAdapter(
+                    child: BlindSpotDiscoveryCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 8f. Weekly Community Challenge
+                  SliverToBoxAdapter(
+                    child: CommunityChallengeCard(isEn: isEn, isDark: isDark),
+                  ),
+
                   // 9. Streak Card
                   SliverPadding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -583,9 +625,14 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: PinnedNotesStrip(isEn: isEn, isDark: isDark),
                   ),
 
+                  // 9f. Attachment Style Quiz Banner
+                  SliverToBoxAdapter(
+                    child: AttachmentQuizBanner(isEn: isEn, isDark: isDark),
+                  ),
+
                   const SliverToBoxAdapter(child: SizedBox(height: 8)),
 
-                  // 9f. Mood-Habit Correlation Insight
+                  // 9g. Mood-Habit Correlation Insight
                   SliverToBoxAdapter(
                     child: MoodHabitCorrelationCard(isEn: isEn, isDark: isDark),
                   ),
@@ -599,12 +646,22 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // ZONE 3: DISCOVER
                   // ═══════════════════════════════════════════════
 
-                  // 10. Promotional Banner Stack
+                  // 10. Community Pulse (anonymous social layer)
+                  SliverToBoxAdapter(
+                    child: CommunityPulseCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 10b. Referral Invite Card
+                  SliverToBoxAdapter(
+                    child: ReferralInviteCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 11. Promotional Banner Stack
                   SliverToBoxAdapter(
                     child: PromotionalBannerStack(isEn: isEn, isDark: isDark),
                   ),
 
-                  // 11. Social Proof Strip
+                  // 12. Social Proof Strip
                   SliverToBoxAdapter(
                     child: SocialProofStrip(isEn: isEn, isDark: isDark),
                   ),

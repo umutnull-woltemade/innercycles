@@ -164,6 +164,29 @@ import WidgetKit
     completionHandler(true)
   }
 
+  // MARK: - Universal Links
+
+  override func application(
+    _ application: UIApplication,
+    continue userActivity: NSUserActivity,
+    restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void
+  ) -> Bool {
+    // Forward universal links to Flutter's deep link engine (GoRouter)
+    // Handles: innercycles.app/invite/:code, innercycles.app/share/:cardId
+    if userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+       let url = userActivity.webpageURL {
+      guard let controller = window?.rootViewController as? FlutterViewController else {
+        return super.application(application, continue: userActivity, restorationHandler: restorationHandler)
+      }
+      let channel = FlutterMethodChannel(
+        name: "com.venusone.innercycles/deeplink",
+        binaryMessenger: controller.binaryMessenger
+      )
+      channel.invokeMethod("handleDeepLink", arguments: url.absoluteString)
+    }
+    return super.application(application, continue: userActivity, restorationHandler: restorationHandler)
+  }
+
   // MARK: - Badge Clearing
 
   override func applicationDidBecomeActive(_ application: UIApplication) {

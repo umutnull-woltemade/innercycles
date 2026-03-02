@@ -329,4 +329,159 @@ class GrowthChallengeService {
   Future<void> _persistCompleted() async {
     await _prefs.setString(_completedKey, json.encode(_completedIds.toList()));
   }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // WEEKLY COMMUNITY CHALLENGE — Shared challenge everyone participates in
+  // ══════════════════════════════════════════════════════════════════════════
+
+  static const List<CommunityChallengeTemplate> _communityTemplates = [
+    CommunityChallengeTemplate(
+      titleEn: 'Gratitude Week',
+      titleTr: 'Şükran Haftası',
+      descEn: 'The community is practicing gratitude this week. Write 3 gratitude entries.',
+      descTr: 'Bu hafta topluluk şükran pratiği yapıyor. 3 şükran girişi yaz.',
+      emoji: '🙏',
+      targetCount: 3,
+    ),
+    CommunityChallengeTemplate(
+      titleEn: 'Energy Awareness',
+      titleTr: 'Enerji Farkındalığı',
+      descEn: 'This week we\'re tracking energy patterns together. Log 5 entries focused on energy.',
+      descTr: 'Bu hafta birlikte enerji örüntülerini takip ediyoruz. 5 enerji odaklı kayıt gir.',
+      emoji: '⚡',
+      targetCount: 5,
+    ),
+    CommunityChallengeTemplate(
+      titleEn: 'Dream Explorer',
+      titleTr: 'Rüya Kaşifi',
+      descEn: 'The community is exploring dreams this week. Record 3 dreams.',
+      descTr: 'Bu hafta topluluk rüyaları keşfediyor. 3 rüya kaydet.',
+      emoji: '🌙',
+      targetCount: 3,
+    ),
+    CommunityChallengeTemplate(
+      titleEn: 'Mindful Mornings',
+      titleTr: 'Bilinçli Sabahlar',
+      descEn: 'Start your mornings with intention. Journal before noon for 4 days.',
+      descTr: 'Sabahlarını niyetle başlat. 4 gün öğleden önce günlük yaz.',
+      emoji: '🌅',
+      targetCount: 4,
+    ),
+    CommunityChallengeTemplate(
+      titleEn: 'Deep Reflection',
+      titleTr: 'Derin Yansıma',
+      descEn: 'We\'re going deeper this week. Write 3 entries over 200 words.',
+      descTr: 'Bu hafta derinlere iniyoruz. 200 kelimeyi aşan 3 kayıt yaz.',
+      emoji: '🧘',
+      targetCount: 3,
+    ),
+    CommunityChallengeTemplate(
+      titleEn: 'Social Connections',
+      titleTr: 'Sosyal Bağlar',
+      descEn: 'Focus on relationships this week. Journal about social interactions 4 times.',
+      descTr: 'Bu hafta ilişkilere odaklan. 4 kez sosyal etkileşimler hakkında yaz.',
+      emoji: '🤝',
+      targetCount: 4,
+    ),
+    CommunityChallengeTemplate(
+      titleEn: 'Mood Mastery',
+      titleTr: 'Ruh Hali Ustalığı',
+      descEn: 'Check in with your mood every day this week. Log 5 mood check-ins.',
+      descTr: 'Bu hafta her gün ruh halini kontrol et. 5 ruh hali kaydı gir.',
+      emoji: '🎭',
+      targetCount: 5,
+    ),
+  ];
+
+  /// Returns the current week's community challenge (rotates weekly)
+  CommunityChallengeTemplate getCurrentCommunityChallenge() {
+    final now = DateTime.now();
+    final weekOfYear = _weekOfYear(now);
+    return _communityTemplates[weekOfYear % _communityTemplates.length];
+  }
+
+  /// Get user's progress in the current community challenge
+  CommunityChallenge getCommunityStatus() {
+    final template = getCurrentCommunityChallenge();
+    final weekKey = _communityWeekKey();
+    final progressKey = 'community_challenge_$weekKey';
+    final currentCount = _prefs.getInt(progressKey) ?? 0;
+
+    // Estimated participants (deterministic per week)
+    final weekHash = weekKey.hashCode.abs();
+    final participants = 80 + (weekHash % 120); // 80-200
+
+    return CommunityChallenge(
+      template: template,
+      currentCount: currentCount,
+      participants: participants,
+      weekKey: weekKey,
+    );
+  }
+
+  /// Increment community challenge progress
+  Future<bool> incrementCommunityProgress() async {
+    final status = getCommunityStatus();
+    if (status.isCompleted) return false;
+
+    final key = 'community_challenge_${status.weekKey}';
+    final newCount = status.currentCount + 1;
+    await _prefs.setInt(key, newCount);
+    return newCount >= status.template.targetCount;
+  }
+
+  String _communityWeekKey() {
+    final now = DateTime.now();
+    return '${now.year}-w${_weekOfYear(now)}';
+  }
+
+  static int _weekOfYear(DateTime date) {
+    final firstDayOfYear = DateTime(date.year, 1, 1);
+    final daysDiff = date.difference(firstDayOfYear).inDays;
+    return (daysDiff / 7).floor();
+  }
+}
+
+class CommunityChallengeTemplate {
+  final String titleEn;
+  final String titleTr;
+  final String descEn;
+  final String descTr;
+  final String emoji;
+  final int targetCount;
+
+  const CommunityChallengeTemplate({
+    required this.titleEn,
+    required this.titleTr,
+    required this.descEn,
+    required this.descTr,
+    required this.emoji,
+    required this.targetCount,
+  });
+
+  String localizedTitle(AppLanguage language) =>
+      language == AppLanguage.en ? titleEn : titleTr;
+
+  String localizedDesc(AppLanguage language) =>
+      language == AppLanguage.en ? descEn : descTr;
+}
+
+class CommunityChallenge {
+  final CommunityChallengeTemplate template;
+  final int currentCount;
+  final int participants;
+  final String weekKey;
+
+  const CommunityChallenge({
+    required this.template,
+    required this.currentCount,
+    required this.participants,
+    required this.weekKey,
+  });
+
+  bool get isCompleted => currentCount >= template.targetCount;
+  double get percent =>
+      template.targetCount > 0
+          ? (currentCount / template.targetCount).clamp(0, 1)
+          : 0;
 }

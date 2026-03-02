@@ -1,0 +1,50 @@
+# ════════════════════════════════════════════════════════════════════════════
+# SNAPFILE - InnerCycles Screenshot Automation
+# ════════════════════════════════════════════════════════════════════════════
+# Generates localized App Store screenshots across all required device sizes.
+# Run: cd ios && fastlane snapshot
+# Note: For Flutter apps, screenshots are captured via integration_test
+#       and then placed into the correct fastlane directories.
+# ════════════════════════════════════════════════════════════════════════════
+
+# Device types for App Store (required minimum)
+devices([
+  "iPhone 16 Pro Max",    # 6.9" (required)
+  "iPhone 16 Pro",        # 6.3"
+  "iPhone SE (3rd generation)", # 4.7" (required)
+  "iPad Pro 13-inch (M4)", # 13" iPad (required for universal)
+])
+
+# Languages matching our ASO metadata
+languages([
+  "en-US",
+  "tr",
+  "de-DE",
+  "fr-FR",
+  "es-MX",
+])
+
+# Output directory
+output_directory("./fastlane/screenshots")
+
+# Clear previous screenshots
+clear_previous_screenshots(true)
+
+# Screenshot scheme (Xcode UI test target)
+scheme("InnerCyclesUITests")
+
+# Xcode workspace
+workspace("Runner.xcworkspace")
+
+# Stop after first error
+stop_after_first_error(true)
+
+# Number of retries
+number_of_retries(1)
+
+# Dark mode variant
+dark_mode(false)
+
+# Override status bar
+override_status_bar(true)
+override_status_bar_arguments("--time 9:41 --dataNetwork wifi --wifiMode active --batteryState charged --batteryLevel 100")

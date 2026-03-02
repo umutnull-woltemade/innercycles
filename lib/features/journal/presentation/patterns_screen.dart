@@ -482,6 +482,10 @@ class PatternsScreen extends ConsumerWidget {
                     isEn: isEn,
                   ),
 
+                // Energy Map Heatmap (premium)
+                if (isPremium)
+                  _EnergyHeatmapCard(isDark: isDark, isEn: isEn),
+
                 // Shadow Work suggestion based on weak areas
                 _ShadowWorkSuggestion(
                   engine: engine,
@@ -1669,5 +1673,142 @@ class _SleepCorrelationCard extends StatelessWidget {
     if (abs >= 0.7) return AppColors.success;
     if (abs >= 0.5) return AppColors.starGold;
     return AppColors.amethyst;
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// ENERGY HEATMAP CARD — Best/worst day + strongest area mini-view
+// ════════════════════════════════════════════════════════════════════════════
+
+class _EnergyHeatmapCard extends ConsumerWidget {
+  final bool isDark;
+  final bool isEn;
+
+  const _EnergyHeatmapCard({required this.isDark, required this.isEn});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final mapAsync = ref.watch(energyMapProvider);
+
+    return mapAsync.maybeWhen(
+      data: (data) {
+        if (data == null) return const SizedBox.shrink();
+
+        final bestName = _dayName(data.bestDay, isEn);
+        final worstName = _dayName(data.worstDay, isEn);
+        final strongestLabel = data.strongestArea != null
+            ? (isEn
+                ? data.strongestArea!.displayNameEn
+                : data.strongestArea!.displayNameTr)
+            : null;
+
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: GestureDetector(
+            onTap: () => context.push(Routes.energyMap),
+            child: PremiumCard(
+              style: PremiumCardStyle.aurora,
+              borderRadius: 16,
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.grid_on_rounded,
+                        size: 16,
+                        color: AppColors.auroraStart,
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: GradientText(
+                          isEn ? 'Energy Heatmap' : 'Enerji Haritası',
+                          variant: GradientTextVariant.aurora,
+                          style: AppTypography.modernAccent(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 12,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  // Stat rows
+                  _statRow(
+                    Icons.trending_up_rounded,
+                    isEn ? 'Best day' : 'En iyi gün',
+                    bestName,
+                    AppColors.success,
+                  ),
+                  const SizedBox(height: 6),
+                  _statRow(
+                    Icons.trending_down_rounded,
+                    isEn ? 'Hardest day' : 'En zor gün',
+                    worstName,
+                    AppColors.error,
+                  ),
+                  if (strongestLabel != null) ...[
+                    const SizedBox(height: 6),
+                    _statRow(
+                      Icons.bolt_rounded,
+                      isEn ? 'Strongest area' : 'En güçlü alan',
+                      strongestLabel,
+                      AppColors.starGold,
+                    ),
+                  ],
+                  const SizedBox(height: 6),
+                  _statRow(
+                    Icons.show_chart_rounded,
+                    isEn ? 'Average' : 'Ortalama',
+                    '${data.overallAverage.toStringAsFixed(1)}/5',
+                    AppColors.amethyst,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ).animate().fadeIn(delay: 200.ms, duration: 300.ms);
+      },
+      orElse: () => const SizedBox.shrink(),
+    );
+  }
+
+  Widget _statRow(IconData icon, String label, String value, Color color) {
+    return Row(
+      children: [
+        Icon(icon, size: 14, color: color),
+        const SizedBox(width: 8),
+        Text(
+          label,
+          style: AppTypography.subtitle(
+            fontSize: 13,
+            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+          ),
+        ),
+        const Spacer(),
+        Text(
+          value,
+          style: AppTypography.modernAccent(
+            fontSize: 13,
+            fontWeight: FontWeight.w600,
+            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+          ),
+        ),
+      ],
+    );
+  }
+
+  String _dayName(int weekday, bool isEn) {
+    const en = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const tr = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
+    return isEn ? en[weekday - 1] : tr[weekday - 1];
   }
 }

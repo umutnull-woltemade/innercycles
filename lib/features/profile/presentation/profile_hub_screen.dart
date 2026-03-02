@@ -19,6 +19,12 @@ import 'widgets/profile_rate_section.dart';
 import 'widgets/profile_referral_section.dart';
 import 'widgets/profile_settings_section.dart';
 import '../../../data/services/l10n_service.dart';
+import '../../../data/services/haptic_service.dart';
+import '../../../core/constants/routes.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
+import '../../../shared/widgets/tap_scale.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileHubScreen extends ConsumerWidget {
   const ProfileHubScreen({super.key});
@@ -110,6 +116,9 @@ class ProfileHubScreen extends ConsumerWidget {
                       ).glassListItem(context: context, index: 1),
                       const SizedBox(height: AppConstants.spacingXl),
 
+                      // Archetype mini-card
+                      _ArchetypeMiniCard(isDark: isDark, isEn: isEn),
+
                       // Tools: suggested + category tabs + grid
                       ProfileToolsGrid(
                         isDark: isDark,
@@ -154,6 +163,102 @@ class ProfileHubScreen extends ConsumerWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _ArchetypeMiniCard extends ConsumerWidget {
+  final bool isDark;
+  final bool isEn;
+
+  const _ArchetypeMiniCard({required this.isDark, required this.isEn});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final archetypeAsync = ref.watch(archetypeServiceProvider);
+    final journalAsync = ref.watch(journalServiceProvider);
+
+    return archetypeAsync.maybeWhen(
+      data: (service) {
+        return journalAsync.maybeWhen(
+          data: (jService) {
+            final entries = jService.getAllEntries();
+            if (entries.length < 5) return const SizedBox.shrink();
+
+            final result = service.getCurrentArchetype(entries);
+            if (result == null) return const SizedBox.shrink();
+
+            final language = AppLanguage.fromIsEn(isEn);
+            final archetype = result.dominant;
+
+            return Padding(
+              padding: const EdgeInsets.only(bottom: AppConstants.spacingXl),
+              child: TapScale(
+                onTap: () {
+                  HapticService.selectionTap();
+                  context.push(Routes.archetype);
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(14),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: isDark
+                        ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                        : AppColors.lightSurfaceVariant.withValues(alpha: 0.5),
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        archetype.emoji,
+                        style: const TextStyle(fontSize: 32),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              archetype.localizedName(language),
+                              style: AppTypography.modernAccent(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: isDark
+                                    ? AppColors.textPrimary
+                                    : AppColors.lightTextPrimary,
+                              ),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              isEn
+                                  ? 'Your current archetype'
+                                  : 'Mevcut arketipin',
+                              style: AppTypography.subtitle(
+                                fontSize: 12,
+                                color: isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 14,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+          orElse: () => const SizedBox.shrink(),
+        );
+      },
+      orElse: () => const SizedBox.shrink(),
     );
   }
 }

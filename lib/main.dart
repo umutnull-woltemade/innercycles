@@ -838,6 +838,8 @@ class _InnerCyclesAppState extends ConsumerState<InnerCyclesApp>
     with WidgetsBindingObserver {
   static const _quickActionChannel =
       MethodChannel('com.venusone.innercycles/quickactions');
+  static const _deepLinkChannel =
+      MethodChannel('com.venusone.innercycles/deeplink');
 
   @override
   void initState() {
@@ -859,6 +861,18 @@ class _InnerCyclesAppState extends ConsumerState<InnerCyclesApp>
         _handleQuickAction(action);
       }
     });
+
+    // Listen for universal link deep links (innercycles.app/invite/:code, /share/:cardId)
+    _deepLinkChannel.setMethodCallHandler((call) async {
+      if (call.method == 'handleDeepLink') {
+        final urlString = call.arguments as String?;
+        if (urlString == null) return;
+        // Delay to ensure router is ready
+        await Future.delayed(const Duration(milliseconds: 500));
+        if (!mounted) return;
+        _handleDeepLink(urlString);
+      }
+    });
   }
 
   void _handleQuickAction(String? action) {
@@ -874,6 +888,40 @@ class _InnerCyclesAppState extends ConsumerState<InnerCyclesApp>
       case 'com.venusone.innercycles.viewstreak':
         GoRouter.of(ctx).push(Routes.streakStats);
         break;
+    }
+  }
+
+  /// Handle universal links from innercycles.app
+  void _handleDeepLink(String urlString) {
+    final ctx = navigatorKey.currentContext;
+    if (ctx == null) return;
+
+    final uri = Uri.tryParse(urlString);
+    if (uri == null) return;
+
+    final path = uri.path;
+
+    // innercycles.app/invite/ABC123 → /referral?code=ABC123
+    if (path.startsWith('/invite/')) {
+      final code = path.replaceFirst('/invite/', '');
+      if (code.isNotEmpty) {
+        GoRouter.of(ctx).push('${Routes.referralProgram}?code=$code');
+        return;
+      }
+    }
+
+    // innercycles.app/share/cardId → /share-cards?cardId=...
+    if (path.startsWith('/share/')) {
+      final cardId = path.replaceFirst('/share/', '');
+      if (cardId.isNotEmpty) {
+        GoRouter.of(ctx).push('${Routes.shareCardGallery}?cardId=$cardId');
+        return;
+      }
+    }
+
+    // Fallback: try to navigate to the path directly
+    if (path.isNotEmpty && path != '/') {
+      GoRouter.of(ctx).push(path);
     }
   }
 

@@ -216,6 +216,22 @@ class GuidedProgramService {
     return _activePrograms[programId];
   }
 
+  /// Get the first non-completed active progress (for home feed card)
+  ProgramProgress? getActiveProgress() {
+    for (final p in _activePrograms.values) {
+      if (!p.isCompleted) return p;
+    }
+    return null;
+  }
+
+  /// Look up a program by id from the catalog
+  GuidedProgram? getProgram(String programId) {
+    for (final p in allPrograms) {
+      if (p.id == programId) return p;
+    }
+    return null;
+  }
+
   /// Check if a program has been completed
   bool isProgramCompleted(String programId) {
     return _completedProgramIds.contains(programId);
