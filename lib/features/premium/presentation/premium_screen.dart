@@ -513,32 +513,48 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
     final language = ref.watch(languageProvider);
     final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final starColor = AppColors.starGold;
+    final mutedStar = isDark
+        ? AppColors.textMuted.withValues(alpha: 0.3)
+        : AppColors.lightTextMuted.withValues(alpha: 0.3);
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
       children: [
-        Icon(
-          Icons.auto_awesome_rounded,
-          size: 16,
-          color: isDark
-              ? AppColors.textSecondary
-              : AppColors.lightTextSecondary,
-        ),
-        const SizedBox(width: 6),
-        Flexible(
-          child: Text(
-            isEn
-                ? 'Your private journaling companion'
-                : 'Kişisel günlük arkadaşın',
-            style: AppTypography.elegantAccent(
-              fontSize: 14,
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
+        // Star rating row
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            for (int i = 0; i < 5; i++)
+              Icon(
+                i < 4 ? Icons.star_rounded : Icons.star_half_rounded,
+                size: 20,
+                color: i < 5 ? starColor : mutedStar,
+              ),
+            const SizedBox(width: 6),
+            Text(
+              '4.8',
+              style: AppTypography.displayFont.copyWith(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color: starColor,
+              ),
             ),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
+          ],
+        ),
+        const SizedBox(height: 4),
+        Text(
+          isEn
+              ? 'Trusted by thousands of journalers worldwide'
+              : 'Dünya genelinde binlerce günlükçünün tercihi',
+          style: AppTypography.elegantAccent(
+            fontSize: 13,
+            color: isDark
+                ? AppColors.textSecondary
+                : AppColors.lightTextSecondary,
           ),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
         ),
       ],
     ).animate().fadeIn(duration: 400.ms, delay: 300.ms);

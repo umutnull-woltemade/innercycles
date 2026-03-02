@@ -35,6 +35,8 @@ import 'widgets/on_this_day_banner.dart';
 import 'widgets/promotional_banner_stack.dart';
 import 'widgets/weekly_focus_progress.dart';
 import 'widgets/social_proof_strip.dart';
+import 'widgets/draft_continuation_banner.dart';
+import 'widgets/quick_mood_checkin.dart';
 import '../../../data/services/l10n_service.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
@@ -405,6 +407,11 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: HeroJournalCard(isEn: isEn, isDark: isDark),
                   ),
 
+                  // 2b. Draft Continuation Banner (conditional)
+                  SliverToBoxAdapter(
+                    child: DraftContinuationBanner(isEn: isEn, isDark: isDark),
+                  ),
+
                   const SliverToBoxAdapter(child: SizedBox(height: 12)),
 
                   // 3. Mood + Stats Strip
@@ -413,6 +420,11 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                       isEn: isEn,
                       isDark: isDark,
                     ).glassEntrance(context: context, delay: 180.ms),
+                  ),
+
+                  // 3b. Quick Mood Check-in (shows only if no mood today)
+                  SliverToBoxAdapter(
+                    child: QuickMoodCheckin(isEn: isEn, isDark: isDark),
                   ),
 
                   // Zone 1→2 primary divider

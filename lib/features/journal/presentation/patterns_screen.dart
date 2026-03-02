@@ -314,6 +314,16 @@ class PatternsScreen extends ConsumerWidget {
         ReviewTrigger.patternDiscovered,
         journalEntryCount: engine.entryCount,
       );
+
+      // Show contextual paywall for non-premium users viewing patterns
+      if (!ref.read(isPremiumUserProvider) && context.mounted) {
+        showContextualPaywall(
+          context,
+          ref,
+          paywallContext: PaywallContext.patterns,
+          entryCount: engine.entryCount,
+        );
+      }
     });
 
     final thisWeek = engine.getWeeklyAverages();

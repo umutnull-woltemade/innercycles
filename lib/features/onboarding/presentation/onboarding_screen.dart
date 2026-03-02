@@ -1344,7 +1344,36 @@ class _PaywallPage extends StatelessWidget {
               ).animate(delay: (100 + i * 80).ms).fadeIn(duration: 300.ms).slideX(begin: 0.1, end: 0);
             }),
 
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
+
+            // Social proof
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.verified_rounded,
+                  size: 14,
+                  color: AppColors.starGold.withValues(alpha: 0.6),
+                ),
+                const SizedBox(width: 6),
+                Flexible(
+                  child: Text(
+                    isEn
+                        ? 'Trusted by thousands of journalers'
+                        : 'Binlerce günlükçünün güvendiği uygulama',
+                    style: AppTypography.subtitle(
+                      fontSize: 12,
+                      color: isDark
+                          ? AppColors.textMuted.withValues(alpha: 0.7)
+                          : AppColors.lightTextMuted.withValues(alpha: 0.7),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ).animate(delay: 500.ms).fadeIn(duration: 400.ms),
+
+            const SizedBox(height: 20),
 
             // CTA — navigate to premium screen
             GradientButton.gold(
@@ -2044,6 +2073,35 @@ class _WelcomePage extends StatelessWidget {
           ).glassEntrance(
             context: context,
             delay: const Duration(milliseconds: 800),
+          ),
+
+          const SizedBox(height: 12),
+
+          // Social proof
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.people_rounded,
+                size: 14,
+                color: AppColors.starGold.withValues(alpha: 0.6),
+              ),
+              const SizedBox(width: 6),
+              Flexible(
+                child: Text(
+                  isEn
+                      ? 'Join thousands discovering their inner patterns'
+                      : 'İç örüntülerini keşfeden binlerce kişiye katıl',
+                  style: AppTypography.elegantAccent(
+                    fontSize: 12,
+                    color: AppColors.textMuted.withValues(alpha: 0.7),
+                  ),
+                ),
+              ),
+            ],
+          ).glassEntrance(
+            context: context,
+            delay: const Duration(milliseconds: 900),
           ),
 
           // KVKK data consent notice (Turkish users only)

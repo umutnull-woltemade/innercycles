@@ -56,57 +56,58 @@ class WhatsNewModal {
   /// Feature list for the current release
   static const List<_FeatureItem> _features = [
     _FeatureItem(
-      emoji: '\u{1F30A}', // wave
-      titleEn: 'Emotional Cycle Detection',
-      titleTr: 'Duygusal D\u00f6ng\u00fc Tespiti',
+      emoji: '\u{1F512}', // lock
+      titleEn: 'Private Vault',
+      titleTr: 'Gizli Kasa',
       descEn:
-          'Discover recurring emotional patterns across your journal entries.',
+          'Protect your most personal entries with PIN and biometric lock.',
       descTr:
-          'G\u00fcnl\u00fck kay\u0131tlar\u0131n\u0131zda tekrarlayan duygusal kal\u0131plar\u0131 ke\u015ffedin.',
+          'En \u00f6zel giri\u015flerini PIN ve biyometrik kilitle koru.',
     ),
     _FeatureItem(
-      emoji: '\u{1F4AD}', // thought bubble
-      titleEn: 'Dream Symbol Tracking',
-      titleTr: 'R\u00fcya Sembol\u00fc Takibi',
-      descEn: 'Log dream symbols and see how they connect to your daily mood.',
+      emoji: '\u{1F382}', // birthday cake
+      titleEn: 'Birthday Agenda',
+      titleTr: 'Do\u011fum G\u00fcn\u00fc Ajandas\u0131',
+      descEn:
+          'Never miss a birthday. Import from contacts or add manually.',
       descTr:
-          'R\u00fcya sembollerini kaydedin ve g\u00fcnl\u00fck ruh halinizle ba\u011flant\u0131lar\u0131n\u0131 g\u00f6r\u00fcn.',
+          'Hi\u00e7bir do\u011fum g\u00fcn\u00fcn\u00fc ka\u00e7\u0131rma. Rehberden aktar veya elle ekle.',
     ),
     _FeatureItem(
-      emoji: '\u{1F4CA}', // bar chart
-      titleEn: 'Weekly Digest Reports',
-      titleTr: 'Haftal\u0131k \u00d6zet Raporlar\u0131',
+      emoji: '\u{1F3A8}', // palette
+      titleEn: 'Share Cards',
+      titleTr: 'Payla\u015f\u0131m Kartlar\u0131',
       descEn:
-          'Get a concise weekly summary of your emotional trends and insights.',
+          'Beautiful shareable cards for your mood trends, streaks, and milestones.',
       descTr:
-          'Duygusal e\u011filimlerinizin ve i\u00e7g\u00f6r\u00fclerinizin k\u0131sa haftal\u0131k \u00f6zetini al\u0131n.',
+          'Ruh hali e\u011filimlerin, serilerin ve kilometre ta\u015flar\u0131n i\u00e7in g\u00f6rsel kartlar.',
     ),
     _FeatureItem(
-      emoji: '\u{1F91D}', // handshake
-      titleEn: 'Partner Sync',
-      titleTr: 'Partner Senkronizasyonu',
+      emoji: '\u{1F331}', // seedling
+      titleEn: 'Gratitude & Sleep Tracking',
+      titleTr: '\u015e\u00fck\u00fcr ve Uyku Takibi',
       descEn:
-          'Share cycle insights with a partner for deeper mutual understanding.',
+          'Log gratitude moments and sleep quality alongside your journal.',
       descTr:
-          'Daha derin kar\u015f\u0131l\u0131kl\u0131 anlay\u0131\u015f i\u00e7in d\u00f6ng\u00fc bilgilerinizi partnerinizle payla\u015f\u0131n.',
+          'G\u00fcnl\u00fc\u011f\u00fcnle birlikte \u015f\u00fck\u00fcr anlar\u0131n\u0131 ve uyku kaliteni kaydet.',
     ),
     _FeatureItem(
-      emoji: '\u{1F3C6}', // trophy
-      titleEn: 'Milestones & Achievements',
-      titleTr: 'Kilometre Ta\u015flar\u0131 ve Ba\u015far\u0131lar',
+      emoji: '\u{1F3AF}', // dart
+      titleEn: 'Daily Focus Widget',
+      titleTr: 'G\u00fcnl\u00fck Odak Widget\u0131',
       descEn:
-          'Celebrate journaling streaks, insights unlocked, and personal growth.',
+          'See your daily focus and emotional rhythm right on your home screen.',
       descTr:
-          'G\u00fcnl\u00fck serilerinizi, a\u00e7\u0131lan i\u00e7g\u00f6r\u00fclerinizi ve ki\u015fisel geli\u015fiminizi kutlay\u0131n.',
+          'G\u00fcnl\u00fck oda\u011f\u0131n\u0131 ve duygusal ritmini ana ekran\u0131nda g\u00f6r.',
     ),
     _FeatureItem(
-      emoji: '\u{270D}\u{FE0F}', // writing hand
-      titleEn: 'Daily Journaling Prompts',
-      titleTr: 'G\u00fcnl\u00fck Yazma \u0130pu\u00e7lar\u0131',
+      emoji: '\u{1F381}', // gift
+      titleEn: 'Invite Friends, Earn Premium',
+      titleTr: 'Arkada\u015flar\u0131n\u0131 Davet Et, Premium Kazan',
       descEn:
-          'Thoughtful prompts tailored to your emotional patterns each day.',
+          'Share your referral code and both you and your friend get free Premium.',
       descTr:
-          'Her g\u00fcn duygusal kal\u0131plar\u0131n\u0131za \u00f6zel d\u00fc\u015f\u00fcnd\u00fcr\u00fcc\u00fc sorular.',
+          'Davet kodunu payla\u015f, hem sen hem arkada\u015f\u0131n \u00fccretsiz Premium kazan\u0131n.',
     ),
   ];
 

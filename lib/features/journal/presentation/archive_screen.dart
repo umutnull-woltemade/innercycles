@@ -14,6 +14,8 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/journal_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
+import '../../../data/services/premium_service.dart';
+import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
@@ -190,7 +192,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                             onCtaPressed: () => context.go(Routes.journal),
                           ),
                         )
-                      else
+                      else ...[
                         SliverPadding(
                           padding: const EdgeInsets.all(AppConstants.spacingLg),
                           sliver: SliverList(
@@ -198,6 +200,15 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                               context,
                               index,
                             ) {
+                              final isPremium = ref.watch(isPremiumUserProvider);
+                              const freeLimit = 10;
+                              // Gate: free users see only last 10 entries
+                              if (!isPremium && index >= freeLimit) {
+                                if (index == freeLimit) {
+                                  return _buildPremiumArchiveGate(isDark, isEn);
+                                }
+                                return const SizedBox.shrink();
+                              }
                               final entry = entries[index];
                               return Dismissible(
                                 key: ValueKey(entry.id),
@@ -248,9 +259,17 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                                 ),
                                 duration: 300.ms,
                               );
-                            }, childCount: entries.length),
+                            }, childCount: () {
+                              final isPremium = ref.watch(isPremiumUserProvider);
+                              const freeLimit = 10;
+                              if (!isPremium && entries.length > freeLimit) {
+                                return freeLimit + 1; // +1 for gate widget
+                              }
+                              return entries.length;
+                            }()),
                           ),
                         ),
+                      ],
                       const SliverToBoxAdapter(child: SizedBox(height: 40)),
                     ],
                   ),
@@ -259,6 +278,97 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
               },
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPremiumArchiveGate(bool isDark, bool isEn) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppColors.starGold.withValues(alpha: isDark ? 0.08 : 0.05),
+              AppColors.celestialGold.withValues(alpha: isDark ? 0.04 : 0.03),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: AppColors.starGold.withValues(alpha: 0.15),
+          ),
+        ),
+        child: Column(
+          children: [
+            Icon(
+              Icons.lock_rounded,
+              size: 28,
+              color: AppColors.starGold,
+            ),
+            const SizedBox(height: 10),
+            Text(
+              isEn
+                  ? 'Unlock Your Full Archive'
+                  : 'Tüm Arşivini Aç',
+              style: AppTypography.displayFont.copyWith(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 4),
+            Text(
+              isEn
+                  ? 'Premium members can browse all entries and discover deeper patterns'
+                  : 'Premium üyeler tüm girişlere göz atabilir ve daha derin örüntüler keşfedebilir',
+              style: AppTypography.subtitle(
+                fontSize: 13,
+                color: isDark
+                    ? AppColors.textMuted
+                    : AppColors.lightTextMuted,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 14),
+            SizedBox(
+              width: double.infinity,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: AppColors.primaryGradient,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: TextButton(
+                  onPressed: () {
+                    showContextualPaywall(
+                      context,
+                      ref,
+                      paywallContext: PaywallContext.general,
+                      bypassTimingGate: true,
+                    );
+                  },
+                  style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: Text(
+                    isEn ? 'See Premium Plans' : 'Premium Planları Gör',
+                    style: AppTypography.subtitle(
+                      fontSize: 14,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -36,8 +36,11 @@ class PromotionalBannerStack extends ConsumerStatefulWidget {
 class _PromotionalBannerStackState
     extends ConsumerState<PromotionalBannerStack> {
   static const _dismissKey = 'invite_card_dismissed_at';
+  static const _widgetDismissKey = 'widget_promo_dismissed_at';
   static const _cooldownDays = 14;
+  static const _widgetCooldownDays = 30;
   bool _inviteDismissed = false;
+  bool _widgetDismissed = false;
 
   bool get isEn => widget.isEn;
   bool get isDark => widget.isDark;
@@ -90,7 +93,11 @@ class _PromotionalBannerStackState
     final seasonalWidget = _buildSeasonalHook();
     if (seasonalWidget != null) banners.add(seasonalWidget);
 
-    // 7. Invite Friends (referral-powered)
+    // 7. Widget Promotion (add to home screen)
+    final widgetPromoWidget = _buildWidgetPromo();
+    if (widgetPromoWidget != null) banners.add(widgetPromoWidget);
+
+    // 8. Invite Friends (referral-powered)
     final inviteWidget = _buildInviteFriends();
     if (inviteWidget != null) banners.add(inviteWidget);
 
@@ -706,6 +713,111 @@ class _PromotionalBannerStackState
         ),
       ),
     );
+  }
+
+  // ── WIDGET PROMOTION ──
+  Widget? _buildWidgetPromo() {
+    if (_widgetDismissed) return null;
+
+    final journalAsync = ref.watch(journalServiceProvider);
+    final entryCount =
+        journalAsync.whenOrNull(data: (s) => s.getAllEntries().length) ?? 0;
+
+    // Show after 5 entries so users have widget data
+    if (entryCount < 5) return null;
+
+    return FutureBuilder<bool>(
+      future: _widgetRecentlyDismissed(),
+      builder: (context, snap) {
+        if (snap.data == true) return const SizedBox.shrink();
+
+        return Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: isDark
+                ? AppColors.amethyst.withValues(alpha: 0.08)
+                : AppColors.amethyst.withValues(alpha: 0.05),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.amethyst.withValues(alpha: 0.12),
+                ),
+                child: const Icon(
+                  Icons.widgets_rounded,
+                  size: 22,
+                  color: AppColors.amethyst,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      isEn
+                          ? 'Add InnerCycles to Your Home Screen'
+                          : 'Ana Ekranına InnerCycles Ekle',
+                      style: AppTypography.displayFont.copyWith(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      isEn
+                          ? 'See your mood & focus at a glance with widgets'
+                          : 'Widget\'larla ruh halini ve odağını bir bakışta gör',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 13,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              GestureDetector(
+                onTap: _dismissWidgetPromo,
+                child: Icon(
+                  Icons.close_rounded,
+                  size: 18,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Future<bool> _widgetRecentlyDismissed() async {
+    final prefs = await SharedPreferences.getInstance();
+    final dismissedAt = prefs.getInt(_widgetDismissKey);
+    if (dismissedAt == null) return false;
+    final diff = DateTime.now()
+        .difference(DateTime.fromMillisecondsSinceEpoch(dismissedAt))
+        .inDays;
+    return diff < _widgetCooldownDays;
+  }
+
+  Future<void> _dismissWidgetPromo() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(
+        _widgetDismissKey, DateTime.now().millisecondsSinceEpoch);
+    if (mounted) setState(() => _widgetDismissed = true);
   }
 
   // ── INVITE FRIENDS ──
