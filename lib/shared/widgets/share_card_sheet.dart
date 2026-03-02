@@ -20,10 +20,12 @@ import '../../data/content/share_card_templates.dart';
 import '../../data/services/instagram_share_service.dart';
 import '../../data/services/review_service.dart';
 import '../../core/constants/app_constants.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/providers/app_providers.dart';
 import '../../data/services/l10n_service.dart';
+import '../../data/services/premium_service.dart';
 
-class ShareCardSheet extends StatefulWidget {
+class ShareCardSheet extends ConsumerStatefulWidget {
   final ShareCardTemplate template;
   final ShareCardData data;
   final AppLanguage language;
@@ -51,10 +53,10 @@ class ShareCardSheet extends StatefulWidget {
   }
 
   @override
-  State<ShareCardSheet> createState() => _ShareCardSheetState();
+  ConsumerState<ShareCardSheet> createState() => _ShareCardSheetState();
 }
 
-class _ShareCardSheetState extends State<ShareCardSheet> {
+class _ShareCardSheetState extends ConsumerState<ShareCardSheet> {
   final _boundaryKey = GlobalKey();
   bool _isSharing = false;
   String? _aiCaption;
@@ -258,26 +260,63 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
                           ),
                         ],
                         const SizedBox(height: 20),
-                        // Watermark
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.auto_awesome,
-                              size: 14,
-                              color: Colors.white.withValues(alpha: 0.4),
-                            ),
-                            const SizedBox(width: 6),
-                            Text(
-                              'InnerCycles',
-                              style: AppTypography.elegantAccent(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white.withValues(alpha: 0.4),
-                                letterSpacing: 1.5,
+                        // Watermark — prominent for free, subtle for premium
+                        Builder(builder: (_) {
+                          final isPremium = ref.watch(isPremiumUserProvider);
+                          if (isPremium) {
+                            // Premium: minimal watermark
+                            return Row(
+                              children: [
+                                Icon(
+                                  Icons.auto_awesome,
+                                  size: 12,
+                                  color: Colors.white.withValues(alpha: 0.25),
+                                ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  'InnerCycles',
+                                  style: AppTypography.elegantAccent(
+                                    fontSize: 10,
+                                    color: Colors.white.withValues(alpha: 0.25),
+                                    letterSpacing: 1.0,
+                                  ),
+                                ),
+                              ],
+                            );
+                          }
+                          // Free: prominent viral watermark with URL
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.auto_awesome,
+                                    size: 14,
+                                    color: Colors.white.withValues(alpha: 0.5),
+                                  ),
+                                  const SizedBox(width: 6),
+                                  Text(
+                                    'InnerCycles',
+                                    style: AppTypography.elegantAccent(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white.withValues(alpha: 0.5),
+                                      letterSpacing: 1.5,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
-                        ),
+                              Text(
+                                'innercycles.app',
+                                style: AppTypography.subtitle(
+                                  fontSize: 10,
+                                  color: Colors.white.withValues(alpha: 0.4),
+                                ),
+                              ),
+                            ],
+                          );
+                        }),
                       ],
                     ),
                   ),
