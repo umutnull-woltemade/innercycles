@@ -12,8 +12,15 @@ import '../../../core/theme/app_typography.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/models/timeline_event.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/dream_journal_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+
+/// Derived provider: fetches all dream entries for the timeline
+final _dreamEntriesProvider = FutureProvider<List<DreamEntry>>((ref) async {
+  final service = await ref.watch(dreamJournalServiceProvider.future);
+  return service.getAllDreams();
+});
 
 class EmotionalTimelineScreen extends ConsumerWidget {
   const EmotionalTimelineScreen({super.key});
@@ -75,8 +82,24 @@ class EmotionalTimelineScreen extends ConsumerWidget {
       }
     }
 
-    // Dream entries — skipped here (async API, needs dedicated provider)
-    // TODO: Add dream timeline events via a separate FutureProvider
+    // Dream entries
+    final dreams = ref.watch(_dreamEntriesProvider).valueOrNull;
+    if (dreams != null) {
+      for (final dream in dreams) {
+        final subtitle = dream.content.length > 60
+            ? '${dream.content.substring(0, 60)}...'
+            : dream.content;
+        events.add(TimelineEvent(
+          id: dream.id,
+          date: dream.dreamDate,
+          type: TimelineEventType.dream,
+          title: dream.title,
+          subtitle: subtitle,
+          color: AppColors.amethyst,
+          icon: Icons.nightlight_round,
+        ));
+      }
+    }
 
     events.sort((a, b) => b.date.compareTo(a.date));
     return events;

@@ -15,6 +15,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/ambient_audio_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -41,6 +42,11 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
   Timer? _timer;
   late AnimationController _pulseController;
 
+  // Ambient audio
+  AmbientSound _ambientSound = AmbientSound.none;
+  double _ambientVolume = 0.3;
+  final _audioService = AmbientAudioService.instance;
+
   static const _presets = [5, 10, 15, 20];
 
   @override
@@ -64,6 +70,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
   void dispose() {
     _timer?.cancel();
     _pulseController.dispose();
+    _audioService.stop();
     super.dispose();
   }
 
@@ -73,6 +80,9 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
     _isRunning = true;
     _pulseController.repeat(reverse: true);
     HapticFeedback.mediumImpact();
+    if (_ambientSound != AmbientSound.none) {
+      _audioService.play(_ambientSound);
+    }
 
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (!mounted) {
@@ -115,6 +125,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
     _timer?.cancel();
     _pulseController.stop();
     _pulseController.reset();
+    _audioService.stop();
     setState(() {
       _isRunning = false;
       _remainingSeconds = 0;
@@ -125,6 +136,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
   void _complete() {
     _timer?.cancel();
     _pulseController.stop();
+    _audioService.stop();
     HapticFeedback.heavyImpact();
     if (!mounted) return;
     setState(() {
@@ -255,6 +267,35 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                 ),
                               );
                             }).toList(),
+                          ),
+                        ],
+
+                        // Ambient sound selector
+                        if (!hasStarted) ...[
+                          const SizedBox(height: 20),
+                          _AmbientSoundRow(
+                            current: _ambientSound,
+                            volume: _ambientVolume,
+                            isEn: isEn,
+                            isDark: isDark,
+                            onChanged: (s) {
+                              setState(() => _ambientSound = s);
+                              if (s != AmbientSound.none) {
+                                _audioService.play(s);
+                                Future.delayed(
+                                  const Duration(seconds: 3),
+                                  () {
+                                    if (!_isRunning) _audioService.stop();
+                                  },
+                                );
+                              } else {
+                                _audioService.stop();
+                              }
+                            },
+                            onVolumeChanged: (v) {
+                              setState(() => _ambientVolume = v);
+                              _audioService.setVolume(v);
+                            },
                           ),
                         ],
 
@@ -453,6 +494,157 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
           ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.02, duration: 400.ms),
         ),
       ),
+    );
+  }
+}
+
+class _AmbientSoundRow extends StatelessWidget {
+  final AmbientSound current;
+  final double volume;
+  final bool isEn;
+  final bool isDark;
+  final ValueChanged<AmbientSound> onChanged;
+  final ValueChanged<double> onVolumeChanged;
+
+  const _AmbientSoundRow({
+    required this.current,
+    required this.volume,
+    required this.isEn,
+    required this.isDark,
+    required this.onChanged,
+    required this.onVolumeChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final language = AppLanguage.fromIsEn(isEn);
+    return Column(
+      children: [
+        Text(
+          isEn ? 'Ambient Sound' : 'Ortam Sesi',
+          style: AppTypography.elegantAccent(
+            fontSize: 12,
+            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Wrap(
+          alignment: WrapAlignment.center,
+          spacing: 0,
+          runSpacing: 8,
+          children: AmbientSound.values.map((sound) {
+            final isSelected = sound == current;
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 3),
+              child: GestureDetector(
+                onTap: () => onChanged(sound),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    color: isSelected
+                        ? AppColors.cosmicPurple.withValues(alpha: 0.2)
+                        : (isDark
+                              ? AppColors.surfaceDark
+                              : AppColors.lightSurfaceVariant),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: isSelected
+                          ? AppColors.cosmicPurple.withValues(alpha: 0.5)
+                          : Colors.transparent,
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        sound.icon,
+                        size: 14,
+                        color: isSelected
+                            ? AppColors.cosmicPurple
+                            : (isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted),
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        sound.localizedName(language),
+                        style: AppTypography.elegantAccent(
+                          fontSize: 11,
+                          fontWeight:
+                              isSelected ? FontWeight.w700 : FontWeight.w500,
+                          color: isSelected
+                              ? AppColors.cosmicPurple
+                              : (isDark
+                                    ? AppColors.textSecondary
+                                    : AppColors.lightTextSecondary),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }).toList(),
+        ),
+        if (current != AmbientSound.none) ...[
+          const SizedBox(height: 8),
+          SizedBox(
+            width: 200,
+            child: Row(
+              children: [
+                Icon(
+                  Icons.volume_down_rounded,
+                  size: 16,
+                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                ),
+                Expanded(
+                  child: SliderTheme(
+                    data: SliderThemeData(
+                      trackHeight: 2,
+                      thumbShape: const RoundSliderThumbShape(
+                        enabledThumbRadius: 6,
+                      ),
+                      activeTrackColor: AppColors.cosmicPurple,
+                      inactiveTrackColor: isDark
+                          ? Colors.white.withValues(alpha: 0.1)
+                          : Colors.black.withValues(alpha: 0.08),
+                      thumbColor: AppColors.cosmicPurple,
+                      overlayColor:
+                          AppColors.cosmicPurple.withValues(alpha: 0.1),
+                    ),
+                    child: Slider(
+                      value: volume,
+                      min: 0.05,
+                      max: 1.0,
+                      onChanged: onVolumeChanged,
+                    ),
+                  ),
+                ),
+                Icon(
+                  Icons.volume_up_rounded,
+                  size: 16,
+                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                ),
+              ],
+            ),
+          ),
+          if (current == AmbientSound.binauralCalm)
+            Padding(
+              padding: const EdgeInsets.only(top: 2),
+              child: Text(
+                isEn ? 'Use headphones' : 'Kulaklık kullanın',
+                style: AppTypography.subtitle(
+                  fontSize: 10,
+                  color: AppColors.cosmicPurple.withValues(alpha: 0.7),
+                ),
+              ),
+            ),
+        ],
+      ],
     );
   }
 }
