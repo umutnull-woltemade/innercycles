@@ -66,8 +66,10 @@ class _InnerDialogueScreenState extends ConsumerState<InnerDialogueScreen> {
         _rightController.text.trim().isEmpty) return;
 
     final service = await ref.read(innerDialogueServiceProvider.future);
+    if (!mounted) return;
     final dialogue = (_existing ?? InnerDialogue(perspective: _perspective))
         .copyWith(
+      perspective: _perspective,
       leftText: _leftController.text.trim(),
       rightText: _rightController.text.trim(),
       topic: _topicController.text.trim().isEmpty

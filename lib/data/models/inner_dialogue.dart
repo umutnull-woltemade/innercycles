@@ -94,17 +94,20 @@ class InnerDialogue {
   })  : id = id ?? const Uuid().v4(),
         createdAt = createdAt ?? DateTime.now();
 
+  static const _sentinel = Object();
+
   InnerDialogue copyWith({
+    DialoguePerspective? perspective,
     String? leftText,
     String? rightText,
-    String? topic,
+    Object? topic = _sentinel,
   }) {
     return InnerDialogue(
       id: id,
-      perspective: perspective,
+      perspective: perspective ?? this.perspective,
       leftText: leftText ?? this.leftText,
       rightText: rightText ?? this.rightText,
-      topic: topic ?? this.topic,
+      topic: topic == _sentinel ? this.topic : topic as String?,
       createdAt: createdAt,
     );
   }

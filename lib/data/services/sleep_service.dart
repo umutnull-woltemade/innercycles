@@ -31,7 +31,7 @@ class SleepEntry {
 
   factory SleepEntry.fromJson(Map<String, dynamic> json) => SleepEntry(
     dateKey: json['dateKey'] as String? ?? '',
-    quality: json['quality'] as int? ?? 3,
+    quality: (json['quality'] as int? ?? 3).clamp(1, 5),
     note: json['note'] as String?,
     createdAt:
         DateTime.tryParse(json['createdAt']?.toString() ?? '') ??

@@ -31,18 +31,20 @@ class _ValuesCompassScreenState extends ConsumerState<ValuesCompassScreen> {
     final isEn = ref.watch(languageProvider) == AppLanguage.en;
     final serviceAsync = ref.watch(valuesServiceProvider);
 
-    return CosmicBackground(
-      child: serviceAsync.maybeWhen(
-        data: (service) {
-          final hasValues = service.hasCompleted;
-          final topValues = service.getTopValues();
+    return Scaffold(
+      body: CosmicBackground(
+        child: serviceAsync.maybeWhen(
+          data: (service) {
+            final hasValues = service.hasCompleted;
+            final topValues = service.getTopValues();
 
-          if (hasValues && !_isSelecting) {
-            return _buildCompassView(topValues, isDark, isEn, service);
-          }
-          return _buildSelectionView(isDark, isEn, service);
-        },
-        orElse: () => const Center(child: CircularProgressIndicator()),
+            if (hasValues && !_isSelecting) {
+              return _buildCompassView(topValues, isDark, isEn, service);
+            }
+            return _buildSelectionView(isDark, isEn, service);
+          },
+          orElse: () => const Center(child: CircularProgressIndicator()),
+        ),
       ),
     );
   }
