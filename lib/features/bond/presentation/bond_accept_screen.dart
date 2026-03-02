@@ -470,7 +470,7 @@ class _CodeInputField extends StatelessWidget {
       width: 46,
       height: 58,
       child: KeyboardListener(
-        focusNode: FocusNode(),
+        focusNode: focusNode,
         onKeyEvent: (event) {
           if (event is KeyDownEvent &&
               event.logicalKey == LogicalKeyboardKey.backspace) {
