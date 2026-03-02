@@ -156,7 +156,7 @@ class MoodStatsStrip extends ConsumerWidget {
                 children: [
                   for (int i = 0; i < weekMoods.length; i++) ...[
                     if (i > 0) const SizedBox(width: 6),
-                    if (weekMoods[i] != null && weekMoods[i]!.hasSignal)
+                    if (weekMoods[i] != null && weekMoods[i]!.hasSignal && weekMoods[i]!.signalId != null)
                       // Signal entry: colored dot
                       Container(
                         width: 14,

@@ -141,6 +141,10 @@ import '../../features/dreams/presentation/dream_memory_analytics_screen.dart';
 import '../../features/journal/presentation/cross_correlation_screen.dart';
 import '../../features/journal/presentation/anomaly_detection_screen.dart';
 import '../../features/profile/presentation/journey_analytics_screen.dart';
+import '../../features/mood/presentation/mood_archive_screen.dart';
+import '../../features/archetype/presentation/archetype_growth_screen.dart';
+import '../../features/energy/presentation/energy_map_explorer_screen.dart';
+import '../../features/bond/presentation/bond_touch_timeline_screen.dart';
 import '../../features/tools/presentation/tool_catalog_screen.dart';
 import '../../features/wellness/presentation/wellness_detail_screen.dart';
 import '../../shared/widgets/main_shell_screen.dart';
@@ -896,6 +900,37 @@ final routerProvider = Provider<GoRouter>((ref) {
           child: const JourneyAnalyticsScreen(),
           key: state.pageKey,
         ),
+      ),
+      GoRoute(
+        path: Routes.moodArchive,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const MoodArchiveScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.archetypeGrowth,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const ArchetypeGrowthScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.energyMapExplorer,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const EnergyMapExplorerScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.bondTouchTimeline,
+        pageBuilder: (context, state) {
+          final bondId = state.pathParameters['bondId'] ?? '';
+          return PageTransitions.fadeSlide(
+            child: BondTouchTimelineScreen(bondId: bondId),
+            key: state.pageKey,
+          );
+        },
       ),
       GoRoute(
         path: Routes.weeklyDigest,

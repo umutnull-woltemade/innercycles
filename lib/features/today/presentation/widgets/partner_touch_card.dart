@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -31,11 +32,8 @@ class PartnerTouchCard extends ConsumerWidget {
       data: (bonds) {
         if (bonds.isEmpty) return const SizedBox.shrink();
         final bond = bonds.first;
-        final partnerName = bond.partnerDisplayName(
-              ref.read(bondServiceProvider).valueOrNull?.cachedBonds.isNotEmpty == true
-                  ? bonds.first.userA
-                  : '',
-            ) ??
+        final currentUserId = Supabase.instance.client.auth.currentUser?.id ?? '';
+        final partnerName = bond.partnerDisplayName(currentUserId) ??
             (isEn ? 'Your partner' : 'Partnerin');
 
         return Padding(

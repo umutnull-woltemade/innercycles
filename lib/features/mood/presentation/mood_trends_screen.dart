@@ -570,7 +570,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                         : (isEn
                               ? '${dayLabels[dayIndex]}: no entry'
                               : '${dayLabels[dayIndex]}: kayıt yok'),
-                    child: mood != null && mood.hasSignal
+                    child: mood != null && mood.hasSignal && mood.signalId != null
                         ? SizedBox(
                             width: 36,
                             height: 36,
@@ -899,7 +899,7 @@ class MoodTrendsScreen extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: Row(
                 children: [
-                  entry.hasSignal
+                  (entry.hasSignal && entry.signalId != null)
                       ? SignalOrb.inline(
                           signalId: entry.signalId,
                           animate: false,

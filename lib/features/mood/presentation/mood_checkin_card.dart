@@ -309,7 +309,7 @@ class _LoggedView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  if (entry != null && entry.hasSignal)
+                  if (entry != null && entry.hasSignal && entry.signalId != null)
                     SignalOrb.inline(signalId: entry.signalId, animate: false)
                   else if (entry != null)
                     AppSymbol.inline(

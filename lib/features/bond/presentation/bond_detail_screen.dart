@@ -386,7 +386,7 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
         BondTouchButton(
           touchType: _selectedTouchType,
           isThrottled: _touchSent,
-          onSend: _touchSent
+          onSend: (_touchSent || partnerId.isEmpty)
               ? null
               : () => _sendTouch(bond.id, partnerId),
         ),

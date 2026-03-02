@@ -137,10 +137,14 @@ class _MoodCompassSheetState extends ConsumerState<MoodCompassSheet> {
               child: GradientButton.gold(
                 label: isEn ? 'Log Signal' : 'Sinyali Kaydet',
                 expanded: true,
-                onPressed: () {
-                  final signal = getSignalById(_selectedId!);
-                  Navigator.of(context).pop(signal);
-                },
+                onPressed: _selectedId == null
+                    ? null
+                    : () {
+                        final signal = getSignalById(_selectedId!);
+                        if (signal != null) {
+                          Navigator.of(context).pop(signal);
+                        }
+                      },
               ),
             ).animate().fadeIn(duration: 300.ms).slideY(begin: 0.2, end: 0),
         ],

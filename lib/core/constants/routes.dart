@@ -177,6 +177,10 @@ class Routes {
   static const String crossCorrelations = '/patterns/correlations';
   static const String anomalyDetection = '/patterns/anomalies';
   static const String journeyAnalytics = '/profile/journey';
+  static const String moodArchive = '/mood/archive';
+  static const String archetypeGrowth = '/archetype/growth';
+  static const String energyMapExplorer = '/energy/explorer';
+  static const String bondTouchTimeline = '/bond/touches/:bondId';
 
   // ════════════════════════════════════════════════════════════════
   // TIER 2 FEATURES

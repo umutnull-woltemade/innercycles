@@ -207,7 +207,7 @@ class _CalendarDay extends StatelessWidget {
     }
 
     // Day with mood entry — colored circle
-    final color = entry!.hasSignal
+    final color = (entry!.hasSignal && entry!.signalId != null)
         ? getSignalColor(entry!.signalId!)
         : _moodColor(entry!.mood);
 
