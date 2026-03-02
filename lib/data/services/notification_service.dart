@@ -57,6 +57,7 @@ class NotificationService {
   static const int streakRecoveryId = 11;
   static const int onThisDayId = 12;
   static const int referralRewardId = 13;
+  static const int monthlyRecapId = 14;
 
   // Preference keys
   static const String _keyDailyEnabled = 'notification_daily_enabled';
@@ -909,6 +910,62 @@ class NotificationService {
         );
       }
     }
+  }
+
+  // ============== Monthly Recap Notifications ==============
+
+  /// Schedule a notification for the 1st of next month at 10 AM
+  /// reminding the user to check their monthly recap.
+  Future<void> scheduleMonthlyRecapNotification({
+    required int lastMonthEntryCount,
+  }) async {
+    _isEn = await _readIsEn();
+
+    final now = DateTime.now();
+    // Schedule for the 1st of next month at 10 AM
+    final nextMonth = now.month == 12
+        ? tz.TZDateTime(tz.local, now.year + 1, 1, 1, 10, 0)
+        : tz.TZDateTime(tz.local, now.year, now.month + 1, 1, 10, 0);
+
+    final title = _isEn
+        ? '\uD83D\uDCCA Your Monthly Recap is Ready'
+        : '\uD83D\uDCCA Aylık Özetin Hazır';
+
+    final body = lastMonthEntryCount > 0
+        ? (_isEn
+            ? 'You wrote $lastMonthEntryCount entries last month. See your patterns and insights.'
+            : 'Geçen ay $lastMonthEntryCount kayıt yazdın. Örüntülerini ve içgörülerini gör.')
+        : (_isEn
+            ? 'Start the new month with a fresh perspective. Check your recap.'
+            : 'Yeni aya taze bir bakış açısıyla başla. Özetine göz at.');
+
+    await _notifications.zonedSchedule(
+      id: monthlyRecapId,
+      title: title,
+      body: body,
+      scheduledDate: nextMonth,
+      notificationDetails: NotificationDetails(
+        android: AndroidNotificationDetails(
+          'monthly_recap',
+          _isEn ? 'Monthly Recap' : 'Aylık Özet',
+          channelDescription: _isEn
+              ? 'Monthly recap notification'
+              : 'Aylık özet bildirimi',
+          importance: Importance.defaultImportance,
+          priority: Priority.defaultPriority,
+          icon: '@mipmap/ic_launcher',
+          color: AppColors.starGold,
+        ),
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+          badgeNumber: 1,
+        ),
+      ),
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      payload: 'monthly_recap',
+    );
   }
 
   /// Cancel birthday notifications for a contact.

@@ -629,6 +629,19 @@ class _DreamInterpretationScreenState
       reviewService.checkAndPromptReview(ReviewTrigger.dreamInterpretation);
     }).catchError((_) {});
 
+    // Show contextual paywall for non-premium users after first interpretation
+    if (!isPremium && mounted) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          showContextualPaywall(
+            context,
+            ref,
+            paywallContext: PaywallContext.dreams,
+          );
+        }
+      });
+    }
+
     _scrollToBottom();
   }
 

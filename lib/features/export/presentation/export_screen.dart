@@ -205,6 +205,27 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                                     exportAsync.valueOrNull?.totalEntries,
                               ),
                       ),
+                      const SizedBox(height: 8),
+
+                      // PDF format option (coming soon, premium)
+                      _FormatOption(
+                        format: ExportFormat.text, // placeholder
+                        title: 'PDF',
+                        subtitle: isEn
+                            ? 'Beautiful styled report · Coming soon'
+                            : 'Tasarımlı rapor · Yakında',
+                        icon: Icons.picture_as_pdf_outlined,
+                        isSelected: false,
+                        isLocked: true,
+                        isDark: isDark,
+                        onTap: () => showContextualPaywall(
+                          context,
+                          ref,
+                          paywallContext: PaywallContext.export,
+                          entryCount:
+                              exportAsync.valueOrNull?.totalEntries,
+                        ),
+                      ),
 
                       const SizedBox(height: 32),
 

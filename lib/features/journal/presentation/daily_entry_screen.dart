@@ -1411,6 +1411,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           context,
           entryCount: entryCount,
           currentStreak: streak,
+          noteLength: _noteController.text.trim().length,
         );
       }
     } catch (e) {

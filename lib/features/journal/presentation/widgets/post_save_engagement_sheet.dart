@@ -21,11 +21,13 @@ import '../../../../data/services/l10n_service.dart';
 class PostSaveEngagementSheet extends ConsumerWidget {
   final int entryCount;
   final int currentStreak;
+  final int noteLength;
 
   const PostSaveEngagementSheet({
     super.key,
     required this.entryCount,
     required this.currentStreak,
+    this.noteLength = 0,
   });
 
   /// Show the engagement sheet as a modal bottom sheet.
@@ -33,6 +35,7 @@ class PostSaveEngagementSheet extends ConsumerWidget {
     BuildContext context, {
     required int entryCount,
     required int currentStreak,
+    int noteLength = 0,
   }) {
     return showModalBottomSheet<void>(
       context: context,
@@ -41,7 +44,31 @@ class PostSaveEngagementSheet extends ConsumerWidget {
       builder: (_) => PostSaveEngagementSheet(
         entryCount: entryCount,
         currentStreak: currentStreak,
+        noteLength: noteLength,
       ),
+    );
+  }
+
+  /// Returns (label, emoji, color) based on note length
+  (String, String, Color) _depthLabel(bool isEn) {
+    if (noteLength >= 200) {
+      return (
+        isEn ? 'Deep Dive' : 'Derin Dalış',
+        '🌊',
+        AppColors.chartBlue,
+      );
+    }
+    if (noteLength >= 50) {
+      return (
+        isEn ? 'Solid Reflection' : 'Sağlam Yansıma',
+        '✨',
+        AppColors.celestialGold,
+      );
+    }
+    return (
+      isEn ? 'Quick Note' : 'Hızlı Not',
+      '⚡',
+      AppColors.starGold,
     );
   }
 
@@ -118,18 +145,50 @@ class PostSaveEngagementSheet extends ConsumerWidget {
                             fontWeight: FontWeight.w700,
                           ),
                         ),
-                        if (currentStreak > 1)
-                          Text(
-                            isEn
-                                ? '$currentStreak day streak'
-                                : '$currentStreak g\u00fcnl\u00fck seri',
-                            style: AppTypography.subtitle(
-                              fontSize: 13,
-                              color: isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted,
-                            ),
-                          ),
+                        Row(
+                          children: [
+                            if (currentStreak > 1)
+                              Text(
+                                isEn
+                                    ? '$currentStreak day streak'
+                                    : '$currentStreak g\u00fcnl\u00fck seri',
+                                style: AppTypography.subtitle(
+                                  fontSize: 13,
+                                  color: isDark
+                                      ? AppColors.textMuted
+                                      : AppColors.lightTextMuted,
+                                ),
+                              ),
+                            if (currentStreak > 1 && noteLength > 0)
+                              Text(
+                                ' · ',
+                                style: AppTypography.subtitle(
+                                  fontSize: 13,
+                                  color: isDark
+                                      ? AppColors.textMuted
+                                      : AppColors.lightTextMuted,
+                                ),
+                              ),
+                            if (noteLength > 0)
+                              Builder(builder: (_) {
+                                final (label, emoji, color) = _depthLabel(isEn);
+                                return Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(emoji, style: const TextStyle(fontSize: 12)),
+                                    const SizedBox(width: 3),
+                                    Text(
+                                      label,
+                                      style: AppTypography.elegantAccent(
+                                        fontSize: 12,
+                                        color: color,
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              }),
+                          ],
+                        ),
                       ],
                     ),
                   ),

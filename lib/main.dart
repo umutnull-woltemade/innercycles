@@ -362,6 +362,14 @@ class _AppInitializerState extends State<AppInitializer>
         if (yearsAgo != null) {
           await notif.scheduleOnThisDayMemory(yearsAgo: yearsAgo);
         }
+
+        // Monthly recap notification (scheduled for 1st of next month)
+        final lastMonthEntries = allEntries
+            .where((e) => e.date.month == now.month && e.date.year == now.year)
+            .length;
+        await notif.scheduleMonthlyRecapNotification(
+          lastMonthEntryCount: lastMonthEntries,
+        );
       } catch (e) {
         if (kDebugMode) {
           debugPrint('⚠️ Streak/OnThisDay notification scheduling failed: $e');

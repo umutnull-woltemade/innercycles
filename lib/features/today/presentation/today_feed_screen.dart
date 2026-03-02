@@ -39,6 +39,8 @@ import 'widgets/draft_continuation_banner.dart';
 import 'widgets/quick_mood_checkin.dart';
 import 'widgets/mood_habit_correlation_card.dart';
 import 'widgets/weekly_reflection_card.dart';
+import 'widgets/focus_area_streak.dart';
+import 'widgets/year_progress_ring.dart';
 import '../../../data/services/l10n_service.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
@@ -429,6 +431,11 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: QuickMoodCheckin(isEn: isEn, isDark: isDark),
                   ),
 
+                  // 3c. Focus Area Streak (2+ consecutive days)
+                  SliverToBoxAdapter(
+                    child: FocusAreaStreak(isEn: isEn, isDark: isDark),
+                  ),
+
                   // Zone 1→2 primary divider
                   SliverToBoxAdapter(
                     child: _goldDivider(isDark, primary: true),
@@ -505,7 +512,12 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
                   const SliverToBoxAdapter(child: SizedBox(height: 8)),
 
-                  // 9b. Weekly Reflection (Fri–Sun only)
+                  // 9b. Year Progress Ring
+                  SliverToBoxAdapter(
+                    child: YearProgressRing(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9c. Weekly Reflection (Fri–Sun only)
                   SliverToBoxAdapter(
                     child: WeeklyReflectionCard(isEn: isEn, isDark: isDark),
                   ),
