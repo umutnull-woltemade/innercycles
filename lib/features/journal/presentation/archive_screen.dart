@@ -25,6 +25,7 @@ import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
 import '../../../shared/widgets/tag_cloud_widget.dart';
+import 'widgets/year_heatmap_calendar.dart';
 import '../../../data/services/l10n_service.dart';
 
 class ArchiveScreen extends ConsumerStatefulWidget {
@@ -41,6 +42,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
   bool _showOnlyFavorites = false;
   String? _selectedTag;
   bool _showTagCloud = false;
+  bool _showCalendarView = false;
   final _searchController = TextEditingController();
   Timer? _searchDebounce;
 
@@ -141,6 +143,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                                 : null;
                 final entries = _cachedEntries.where((e) {
                   if (_showOnlyFavorites && !e.isFavorite) return false;
+                  if (_selectedTag != null && !e.tags.any((t) => t.toLowerCase() == _selectedTag!.toLowerCase())) return false;
                   if (_filterArea != null && e.focusArea != _filterArea) {
                     return false;
                   }
@@ -166,7 +169,22 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                       parent: AlwaysScrollableScrollPhysics(),
                     ),
                     slivers: [
-                      GlassSliverAppBar(title: L10nService.get('journal.archive.archive', language)),
+                      GlassSliverAppBar(
+                        title: L10nService.get('journal.archive.archive', language),
+                        actions: [
+                          GestureDetector(
+                            onTap: () => setState(() => _showCalendarView = !_showCalendarView),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                              child: Icon(
+                                _showCalendarView ? Icons.view_list_rounded : Icons.calendar_view_month_rounded,
+                                size: 22,
+                                color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                       // Search bar
                       SliverToBoxAdapter(
                         child: Padding(
@@ -200,6 +218,36 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                           child: _buildDateRangeChips(isDark, isEn),
                         ),
                       ),
+                      // Tag cloud (toggleable)
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(
+                            AppConstants.spacingLg,
+                            0,
+                            AppConstants.spacingLg,
+                            AppConstants.spacingSm,
+                          ),
+                          child: _buildTagCloudSection(service, isDark, isEn),
+                        ),
+                      ),
+                      // Year heatmap calendar (toggleable)
+                      if (_showCalendarView)
+                        SliverToBoxAdapter(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: AppConstants.spacingLg,
+                              vertical: AppConstants.spacingSm,
+                            ),
+                            child: YearHeatmapCalendar(
+                              entries: _cachedEntries,
+                              isDark: isDark,
+                              isEn: isEn,
+                              onEntryTapped: (entry) => context.push(
+                                Routes.journalEntryDetail.replaceFirst(':id', entry.id),
+                              ),
+                            ),
+                          ),
+                        ),
                       // Entry count
                       SliverToBoxAdapter(
                         child: Padding(
@@ -567,6 +615,69 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
           );
         }).toList(),
       ),
+    );
+  }
+
+  Widget _buildTagCloudSection(JournalService service, bool isDark, bool isEn) {
+    final allTags = service.getAllTags();
+    if (allTags.isEmpty) return const SizedBox.shrink();
+
+    // Build tag counts
+    final tagCounts = <String, int>{};
+    for (final entry in service.getAllEntries()) {
+      for (final tag in entry.tags) {
+        tagCounts[tag] = (tagCounts[tag] ?? 0) + 1;
+      }
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        GestureDetector(
+          onTap: () => setState(() {
+            _showTagCloud = !_showTagCloud;
+            if (!_showTagCloud) _selectedTag = null;
+          }),
+          child: Row(
+            children: [
+              Icon(
+                Icons.tag_rounded,
+                size: 14,
+                color: _selectedTag != null
+                    ? AppColors.starGold
+                    : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+              ),
+              const SizedBox(width: 6),
+              Text(
+                isEn
+                    ? 'Tags${_selectedTag != null ? ': #$_selectedTag' : ''}'
+                    : 'Etiketler${_selectedTag != null ? ': #$_selectedTag' : ''}',
+                style: AppTypography.elegantAccent(
+                  fontSize: 12,
+                  color: _selectedTag != null
+                      ? AppColors.starGold
+                      : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                ),
+              ),
+              const Spacer(),
+              Icon(
+                _showTagCloud ? Icons.expand_less : Icons.expand_more,
+                size: 18,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
+            ],
+          ),
+        ),
+        if (_showTagCloud) ...[
+          const SizedBox(height: 8),
+          TagCloudWidget(
+            tagCounts: tagCounts,
+            selectedTag: _selectedTag,
+            onTagSelected: (tag) => setState(() => _selectedTag = tag),
+            isDark: isDark,
+          ),
+        ],
+      ],
     );
   }
 

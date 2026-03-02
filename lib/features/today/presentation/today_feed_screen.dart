@@ -75,6 +75,7 @@ import 'widgets/gratitude_mood_correlation_card.dart';
 import 'widgets/premium_expiry_banner.dart';
 import 'widgets/sync_status_banner.dart';
 import 'widgets/win_back_offer_banner.dart';
+import 'widgets/partner_touch_card.dart';
 import '../../../data/services/l10n_service.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
@@ -610,6 +611,11 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 7. Today's Birthdays (conditional)
                   SliverToBoxAdapter(
                     child: TodayBirthdayBanner(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 7a. Bond Partner Touch Card (conditional)
+                  const SliverToBoxAdapter(
+                    child: PartnerTouchCard(),
                   ),
 
                   // 7b. Life Event Anniversary (1/2/5/10-year milestones)

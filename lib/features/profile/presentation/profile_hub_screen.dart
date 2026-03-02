@@ -28,6 +28,7 @@ import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tap_scale.dart';
 import 'package:go_router/go_router.dart';
 import '../../../data/services/analytics_service.dart';
+import '../../../data/providers/bond_providers.dart';
 
 class ProfileHubScreen extends ConsumerWidget {
   const ProfileHubScreen({super.key});
@@ -155,6 +156,13 @@ class ProfileHubScreen extends ConsumerWidget {
                       ).glassListItem(context: context, index: 2),
                       const SizedBox(height: AppConstants.spacingXl),
 
+                      // Personal Records
+                      _PersonalRecordsCard(
+                        isDark: isDark,
+                        isEn: isEn,
+                      ),
+                      const SizedBox(height: AppConstants.spacingXl),
+
                       // Archetype mini-card
                       _ArchetypeMiniCard(isDark: isDark, isEn: isEn),
 
@@ -180,11 +188,16 @@ class ProfileHubScreen extends ConsumerWidget {
                       ).glassListItem(context: context, index: 4),
                       const SizedBox(height: AppConstants.spacingXl),
 
+                      // Bond (Bağ) — Partner Feature
+                      _BondHubLink(isDark: isDark, isEn: isEn)
+                          .glassListItem(context: context, index: 5),
+                      const SizedBox(height: AppConstants.spacingXl),
+
                       // Vault & Security
                       ProfileVaultSection(
                         isDark: isDark,
                         isEn: isEn,
-                      ).glassListItem(context: context, index: 5),
+                      ).glassListItem(context: context, index: 6),
                       const SizedBox(height: AppConstants.spacingXl),
 
                       // Settings & Account
@@ -426,6 +439,218 @@ class _YouInNumbersCard extends StatelessWidget {
             }).toList(),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _PersonalRecordsCard extends ConsumerWidget {
+  final bool isDark;
+  final bool isEn;
+
+  const _PersonalRecordsCard({
+    required this.isDark,
+    required this.isEn,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final journalAsync = ref.watch(journalServiceProvider);
+
+    return journalAsync.maybeWhen(
+      data: (service) {
+        final entries = service.getAllEntries();
+        if (entries.length < 5) return const SizedBox.shrink();
+
+        // Best single rating
+        final bestRating = entries.fold<int>(0, (max, e) => e.overallRating > max ? e.overallRating : max);
+
+        // Best week average (sliding 7-day window)
+        double bestWeekAvg = 0;
+        if (entries.length >= 7) {
+          for (int i = 0; i <= entries.length - 7; i++) {
+            final window = entries.sublist(i, i + 7);
+            final avg = window.fold<int>(0, (s, e) => s + e.overallRating) / 7;
+            if (avg > bestWeekAvg) bestWeekAvg = avg;
+          }
+        }
+
+        // Most entries in a month
+        final monthCounts = <String, int>{};
+        for (final e in entries) {
+          final key = '${e.date.year}-${e.date.month.toString().padLeft(2, '0')}';
+          monthCounts[key] = (monthCounts[key] ?? 0) + 1;
+        }
+        final bestMonth = monthCounts.values.fold<int>(0, (max, v) => v > max ? v : max);
+
+        // Longest streak
+        final longestStreak = service.getLongestStreak();
+
+        final records = <(String, String, IconData)>[
+          (
+            isEn ? 'Longest Streak' : 'En Uzun Seri',
+            isEn ? '$longestStreak days' : '$longestStreak gün',
+            Icons.local_fire_department_rounded,
+          ),
+          (
+            isEn ? 'Best Rating' : 'En İyi Puan',
+            '$bestRating / 5',
+            Icons.star_rounded,
+          ),
+          if (bestWeekAvg > 0) (
+            isEn ? 'Best Week Avg' : 'En İyi Hafta Ort.',
+            bestWeekAvg.toStringAsFixed(1),
+            Icons.trending_up_rounded,
+          ),
+          (
+            isEn ? 'Best Month' : 'En Aktif Ay',
+            isEn ? '$bestMonth entries' : '$bestMonth kayıt',
+            Icons.calendar_month_rounded,
+          ),
+        ];
+
+        return PremiumCard(
+          style: PremiumCardStyle.amethyst,
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.emoji_events_rounded, size: 16, color: AppColors.starGold),
+                  const SizedBox(width: 8),
+                  GradientText(
+                    isEn ? 'Personal Records' : 'Kişisel Rekorlar',
+                    variant: GradientTextVariant.gold,
+                    style: AppTypography.displayFont.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+              ...records.map((r) => Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Row(
+                  children: [
+                    Icon(r.$3, size: 16, color: AppColors.starGold.withValues(alpha: 0.7)),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        r.$1,
+                        style: AppTypography.elegantAccent(
+                          fontSize: 12,
+                          color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      r.$2,
+                      style: AppTypography.displayFont.copyWith(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                  ],
+                ),
+              )),
+            ],
+          ),
+        );
+      },
+      orElse: () => const SizedBox.shrink(),
+    );
+  }
+}
+
+class _BondHubLink extends ConsumerWidget {
+  final bool isDark;
+  final bool isEn;
+
+  const _BondHubLink({required this.isDark, required this.isEn});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bondCount = ref.watch(bondCountProvider).whenOrNull(data: (v) => v) ?? 0;
+
+    return TapScale(
+      onTap: () {
+        HapticService.selectionTap();
+        context.push(Routes.bondHub);
+      },
+      child: PremiumCard(
+        style: PremiumCardStyle.amethyst,
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.amethyst.withValues(alpha: 0.15),
+              ),
+              alignment: Alignment.center,
+              child: const Text('💞', style: TextStyle(fontSize: 20)),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  GradientText(
+                    isEn ? 'Bond' : 'Bağ',
+                    variant: GradientTextVariant.amethyst,
+                    style: AppTypography.displayFont.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    isEn
+                        ? bondCount > 0
+                            ? '$bondCount active bond${bondCount > 1 ? 's' : ''}'
+                            : 'Connect with someone close'
+                        : bondCount > 0
+                            ? '$bondCount aktif bağ'
+                            : 'Yakınlarınla bağlan',
+                    style: AppTypography.subtitle(
+                      fontSize: 12,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (bondCount > 0)
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                decoration: BoxDecoration(
+                  color: AppColors.amethyst.withValues(alpha: 0.2),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  '$bondCount',
+                  style: AppTypography.displayFont.copyWith(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.amethyst,
+                  ),
+                ),
+              ),
+            const SizedBox(width: 4),
+            Icon(
+              Icons.chevron_right_rounded,
+              size: 18,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            ),
+          ],
+        ),
       ),
     );
   }
