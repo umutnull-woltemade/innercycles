@@ -1,5 +1,8 @@
 // ════════════════════════════════════════════════════════════════════════════
-// STREAK RECOVERY BANNER - Re-engage users who missed a day
+// STREAK RECOVERY BANNER - Structured comeback flow after streak break
+// ════════════════════════════════════════════════════════════════════════════
+// Shows days-away context, motivational messaging, past stats, and
+// personalized quick-start actions to re-engage returning users.
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
@@ -25,13 +28,13 @@ class StreakRecoveryBanner extends ConsumerWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
     final streakAsync = ref.watch(streakStatsProvider);
+    final journalAsync = ref.watch(journalServiceProvider);
     final isPremium = ref.watch(isPremiumUserProvider);
 
     return streakAsync.when(
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (stats) {
-        // Only show when streak was broken (had streak > 3 but current = 0)
         final currentStreak = stats.currentStreak;
         final longestStreak = stats.longestStreak;
 
@@ -39,9 +42,29 @@ class StreakRecoveryBanner extends ConsumerWidget {
           return const SizedBox.shrink();
         }
 
+        // Calculate days since last entry
+        int daysAway = 0;
+        int totalEntries = stats.totalEntries;
+        final service = journalAsync.valueOrNull;
+        if (service != null) {
+          final recent = service.getRecentEntries(1);
+          if (recent.isNotEmpty) {
+            daysAway = DateTime.now().difference(recent.first.date).inDays;
+          }
+        }
+
+        // Contextual messaging based on days away
+        final (emoji, title, subtitle) = _getCombackMessage(
+          daysAway: daysAway,
+          longestStreak: longestStreak,
+          totalEntries: totalEntries,
+          isEn: isEn,
+        );
+
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            // Main comeback card
             Semantics(
               label: L10nService.get('streak.streak_recovery.start_a_new_streak', language),
               button: true,
@@ -51,7 +74,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
                   context.go(Routes.journal);
                 },
                 child: Container(
-                  margin: EdgeInsets.only(bottom: isPremium ? 16 : 8),
+                  margin: const EdgeInsets.only(bottom: 8),
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -72,52 +95,102 @@ class StreakRecoveryBanner extends ConsumerWidget {
                       color: AppColors.warning.withValues(alpha: 0.3),
                     ),
                   ),
-                  child: Row(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        width: 44,
-                        height: 44,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.warning.withValues(alpha: 0.2),
-                        ),
-                        child: const Center(
-                          child: AppSymbol('🔥', size: AppSymbolSize.sm),
-                        ),
-                      ),
-                      const SizedBox(width: 14),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              isEn
-                                  ? 'Your $longestStreak-day streak ended'
-                                  : '$longestStreak günlük seri sona erdi',
-                              style: AppTypography.displayFont.copyWith(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: isDark
-                                    ? AppColors.textPrimary
-                                    : AppColors.lightTextPrimary,
-                              ),
+                      Row(
+                        children: [
+                          Container(
+                            width: 44,
+                            height: 44,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.warning.withValues(alpha: 0.2),
                             ),
-                            const SizedBox(height: 2),
-                            Text(
-                              L10nService.get('streak.streak_recovery.one_entry_to_start_a_new_one', language),
-                              style: AppTypography.decorativeScript(
-                                fontSize: 12,
-                                color: AppColors.warning,
-                              ),
+                            child: Center(
+                              child: AppSymbol(emoji, size: AppSymbolSize.sm),
                             ),
-                          ],
+                          ),
+                          const SizedBox(width: 14),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  title,
+                                  style: AppTypography.displayFont.copyWith(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: isDark
+                                        ? AppColors.textPrimary
+                                        : AppColors.lightTextPrimary,
+                                  ),
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  subtitle,
+                                  style: AppTypography.decorativeScript(
+                                    fontSize: 12,
+                                    color: AppColors.warning,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            size: 16,
+                            color: AppColors.warning.withValues(alpha: 0.7),
+                          ),
+                        ],
+                      ),
+                      // Past stats reminder (only if meaningful history)
+                      if (totalEntries >= 5) ...[
+                        const SizedBox(height: 12),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 8,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: (isDark ? Colors.white : Colors.black)
+                                .withValues(alpha: 0.04),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              _StatChip(
+                                value: '$longestStreak',
+                                label: isEn ? 'best streak' : 'en iyi seri',
+                                isDark: isDark,
+                              ),
+                              Container(
+                                width: 1,
+                                height: 24,
+                                color: (isDark ? Colors.white : Colors.black)
+                                    .withValues(alpha: 0.08),
+                              ),
+                              _StatChip(
+                                value: '$totalEntries',
+                                label: isEn ? 'entries' : 'kayıt',
+                                isDark: isDark,
+                              ),
+                              Container(
+                                width: 1,
+                                height: 24,
+                                color: (isDark ? Colors.white : Colors.black)
+                                    .withValues(alpha: 0.08),
+                              ),
+                              _StatChip(
+                                value: daysAway > 0 ? '$daysAway' : '—',
+                                label: isEn ? 'days away' : 'gün uzakta',
+                                isDark: isDark,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: 16,
-                        color: AppColors.warning.withValues(alpha: 0.7),
-                      ),
+                      ],
                     ],
                   ),
                 ),
@@ -186,6 +259,95 @@ class StreakRecoveryBanner extends ConsumerWidget {
           ],
         );
       },
+    );
+  }
+
+  /// Returns (emoji, title, subtitle) based on days away and history
+  static (String, String, String) _getCombackMessage({
+    required int daysAway,
+    required int longestStreak,
+    required int totalEntries,
+    required bool isEn,
+  }) {
+    // 1-2 days: gentle nudge
+    if (daysAway <= 2) {
+      return (
+        '🔥',
+        isEn
+            ? 'Your $longestStreak-day streak ended'
+            : '$longestStreak günlük seri sona erdi',
+        isEn
+            ? 'One entry to start a new one'
+            : 'Yeni bir tane başlatmak için bir kayıt yeter',
+      );
+    }
+
+    // 3-7 days: warm welcome back
+    if (daysAway <= 7) {
+      return (
+        '👋',
+        isEn ? 'Welcome back' : 'Tekrar hoş geldin',
+        isEn
+            ? 'Your journal misses you — pick up where you left off'
+            : 'Günlüğün seni özledi — kaldığın yerden devam et',
+      );
+    }
+
+    // 8-30 days: motivational
+    if (daysAway <= 30) {
+      return (
+        '✨',
+        isEn
+            ? 'It\'s been $daysAway days'
+            : '$daysAway gün olmuş',
+        isEn
+            ? 'Your $totalEntries entries are waiting — you\'ve done this before'
+            : '$totalEntries kaydın bekliyor — bunu daha önce yaptın',
+      );
+    }
+
+    // 30+ days: fresh start energy
+    return (
+      '🌱',
+      isEn ? 'Ready for a fresh start?' : 'Yeni bir başlangıca hazır mısın?',
+      isEn
+          ? 'Every great streak starts with day one'
+          : 'Her büyük seri ilk günle başlar',
+    );
+  }
+}
+
+class _StatChip extends StatelessWidget {
+  final String value;
+  final String label;
+  final bool isDark;
+
+  const _StatChip({
+    required this.value,
+    required this.label,
+    required this.isDark,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          value,
+          style: AppTypography.displayFont.copyWith(
+            fontSize: 16,
+            fontWeight: FontWeight.w700,
+            color: AppColors.warning,
+          ),
+        ),
+        Text(
+          label,
+          style: AppTypography.subtitle(
+            fontSize: 10,
+            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          ),
+        ),
+      ],
     );
   }
 }

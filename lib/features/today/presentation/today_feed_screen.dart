@@ -67,6 +67,7 @@ import 'widgets/sleep_quality_mini_card.dart';
 import 'widgets/life_event_anniversary_card.dart';
 import 'widgets/onboarding_checklist_card.dart';
 import 'widgets/journaling_tip_card.dart';
+import 'widgets/cross_correlation_card.dart';
 import '../../../data/services/l10n_service.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
@@ -684,6 +685,13 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 9g. Mood-Habit Correlation Insight
                   SliverToBoxAdapter(
                     child: MoodHabitCorrelationCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  const SliverToBoxAdapter(child: SizedBox(height: 8)),
+
+                  // 9h. Cross-Feature Correlation Insights
+                  SliverToBoxAdapter(
+                    child: CrossCorrelationCard(isEn: isEn, isDark: isDark),
                   ),
 
                   const SliverToBoxAdapter(child: SizedBox(height: 16)),

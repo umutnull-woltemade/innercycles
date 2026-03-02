@@ -73,11 +73,8 @@ class NotificationService {
       'notification_journal_prompt_enabled';
   static const String _keyJournalPromptTime =
       'notification_journal_prompt_time';
-  // ignore: unused_field
   static const String _keyMoodCheckinEnabled = 'notification_mood_checkin_enabled';
-  // ignore: unused_field
   static const String _keySleepTrackingEnabled = 'notification_sleep_tracking_enabled';
-  // ignore: unused_field
   static const String _keyHabitReminderEnabled = 'notification_habit_reminder_enabled';
 
   /// Initialize the notification service
@@ -1204,6 +1201,9 @@ class NotificationService {
     await prefs.setBool(_keyWellnessEnabled, false);
     await prefs.setBool(_keyEveningEnabled, false);
     await prefs.setBool(_keyJournalPromptEnabled, false);
+    await prefs.setBool(_keyMoodCheckinEnabled, false);
+    await prefs.setBool(_keySleepTrackingEnabled, false);
+    await prefs.setBool(_keyHabitReminderEnabled, false);
   }
 
   /// Get notification settings
@@ -1217,6 +1217,9 @@ class NotificationService {
       eveningReflectionEnabled: prefs.getBool(_keyEveningEnabled) ?? false,
       journalPromptEnabled: prefs.getBool(_keyJournalPromptEnabled) ?? false,
       journalPromptTimeMinutes: prefs.getInt(_keyJournalPromptTime),
+      moodCheckinEnabled: prefs.getBool(_keyMoodCheckinEnabled) ?? false,
+      sleepTrackingEnabled: prefs.getBool(_keySleepTrackingEnabled) ?? false,
+      habitReminderEnabled: prefs.getBool(_keyHabitReminderEnabled) ?? false,
     );
   }
 
@@ -1351,6 +1354,9 @@ class NotificationSettings {
   final bool eveningReflectionEnabled;
   final bool journalPromptEnabled;
   final int? journalPromptTimeMinutes;
+  final bool moodCheckinEnabled;
+  final bool sleepTrackingEnabled;
+  final bool habitReminderEnabled;
 
   NotificationSettings({
     required this.dailyReflectionEnabled,
@@ -1360,6 +1366,9 @@ class NotificationSettings {
     required this.eveningReflectionEnabled,
     required this.journalPromptEnabled,
     this.journalPromptTimeMinutes,
+    this.moodCheckinEnabled = false,
+    this.sleepTrackingEnabled = false,
+    this.habitReminderEnabled = false,
   });
 
   TimeOfDay? get dailyReflectionTime {
