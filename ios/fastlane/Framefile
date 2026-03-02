@@ -1,0 +1,25 @@
+# ════════════════════════════════════════════════════════════════════════════
+# FRAMEFILE - Screenshot framing with device bezels and captions
+# ════════════════════════════════════════════════════════════════════════════
+# Used by: fastlane frameit
+# Adds device frames + marketing captions to raw screenshots.
+# ════════════════════════════════════════════════════════════════════════════
+
+# Background color (warm sand — matches InnerCycles palette)
+background_color("#FBF7F4")
+
+# Padding between frame and edge
+padding(60)
+
+# Title font configuration
+title_font_size(72)
+title_color("#3D3229")
+title_min_height(200)
+
+# Use keyword-based captions from screenshot filenames
+# Format: {keyword}_{locale}.png → looks up keyword in strings/
+use_legacy_iphone8(false)
+force_device_type("iPhone 16 Pro Max")
+
+# Show complete status bar
+show_complete_previous_frame(false)

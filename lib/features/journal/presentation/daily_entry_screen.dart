@@ -48,6 +48,7 @@ import '../../../shared/widgets/glass_dialog.dart';
 import 'widgets/post_save_engagement_sheet.dart';
 import 'widgets/voice_input_button.dart';
 import '../../../data/services/l10n_service.dart';
+import '../../../data/services/ai_reflection_service.dart';
 
 class DailyEntryScreen extends ConsumerStatefulWidget {
   final DateTime? initialDate;

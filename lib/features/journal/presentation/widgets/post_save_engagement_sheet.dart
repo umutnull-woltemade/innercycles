@@ -22,12 +22,14 @@ class PostSaveEngagementSheet extends ConsumerWidget {
   final int entryCount;
   final int currentStreak;
   final int noteLength;
+  final String? aiReflection;
 
   const PostSaveEngagementSheet({
     super.key,
     required this.entryCount,
     required this.currentStreak,
     this.noteLength = 0,
+    this.aiReflection,
   });
 
   /// Show the engagement sheet as a modal bottom sheet.
@@ -36,6 +38,7 @@ class PostSaveEngagementSheet extends ConsumerWidget {
     required int entryCount,
     required int currentStreak,
     int noteLength = 0,
+    String? aiReflection,
   }) {
     return showModalBottomSheet<void>(
       context: context,
@@ -45,6 +48,7 @@ class PostSaveEngagementSheet extends ConsumerWidget {
         entryCount: entryCount,
         currentStreak: currentStreak,
         noteLength: noteLength,
+        aiReflection: aiReflection,
       ),
     );
   }
@@ -198,7 +202,68 @@ class PostSaveEngagementSheet extends ConsumerWidget {
                   .fadeIn(duration: 300.ms)
                   .scale(begin: const Offset(0.95, 0.95), duration: 300.ms),
 
-              const SizedBox(height: 24),
+              const SizedBox(height: 20),
+
+              // AI Reflection (when available)
+              if (aiReflection != null && aiReflection!.isNotEmpty) ...[
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(14),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(14),
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        AppColors.amethyst.withValues(alpha: isDark ? 0.08 : 0.06),
+                        AppColors.starGold.withValues(alpha: isDark ? 0.04 : 0.03),
+                      ],
+                    ),
+                    border: Border.all(
+                      color: AppColors.amethyst.withValues(alpha: 0.15),
+                      width: 0.5,
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.auto_awesome_rounded,
+                            size: 14,
+                            color: AppColors.amethyst,
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            isEn ? 'AI Reflection' : 'AI Yansıma',
+                            style: AppTypography.displayFont.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.amethyst,
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        aiReflection!,
+                        style: AppTypography.decorativeScript(
+                          fontSize: 14,
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+                    .animate()
+                    .fadeIn(delay: 200.ms, duration: 500.ms)
+                    .slideY(begin: 0.05, duration: 400.ms, curve: Curves.easeOut),
+                const SizedBox(height: 16),
+              ],
 
               // Section title
               Align(

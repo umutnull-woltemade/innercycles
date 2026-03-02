@@ -152,6 +152,43 @@ class GratitudeMoodComparison {
   }
 }
 
+/// Anomaly: a focus area that deviates significantly from the user's baseline.
+class AnomalyInsight {
+  final FocusArea area;
+  final double baseline30Day; // 30-day average
+  final double recent3Day; // last 3 days average
+  final double deviationPercent; // negative = drop, positive = rise
+
+  const AnomalyInsight({
+    required this.area,
+    required this.baseline30Day,
+    required this.recent3Day,
+    required this.deviationPercent,
+  });
+
+  bool get isDrop => deviationPercent < 0;
+  bool get isSpike => deviationPercent > 0;
+
+  String getMessageEn() {
+    final abs = deviationPercent.abs().toStringAsFixed(0);
+    if (isDrop) {
+      return 'Your ${area.displayNameEn} has dropped $abs% compared to your usual baseline over the last 3 days.';
+    }
+    return 'Your ${area.displayNameEn} has risen $abs% above your usual baseline over the last 3 days.';
+  }
+
+  String getMessageTr() {
+    final abs = deviationPercent.abs().toStringAsFixed(0);
+    if (isDrop) {
+      return '${area.displayNameTr} alanın son 3 günde normal seviyenin %$abs altına düştü.';
+    }
+    return '${area.displayNameTr} alanın son 3 günde normal seviyenin %$abs üstüne çıktı.';
+  }
+
+  String getMessage(AppLanguage language) =>
+      language == AppLanguage.en ? getMessageEn() : getMessageTr();
+}
+
 // ══════════════════════════════════════════════════════════════════════════
 // PATTERN ENGINE SERVICE
 // ══════════════════════════════════════════════════════════════════════════
@@ -1012,5 +1049,109 @@ class PatternEngineService {
     final weekday = date.weekday; // 1=Mon, 7=Sun
     final weekNumber = ((dayOfYear - weekday + 10) / 7).floor();
     return '${date.year}-W${weekNumber.toString().padLeft(2, '0')}';
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // ANOMALY DETECTION
+  // ══════════════════════════════════════════════════════════════════════════
+
+  /// Minimum deviation percentage to flag as anomaly (30% change from baseline).
+  static const double _anomalyThreshold = 30.0;
+
+  /// Minimum entries in the 30-day baseline to avoid false positives.
+  static const int _minBaselineEntries = 10;
+
+  /// Detect focus areas that deviate significantly from the user's 30-day baseline.
+  /// Returns anomalies sorted by severity (largest deviation first).
+  List<AnomalyInsight> detectAnomalies() {
+    final entries = _journalService.getAllEntries();
+    if (entries.length < _minBaselineEntries) return [];
+
+    final now = DateTime.now();
+    final cutoff30 = now.subtract(const Duration(days: 30));
+    final cutoff3 = now.subtract(const Duration(days: 3));
+
+    // Split entries into 30-day baseline and last-3-day window
+    final baseline = entries.where((e) => e.date.isAfter(cutoff30)).toList();
+    final recent = entries.where((e) => e.date.isAfter(cutoff3)).toList();
+
+    if (baseline.length < _minBaselineEntries || recent.isEmpty) return [];
+
+    final anomalies = <AnomalyInsight>[];
+
+    for (final area in FocusArea.values) {
+      final baselineRatings = baseline
+          .where((e) => e.focusArea == area)
+          .map((e) => e.overallRating.toDouble())
+          .toList();
+      final recentRatings = recent
+          .where((e) => e.focusArea == area)
+          .map((e) => e.overallRating.toDouble())
+          .toList();
+
+      // Need at least 3 baseline entries for this area and 1 recent
+      if (baselineRatings.length < 3 || recentRatings.isEmpty) continue;
+
+      final baselineAvg =
+          baselineRatings.reduce((a, b) => a + b) / baselineRatings.length;
+      final recentAvg =
+          recentRatings.reduce((a, b) => a + b) / recentRatings.length;
+
+      if (baselineAvg == 0) continue;
+
+      final deviationPercent =
+          ((recentAvg - baselineAvg) / baselineAvg) * 100;
+
+      if (deviationPercent.abs() >= _anomalyThreshold) {
+        anomalies.add(AnomalyInsight(
+          area: area,
+          baseline30Day: baselineAvg,
+          recent3Day: recentAvg,
+          deviationPercent: deviationPercent,
+        ));
+      }
+    }
+
+    // Also check overall rating across all areas
+    final allBaselineRatings =
+        baseline.map((e) => e.overallRating.toDouble()).toList();
+    final allRecentRatings =
+        recent.map((e) => e.overallRating.toDouble()).toList();
+
+    if (allBaselineRatings.length >= _minBaselineEntries &&
+        allRecentRatings.isNotEmpty) {
+      final baseAvg =
+          allBaselineRatings.reduce((a, b) => a + b) / allBaselineRatings.length;
+      final recAvg =
+          allRecentRatings.reduce((a, b) => a + b) / allRecentRatings.length;
+      if (baseAvg > 0) {
+        final dev = ((recAvg - baseAvg) / baseAvg) * 100;
+        if (dev.abs() >= _anomalyThreshold) {
+          // Use the dominant focus area of recent entries as the "area"
+          final focusCounts = <FocusArea, int>{};
+          for (final e in recent) {
+            focusCounts[e.focusArea] = (focusCounts[e.focusArea] ?? 0) + 1;
+          }
+          final dominantArea = focusCounts.entries
+              .reduce((a, b) => a.value >= b.value ? a : b)
+              .key;
+
+          // Only add if not already flagged for this area
+          if (!anomalies.any((a) => a.area == dominantArea)) {
+            anomalies.add(AnomalyInsight(
+              area: dominantArea,
+              baseline30Day: baseAvg,
+              recent3Day: recAvg,
+              deviationPercent: dev,
+            ));
+          }
+        }
+      }
+    }
+
+    // Sort by severity (largest absolute deviation first)
+    anomalies.sort(
+        (a, b) => b.deviationPercent.abs().compareTo(a.deviationPercent.abs()));
+    return anomalies;
   }
 }
