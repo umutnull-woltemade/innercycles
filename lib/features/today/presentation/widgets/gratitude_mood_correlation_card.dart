@@ -5,6 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../data/providers/app_providers.dart';
@@ -73,7 +75,9 @@ class GratitudeMoodCorrelationCard extends ConsumerWidget {
 
           final isPositive = pctDiff > 0;
 
-          return Padding(
+          return GestureDetector(
+            onTap: () => context.push(Routes.gratitudeInsights),
+            child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
             child: PremiumCard(
               style: PremiumCardStyle.subtle,
@@ -147,7 +151,8 @@ class GratitudeMoodCorrelationCard extends ConsumerWidget {
                 ],
               ),
             ),
-          ).animate().fadeIn(delay: 550.ms, duration: 300.ms);
+          ).animate().fadeIn(delay: 550.ms, duration: 300.ms),
+          );
         },
         orElse: () => const SizedBox.shrink(),
       ),

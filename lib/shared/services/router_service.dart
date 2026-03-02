@@ -806,6 +806,34 @@ final routerProvider = Provider<GoRouter>((ref) {
         ),
       ),
       GoRoute(
+        path: Routes.attachmentStyleResult,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const AttachmentStyleResultScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.ritualStats,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const RitualStatsScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.gratitudeInsights,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const GratitudeInsightsScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.shadowWorkArchive,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const ShadowWorkArchiveScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
         path: Routes.weeklyDigest,
         pageBuilder: (context, state) => PageTransitions.fadeSlide(
           child: const WeeklyDigestScreen(),
