@@ -110,13 +110,15 @@ class ClarityScoreService {
     );
   }
 
-  /// Get ISO week key for a date
+  /// Get ISO 8601 week key for a date
   static String weekKey(DateTime date) {
-    // ISO week: Monday-based
-    final dayOfYear = date.difference(DateTime(date.year, 1, 1)).inDays + 1;
-    final weekday = date.weekday; // 1=Mon, 7=Sun
-    final weekNum = ((dayOfYear - weekday + 10) / 7).floor();
-    return '${date.year}-W${weekNum.toString().padLeft(2, '0')}';
+    // ISO 8601: week containing Thursday belongs to that year
+    final thursday = date.add(Duration(days: DateTime.thursday - date.weekday));
+    final weekYear = thursday.year;
+    final jan4 = DateTime(weekYear, 1, 4); // Jan 4 is always in W01
+    final weekOne = jan4.subtract(Duration(days: jan4.weekday - 1));
+    final weekNum = date.difference(weekOne).inDays ~/ 7 + 1;
+    return '$weekYear-W${weekNum.toString().padLeft(2, '0')}';
   }
 
   /// Compute clarity score for this week
@@ -139,10 +141,10 @@ class ClarityScoreService {
 
     // 2. Mood trend (avg mood 1-5 → 0-20 pts)
     final weekMoods = _moodService.getWeekMoods();
-    final validMoods = weekMoods.where((m) => m != null).toList();
+    final validMoods = weekMoods.whereType<MoodEntry>().toList();
     final avgMood = validMoods.isEmpty
         ? 3.0
-        : validMoods.fold<int>(0, (sum, m) => sum + m!.mood) /
+        : validMoods.fold<double>(0.0, (sum, m) => sum + m.mood) /
             validMoods.length;
     final moodScore = ((avgMood - 1) / 4.0 * 20).clamp(0, 20).round();
 
@@ -203,8 +205,9 @@ class ClarityScoreService {
   /// Get previous week's clarity (for delta comparison)
   WeeklyClarity? getPreviousWeek() {
     final now = DateTime.now();
-    final lastWeek = now.subtract(const Duration(days: 7));
-    return _cache[weekKey(lastWeek)];
+    final thisMonday = now.subtract(Duration(days: now.weekday - 1));
+    final lastMonday = thisMonday.subtract(const Duration(days: 7));
+    return _cache[weekKey(lastMonday)];
   }
 
   /// Get current week's cached clarity

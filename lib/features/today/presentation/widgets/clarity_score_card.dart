@@ -29,8 +29,10 @@ class ClarityScoreCard extends ConsumerWidget {
       data: (service) {
         final current = service.getCurrentWeekCached();
         if (current == null) {
-          // Compute on first view
-          service.computeCurrentWeek();
+          // Compute on first view, then invalidate to trigger rebuild
+          service.computeCurrentWeek().then((_) {
+            ref.invalidate(clarityScoreServiceProvider);
+          });
           return const SizedBox.shrink();
         }
 

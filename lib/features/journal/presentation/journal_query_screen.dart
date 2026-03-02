@@ -211,11 +211,14 @@ class _JournalQueryScreenState extends ConsumerState<JournalQueryScreen> {
                         runSpacing: 8,
                         children: suggestedQuestions.map((q) {
                           // Extract keyword from question
-                          final keyword = q
+                          final words = q
                               .replaceAll(RegExp(r'[?.!]'), '')
                               .split(' ')
                               .where((w) => w.length > 3)
-                              .last;
+                              .toList();
+                          final keyword = words.isNotEmpty
+                              ? words.last
+                              : q.split(' ').last;
                           return GestureDetector(
                             onTap: () {
                               _controller.text = keyword;
