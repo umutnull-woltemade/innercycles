@@ -70,7 +70,12 @@ class TimeCapsuleService {
     if (json != null) {
       try {
         final list = jsonDecode(json) as List;
-        _entries = list.map((e) => TimeCapsuleEntry.fromJson(e)).toList();
+        _entries = list
+            .map((e) {
+              try { return TimeCapsuleEntry.fromJson(e); } catch (_) { return null; }
+            })
+            .whereType<TimeCapsuleEntry>()
+            .toList();
       } catch (e) {
         if (kDebugMode) debugPrint('TimeCapsuleService: load failed: $e');
         _entries = [];

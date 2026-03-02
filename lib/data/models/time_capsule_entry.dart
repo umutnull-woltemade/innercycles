@@ -55,10 +55,10 @@ class TimeCapsuleEntry {
 
   factory TimeCapsuleEntry.fromJson(Map<String, dynamic> json) =>
       TimeCapsuleEntry(
-        id: json['id'] as String,
-        content: json['content'] as String,
-        createdAt: DateTime.parse(json['createdAt'] as String),
-        deliveryDate: DateTime.parse(json['deliveryDate'] as String),
+        id: json['id'] as String? ?? '',
+        content: json['content'] as String? ?? '',
+        createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
+        deliveryDate: DateTime.tryParse(json['deliveryDate']?.toString() ?? '') ?? DateTime.now(),
         isDelivered: json['isDelivered'] as bool? ?? false,
         isOpened: json['isOpened'] as bool? ?? false,
       );

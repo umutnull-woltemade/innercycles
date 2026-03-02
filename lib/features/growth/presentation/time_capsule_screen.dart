@@ -398,7 +398,7 @@ class _CapsuleTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final daysLeft = capsule.deliveryDate.difference(DateTime.now()).inDays;
+    final daysLeft = capsule.deliveryDate.difference(DateTime.now()).inDays.clamp(0, 9999);
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: PremiumCard(

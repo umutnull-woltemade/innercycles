@@ -97,10 +97,12 @@ class LifeWheelEntry {
   }
 
   LifeArea get lowestArea {
+    if (scores.isEmpty) return LifeArea.values.first;
     return scores.entries.reduce((a, b) => a.value <= b.value ? a : b).key;
   }
 
   LifeArea get highestArea {
+    if (scores.isEmpty) return LifeArea.values.first;
     return scores.entries.reduce((a, b) => a.value >= b.value ? a : b).key;
   }
 
@@ -112,12 +114,14 @@ class LifeWheelEntry {
       };
 
   factory LifeWheelEntry.fromJson(Map<String, dynamic> json) {
-    final scoresMap = (json['scores'] as Map<String, dynamic>).map(
-      (k, v) => MapEntry(
-        LifeArea.values.firstWhere((a) => a.name == k),
-        v as int,
-      ),
-    );
+    final rawScores = json['scores'] as Map<String, dynamic>;
+    final scoresMap = <LifeArea, int>{};
+    for (final entry in rawScores.entries) {
+      final area = LifeArea.values.where((a) => a.name == entry.key).firstOrNull;
+      if (area != null) {
+        scoresMap[area] = entry.value as int;
+      }
+    }
     return LifeWheelEntry(
       id: json['id'] as String,
       scores: scoresMap,

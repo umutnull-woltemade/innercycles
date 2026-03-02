@@ -35,8 +35,9 @@ class _IntentionsScreenState extends ConsumerState<IntentionsScreen> {
     final isEn = ref.watch(languageProvider) == AppLanguage.en;
     final serviceAsync = ref.watch(intentionServiceProvider);
 
-    return CosmicBackground(
-      child: serviceAsync.maybeWhen(
+    return Scaffold(
+      body: CosmicBackground(
+        child: serviceAsync.maybeWhen(
         data: (service) {
           final current = service.getCurrentWeekIntentions();
           final averages = service.getWeeklyAverages(weeks: 12);
@@ -240,7 +241,8 @@ class _IntentionsScreenState extends ConsumerState<IntentionsScreen> {
             ],
           );
         },
-        orElse: () => const Center(child: CircularProgressIndicator()),
+          orElse: () => const Center(child: CircularProgressIndicator()),
+        ),
       ),
     );
   }

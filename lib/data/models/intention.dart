@@ -43,11 +43,11 @@ class Intention {
       };
 
   factory Intention.fromJson(Map<String, dynamic> json) => Intention(
-        id: json['id'] as String,
-        text: json['text'] as String,
-        weekKey: json['weekKey'] as String,
+        id: json['id'] as String? ?? '',
+        text: json['text'] as String? ?? '',
+        weekKey: json['weekKey'] as String? ?? '',
         selfRating: json['selfRating'] as int?,
         isActive: json['isActive'] as bool? ?? true,
-        createdAt: DateTime.parse(json['createdAt'] as String),
+        createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
       );
 }
