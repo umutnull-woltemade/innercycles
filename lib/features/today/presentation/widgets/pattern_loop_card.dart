@@ -26,7 +26,41 @@ class PatternLoopCard extends ConsumerWidget {
 
     return analysisAsync.maybeWhen(
       data: (analysis) {
-        if (analysis.detectedLoops.isEmpty) return const SizedBox.shrink();
+        if (analysis.detectedLoops.isEmpty) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: AppColors.auroraStart.withValues(alpha: isDark ? 0.06 : 0.04),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.loop_rounded,
+                    size: 16,
+                    color: AppColors.auroraStart.withValues(alpha: 0.7),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      isEn
+                          ? 'Keep journaling to detect behavioral patterns'
+                          : 'Davranış kalıplarını tespit etmek için günlük tutmaya devam et',
+                      style: AppTypography.subtitle(
+                        fontSize: 12,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ).animate().fadeIn(delay: 650.ms, duration: 300.ms);
+        }
 
         final language = AppLanguage.fromIsEn(isEn);
         // Get strongest loop

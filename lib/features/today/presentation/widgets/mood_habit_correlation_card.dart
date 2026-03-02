@@ -45,7 +45,41 @@ class MoodHabitCorrelationCard extends ConsumerWidget {
     HabitSuggestionService habitService,
   ) {
     final adoptedHabits = habitService.getAdoptedHabits();
-    if (adoptedHabits.isEmpty) return const SizedBox.shrink();
+    if (adoptedHabits.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: AppColors.amethyst.withValues(alpha: isDark ? 0.06 : 0.04),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.insights_rounded,
+                size: 16,
+                color: AppColors.amethyst.withValues(alpha: 0.7),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  isEn
+                      ? 'Adopt a habit to discover mood-habit links'
+                      : 'Ruh hali-alışkanlık bağlantılarını keşfetmek için bir alışkanlık edin',
+                  style: AppTypography.subtitle(
+                    fontSize: 12,
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ).animate().fadeIn(delay: 600.ms, duration: 300.ms);
+    }
 
     final allMoods = moodService.getAllEntries();
     if (allMoods.length < 7) return const SizedBox.shrink();

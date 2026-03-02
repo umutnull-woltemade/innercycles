@@ -65,6 +65,8 @@ import 'widgets/pattern_health_alert_card.dart';
 import 'widgets/habit_suggestion_card.dart';
 import 'widgets/sleep_quality_mini_card.dart';
 import 'widgets/life_event_anniversary_card.dart';
+import 'widgets/onboarding_checklist_card.dart';
+import 'widgets/journaling_tip_card.dart';
 import '../../../data/services/l10n_service.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
@@ -448,6 +450,11 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: WelcomeBanner(isEn: isEn, isDark: isDark),
                   ),
 
+                  // 1c. Onboarding Checklist (first-week guided progress)
+                  SliverToBoxAdapter(
+                    child: OnboardingChecklistCard(isEn: isEn, isDark: isDark),
+                  ),
+
                   // 2. Hero Journal Card (promoted to #2)
                   SliverToBoxAdapter(
                     child: HeroJournalCard(isEn: isEn, isDark: isDark),
@@ -650,6 +657,11 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 9d. Daily Affirmation
                   SliverToBoxAdapter(
                     child: DailyAffirmationCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9d2. Journaling Tip of the Day
+                  SliverToBoxAdapter(
+                    child: JournalingTipCard(isEn: isEn, isDark: isDark),
                   ),
 
                   // 9e. Pinned Notes

@@ -63,6 +63,7 @@ class HomeHeader extends StatelessWidget {
     final insight = ContentRotationService.getDailyInsight();
 
     // Mood-aware subtitle: reference yesterday's emotional state
+    // Falls back to time-aware contextual message, then daily insight
     String? moodSubtitle;
     if (yesterdayMoodScore != null) {
       if (yesterdayMoodScore! <= 2) {
@@ -74,6 +75,21 @@ class HomeHeader extends StatelessWidget {
             ? 'Carry that great energy forward.'
             : 'O güzel enerjiyi bugüne taşı.';
       }
+    }
+
+    // Time-aware contextual nudge when no mood data
+    if (moodSubtitle == null) {
+      final hour = DateTime.now().hour;
+      if (hour >= 5 && hour < 10) {
+        moodSubtitle = isEn
+            ? 'A morning reflection sets your intention.'
+            : 'Sabah yansıması niyetini belirler.';
+      } else if (hour >= 21 || hour < 5) {
+        moodSubtitle = isEn
+            ? 'A quiet moment before rest.'
+            : 'Dinlenmeden önce sessiz bir an.';
+      }
+      // Afternoon/evening: falls through to daily insight
     }
 
     return Padding(

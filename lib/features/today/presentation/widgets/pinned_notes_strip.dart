@@ -26,7 +26,54 @@ class PinnedNotesStrip extends ConsumerWidget {
 
     return pinnedAsync.maybeWhen(
       data: (pinnedNotes) {
-        if (pinnedNotes.isEmpty) return const SizedBox.shrink();
+        if (pinnedNotes.isEmpty) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+            child: TapScale(
+              onTap: () {
+                HapticService.selectionTap();
+                context.push(Routes.notesList);
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: AppColors.starGold.withValues(alpha: isDark ? 0.06 : 0.04),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.push_pin_outlined,
+                      size: 16,
+                      color: AppColors.starGold.withValues(alpha: 0.7),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        isEn
+                            ? 'Pin a note for quick access here'
+                            : 'Hızlı erişim için bir not sabitle',
+                        style: AppTypography.subtitle(
+                          fontSize: 12,
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
+                        ),
+                      ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 12,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ).animate().fadeIn(delay: 350.ms, duration: 300.ms);
+        }
 
         // Show first 2 pinned notes
         final shown = pinnedNotes.take(2).toList();

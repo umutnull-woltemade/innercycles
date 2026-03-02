@@ -26,7 +26,54 @@ class SleepQualityMiniCard extends ConsumerWidget {
     return summaryAsync.maybeWhen(
       data: (summary) {
         // Only show if user has logged enough sleep
-        if (summary.nightsLogged < 2) return const SizedBox.shrink();
+        if (summary.nightsLogged < 2) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+            child: TapScale(
+              onTap: () {
+                HapticService.selectionTap();
+                context.push(Routes.sleepTrends);
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: AppColors.amethyst.withValues(alpha: isDark ? 0.06 : 0.04),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.bedtime_outlined,
+                      size: 16,
+                      color: AppColors.amethyst.withValues(alpha: 0.7),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        isEn
+                            ? 'Log your sleep to discover patterns'
+                            : 'Örüntüleri keşfetmek için uykunu kaydet',
+                        style: AppTypography.subtitle(
+                          fontSize: 12,
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
+                        ),
+                      ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 12,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ).animate().fadeIn(delay: 580.ms, duration: 300.ms);
+        }
 
         final trendIcon = switch (summary.trendDirection) {
           'improving' => Icons.trending_up_rounded,

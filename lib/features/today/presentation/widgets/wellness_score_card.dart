@@ -31,7 +31,54 @@ class WellnessScoreCard extends ConsumerWidget {
 
     return scoreAsync.maybeWhen(
       data: (score) {
-        if (score == null || score.score == 0) return const SizedBox.shrink();
+        if (score == null || score.score == 0) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+            child: TapScale(
+              onTap: () {
+                HapticService.selectionTap();
+                context.push(Routes.journal);
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: AppColors.auroraStart.withValues(alpha: isDark ? 0.06 : 0.04),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.favorite_border_rounded,
+                      size: 16,
+                      color: AppColors.auroraStart.withValues(alpha: 0.7),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        isEn
+                            ? 'Journal regularly to build your wellness score'
+                            : 'Sağlık skorun için düzenli günlük tut',
+                        style: AppTypography.subtitle(
+                          fontSize: 12,
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
+                        ),
+                      ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 12,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ).animate().fadeIn(delay: 300.ms, duration: 300.ms);
+        }
 
         final trend = trendAsync.whenOrNull(data: (t) => t);
         final direction = trend?.direction ?? 'stable';

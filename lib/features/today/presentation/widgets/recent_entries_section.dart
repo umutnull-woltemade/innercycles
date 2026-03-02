@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/common_strings.dart';
@@ -40,7 +41,54 @@ class RecentEntriesSection extends ConsumerWidget {
       data: (service) {
         final language = AppLanguage.fromIsEn(isEn);
         final entries = service.getRecentEntries(5);
-        if (entries.isEmpty) return const SizedBox.shrink();
+        if (entries.isEmpty) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+            child: TapScale(
+              onTap: () {
+                HapticService.selectionTap();
+                context.push(Routes.journal);
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(14),
+                  color: AppColors.starGold.withValues(alpha: isDark ? 0.06 : 0.04),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.edit_note_rounded,
+                      size: 18,
+                      color: AppColors.starGold.withValues(alpha: 0.7),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        isEn
+                            ? 'Start your first reflection today'
+                            : 'İlk yansımanı bugün yaz',
+                        style: AppTypography.subtitle(
+                          fontSize: 13,
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
+                        ),
+                      ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 12,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ).glassEntrance(context: context, delay: 400.ms);
+        }
 
         return Padding(
           padding: const EdgeInsets.only(bottom: 20),
