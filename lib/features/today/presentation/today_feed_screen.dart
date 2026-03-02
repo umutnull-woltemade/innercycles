@@ -70,11 +70,11 @@ import 'widgets/life_event_anniversary_card.dart';
 import 'widgets/onboarding_checklist_card.dart';
 import 'widgets/journaling_tip_card.dart';
 import 'widgets/cross_correlation_card.dart';
+import 'widgets/mood_temporal_insight_card.dart';
+import 'widgets/gratitude_mood_correlation_card.dart';
 import 'widgets/premium_expiry_banner.dart';
 import 'widgets/sync_status_banner.dart';
 import 'widgets/win_back_offer_banner.dart';
-import 'widgets/mood_temporal_insight_card.dart';
-import 'widgets/gratitude_mood_correlation_card.dart';
 import '../../../data/services/l10n_service.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
@@ -503,6 +503,11 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: QuickMoodCheckin(isEn: isEn, isDark: isDark),
                   ),
 
+                  // 3b½. Mood Temporal Insight (best time-of-day)
+                  SliverToBoxAdapter(
+                    child: MoodTemporalInsightCard(isEn: isEn, isDark: isDark),
+                  ),
+
                   // 3c. Focus Area Streak (2+ consecutive days)
                   SliverToBoxAdapter(
                     child: FocusAreaStreak(isEn: isEn, isDark: isDark),
@@ -511,6 +516,11 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 3d. Gratitude Quick-Add
                   SliverToBoxAdapter(
                     child: GratitudeQuickCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 3d½. Gratitude-Mood Correlation
+                  SliverToBoxAdapter(
+                    child: GratitudeMoodCorrelationCard(isEn: isEn, isDark: isDark),
                   ),
 
                   // 3e. Daily Habits Strip
