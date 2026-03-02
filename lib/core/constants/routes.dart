@@ -35,6 +35,9 @@ class Routes {
   static const String innerDialogue = '/inner-dialogue';
   static const String triggerMap = '/trigger-map';
   static const String morningPages = '/morning-pages';
+  static const String moodBoard = '/mood/board';
+  static const String growthLetters = '/growth/letters';
+  static const String wordCloud = '/word-cloud';
 
   // ════════════════════════════════════════════════════════════════
   // INSIGHT - Personal Reflection Assistant

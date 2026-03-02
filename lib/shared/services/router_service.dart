@@ -114,6 +114,9 @@ import '../../features/growth/presentation/trigger_map_screen.dart';
 import '../../features/quiz/presentation/values_compass_screen.dart';
 import '../../features/journal/presentation/inner_dialogue_screen.dart';
 import '../../features/journal/presentation/morning_pages_screen.dart';
+import '../../features/mood/presentation/mood_board_screen.dart';
+import '../../features/growth/presentation/growth_letters_screen.dart';
+import '../../features/journal/presentation/word_cloud_screen.dart';
 import '../../features/tools/presentation/tool_catalog_screen.dart';
 import '../../features/wellness/presentation/wellness_detail_screen.dart';
 import '../../shared/widgets/main_shell_screen.dart';
@@ -360,6 +363,27 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.morningPages,
         pageBuilder: (context, state) => PageTransitions.slideUp(
           child: const MorningPagesScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.moodBoard,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const MoodBoardScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.growthLetters,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const GrowthLettersScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.wordCloud,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const WordCloudScreen(),
           key: state.pageKey,
         ),
       ),

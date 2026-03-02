@@ -76,6 +76,9 @@ import '../services/inner_dialogue_service.dart';
 import '../services/trigger_map_service.dart';
 import '../services/self_compassion_service.dart';
 import '../services/morning_pages_service.dart';
+import '../services/growth_letter_service.dart';
+import '../services/word_cloud_service.dart';
+import '../services/reflection_prompt_engine.dart';
 
 // =============================================================================
 // USER PROFILE PROVIDERS
@@ -407,6 +410,20 @@ final selfCompassionServiceProvider = FutureProvider<SelfCompassionService>((ref
 
 final morningPagesServiceProvider = FutureProvider<MorningPagesService>((ref) async {
   return MorningPagesService.init();
+});
+
+final growthLetterServiceProvider = FutureProvider<GrowthLetterService>((ref) async {
+  return GrowthLetterService.init();
+});
+
+final wordCloudServiceProvider = FutureProvider<WordCloudService>((ref) async {
+  final journalService = await ref.watch(journalServiceProvider.future);
+  return WordCloudService(journalService);
+});
+
+final reflectionPromptEngineProvider = FutureProvider<ReflectionPromptEngine>((ref) async {
+  final moodService = await ref.watch(moodCheckinServiceProvider.future);
+  return ReflectionPromptEngine(moodService);
 });
 
 final ritualStacksProvider = FutureProvider<List<RitualStack>>((ref) async {

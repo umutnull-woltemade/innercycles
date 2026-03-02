@@ -82,6 +82,10 @@ import 'widgets/inner_dialogue_card.dart';
 import 'widgets/trigger_awareness_card.dart';
 import 'widgets/self_compassion_card.dart';
 import 'widgets/morning_pages_card.dart';
+import 'widgets/mood_board_card.dart';
+import 'widgets/growth_letter_card.dart';
+import 'widgets/word_cloud_mini_card.dart';
+import 'widgets/reflection_prompt_card.dart';
 import 'widgets/premium_expiry_banner.dart';
 import 'widgets/sync_status_banner.dart';
 import 'widgets/win_back_offer_banner.dart';
@@ -811,6 +815,26 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 9r. Trigger Awareness
                   SliverToBoxAdapter(
                     child: TriggerAwarenessCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9s. Mood Board (visual mood collage)
+                  SliverToBoxAdapter(
+                    child: MoodBoardCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9t. Growth Letter
+                  SliverToBoxAdapter(
+                    child: GrowthLetterCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9u. Word Cloud Mini
+                  SliverToBoxAdapter(
+                    child: WordCloudMiniCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9v. Reflection Prompt
+                  SliverToBoxAdapter(
+                    child: ReflectionPromptCard(isEn: isEn, isDark: isDark),
                   ),
 
                   const SliverToBoxAdapter(child: SizedBox(height: 16)),
