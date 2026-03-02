@@ -28,6 +28,9 @@ import '../../../shared/widgets/glass_dialog.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../data/services/ai_dream_service.dart';
 import '../../../data/services/dream_interpretation_service.dart';
+import '../../../data/content/share_card_templates.dart';
+import '../../../shared/widgets/share_card_sheet.dart';
+import '../../../shared/widgets/share_nudge_chip.dart';
 
 /// Inner Dream Guide - Conversational Dream Reflection
 /// Rule-based dream interpretation experience using symbol analysis
@@ -2345,6 +2348,34 @@ ${_getPersonalAdvice(sign)}''';
                 message.lockedPerspectiveCount,
                 isEn,
                 isDark,
+              ),
+            ),
+          ],
+          // Share nudge after AI interpretation
+          if (message.isAIGenerated && !isUser) ...[
+            const SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.only(left: 42),
+              child: ShareNudgeChip(
+                label: isEn ? 'Share Insight' : 'İçgörüyü Paylaş',
+                isDark: isDark,
+                delay: 600.ms,
+                onTap: () {
+                  final template = ShareCardTemplates.dreamInsight;
+                  final cardData = ShareCardTemplates.buildData(
+                    template: template,
+                    language: AppLanguage.fromIsEn(isEn),
+                    reflectionText: message.text.length > 100
+                        ? '${message.text.substring(0, 100)}...'
+                        : message.text,
+                  );
+                  ShareCardSheet.show(
+                    context,
+                    template: template,
+                    data: cardData,
+                    language: AppLanguage.fromIsEn(isEn),
+                  );
+                },
               ),
             ),
           ],

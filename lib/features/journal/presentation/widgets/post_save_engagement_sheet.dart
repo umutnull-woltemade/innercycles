@@ -16,6 +16,9 @@ import '../../../../core/theme/app_typography.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/haptic_service.dart';
 import '../../../../shared/widgets/gradient_text.dart';
+import '../../../../shared/widgets/share_nudge_chip.dart';
+import '../../../../shared/widgets/share_card_sheet.dart';
+import '../../../../data/content/share_card_templates.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class PostSaveEngagementSheet extends ConsumerWidget {
@@ -255,6 +258,26 @@ class PostSaveEngagementSheet extends ConsumerWidget {
                               ? AppColors.textSecondary
                               : AppColors.lightTextSecondary,
                         ),
+                      ),
+                      const SizedBox(height: 10),
+                      ShareNudgeChip(
+                        label: isEn ? 'Share Reflection' : 'Yansımayı Paylaş',
+                        isDark: isDark,
+                        delay: 500.ms,
+                        onTap: () {
+                          final template = ShareCardTemplates.dailyReflection;
+                          final cardData = ShareCardTemplates.buildData(
+                            template: template,
+                            language: language,
+                            reflectionText: aiReflection!,
+                          );
+                          ShareCardSheet.show(
+                            context,
+                            template: template,
+                            data: cardData,
+                            language: language,
+                          );
+                        },
                       ),
                     ],
                   ),

@@ -1430,6 +1430,9 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       // Schedule proactive weekly insight notification from pattern engine
       _scheduleWeeklyInsightNotification();
 
+      // Schedule weekly digest notification (Sunday 10:00)
+      _scheduleWeeklyDigestNotification(service);
+
       // Check for review prompt at engagement milestones
       _checkReviewTrigger(service);
 
@@ -1560,6 +1563,30 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         if (kDebugMode) debugPrint('Weekly insight schedule best-effort: $e');
       }
     });
+  }
+
+  /// Schedule "Your weekly summary is ready" for Sunday 10:00.
+  void _scheduleWeeklyDigestNotification(dynamic service) {
+    try {
+      final language = ref.read(languageProvider);
+      final streak = service.getCurrentStreak() as int;
+      // Count this week's entries
+      final now = DateTime.now();
+      final daysSinceMonday = (now.weekday - 1) % 7;
+      final weekStart = DateTime(now.year, now.month, now.day)
+          .subtract(Duration(days: daysSinceMonday));
+      final weekEntries = service
+          .getEntriesByDateRange(weekStart, now)
+          .length as int;
+
+      NotificationService().scheduleWeeklyDigest(
+        entriesThisWeek: weekEntries,
+        streakDays: streak,
+        language: language,
+      );
+    } catch (e) {
+      if (kDebugMode) debugPrint('Weekly digest notification best-effort: $e');
+    }
   }
 
   Future<void> _checkReviewTrigger(dynamic service) async {

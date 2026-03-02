@@ -5,10 +5,13 @@
 // InstagramShareService for native share sheet.
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'dart:convert';
 import 'dart:ui';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
 import '../../shared/widgets/gradient_button.dart';
@@ -54,6 +57,41 @@ class ShareCardSheet extends StatefulWidget {
 class _ShareCardSheetState extends State<ShareCardSheet> {
   final _boundaryKey = GlobalKey();
   bool _isSharing = false;
+  String? _aiCaption;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAICaption();
+  }
+
+  /// Best-effort: load AI-generated caption in background.
+  Future<void> _loadAICaption() async {
+    try {
+      final client = Supabase.instance.client;
+      final response = await client.functions.invoke(
+        'share-caption',
+        body: {
+          'cardType': widget.template.id,
+          'headline': widget.data.headline,
+          'statValue': widget.data.statValue ?? '',
+          'language': widget.language == AppLanguage.en ? 'en' : 'tr',
+        },
+      ).timeout(const Duration(seconds: 5));
+
+      if (response.status == 200 && mounted) {
+        final data = response.data is String
+            ? json.decode(response.data as String) as Map<String, dynamic>
+            : response.data as Map<String, dynamic>;
+        final caption = data['caption'] as String?;
+        if (caption != null && caption.isNotEmpty) {
+          setState(() => _aiCaption = caption);
+        }
+      }
+    } catch (e) {
+      if (kDebugMode) debugPrint('AI share caption best-effort: $e');
+    }
+  }
 
   Future<void> _share() async {
     final language = widget.language;
@@ -64,7 +102,11 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
               as RenderRepaintBoundary?;
       if (boundary == null) return;
 
-      final shareText = L10nService.getWithParams('sharing.share_card_text', language, params: {'headline': widget.data.headline, 'appStoreUrl': AppConstants.appStoreUrl});
+      // Use AI caption if available, otherwise fall back to static template
+      final staticText = L10nService.getWithParams('sharing.share_card_text', language, params: {'headline': widget.data.headline, 'appStoreUrl': AppConstants.appStoreUrl});
+      final shareText = _aiCaption != null
+          ? '$_aiCaption\n\n${AppConstants.appStoreUrl}'
+          : staticText;
 
       await InstagramShareService.shareCosmicContent(
         boundary: boundary,

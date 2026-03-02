@@ -177,6 +177,9 @@ class NotificationService {
       case 'pattern_discovery':
         route = Routes.journalPatterns;
         break;
+      case 'weekly_digest':
+        route = Routes.weeklyDigest;
+        break;
       case 'archetype_evolution':
         route = Routes.archetype;
         break;
@@ -1093,6 +1096,66 @@ class NotificationService {
   /// Cancel the weekly insight notification.
   Future<void> cancelWeeklyInsight() async {
     await _notifications.cancel(id: weeklyInsightId);
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // WEEKLY DIGEST NOTIFICATION
+  // ══════════════════════════════════════════════════════════════════════════
+
+  /// Schedule a "Your weekly summary is ready" notification for Sunday 10:00.
+  /// The teaser message is personalized with the user's week stats.
+  Future<void> scheduleWeeklyDigest({
+    required int entriesThisWeek,
+    required int streakDays,
+    AppLanguage language = AppLanguage.en,
+  }) async {
+    if (!_isInitialized) await initialize();
+
+    final title = language == AppLanguage.en
+        ? 'Your Weekly Summary is Ready'
+        : 'Haftalık Özetin Hazır';
+
+    final body = language == AppLanguage.en
+        ? '$entriesThisWeek entries this week${streakDays > 2 ? ' · $streakDays-day streak' : ''}. See your patterns & share your progress!'
+        : 'Bu hafta $entriesThisWeek kayıt${streakDays > 2 ? ' · $streakDays günlük seri' : ''}. Örüntülerini gör ve ilerlemenİ paylaş!';
+
+    // Schedule for next Sunday at 10:00
+    final now = tz.TZDateTime.now(tz.local);
+    var nextSunday = tz.TZDateTime(
+      tz.local,
+      now.year,
+      now.month,
+      now.day,
+      10,
+      0,
+    );
+    while (nextSunday.weekday != DateTime.sunday || nextSunday.isBefore(now)) {
+      nextSunday = nextSunday.add(const Duration(days: 1));
+    }
+
+    await _notifications.zonedSchedule(
+      id: weeklyReviewId,
+      title: title,
+      body: body,
+      scheduledDate: nextSunday,
+      notificationDetails: NotificationDetails(
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+          threadIdentifier: 'digest',
+        ),
+        android: const AndroidNotificationDetails(
+          'digest',
+          'Weekly Digest',
+          channelDescription: 'Weekly journal summary notifications',
+          importance: Importance.defaultImportance,
+          priority: Priority.defaultPriority,
+        ),
+      ),
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      payload: 'weekly_digest',
+    );
   }
 }
 
