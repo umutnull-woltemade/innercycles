@@ -324,7 +324,7 @@ class JournalService with SupabaseSyncMixin {
         subRatings: row['sub_ratings'] is Map
             ? Map<String, int>.from(
                 (row['sub_ratings'] as Map).map(
-                  (k, v) => MapEntry(k.toString(), (v as num).toInt()),
+                  (k, v) => MapEntry(k.toString(), v is num ? v.toInt() : 0),
                 ),
               )
             : {},

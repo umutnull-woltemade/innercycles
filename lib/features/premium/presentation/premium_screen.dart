@@ -19,9 +19,9 @@ import '../../../data/services/introductory_offer_service.dart';
 import '../../../data/services/url_launcher_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
-import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import 'premium_celebration_modal.dart';
 
 class PremiumScreen extends ConsumerStatefulWidget {
   const PremiumScreen({super.key});
@@ -1182,34 +1182,11 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
 
   void _showSuccessDialog() {
     final language = ref.read(languageProvider);
-    final navigator = Navigator.of(context);
-    showDialog(
-      context: context,
-      builder: (_) => GlassDialog(
-        title: L10nService.get('premium.cosmic_door_opened', language),
-        content: L10nService.get('premium.success_message', language),
-        gradientVariant: GradientTextVariant.gold,
-        actions: [
-          TextButton(
-            onPressed: () {
-              navigator.pop(); // dismiss dialog
-              Future.microtask(() {
-                if (navigator.canPop()) {
-                  navigator.pop(); // pop premium screen
-                }
-              });
-            },
-            child: Text(
-              L10nService.get('common.start_journey', language),
-              style: AppTypography.modernAccent(
-                color: AppColors.starGold,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+    PremiumCelebrationModal.show(context, language: language).then((_) {
+      if (mounted && Navigator.of(context).canPop()) {
+        Navigator.of(context).pop(); // pop premium screen
+      }
+    });
   }
 }
 

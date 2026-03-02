@@ -68,6 +68,7 @@ import 'widgets/life_event_anniversary_card.dart';
 import 'widgets/onboarding_checklist_card.dart';
 import 'widgets/journaling_tip_card.dart';
 import 'widgets/cross_correlation_card.dart';
+import 'widgets/premium_expiry_banner.dart';
 import '../../../data/services/l10n_service.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
@@ -520,7 +521,12 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: StreakAtRiskBanner(isEn: isEn, isDark: isDark),
                   ),
 
-                  // 4b. Streak Recovery Banner (conditional — after streak broken)
+                  // 4b. Premium Expiry Banner (conditional — near expiry)
+                  SliverToBoxAdapter(
+                    child: PremiumExpiryBanner(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 4c. Streak Recovery Banner (conditional — after streak broken)
                   const SliverToBoxAdapter(
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),

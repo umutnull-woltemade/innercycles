@@ -10,6 +10,7 @@ import '../providers/app_providers.dart';
 import 'ad_service.dart';
 import 'analytics_service.dart';
 import 'l10n_service.dart';
+import 'notification_service.dart';
 import 'referral_service.dart';
 import 'storage_service.dart';
 
@@ -369,6 +370,17 @@ class PremiumNotifier extends Notifier<PremiumState> {
     unawaited(
       _savePremiumStatusLocally(isPremium, tier, expiryDate, isLifetime),
     );
+
+    // Schedule pre-expiry renewal nudge notifications
+    if (isPremium && expiryDate != null && !isLifetime) {
+      unawaited(
+        NotificationService().schedulePremiumExpiryReminders(
+          expiryDate: expiryDate,
+        ),
+      );
+    } else {
+      unawaited(NotificationService().cancelPremiumExpiryReminders());
+    }
 
     if (kDebugMode) {
       debugPrint(
