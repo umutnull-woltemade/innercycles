@@ -72,6 +72,10 @@ import '../services/time_capsule_service.dart';
 import '../services/clarity_score_service.dart';
 import '../services/intention_service.dart';
 import '../services/values_service.dart';
+import '../services/inner_dialogue_service.dart';
+import '../services/trigger_map_service.dart';
+import '../services/self_compassion_service.dart';
+import '../services/morning_pages_service.dart';
 
 // =============================================================================
 // USER PROFILE PROVIDERS
@@ -386,6 +390,23 @@ final intentionServiceProvider = FutureProvider<IntentionService>((ref) async {
 
 final valuesServiceProvider = FutureProvider<ValuesService>((ref) async {
   return ValuesService.init();
+});
+
+final innerDialogueServiceProvider = FutureProvider<InnerDialogueService>((ref) async {
+  return InnerDialogueService.init();
+});
+
+final triggerMapServiceProvider = FutureProvider<TriggerMapService>((ref) async {
+  return TriggerMapService.init();
+});
+
+final selfCompassionServiceProvider = FutureProvider<SelfCompassionService>((ref) async {
+  final journalService = await ref.watch(journalServiceProvider.future);
+  return SelfCompassionService(journalService);
+});
+
+final morningPagesServiceProvider = FutureProvider<MorningPagesService>((ref) async {
+  return MorningPagesService.init();
 });
 
 final ritualStacksProvider = FutureProvider<List<RitualStack>>((ref) async {

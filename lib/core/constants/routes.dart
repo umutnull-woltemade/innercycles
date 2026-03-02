@@ -32,6 +32,9 @@ class Routes {
   static const String emotionalTimeline = '/memories/timeline';
   static const String intentions = '/intentions';
   static const String valuesCompass = '/values-compass';
+  static const String innerDialogue = '/inner-dialogue';
+  static const String triggerMap = '/trigger-map';
+  static const String morningPages = '/morning-pages';
 
   // ════════════════════════════════════════════════════════════════
   // INSIGHT - Personal Reflection Assistant

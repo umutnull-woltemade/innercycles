@@ -110,7 +110,10 @@ import '../../features/memories/presentation/emotional_timeline_screen.dart';
 import '../../features/journal/presentation/sprint_entry_screen.dart';
 import '../../features/journal/presentation/journal_query_screen.dart';
 import '../../features/growth/presentation/intentions_screen.dart';
+import '../../features/growth/presentation/trigger_map_screen.dart';
 import '../../features/quiz/presentation/values_compass_screen.dart';
+import '../../features/journal/presentation/inner_dialogue_screen.dart';
+import '../../features/journal/presentation/morning_pages_screen.dart';
 import '../../features/tools/presentation/tool_catalog_screen.dart';
 import '../../features/wellness/presentation/wellness_detail_screen.dart';
 import '../../shared/widgets/main_shell_screen.dart';
@@ -336,6 +339,27 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.valuesCompass,
         pageBuilder: (context, state) => PageTransitions.fadeSlide(
           child: const ValuesCompassScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.innerDialogue,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const InnerDialogueScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.triggerMap,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const TriggerMapScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.morningPages,
+        pageBuilder: (context, state) => PageTransitions.slideUp(
+          child: const MorningPagesScreen(),
           key: state.pageKey,
         ),
       ),

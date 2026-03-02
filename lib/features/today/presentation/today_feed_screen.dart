@@ -78,6 +78,10 @@ import 'widgets/clarity_score_card.dart';
 import 'widgets/journal_query_teaser_card.dart';
 import 'widgets/intentions_board_card.dart';
 import 'widgets/value_of_week_card.dart';
+import 'widgets/inner_dialogue_card.dart';
+import 'widgets/trigger_awareness_card.dart';
+import 'widgets/self_compassion_card.dart';
+import 'widgets/morning_pages_card.dart';
 import 'widgets/premium_expiry_banner.dart';
 import 'widgets/sync_status_banner.dart';
 import 'widgets/win_back_offer_banner.dart';
@@ -787,6 +791,26 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 9n. Value of the Week
                   SliverToBoxAdapter(
                     child: ValueOfWeekCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9o. Morning Pages (before noon only)
+                  SliverToBoxAdapter(
+                    child: MorningPagesCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9p. Inner Dialogue
+                  SliverToBoxAdapter(
+                    child: InnerDialogueCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9q. Self-Compassion Score
+                  SliverToBoxAdapter(
+                    child: SelfCompassionCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9r. Trigger Awareness
+                  SliverToBoxAdapter(
+                    child: TriggerAwarenessCard(isEn: isEn, isDark: isDark),
                   ),
 
                   const SliverToBoxAdapter(child: SizedBox(height: 16)),
