@@ -96,6 +96,9 @@ class _BondInviteCodeDisplayState extends State<BondInviteCodeDisplay> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final codeChars = widget.invite.code.split('');
+    final screenWidth = MediaQuery.of(context).size.width;
+    final digitWidth = screenWidth < 375 ? 38.0 : 44.0;
+    final digitHeight = screenWidth < 375 ? 48.0 : 56.0;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -123,6 +126,8 @@ class _BondInviteCodeDisplayState extends State<BondInviteCodeDisplay> {
                 char: codeChars[i],
                 isDark: isDark,
                 isExpired: _isExpired,
+                width: digitWidth,
+                height: digitHeight,
               ),
             );
           }),
@@ -212,18 +217,22 @@ class _CodeDigit extends StatelessWidget {
   final String char;
   final bool isDark;
   final bool isExpired;
+  final double width;
+  final double height;
 
   const _CodeDigit({
     required this.char,
     required this.isDark,
     required this.isExpired,
+    this.width = 44,
+    this.height = 56,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 44,
-      height: 56,
+      width: width,
+      height: height,
       decoration: BoxDecoration(
         color: isDark
             ? Colors.white.withValues(alpha: 0.06)
