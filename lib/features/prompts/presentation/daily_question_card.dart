@@ -34,12 +34,18 @@ class DailyQuestionCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final promptAsync = ref.watch(journalPromptServiceProvider);
+    final smartPromptAsync = ref.watch(smartDailyPromptProvider);
 
     return promptAsync.maybeWhen(
       data: (service) {
         final language = AppLanguage.fromIsEn(isEn);
-        final prompt = service.getDailyPrompt();
-        final questionText = prompt.localizedPrompt(language);
+        final staticPrompt = service.getDailyPrompt();
+        final staticText = staticPrompt.localizedPrompt(language);
+
+        // Use AI prompt if available (premium or free daily), else static
+        final smartPrompt = smartPromptAsync.valueOrNull;
+        final questionText = smartPrompt ?? staticText;
+        final isAI = smartPrompt != null;
 
         return Semantics(
           label:
@@ -75,14 +81,29 @@ class DailyQuestionCard extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: 14),
-                  // Label — small caps
-                  Text(
-                    L10nService.get('prompts.daily_question.question_of_the_day_1', language),
-                    style: AppTypography.elegantAccent(
-                      fontSize: 10,
-                      color: AppColors.amethyst.withValues(alpha: 0.6),
-                      letterSpacing: 1.5,
-                    ),
+                  // Label — small caps, with AI badge when personalized
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (isAI) ...[
+                        Icon(
+                          Icons.auto_awesome_rounded,
+                          size: 10,
+                          color: AppColors.amethyst.withValues(alpha: 0.6),
+                        ),
+                        const SizedBox(width: 4),
+                      ],
+                      Text(
+                        isAI
+                            ? (isEn ? 'PERSONALIZED FOR YOU' : 'SENİN İÇİN KİŞİSELLEŞTİRİLDİ')
+                            : L10nService.get('prompts.daily_question.question_of_the_day_1', language),
+                        style: AppTypography.elegantAccent(
+                          fontSize: 10,
+                          color: AppColors.amethyst.withValues(alpha: 0.6),
+                          letterSpacing: 1.5,
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 18),
                   // Action buttons

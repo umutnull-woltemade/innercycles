@@ -9,6 +9,7 @@ import '../../../../core/theme/app_typography.dart';
 import '../../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/haptic_service.dart';
+import '../../../../data/services/wellness_score_service.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/tap_scale.dart';
 
@@ -143,15 +144,15 @@ class WellnessScoreCard extends ConsumerWidget {
     );
   }
 
-  Widget _buildBreakdownRow(dynamic score, AppLanguage language) {
-    final breakdown = score.breakdown as List;
+  Widget _buildBreakdownRow(WellnessScore score, AppLanguage language) {
+    final breakdown = score.breakdown;
     return Row(
       children: breakdown.map<Widget>((b) {
-        final emoji = _categoryEmoji(b.category as String);
+        final emoji = _categoryEmoji(b.category);
         return Padding(
           padding: const EdgeInsets.only(right: 8),
           child: Text(
-            '$emoji${(b.score as double).round()}',
+            '$emoji${b.score.round()}',
             style: AppTypography.elegantAccent(
               fontSize: 10,
               color: isDark

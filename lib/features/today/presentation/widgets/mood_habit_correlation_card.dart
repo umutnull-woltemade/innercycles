@@ -62,45 +62,31 @@ class MoodHabitCorrelationCard extends ConsumerWidget {
     _HabitCorrelation? bestCorrelation;
     double bestDiff = 0;
 
-    for (final habit in adoptedHabits) {
-      final checkDates = <String>{};
-      // Get all completion dates from the last 90 days
-      final now = DateTime.now();
-      for (int i = 0; i < 90; i++) {
-        final d = now.subtract(Duration(days: i));
-        final key =
-            '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
-        if (habitService.isCheckedToday(habit.id) && i == 0) {
-          checkDates.add(key);
-        }
-      }
+    final now = DateTime.now();
 
-      // Use the service's internal check dates
+    for (final habit in adoptedHabits) {
       final weekCompletions = habitService.getWeekCompletions(habit.id);
       final totalCompletions = habitService.getTotalCompletions(habit.id);
 
       if (totalCompletions < 3) continue;
 
-      // Calculate mood on habit days vs non-habit days
+      // Calculate mood on habit days vs non-habit days (last 7 days only —
+      // weekCompletions only covers 7 days, index 0 = 6 days ago, index 6 = today)
       double habitDayMoodSum = 0;
       int habitDayCount = 0;
       double nonHabitDayMoodSum = 0;
       int nonHabitDayCount = 0;
 
-      // Check last 30 days
-      for (int i = 0; i < 30; i++) {
+      for (int i = 0; i < 7; i++) {
         final d = now.subtract(Duration(days: i));
         final dateKey =
             '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
         final mood = moodByDate[dateKey];
         if (mood == null) continue;
 
-        // Check if habit was completed on this day using week completions pattern
-        final dayIndex = 6 - i; // weekCompletions is last 7 days, index 6 = today
-        bool wasCompleted = false;
-        if (i < 7 && dayIndex >= 0 && dayIndex < weekCompletions.length) {
-          wasCompleted = weekCompletions[dayIndex];
-        }
+        final dayIndex = 6 - i;
+        final wasCompleted =
+            dayIndex >= 0 && dayIndex < weekCompletions.length && weekCompletions[dayIndex];
 
         if (wasCompleted) {
           habitDayMoodSum += mood;

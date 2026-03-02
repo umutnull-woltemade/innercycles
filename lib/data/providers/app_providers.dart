@@ -67,6 +67,7 @@ import '../models/cross_correlation_result.dart';
 import '../services/sync_service.dart';
 import '../services/vault_service.dart';
 import '../models/vault_photo.dart';
+import '../services/smart_prompt_service.dart';
 
 // =============================================================================
 // USER PROFILE PROVIDERS
@@ -573,6 +574,46 @@ final journalPromptServiceProvider = FutureProvider<JournalPromptService>((
   ref,
 ) async {
   return await JournalPromptService.init();
+});
+
+// =============================================================================
+// SMART PROMPT SERVICE PROVIDER
+// =============================================================================
+
+final smartPromptServiceProvider = FutureProvider<SmartPromptService>((
+  ref,
+) async {
+  return await SmartPromptService.init();
+});
+
+/// AI-personalized daily prompt. Calls edge function once per day, caches result.
+/// Falls back to null (caller should use static prompt pool as fallback).
+final smartDailyPromptProvider = FutureProvider<String?>((ref) async {
+  final smartService = await ref.watch(smartPromptServiceProvider.future);
+
+  // Return cache immediately if available
+  final cached = smartService.getCachedPrompt();
+  if (cached != null) return cached;
+
+  // Generate new prompt
+  final journalService = await ref.watch(journalServiceProvider.future);
+  final language = ref.watch(languageProvider);
+  PatternEngineService? patternEngine;
+  try {
+    patternEngine = await ref.watch(patternEngineServiceProvider.future);
+  } catch (_) {}
+  int currentStreak = 0;
+  try {
+    final streakService = await ref.watch(streakServiceProvider.future);
+    currentStreak = streakService.getCurrentStreak();
+  } catch (_) {}
+
+  return await smartService.getSmartPrompt(
+    journalService: journalService,
+    language: language,
+    patternEngine: patternEngine,
+    currentStreak: currentStreak,
+  );
 });
 
 // =============================================================================
