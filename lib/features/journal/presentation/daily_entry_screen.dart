@@ -42,6 +42,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../data/services/premium_service.dart';
 import '../../gratitude/presentation/gratitude_section.dart';
 import '../../sleep/presentation/sleep_section.dart';
+import '../../rituals/presentation/ritual_checklist_section.dart';
 import '../../../shared/widgets/private_toggle.dart';
 import '../../../shared/widgets/glass_dialog.dart';
 import 'widgets/post_save_engagement_sheet.dart';
@@ -379,6 +380,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 
                         // Sleep quality section (collapsible)
                         SleepSection(date: _selectedDate),
+                        const SizedBox(height: AppConstants.spacingXl),
+
+                        // Ritual & habit checklist (collapsible)
+                        RitualChecklistSection(date: _selectedDate),
                         const SizedBox(height: AppConstants.spacingXl),
 
                         // Private vault toggle

@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'core/theme/app_colors.dart';
 import 'core/theme/app_theme.dart';
@@ -186,7 +187,17 @@ class _AppInitializerState extends State<AppInitializer>
     //   Future.microtask(() => GlossaryCache().initialize());
     // }
 
-    // Initialize storage
+    // Initialize Hive FIRST — all Hive-dependent services need this
+    if (!kIsWeb) {
+      try {
+        await Hive.initFlutter();
+        if (kDebugMode) debugPrint('✓ Hive initialized');
+      } catch (e) {
+        if (kDebugMode) debugPrint('⚠️ Hive init failed: $e');
+      }
+    }
+
+    // Initialize storage (opens encrypted Hive boxes)
     try {
       await StorageService.initialize().timeout(const Duration(seconds: 5));
       if (kDebugMode) {
@@ -198,7 +209,7 @@ class _AppInitializerState extends State<AppInitializer>
       }
     }
 
-    // Initialize admin services (MOBILE ONLY)
+    // Initialize admin services (MOBILE ONLY, depends on Hive)
     if (!kIsWeb) {
       try {
         await AdminAuthService.initialize().timeout(const Duration(seconds: 5));
@@ -264,6 +275,10 @@ class _AppInitializerState extends State<AppInitializer>
         }
       }
     }
+
+    // Preload all supported languages so runtime switching is instant
+    // (runs in background, non-blocking for the primary language)
+    L10nService.preloadAll();
 
     // Initialize notifications (MOBILE ONLY)
     if (!kIsWeb) {

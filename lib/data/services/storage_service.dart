@@ -47,7 +47,15 @@ class StorageService {
     }
 
     try {
-      await Hive.initFlutter();
+      // Hive.initFlutter() is called in main.dart before this
+      // Only call it here as a safety fallback if not already initialized
+      if (!Hive.isBoxOpen(_userProfileBoxName) && !Hive.isBoxOpen(_settingsBoxName)) {
+        try {
+          await Hive.initFlutter();
+        } catch (_) {
+          // Already initialized from main.dart — safe to continue
+        }
+      }
 
       // Get or create AES encryption key for Hive boxes
       final cipher = await _getHiveEncryptionCipher();

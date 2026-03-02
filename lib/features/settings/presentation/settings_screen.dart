@@ -135,8 +135,10 @@ class SettingsScreen extends ConsumerWidget {
                                     button: true,
                                     selected: isSelected,
                                     child: GestureDetector(
-                                      onTap: () {
+                                      onTap: () async {
                                         HapticFeedback.selectionClick();
+                                        // Load translations for the new language before switching
+                                        await L10nService.init(lang);
                                         ref
                                                 .read(languageProvider.notifier)
                                                 .state =

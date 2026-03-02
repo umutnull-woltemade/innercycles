@@ -37,6 +37,8 @@ import 'widgets/weekly_focus_progress.dart';
 import 'widgets/social_proof_strip.dart';
 import 'widgets/draft_continuation_banner.dart';
 import 'widgets/quick_mood_checkin.dart';
+import 'widgets/mood_habit_correlation_card.dart';
+import 'widgets/weekly_reflection_card.dart';
 import '../../../data/services/l10n_service.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
@@ -499,6 +501,20 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                         delay: 580.ms,
                       ),
                     ),
+                  ),
+
+                  const SliverToBoxAdapter(child: SizedBox(height: 8)),
+
+                  // 9b. Weekly Reflection (Fri–Sun only)
+                  SliverToBoxAdapter(
+                    child: WeeklyReflectionCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  const SliverToBoxAdapter(child: SizedBox(height: 8)),
+
+                  // 9c. Mood-Habit Correlation Insight
+                  SliverToBoxAdapter(
+                    child: MoodHabitCorrelationCard(isEn: isEn, isDark: isDark),
                   ),
 
                   const SliverToBoxAdapter(child: SizedBox(height: 16)),

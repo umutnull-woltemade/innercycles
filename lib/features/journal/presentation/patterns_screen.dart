@@ -30,6 +30,8 @@ import '../../../shared/widgets/gradient_text.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../data/services/l10n_service.dart';
+import '../../../data/services/ritual_service.dart';
+import '../../../data/services/mood_checkin_service.dart';
 
 class PatternsScreen extends ConsumerWidget {
   const PatternsScreen({super.key});
@@ -465,6 +467,13 @@ class PatternsScreen extends ConsumerWidget {
                     ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
                   ],
                 ],
+                // Ritual effectiveness insights (premium)
+                if (isPremium)
+                  _RitualEffectivenessSection(
+                    isDark: isDark,
+                    isEn: isEn,
+                  ),
+
                 // Shadow Work suggestion based on weak areas
                 _ShadowWorkSuggestion(
                   engine: engine,
@@ -1290,4 +1299,227 @@ class _ShadowWorkSuggestion extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Ritual effectiveness section — shows which rituals correlate with
+/// better mood scores on completion days vs non-completion days.
+class _RitualEffectivenessSection extends ConsumerWidget {
+  final bool isDark;
+  final bool isEn;
+
+  const _RitualEffectivenessSection({
+    required this.isDark,
+    required this.isEn,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final ritualAsync = ref.watch(ritualServiceProvider);
+    final moodAsync = ref.watch(moodCheckinServiceProvider);
+
+    return ritualAsync.when(
+      loading: () => const SizedBox.shrink(),
+      error: (_, _) => const SizedBox.shrink(),
+      data: (ritualService) => moodAsync.when(
+        loading: () => const SizedBox.shrink(),
+        error: (_, _) => const SizedBox.shrink(),
+        data: (moodService) =>
+            _buildContent(ritualService, moodService),
+      ),
+    );
+  }
+
+  Widget _buildContent(
+    RitualService ritualService,
+    MoodCheckinService moodService,
+  ) {
+    final stacks = ritualService.getStacks();
+    if (stacks.isEmpty) return const SizedBox.shrink();
+
+    final allMoods = moodService.getAllEntries();
+    if (allMoods.length < 7) return const SizedBox.shrink();
+
+    // Build date→mood map
+    final moodByDate = <String, int>{};
+    for (final entry in allMoods) {
+      final key =
+          '${entry.date.year}-${entry.date.month.toString().padLeft(2, '0')}-${entry.date.day.toString().padLeft(2, '0')}';
+      moodByDate[key] = entry.mood;
+    }
+
+    // Calculate effectiveness per stack
+    final results = <_RitualResult>[];
+
+    for (final stack in stacks) {
+      double completedMoodSum = 0;
+      int completedDays = 0;
+      double incompleteMoodSum = 0;
+      int incompleteDays = 0;
+
+      final now = DateTime.now();
+      for (int i = 0; i < 30; i++) {
+        final d = now.subtract(Duration(days: i));
+        final dateKey =
+            '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+        final mood = moodByDate[dateKey];
+        if (mood == null) continue;
+
+        final completion = ritualService.getCompletion(stack.id, date: d);
+        final rate = completion?.completionRate(stack.items.length) ?? 0;
+
+        if (rate >= 0.5) {
+          completedMoodSum += mood;
+          completedDays++;
+        } else {
+          incompleteMoodSum += mood;
+          incompleteDays++;
+        }
+      }
+
+      if (completedDays >= 2 && incompleteDays >= 2) {
+        final completedAvg = completedMoodSum / completedDays;
+        final incompleteAvg = incompleteMoodSum / incompleteDays;
+        results.add(_RitualResult(
+          name: stack.name,
+          icon: stack.time.icon,
+          completedAvg: completedAvg,
+          incompleteAvg: incompleteAvg,
+          diff: completedAvg - incompleteAvg,
+          completedDays: completedDays,
+        ));
+      }
+    }
+
+    if (results.isEmpty) return const SizedBox.shrink();
+
+    // Sort by impact (highest positive diff first)
+    results.sort((a, b) => b.diff.compareTo(a.diff));
+
+    return Column(
+      children: [
+        const SizedBox(height: AppConstants.spacingLg),
+        PremiumCard(
+          style: PremiumCardStyle.subtle,
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    Icons.trending_up_rounded,
+                    size: 18,
+                    color: AppColors.celestialGold,
+                  ),
+                  const SizedBox(width: 8),
+                  GradientText(
+                    isEn
+                        ? 'Ritual Effectiveness'
+                        : 'Ritüel Etkinliği',
+                    variant: GradientTextVariant.gold,
+                    style: AppTypography.displayFont.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 4),
+              Text(
+                isEn
+                    ? 'How your rituals affect your mood'
+                    : 'Ritüellerinin ruh haline etkisi',
+                style: AppTypography.decorativeScript(
+                  fontSize: 12,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
+                ),
+              ),
+              const SizedBox(height: 14),
+              for (final result in results.take(3))
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Row(
+                    children: [
+                      Text(result.icon, style: const TextStyle(fontSize: 16)),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              result.name,
+                              style: AppTypography.subtitle(
+                                fontSize: 13,
+                                color: isDark
+                                    ? AppColors.textPrimary
+                                    : AppColors.lightTextPrimary,
+                              ),
+                            ),
+                            const SizedBox(height: 3),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(3),
+                                    child: LinearProgressIndicator(
+                                      value: (result.completedAvg / 5)
+                                          .clamp(0.0, 1.0),
+                                      minHeight: 5,
+                                      backgroundColor: AppColors
+                                          .celestialGold
+                                          .withValues(alpha: 0.12),
+                                      valueColor: AlwaysStoppedAnimation(
+                                        result.diff > 0
+                                            ? AppColors.success
+                                            : AppColors.amethyst,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  result.diff > 0
+                                      ? '+${result.diff.toStringAsFixed(1)}'
+                                      : result.diff.toStringAsFixed(1),
+                                  style: AppTypography.elegantAccent(
+                                    fontSize: 12,
+                                    color: result.diff > 0
+                                        ? AppColors.success
+                                        : AppColors.warning,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+            ],
+          ),
+        ).animate().fadeIn(delay: 550.ms, duration: 400.ms),
+      ],
+    );
+  }
+}
+
+class _RitualResult {
+  final String name;
+  final String icon;
+  final double completedAvg;
+  final double incompleteAvg;
+  final double diff;
+  final int completedDays;
+
+  const _RitualResult({
+    required this.name,
+    required this.icon,
+    required this.completedAvg,
+    required this.incompleteAvg,
+    required this.diff,
+    required this.completedDays,
+  });
 }
