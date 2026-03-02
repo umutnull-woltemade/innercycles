@@ -5,6 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../data/models/journal_entry.dart';
@@ -56,7 +58,7 @@ class EmotionalFingerprintCard extends ConsumerWidget {
         // Dominant journaling hour
         final hourCounts = <int, int>{};
         for (final e in entries) {
-          hourCounts[e.date.hour] = (hourCounts[e.date.hour] ?? 0) + 1;
+          hourCounts[e.createdAt.hour] = (hourCounts[e.createdAt.hour] ?? 0) + 1;
         }
         final hourSorted = hourCounts.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
         final dominantHour = hourSorted.isNotEmpty ? hourSorted.first.key : 12;
@@ -76,7 +78,9 @@ class EmotionalFingerprintCard extends ConsumerWidget {
           isEn ? 'Orbit' : 'Yörünge',
         ];
 
-        return Padding(
+        return GestureDetector(
+          onTap: () => context.push(Routes.emotionalFingerprint),
+          child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
           child: PremiumCard(
             style: PremiumCardStyle.amethyst,
@@ -125,7 +129,8 @@ class EmotionalFingerprintCard extends ConsumerWidget {
               ],
             ),
           ),
-        ).animate().fadeIn(delay: 400.ms, duration: 400.ms);
+        ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+        );
       },
       orElse: () => const SizedBox.shrink(),
     );

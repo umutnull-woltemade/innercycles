@@ -125,6 +125,10 @@ import '../../features/mood/presentation/clarity_score_screen.dart';
 import '../../features/mood/presentation/emotional_cycles_screen.dart';
 import '../../features/growth/presentation/growth_letters_screen.dart';
 import '../../features/journal/presentation/word_cloud_screen.dart';
+import '../../features/dreams/presentation/dream_correlation_screen.dart';
+import '../../features/mood/presentation/shift_outlook_screen.dart';
+import '../../features/profile/presentation/emotional_fingerprint_screen.dart';
+import '../../features/cycle_sync/presentation/cycle_correlation_screen.dart';
 import '../../features/tools/presentation/tool_catalog_screen.dart';
 import '../../features/wellness/presentation/wellness_detail_screen.dart';
 import '../../shared/widgets/main_shell_screen.dart';
@@ -766,6 +770,34 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.moodRhythm,
         pageBuilder: (context, state) => PageTransitions.fadeSlide(
           child: const EmotionalCyclesScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.dreamCorrelation,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const DreamCorrelationScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.shiftOutlook,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const ShiftOutlookScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.emotionalFingerprint,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const EmotionalFingerprintScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.cycleCorrelation,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const CycleCorrelationScreen(),
           key: state.pageKey,
         ),
       ),

@@ -71,7 +71,7 @@ class ShiftOutlookCard extends ConsumerWidget {
           child: TapScale(
             onTap: () {
               HapticService.selectionTap();
-              context.push(Routes.emotionalCycles);
+              context.push(Routes.shiftOutlook);
             },
             child: PremiumCard(
               style: PremiumCardStyle.aurora,

@@ -159,6 +159,10 @@ class Routes {
   static const String selfCompassion = '/self-compassion';
   static const String clarityScore = '/clarity';
   static const String moodRhythm = '/mood/rhythm';
+  static const String dreamCorrelation = '/dreams/correlation';
+  static const String shiftOutlook = '/mood/shift-outlook';
+  static const String emotionalFingerprint = '/emotional-fingerprint';
+  static const String cycleCorrelation = '/cycle/correlation';
   static const String gratitudeArchive = '/gratitude/archive';
   static const String sleepTrends = '/sleep/trends';
 

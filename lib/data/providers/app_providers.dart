@@ -82,6 +82,7 @@ import '../services/reflection_prompt_engine.dart';
 import '../services/life_wheel_service.dart';
 import '../services/monthly_theme_service.dart';
 import '../services/fear_inventory_service.dart';
+import '../services/dream_journal_correlation_service.dart';
 
 // =============================================================================
 // USER PROFILE PROVIDERS
@@ -602,18 +603,6 @@ final moodCheckinServiceProvider = FutureProvider<MoodCheckinService>((
 // SIGNAL PROVIDERS (derived from mood check-in)
 // =============================================================================
 
-/// Today's signal ID (null if not logged or legacy entry)
-final todaySignalProvider = FutureProvider<String?>((ref) async {
-  final service = await ref.watch(moodCheckinServiceProvider.future);
-  return service.getTodayMood()?.signalId;
-});
-
-/// Quadrant distribution for last 30 days
-final quadrantDistributionProvider = FutureProvider<Map<String, int>>((ref) async {
-  final service = await ref.watch(moodCheckinServiceProvider.future);
-  return service.getQuadrantDistribution(30);
-});
-
 // =============================================================================
 // APP LOCK PROVIDER
 // =============================================================================
@@ -936,6 +925,16 @@ final cycleCorrelationServiceProvider = FutureProvider<CycleCorrelationService>(
     return CycleCorrelationService(cycleSyncService, journalService);
   },
 );
+
+final dreamCorrelationServiceProvider =
+    FutureProvider<DreamJournalCorrelationService>((ref) async {
+  final dreamService = await ref.watch(dreamJournalServiceProvider.future);
+  final journalService = await ref.watch(journalServiceProvider.future);
+  return DreamJournalCorrelationService.init(
+    dreamService: dreamService,
+    journalService: journalService,
+  );
+});
 
 // =============================================================================
 // SHADOW WORK PROVIDERS (Guided Shadow Journal)
