@@ -57,7 +57,7 @@ class JourneyAnalyticsScreen extends ConsumerWidget {
               // Session durations
               final durations = <int>[];
               for (final e in sessionEvents) {
-                final d = e.properties['duration_seconds'] as int?;
+                final d = (e.properties['duration_seconds'] as num?)?.toInt();
                 if (d != null && d > 0) durations.add(d);
               }
               final avgDuration = durations.isNotEmpty
