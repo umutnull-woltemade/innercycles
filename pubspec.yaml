@@ -64,6 +64,9 @@ dependencies:
   # Voice Input
   speech_to_text: ^7.0.0
 
+  # Audio playback
+  just_audio: ^0.9.42
+
   app_tracking_transparency: ^2.0.6+1
   image_picker: ^1.2.1
   file_picker: ^8.0.0
