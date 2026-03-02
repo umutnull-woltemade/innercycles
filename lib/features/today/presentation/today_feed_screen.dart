@@ -42,6 +42,10 @@ import 'widgets/weekly_reflection_card.dart';
 import 'widgets/focus_area_streak.dart';
 import 'widgets/year_progress_ring.dart';
 import 'widgets/welcome_banner.dart';
+import 'widgets/wellness_score_card.dart';
+import 'widgets/gratitude_quick_card.dart';
+import 'widgets/active_challenge_card.dart';
+import 'widgets/badge_unlock_banner.dart';
 import '../../../data/services/l10n_service.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
@@ -430,6 +434,11 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: HeroJournalCard(isEn: isEn, isDark: isDark),
                   ),
 
+                  // 2a. Badge Unlock Banner (conditional)
+                  SliverToBoxAdapter(
+                    child: BadgeUnlockBanner(isEn: isEn, isDark: isDark),
+                  ),
+
                   // 2b. Draft Continuation Banner (conditional)
                   SliverToBoxAdapter(
                     child: DraftContinuationBanner(isEn: isEn, isDark: isDark),
@@ -453,6 +462,11 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 3c. Focus Area Streak (2+ consecutive days)
                   SliverToBoxAdapter(
                     child: FocusAreaStreak(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 3d. Gratitude Quick-Add
+                  SliverToBoxAdapter(
+                    child: GratitudeQuickCard(isEn: isEn, isDark: isDark),
                   ),
 
                   // Zone 1→2 primary divider
@@ -516,6 +530,16 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 8. Recent Life Events
                   SliverToBoxAdapter(
                     child: RecentLifeEventsSection(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 8b. Wellness Score Card
+                  SliverToBoxAdapter(
+                    child: WellnessScoreCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 8c. Active Challenge Card
+                  SliverToBoxAdapter(
+                    child: ActiveChallengeCard(isEn: isEn, isDark: isDark),
                   ),
 
                   // 9. Streak Card

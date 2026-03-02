@@ -23,6 +23,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../data/services/l10n_service.dart';
 
@@ -203,6 +204,21 @@ class MoodTrendsScreen extends ConsumerWidget {
                       isDark,
                       isEn,
                       allEntries.take(20).toList(),
+                    ),
+                  ),
+                // Time-of-Day mood pattern (PREMIUM)
+                if (allEntries.length >= 7)
+                  _buildPremiumSection(
+                    context,
+                    ref,
+                    isDark,
+                    isEn,
+                    isPremium,
+                    child: _buildTimeOfDayCard(
+                      context,
+                      isDark,
+                      isEn,
+                      allEntries,
                     ),
                   ),
                 // Deeper Tools Discovery
@@ -659,6 +675,162 @@ class MoodTrendsScreen extends ConsumerWidget {
       default:
         return AppColors.starGold;
     }
+  }
+
+  Widget _buildTimeOfDayCard(
+    BuildContext context,
+    bool isDark,
+    bool isEn,
+    List<MoodEntry> allEntries,
+  ) {
+    // Group by time bucket
+    final buckets = <String, List<int>>{
+      'morning': [],
+      'afternoon': [],
+      'evening': [],
+    };
+
+    for (final entry in allEntries) {
+      final hour = entry.date.hour;
+      if (hour >= 6 && hour < 12) {
+        buckets['morning']!.add(entry.mood);
+      } else if (hour >= 12 && hour < 18) {
+        buckets['afternoon']!.add(entry.mood);
+      } else {
+        buckets['evening']!.add(entry.mood);
+      }
+    }
+
+    // Need at least 2 buckets with data
+    final activeBuckets = buckets.entries
+        .where((e) => e.value.isNotEmpty)
+        .toList();
+    if (activeBuckets.length < 2) return const SizedBox.shrink();
+
+    final averages = <String, double>{};
+    for (final entry in activeBuckets) {
+      averages[entry.key] = entry.value.reduce((a, b) => a + b) /
+          entry.value.length;
+    }
+
+    final bestTime = averages.entries
+        .reduce((a, b) => a.value > b.value ? a : b);
+
+    final labels = {
+      'morning': (
+        isEn ? 'Morning' : 'Sabah',
+        '\u{1F305}',
+      ),
+      'afternoon': (
+        isEn ? 'Afternoon' : '\u{00D6}\u{011F}leden Sonra',
+        '\u{2600}\u{FE0F}',
+      ),
+      'evening': (
+        isEn ? 'Evening' : 'Ak\u{015F}am',
+        '\u{1F319}',
+      ),
+    };
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: AppConstants.spacingLg),
+      child: PremiumCard(
+        style: PremiumCardStyle.aurora,
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GradientText(
+              isEn
+                  ? 'Your Best Time of Day'
+                  : 'G\u{00FC}n\u{00FC}n En \u{0130}yi Zaman\u{0131}',
+              variant: GradientTextVariant.aurora,
+              style: AppTypography.displayFont.copyWith(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 16),
+            for (final bucket in ['morning', 'afternoon', 'evening'])
+              if (averages.containsKey(bucket)) ...[
+                _buildTimeBar(
+                  emoji: labels[bucket]!.$2,
+                  label: labels[bucket]!.$1,
+                  avg: averages[bucket]!,
+                  isBest: bucket == bestTime.key,
+                  isDark: isDark,
+                ),
+                const SizedBox(height: 8),
+              ],
+            const SizedBox(height: 4),
+            Text(
+              isEn
+                  ? 'You tend to feel best in the ${labels[bestTime.key]!.$1.toLowerCase()}'
+                  : '${labels[bestTime.key]!.$1} saatlerinde daha iyi hissediyorsun',
+              style: AppTypography.elegantAccent(
+                fontSize: 12,
+                color: isDark
+                    ? AppColors.textMuted
+                    : AppColors.lightTextMuted,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTimeBar({
+    required String emoji,
+    required String label,
+    required double avg,
+    required bool isBest,
+    required bool isDark,
+  }) {
+    return Row(
+      children: [
+        Text(emoji, style: const TextStyle(fontSize: 16)),
+        const SizedBox(width: 8),
+        SizedBox(
+          width: 70,
+          child: Text(
+            label,
+            style: AppTypography.subtitle(
+              fontSize: 13,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+            ),
+          ),
+        ),
+        Expanded(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(4),
+            child: LinearProgressIndicator(
+              value: (avg / 5).clamp(0, 1),
+              minHeight: 8,
+              backgroundColor: (isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted)
+                  .withValues(alpha: 0.12),
+              valueColor: AlwaysStoppedAnimation(
+                isBest ? AppColors.success : AppColors.starGold,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(width: 8),
+        Text(
+          avg.toStringAsFixed(1),
+          style: AppTypography.displayFont.copyWith(
+            fontSize: 14,
+            fontWeight: FontWeight.w700,
+            color: isBest
+                ? AppColors.success
+                : (isDark ? AppColors.textSecondary : AppColors.lightTextSecondary),
+          ),
+        ),
+      ],
+    );
   }
 
   Widget _buildDeeperToolsSection(

@@ -474,6 +474,14 @@ class PatternsScreen extends ConsumerWidget {
                     isEn: isEn,
                   ),
 
+                // Sleep-Journal correlation (premium)
+                if (isPremium && crossCorrelations.isNotEmpty)
+                  _SleepCorrelationCard(
+                    crossCorrelations: crossCorrelations,
+                    isDark: isDark,
+                    isEn: isEn,
+                  ),
+
                 // Shadow Work suggestion based on weak areas
                 _ShadowWorkSuggestion(
                   engine: engine,
@@ -1522,4 +1530,144 @@ class _RitualResult {
     required this.diff,
     required this.completedDays,
   });
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// SLEEP-JOURNAL CORRELATION CARD (Premium)
+// ════════════════════════════════════════════════════════════════════════════
+
+class _SleepCorrelationCard extends StatelessWidget {
+  final List<CrossCorrelation> crossCorrelations;
+  final bool isDark;
+  final bool isEn;
+
+  const _SleepCorrelationCard({
+    required this.crossCorrelations,
+    required this.isDark,
+    required this.isEn,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // Find sleep-related correlations
+    final sleepCorrelations = crossCorrelations
+        .where(
+          (c) =>
+              c.isSignificant &&
+              (c.dimensionA.toLowerCase().contains('sleep') ||
+                  c.dimensionB.toLowerCase().contains('sleep')),
+        )
+        .toList();
+
+    if (sleepCorrelations.isEmpty) return const SizedBox.shrink();
+
+    final strongest = sleepCorrelations.reduce(
+      (a, b) => a.coefficient.abs() > b.coefficient.abs() ? a : b,
+    );
+
+    final language = AppLanguage.fromIsEn(isEn);
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: AppConstants.spacingLg),
+      child: PremiumCard(
+        style: PremiumCardStyle.aurora,
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                const Text('\u{1F634}', style: TextStyle(fontSize: 20)),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: GradientText(
+                    isEn
+                        ? 'Sleep & Journal Connection'
+                        : 'Uyku ve G\u{00FC}nl\u{00FC}k Ba\u{011F}lant\u{0131}s\u{0131}',
+                    variant: GradientTextVariant.aurora,
+                    style: AppTypography.displayFont.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Text(
+              strongest.localizedInsightText(language),
+              style: AppTypography.subtitle(
+                fontSize: 14,
+                color: isDark
+                    ? AppColors.textSecondary
+                    : AppColors.lightTextSecondary,
+              ),
+            ),
+            const SizedBox(height: 12),
+            // Correlation strength bar
+            Row(
+              children: [
+                Text(
+                  isEn
+                      ? strongest.strengthEn
+                      : strongest.strengthTr,
+                  style: AppTypography.elegantAccent(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: _correlationColor(strongest.coefficient),
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  'r = ${strongest.coefficient.toStringAsFixed(2)}',
+                  style: AppTypography.elegantAccent(
+                    fontSize: 11,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 6),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: LinearProgressIndicator(
+                value: strongest.coefficient.abs(),
+                minHeight: 6,
+                backgroundColor: (isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted)
+                    .withValues(alpha: 0.12),
+                valueColor: AlwaysStoppedAnimation(
+                  _correlationColor(strongest.coefficient),
+                ),
+              ),
+            ),
+            if (sleepCorrelations.length > 1) ...[
+              const SizedBox(height: 10),
+              Text(
+                isEn
+                    ? '${sleepCorrelations.length} sleep patterns detected'
+                    : '${sleepCorrelations.length} uyku \u{00F6}r\u{00FC}nt\u{00FC}s\u{00FC} tespit edildi',
+                style: AppTypography.elegantAccent(
+                  fontSize: 11,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
+                ),
+              ),
+            ],
+          ],
+        ),
+      ).animate().fadeIn(delay: 450.ms, duration: 400.ms),
+    );
+  }
+
+  Color _correlationColor(double coefficient) {
+    final abs = coefficient.abs();
+    if (abs >= 0.7) return AppColors.success;
+    if (abs >= 0.5) return AppColors.starGold;
+    return AppColors.amethyst;
+  }
 }

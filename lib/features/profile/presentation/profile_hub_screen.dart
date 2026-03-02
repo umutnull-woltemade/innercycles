@@ -50,6 +50,13 @@ class ProfileHubScreen extends ConsumerWidget {
         ) ??
         0;
 
+    final gratitudeAsync = ref.watch(gratitudeServiceProvider);
+    final gratitudeDays =
+        gratitudeAsync.whenOrNull(
+          data: (service) => service.getAllEntries().length,
+        ) ??
+        0;
+
     // Growth score calculation
     final entryScore = (totalEntries / 50).clamp(0, 1) * 40;
     final streakScore = (streakDays / 30).clamp(0, 1) * 35;
@@ -97,6 +104,7 @@ class ProfileHubScreen extends ConsumerWidget {
                         daysActive: totalEntries,
                         challenges: completedChallenges,
                         totalWords: totalWords,
+                        gratitudeDays: gratitudeDays,
                         isDark: isDark,
                         isEn: isEn,
                       ).glassListItem(context: context, index: 1),

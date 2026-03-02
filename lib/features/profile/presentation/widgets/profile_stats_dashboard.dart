@@ -16,6 +16,7 @@ class ProfileStatsDashboard extends StatelessWidget {
   final int daysActive;
   final int challenges;
   final int totalWords;
+  final int gratitudeDays;
   final bool isDark;
   final bool isEn;
 
@@ -26,6 +27,7 @@ class ProfileStatsDashboard extends StatelessWidget {
     required this.daysActive,
     required this.challenges,
     this.totalWords = 0,
+    this.gratitudeDays = 0,
     required this.isDark,
     required this.isEn,
   });
@@ -68,6 +70,13 @@ class ProfileStatsDashboard extends StatelessWidget {
             label: L10nService.get('profile.profile_stats_dashboard.done', language),
             color: AppColors.amethyst,
           ),
+          if (gratitudeDays > 0)
+            _StatColumn(
+              emoji: '\u{1F64F}',
+              value: '$gratitudeDays',
+              label: isEn ? 'GRATITUDE' : '\u{015E}\u{00DC}KRAN',
+              color: AppColors.starGold,
+            ),
         ],
       ),
     );
