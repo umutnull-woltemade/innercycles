@@ -131,6 +131,12 @@ class AppColors {
     colors: [chatAccent, chatAccentDark],
   );
 
+  // ========== SIGNAL QUADRANT COLORS ==========
+  static const Color waterCalm = Color(0xFF7EB8A8); // sage green
+  static const Color waterDeep = Color(0xFF5D9B8A); // deep sage
+  static const Color stormAmber = Color(0xFFD4944A); // warm amber
+  static const Color stormSlate = Color(0xFF8B7355); // warm slate
+
   // ========== CHART / DATA VISUALIZATION COLORS ==========
   static const Color chartOrange = Color(0xFFFFA500);
   static const Color chartBlue = Color(0xFF4FC3F7);
