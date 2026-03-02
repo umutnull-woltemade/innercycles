@@ -60,6 +60,11 @@ import 'widgets/referral_invite_card.dart';
 import 'widgets/attachment_quiz_banner.dart';
 import 'widgets/pattern_loop_card.dart';
 import 'widgets/shift_outlook_card.dart';
+import 'widgets/weekly_digest_mini_card.dart';
+import 'widgets/pattern_health_alert_card.dart';
+import 'widgets/habit_suggestion_card.dart';
+import 'widgets/sleep_quality_mini_card.dart';
+import 'widgets/life_event_anniversary_card.dart';
 import '../../../data/services/l10n_service.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
@@ -523,7 +528,12 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     ).glassReveal(context: context, delay: 280.ms),
                   ),
 
-                  // 5a. Anomaly Alert (significant deviations from baseline)
+                  // 5a. Pattern Health Alert (yellow/red severity)
+                  SliverToBoxAdapter(
+                    child: PatternHealthAlertCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 5b. Anomaly Alert (significant deviations from baseline)
                   SliverToBoxAdapter(
                     child: AnomalyAlertCard(
                       isEn: isEn,
@@ -557,7 +567,12 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: TodayBirthdayBanner(isEn: isEn, isDark: isDark),
                   ),
 
-                  // 7b. On This Day — Anniversary memories
+                  // 7b. Life Event Anniversary (1/2/5/10-year milestones)
+                  SliverToBoxAdapter(
+                    child: LifeEventAnniversaryCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 7c. On This Day — Anniversary memories
                   SliverToBoxAdapter(
                     child: OnThisDayBanner(isEn: isEn, isDark: isDark),
                   ),
@@ -599,7 +614,12 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: ShiftOutlookCard(isEn: isEn, isDark: isDark),
                   ),
 
-                  // 8h. Weekly Community Challenge
+                  // 8h. Habit Suggestion Card
+                  SliverToBoxAdapter(
+                    child: HabitSuggestionCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 8i. Weekly Community Challenge
                   SliverToBoxAdapter(
                     child: CommunityChallengeCard(isEn: isEn, isDark: isDark),
                   ),
@@ -637,7 +657,12 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: PinnedNotesStrip(isEn: isEn, isDark: isDark),
                   ),
 
-                  // 9f. Attachment Style Quiz Banner
+                  // 9f. Sleep Quality Mini-Card
+                  SliverToBoxAdapter(
+                    child: SleepQualityMiniCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9g. Attachment Style Quiz Banner
                   SliverToBoxAdapter(
                     child: AttachmentQuizBanner(isEn: isEn, isDark: isDark),
                   ),
@@ -658,7 +683,12 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // ZONE 3: DISCOVER
                   // ═══════════════════════════════════════════════
 
-                  // 10. Community Pulse (anonymous social layer)
+                  // 10. Weekly Digest Mini-Card
+                  SliverToBoxAdapter(
+                    child: WeeklyDigestMiniCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 10a. Community Pulse (anonymous social layer)
                   SliverToBoxAdapter(
                     child: CommunityPulseCard(isEn: isEn, isDark: isDark),
                   ),

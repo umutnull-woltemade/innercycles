@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -101,6 +103,22 @@ class _BadgeUnlockBannerState extends ConsumerState<BadgeUnlockBanner> {
                     ),
                   ),
                 ),
+                TapScale(
+                  onTap: () {
+                    HapticService.selectionTap();
+                    final badgeNames = _unseen.map((b) => '${b.emoji} ${b.name}').join(', ');
+                    final text = widget.isEn
+                        ? 'Just unlocked: $badgeNames in InnerCycles!\n\n${AppConstants.appStoreUrl}'
+                        : 'InnerCycles\'da yeni rozet: $badgeNames!\n\n${AppConstants.appStoreUrl}';
+                    SharePlus.instance.share(ShareParams(text: text));
+                  },
+                  child: Icon(
+                    Icons.share_rounded,
+                    size: 16,
+                    color: AppColors.starGold,
+                  ),
+                ),
+                const SizedBox(width: 8),
                 GestureDetector(
                   onTap: () {
                     HapticService.selectionTap();

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../data/models/journal_entry.dart';
@@ -88,15 +90,34 @@ class FocusAreaStreak extends ConsumerWidget {
               children: [
                 Text(emoji, style: const TextStyle(fontSize: 14)),
                 const SizedBox(width: 6),
-                Text(
-                  isEn
-                      ? '$streak days focused on $areaName'
-                      : '$streak gündür $areaName odağında',
-                  style: AppTypography.elegantAccent(
-                    fontSize: 12,
-                    color: color,
+                Expanded(
+                  child: Text(
+                    isEn
+                        ? '$streak days focused on $areaName'
+                        : '$streak gündür $areaName odağında',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 12,
+                      color: color,
+                    ),
                   ),
                 ),
+                if (streak >= 3)
+                  GestureDetector(
+                    onTap: () {
+                      final text = isEn
+                          ? '$emoji $streak-day $areaName focus streak in InnerCycles!\n\n${AppConstants.appStoreUrl}'
+                          : '$emoji InnerCycles\'da $streak günlük $areaName odak serisi!\n\n${AppConstants.appStoreUrl}';
+                      SharePlus.instance.share(ShareParams(text: text));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 6),
+                      child: Icon(
+                        Icons.share_rounded,
+                        size: 14,
+                        color: color.withValues(alpha: 0.7),
+                      ),
+                    ),
+                  ),
               ],
             ),
           ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
