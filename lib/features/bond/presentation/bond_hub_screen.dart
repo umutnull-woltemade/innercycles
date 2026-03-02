@@ -18,7 +18,6 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
-import '../../../shared/widgets/premium_card.dart';
 import 'widgets/bond_partner_card.dart';
 
 class BondHubScreen extends ConsumerStatefulWidget {
