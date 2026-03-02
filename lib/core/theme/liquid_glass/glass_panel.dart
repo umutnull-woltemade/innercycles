@@ -61,9 +61,10 @@ class GlassPanel extends StatelessWidget {
       width: width,
       height: height,
       margin: margin,
-      child: ClipRRect(
-        borderRadius: radius,
-        child: BackdropFilter(
+      child: RepaintBoundary(
+        child: ClipRRect(
+          borderRadius: radius,
+          child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
           child: Container(
             padding: padding ?? const EdgeInsets.all(GlassTokens.spaceLg),
@@ -85,6 +86,7 @@ class GlassPanel extends StatelessWidget {
                 ? NoiseOverlay(opacity: noiseOpacity, child: child)
                 : child,
           ),
+        ),
         ),
       ),
     );

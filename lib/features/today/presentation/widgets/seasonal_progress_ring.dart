@@ -54,7 +54,8 @@ class SeasonalProgressRing extends ConsumerWidget {
                   SizedBox(
                     width: 44,
                     height: 44,
-                    child: CustomPaint(
+                    child: RepaintBoundary(
+                      child: CustomPaint(
                       painter: _SeasonRingPainter(
                         progress: pct,
                         color: AppColors.auroraStart,

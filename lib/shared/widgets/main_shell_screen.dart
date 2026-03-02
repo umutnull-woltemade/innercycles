@@ -139,9 +139,10 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen>
           ),
         ),
       ),
-      child: ClipRect(
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 24, sigmaY: 24),
+      child: RepaintBoundary(
+        child: ClipRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 24, sigmaY: 24),
           child: Container(
             color: isDark
                 ? AppColors.deepSpace.withValues(alpha: 0.85)
@@ -166,6 +167,7 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen>
               ),
             ),
           ),
+        ),
         ),
       ),
     );

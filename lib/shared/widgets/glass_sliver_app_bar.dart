@@ -57,24 +57,25 @@ class GlassSliverAppBar extends StatelessWidget {
             ? _buildBackButton(context, backColor)
             : null,
         actions: actions,
-        flexibleSpace: ClipRect(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: Container(
-              decoration: BoxDecoration(
-                color: isDark
-                    ? Colors.black.withValues(alpha: 0.2)
-                    : Colors.white.withValues(alpha: 0.5),
-                border: Border(
-                  bottom: BorderSide(
-                    color: isDark
-                        ? Colors.white.withValues(alpha: 0.15)
-                        : Colors.black.withValues(alpha: 0.1),
-                    width: 0.33,
+        flexibleSpace: RepaintBoundary(
+          child: ClipRect(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: isDark
+                      ? Colors.black.withValues(alpha: 0.2)
+                      : Colors.white.withValues(alpha: 0.5),
+                  border: Border(
+                    bottom: BorderSide(
+                      color: isDark
+                          ? Colors.white.withValues(alpha: 0.15)
+                          : Colors.black.withValues(alpha: 0.1),
+                      width: 0.33,
+                    ),
                   ),
                 ),
-              ),
-              child: FlexibleSpaceBar(
+                child: FlexibleSpaceBar(
                 titlePadding: const EdgeInsetsDirectional.only(
                   start: 16,
                   bottom: 14,
@@ -99,6 +100,7 @@ class GlassSliverAppBar extends StatelessWidget {
                 collapseMode: CollapseMode.pin,
               ),
             ),
+          ),
           ),
         ),
       );
@@ -129,20 +131,22 @@ class GlassSliverAppBar extends StatelessWidget {
               ),
             ),
       actions: actions,
-      flexibleSpace: ClipRect(
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-          child: Container(
-            decoration: BoxDecoration(
-              color: isDark
-                  ? Colors.black.withValues(alpha: 0.2)
-                  : Colors.white.withValues(alpha: 0.5),
-              border: Border(
-                bottom: BorderSide(
-                  color: isDark
-                      ? Colors.white.withValues(alpha: 0.15)
-                      : Colors.black.withValues(alpha: 0.1),
-                  width: 0.33,
+      flexibleSpace: RepaintBoundary(
+        child: ClipRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: Container(
+              decoration: BoxDecoration(
+                color: isDark
+                    ? Colors.black.withValues(alpha: 0.2)
+                    : Colors.white.withValues(alpha: 0.5),
+                border: Border(
+                  bottom: BorderSide(
+                    color: isDark
+                        ? Colors.white.withValues(alpha: 0.15)
+                        : Colors.black.withValues(alpha: 0.1),
+                    width: 0.33,
+                  ),
                 ),
               ),
             ),

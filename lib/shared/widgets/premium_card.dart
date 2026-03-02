@@ -103,10 +103,11 @@ class _PremiumCardState extends State<PremiumCard>
           ),
         ],
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(widget.borderRadius),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+      child: RepaintBoundary(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(widget.borderRadius),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
           child: Container(
             decoration: BoxDecoration(
               color: isDark
@@ -153,6 +154,7 @@ class _PremiumCardState extends State<PremiumCard>
               ],
             ),
           ),
+        ),
         ),
       ),
     );
