@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
@@ -41,9 +44,24 @@ class _PromotionalBannerStackState
   static const _widgetCooldownDays = 30;
   bool _inviteDismissed = false;
   bool _widgetDismissed = false;
+  Timer? _countdownTimer;
 
   bool get isEn => widget.isEn;
   bool get isDark => widget.isDark;
+
+  @override
+  void initState() {
+    super.initState();
+    _countdownTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (mounted) setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _countdownTimer?.cancel();
+    super.dispose();
+  }
 
   Future<bool> _recentlyDismissed() async {
     final prefs = await SharedPreferences.getInstance();
@@ -116,7 +134,7 @@ class _PromotionalBannerStackState
     );
   }
 
-  // ── INTRODUCTORY OFFER (72hr countdown) ──
+  // ── INTRODUCTORY OFFER (72hr countdown — live ticking) ──
   Widget? _buildIntroOffer() {
     final offerAsync = ref.watch(introductoryOfferProvider);
     return offerAsync.whenOrNull(
@@ -125,8 +143,11 @@ class _PromotionalBannerStackState
         if (!service.isOfferActive) return null;
 
         final parts = service.countdownParts;
+        final remaining = service.timeRemaining;
+        final isUrgent = remaining.inHours < 6;
+        final isCritical = remaining.inHours < 1;
 
-        return Semantics(
+        Widget card = Semantics(
           button: true,
           label: L10nService.get('today.promotional_stack.limited_time_offer', language),
           child: TapScale(
@@ -143,7 +164,7 @@ class _PromotionalBannerStackState
                 children: [
                   Row(
                     children: [
-                      const AppSymbol.inline('\u{1F525}'),
+                      AppSymbol.inline(isCritical ? '\u{23F0}' : '\u{1F525}'),
                       const SizedBox(width: 6),
                       Expanded(
                         child: GradientText(
@@ -155,17 +176,69 @@ class _PromotionalBannerStackState
                           ),
                         ),
                       ),
+                      if (isUrgent)
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 6,
+                            vertical: 2,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: (isCritical ? AppColors.error : AppColors.warning)
+                                .withValues(alpha: 0.15),
+                          ),
+                          child: Text(
+                            isEn ? 'Ending soon' : 'Bitiyor',
+                            style: AppTypography.elegantAccent(
+                              fontSize: 10,
+                              color: isCritical ? AppColors.error : AppColors.warning,
+                            ),
+                          ),
+                        ),
                     ],
                   ),
                   const SizedBox(height: 10),
                   Row(
                     children: [
                       const SizedBox(width: 26),
-                      _CountdownDigit(parts.hours),
-                      _CountdownSep(),
-                      _CountdownDigit(parts.minutes),
-                      _CountdownSep(),
-                      _CountdownDigit(parts.seconds),
+                      _CountdownDigit(
+                        parts.hours,
+                        urgentColor: isCritical
+                            ? AppColors.error
+                            : isUrgent
+                                ? AppColors.warning
+                                : null,
+                      ),
+                      _CountdownSep(
+                        urgentColor: isCritical
+                            ? AppColors.error
+                            : isUrgent
+                                ? AppColors.warning
+                                : null,
+                      ),
+                      _CountdownDigit(
+                        parts.minutes,
+                        urgentColor: isCritical
+                            ? AppColors.error
+                            : isUrgent
+                                ? AppColors.warning
+                                : null,
+                      ),
+                      _CountdownSep(
+                        urgentColor: isCritical
+                            ? AppColors.error
+                            : isUrgent
+                                ? AppColors.warning
+                                : null,
+                      ),
+                      _CountdownDigit(
+                        parts.seconds,
+                        urgentColor: isCritical
+                            ? AppColors.error
+                            : isUrgent
+                                ? AppColors.warning
+                                : null,
+                      ),
                       const Spacer(),
                       GradientButton.gold(
                         label: L10nService.get('today.promotional_stack.claim', language),
@@ -178,6 +251,15 @@ class _PromotionalBannerStackState
             ),
           ),
         );
+
+        // Pulse animation for urgent offers
+        if (isUrgent) {
+          card = card
+              .animate(onPlay: (c) => c.repeat(reverse: true))
+              .scaleXY(end: 1.012, duration: 1200.ms, curve: Curves.easeInOut);
+        }
+
+        return card;
       },
     );
   }
@@ -926,22 +1008,27 @@ class _PromotionalBannerStackState
 
 class _CountdownDigit extends StatelessWidget {
   final String value;
-  const _CountdownDigit(this.value);
+  final Color? urgentColor;
+  const _CountdownDigit(this.value, {this.urgentColor});
 
   @override
   Widget build(BuildContext context) {
+    final color = urgentColor ?? AppColors.starGold;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: AppColors.starGold.withValues(alpha: 0.15),
+        color: color.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(6),
+        border: urgentColor != null
+            ? Border.all(color: color.withValues(alpha: 0.2), width: 0.5)
+            : null,
       ),
       child: Text(
         value,
         style: AppTypography.displayFont.copyWith(
           fontSize: 18,
           fontWeight: FontWeight.w800,
-          color: AppColors.starGold,
+          color: color,
         ),
       ),
     );
@@ -949,8 +1036,12 @@ class _CountdownDigit extends StatelessWidget {
 }
 
 class _CountdownSep extends StatelessWidget {
+  final Color? urgentColor;
+  const _CountdownSep({this.urgentColor});
+
   @override
   Widget build(BuildContext context) {
+    final color = urgentColor ?? AppColors.starGold;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       child: Text(
@@ -958,7 +1049,7 @@ class _CountdownSep extends StatelessWidget {
         style: AppTypography.displayFont.copyWith(
           fontSize: 18,
           fontWeight: FontWeight.w800,
-          color: AppColors.starGold.withValues(alpha: 0.5),
+          color: color.withValues(alpha: 0.5),
         ),
       ),
     );
