@@ -588,7 +588,21 @@ class _DreamInterpretationScreenState
         }
       }
     } catch (_) {
-      // Fall through to local engine
+      // Show subtle feedback that AI is unavailable
+      if (mounted) {
+        final isEn = ref.read(languageProvider) == AppLanguage.en;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              isEn
+                  ? 'AI unavailable — using local interpretation'
+                  : 'AI kullanılamıyor — yerel yorum kullanılıyor',
+            ),
+            duration: const Duration(seconds: 2),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
     }
 
     if (!mounted) return;
