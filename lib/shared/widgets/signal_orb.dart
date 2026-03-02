@@ -103,9 +103,11 @@ class _SignalOrbState extends State<SignalOrb>
     if (oldWidget.signalId != widget.signalId ||
         oldWidget.pulseSpeedMsOverride != widget.pulseSpeedMsOverride) {
       _controller.duration = Duration(milliseconds: _pulseMs);
-      if (widget.animate && !_controller.isAnimating) {
-        _controller.repeat(reverse: true);
-      }
+    }
+    if (widget.animate && !_controller.isAnimating) {
+      _controller.repeat(reverse: true);
+    } else if (!widget.animate && _controller.isAnimating) {
+      _controller.stop();
     }
   }
 

@@ -139,7 +139,9 @@ class _MoodCompassSheetState extends ConsumerState<MoodCompassSheet> {
                 child: ElevatedButton(
                   onPressed: () {
                     final signal = getSignalById(_selectedId!);
-                    Navigator.of(context).pop(signal);
+                    if (signal != null) {
+                      Navigator.of(context).pop(signal);
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.starGold,

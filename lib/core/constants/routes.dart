@@ -23,6 +23,7 @@ class Routes {
   // ════════════════════════════════════════════════════════════════
   static const String journal = '/journal';
   static const String journalEntryDetail = '/journal/entry/:id';
+  static const String sprintEntry = '/journal/sprint';
   static const String journalPatterns = '/journal/patterns';
   static const String journalMonthly = '/journal/monthly';
   static const String journalArchive = '/journal/archive';

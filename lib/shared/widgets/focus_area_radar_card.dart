@@ -81,6 +81,7 @@ class FocusAreaRadarCard extends StatelessWidget {
               width: 200,
               height: 200,
               child: Stack(
+                clipBehavior: Clip.none,
                 children: [
                   CustomPaint(
                     size: const Size(200, 200),

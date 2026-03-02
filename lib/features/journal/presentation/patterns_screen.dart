@@ -33,6 +33,7 @@ import '../../../data/services/l10n_service.dart';
 import '../../../data/services/ritual_service.dart';
 import '../../../data/services/mood_checkin_service.dart';
 import '../../../shared/widgets/focus_area_radar_card.dart';
+import 'widgets/pattern_outlook_panel.dart';
 
 class PatternsScreen extends ConsumerWidget {
   const PatternsScreen({super.key});
@@ -363,6 +364,19 @@ class PatternsScreen extends ConsumerWidget {
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
+                // 7-day pattern outlook
+                Builder(builder: (ctx) {
+                  final allEntries = ref.watch(journalServiceProvider).whenOrNull(
+                    data: (s) => s.getAllEntries(),
+                  ) ?? [];
+                  return PatternOutlookPanel(
+                    allEntries: allEntries,
+                    isDark: isDark,
+                    isEn: isEn,
+                  );
+                }),
+                const SizedBox(height: AppConstants.spacingLg),
+
                 // Cycle arcs visualization — always free
                 _buildCycleArcs(
                   context,

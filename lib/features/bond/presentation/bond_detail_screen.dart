@@ -713,9 +713,11 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
     );
 
     if (confirmed == true) {
+      if (!mounted) return;
       try {
         final bondService = await ref.read(bondServiceProvider.future);
         await bondService.requestDissolve(bond.id);
+        if (!mounted) return;
         ref.invalidate(activeBondsProvider);
         HapticService.warning();
       } catch (_) {
@@ -728,6 +730,7 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
     try {
       final bondService = await ref.read(bondServiceProvider.future);
       await bondService.cancelDissolve(bond.id);
+      if (!mounted) return;
       ref.invalidate(activeBondsProvider);
       HapticService.success();
     } catch (_) {

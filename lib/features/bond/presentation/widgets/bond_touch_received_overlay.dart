@@ -65,6 +65,7 @@ class _BondTouchReceivedOverlayState extends State<BondTouchReceivedOverlay>
     _autoDismissTimer?.cancel();
     if (!mounted) return;
     await _fadeController.reverse();
+    if (!mounted) return;
     widget.onDismissed?.call();
   }
 

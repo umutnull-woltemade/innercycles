@@ -334,10 +334,10 @@ class Touch {
   };
 
   factory Touch.fromJson(Map<String, dynamic> json) => Touch(
-    id: json['id'] as String,
-    bondId: json['bond_id'] as String,
-    senderId: json['sender_id'] as String,
-    receiverId: json['receiver_id'] as String,
+    id: json['id']?.toString() ?? '',
+    bondId: json['bond_id']?.toString() ?? '',
+    senderId: json['sender_id']?.toString() ?? '',
+    receiverId: json['receiver_id']?.toString() ?? '',
     touchType: TouchType.values.firstWhere(
       (t) => t.name == json['touch_type'],
       orElse: () => TouchType.warm,

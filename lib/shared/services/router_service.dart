@@ -106,6 +106,7 @@ import '../../features/seasonal/presentation/seasonal_reflection_screen.dart';
 import '../../features/sleep/presentation/sleep_detail_screen.dart';
 import '../../features/sleep/presentation/sleep_trends_screen.dart';
 import '../../features/memories/presentation/memories_screen.dart';
+import '../../features/journal/presentation/sprint_entry_screen.dart';
 import '../../features/tools/presentation/tool_catalog_screen.dart';
 import '../../features/wellness/presentation/wellness_detail_screen.dart';
 import '../../shared/widgets/main_shell_screen.dart';
@@ -285,6 +286,13 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.journalArchive,
         pageBuilder: (context, state) => PageTransitions.fadeSlide(
           child: const ArchiveScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
+        path: Routes.sprintEntry,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const SprintEntryScreen(),
           key: state.pageKey,
         ),
       ),

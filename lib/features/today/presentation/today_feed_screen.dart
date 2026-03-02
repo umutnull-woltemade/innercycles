@@ -72,11 +72,16 @@ import 'widgets/journaling_tip_card.dart';
 import 'widgets/cross_correlation_card.dart';
 import 'widgets/mood_temporal_insight_card.dart';
 import 'widgets/gratitude_mood_correlation_card.dart';
+import 'widgets/time_capsule_delivery_card.dart';
+import 'widgets/emotional_fingerprint_card.dart';
 import 'widgets/premium_expiry_banner.dart';
 import 'widgets/sync_status_banner.dart';
 import 'widgets/win_back_offer_banner.dart';
 import 'widgets/partner_touch_card.dart';
 import '../../../data/services/l10n_service.dart';
+import '../../../data/providers/bond_providers.dart';
+import '../../../data/models/bond.dart';
+import '../../bond/presentation/widgets/bond_touch_received_overlay.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
   const TodayFeedScreen({super.key});
@@ -87,6 +92,7 @@ class TodayFeedScreen extends ConsumerStatefulWidget {
 
 class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
   static const _lastOpenKey = 'today_feed_last_open';
+  Touch? _incomingTouch;
 
   @override
   void initState() {
@@ -410,9 +416,19 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
     final userProfile = ref.watch(userProfileProvider);
     final userName = userProfile?.name ?? '';
 
+    // Listen for incoming touches
+    ref.listen<AsyncValue<Touch?>>(incomingTouchProvider, (prev, next) {
+      final touch = next.valueOrNull;
+      if (touch != null && mounted) {
+        setState(() => _incomingTouch = touch);
+      }
+    });
+
     return Scaffold(
-      body: CosmicBackground(
-        child: SafeArea(
+      body: Stack(
+        children: [
+          CosmicBackground(
+            child: SafeArea(
           child: CupertinoScrollbar(
             child: RefreshIndicator(
               color: AppColors.starGold,
@@ -432,7 +448,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // ZONE 1: ANCHOR
                   // ═══════════════════════════════════════════════
 
-                  // 1. Header (mood-aware greeting)
+                  // 1. Header (mood-aware greeting + partner orb)
                   SliverToBoxAdapter(
                     child: Consumer(
                       builder: (context, ref, _) {
@@ -444,11 +460,13 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                             return week.length >= 7 ? week[5]?.mood : null;
                           },
                         );
+                        final bondCount = ref.watch(bondCountProvider).whenOrNull(data: (v) => v) ?? 0;
                         return HomeHeader(
                           userName: userName,
                           isEn: isEn,
                           isDark: isDark,
                           yesterdayMoodScore: yesterdayMood,
+                          hasBond: bondCount > 0,
                         ).glassEntrance(context: context);
                       },
                     ),
@@ -737,6 +755,16 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: CrossCorrelationCard(isEn: isEn, isDark: isDark),
                   ),
 
+                  // 9i. Time Capsule Delivery
+                  SliverToBoxAdapter(
+                    child: TimeCapsuleDeliveryCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9j. Emotional Fingerprint (first 3 days of month)
+                  SliverToBoxAdapter(
+                    child: EmotionalFingerprintCard(isEn: isEn, isDark: isDark),
+                  ),
+
                   const SliverToBoxAdapter(child: SizedBox(height: 16)),
 
                   // Gold divider
@@ -788,6 +816,16 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
             ),
           ),
         ),
+      ),
+      // Touch received overlay
+      if (_incomingTouch != null)
+        Positioned.fill(
+          child: BondTouchReceivedOverlay(
+            touchType: _incomingTouch!.touchType,
+            onDismissed: () => setState(() => _incomingTouch = null),
+          ),
+        ),
+        ],
       ),
     );
   }

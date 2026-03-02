@@ -68,6 +68,7 @@ import '../services/sync_service.dart';
 import '../services/vault_service.dart';
 import '../models/vault_photo.dart';
 import '../services/smart_prompt_service.dart';
+import '../services/time_capsule_service.dart';
 
 // =============================================================================
 // USER PROFILE PROVIDERS
@@ -353,6 +354,10 @@ final gratitudeSummaryProvider = FutureProvider<GratitudeSummary>((ref) async {
 
 final ritualServiceProvider = FutureProvider<RitualService>((ref) async {
   return await RitualService.init();
+});
+
+final timeCapsuleServiceProvider = FutureProvider<TimeCapsuleService>((ref) async {
+  return await TimeCapsuleService.init();
 });
 
 final ritualStacksProvider = FutureProvider<List<RitualStack>>((ref) async {

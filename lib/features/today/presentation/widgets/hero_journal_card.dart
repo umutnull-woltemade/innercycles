@@ -289,8 +289,10 @@ class HeroJournalCard extends ConsumerWidget {
       },
       orElse: () {
         final language = AppLanguage.fromIsEn(isEn);
-        // Fallback: simple CTA pill
-        return Padding(
+        // Fallback: simple CTA pill + sprint link
+        return Column(
+          children: [
+        Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Semantics(
             button: true,
@@ -346,7 +348,30 @@ class HeroJournalCard extends ConsumerWidget {
               ),
             ),
           ),
-        ).animate().fadeIn(delay: 180.ms, duration: 400.ms);
+        ).animate().fadeIn(delay: 180.ms, duration: 400.ms),
+        const SizedBox(height: 8),
+        GestureDetector(
+          onTap: () => context.push(Routes.sprintEntry),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 6),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.timer_rounded, size: 14, color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                const SizedBox(width: 6),
+                Text(
+                  isEn ? '60-second sprint' : '60 saniye sprint',
+                  style: AppTypography.elegantAccent(
+                    fontSize: 12,
+                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ).animate().fadeIn(delay: 350.ms, duration: 300.ms),
+        ],
+        );
       },
     );
   }

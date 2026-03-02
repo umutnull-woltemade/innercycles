@@ -32,7 +32,7 @@ class BondRealtimeService {
 
   /// Subscribe to realtime updates for a specific bond
   void subscribeToBond(String bondId) {
-    if (_channels.containsKey(bondId)) return; // Already subscribed
+    if (_channels.containsKey('bond_touches_$bondId')) return; // Already subscribed
 
     // Listen for new touches on this bond
     final touchChannel = _supabase

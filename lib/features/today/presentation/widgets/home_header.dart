@@ -9,6 +9,7 @@ import '../../../../data/services/content_rotation_service.dart';
 import '../../../../data/services/haptic_service.dart';
 import '../../../../shared/widgets/gradient_text.dart';
 import '../../../../shared/widgets/tap_scale.dart';
+import '../../../bond/presentation/widgets/bond_mood_orb.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../data/services/l10n_service.dart';
 import '../../../../data/providers/app_providers.dart';
@@ -18,6 +19,8 @@ class HomeHeader extends StatelessWidget {
   final bool isEn;
   final bool isDark;
   final int? yesterdayMoodScore;
+  final String? partnerSignalId;
+  final bool hasBond;
 
   const HomeHeader({
     super.key,
@@ -25,6 +28,8 @@ class HomeHeader extends StatelessWidget {
     required this.isEn,
     required this.isDark,
     this.yesterdayMoodScore,
+    this.partnerSignalId,
+    this.hasBond = false,
   });
 
   String _getGreeting() {
@@ -127,18 +132,29 @@ class HomeHeader extends StatelessWidget {
                     ),
                     if (userName.isNotEmpty) ...[
                       const SizedBox(height: 4),
-                      GradientText(
-                            userName,
-                            variant: GradientTextVariant.gold,
-                            style: GoogleFonts.sacramento(
-                              fontSize: 44,
-                              fontWeight: FontWeight.w400,
-                              letterSpacing: 1.5,
-                              height: 1.0,
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Flexible(
+                            child: GradientText(
+                              userName,
+                              variant: GradientTextVariant.gold,
+                              style: GoogleFonts.sacramento(
+                                fontSize: 44,
+                                fontWeight: FontWeight.w400,
+                                letterSpacing: 1.5,
+                                height: 1.0,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          )
+                          ),
+                          if (hasBond) ...[
+                            const SizedBox(width: 8),
+                            BondMoodOrb(signalId: partnerSignalId, size: 20),
+                          ],
+                        ],
+                      )
                           .animate()
                           .fadeIn(duration: 800.ms, curve: Curves.easeOut)
                           .slideX(

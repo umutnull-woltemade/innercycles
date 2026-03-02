@@ -143,17 +143,18 @@ class _YearHeatmapCalendarState extends State<YearHeatmapCalendar> {
                       children: List.generate(37, (i) {
                         // 7 weekday columns × ~5 weeks + padding
                         if (i >= daysInMonth + firstWeekday - 1) return const SizedBox(width: 0);
+                        final cellWidth = (MediaQuery.of(context).size.width - 80 - 37) / 37;
                         if (i < firstWeekday - 1) {
-                          return SizedBox(
-                            width: (MediaQuery.of(context).size.width - 80) / 37,
+                          return Container(
+                            width: cellWidth,
                             height: 8,
+                            margin: const EdgeInsets.all(0.5),
                           );
                         }
                         final day = i - firstWeekday + 2;
                         final dateKey = '$_year-${month.toString().padLeft(2, '0')}-${day.toString().padLeft(2, '0')}';
                         final rating = ratingMap[dateKey];
                         final entry = entryMap[dateKey];
-                        final cellWidth = (MediaQuery.of(context).size.width - 80) / 37;
 
                         return GestureDetector(
                           onTap: entry != null && widget.onEntryTapped != null
