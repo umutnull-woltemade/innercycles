@@ -854,11 +854,71 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     ).glassListItem(context: context, index: 3);
   }
 
+  static const _templatesEn = [
+    _Template('Gratitude', 'Today I am grateful for:\n1. \n2. \n3. '),
+    _Template('Reflection', 'What went well today:\n\nWhat I learned:\n\nWhat I\'d do differently:\n'),
+    _Template('Mood Check', 'Right now I feel:\n\nThis feeling comes from:\n\nWhat I need:\n'),
+    _Template('Goal Review', 'Progress on my goals:\n\nObstacles I faced:\n\nNext steps:\n'),
+    _Template('Free Write', 'Stream of consciousness — write whatever comes to mind:\n\n'),
+  ];
+
+  static const _templatesTr = [
+    _Template('Minnettarlık', 'Bugün minnettar olduğum şeyler:\n1. \n2. \n3. '),
+    _Template('Yansıma', 'Bugün iyi giden:\n\nÖğrendiğim:\n\nFarklı yapacağım:\n'),
+    _Template('Duygu Kontrolü', 'Şu an hissediyorum:\n\nBu duygu şuradan geliyor:\n\nİhtiyacım olan:\n'),
+    _Template('Hedef Değerlendirme', 'Hedeflerimde ilerleme:\n\nKarşılaştığım engeller:\n\nSonraki adımlar:\n'),
+    _Template('Serbest Yazı', 'Aklına ne geliyorsa yaz:\n\n'),
+  ];
+
   Widget _buildNoteField(bool isDark, bool isEn) {
     final language = AppLanguage.fromIsEn(isEn);
+    final templates = isEn ? _templatesEn : _templatesTr;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // Template quick-start chips (visible only when note is empty)
+        if (_noteController.text.trim().isEmpty)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: SizedBox(
+              height: 34,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
+                itemCount: templates.length,
+                separatorBuilder: (_, _) => const SizedBox(width: 8),
+                itemBuilder: (context, index) {
+                  final t = templates[index];
+                  return GestureDetector(
+                    onTap: () {
+                      HapticService.selectionTap();
+                      setState(() {
+                        _noteController.text = t.body;
+                        _noteController.selection = TextSelection.fromPosition(
+                          TextPosition(offset: t.body.indexOf('\n') + 1),
+                        );
+                      });
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: AppColors.amethyst.withValues(alpha: isDark ? 0.12 : 0.08),
+                      ),
+                      child: Text(
+                        t.label,
+                        style: AppTypography.modernAccent(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: isDark ? AppColors.amethyst : AppColors.amethyst,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
         GlassPanel(
           elevation: GlassElevation.g2,
           borderRadius: BorderRadius.circular(AppConstants.radiusLg),
@@ -2375,4 +2435,11 @@ class _CyclePhasePromptHint extends ConsumerWidget {
       },
     );
   }
+}
+
+class _Template {
+  final String label;
+  final String body;
+
+  const _Template(this.label, this.body);
 }

@@ -24,6 +24,8 @@ import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
 import '../../../data/services/l10n_service.dart';
+import '../../../data/services/haptic_service.dart';
+import 'package:share_plus/share_plus.dart';
 
 class SleepDetailScreen extends ConsumerWidget {
   const SleepDetailScreen({super.key});
@@ -46,6 +48,22 @@ class SleepDetailScreen extends ConsumerWidget {
               slivers: [
                 GlassSliverAppBar(
                   title: L10nService.get('sleep.sleep_detail.sleep_quality', language),
+                  actions: [
+                    sleepAsync.whenOrNull(
+                      data: (service) {
+                        final summary = service.getWeeklySummary();
+                        if (summary.nightsLogged == 0) return const SizedBox.shrink();
+                        return IconButton(
+                          icon: Icon(
+                            Icons.ios_share_rounded,
+                            size: 22,
+                            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                          ),
+                          onPressed: () => _shareSleepSummary(summary, isEn),
+                        );
+                      },
+                    ) ?? const SizedBox.shrink(),
+                  ],
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -163,6 +181,15 @@ class SleepDetailScreen extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  void _shareSleepSummary(SleepSummary summary, bool isEn) {
+    HapticService.buttonPress();
+    final avg = summary.averageQuality.toStringAsFixed(1);
+    final text = isEn
+        ? 'My sleep this week: $avg/5 average over ${summary.nightsLogged} nights\n\nTracking my sleep with InnerCycles'
+        : 'Bu haftaki uykum: ${summary.nightsLogged} gece boyunca ortalama $avg/5\n\nUykumu InnerCycles ile takip ediyorum';
+    SharePlus.instance.share(ShareParams(text: text));
   }
 
   List<_DayData> _getLast7Days(SleepService service) {

@@ -62,6 +62,8 @@ class NotificationService {
   static const int moodCheckinReminderId = 16;
   static const int sleepTrackingReminderId = 17;
   static const int habitCompletionReminderId = 18;
+  static const int premiumExpiry3DayId = 19;
+  static const int premiumExpiry1DayId = 20;
 
   // Preference keys
   static const String _keyDailyEnabled = 'notification_daily_enabled';
@@ -1342,6 +1344,105 @@ class NotificationService {
       androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
       payload: 'weekly_digest',
     );
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // PREMIUM EXPIRY REMINDERS
+  // ══════════════════════════════════════════════════════════════════════════
+
+  /// Schedule pre-expiry notifications at 3 days and 1 day before premium expires
+  Future<void> schedulePremiumExpiryReminders({
+    required DateTime expiryDate,
+    AppLanguage language = AppLanguage.en,
+  }) async {
+    if (!_isInitialized) await initialize();
+
+    // Cancel any existing expiry reminders
+    await cancelPremiumExpiryReminders();
+
+    final now = tz.TZDateTime.now(tz.local);
+
+    // 3-day reminder
+    final threeDaysBefore = tz.TZDateTime.from(
+      expiryDate.subtract(const Duration(days: 3)),
+      tz.local,
+    );
+    if (threeDaysBefore.isAfter(now)) {
+      final title = language == AppLanguage.en
+          ? 'Premium expires in 3 days'
+          : 'Premium 3 gün sonra bitiyor';
+      final body = language == AppLanguage.en
+          ? 'Renew now to keep your patterns, AI insights & streak freeze.'
+          : 'Örüntülerini, AI içgörülerini ve seri korumayı kaybetme — şimdi yenile.';
+
+      await _notifications.zonedSchedule(
+        id: premiumExpiry3DayId,
+        title: title,
+        body: body,
+        scheduledDate: threeDaysBefore,
+        notificationDetails: const NotificationDetails(
+          iOS: DarwinNotificationDetails(
+            presentAlert: true,
+            presentBadge: true,
+            presentSound: true,
+            threadIdentifier: 'premium',
+          ),
+          android: AndroidNotificationDetails(
+            'premium',
+            'Premium',
+            channelDescription: 'Premium subscription notifications',
+            importance: Importance.high,
+            priority: Priority.high,
+          ),
+        ),
+        androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+        payload: 'premium_expiry',
+      );
+    }
+
+    // 1-day reminder
+    final oneDayBefore = tz.TZDateTime.from(
+      expiryDate.subtract(const Duration(days: 1)),
+      tz.local,
+    );
+    if (oneDayBefore.isAfter(now)) {
+      final title = language == AppLanguage.en
+          ? 'Premium expires tomorrow'
+          : 'Premium yarın bitiyor';
+      final body = language == AppLanguage.en
+          ? 'Last chance to renew — your streak freeze and AI features will be paused.'
+          : 'Yenileme için son şans — seri koruma ve AI özelliklerin duraklatılacak.';
+
+      await _notifications.zonedSchedule(
+        id: premiumExpiry1DayId,
+        title: title,
+        body: body,
+        scheduledDate: oneDayBefore,
+        notificationDetails: const NotificationDetails(
+          iOS: DarwinNotificationDetails(
+            presentAlert: true,
+            presentBadge: true,
+            presentSound: true,
+            threadIdentifier: 'premium',
+          ),
+          android: AndroidNotificationDetails(
+            'premium',
+            'Premium',
+            channelDescription: 'Premium subscription notifications',
+            importance: Importance.high,
+            priority: Priority.high,
+          ),
+        ),
+        androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+        payload: 'premium_expiry',
+      );
+    }
+  }
+
+  Future<void> cancelPremiumExpiryReminders() async {
+    if (!_isInitialized) await initialize();
+    await _notifications.cancel(id: premiumExpiry3DayId);
+    await _notifications.cancel(id: premiumExpiry1DayId);
   }
 }
 

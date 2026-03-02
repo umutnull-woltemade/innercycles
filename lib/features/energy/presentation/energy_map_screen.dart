@@ -40,7 +40,13 @@ class EnergyMapScreen extends ConsumerWidget {
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
-          child: CupertinoScrollbar(
+          child: RefreshIndicator(
+            color: AppColors.starGold,
+            onRefresh: () async {
+              ref.invalidate(energyMapProvider);
+              await Future.delayed(const Duration(milliseconds: 300));
+            },
+            child: CupertinoScrollbar(
             child: CustomScrollView(
               physics: const BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics(),
@@ -140,6 +146,7 @@ class EnergyMapScreen extends ConsumerWidget {
                 ),
               ],
             ),
+          ),
           ),
         ),
       ),

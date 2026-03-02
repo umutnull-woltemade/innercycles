@@ -63,6 +63,23 @@ class ProfileHubScreen extends ConsumerWidget {
         ) ??
         0;
 
+    final dreamCount =
+        ref.watch(dreamCountProvider).whenOrNull(data: (v) => v) ?? 0;
+
+    final moodAsync = ref.watch(moodCheckinServiceProvider);
+    final moodCount =
+        moodAsync.whenOrNull(
+          data: (service) => service.getAllEntries().length,
+        ) ??
+        0;
+
+    final sleepAsync = ref.watch(sleepServiceProvider);
+    final sleepNights =
+        sleepAsync.whenOrNull(
+          data: (service) => service.getAllEntries().length,
+        ) ??
+        0;
+
     // Growth score calculation
     final entryScore = (totalEntries / 50).clamp(0, 1) * 40;
     final streakScore = (streakDays / 30).clamp(0, 1) * 35;
@@ -111,6 +128,9 @@ class ProfileHubScreen extends ConsumerWidget {
                         challenges: completedChallenges,
                         totalWords: totalWords,
                         gratitudeDays: gratitudeDays,
+                        dreamCount: dreamCount,
+                        moodCount: moodCount,
+                        sleepNights: sleepNights,
                         isDark: isDark,
                         isEn: isEn,
                       ).glassListItem(context: context, index: 1),

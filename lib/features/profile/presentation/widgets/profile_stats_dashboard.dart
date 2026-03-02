@@ -17,6 +17,9 @@ class ProfileStatsDashboard extends StatelessWidget {
   final int challenges;
   final int totalWords;
   final int gratitudeDays;
+  final int dreamCount;
+  final int moodCount;
+  final int sleepNights;
   final bool isDark;
   final bool isEn;
 
@@ -28,6 +31,9 @@ class ProfileStatsDashboard extends StatelessWidget {
     required this.challenges,
     this.totalWords = 0,
     this.gratitudeDays = 0,
+    this.dreamCount = 0,
+    this.moodCount = 0,
+    this.sleepNights = 0,
     required this.isDark,
     required this.isEn,
   });
@@ -35,48 +41,86 @@ class ProfileStatsDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final language = AppLanguage.fromIsEn(isEn);
+
+    final topRow = [
+      _StatColumn(
+        emoji: '\u{1F525}',
+        value: '$streak',
+        label: L10nService.get('profile.profile_stats_dashboard.streak', language),
+        color: AppColors.streakOrange,
+      ),
+      _StatColumn(
+        emoji: '\u{1F4D3}',
+        value: '$entries',
+        label: L10nService.get('profile.profile_stats_dashboard.entries', language),
+        color: AppColors.auroraStart,
+      ),
+      _StatColumn(
+        emoji: '\u{270F}\u{FE0F}',
+        value: totalWords >= 1000
+            ? '${(totalWords / 1000).toStringAsFixed(1)}K'
+            : '$totalWords',
+        label: L10nService.get('profile.profile_stats_dashboard.words', language),
+        color: AppColors.starGold,
+      ),
+      _StatColumn(
+        emoji: '\u{1F3C6}',
+        value: '$challenges',
+        label: L10nService.get('profile.profile_stats_dashboard.done', language),
+        color: AppColors.amethyst,
+      ),
+    ];
+
+    final bottomRow = <Widget>[
+      if (dreamCount > 0)
+        _StatColumn(
+          emoji: '\u{1F4AD}',
+          value: '$dreamCount',
+          label: isEn ? 'DREAMS' : 'R\u{00DC}YALAR',
+          color: AppColors.chartPurple,
+        ),
+      if (moodCount > 0)
+        _StatColumn(
+          emoji: '\u{1F3AF}',
+          value: '$moodCount',
+          label: isEn ? 'MOODS' : 'DUYGULAR',
+          color: AppColors.chartPink,
+        ),
+      if (sleepNights > 0)
+        _StatColumn(
+          emoji: '\u{1F634}',
+          value: '$sleepNights',
+          label: isEn ? 'SLEEP' : 'UYKU',
+          color: AppColors.chartBlue,
+        ),
+      if (gratitudeDays > 0)
+        _StatColumn(
+          emoji: '\u{1F64F}',
+          value: '$gratitudeDays',
+          label: isEn ? 'GRATITUDE' : '\u{015E}\u{00DC}KRAN',
+          color: AppColors.starGold,
+        ),
+    ];
+
     return PremiumCard(
       style: PremiumCardStyle.aurora,
       padding: const EdgeInsets.symmetric(
         horizontal: AppConstants.spacingMd,
         vertical: AppConstants.spacingLg,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Column(
         children: [
-          _StatColumn(
-            emoji: '\u{1F525}',
-            value: '$streak',
-            label: L10nService.get('profile.profile_stats_dashboard.streak', language),
-            color: AppColors.streakOrange,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: topRow,
           ),
-          _StatColumn(
-            emoji: '\u{1F4D3}',
-            value: '$entries',
-            label: L10nService.get('profile.profile_stats_dashboard.entries', language),
-            color: AppColors.auroraStart,
-          ),
-          _StatColumn(
-            emoji: '\u{270F}\u{FE0F}',
-            value: totalWords >= 1000
-                ? '${(totalWords / 1000).toStringAsFixed(1)}K'
-                : '$totalWords',
-            label: L10nService.get('profile.profile_stats_dashboard.words', language),
-            color: AppColors.starGold,
-          ),
-          _StatColumn(
-            emoji: '\u{1F3C6}',
-            value: '$challenges',
-            label: L10nService.get('profile.profile_stats_dashboard.done', language),
-            color: AppColors.amethyst,
-          ),
-          if (gratitudeDays > 0)
-            _StatColumn(
-              emoji: '\u{1F64F}',
-              value: '$gratitudeDays',
-              label: isEn ? 'GRATITUDE' : '\u{015E}\u{00DC}KRAN',
-              color: AppColors.starGold,
+          if (bottomRow.isNotEmpty) ...[
+            const SizedBox(height: AppConstants.spacingMd),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: bottomRow,
             ),
+          ],
         ],
       ),
     );

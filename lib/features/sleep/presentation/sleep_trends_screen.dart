@@ -65,7 +65,14 @@ class SleepTrendsScreen extends ConsumerWidget {
               ),
             ),
           ),
-          data: (service) => _buildContent(context, service, isDark, isEn),
+          data: (service) => RefreshIndicator(
+            color: AppColors.starGold,
+            onRefresh: () async {
+              ref.invalidate(sleepServiceProvider);
+              await Future.delayed(const Duration(milliseconds: 300));
+            },
+            child: _buildContent(context, service, isDark, isEn),
+          ),
         ),
       ),
     );

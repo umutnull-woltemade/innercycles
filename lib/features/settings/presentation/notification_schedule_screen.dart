@@ -102,6 +102,36 @@ class _NotificationScheduleScreenState
     await _loadSettings();
   }
 
+  Future<void> _toggleMoodCheckin(bool enabled) async {
+    if (enabled) {
+      await _notificationService.scheduleMoodCheckinReminder();
+    } else {
+      await _notificationService.cancelMoodCheckinReminder();
+    }
+    if (!mounted) return;
+    await _loadSettings();
+  }
+
+  Future<void> _toggleSleepTracking(bool enabled) async {
+    if (enabled) {
+      await _notificationService.scheduleSleepTrackingReminder();
+    } else {
+      await _notificationService.cancelSleepTrackingReminder();
+    }
+    if (!mounted) return;
+    await _loadSettings();
+  }
+
+  Future<void> _toggleHabitReminder(bool enabled) async {
+    if (enabled) {
+      await _notificationService.scheduleHabitCompletionReminder();
+    } else {
+      await _notificationService.cancelHabitCompletionReminder();
+    }
+    if (!mounted) return;
+    await _loadSettings();
+  }
+
   Future<void> _toggleJournalPrompt(bool enabled) async {
     if (enabled) {
       final time =
@@ -225,6 +255,51 @@ class _NotificationScheduleScreenState
                                 _settings?.wellnessRemindersEnabled ?? false,
                             onToggle: _toggleWellness,
                           ).animate().fadeIn(duration: 300.ms, delay: 180.ms),
+                          const SizedBox(height: AppConstants.spacingMd),
+
+                          // Mood check-in reminder
+                          _buildNotificationCard(
+                            context: context,
+                            isDark: isDark,
+                            icon: Icons.mood_outlined,
+                            iconColor: AppColors.chartPink,
+                            title: isEn ? 'Mood Check-in' : 'Ruh Hali Kaydı',
+                            subtitle: isEn
+                                ? 'A daily nudge to log how you\'re feeling'
+                                : 'Nasıl hissettiğini kaydetmen için günlük hatırlatıcı',
+                            enabled: _settings?.moodCheckinEnabled ?? false,
+                            onToggle: _toggleMoodCheckin,
+                          ).animate().fadeIn(duration: 300.ms, delay: 240.ms),
+                          const SizedBox(height: AppConstants.spacingMd),
+
+                          // Sleep tracking reminder
+                          _buildNotificationCard(
+                            context: context,
+                            isDark: isDark,
+                            icon: Icons.bedtime_outlined,
+                            iconColor: AppColors.chartBlue,
+                            title: isEn ? 'Sleep Tracking' : 'Uyku Takibi',
+                            subtitle: isEn
+                                ? 'Morning reminder to log last night\'s sleep'
+                                : 'Dün geceki uykunu kaydetmen için sabah hatırlatıcısı',
+                            enabled: _settings?.sleepTrackingEnabled ?? false,
+                            onToggle: _toggleSleepTracking,
+                          ).animate().fadeIn(duration: 300.ms, delay: 300.ms),
+                          const SizedBox(height: AppConstants.spacingMd),
+
+                          // Habit completion reminder
+                          _buildNotificationCard(
+                            context: context,
+                            isDark: isDark,
+                            icon: Icons.check_circle_outline,
+                            iconColor: AppColors.chartGreen,
+                            title: isEn ? 'Habit Completion' : 'Alışkanlık Tamamlama',
+                            subtitle: isEn
+                                ? 'Evening reminder to complete your daily habits'
+                                : 'Günlük alışkanlıklarını tamamlaman için akşam hatırlatıcısı',
+                            enabled: _settings?.habitReminderEnabled ?? false,
+                            onToggle: _toggleHabitReminder,
+                          ).animate().fadeIn(duration: 300.ms, delay: 360.ms),
                           const SizedBox(height: AppConstants.spacingXl),
 
                           // Info text

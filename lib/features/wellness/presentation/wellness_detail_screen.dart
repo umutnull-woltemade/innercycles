@@ -19,6 +19,8 @@ import '../../../shared/widgets/premium_empty_state.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../../data/services/l10n_service.dart';
+import '../../../data/services/haptic_service.dart';
+import 'package:share_plus/share_plus.dart';
 
 class WellnessDetailScreen extends ConsumerWidget {
   const WellnessDetailScreen({super.key});
@@ -43,6 +45,21 @@ class WellnessDetailScreen extends ConsumerWidget {
               slivers: [
                 GlassSliverAppBar(
                   title: L10nService.get('wellness.wellness_detail.wellness_score', language),
+                  actions: [
+                    scoreAsync.whenOrNull(
+                      data: (score) {
+                        if (score == null) return const SizedBox.shrink();
+                        return IconButton(
+                          icon: Icon(
+                            Icons.ios_share_rounded,
+                            size: 22,
+                            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                          ),
+                          onPressed: () => _shareWellnessScore(score, isEn),
+                        );
+                      },
+                    ) ?? const SizedBox.shrink(),
+                  ],
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -159,6 +176,21 @@ class WellnessDetailScreen extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  void _shareWellnessScore(WellnessScore score, bool isEn) {
+    HapticService.buttonPress();
+    final label = score.score >= 80
+        ? (isEn ? 'Thriving' : 'Gelişiyor')
+        : score.score >= 60
+            ? (isEn ? 'Good Balance' : 'İyi Denge')
+            : score.score >= 40
+                ? (isEn ? 'Room to Grow' : 'Gelişime Açık')
+                : (isEn ? 'Getting Started' : 'Başlangıç');
+    final text = isEn
+        ? 'My wellness score is ${score.score}/100 — $label\n\nTracking my wellbeing with InnerCycles'
+        : 'Sağlık puanım ${score.score}/100 — $label\n\nİyilik halimi InnerCycles ile takip ediyorum';
+    SharePlus.instance.share(ShareParams(text: text));
   }
 
   Widget _buildEmptyState(BuildContext context, bool isDark, bool isEn) {
