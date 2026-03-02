@@ -23,11 +23,26 @@ import '../../../shared/widgets/premium_empty_state.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../../data/services/l10n_service.dart';
 
-class RitualsScreen extends ConsumerWidget {
+class RitualsScreen extends ConsumerStatefulWidget {
   const RitualsScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<RitualsScreen> createState() => _RitualsScreenState();
+}
+
+class _RitualsScreenState extends ConsumerState<RitualsScreen> {
+  final _searchController = TextEditingController();
+  String _searchQuery = '';
+  String _timeFilter = 'all'; // all, morning, evening, anytime
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
@@ -91,9 +106,78 @@ class RitualsScreen extends ConsumerWidget {
                           child: _EmptyState(isDark: isDark, isEn: isEn),
                         );
                       }
+
+                      // Apply filters
+                      var filtered = stacks.toList();
+                      if (_searchQuery.isNotEmpty) {
+                        filtered = filtered.where((s) =>
+                            s.name.toLowerCase().contains(_searchQuery.toLowerCase()) ||
+                            s.items.any((i) => i.name.toLowerCase().contains(_searchQuery.toLowerCase()))).toList();
+                      }
+                      if (_timeFilter != 'all') {
+                        filtered = filtered.where((s) => s.time.name == _timeFilter).toList();
+                      }
+
                       return SliverList(
                         delegate: SliverChildListDelegate([
-                          ...stacks.asMap().entries.map((entry) {
+                          // Search bar
+                          Container(
+                            margin: const EdgeInsets.only(bottom: 12),
+                            decoration: BoxDecoration(
+                              color: isDark
+                                  ? Colors.white.withValues(alpha: 0.05)
+                                  : Colors.black.withValues(alpha: 0.03),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: TextField(
+                              controller: _searchController,
+                              onChanged: (v) => setState(() => _searchQuery = v.trim()),
+                              style: AppTypography.subtitle(
+                                fontSize: 14,
+                                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                              ),
+                              decoration: InputDecoration(
+                                hintText: isEn ? 'Search rituals...' : 'Ritüellerde ara...',
+                                hintStyle: AppTypography.decorativeScript(
+                                  fontSize: 13,
+                                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                                ),
+                                prefixIcon: Icon(CupertinoIcons.search, size: 18,
+                                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                                suffixIcon: _searchQuery.isNotEmpty
+                                    ? GestureDetector(
+                                        onTap: () {
+                                          _searchController.clear();
+                                          setState(() => _searchQuery = '');
+                                        },
+                                        child: Icon(CupertinoIcons.xmark_circle_fill, size: 16,
+                                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                                      )
+                                    : null,
+                                border: InputBorder.none,
+                                contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                              ),
+                            ),
+                          ),
+                          // Time filter chips
+                          SizedBox(
+                            height: 32,
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: [
+                                _buildTimeChip(isEn ? 'All' : 'Tümü', 'all', isDark),
+                                const SizedBox(width: 6),
+                                _buildTimeChip(isEn ? 'Morning' : 'Sabah', 'morning', isDark),
+                                const SizedBox(width: 6),
+                                _buildTimeChip(isEn ? 'Evening' : 'Akşam', 'evening', isDark),
+                                const SizedBox(width: 6),
+                                _buildTimeChip(isEn ? 'Anytime' : 'Her Zaman', 'anytime', isDark),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 14),
+
+                          ...filtered.asMap().entries.map((entry) {
                             return _StackCard(
                               stack: entry.value,
                               isDark: isDark,
@@ -117,6 +201,41 @@ class RitualsScreen extends ConsumerWidget {
                 ),
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTimeChip(String label, String value, bool isDark) {
+    final selected = _timeFilter == value;
+    return GestureDetector(
+      onTap: () {
+        HapticFeedback.selectionClick();
+        setState(() => _timeFilter = value);
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        decoration: BoxDecoration(
+          color: selected
+              ? AppColors.auroraStart.withValues(alpha: 0.15)
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+            color: selected
+                ? AppColors.auroraStart
+                : (isDark ? AppColors.textMuted : AppColors.lightTextMuted)
+                    .withValues(alpha: 0.3),
+          ),
+        ),
+        child: Text(
+          label,
+          style: AppTypography.modernAccent(
+            fontSize: 12,
+            fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+            color: selected
+                ? AppColors.auroraStart
+                : (isDark ? AppColors.textSecondary : AppColors.lightTextSecondary),
           ),
         ),
       ),

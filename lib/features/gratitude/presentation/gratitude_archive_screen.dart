@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
@@ -9,6 +10,7 @@ import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/gratitude_service.dart';
+import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -18,11 +20,25 @@ import '../../../core/constants/routes.dart';
 import 'package:go_router/go_router.dart';
 import '../../../data/services/l10n_service.dart';
 
-class GratitudeArchiveScreen extends ConsumerWidget {
+class GratitudeArchiveScreen extends ConsumerStatefulWidget {
   const GratitudeArchiveScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<GratitudeArchiveScreen> createState() => _GratitudeArchiveScreenState();
+}
+
+class _GratitudeArchiveScreenState extends ConsumerState<GratitudeArchiveScreen> {
+  final _searchController = TextEditingController();
+  String _searchQuery = '';
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
@@ -82,11 +98,17 @@ class GratitudeArchiveScreen extends ConsumerWidget {
     bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
-    final allEntries = service.getAllEntries();
+    final rawEntries = service.getAllEntries();
     final themes = service.getAllTimeThemes();
     final summary = service.getWeeklySummary();
 
-    if (allEntries.isEmpty) {
+    // Apply search filter
+    final allEntries = _searchQuery.isEmpty
+        ? rawEntries
+        : rawEntries.where((e) =>
+            e.items.any((item) => item.toLowerCase().contains(_searchQuery.toLowerCase()))).toList();
+
+    if (rawEntries.isEmpty) {
       return CustomScrollView(
         slivers: [
           GlassSliverAppBar(
@@ -134,6 +156,46 @@ class GratitudeArchiveScreen extends ConsumerWidget {
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
+                // Search bar
+                Container(
+                  decoration: BoxDecoration(
+                    color: isDark
+                        ? Colors.white.withValues(alpha: 0.05)
+                        : Colors.black.withValues(alpha: 0.03),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: TextField(
+                    controller: _searchController,
+                    onChanged: (v) => setState(() => _searchQuery = v),
+                    style: AppTypography.subtitle(
+                      fontSize: 14,
+                      color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                    ),
+                    decoration: InputDecoration(
+                      hintText: isEn ? 'Search gratitude entries...' : 'Şükran kayıtlarında ara...',
+                      hintStyle: AppTypography.decorativeScript(
+                        fontSize: 13,
+                        color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                      ),
+                      prefixIcon: Icon(CupertinoIcons.search, size: 18,
+                          color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                      suffixIcon: _searchQuery.isNotEmpty
+                          ? GestureDetector(
+                              onTap: () {
+                                _searchController.clear();
+                                setState(() => _searchQuery = '');
+                              },
+                              child: Icon(CupertinoIcons.xmark_circle_fill, size: 16,
+                                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                            )
+                          : null,
+                      border: InputBorder.none,
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: AppConstants.spacingMd),
+
                 // Stats row
                 _buildStatsRow(
                   context,
@@ -161,7 +223,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
                       monthKey,
                       entries.length,
                     ),
-                    ...entries.map((e) => _buildEntryCard(context, isDark, e)),
+                    ...entries.map((e) => _buildEntryCard(context, isDark, e, isEn)),
                     const SizedBox(height: AppConstants.spacingMd),
                   ];
                 }),
@@ -349,6 +411,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
     BuildContext context,
     bool isDark,
     GratitudeEntry entry,
+    bool isEn,
   ) {
     final parts = entry.dateKey.split('-');
     final dayStr = parts.length >= 3
@@ -364,12 +427,32 @@ class GratitudeArchiveScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              dayStr,
-              style: AppTypography.elegantAccent(
-                fontSize: 12,
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              ),
+            Row(
+              children: [
+                Text(
+                  dayStr,
+                  style: AppTypography.elegantAccent(
+                    fontSize: 12,
+                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  ),
+                ),
+                const Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    HapticService.buttonPress();
+                    final items = entry.items.map((item) => '✦ $item').join('\n');
+                    final text = isEn
+                        ? 'Grateful for:\n$items\n\n— InnerCycles'
+                        : 'Şükran duyduklarım:\n$items\n\n— InnerCycles';
+                    SharePlus.instance.share(ShareParams(text: text));
+                  },
+                  child: Icon(
+                    Icons.share_outlined,
+                    size: 16,
+                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 6),
             ...entry.items.map(

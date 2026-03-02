@@ -794,7 +794,7 @@ class SettingsScreen extends ConsumerWidget {
     }
   }
 
-  void _showDeleteAccountDialog(
+  Future<void> _showDeleteAccountDialog(
     BuildContext context,
     WidgetRef ref,
     AppLanguage language,

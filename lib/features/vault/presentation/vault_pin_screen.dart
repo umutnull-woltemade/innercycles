@@ -55,6 +55,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
     _biometricAttempted = true;
 
     final vaultService = await ref.read(vaultServiceProvider.future);
+    if (!mounted) return;
     if (!vaultService.isBiometricEnabled) return;
 
     final language = ref.read(languageProvider);

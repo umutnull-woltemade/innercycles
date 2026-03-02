@@ -138,6 +138,15 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
                     isDark: isDark,
                     isEn: isEn,
                   ),
+                  const SizedBox(height: 12),
+
+                  // Monthly calendar view
+                  _HabitMonthlyCalendar(
+                    service: service,
+                    adoptedHabits: adoptedHabits,
+                    isDark: isDark,
+                    isEn: isEn,
+                  ),
                   const SizedBox(height: 20),
 
                   // Habit check-off cards
@@ -375,6 +384,137 @@ class _CellData {
   final int count;
   final int total;
   const _CellData({required this.count, required this.total});
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MONTHLY CALENDAR VIEW
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _HabitMonthlyCalendar extends StatelessWidget {
+  final HabitSuggestionService service;
+  final List<HabitSuggestion> adoptedHabits;
+  final bool isDark;
+  final bool isEn;
+
+  const _HabitMonthlyCalendar({
+    required this.service,
+    required this.adoptedHabits,
+    required this.isDark,
+    required this.isEn,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final now = DateTime.now();
+    final firstDay = DateTime(now.year, now.month, 1);
+    final daysInMonth = DateTime(now.year, now.month + 1, 0).day;
+    final startWeekday = firstDay.weekday; // 1=Mon, 7=Sun
+
+    // Build completion map for this month
+    final completionMap = <int, int>{};
+    for (var d = 1; d <= daysInMonth; d++) {
+      final key = '${now.year}-${now.month.toString().padLeft(2, '0')}-${d.toString().padLeft(2, '0')}';
+      var count = 0;
+      for (final h in adoptedHabits) {
+        if (service.getCompletionDates(h.id).contains(key)) count++;
+      }
+      completionMap[d] = count;
+    }
+
+    final monthNames = isEn
+        ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        : ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+    final dayLabels = isEn
+        ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
+        : ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pa'];
+
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      padding: const EdgeInsets.all(14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          GradientText(
+            '${monthNames[now.month - 1]} ${now.year}',
+            variant: GradientTextVariant.gold,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(height: 10),
+          // Day of week headers
+          Row(
+            children: dayLabels.map((d) => Expanded(
+              child: Center(
+                child: Text(
+                  d,
+                  style: AppTypography.elegantAccent(
+                    fontSize: 10,
+                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                    letterSpacing: 0,
+                  ),
+                ),
+              ),
+            )).toList(),
+          ),
+          const SizedBox(height: 6),
+          // Calendar grid
+          ...List.generate(6, (week) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 4),
+              child: Row(
+                children: List.generate(7, (dow) {
+                  final dayNum = week * 7 + dow - (startWeekday - 2);
+                  if (dayNum < 1 || dayNum > daysInMonth) {
+                    return const Expanded(child: SizedBox(height: 28));
+                  }
+                  final count = completionMap[dayNum] ?? 0;
+                  final isToday = dayNum == now.day;
+                  final ratio = adoptedHabits.isNotEmpty
+                      ? count / adoptedHabits.length
+                      : 0.0;
+                  final bgColor = count == 0
+                      ? Colors.transparent
+                      : ratio < 0.5
+                          ? AppColors.success.withValues(alpha: 0.2)
+                          : ratio < 1.0
+                              ? AppColors.success.withValues(alpha: 0.45)
+                              : AppColors.success.withValues(alpha: 0.7);
+
+                  return Expanded(
+                    child: Container(
+                      height: 28,
+                      margin: const EdgeInsets.symmetric(horizontal: 1),
+                      decoration: BoxDecoration(
+                        color: bgColor,
+                        borderRadius: BorderRadius.circular(6),
+                        border: isToday
+                            ? Border.all(color: AppColors.starGold, width: 1.5)
+                            : null,
+                      ),
+                      child: Center(
+                        child: Text(
+                          '$dayNum',
+                          style: AppTypography.modernAccent(
+                            fontSize: 11,
+                            fontWeight: isToday ? FontWeight.w700 : FontWeight.w500,
+                            color: isToday
+                                ? AppColors.starGold
+                                : (isDark ? AppColors.textSecondary : AppColors.lightTextSecondary),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+              ),
+            );
+          }),
+        ],
+      ),
+    ).animate().fadeIn(duration: 300.ms, delay: 150.ms);
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
