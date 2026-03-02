@@ -13,6 +13,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../core/constants/common_strings.dart';
+import '../../../data/content/signal_content.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../../data/services/mood_checkin_service.dart';
@@ -27,6 +28,7 @@ import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../data/services/l10n_service.dart';
+import 'widgets/signal_calendar.dart';
 
 class MoodTrendsScreen extends ConsumerWidget {
   const MoodTrendsScreen({super.key});
@@ -175,6 +177,16 @@ class MoodTrendsScreen extends ConsumerWidget {
                   allEntries.length,
                   isPremium,
                 ),
+                const SizedBox(height: AppConstants.spacingLg),
+
+                // Quadrant Distribution (FREE — shows when signal data exists)
+                if (service.getQuadrantDistribution(30).isNotEmpty)
+                  _buildQuadrantDistribution(isDark, isEn, service),
+                if (service.getQuadrantDistribution(30).isNotEmpty)
+                  const SizedBox(height: AppConstants.spacingLg),
+
+                // Signal Calendar (FREE)
+                _buildSignalCalendar(isDark, isEn, allEntries, language),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Week view (FREE)

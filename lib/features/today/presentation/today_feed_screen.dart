@@ -451,6 +451,11 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     ),
                   ),
 
+                  // 1a2. Quick-access shortcuts row
+                  SliverToBoxAdapter(
+                    child: _QuickShortcutsRow(isEn: isEn, isDark: isDark),
+                  ),
+
                   // 1b. Welcome Banner (new users only)
                   SliverToBoxAdapter(
                     child: WelcomeBanner(isEn: isEn, isDark: isDark),
@@ -784,6 +789,70 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _QuickShortcutsRow extends StatelessWidget {
+  final bool isEn;
+  final bool isDark;
+
+  const _QuickShortcutsRow({required this.isEn, required this.isDark});
+
+  @override
+  Widget build(BuildContext context) {
+    final shortcuts = [
+      (Icons.edit_note_rounded, isEn ? 'Journal' : 'Günlük', Routes.journal),
+      (Icons.nights_stay_rounded, isEn ? 'Dreams' : 'Rüyalar', Routes.dreamInterpretation),
+      (Icons.favorite_rounded, isEn ? 'Gratitude' : 'Şükran', Routes.gratitudeJournal),
+      (Icons.check_circle_outline_rounded, isEn ? 'Habits' : 'Alışkanlıklar', Routes.dailyHabits),
+      (Icons.self_improvement_rounded, isEn ? 'Breathe' : 'Nefes', Routes.breathing),
+    ];
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: shortcuts.map((s) {
+          final (icon, label, route) = s;
+          return GestureDetector(
+            onTap: () => context.push(route),
+            behavior: HitTestBehavior.opaque,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 44,
+                  height: 44,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: isDark
+                        ? Colors.white.withValues(alpha: 0.06)
+                        : Colors.black.withValues(alpha: 0.04),
+                  ),
+                  child: Icon(
+                    icon,
+                    size: 20,
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  label,
+                  style: AppTypography.elegantAccent(
+                    fontSize: 10,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
+                  ),
+                ),
+              ],
+            ),
+          );
+        }).toList(),
       ),
     );
   }

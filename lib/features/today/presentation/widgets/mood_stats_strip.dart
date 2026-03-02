@@ -5,9 +5,11 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
+import '../../../../data/content/signal_content.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/haptic_service.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/signal_orb.dart';
 import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
@@ -41,10 +43,15 @@ class MoodStatsStrip extends ConsumerWidget {
         ) ??
         0;
 
+    final todaySignal = todayMood?.hasSignal == true
+        ? getSignalById(todayMood!.signalId!)
+        : null;
     final moodEmoji = todayMood?.emoji;
-    final moodText = todayMood != null
-        ? _moodLabel(todayMood.mood)
-        : (L10nService.get('today.mood_stats_strip.check_in', language));
+    final moodText = todaySignal != null
+        ? todaySignal.localizedName(language)
+        : todayMood != null
+            ? _moodLabel(todayMood.mood)
+            : (L10nService.get('today.mood_stats_strip.check_in', language));
     final hasNoMood = todayMood == null;
 
     // Get last 7 days' mood emojis
@@ -65,20 +72,33 @@ class MoodStatsStrip extends ConsumerWidget {
           height: 48,
           child: Row(
             children: [
-              // Mood pill
+              // Mood pill — signal orb for new entries, emoji for legacy
               Expanded(
-                child: _StripPill(
-                  emoji: moodEmoji,
-                  icon: moodEmoji == null ? Icons.favorite_rounded : null,
-                  iconColor: AppColors.auroraStart,
-                  label: moodText,
-                  isDark: isDark,
-                  showPulse: hasNoMood,
-                  onTap: () {
-                    HapticService.selectionTap();
-                    context.push(Routes.moodTrends);
-                  },
-                ),
+                child: todaySignal != null
+                    ? _StripPill(
+                        customLeading: SignalOrb.inline(
+                          signalId: todaySignal.id,
+                          animate: false,
+                        ),
+                        label: moodText,
+                        isDark: isDark,
+                        onTap: () {
+                          HapticService.selectionTap();
+                          context.push(Routes.moodTrends);
+                        },
+                      )
+                    : _StripPill(
+                        emoji: moodEmoji,
+                        icon: moodEmoji == null ? Icons.favorite_rounded : null,
+                        iconColor: AppColors.auroraStart,
+                        label: moodText,
+                        isDark: isDark,
+                        showPulse: hasNoMood,
+                        onTap: () {
+                          HapticService.selectionTap();
+                          context.push(Routes.moodTrends);
+                        },
+                      ),
               ),
               _verticalDivider(),
               // Streak pill
@@ -136,17 +156,28 @@ class MoodStatsStrip extends ConsumerWidget {
                 children: [
                   for (int i = 0; i < weekMoods.length; i++) ...[
                     if (i > 0) const SizedBox(width: 6),
-                    Text(
-                      weekMoods[i]?.emoji ?? '·',
-                      style: TextStyle(
-                        fontSize: weekMoods[i] != null ? 14 : 10,
-                        color: weekMoods[i] == null
-                            ? (isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted)
-                            : null,
+                    if (weekMoods[i] != null && weekMoods[i]!.hasSignal)
+                      // Signal entry: colored dot
+                      Container(
+                        width: 14,
+                        height: 14,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: getSignalColor(weekMoods[i]!.signalId!),
+                        ),
+                      )
+                    else
+                      Text(
+                        weekMoods[i]?.emoji ?? '·',
+                        style: TextStyle(
+                          fontSize: weekMoods[i] != null ? 14 : 10,
+                          color: weekMoods[i] == null
+                              ? (isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted)
+                              : null,
+                        ),
                       ),
-                    ),
                   ],
                 ],
               ),
@@ -203,6 +234,7 @@ class _StripPill extends StatelessWidget {
   final bool isDark;
   final bool showPulse;
   final VoidCallback onTap;
+  final Widget? customLeading;
 
   const _StripPill({
     this.icon,
@@ -212,6 +244,7 @@ class _StripPill extends StatelessWidget {
     required this.isDark,
     this.showPulse = false,
     required this.onTap,
+    this.customLeading,
   });
 
   @override
@@ -224,7 +257,9 @@ class _StripPill extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (emoji != null)
+            if (customLeading != null)
+              customLeading!
+            else if (emoji != null)
               Text(emoji!, style: AppTypography.subtitle(fontSize: 18))
             else if (icon != null)
               Icon(icon, size: 18, color: iconColor),

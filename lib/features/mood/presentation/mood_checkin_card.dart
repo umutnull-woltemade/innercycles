@@ -1,5 +1,5 @@
 // ════════════════════════════════════════════════════════════════════════════
-// MOOD CHECK-IN CARD - Quick Daily Mood Widget for Home Screen
+// MOOD CHECK-IN CARD - Signal-based Daily Mood Widget for Home Screen
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
@@ -9,11 +9,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/content/emotional_vocabulary_content.dart';
+import '../../../data/content/signal_content.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/mood_checkin_service.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/signal_orb.dart';
+import '../../../shared/widgets/quadrant_selector.dart';
+import '../../../shared/widgets/signal_picker.dart';
 import '../../../data/services/l10n_service.dart';
 
 class MoodCheckinCard extends ConsumerStatefulWidget {
@@ -93,8 +97,8 @@ class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
                       Expanded(
                         child: Text(
                           isEn
-                              ? 'Tap an emoji that matches how you feel right now. This builds your mood patterns over time.'
-                              : 'Şu anki hissinize uyan emojiyi seçin. Bu, zaman içinde ruh hali kalıplarınızı oluşturur.',
+                              ? 'Choose the quadrant that fits your energy, then pick the signal closest to your mood.'
+                              : 'Enerjine uyan kadranı seç, sonra ruh haline en yakın sinyali seç.',
                           style: AppTypography.subtitle(
                             fontSize: 12,
                             color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
@@ -112,19 +116,19 @@ class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
                 ),
               ).animate().fadeIn(duration: 400.ms),
             _CheckinView(
-          isDark: isDark,
-          isEn: isEn,
-          onSelect: (mood, emoji) async {
-            await service.logMood(mood, emoji);
-            HapticService.moodSelected();
-            if (!mounted) return;
-            setState(() => _justLogged = true);
-            ref.invalidate(moodCheckinServiceProvider);
-            Future.delayed(const Duration(seconds: 3), () {
-              if (mounted) setState(() => _justLogged = false);
-            });
-          },
-        ),
+              isDark: isDark,
+              isEn: isEn,
+              onSignalSelect: (signalId) async {
+                await service.logSignal(signalId);
+                HapticService.moodSelected();
+                if (!mounted) return;
+                setState(() => _justLogged = true);
+                ref.invalidate(moodCheckinServiceProvider);
+                Future.delayed(const Duration(seconds: 3), () {
+                  if (mounted) setState(() => _justLogged = false);
+                });
+              },
+            ),
           ],
         );
       },
@@ -132,20 +136,27 @@ class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
   }
 }
 
-class _CheckinView extends StatelessWidget {
+class _CheckinView extends StatefulWidget {
   final bool isDark;
   final bool isEn;
-  final Function(int, String) onSelect;
+  final Future<void> Function(String signalId) onSignalSelect;
 
   const _CheckinView({
     required this.isDark,
     required this.isEn,
-    required this.onSelect,
+    required this.onSignalSelect,
   });
 
   @override
+  State<_CheckinView> createState() => _CheckinViewState();
+}
+
+class _CheckinViewState extends State<_CheckinView> {
+  SignalQuadrant? _selectedQuadrant;
+
+  @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
+    final language = AppLanguage.fromIsEn(widget.isEn);
     return PremiumCard(
       style: PremiumCardStyle.aurora,
       child: Column(
@@ -155,42 +166,56 @@ class _CheckinView extends StatelessWidget {
             style: AppTypography.displayFont.copyWith(
               fontSize: 15,
               fontWeight: FontWeight.w600,
-              color: isDark
+              color: widget.isDark
                   ? AppColors.textPrimary
                   : AppColors.lightTextPrimary,
             ),
           ),
           const SizedBox(height: 14),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: MoodCheckinService.moodOptions.map((option) {
-              final (mood, emoji, labelEn, labelTr) = option;
-              final label = isEn ? labelEn : labelTr;
-              return Semantics(
-                label: label,
-                button: true,
-                child: GestureDetector(
-                  onTap: () => onSelect(mood, emoji),
-                  behavior: HitTestBehavior.opaque,
-                  child: Column(
+          if (_selectedQuadrant == null)
+            // Step 1: Pick quadrant
+            QuadrantSelector(
+              selected: _selectedQuadrant,
+              onSelected: (q) => setState(() => _selectedQuadrant = q),
+              language: language,
+            )
+          else
+            // Step 2: Pick signal within quadrant
+            Column(
+              children: [
+                GestureDetector(
+                  onTap: () => setState(() => _selectedQuadrant = null),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      AppSymbol.card(emoji),
-                      const SizedBox(height: 4),
+                      Icon(
+                        Icons.arrow_back_ios_rounded,
+                        size: 12,
+                        color: widget.isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                      const SizedBox(width: 4),
                       Text(
-                        label,
-                        style: AppTypography.elegantAccent(
-                          fontSize: 10,
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
+                        '${_selectedQuadrant!.emoji} ${_selectedQuadrant!.localizedName(language)}',
+                        style: AppTypography.subtitle(
+                          fontSize: 13,
+                          color: widget.isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
                         ),
                       ),
                     ],
                   ),
                 ),
-              );
-            }).toList(),
-          ),
+                const SizedBox(height: 12),
+                SignalPicker(
+                  quadrant: _selectedQuadrant!,
+                  onSelected: (signal) => widget.onSignalSelect(signal.id),
+                  language: language,
+                ),
+              ],
+            ),
         ],
       ),
     ).animate().fadeIn(duration: 300.ms);
@@ -214,6 +239,8 @@ class _LoggedView extends StatelessWidget {
   Widget build(BuildContext context) {
     final language = AppLanguage.fromIsEn(isEn);
     final nowTime = DateTime.now();
+    final signal = todayMood.hasSignal ? getSignalById(todayMood.signalId!) : null;
+
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
@@ -221,7 +248,14 @@ class _LoggedView extends StatelessWidget {
         children: [
           Row(
             children: [
-              AppSymbol(todayMood.emoji, size: AppSymbolSize.lg),
+              // Signal orb for new entries, emoji fallback for legacy
+              if (signal != null)
+                SignalOrb(
+                  signalId: signal.id,
+                  size: SignalOrbSize.card,
+                )
+              else
+                AppSymbol(todayMood.emoji, size: AppSymbolSize.lg),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
@@ -238,7 +272,7 @@ class _LoggedView extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      _moodLabel(todayMood.mood, isEn),
+                      signal?.localizedName(language) ?? _moodLabel(todayMood.mood, isEn),
                       style: AppTypography.decorativeScript(
                         fontSize: 12,
                         color: isDark
@@ -252,7 +286,7 @@ class _LoggedView extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          // Week mini-timeline
+          // Week mini-timeline — colored dots for signal entries, emoji for legacy
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: List.generate(7, (i) {
@@ -275,32 +309,35 @@ class _LoggedView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  entry != null
-                      ? AppSymbol.inline(
-                          entry.emoji,
-                          accentOverride: _moodColor(entry.mood),
-                        )
-                      : Container(
-                          width: 24,
-                          height: 24,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
+                  if (entry != null && entry.hasSignal)
+                    SignalOrb.inline(signalId: entry.signalId, animate: false)
+                  else if (entry != null)
+                    AppSymbol.inline(
+                      entry.emoji,
+                      accentOverride: _moodColor(entry.mood),
+                    )
+                  else
+                    Container(
+                      width: 24,
+                      height: 24,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: isDark
+                            ? Colors.white.withValues(alpha: 0.04)
+                            : Colors.black.withValues(alpha: 0.03),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '·',
+                          style: AppTypography.elegantAccent(
+                            fontSize: 12,
                             color: isDark
-                                ? Colors.white.withValues(alpha: 0.04)
-                                : Colors.black.withValues(alpha: 0.03),
-                          ),
-                          child: Center(
-                            child: Text(
-                              '·',
-                              style: AppTypography.elegantAccent(
-                                fontSize: 12,
-                                color: isDark
-                                    ? AppColors.textMuted
-                                    : AppColors.lightTextMuted,
-                              ),
-                            ),
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
                           ),
                         ),
+                      ),
+                    ),
                 ],
               );
             }),
@@ -366,22 +403,38 @@ class _ThankYouView extends ConsumerStatefulWidget {
 class _ThankYouViewState extends ConsumerState<_ThankYouView> {
   final Set<String> _selected = {};
 
-  /// Map mood level (1-5) to relevant emotion families for granular suggestion
-  List<GranularEmotion> _getSuggestedEmotions(int mood) {
+  /// Map mood signal quadrant to relevant emotion families for granular suggestion
+  List<GranularEmotion> _getSuggestedEmotions(MoodEntry entry) {
     final List<EmotionFamily> families;
-    switch (mood) {
-      case 1:
-        families = [EmotionFamily.sadness, EmotionFamily.fear];
-      case 2:
-        families = [EmotionFamily.sadness, EmotionFamily.anger];
-      case 3:
-        families = [EmotionFamily.calm, EmotionFamily.surprise];
-      case 4:
-        families = [EmotionFamily.joy, EmotionFamily.calm];
-      case 5:
-        families = [EmotionFamily.joy, EmotionFamily.surprise];
-      default:
-        families = [EmotionFamily.calm];
+    if (entry.hasSignal) {
+      final quadrant = entry.quadrant;
+      switch (quadrant) {
+        case 'fire':
+          families = [EmotionFamily.joy, EmotionFamily.surprise];
+        case 'water':
+          families = [EmotionFamily.calm, EmotionFamily.joy];
+        case 'storm':
+          families = [EmotionFamily.anger, EmotionFamily.fear];
+        case 'shadow':
+          families = [EmotionFamily.sadness, EmotionFamily.fear];
+        default:
+          families = [EmotionFamily.calm];
+      }
+    } else {
+      switch (entry.mood) {
+        case 1:
+          families = [EmotionFamily.sadness, EmotionFamily.fear];
+        case 2:
+          families = [EmotionFamily.sadness, EmotionFamily.anger];
+        case 3:
+          families = [EmotionFamily.calm, EmotionFamily.surprise];
+        case 4:
+          families = [EmotionFamily.joy, EmotionFamily.calm];
+        case 5:
+          families = [EmotionFamily.joy, EmotionFamily.surprise];
+        default:
+          families = [EmotionFamily.calm];
+      }
     }
     return allGranularEmotions
         .where((e) => families.contains(e.family))
@@ -396,7 +449,6 @@ class _ThankYouViewState extends ConsumerState<_ThankYouView> {
         _selected.add(emotionId);
       }
     });
-    // Persist selected emotions
     final service = await ref.read(moodCheckinServiceProvider.future);
     await service.updateSelectedEmotions(_selected.toList());
   }
@@ -404,7 +456,10 @@ class _ThankYouViewState extends ConsumerState<_ThankYouView> {
   @override
   Widget build(BuildContext context) {
     final language = AppLanguage.fromIsEn(widget.isEn);
-    final suggestions = _getSuggestedEmotions(widget.todayMood.mood);
+    final suggestions = _getSuggestedEmotions(widget.todayMood);
+    final signal = widget.todayMood.hasSignal
+        ? getSignalById(widget.todayMood.signalId!)
+        : null;
 
     return PremiumCard(
       style: PremiumCardStyle.subtle,
@@ -416,15 +471,26 @@ class _ThankYouViewState extends ConsumerState<_ThankYouView> {
         children: [
           Row(
             children: [
-              AppSymbol(
-                widget.todayMood.emoji,
-                size: AppSymbolSize.lg,
-              ).animate().scale(
-                begin: const Offset(0.5, 0.5),
-                end: const Offset(1, 1),
-                duration: 300.ms,
-                curve: Curves.elasticOut,
-              ),
+              if (signal != null)
+                SignalOrb(
+                  signalId: signal.id,
+                  size: SignalOrbSize.card,
+                ).animate().scale(
+                  begin: const Offset(0.5, 0.5),
+                  end: const Offset(1, 1),
+                  duration: 300.ms,
+                  curve: Curves.elasticOut,
+                )
+              else
+                AppSymbol(
+                  widget.todayMood.emoji,
+                  size: AppSymbolSize.lg,
+                ).animate().scale(
+                  begin: const Offset(0.5, 0.5),
+                  end: const Offset(1, 1),
+                  duration: 300.ms,
+                  curve: Curves.elasticOut,
+                ),
               const SizedBox(width: 14),
               Expanded(
                 child: Text(
@@ -439,7 +505,7 @@ class _ThankYouViewState extends ConsumerState<_ThankYouView> {
             ],
           ),
           const SizedBox(height: 12),
-          // Granular emotion chips — tappable, selections persisted
+          // Granular emotion chips
           Wrap(
             spacing: 6,
             runSpacing: 6,

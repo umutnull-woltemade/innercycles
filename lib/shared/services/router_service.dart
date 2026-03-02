@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/constants/routes.dart';
+import '../../core/navigation/page_transitions.dart';
 import '../../core/theme/app_typography.dart';
 import '../../data/services/notification_service.dart' show navigatorKey;
 
@@ -246,26 +247,41 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       GoRoute(
         path: Routes.journalEntryDetail,
-        builder: (context, state) {
+        pageBuilder: (context, state) {
           final id = state.pathParameters['id'] ?? '';
-          return EntryDetailScreen(entryId: id);
+          return PageTransitions.cardDetail(
+            child: EntryDetailScreen(entryId: id),
+            key: state.pageKey,
+          );
         },
       ),
       GoRoute(
         path: Routes.journalPatterns,
-        builder: (context, state) => const PatternsScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const PatternsScreen(),
+          key: state.pageKey,
+        ),
       ),
       GoRoute(
         path: Routes.journalMonthly,
-        builder: (context, state) => const MonthlyReflectionScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const MonthlyReflectionScreen(),
+          key: state.pageKey,
+        ),
       ),
       GoRoute(
         path: Routes.journalArchive,
-        builder: (context, state) => const ArchiveScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const ArchiveScreen(),
+          key: state.pageKey,
+        ),
       ),
       GoRoute(
         path: Routes.memories,
-        builder: (context, state) => const MemoriesScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const MemoriesScreen(),
+          key: state.pageKey,
+        ),
       ),
 
       // ════════════════════════════════════════════════════════════════
@@ -273,7 +289,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       GoRoute(
         path: Routes.calendarHeatmap,
-        builder: (context, state) => const CalendarHeatmapScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const CalendarHeatmapScreen(),
+          key: state.pageKey,
+        ),
       ),
 
       // ════════════════════════════════════════════════════════════════
@@ -295,18 +314,27 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: Routes.lifeEventDetail,
-        builder: (context, state) {
+        pageBuilder: (context, state) {
           final id = state.pathParameters['id'] ?? '';
-          return LifeEventDetailScreen(eventId: id);
+          return PageTransitions.cardDetail(
+            child: LifeEventDetailScreen(eventId: id),
+            key: state.pageKey,
+          );
         },
       ),
       GoRoute(
         path: Routes.lifeTimeline,
-        builder: (context, state) => const LifeTimelineScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const LifeTimelineScreen(),
+          key: state.pageKey,
+        ),
       ),
       GoRoute(
         path: Routes.emotionalCycles,
-        builder: (context, state) => const EmotionalCycleScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const EmotionalCycleScreen(),
+          key: state.pageKey,
+        ),
       ),
 
       // ════════════════════════════════════════════════════════════════
@@ -314,7 +342,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       GoRoute(
         path: Routes.birthdayAgenda,
-        builder: (context, state) => const BirthdayAgendaScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const BirthdayAgendaScreen(),
+          key: state.pageKey,
+        ),
       ),
       // Literal routes MUST come before parametric :id route
       GoRoute(
@@ -334,9 +365,12 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: Routes.birthdayDetail,
-        builder: (context, state) {
+        pageBuilder: (context, state) {
           final id = state.pathParameters['id'] ?? '';
-          return BirthdayDetailScreen(contactId: id);
+          return PageTransitions.cardDetail(
+            child: BirthdayDetailScreen(contactId: id),
+            key: state.pageKey,
+          );
         },
       ),
       GoRoute(
@@ -352,11 +386,17 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       GoRoute(
         path: Routes.breathing,
-        builder: (context, state) => const BreathingTimerScreen(),
+        pageBuilder: (context, state) => PageTransitions.slideUp(
+          child: const BreathingTimerScreen(),
+          key: state.pageKey,
+        ),
       ),
       GoRoute(
         path: Routes.meditation,
-        builder: (context, state) => const MeditationTimerScreen(),
+        pageBuilder: (context, state) => PageTransitions.slideUp(
+          child: const MeditationTimerScreen(),
+          key: state.pageKey,
+        ),
       ),
 
       // ════════════════════════════════════════════════════════════════
@@ -364,23 +404,38 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       GoRoute(
         path: Routes.profile,
-        builder: (context, state) => const ProfileScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const ProfileScreen(),
+          key: state.pageKey,
+        ),
       ),
       GoRoute(
         path: Routes.settings,
-        builder: (context, state) => const SettingsScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const SettingsScreen(),
+          key: state.pageKey,
+        ),
       ),
       GoRoute(
         path: Routes.premium,
-        builder: (context, state) => const PremiumScreen(),
+        pageBuilder: (context, state) => PageTransitions.scaleModal(
+          child: const PremiumScreen(),
+          key: state.pageKey,
+        ),
       ),
       GoRoute(
         path: Routes.notifications,
-        builder: (context, state) => const NotificationScheduleScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const NotificationScheduleScreen(),
+          key: state.pageKey,
+        ),
       ),
       GoRoute(
         path: Routes.exportData,
-        builder: (context, state) => const ExportScreen(),
+        pageBuilder: (context, state) => PageTransitions.slideUp(
+          child: const ExportScreen(),
+          key: state.pageKey,
+        ),
       ),
 
       // ════════════════════════════════════════════════════════════════
@@ -388,7 +443,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       GoRoute(
         path: Routes.streakStats,
-        builder: (context, state) => const StreakStatsScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const StreakStatsScreen(),
+          key: state.pageKey,
+        ),
       ),
 
       // ════════════════════════════════════════════════════════════════
@@ -396,12 +454,15 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       GoRoute(
         path: Routes.noteDetail,
-        builder: (context, state) {
+        pageBuilder: (context, state) {
           final extra = state.extra is Map<String, dynamic> ? state.extra as Map<String, dynamic> : null;
           final noteId = extra?['noteId'] as String? ??
               state.uri.queryParameters['noteId'] ??
               '';
-          return NoteDetailScreen(noteId: noteId);
+          return PageTransitions.cardDetail(
+            child: NoteDetailScreen(noteId: noteId),
+            key: state.pageKey,
+          );
         },
       ),
       GoRoute(
@@ -422,15 +483,21 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       GoRoute(
         path: Routes.vaultPin,
-        builder: (context, state) {
+        pageBuilder: (context, state) {
           final extra = state.extra is Map<String, dynamic> ? state.extra as Map<String, dynamic> : null;
           final mode = extra?['mode'] as String?;
-          return VaultPinScreen(mode: mode);
+          return PageTransitions.scaleModal(
+            child: VaultPinScreen(mode: mode),
+            key: state.pageKey,
+          );
         },
       ),
       GoRoute(
         path: Routes.vault,
-        builder: (context, state) => const VaultScreen(),
+        pageBuilder: (context, state) => PageTransitions.scaleModal(
+          child: const VaultScreen(),
+          key: state.pageKey,
+        ),
       ),
 
       // ════════════════════════════════════════════════════════════════
@@ -503,11 +570,17 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: Routes.growthDashboard,
-        builder: (context, state) => const GrowthDashboardScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const GrowthDashboardScreen(),
+          key: state.pageKey,
+        ),
       ),
       GoRoute(
         path: Routes.weeklyDigest,
-        builder: (context, state) => const WeeklyDigestScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const WeeklyDigestScreen(),
+          key: state.pageKey,
+        ),
       ),
 
       // ════════════════════════════════════════════════════════════════
@@ -515,15 +588,24 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       GoRoute(
         path: Routes.insight,
-        builder: (context, state) => const InsightScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const InsightScreen(),
+          key: state.pageKey,
+        ),
       ),
       GoRoute(
         path: Routes.insightsDiscovery,
-        builder: (context, state) => const InsightsDiscoveryScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const InsightsDiscoveryScreen(),
+          key: state.pageKey,
+        ),
       ),
       GoRoute(
         path: Routes.search,
-        builder: (context, state) => const GlobalSearchScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const GlobalSearchScreen(),
+          key: state.pageKey,
+        ),
       ),
 
       // ════════════════════════════════════════════════════════════════
@@ -531,24 +613,41 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       GoRoute(
         path: Routes.dreamInterpretation,
-        builder: (context, state) => const DreamInterpretationScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const DreamInterpretationScreen(),
+          key: state.pageKey,
+        ),
       ),
       GoRoute(
         path: Routes.dreamGlossary,
-        builder: (context, state) => const DreamGlossaryScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const DreamGlossaryScreen(),
+          key: state.pageKey,
+        ),
       ),
       GoRoute(
         path: Routes.dreamArchive,
-        builder: (context, state) => const DreamArchiveScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const DreamArchiveScreen(),
+          key: state.pageKey,
+        ),
       ),
       // ── Dream Pages (single parameterized route) ──
       GoRoute(
         path: '/dreams/:theme',
-        builder: (context, state) {
+        pageBuilder: (context, state) {
           final theme = state.pathParameters['theme']!;
           // Skip non-canonical routes handled above
-          if (theme == 'archive') return const DreamArchiveScreen();
-          return DreamThemeScreen(themeId: theme);
+          if (theme == 'archive') {
+            return PageTransitions.fadeSlide(
+              child: const DreamArchiveScreen(),
+              key: state.pageKey,
+            );
+          }
+          return PageTransitions.cardDetail(
+            child: DreamThemeScreen(themeId: theme),
+            key: state.pageKey,
+          );
         },
       ),
 
@@ -692,11 +791,17 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       GoRoute(
         path: Routes.library,
-        builder: (context, state) => const LibraryHubScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const LibraryHubScreen(),
+          key: state.pageKey,
+        ),
       ),
       GoRoute(
         path: Routes.tools,
-        builder: (context, state) => const ToolCatalogScreen(),
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const ToolCatalogScreen(),
+          key: state.pageKey,
+        ),
       ),
 
       // ════════════════════════════════════════════════════════════════

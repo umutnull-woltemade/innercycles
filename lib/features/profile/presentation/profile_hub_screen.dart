@@ -23,6 +23,8 @@ import '../../../data/services/haptic_service.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
+import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tap_scale.dart';
 import 'package:go_router/go_router.dart';
 
@@ -134,6 +136,21 @@ class ProfileHubScreen extends ConsumerWidget {
                         isDark: isDark,
                         isEn: isEn,
                       ).glassListItem(context: context, index: 1),
+                      const SizedBox(height: AppConstants.spacingXl),
+
+                      // You in Numbers — derived highlights
+                      _YouInNumbersCard(
+                        totalEntries: totalEntries,
+                        totalWords: totalWords,
+                        streakDays: streakDays,
+                        dreamCount: dreamCount,
+                        moodCount: moodCount,
+                        sleepNights: sleepNights,
+                        gratitudeDays: gratitudeDays,
+                        completedChallenges: completedChallenges,
+                        isDark: isDark,
+                        isEn: isEn,
+                      ).glassListItem(context: context, index: 2),
                       const SizedBox(height: AppConstants.spacingXl),
 
                       // Archetype mini-card
@@ -279,6 +296,135 @@ class _ArchetypeMiniCard extends ConsumerWidget {
         );
       },
       orElse: () => const SizedBox.shrink(),
+    );
+  }
+}
+
+class _YouInNumbersCard extends StatelessWidget {
+  final int totalEntries;
+  final int totalWords;
+  final int streakDays;
+  final int dreamCount;
+  final int moodCount;
+  final int sleepNights;
+  final int gratitudeDays;
+  final int completedChallenges;
+  final bool isDark;
+  final bool isEn;
+
+  const _YouInNumbersCard({
+    required this.totalEntries,
+    required this.totalWords,
+    required this.streakDays,
+    required this.dreamCount,
+    required this.moodCount,
+    required this.sleepNights,
+    required this.gratitudeDays,
+    required this.completedChallenges,
+    required this.isDark,
+    required this.isEn,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final totalDataPoints =
+        totalEntries + dreamCount + moodCount + sleepNights + gratitudeDays;
+    if (totalDataPoints == 0) return const SizedBox.shrink();
+
+    final wordsPerEntry =
+        totalEntries > 0 ? (totalWords / totalEntries).round() : 0;
+
+    // Count tools used
+    int toolsUsed = 0;
+    if (totalEntries > 0) toolsUsed++;
+    if (dreamCount > 0) toolsUsed++;
+    if (moodCount > 0) toolsUsed++;
+    if (sleepNights > 0) toolsUsed++;
+    if (gratitudeDays > 0) toolsUsed++;
+    if (completedChallenges > 0) toolsUsed++;
+
+    final highlights = <(String, String, IconData)>[
+      (
+        '$totalDataPoints',
+        isEn ? 'Total Data Points' : 'Toplam Veri Noktası',
+        Icons.insights_rounded,
+      ),
+      if (wordsPerEntry > 0)
+        (
+          '$wordsPerEntry',
+          isEn ? 'Avg Words/Entry' : 'Ort. Kelime/Kayıt',
+          Icons.text_fields_rounded,
+        ),
+      (
+        '$toolsUsed',
+        isEn ? 'Tools Used' : 'Kullanılan Araçlar',
+        Icons.apps_rounded,
+      ),
+      (
+        '$streakDays',
+        isEn ? 'Current Streak' : 'Güncel Seri',
+        Icons.local_fire_department_rounded,
+      ),
+    ];
+
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      padding: const EdgeInsets.all(AppConstants.spacingLg),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          GradientText(
+            isEn ? 'You in Numbers' : 'Sayılarla Sen',
+            variant: GradientTextVariant.aurora,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: AppConstants.spacingMd),
+          Row(
+            children: highlights.map((h) {
+              final (value, label, icon) = h;
+              return Expanded(
+                child: Column(
+                  children: [
+                    Icon(
+                      icon,
+                      size: 18,
+                      color: isDark
+                          ? AppColors.auroraStart
+                          : AppColors.auroraStart.withValues(alpha: 0.8),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      value,
+                      style: AppTypography.displayFont.copyWith(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      label,
+                      style: AppTypography.elegantAccent(
+                        fontSize: 9,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
+          ),
+        ],
+      ),
     );
   }
 }
