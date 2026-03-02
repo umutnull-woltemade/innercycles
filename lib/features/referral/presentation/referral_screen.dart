@@ -88,6 +88,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
       body: CosmicBackground(
         child: CupertinoScrollbar(
           child: CustomScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics(),
             ),

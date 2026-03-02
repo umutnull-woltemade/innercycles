@@ -117,6 +117,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               data: (shadowService) {
                 return CupertinoScrollbar(
                   child: CustomScrollView(
+                    keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                     physics: const BouncingScrollPhysics(
                       parent: AlwaysScrollableScrollPhysics(),
                     ),

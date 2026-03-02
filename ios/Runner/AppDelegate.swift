@@ -164,6 +164,13 @@ import WidgetKit
     completionHandler(true)
   }
 
+  // MARK: - Badge Clearing
+
+  override func applicationDidBecomeActive(_ application: UIApplication) {
+    super.applicationDidBecomeActive(application)
+    application.applicationIconBadgeNumber = 0
+  }
+
   // MARK: - Notification Handling
 
   // Handle notification when app is in foreground

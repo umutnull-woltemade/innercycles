@@ -70,6 +70,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
           child: SafeArea(
             child: CupertinoScrollbar(
               child: CustomScrollView(
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                 physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics(),
                 ),

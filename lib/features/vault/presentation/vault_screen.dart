@@ -565,6 +565,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     if (confirmed == true) {
       final vaultService = await ref.read(vaultServiceProvider.future);
       await vaultService.deletePhoto(photo.id);
+      if (!mounted) return;
       ref.invalidate(vaultPhotosProvider);
       ref.invalidate(vaultPhotoCountProvider);
     }
@@ -609,6 +610,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
               if (!canBio) return;
               final current = vaultService.isBiometricEnabled;
               await vaultService.setBiometricEnabled(!current);
+              if (!mounted) return;
               ref.invalidate(vaultServiceProvider);
               if (mounted) {
                 HapticService.buttonPress();
@@ -656,22 +658,36 @@ class _FullScreenPhoto extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: GestureDetector(
-        onTap: () => Navigator.pop(context),
-        child: Center(
-          child: InteractiveViewer(
-            child: Image.file(
-              File(photo.filePath),
-              cacheWidth: 400,
-              cacheHeight: 400,
-              fit: BoxFit.contain,
-              errorBuilder: (_, _, _) => const Icon(
-                CupertinoIcons.photo,
-                color: Colors.white38,
-                size: 64,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Center(
+              child: InteractiveViewer(
+                child: Image.file(
+                  File(photo.filePath),
+                  fit: BoxFit.contain,
+                  errorBuilder: (_, _, _) => const Icon(
+                    CupertinoIcons.photo,
+                    color: Colors.white38,
+                    size: 64,
+                  ),
+                ),
               ),
             ),
-          ),
+            Positioned(
+              top: 8,
+              left: 8,
+              child: Semantics(
+                label: 'Close',
+                button: true,
+                child: IconButton(
+                  icon: const Icon(CupertinoIcons.xmark_circle_fill,
+                      color: Colors.white70, size: 32),
+                  onPressed: () => Navigator.pop(context),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

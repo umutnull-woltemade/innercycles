@@ -1722,6 +1722,53 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                   ),
                   textAlign: TextAlign.center,
                 ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+
+                // Premium trial CTA at 50th entry (highest conversion moment)
+                if (count == 50 && !ref.read(isPremiumUserProvider)) ...[
+                  const SizedBox(height: 16),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(ctx).pop();
+                      context.push(Routes.premium);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            AppColors.starGold.withValues(alpha: 0.1),
+                            AppColors.celestialGold.withValues(alpha: 0.05),
+                          ],
+                        ),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: AppColors.starGold.withValues(alpha: 0.2),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.workspace_premium_rounded, size: 18, color: AppColors.starGold),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: Text(
+                              isEn
+                                  ? '50 entries! Unlock deeper insights with Premium'
+                                  : '50 giriş! Premium ile daha derin içgörüleri aç',
+                              style: AppTypography.subtitle(
+                                fontSize: 12,
+                                color: AppColors.starGold,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                          Icon(Icons.arrow_forward_ios_rounded, size: 12, color: AppColors.starGold),
+                        ],
+                      ),
+                    ),
+                  ).animate(delay: 500.ms).fadeIn(duration: 400.ms),
+                ],
+
                 const SizedBox(height: 24),
                 Row(
                   mainAxisSize: MainAxisSize.min,

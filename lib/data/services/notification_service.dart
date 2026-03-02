@@ -11,6 +11,7 @@ import '../models/note_to_self.dart';
 import '../models/birthday_contact.dart';
 import 'journal_prompt_service.dart';
 import 'l10n_service.dart';
+import 'mood_checkin_service.dart';
 import '../providers/app_providers.dart';
 
 /// Global navigator key — shared with GoRouter so notification taps
@@ -250,6 +251,7 @@ class NotificationService {
           presentAlert: true,
           presentBadge: true,
           presentSound: true,
+          badgeNumber: 1,
         ),
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
@@ -292,10 +294,31 @@ class NotificationService {
   }) async {
     _isEn = await _readIsEn();
     final language = AppLanguage.fromIsEn(_isEn);
+
+    // Smart copy based on recent mood
+    String body;
+    try {
+      final moodService = await MoodCheckinService.init();
+      final todayMood = moodService.getTodayMood();
+      if (todayMood != null && todayMood.mood <= 2) {
+        body = _isEn
+            ? 'Tough days deserve reflection too. Your journal is here for you.'
+            : 'Zor günler de yansıtmayı hak eder. Günlüğün senin için burada.';
+      } else if (todayMood != null && todayMood.mood >= 4) {
+        body = _isEn
+            ? 'Great day? Capture what made it special before it fades.'
+            : 'Güzel bir gün mü? Özel kılan şeyleri kaybetmeden kaydet.';
+      } else {
+        body = L10nService.get('data.services.notification.how_was_your_day_take_a_moment_to_journa', language);
+      }
+    } catch (_) {
+      body = L10nService.get('data.services.notification.how_was_your_day_take_a_moment_to_journa', language);
+    }
+
     await _notifications.zonedSchedule(
       id: eveningReflectionId,
       title: L10nService.get('data.services.notification.evening_reflection', language),
-      body: L10nService.get('data.services.notification.how_was_your_day_take_a_moment_to_journa', language),
+      body: body,
       scheduledDate: _nextInstanceOfTime(hour, minute),
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
@@ -309,8 +332,9 @@ class NotificationService {
         ),
         iOS: const DarwinNotificationDetails(
           presentAlert: true,
-          presentBadge: false,
+          presentBadge: true,
           presentSound: true,
+          badgeNumber: 1,
         ),
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
@@ -548,6 +572,7 @@ class NotificationService {
           presentAlert: true,
           presentBadge: true,
           presentSound: true,
+          badgeNumber: 1,
         ),
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,

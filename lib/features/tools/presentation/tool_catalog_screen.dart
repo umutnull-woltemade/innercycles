@@ -16,6 +16,7 @@ import '../../../core/theme/app_typography.dart';
 import '../../../data/models/tool_manifest.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/premium_service.dart';
+import '../../../data/services/progressive_unlock_service.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
@@ -457,7 +458,18 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
   }
 }
 
-class _ToolCard extends StatelessWidget {
+/// Maps tool IDs to progressive unlock keys from [ProgressiveUnlockService].
+const Map<String, String> _toolUnlockKeys = {
+  'dreamInterpretation': 'dream_journal',
+  'dreamGlossary': 'dream_journal',
+  'emotionalCycles': 'patterns',
+  'patterns': 'patterns',
+  'monthlyReport': 'monthly_reflection',
+  'calendarHeatmap': 'annual_heatmap',
+  'cycleSync': 'cycle_correlation',
+};
+
+class _ToolCard extends ConsumerWidget {
   final ToolManifest tool;
   final bool isDark;
   final bool isEn;
@@ -477,7 +489,7 @@ class _ToolCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final language = AppLanguage.fromIsEn(isEn);
     final isFavorite =
         smartRouterAsync.whenOrNull(
@@ -485,12 +497,35 @@ class _ToolCard extends StatelessWidget {
         ) ??
         false;
 
+    // Progressive unlock check
+    final unlockKey = _toolUnlockKeys[tool.id];
+    final unlockAsync = ref.watch(progressiveUnlockServiceProvider);
+    final entriesRemaining = unlockAsync.whenOrNull(
+      data: (service) => unlockKey != null ? service.entriesUntilUnlock(unlockKey) : 0,
+    ) ?? 0;
+    final isEntryLocked = entriesRemaining > 0 && !isPremium;
+
     return Semantics(
       button: true,
       label: tool.localizedName(language),
       child: GestureDetector(
         onTap: () {
           HapticFeedback.lightImpact();
+          if (isEntryLocked) {
+            // Show how many entries needed
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  isEn
+                      ? '$entriesRemaining more entries to unlock'
+                      : '$entriesRemaining giriş daha ile açılır',
+                ),
+                behavior: SnackBarBehavior.floating,
+                duration: const Duration(seconds: 2),
+              ),
+            );
+            return;
+          }
           if (tool.requiresPremium && !isPremium) {
             onPremiumTap();
             return;
@@ -509,7 +544,46 @@ class _ToolCard extends StatelessWidget {
                 children: [
                   AppSymbol(tool.icon, size: AppSymbolSize.lg),
                   const Spacer(),
-                  if (tool.requiresPremium)
+                  if (isEntryLocked)
+                    Container(
+                      margin: const EdgeInsets.only(right: 4),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 6,
+                        vertical: 2,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          AppConstants.radiusSm,
+                        ),
+                        color: isDark
+                            ? AppColors.textMuted.withValues(alpha: 0.15)
+                            : AppColors.lightTextMuted.withValues(alpha: 0.12),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.lock_rounded,
+                            size: 10,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                          const SizedBox(width: 3),
+                          Text(
+                            '$entriesRemaining',
+                            style: AppTypography.elegantAccent(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w600,
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  else if (tool.requiresPremium && !isPremium)
                     Container(
                       margin: const EdgeInsets.only(right: 4),
                       padding: const EdgeInsets.symmetric(

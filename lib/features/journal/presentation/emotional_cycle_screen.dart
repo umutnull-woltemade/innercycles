@@ -27,6 +27,7 @@ import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
@@ -96,6 +97,78 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     final isEn = language == AppLanguage.en;
     final cycleServiceAsync = ref.watch(emotionalCycleServiceProvider);
     final analysisAsync = ref.watch(emotionalCycleAnalysisProvider);
+
+    // Progressive unlock gate: require 7 entries
+    final isPremium = ref.watch(isPremiumUserProvider);
+    final unlockAsync = ref.watch(progressiveUnlockServiceProvider);
+    final entriesRemaining = unlockAsync.whenOrNull(
+      data: (s) => s.entriesUntilUnlock('patterns'),
+    ) ?? 0;
+
+    if (entriesRemaining > 0 && !isPremium) {
+      return Scaffold(
+        body: CosmicBackground(
+          child: SafeArea(
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(32),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.lock_rounded,
+                      size: 48,
+                      color: AppColors.starGold.withValues(alpha: 0.5),
+                    ),
+                    const SizedBox(height: 16),
+                    GradientText(
+                      isEn
+                          ? 'Emotional Cycles'
+                          : 'Duygusal Döngüler',
+                      variant: GradientTextVariant.gold,
+                      style: AppTypography.displayFont.copyWith(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      isEn
+                          ? '$entriesRemaining more entries to unlock emotional cycle detection'
+                          : 'Duygusal döngü tespitini açmak için $entriesRemaining giriş daha',
+                      textAlign: TextAlign.center,
+                      style: AppTypography.subtitle(
+                        fontSize: 15,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    GradientButton.gold(
+                      label: isEn ? 'Write an Entry' : 'Bir Giriş Yaz',
+                      icon: Icons.edit_note_rounded,
+                      onPressed: () => context.push(Routes.journal),
+                    ),
+                    const SizedBox(height: 12),
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text(
+                        isEn ? 'Go Back' : 'Geri Dön',
+                        style: AppTypography.subtitle(
+                          fontSize: 14,
+                          color: AppColors.starGold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
 
     return Scaffold(
       body: CosmicBackground(
