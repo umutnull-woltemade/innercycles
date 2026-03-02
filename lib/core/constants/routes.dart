@@ -156,6 +156,9 @@ class Routes {
   // ════════════════════════════════════════════════════════════════
   static const String moodTrends = '/mood/trends';
   static const String moodCompass = '/mood/compass';
+  static const String selfCompassion = '/self-compassion';
+  static const String clarityScore = '/clarity';
+  static const String moodRhythm = '/mood/rhythm';
   static const String gratitudeArchive = '/gratitude/archive';
   static const String sleepTrends = '/sleep/trends';
 

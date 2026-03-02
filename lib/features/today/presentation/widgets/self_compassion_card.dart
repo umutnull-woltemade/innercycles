@@ -4,6 +4,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../data/providers/app_providers.dart';
@@ -53,9 +55,11 @@ class SelfCompassionCard extends ConsumerWidget {
 
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-          child: PremiumCard(
-            style: PremiumCardStyle.amethyst,
-            child: Padding(
+          child: GestureDetector(
+            onTap: () => context.push(Routes.selfCompassion),
+            child: PremiumCard(
+              style: PremiumCardStyle.amethyst,
+              child: Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -153,6 +157,7 @@ class SelfCompassionCard extends ConsumerWidget {
                 ],
               ),
             ),
+          ),
           ),
         );
       },

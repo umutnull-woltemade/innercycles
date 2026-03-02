@@ -5,6 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../data/providers/app_providers.dart';
@@ -42,7 +44,9 @@ class ClarityScoreCard extends ConsumerWidget {
         final sparkData =
             recentWeeks.reversed.map((w) => w.score.toDouble()).toList();
 
-        return Padding(
+        return GestureDetector(
+          onTap: () => context.push(Routes.clarityScore),
+          child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
           child: PremiumCard(
             style: PremiumCardStyle.aurora,
@@ -168,7 +172,8 @@ class ClarityScoreCard extends ConsumerWidget {
               ],
             ),
           ),
-        ).animate().fadeIn(delay: 350.ms, duration: 400.ms);
+        ).animate().fadeIn(delay: 350.ms, duration: 400.ms),
+        );
       },
       orElse: () => const SizedBox.shrink(),
     );
