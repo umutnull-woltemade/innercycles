@@ -142,9 +142,9 @@ class ValuesService {
     if (json != null) {
       try {
         final map = jsonDecode(json) as Map<String, dynamic>;
-        _topValues = (map['topValues'] as List?)?.cast<String>() ?? [];
+        _topValues = (map['topValues'] as List?)?.whereType<String>().toList() ?? [];
         _completedAt = map['completedAt'] != null
-            ? DateTime.parse(map['completedAt'] as String)
+            ? DateTime.tryParse(map['completedAt'].toString())
             : null;
       } catch (_) {
         _topValues = [];

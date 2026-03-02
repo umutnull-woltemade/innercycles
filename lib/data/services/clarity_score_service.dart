@@ -47,15 +47,15 @@ class WeeklyClarity {
       };
 
   factory WeeklyClarity.fromJson(Map<String, dynamic> json) => WeeklyClarity(
-        weekKey: json['weekKey'] as String,
-        score: json['score'] as int,
+        weekKey: json['weekKey'] as String? ?? '',
+        score: json['score'] as int? ?? 0,
         journalDays: json['journalDays'] as int? ?? 0,
         avgMood: (json['avgMood'] as num?)?.toDouble() ?? 3.0,
         ritualRate: (json['ritualRate'] as num?)?.toDouble() ?? 0.0,
         sleepAvg: (json['sleepAvg'] as num?)?.toDouble() ?? 0.0,
         gratitudeDays: json['gratitudeDays'] as int? ?? 0,
         streak: json['streak'] as int? ?? 0,
-        computedAt: DateTime.parse(json['computedAt'] as String),
+        computedAt: DateTime.tryParse(json['computedAt']?.toString() ?? '') ?? DateTime.now(),
       );
 }
 

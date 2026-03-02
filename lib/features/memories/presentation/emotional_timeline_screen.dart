@@ -136,12 +136,13 @@ class EmotionalTimelineScreen extends ConsumerWidget {
     final sortedMonths = grouped.keys.toList()
       ..sort((a, b) => b.compareTo(a));
 
-    return CosmicBackground(
-      child: CustomScrollView(
-        slivers: [
-          GlassSliverAppBar(
-            title: isEn ? 'Your Timeline' : 'Zaman Çizelgen',
-          ),
+    return Scaffold(
+      body: CosmicBackground(
+        child: CustomScrollView(
+          slivers: [
+            GlassSliverAppBar(
+              title: isEn ? 'Your Timeline' : 'Zaman Çizelgen',
+            ),
           if (events.isEmpty)
             SliverFillRemaining(
               child: Center(
@@ -242,6 +243,7 @@ class EmotionalTimelineScreen extends ConsumerWidget {
             }),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],
+        ),
       ),
     );
   }

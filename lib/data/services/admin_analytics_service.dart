@@ -122,8 +122,8 @@ class AdminAnalyticsService {
           EventLog(
             name: e['name'] as String? ?? '',
             count: e['count'] as int? ?? 0,
-            lastFired: DateTime.parse(e['lastFired'] as String),
-            firstFired: DateTime.parse(e['firstFired'] as String),
+            lastFired: DateTime.tryParse(e['lastFired']?.toString() ?? '') ?? DateTime.now(),
+            firstFired: DateTime.tryParse(e['firstFired']?.toString() ?? '') ?? DateTime.now(),
           ),
         );
       } catch (e) {

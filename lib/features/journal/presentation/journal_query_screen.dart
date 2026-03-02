@@ -126,10 +126,11 @@ class _JournalQueryScreenState extends ConsumerState<JournalQueryScreen> {
             'Hangi örüntüleri görüyorum?',
           ];
 
-    return CosmicBackground(
-      child: GestureDetector(
-        onTap: () => _focusNode.unfocus(),
-        child: CustomScrollView(
+    return Scaffold(
+      body: CosmicBackground(
+        child: GestureDetector(
+          onTap: () => _focusNode.unfocus(),
+          child: CustomScrollView(
           slivers: [
             GlassSliverAppBar(
               title: isEn ? 'Ask Your Journal' : 'Günlüğüne Sor',
@@ -427,6 +428,7 @@ class _JournalQueryScreenState extends ConsumerState<JournalQueryScreen> {
             const SliverToBoxAdapter(child: SizedBox(height: 40)),
           ],
         ),
+      ),
       ),
     );
   }

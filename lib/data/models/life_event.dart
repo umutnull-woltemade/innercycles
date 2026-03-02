@@ -120,7 +120,7 @@ class LifeEvent {
             .toList() ??
         [],
     imagePath: json['imagePath'] as String?,
-    intensity: (json['intensity'] as int?) ?? 3,
+    intensity: (json['intensity'] as num?)?.toInt() ?? 3,
   );
 
   /// Date key for grouping by day (yyyy-MM-dd)
