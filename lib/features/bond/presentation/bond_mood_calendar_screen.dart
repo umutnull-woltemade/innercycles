@@ -48,7 +48,7 @@ class _BondMoodCalendarScreenState
       body: CosmicBackground(
         child: bondsAsync.when(
           loading: () => const Center(child: CupertinoActivityIndicator()),
-          error: (_, __) => Center(
+          error: (e, s) => Center(
             child: Text(
               isEn ? 'Could not load bond' : 'Bag yuklenemedi',
               style: AppTypography.subtitle(
@@ -220,7 +220,7 @@ class _BondMoodCalendarScreenState
               height: 200,
               child: Center(child: CupertinoActivityIndicator()),
             ),
-            error: (_, __) => SizedBox(
+            error: (e, s) => SizedBox(
               height: 200,
               child: Center(
                 child: Text(

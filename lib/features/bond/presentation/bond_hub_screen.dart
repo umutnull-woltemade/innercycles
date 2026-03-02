@@ -83,7 +83,7 @@ class _BondHubScreenState extends ConsumerState<BondHubScreen> {
                     child: Center(child: CupertinoActivityIndicator()),
                   ),
                 ),
-                error: (_, __) => SliverToBoxAdapter(
+                error: (e, s) => SliverToBoxAdapter(
                   child: _buildErrorState(isDark, isEn),
                 ),
                 data: (bonds) {

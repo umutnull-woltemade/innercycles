@@ -77,7 +77,7 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
       body: CosmicBackground(
         child: bondsAsync.when(
           loading: () => const Center(child: CupertinoActivityIndicator()),
-          error: (_, __) => Center(
+          error: (e, s) => Center(
             child: Text(
               isEn ? 'Could not load bond' : 'Bag yuklenemedi',
               style: AppTypography.subtitle(

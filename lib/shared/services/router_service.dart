@@ -228,7 +228,7 @@ final routerProvider = Provider<GoRouter>((ref) {
                 path: Routes.moodCompass,
                 pageBuilder: (context, state) => CustomTransitionPage(
                   child: const SizedBox.shrink(), // Compass is a bottom sheet, not a page
-                  transitionsBuilder: (_, __, ___, child) => child,
+                  transitionsBuilder: (c, a, sa, child) => child,
                 ),
               ),
             ],

@@ -28,8 +28,6 @@ import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tap_scale.dart';
 import 'package:go_router/go_router.dart';
 import '../../../data/services/analytics_service.dart';
-import '../../../data/providers/bond_providers.dart';
-
 class ProfileHubScreen extends ConsumerWidget {
   const ProfileHubScreen({super.key});
 
@@ -565,6 +563,10 @@ class _PersonalRecordsCard extends ConsumerWidget {
   }
 }
 
+// ═══════════════════════════════════════════════════════════════════════════
+// BOND HUB LINK
+// ═══════════════════════════════════════════════════════════════════════════
+
 class _BondHubLink extends ConsumerWidget {
   final bool isDark;
   final bool isEn;
@@ -573,7 +575,8 @@ class _BondHubLink extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bondCount = ref.watch(bondCountProvider).whenOrNull(data: (v) => v) ?? 0;
+    final bondCount =
+        ref.watch(bondCountProvider).whenOrNull(data: (v) => v) ?? 0;
 
     return TapScale(
       onTap: () {
@@ -593,7 +596,10 @@ class _BondHubLink extends ConsumerWidget {
                 color: AppColors.amethyst.withValues(alpha: 0.15),
               ),
               alignment: Alignment.center,
-              child: const Text('💞', style: TextStyle(fontSize: 20)),
+              child: const Text(
+                '\u{1FAF6}',
+                style: TextStyle(fontSize: 20),
+              ),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -601,7 +607,7 @@ class _BondHubLink extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GradientText(
-                    isEn ? 'Bond' : 'Bağ',
+                    isEn ? 'Bonds' : 'Ba\u011Flar',
                     variant: GradientTextVariant.amethyst,
                     style: AppTypography.displayFont.copyWith(
                       fontSize: 15,
@@ -613,10 +619,10 @@ class _BondHubLink extends ConsumerWidget {
                     isEn
                         ? bondCount > 0
                             ? '$bondCount active bond${bondCount > 1 ? 's' : ''}'
-                            : 'Connect with someone close'
+                            : 'Connect with your closest people'
                         : bondCount > 0
-                            ? '$bondCount aktif bağ'
-                            : 'Yakınlarınla bağlan',
+                            ? '$bondCount aktif ba\u011F'
+                            : 'En yak\u0131nlar\u0131nla ba\u011Flan',
                     style: AppTypography.subtitle(
                       fontSize: 12,
                       color: isDark
@@ -629,7 +635,8 @@ class _BondHubLink extends ConsumerWidget {
             ),
             if (bondCount > 0)
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                 decoration: BoxDecoration(
                   color: AppColors.amethyst.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(10),
@@ -645,8 +652,8 @@ class _BondHubLink extends ConsumerWidget {
               ),
             const SizedBox(width: 4),
             Icon(
-              Icons.chevron_right_rounded,
-              size: 18,
+              Icons.arrow_forward_ios_rounded,
+              size: 14,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
           ],
@@ -655,3 +662,4 @@ class _BondHubLink extends ConsumerWidget {
     );
   }
 }
+
