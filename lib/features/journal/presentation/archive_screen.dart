@@ -18,7 +18,8 @@ import '../../../data/services/premium_service.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/cosmic_background.dart';
-import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../data/services/haptic_service.dart';
+import '../../../shared/widgets/skeleton_loader.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -77,7 +78,10 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
           behavior: HitTestBehavior.opaque,
           child: SafeArea(
             child: serviceAsync.when(
-              loading: () => const CosmicLoadingIndicator(),
+              loading: () => Padding(
+                padding: const EdgeInsets.all(24),
+                child: SkeletonLoader.cardList(count: 5),
+              ),
               error: (_, _) => Center(
                 child: Padding(
                   padding: const EdgeInsets.all(32),
@@ -220,7 +224,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                             title: L10nService.get('journal.archive.your_journal_is_a_blank_page_ready_when', language),
                             description: L10nService.get('journal.archive.your_journal_entries_will_appear_here_as', language),
                             ctaLabel: L10nService.get('journal.archive.write_first_entry', language),
-                            onCtaPressed: () => context.go(Routes.journal),
+                            onCtaPressed: () => context.push(Routes.journal),
                           ),
                         )
                       else ...[
@@ -419,8 +423,11 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
-      child: TextField(
-        controller: _searchController,
+      child: Semantics(
+        label: isEn ? 'Search journal entries' : 'Günlük kayıtlarını ara',
+        textField: true,
+        child: TextField(
+          controller: _searchController,
         textInputAction: TextInputAction.search,
         onChanged: (v) {
           _searchDebounce?.cancel();
@@ -462,6 +469,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
             vertical: 14,
           ),
         ),
+      ),
       ),
     );
   }
@@ -510,7 +518,10 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
           return Padding(
             padding: const EdgeInsets.only(right: 8),
             child: GestureDetector(
-              onTap: () => setState(() => _dateRange = e.key),
+              onTap: () {
+                HapticService.selectionTap();
+                setState(() => _dateRange = e.key);
+              },
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
@@ -561,7 +572,10 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
         button: true,
         label: L10nService.getWithParams('journal.archive.filter_label', language, params: {'label': label}),
         child: GestureDetector(
-          onTap: onTap,
+          onTap: () {
+            HapticService.selectionTap();
+            onTap();
+          },
           child: ConstrainedBox(
             constraints: const BoxConstraints(minHeight: 44),
             child: Container(

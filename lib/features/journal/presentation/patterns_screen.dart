@@ -281,7 +281,7 @@ class PatternsScreen extends ConsumerWidget {
                             GradientButton.gold(
                               label: L10nService.get('journal.patterns.write_entry', language),
                               icon: Icons.edit_note_outlined,
-                              onPressed: () => context.go(Routes.journal),
+                              onPressed: () => context.push(Routes.journal),
                               expanded: true,
                             ),
                           ]

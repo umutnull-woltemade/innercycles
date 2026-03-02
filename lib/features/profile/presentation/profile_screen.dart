@@ -501,7 +501,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             icon: Icons.insights,
             variant: GradientTextVariant.aurora,
             expanded: true,
-            onPressed: () => context.go(Routes.moodTrends),
+            onPressed: () => context.push(Routes.moodTrends),
           ),
         ],
       ),

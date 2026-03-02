@@ -350,7 +350,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                 description: L10nService.get('journal.annual_report.your_yearinreview_will_come_alive_with_e', language),
                 gradientVariant: GradientTextVariant.gold,
                 ctaLabel: L10nService.get('journal.annual_report.write_first_entry', language),
-                onCtaPressed: () => context.go(Routes.journal),
+                onCtaPressed: () => context.push(Routes.journal),
               ),
             ),
           ),

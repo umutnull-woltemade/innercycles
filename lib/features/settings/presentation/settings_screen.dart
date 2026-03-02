@@ -8,6 +8,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
+import '../../../data/services/haptic_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
@@ -110,6 +111,82 @@ class SettingsScreen extends ConsumerWidget {
                             ),
                           ],
                         ),
+                      ),
+                      const SizedBox(height: 35),
+
+                      // ═══ TEXT SIZE SECTION ═══
+                      _SectionHeader(
+                        title: (language == AppLanguage.en
+                                ? 'Text Size'
+                                : 'Yazı Boyutu')
+                            .toUpperCase(),
+                        isDark: isDark,
+                      ),
+                      _GroupedContainer(
+                        isDark: isDark,
+                        child: Builder(builder: (context) {
+                          final currentScale = ref.watch(fontSizeScaleProvider);
+                          return Row(
+                            children: [
+                              Expanded(
+                                child: _ThemeOption(
+                                  label: language == AppLanguage.en
+                                      ? 'Small'
+                                      : 'Küçük',
+                                  icon: Icons.text_decrease_rounded,
+                                  isSelected:
+                                      (currentScale - 0.85).abs() < 0.01,
+                                  isDark: isDark,
+                                  onTap: () {
+                                    HapticFeedback.selectionClick();
+                                    ref
+                                        .read(fontSizeScaleProvider.notifier)
+                                        .state = 0.85;
+                                    StorageService.saveFontSizeScale(0.85);
+                                  },
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: _ThemeOption(
+                                  label: language == AppLanguage.en
+                                      ? 'Normal'
+                                      : 'Normal',
+                                  icon: Icons.text_fields_rounded,
+                                  isSelected:
+                                      (currentScale - 1.0).abs() < 0.01,
+                                  isDark: isDark,
+                                  onTap: () {
+                                    HapticFeedback.selectionClick();
+                                    ref
+                                        .read(fontSizeScaleProvider.notifier)
+                                        .state = 1.0;
+                                    StorageService.saveFontSizeScale(1.0);
+                                  },
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: _ThemeOption(
+                                  label: language == AppLanguage.en
+                                      ? 'Large'
+                                      : 'Büyük',
+                                  icon: Icons.text_increase_rounded,
+                                  isSelected:
+                                      (currentScale - 1.15).abs() < 0.01,
+                                  isDark: isDark,
+                                  onTap: () {
+                                    HapticFeedback.selectionClick();
+                                    ref
+                                        .read(fontSizeScaleProvider.notifier)
+                                        .state = 1.15;
+                                    StorageService.saveFontSizeScale(1.15);
+                                  },
+                                ),
+                              ),
+                            ],
+                          );
+                        }),
                       ),
                       const SizedBox(height: 35),
 
@@ -438,7 +515,7 @@ class SettingsScreen extends ConsumerWidget {
                                   ? 'Guided Breathwork'
                                   : 'Rehberli Nefes',
                               isDark: isDark,
-                              onTap: () => context.go(Routes.breathing),
+                              onTap: () => context.push(Routes.breathing),
                             ),
                             _GroupedSeparator(isDark: isDark),
                             _GroupedTile(
@@ -1353,6 +1430,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                         value: isEnabled,
                         activeTrackColor: AppColors.auroraStart,
                         onChanged: (value) async {
+                          HapticService.toggleChanged();
                           if (value) {
                             _showPinSetup(service);
                           } else {

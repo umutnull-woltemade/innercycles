@@ -8,6 +8,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
@@ -244,11 +245,18 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
       _currentPhaseIndex = 0;
       _completedCycles++;
       HapticService.success();
+      _incrementBreathingCount();
     }
 
     if (_isRunning) {
       _startPhase();
     }
+  }
+
+  Future<void> _incrementBreathingCount() async {
+    final prefs = await SharedPreferences.getInstance();
+    final count = prefs.getInt('mindfulness_breathing_count') ?? 0;
+    await prefs.setInt('mindfulness_breathing_count', count + 1);
   }
 
   @override

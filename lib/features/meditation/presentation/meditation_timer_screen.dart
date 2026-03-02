@@ -8,6 +8,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -130,6 +131,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
       _isRunning = false;
       _remainingSeconds = 0;
     });
+    _incrementMeditationCount();
 
     final language = ref.read(languageProvider);
 
@@ -142,6 +144,12 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
         duration: const Duration(seconds: 3),
       ),
     );
+  }
+
+  Future<void> _incrementMeditationCount() async {
+    final prefs = await SharedPreferences.getInstance();
+    final count = prefs.getInt('mindfulness_meditation_count') ?? 0;
+    await prefs.setInt('mindfulness_meditation_count', count + 1);
   }
 
   String _formatTime(int seconds) {

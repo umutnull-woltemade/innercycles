@@ -62,6 +62,7 @@ import 'widgets/pattern_loop_card.dart';
 import 'widgets/shift_outlook_card.dart';
 import 'widgets/weekly_digest_mini_card.dart';
 import 'widgets/weekly_momentum_card.dart';
+import 'widgets/mindfulness_stats_card.dart';
 import 'widgets/pattern_health_alert_card.dart';
 import 'widgets/habit_suggestion_card.dart';
 import 'widgets/sleep_quality_mini_card.dart';
@@ -70,6 +71,7 @@ import 'widgets/onboarding_checklist_card.dart';
 import 'widgets/journaling_tip_card.dart';
 import 'widgets/cross_correlation_card.dart';
 import 'widgets/premium_expiry_banner.dart';
+import 'widgets/sync_status_banner.dart';
 import 'widgets/win_back_offer_banner.dart';
 import '../../../data/services/l10n_service.dart';
 
@@ -454,6 +456,11 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: WelcomeBanner(isEn: isEn, isDark: isDark),
                   ),
 
+                  // 1b2. Sync Status Banner (offline/error indicator)
+                  SliverToBoxAdapter(
+                    child: SyncStatusBanner(isEn: isEn, isDark: isDark),
+                  ),
+
                   // 1c. Onboarding Checklist (first-week guided progress)
                   SliverToBoxAdapter(
                     child: OnboardingChecklistCard(isEn: isEn, isDark: isDark),
@@ -724,6 +731,11 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 10a2. Weekly Momentum Card
                   SliverToBoxAdapter(
                     child: WeeklyMomentumCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 10a3. Mindfulness Stats Card
+                  SliverToBoxAdapter(
+                    child: MindfulnessStatsCard(isEn: isEn, isDark: isDark),
                   ),
 
                   // 10a. Community Pulse (anonymous social layer)

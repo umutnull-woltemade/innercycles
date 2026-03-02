@@ -689,7 +689,7 @@ class _EmptyState extends StatelessWidget {
       description: L10nService.get('energy.energy_map.add_at_least_5_entries_to_see_your_energ', language),
       gradientVariant: GradientTextVariant.aurora,
       ctaLabel: L10nService.get('energy.energy_map.write_first_entry', language),
-      onCtaPressed: () => context.go(Routes.journal),
+      onCtaPressed: () => context.push(Routes.journal),
     );
   }
 }

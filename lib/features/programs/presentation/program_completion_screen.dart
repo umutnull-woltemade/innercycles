@@ -209,7 +209,7 @@ class ProgramCompletionScreen extends ConsumerWidget {
                 // Start Another Program button
                 GradientButton.gold(
                   label: L10nService.get('programs.program_completion.start_another_program', language),
-                  onPressed: () => context.go(Routes.programs),
+                  onPressed: () => context.pushReplacement(Routes.programs),
                   expanded: true,
                 ),
                 const SizedBox(height: AppConstants.spacingMd),

@@ -410,7 +410,7 @@ class _NotEnoughData extends StatelessWidget {
       description: L10nService.get('year_review.year_review.you_need_at_least_7_journal_entries_to_g', language),
       gradientVariant: GradientTextVariant.gold,
       ctaLabel: L10nService.get('year_review.year_review.start_journaling', language),
-      onCtaPressed: () => context.go(Routes.journal),
+      onCtaPressed: () => context.push(Routes.journal),
     );
   }
 }

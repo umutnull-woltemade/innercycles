@@ -330,7 +330,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
             onPressed: () {
               HapticFeedback.mediumImpact();
               service.markCompleted(prompt.id);
-              context.go(Routes.journal);
+              context.push(Routes.journal);
             },
             expanded: true,
           ),
@@ -651,7 +651,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                           HapticFeedback.mediumImpact();
                           service.markCompleted(prompt.id);
                           Navigator.pop(ctx);
-                          context.go(Routes.journal);
+                          context.push(Routes.journal);
                         },
                       ),
                     ),

@@ -512,9 +512,12 @@ class _AppInitializerState extends State<AppInitializer>
       debugPrint('✅ InnerCycles: Initialization complete!');
     }
 
+    final savedFontSizeScale = StorageService.loadFontSizeScale();
+
     return _InitResult(
       language: savedLanguage,
       themeMode: savedThemeMode,
+      fontSizeScale: savedFontSizeScale,
       onboardingComplete: savedOnboardingComplete,
       profile: savedProfile,
     );
@@ -586,6 +589,7 @@ class _AppInitializerState extends State<AppInitializer>
             overrides: [
               languageProvider.overrideWith((ref) => result.language),
               themeModeProvider.overrideWith((ref) => result.themeMode),
+              fontSizeScaleProvider.overrideWith((ref) => result.fontSizeScale),
               onboardingCompleteProvider.overrideWith(
                 (ref) => result.onboardingComplete,
               ),
@@ -799,12 +803,14 @@ class _CinematicSplashState extends State<_CinematicSplash>
 class _InitResult {
   final AppLanguage language;
   final ThemeMode themeMode;
+  final double fontSizeScale;
   final bool onboardingComplete;
   final UserProfile? profile;
 
   _InitResult({
     required this.language,
     required this.themeMode,
+    required this.fontSizeScale,
     required this.onboardingComplete,
     this.profile,
   });
@@ -947,6 +953,8 @@ class _InnerCyclesAppState extends ConsumerState<InnerCyclesApp>
     final themeMode = ref.watch(themeModeProvider);
     final language = ref.watch(languageProvider);
 
+    final fontScale = ref.watch(fontSizeScaleProvider);
+
     return MaterialApp.router(
       title: 'InnerCycles',
       debugShowCheckedModeBanner: false,
@@ -962,10 +970,15 @@ class _InnerCyclesAppState extends ConsumerState<InnerCyclesApp>
         GlobalCupertinoLocalizations.delegate,
       ],
       builder: (context, child) {
-        // Apply RTL direction for Arabic
+        // Apply RTL direction for Arabic + font size scaling
         return Directionality(
           textDirection: language.isRTL ? TextDirection.rtl : TextDirection.ltr,
-          child: child ?? const SizedBox.shrink(),
+          child: MediaQuery(
+            data: MediaQuery.of(context).copyWith(
+              textScaler: TextScaler.linear(fontScale),
+            ),
+            child: child ?? const SizedBox.shrink(),
+          ),
         );
       },
     );

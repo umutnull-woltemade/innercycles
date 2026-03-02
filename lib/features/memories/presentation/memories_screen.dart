@@ -234,7 +234,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                           description: L10nService.get('memories.memories.your_memories_from_this_period_will_appe', language),
                           gradientVariant: GradientTextVariant.gold,
                           ctaLabel: L10nService.get('memories.memories.write_an_entry', language),
-                          onCtaPressed: () => context.go(Routes.journal),
+                          onCtaPressed: () => context.push(Routes.journal),
                         ),
                       )
                     else
@@ -282,7 +282,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
             description: isEn
                 ? 'Start journaling to build your memories collection.'
                 : 'An\u0131lar\u0131n\u0131 olu\u015fturmak i\u00e7in g\u00fcnl\u00fck yazmaya ba\u015fla.',
-            onStartTemplate: () => context.go(Routes.journal),
+            onStartTemplate: () => context.push(Routes.journal),
             language: language,
             isDark: isDark,
           ),

@@ -267,6 +267,9 @@ final languageProvider = StateProvider<AppLanguage>((ref) => AppLanguage.en);
 /// Theme mode provider - default is dark
 final themeModeProvider = StateProvider<ThemeMode>((ref) => ThemeMode.dark);
 
+/// Font size scale provider (0.85 = small, 1.0 = normal, 1.15 = large)
+final fontSizeScaleProvider = StateProvider<double>((ref) => 1.0);
+
 // =============================================================================
 // DREAM JOURNAL PROVIDER
 // =============================================================================

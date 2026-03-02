@@ -473,7 +473,7 @@ class _MonthlyReflectionScreenState
                 ),
                 const SizedBox(height: 16),
                 GestureDetector(
-                  onTap: () => context.go(Routes.journal),
+                  onTap: () => context.push(Routes.journal),
                   behavior: HitTestBehavior.opaque,
                   child: Text(
                     L10nService.get('journal.monthly_reflection.write_your_first_entry', language),

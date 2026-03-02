@@ -848,7 +848,7 @@ class _EmptyState extends StatelessWidget {
       description: L10nService.get('archetype.archetype.add_at_least_3_entries_to_surface_your_d', language),
       gradientVariant: GradientTextVariant.amethyst,
       ctaLabel: L10nService.get('archetype.archetype.write_first_entry', language),
-      onCtaPressed: () => context.go(Routes.journal),
+      onCtaPressed: () => context.push(Routes.journal),
     );
   }
 }

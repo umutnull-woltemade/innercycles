@@ -201,7 +201,7 @@ class WellnessDetailScreen extends ConsumerWidget {
       description: L10nService.get('wellness.wellness_detail.log_a_cycle_entry_gratitude_or_sleep_to', language),
       gradientVariant: GradientTextVariant.aurora,
       ctaLabel: L10nService.get('wellness.wellness_detail.write_journal_entry', language),
-      onCtaPressed: () => context.go(Routes.journal),
+      onCtaPressed: () => context.push(Routes.journal),
     );
   }
 

@@ -818,7 +818,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
       width: double.infinity,
       height: 48,
       child: TextButton(
-        onPressed: () => context.go(Routes.quizHub),
+        onPressed: () => context.pushReplacement(Routes.quizHub),
         child: Text(
           L10nService.get('quiz.generic_quiz.back_to_all_quizzes', language),
           style: AppTypography.elegantAccent(

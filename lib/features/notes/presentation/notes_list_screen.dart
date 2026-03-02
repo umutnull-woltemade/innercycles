@@ -24,7 +24,7 @@ import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
-import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/skeleton_loader.dart';
 import '../../../shared/widgets/glass_dialog.dart';
 import '../../../data/services/l10n_service.dart';
 
@@ -100,6 +100,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
     final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final notesAsync = ref.watch(allNotesProvider);
+    final serviceAsync = ref.watch(notesToSelfServiceProvider);
 
     return Scaffold(
       body: CosmicBackground(
@@ -107,7 +108,10 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           behavior: HitTestBehavior.opaque,
           child: notesAsync.when(
-            loading: () => const CosmicLoadingIndicator(),
+            loading: () => Padding(
+                padding: const EdgeInsets.all(24),
+                child: SkeletonLoader.cardList(count: 4),
+              ),
             error: (_, _) => Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -138,6 +142,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
               ),
             ),
             data: (allNotes) {
+              final service = serviceAsync.valueOrNull;
               final filtered = _filterNotes(allNotes);
               final pinned = <NoteToSelf>[];
               final unpinned = <NoteToSelf>[];
@@ -198,7 +203,10 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                                   )
                                 : null,
                           ),
-                          child: TextField(
+                          child: Semantics(
+                            label: isEn ? 'Search notes' : 'Notları ara',
+                            textField: true,
+                            child: TextField(
                             controller: _searchController,
                             focusNode: _searchFocus,
                             onChanged: _onSearchChanged,
@@ -242,6 +250,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                                 vertical: 13,
                               ),
                             ),
+                          ),
                           ),
                         ),
                       ).animate().fadeIn(duration: 350.ms, delay: 50.ms),
@@ -326,6 +335,8 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                                     note: pinned[index],
                                     isEn: isEn,
                                     isDark: isDark,
+                                    hasReminder: service != null &&
+                                        service.getRemindersForNote(pinned[index].id).any((r) => r.isActive),
                                     onTap: () => _openNote(pinned[index].id),
                                     onDelete: () =>
                                         _deleteNote(pinned[index].id),
@@ -368,6 +379,8 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                                     note: unpinned[index],
                                     isEn: isEn,
                                     isDark: isDark,
+                                    hasReminder: service != null &&
+                                        service.getRemindersForNote(unpinned[index].id).any((r) => r.isActive),
                                     onTap: () => _openNote(unpinned[index].id),
                                     onDelete: () =>
                                         _deleteNote(unpinned[index].id),
@@ -725,6 +738,7 @@ class _NoteCard extends StatelessWidget {
   final NoteToSelf note;
   final bool isEn;
   final bool isDark;
+  final bool hasReminder;
   final VoidCallback onTap;
   final VoidCallback onDelete;
 
@@ -732,6 +746,7 @@ class _NoteCard extends StatelessWidget {
     required this.note,
     required this.isEn,
     required this.isDark,
+    this.hasReminder = false,
     required this.onTap,
     required this.onDelete,
   });
@@ -799,6 +814,15 @@ class _NoteCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
+                    if (hasReminder)
+                      Padding(
+                        padding: const EdgeInsets.only(right: 6),
+                        child: Icon(
+                          CupertinoIcons.bell_fill,
+                          size: 12,
+                          color: AppColors.celestialGold,
+                        ),
+                      ),
                     const SizedBox(width: 8),
                     Text(
                       _formatDate(note.updatedAt, isEn),

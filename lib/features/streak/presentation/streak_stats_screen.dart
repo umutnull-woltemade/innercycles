@@ -582,7 +582,7 @@ class StreakStatsScreen extends ConsumerWidget {
       variant: GradientTextVariant.gold,
       expanded: true,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-      onPressed: () => context.go(Routes.journal),
+      onPressed: () => context.push(Routes.journal),
     );
   }
 }

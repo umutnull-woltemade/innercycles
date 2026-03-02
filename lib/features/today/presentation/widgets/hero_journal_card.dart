@@ -298,7 +298,7 @@ class HeroJournalCard extends ConsumerWidget {
             child: GestureDetector(
               onTap: () {
                 HapticService.buttonPress();
-                context.go(Routes.journal);
+                context.push(Routes.journal);
               },
               child: Container(
                 width: double.infinity,

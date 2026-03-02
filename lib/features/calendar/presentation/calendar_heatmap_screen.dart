@@ -271,7 +271,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                     onViewEntry: (id) => context.push(
                       Routes.journalEntryDetail.replaceFirst(':id', id),
                     ),
-                    onCreateEntry: () => context.go(Routes.journal),
+                    onCreateEntry: () => context.push(Routes.journal),
                     onAddLifeEvent: () => context.push(
                       '${Routes.lifeEventNew}?date=$_selectedDateKey',
                     ),

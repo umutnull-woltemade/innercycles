@@ -335,7 +335,7 @@ class _Stat extends StatelessWidget {
   }
 }
 
-class _TodaySection extends StatelessWidget {
+class _TodaySection extends StatefulWidget {
   final List<TextEditingController> controllers;
   final bool hasEntry;
   final bool isDark;
@@ -351,19 +351,49 @@ class _TodaySection extends StatelessWidget {
   });
 
   @override
+  State<_TodaySection> createState() => _TodaySectionState();
+}
+
+class _TodaySectionState extends State<_TodaySection> {
+  int _selectedCategory = 0;
+
+  static const _categoriesEn = [
+    'General',
+    'People',
+    'Growth',
+    'Simple Joys',
+    'Mindful',
+  ];
+
+  static const _categoriesTr = [
+    'Genel',
+    'İnsanlar',
+    'Gelişim',
+    'Küçük Sevinçler',
+    'Farkındalık',
+  ];
+
+  static const _promptsEn = [
+    ['I am grateful for...', 'Something that made me smile...', 'A small joy today...'],
+    ['Someone who helped me...', 'A relationship I value...', 'A kind gesture I received...'],
+    ['Something I learned...', 'A challenge that made me stronger...', 'A skill I am developing...'],
+    ['A taste, sound, or scent I enjoyed...', 'A moment of laughter...', 'Something beautiful I noticed...'],
+    ['A moment of calm today...', 'Something I did for myself...', 'What my body allowed me to do...'],
+  ];
+
+  static const _promptsTr = [
+    ['Şükran duyduğum şey...', 'Beni gülümseten bir şey...', 'Bugünkü küçük bir sevinç...'],
+    ['Bana yardım eden biri...', 'Değer verdiğim bir ilişki...', 'Aldığım nazik bir jest...'],
+    ['Öğrendiğim bir şey...', 'Beni güçlendiren bir zorluk...', 'Geliştirdiğim bir beceri...'],
+    ['Keyif aldığım bir tat, ses veya koku...', 'Bir kahkaha anı...', 'Fark ettiğim güzel bir şey...'],
+    ['Bugünkü bir huzur anı...', 'Kendim için yaptığım bir şey...', 'Bedenimin bana sağladığı...'],
+  ];
+
+  @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
-    final prompts = isEn
-        ? [
-            'I am grateful for...',
-            'Something that made me smile...',
-            'A small joy today...',
-          ]
-        : [
-            'Şükran duyduğum şey...',
-            'Beni gülümseten bir şey...',
-            'Bugünkü küçük bir sevinç...',
-          ];
+    final language = AppLanguage.fromIsEn(widget.isEn);
+    final categories = widget.isEn ? _categoriesEn : _categoriesTr;
+    final prompts = (widget.isEn ? _promptsEn : _promptsTr)[_selectedCategory];
 
     return PremiumCard(
       style: PremiumCardStyle.gold,
@@ -384,23 +414,66 @@ class _TodaySection extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              if (hasEntry) ...[
+              if (widget.hasEntry) ...[
                 const Spacer(),
                 Icon(Icons.check_circle, size: 16, color: AppColors.success),
               ],
             ],
           ),
-          const SizedBox(height: 14),
+          const SizedBox(height: 10),
+          SizedBox(
+            height: 32,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemCount: categories.length,
+              separatorBuilder: (_, _) => const SizedBox(width: 6),
+              itemBuilder: (context, i) {
+                final selected = i == _selectedCategory;
+                return GestureDetector(
+                  onTap: () {
+                    HapticFeedback.selectionClick();
+                    setState(() => _selectedCategory = i);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: selected
+                          ? AppColors.starGold.withValues(alpha: 0.15)
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: selected
+                            ? AppColors.starGold
+                            : (widget.isDark ? AppColors.textMuted : AppColors.lightTextMuted)
+                                .withValues(alpha: 0.3),
+                      ),
+                    ),
+                    child: Text(
+                      categories[i],
+                      style: AppTypography.modernAccent(
+                        fontSize: 12,
+                        fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+                        color: selected
+                            ? AppColors.starGold
+                            : (widget.isDark ? AppColors.textSecondary : AppColors.lightTextSecondary),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          const SizedBox(height: 12),
           ...List.generate(
             3,
             (i) => Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: TextField(
-                controller: controllers[i],
+                controller: widget.controllers[i],
                 maxLength: 200,
                 style: AppTypography.subtitle(
                   fontSize: 14,
-                  color: isDark
+                  color: widget.isDark
                       ? AppColors.textPrimary
                       : AppColors.lightTextPrimary,
                 ),
@@ -408,13 +481,13 @@ class _TodaySection extends StatelessWidget {
                   hintText: prompts[i],
                   hintStyle: AppTypography.decorativeScript(
                     fontSize: 13,
-                    color: isDark
+                    color: widget.isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
                   ),
                   counterText: '',
                   filled: true,
-                  fillColor: isDark
+                  fillColor: widget.isDark
                       ? Colors.white.withValues(alpha: 0.04)
                       : Colors.black.withValues(alpha: 0.02),
                   border: OutlineInputBorder(
@@ -439,10 +512,10 @@ class _TodaySection extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           GradientButton.gold(
-            label: hasEntry
+            label: widget.hasEntry
                 ? (L10nService.get('gratitude.gratitude.update', language))
                 : (L10nService.get('gratitude.gratitude.save_gratitude', language)),
-            onPressed: onSave,
+            onPressed: widget.onSave,
             expanded: true,
           ),
         ],

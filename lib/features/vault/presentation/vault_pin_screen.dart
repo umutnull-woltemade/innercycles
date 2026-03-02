@@ -130,7 +130,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
           }
           if (mounted) {
             ref.invalidate(vaultServiceProvider);
-            context.go(Routes.vault);
+            context.pushReplacement(Routes.vault);
           }
         } else {
           HapticService.error();
@@ -179,7 +179,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
   }
 
   void _onVerified() {
-    context.go(Routes.vault);
+    context.pushReplacement(Routes.vault);
   }
 
   Future<bool> _showBiometricDialog(bool isEn) async {

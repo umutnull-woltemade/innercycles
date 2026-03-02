@@ -256,7 +256,7 @@ class _HabitHeatmap extends StatelessWidget {
     const totalDays = 84;
     final cells = List.generate(totalDays, (i) {
       final date = today.subtract(Duration(days: totalDays - 1 - i));
-      final key = '${date.year}-${date.month}-${date.day}';
+      final key = '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
       final count = adoptedHabits.where((h) =>
           service.getCompletionDates(h.id).contains(key)).length;
       return _CellData(count: count, total: adoptedHabits.length);
@@ -619,14 +619,12 @@ class _HabitCheckCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              ...(isEn
-                      ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
-                      : ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pa'])
-                  .asMap()
-                  .entries
-                  .map((e) {
-                    final i = e.key;
-                    final day = e.value;
+              ...List.generate(7, (i) {
+                    final date = DateTime.now().subtract(Duration(days: 6 - i));
+                    final wd = date.weekday; // 1=Mon, 7=Sun
+                    final day = isEn
+                        ? const ['M', 'T', 'W', 'T', 'F', 'S', 'S'][wd - 1]
+                        : const ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pa'][wd - 1];
                     final done = weekData[i];
 
                     return Padding(

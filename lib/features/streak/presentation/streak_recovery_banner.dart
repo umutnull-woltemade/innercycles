@@ -71,7 +71,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
               child: GestureDetector(
                 onTap: () {
                   HapticFeedback.lightImpact();
-                  context.go(Routes.journal);
+                  context.push(Routes.journal);
                 },
                 child: Container(
                   margin: const EdgeInsets.only(bottom: 8),

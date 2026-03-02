@@ -44,6 +44,8 @@ class _PromotionalBannerStackState
   static const _widgetCooldownDays = 30;
   bool _inviteDismissed = false;
   bool _widgetDismissed = false;
+  bool _inviteRecentlyDismissedCached = false;
+  bool _widgetRecentlyDismissedCached = false;
   Timer? _countdownTimer;
 
   bool get isEn => widget.isEn;
@@ -52,9 +54,21 @@ class _PromotionalBannerStackState
   @override
   void initState() {
     super.initState();
+    _checkDismissalStates();
     _countdownTimer = Timer.periodic(const Duration(seconds: 1), (_) {
       if (mounted) setState(() {});
     });
+  }
+
+  Future<void> _checkDismissalStates() async {
+    final inviteDismissed = await _recentlyDismissed();
+    final widgetDismissed = await _widgetRecentlyDismissed();
+    if (mounted) {
+      setState(() {
+        _inviteRecentlyDismissedCached = inviteDismissed;
+        _widgetRecentlyDismissedCached = widgetDismissed;
+      });
+    }
   }
 
   @override
@@ -807,81 +821,75 @@ class _PromotionalBannerStackState
 
     // Show after 5 entries so users have widget data
     if (entryCount < 5) return null;
+    if (_widgetRecentlyDismissedCached) return null;
 
-    return FutureBuilder<bool>(
-      future: _widgetRecentlyDismissed(),
-      builder: (context, snap) {
-        if (snap.data == true) return const SizedBox.shrink();
-
-        return Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.amethyst.withValues(alpha: 0.08)
-                : AppColors.amethyst.withValues(alpha: 0.05),
-            borderRadius: BorderRadius.circular(16),
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: isDark
+            ? AppColors.amethyst.withValues(alpha: 0.08)
+            : AppColors.amethyst.withValues(alpha: 0.05),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 44,
+            height: 44,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppColors.amethyst.withValues(alpha: 0.12),
+            ),
+            child: const Icon(
+              Icons.widgets_rounded,
+              size: 22,
+              color: AppColors.amethyst,
+            ),
           ),
-          child: Row(
-            children: [
-              Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.amethyst.withValues(alpha: 0.12),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  isEn
+                      ? 'Add InnerCycles to Your Home Screen'
+                      : 'Ana Ekranına InnerCycles Ekle',
+                  style: AppTypography.displayFont.copyWith(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
+                  ),
                 ),
-                child: const Icon(
-                  Icons.widgets_rounded,
-                  size: 22,
-                  color: AppColors.amethyst,
+                const SizedBox(height: 2),
+                Text(
+                  isEn
+                      ? 'See your mood & focus at a glance with widgets'
+                      : 'Widget\'larla ruh halini ve odağını bir bakışta gör',
+                  style: AppTypography.elegantAccent(
+                    fontSize: 13,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      isEn
-                          ? 'Add InnerCycles to Your Home Screen'
-                          : 'Ana Ekranına InnerCycles Ekle',
-                      style: AppTypography.displayFont.copyWith(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      isEn
-                          ? 'See your mood & focus at a glance with widgets'
-                          : 'Widget\'larla ruh halini ve odağını bir bakışta gör',
-                      style: AppTypography.elegantAccent(
-                        fontSize: 13,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              GestureDetector(
-                onTap: _dismissWidgetPromo,
-                child: Icon(
-                  Icons.close_rounded,
-                  size: 18,
-                  color: isDark
-                      ? AppColors.textMuted
-                      : AppColors.lightTextMuted,
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
-        );
-      },
+          GestureDetector(
+            onTap: _dismissWidgetPromo,
+            child: Icon(
+              Icons.close_rounded,
+              size: 18,
+              color: isDark
+                  ? AppColors.textMuted
+                  : AppColors.lightTextMuted,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -912,78 +920,72 @@ class _PromotionalBannerStackState
         journalAsync.whenOrNull(data: (s) => s.getAllEntries().length) ?? 0;
 
     if (entryCount < 3) return null;
+    if (_inviteRecentlyDismissedCached) return null;
 
-    return FutureBuilder<bool>(
-      future: _recentlyDismissed(),
-      builder: (context, snap) {
-        if (snap.data == true) return const SizedBox.shrink();
-
-        return PremiumCard(
-          style: PremiumCardStyle.gold,
-          showInnerShadow: false,
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return PremiumCard(
+      style: PremiumCardStyle.gold,
+      showInnerShadow: false,
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
             children: [
-              Row(
-                children: [
-                  Icon(
-                    Icons.favorite_rounded,
-                    color: AppColors.starGold,
-                    size: 22,
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: GradientText(
-                      L10nService.get('today.promotional_stack.enjoying_innercycles', language),
-                      variant: GradientTextVariant.gold,
-                      style: AppTypography.displayFont.copyWith(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: _dismissInvite,
-                    child: Icon(
-                      Icons.close_rounded,
-                      size: 18,
-                      color: isDark
-                          ? AppColors.textMuted
-                          : AppColors.lightTextMuted,
-                    ),
-                  ),
-                ],
+              Icon(
+                Icons.favorite_rounded,
+                color: AppColors.starGold,
+                size: 22,
               ),
-              const SizedBox(height: 6),
-              Padding(
-                padding: const EdgeInsets.only(left: 32),
-                child: Text(
-                  L10nService.get('today.promotional_stack.share_it_with_a_friend_who_would_love_it', language),
-                  style: AppTypography.elegantAccent(
-                    fontSize: 14,
-                    color: isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary,
+              const SizedBox(width: 10),
+              Expanded(
+                child: GradientText(
+                  L10nService.get('today.promotional_stack.enjoying_innercycles', language),
+                  variant: GradientTextVariant.gold,
+                  style: AppTypography.displayFont.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
-              const SizedBox(height: 12),
-              Padding(
-                padding: const EdgeInsets.only(left: 32),
-                child: GradientButton.gold(
-                  label: L10nService.get('today.promotional_stack.invite_earn_premium', language),
-                  icon: Icons.card_giftcard_rounded,
-                  onPressed: () {
-                    HapticService.buttonPress();
-                    context.push(Routes.referralProgram);
-                  },
+              GestureDetector(
+                onTap: _dismissInvite,
+                child: Icon(
+                  Icons.close_rounded,
+                  size: 18,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
                 ),
               ),
             ],
           ),
-        );
-      },
+          const SizedBox(height: 6),
+          Padding(
+            padding: const EdgeInsets.only(left: 32),
+            child: Text(
+              L10nService.get('today.promotional_stack.share_it_with_a_friend_who_would_love_it', language),
+              style: AppTypography.elegantAccent(
+                fontSize: 14,
+                color: isDark
+                    ? AppColors.textSecondary
+                    : AppColors.lightTextSecondary,
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Padding(
+            padding: const EdgeInsets.only(left: 32),
+            child: GradientButton.gold(
+              label: L10nService.get('today.promotional_stack.invite_earn_premium', language),
+              icon: Icons.card_giftcard_rounded,
+              onPressed: () {
+                HapticService.buttonPress();
+                context.push(Routes.referralProgram);
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 

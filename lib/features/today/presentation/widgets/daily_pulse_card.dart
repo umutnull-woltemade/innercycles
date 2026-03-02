@@ -280,7 +280,7 @@ class DailyPulseCard extends ConsumerWidget {
       child: TapScale(
         onTap: () {
           HapticService.buttonPress();
-          context.go(Routes.moodTrends);
+          context.push(Routes.moodTrends);
         },
         child: Row(
           children: [
@@ -408,7 +408,7 @@ class DailyPulseCard extends ConsumerWidget {
             child: GestureDetector(
               onTap: () {
                 HapticService.buttonPress();
-                context.go(Routes.moodTrends);
+                context.push(Routes.moodTrends);
               },
               child: Container(
                 padding: const EdgeInsets.fromLTRB(16, 14, 14, 14),

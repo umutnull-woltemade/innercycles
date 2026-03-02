@@ -111,7 +111,7 @@ class _WrappedScreenState extends ConsumerState<WrappedScreen> {
                   ),
                   const SizedBox(height: 20),
                   GestureDetector(
-                    onTap: () => context.go(Routes.journal),
+                    onTap: () => context.push(Routes.journal),
                     child: Text(
                       L10nService.get('year_review.wrapped.write_an_entry', language),
                       style: AppTypography.modernAccent(

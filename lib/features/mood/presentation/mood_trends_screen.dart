@@ -20,7 +20,7 @@ import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
-import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/skeleton_loader.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
@@ -42,7 +42,16 @@ class MoodTrendsScreen extends ConsumerWidget {
     return Scaffold(
       body: CosmicBackground(
         child: serviceAsync.when(
-          loading: () => const CosmicLoadingIndicator(),
+          loading: () => Padding(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  children: [
+                    SkeletonLoader.journalCard(index: 0),
+                    const SizedBox(height: 16),
+                    SkeletonLoader.paragraph(lines: 4, startIndex: 1),
+                  ],
+                ),
+              ),
           error: (_, _) => Center(
             child: Padding(
               padding: const EdgeInsets.all(32),

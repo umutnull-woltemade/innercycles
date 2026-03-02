@@ -14,7 +14,8 @@ import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
-import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../data/services/haptic_service.dart';
+import '../../../shared/widgets/skeleton_loader.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/feature_discovery_tip.dart';
 import '../../../shared/widgets/gradient_text.dart';
@@ -148,7 +149,10 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           behavior: HitTestBehavior.opaque,
           child: serviceAsync.when(
-            loading: () => const CosmicLoadingIndicator(),
+            loading: () => Padding(
+                padding: const EdgeInsets.all(24),
+                child: SkeletonLoader.cardList(count: 4),
+              ),
             error: (_, _) => Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -510,7 +514,10 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
   Widget _buildFilterChip(String label, String type, bool isDark) {
     final isSelected = _filterType == type;
     return GestureDetector(
-      onTap: () => setState(() => _filterType = type),
+      onTap: () {
+        HapticService.selectionTap();
+        setState(() => _filterType = type);
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
@@ -554,10 +561,13 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
               : Colors.black.withValues(alpha: 0.05),
         ),
       ),
-      child: TextField(
-        controller: _searchController,
-        onChanged: _onSearchChanged,
-        textInputAction: TextInputAction.search,
+      child: Semantics(
+        label: isEn ? 'Search dreams' : 'Rüyaları ara',
+        textField: true,
+        child: TextField(
+          controller: _searchController,
+          onChanged: _onSearchChanged,
+          textInputAction: TextInputAction.search,
         style: AppTypography.subtitle(
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
@@ -593,6 +603,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
             vertical: 14,
           ),
         ),
+      ),
       ),
     );
   }

@@ -647,7 +647,7 @@ class _EmptyState extends StatelessWidget {
       description: L10nService.get('sleep.sleep_detail.log_your_sleep_quality_in_your_daily_jou', language),
       gradientVariant: GradientTextVariant.amethyst,
       ctaLabel: L10nService.get('sleep.sleep_detail.write_journal_entry', language),
-      onCtaPressed: () => context.go(Routes.journal),
+      onCtaPressed: () => context.push(Routes.journal),
     );
   }
 }

@@ -525,7 +525,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
               ),
               const SizedBox(height: 24),
               GestureDetector(
-                onTap: () => context.go(Routes.birthdayAgenda),
+                onTap: () => context.pushReplacement(Routes.birthdayAgenda),
                 child: Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 32,

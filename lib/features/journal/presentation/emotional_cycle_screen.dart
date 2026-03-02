@@ -389,7 +389,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     SizedBox(
                       width: double.infinity,
                       child: FilledButton.icon(
-                        onPressed: () => context.go(Routes.journal),
+                        onPressed: () => context.push(Routes.journal),
                         style: FilledButton.styleFrom(
                           backgroundColor: AppColors.auroraStart,
                           foregroundColor: Colors.white,

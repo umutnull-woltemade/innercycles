@@ -23,6 +23,7 @@ class StorageService {
   static const String _disclaimerKey = 'disclaimer_accepted';
   static const String _languageKey = 'app_language';
   static const String _themeModeKey = 'theme_mode';
+  static const String _fontSizeScaleKey = 'font_size_scale';
 
   static Box? _profileBox;
   static Box? _settingsBox;
@@ -532,6 +533,29 @@ class StorageService {
       return ThemeMode.values[index];
     }
     return ThemeMode.dark;
+  }
+
+  // ========== FONT SIZE SCALE ==========
+
+  /// Save font size scale (0.85 = small, 1.0 = normal, 1.15 = large)
+  static Future<void> saveFontSizeScale(double scale) async {
+    _warnIfNotInitialized('saveFontSizeScale');
+    final box = _settingsBox;
+    if (box == null) return;
+
+    await box.put(_fontSizeScaleKey, scale);
+  }
+
+  /// Load font size scale (defaults to 1.0)
+  static double loadFontSizeScale() {
+    _warnIfNotInitialized('loadFontSizeScale');
+    final box = _settingsBox;
+    if (box == null) return 1.0;
+
+    final scale = box.get(_fontSizeScaleKey, defaultValue: 1.0);
+    if (scale is double) return scale;
+    if (scale is int) return scale.toDouble();
+    return 1.0;
   }
 
   // ========== CLEAR ALL DATA ==========
