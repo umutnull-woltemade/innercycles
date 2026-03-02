@@ -1925,12 +1925,19 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                       onTap: () {
                         final language = AppLanguage.fromIsEn(isEn);
                         HapticFeedback.lightImpact();
-                        final lang = language;
-                        final text = '${L10nService.getWithParams('journal.daily_entry.milestone_share', lang, params: {'count': '$count'})} '
-                            '$emoji\n\n${L10nService.get('journal.daily_entry.milestone_share_sub', lang)}\n\n'
-                            '${AppConstants.appStoreUrl}\n'
-                            '${L10nService.get('journal.daily_entry.milestone_hashtags', lang)}';
-                        SharePlus.instance.share(ShareParams(text: text));
+                        Navigator.of(ctx).pop();
+                        final template = ShareCardTemplates.journalMilestone;
+                        final cardData = ShareCardTemplates.buildData(
+                          template: template,
+                          language: language,
+                          streak: count,
+                        );
+                        ShareCardSheet.show(
+                          context,
+                          template: template,
+                          data: cardData,
+                          language: language,
+                        );
                       },
                       child: Container(
                         width: 48,
