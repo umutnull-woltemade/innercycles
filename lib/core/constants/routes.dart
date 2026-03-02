@@ -204,6 +204,16 @@ class Routes {
   static const String appLock = '/app-lock';
 
   // ════════════════════════════════════════════════════════════════
+  // BOND (BAĞ) - Partner Feature
+  // ════════════════════════════════════════════════════════════════
+  static const String bondHub = '/bond';
+  static const String bondInvite = '/bond/invite';
+  static const String bondAccept = '/bond/accept';
+  static const String bondAcceptCode = '/bond/accept/:code';
+  static const String bondDetail = '/bond/detail/:bondId';
+  static const String bondMoodCalendar = '/bond/mood-calendar/:bondId';
+
+  // ════════════════════════════════════════════════════════════════
   // PRIVATE VAULT
   // ════════════════════════════════════════════════════════════════
   static const String vaultPin = '/vault/pin';

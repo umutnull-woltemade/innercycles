@@ -64,7 +64,8 @@ class YearProgressRing extends ConsumerWidget {
                 SizedBox(
                   width: 40,
                   height: 40,
-                  child: CustomPaint(
+                  child: RepaintBoundary(
+                    child: CustomPaint(
                     painter: _DualRingPainter(
                       yearProgress: yearProgress,
                       consistency: consistency.clamp(0.0, 1.0),
@@ -82,6 +83,7 @@ class YearProgressRing extends ConsumerWidget {
                         ),
                       ),
                     ),
+                  ),
                   ),
                 ),
                 const SizedBox(width: 12),

@@ -32,6 +32,7 @@ import '../../../shared/widgets/premium_card.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/services/ritual_service.dart';
 import '../../../data/services/mood_checkin_service.dart';
+import '../../../shared/widgets/focus_area_radar_card.dart';
 
 class PatternsScreen extends ConsumerWidget {
   const PatternsScreen({super.key});
@@ -370,6 +371,18 @@ class PatternsScreen extends ConsumerWidget {
                   isEn,
                 ).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: AppConstants.spacingXl),
+
+                // Focus area radar chart
+                if (thisWeek.length >= 3)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: AppConstants.spacingLg),
+                    child: FocusAreaRadarCard(
+                      thisWeek: thisWeek,
+                      lastWeek: lastWeek,
+                      isDark: isDark,
+                      isEn: isEn,
+                    ),
+                  ),
 
                 // Weekly comparison — always free (summary level)
                 if (thisWeek.isNotEmpty)

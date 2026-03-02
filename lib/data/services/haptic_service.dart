@@ -126,4 +126,31 @@ class HapticService {
   static Future<void> scrollToTop() async {
     await HapticFeedback.lightImpact();
   }
+
+  // ── Bond / Touch Patterns ────────────────────────────────────────
+
+  /// Touch received — warm pulse
+  static Future<void> touchReceivedWarm() async {
+    await HapticFeedback.mediumImpact();
+    await Future.delayed(const Duration(milliseconds: 150));
+    await HapticFeedback.lightImpact();
+    await Future.delayed(const Duration(milliseconds: 100));
+    await HapticFeedback.mediumImpact();
+  }
+
+  /// Touch sent — confirmation tap
+  static Future<void> touchSent() async {
+    await HapticFeedback.mediumImpact();
+  }
+
+  /// Bond formed — celebratory pattern
+  static Future<void> bondFormed() async {
+    await HapticFeedback.mediumImpact();
+    await Future.delayed(const Duration(milliseconds: 120));
+    await HapticFeedback.lightImpact();
+    await Future.delayed(const Duration(milliseconds: 120));
+    await HapticFeedback.mediumImpact();
+    await Future.delayed(const Duration(milliseconds: 100));
+    await HapticFeedback.heavyImpact();
+  }
 }

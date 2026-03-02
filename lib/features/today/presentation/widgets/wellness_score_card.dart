@@ -103,7 +103,8 @@ class WellnessScoreCard extends ConsumerWidget {
                   SizedBox(
                     width: 64,
                     height: 64,
-                    child: CustomPaint(
+                    child: RepaintBoundary(
+                      child: CustomPaint(
                       painter: _WellnessRingPainter(
                         score: score.score,
                         isDark: isDark,
@@ -118,6 +119,7 @@ class WellnessScoreCard extends ConsumerWidget {
                           ),
                         ),
                       ),
+                    ),
                     ),
                   ),
                   const SizedBox(width: 16),

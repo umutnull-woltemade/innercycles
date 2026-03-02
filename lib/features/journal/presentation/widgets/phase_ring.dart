@@ -94,15 +94,17 @@ class _PhaseRingState extends State<PhaseRing>
               Semantics(
                 label: L10nService.get('journal.phase_ring.emotional_phase_ring', language),
                 image: true,
-                child: CustomPaint(
-                  size: Size(widget.size, widget.size),
-                  painter: _PhaseRingPainter(
-                    progress: _progressAnimation.value * phaseProgress,
-                    color: phaseColor,
-                    glowIntensity: _glowAnimation.value,
-                    isDark: widget.isDark,
-                    segments: 5, // 5 phases
-                    activeSegment: widget.phase.index,
+                child: RepaintBoundary(
+                  child: CustomPaint(
+                    size: Size(widget.size, widget.size),
+                    painter: _PhaseRingPainter(
+                      progress: _progressAnimation.value * phaseProgress,
+                      color: phaseColor,
+                      glowIntensity: _glowAnimation.value,
+                      isDark: widget.isDark,
+                      segments: 5, // 5 phases
+                      activeSegment: widget.phase.index,
+                    ),
                   ),
                 ),
               ),

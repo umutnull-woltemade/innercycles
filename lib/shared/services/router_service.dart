@@ -48,6 +48,11 @@ import '../../features/notes/presentation/note_detail_screen.dart';
 import '../../features/admin/presentation/admin_login_screen.dart';
 import '../../features/admin/presentation/admin_dashboard_screen.dart';
 import '../../features/cycle_sync/presentation/cycle_sync_screen.dart';
+import '../../features/bond/presentation/bond_hub_screen.dart';
+import '../../features/bond/presentation/bond_invite_screen.dart';
+import '../../features/bond/presentation/bond_accept_screen.dart';
+import '../../features/bond/presentation/bond_detail_screen.dart';
+import '../../features/bond/presentation/bond_mood_calendar_screen.dart';
 import '../../features/shadow_work/presentation/shadow_work_screen.dart';
 import '../../features/prompts/presentation/prompt_library_screen.dart';
 import '../../features/milestones/presentation/milestone_screen.dart';
@@ -485,6 +490,39 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const AppLockScreen(),
       ),
 
+      // ════════════════════════════════════════════════════════════════
+      // BOND (BAĞ) - Partner Feature
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.bondHub,
+        builder: (context, state) => const BondHubScreen(),
+      ),
+      GoRoute(
+        path: Routes.bondInvite,
+        builder: (context, state) => const BondInviteScreen(),
+      ),
+      GoRoute(
+        path: Routes.bondAccept,
+        builder: (context, state) => const BondAcceptScreen(),
+      ),
+      GoRoute(
+        path: Routes.bondAcceptCode,
+        builder: (context, state) => BondAcceptScreen(
+          prefilledCode: state.pathParameters['code'],
+        ),
+      ),
+      GoRoute(
+        path: Routes.bondDetail,
+        builder: (context, state) => BondDetailScreen(
+          bondId: state.pathParameters['bondId']!,
+        ),
+      ),
+      GoRoute(
+        path: Routes.bondMoodCalendar,
+        builder: (context, state) => BondMoodCalendarScreen(
+          bondId: state.pathParameters['bondId']!,
+        ),
+      ),
       // ════════════════════════════════════════════════════════════════
       // PRIVATE VAULT
       // ════════════════════════════════════════════════════════════════

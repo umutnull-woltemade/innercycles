@@ -70,6 +70,7 @@ class SeasonalProgressRing extends ConsumerWidget {
                         ),
                       ),
                     ),
+                    ),
                   ),
                   const SizedBox(width: 12),
                   Expanded(

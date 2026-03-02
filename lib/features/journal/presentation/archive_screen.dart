@@ -24,6 +24,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
+import '../../../shared/widgets/tag_cloud_widget.dart';
 import '../../../data/services/l10n_service.dart';
 
 class ArchiveScreen extends ConsumerStatefulWidget {
@@ -38,6 +39,8 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
   String _searchQuery = '';
   String _dateRange = 'all'; // all, 7d, 30d, 3m, year
   bool _showOnlyFavorites = false;
+  String? _selectedTag;
+  bool _showTagCloud = false;
   final _searchController = TextEditingController();
   Timer? _searchDebounce;
 

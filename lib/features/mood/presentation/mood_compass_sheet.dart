@@ -92,9 +92,11 @@ class _MoodCompassSheetState extends ConsumerState<MoodCompassSheet> {
               alignment: Alignment.center,
               children: [
                 // Compass lines
-                CustomPaint(
-                  size: Size(compassSize, compassSize),
-                  painter: _CompassPainter(isDark: isDark),
+                RepaintBoundary(
+                  child: CustomPaint(
+                    size: Size(compassSize, compassSize),
+                    painter: _CompassPainter(isDark: isDark),
+                  ),
                 ),
                 // Axis labels
                 _AxisLabel(
