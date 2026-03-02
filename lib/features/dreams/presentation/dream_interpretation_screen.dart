@@ -26,6 +26,8 @@ import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../shared/widgets/glass_dialog.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
+import '../../../data/services/ai_dream_service.dart';
+import '../../../data/services/dream_interpretation_service.dart';
 
 /// Inner Dream Guide - Conversational Dream Reflection
 /// Rule-based dream interpretation experience using symbol analysis
@@ -558,11 +560,143 @@ class _DreamInterpretationScreenState
     await _startApexInterpretation(text);
   }
 
-  /// Start dream interpretation using local pattern-based engine
+  /// Start dream interpretation — tries AI first for premium, falls back to local
   Future<void> _startApexInterpretation(String dreamText) async {
     await Future.delayed(const Duration(milliseconds: 800));
     if (!mounted) return;
+
+    // Try AI-powered interpretation for premium users (or free weekly taste)
+    final isPremium = ref.read(isPremiumUserProvider);
+    try {
+      final aiService = await AIDreamService.init();
+      if (isPremium || aiService.canRequestFree()) {
+        final language = ref.read(languageProvider);
+        final interpretationService = DreamInterpretationService();
+        final aiResult = await aiService.analyzeWithAI(
+          dreamText: dreamText,
+          interpretationService: interpretationService,
+          language: language,
+        ).timeout(const Duration(seconds: 12));
+
+        if (aiResult != null && mounted) {
+          _showAIInterpretation(aiResult, language);
+          return;
+        }
+      }
+    } catch (_) {
+      // Fall through to local engine
+    }
+
+    if (!mounted) return;
     _generateInterpretation(dreamText);
+  }
+
+  /// Format and display the AI-generated FullDreamInterpretation as chat message.
+  void _showAIInterpretation(
+    dynamic interpretation,
+    AppLanguage language,
+  ) {
+    final isEn = language == AppLanguage.en;
+    final buf = StringBuffer();
+
+    // Ancient intro
+    if (interpretation.ancientIntro != null &&
+        interpretation.ancientIntro.isNotEmpty) {
+      buf.writeln(interpretation.ancientIntro);
+      buf.writeln();
+    }
+
+    // Core message
+    if (interpretation.coreMessage != null &&
+        interpretation.coreMessage.isNotEmpty) {
+      buf.writeln(
+        isEn ? '**Core Insight**' : '**Ana Mesaj**',
+      );
+      buf.writeln(interpretation.coreMessage);
+      buf.writeln();
+    }
+
+    // Archetype
+    if (interpretation.archetypeName != null) {
+      buf.writeln(
+        isEn
+            ? '**Archetype: ${interpretation.archetypeName}**'
+            : '**Arketip: ${interpretation.archetypeName}**',
+      );
+      if (interpretation.archetypeConnection != null) {
+        buf.writeln(interpretation.archetypeConnection);
+      }
+      buf.writeln();
+    }
+
+    // Emotional reading
+    if (interpretation.emotionalReading != null) {
+      final er = interpretation.emotionalReading;
+      buf.writeln(isEn ? '**Emotional Reading**' : '**Duygusal Okuma**');
+      if (er.surfaceMessage != null) buf.writeln(er.surfaceMessage);
+      if (er.deeperMeaning != null) buf.writeln(er.deeperMeaning);
+      buf.writeln();
+    }
+
+    // Light & Shadow
+    if (interpretation.lightShadow != null) {
+      final ls = interpretation.lightShadow;
+      buf.writeln(
+        isEn ? '**Light & Shadow**' : '**Işık ve Gölge**',
+      );
+      if (ls.lightMessage != null) {
+        buf.writeln('${isEn ? "Light" : "Işık"}: ${ls.lightMessage}');
+      }
+      if (ls.shadowMessage != null) {
+        buf.writeln('${isEn ? "Shadow" : "Gölge"}: ${ls.shadowMessage}');
+      }
+      buf.writeln();
+    }
+
+    // Guidance
+    if (interpretation.guidance != null) {
+      final g = interpretation.guidance;
+      buf.writeln(isEn ? '**Guidance**' : '**Rehberlik**');
+      if (g.todayAction != null) {
+        buf.writeln(
+          '${isEn ? "Today" : "Bugün"}: ${g.todayAction}',
+        );
+      }
+      if (g.reflectionQuestion != null) {
+        buf.writeln(
+          '${isEn ? "Reflect" : "Düşün"}: ${g.reflectionQuestion}',
+        );
+      }
+      buf.writeln();
+    }
+
+    // Whisper quote
+    if (interpretation.whisperQuote != null &&
+        interpretation.whisperQuote.isNotEmpty) {
+      buf.writeln('_"${interpretation.whisperQuote}"_');
+    }
+
+    setState(() {
+      _isTyping = false;
+      _messages.add(
+        ChatMessage(
+          text: buf.toString().trim(),
+          isUser: false,
+          timestamp: DateTime.now(),
+          isAIGenerated: true,
+        ),
+      );
+    });
+
+    // Track output
+    ref.read(smartRouterServiceProvider).whenData(
+      (s) => s.recordOutput('dreamInterpretation', 'ai_interpretation'),
+    );
+    ref.read(ecosystemAnalyticsServiceProvider).whenData(
+      (s) => s.trackToolOutput('dreamInterpretation', 'ai_interpretation'),
+    );
+
+    _scrollToBottom();
   }
 
   void _generateInterpretation(String dreamText) {
@@ -2546,6 +2680,7 @@ class ChatMessage {
   final bool isQuestion;
   final bool isInterpretation;
   final int lockedPerspectiveCount;
+  final bool isAIGenerated;
 
   ChatMessage({
     required this.text,
@@ -2554,6 +2689,7 @@ class ChatMessage {
     this.isQuestion = false,
     this.isInterpretation = false,
     this.lockedPerspectiveCount = 0,
+    this.isAIGenerated = false,
   });
 }
 
