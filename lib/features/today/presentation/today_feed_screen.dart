@@ -74,6 +74,8 @@ import 'widgets/mood_temporal_insight_card.dart';
 import 'widgets/gratitude_mood_correlation_card.dart';
 import 'widgets/time_capsule_delivery_card.dart';
 import 'widgets/emotional_fingerprint_card.dart';
+import 'widgets/clarity_score_card.dart';
+import 'widgets/journal_query_teaser_card.dart';
 import 'widgets/premium_expiry_banner.dart';
 import 'widgets/sync_status_banner.dart';
 import 'widgets/win_back_offer_banner.dart';
@@ -763,6 +765,16 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 9j. Emotional Fingerprint (first 3 days of month)
                   SliverToBoxAdapter(
                     child: EmotionalFingerprintCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9k. Weekly Clarity Score
+                  SliverToBoxAdapter(
+                    child: ClarityScoreCard(isEn: isEn, isDark: isDark),
+                  ),
+
+                  // 9l. Ask Your Journal Teaser
+                  SliverToBoxAdapter(
+                    child: JournalQueryTeaserCard(isEn: isEn, isDark: isDark),
                   ),
 
                   const SliverToBoxAdapter(child: SizedBox(height: 16)),

@@ -88,9 +88,7 @@ class _JournalQueryScreenState extends ConsumerState<JournalQueryScreen> {
           .first
           .key;
 
-      final isDark = Theme.of(context).brightness == Brightness.dark;
-      final isEn =
-          ref.read(languageProvider).valueOrNull?.isEnglish ?? true;
+      final isEn = ref.read(languageProvider) == AppLanguage.en;
 
       if (isEn) {
         insightText =
@@ -112,7 +110,7 @@ class _JournalQueryScreenState extends ConsumerState<JournalQueryScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn =
-        ref.watch(languageProvider).valueOrNull?.isEnglish ?? true;
+        ref.watch(languageProvider) == AppLanguage.en;
 
     final suggestedQuestions = isEn
         ? [
@@ -135,7 +133,6 @@ class _JournalQueryScreenState extends ConsumerState<JournalQueryScreen> {
           slivers: [
             GlassSliverAppBar(
               title: isEn ? 'Ask Your Journal' : 'Günlüğüne Sor',
-              isDark: isDark,
             ),
             // Search bar
             SliverToBoxAdapter(

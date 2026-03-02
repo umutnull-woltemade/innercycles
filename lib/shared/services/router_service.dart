@@ -299,6 +299,13 @@ final routerProvider = Provider<GoRouter>((ref) {
         ),
       ),
       GoRoute(
+        path: Routes.journalQuery,
+        pageBuilder: (context, state) => PageTransitions.fadeSlide(
+          child: const JournalQueryScreen(),
+          key: state.pageKey,
+        ),
+      ),
+      GoRoute(
         path: Routes.memories,
         pageBuilder: (context, state) => PageTransitions.fadeSlide(
           child: const MemoriesScreen(),
