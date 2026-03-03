@@ -18,6 +18,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/models/shadow_work_entry.dart';
+import '../../../data/services/shadow_work_service.dart';
 import '../../../data/content/shadow_prompts_content.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -244,7 +245,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
 
   Widget _buildHeroSection(
     BuildContext context,
-    dynamic shadowService,
+    ShadowWorkService shadowService,
     bool isDark,
     bool isEn,
   ) {
@@ -453,7 +454,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
 
   Widget _buildPromptCard(
     BuildContext context,
-    dynamic shadowService,
+    ShadowWorkService shadowService,
     bool isDark,
     bool isEn,
   ) {
@@ -463,7 +464,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
         .length;
     final prompt = ShadowPromptsContent.getDepthAppropriatePrompt(
       _selectedArchetype,
-      entryCount as int,
+      entryCount,
       DateTime.now(),
     );
 
@@ -580,7 +581,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
 
   Widget _buildResponseArea(
     BuildContext context,
-    dynamic shadowService,
+    ShadowWorkService shadowService,
     bool isDark,
     bool isEn,
   ) {
@@ -590,7 +591,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
         .length;
     final prompt = ShadowPromptsContent.getDepthAppropriatePrompt(
       _selectedArchetype,
-      entryCount as int,
+      entryCount,
       DateTime.now(),
     );
 
@@ -815,13 +816,13 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
 
   Widget _buildArchetypeStats(
     BuildContext context,
-    dynamic shadowService,
+    ShadowWorkService shadowService,
     bool isDark,
     bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
     final stats =
-        shadowService.getArchetypeStats() as Map<ShadowArchetype, int>;
+        shadowService.getArchetypeStats();
     if (stats.isEmpty) return const SizedBox.shrink();
 
     final maxCount = stats.values.reduce((a, b) => a > b ? a : b);
@@ -916,8 +917,8 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
             const SizedBox(height: 8),
             Text(
               isEn
-                  ? '${(shadowService.getUnexploredArchetypes() as List).length} archetypes still unexplored'
-                  : '${(shadowService.getUnexploredArchetypes() as List).length} arketip henüz keşfedilmedi',
+                  ? '${shadowService.getUnexploredArchetypes().length} archetypes still unexplored'
+                  : '${shadowService.getUnexploredArchetypes().length} arketip henüz keşfedilmedi',
               style: AppTypography.subtitle(
                 fontSize: 11,
                 color: _shadowGold.withValues(alpha: 0.8),
@@ -935,12 +936,12 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
 
   Widget _buildRecentEntries(
     BuildContext context,
-    dynamic shadowService,
+    ShadowWorkService shadowService,
     bool isDark,
     bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
-    final entries = (shadowService.getEntries() as List<ShadowWorkEntry>)
+    final entries = shadowService.getEntries()
         .take(5)
         .toList();
     if (entries.isEmpty) return const SizedBox.shrink();
