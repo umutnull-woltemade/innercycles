@@ -50,19 +50,6 @@ class Routes {
   // ════════════════════════════════════════════════════════════════
   static const String dreamInterpretation = '/dream-interpretation';
   static const String dreamGlossary = '/dream-glossary';
-  // Dream Pages
-  static const String dreamFalling = '/dreams/falling';
-  static const String dreamWater = '/dreams/water';
-  static const String dreamRecurring = '/dreams/recurring';
-  static const String dreamRunning = '/dreams/running';
-  static const String dreamLosing = '/dreams/losing-someone';
-  static const String dreamFlying = '/dreams/flying';
-  static const String dreamDarkness = '/dreams/darkness';
-  static const String dreamPast = '/dreams/someone-from-past';
-  static const String dreamSearching = '/dreams/searching';
-  static const String dreamVoiceless = '/dreams/voiceless';
-  static const String dreamLost = '/dreams/lost';
-  static const String dreamUnableToFly = '/dreams/unable-to-fly';
 
   // ════════════════════════════════════════════════════════════════
   // RITUALS & HABITS
