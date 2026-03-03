@@ -46,7 +46,7 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
   final Map<String, DateTime> _presetDates = {};
 
   // Track saved retrospective IDs
-  final List<String> _savedIds = [];
+  final Map<String, String> _savedIds = {};
   int _journalsSaved = 0;
 
   @override
@@ -116,7 +116,7 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
                     _SummaryStep(
                       isEn: isEn,
                       isDark: isDark,
-                      savedCount: _savedIds.length,
+                      savedCount: _savedIds.values.length,
                       journalCount: _journalsSaved,
                       onDone: () => context.go(Routes.today),
                     ),
@@ -137,7 +137,7 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
       final date = _presetDates[key];
       if (date != null) {
         final saved = await service.saveDate(presetKey: key, date: date);
-        _savedIds.add(saved.id);
+        _savedIds[key] = saved.id;
       }
     }
     if (!mounted) return;
@@ -153,14 +153,7 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
     final language = ref.read(languageProvider);
 
     // Find the retrospective ID for this preset
-    String? retroId;
-    for (int i = 0; i < _savedIds.length; i++) {
-      final keys = _selectedPresets.toList();
-      if (i < keys.length && keys[i] == presetKey) {
-        retroId = _savedIds[i];
-        break;
-      }
-    }
+    final retroId = _savedIds[presetKey];
 
     context.push(
       Routes.journal,
