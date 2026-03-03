@@ -532,7 +532,7 @@ class _CalendarGrid extends StatelessWidget {
     final firstDay = DateTime(year, month, 1);
     final daysInMonth = DateTime(year, month + 1, 0).day;
     final startWeekday =
-        (firstDay.weekday % 7); // 0=Mon in ISO, adjust to Sun start
+        firstDay.weekday - 1; // 0=Mon, 6=Sun (0-indexed for Monday-start grid)
     final today = DateTime.now();
 
     return PremiumCard(
@@ -573,7 +573,7 @@ class _CalendarGrid extends StatelessWidget {
               child: Row(
                 children: List.generate(7, (weekday) {
                   final language = AppLanguage.fromIsEn(isEn);
-                  final dayIndex = week * 7 + weekday - (startWeekday - 1);
+                  final dayIndex = week * 7 + weekday - startWeekday + 1;
                   if (dayIndex < 1 || dayIndex > daysInMonth) {
                     return const Expanded(child: SizedBox(height: 52));
                   }
@@ -739,7 +739,7 @@ class _CalendarGrid extends StatelessWidget {
   }
 
   int _weekCount(int startWeekday, int daysInMonth) {
-    return ((startWeekday - 1 + daysInMonth) / 7).ceil();
+    return ((startWeekday + daysInMonth) / 7).ceil();
   }
 }
 
