@@ -125,7 +125,7 @@ class ShiftOutlook {
   });
 
   bool get hasValidOutlook =>
-      primaryShiftWindow != null && activeSignals.isNotEmpty;
+      primaryShiftWindow != null && activeSignals.isNotEmpty && currentPhase != null;
 }
 
 // ══════════════════════════════════════════════════════════════════════════

@@ -620,7 +620,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   // ════════════════════════════════════════════════════════════════════════════
 
   Widget _buildPlanSelection(BuildContext context) {
-    final isEn = ref.watch(languageProvider) == AppLanguage.en;
+    final language = ref.watch(languageProvider);
     return Column(
       children: [
         // Yearly — target plan
@@ -629,7 +629,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           isSelected: _selectedTier == PremiumTier.yearly,
           onTap: () => setState(() => _selectedTier = PremiumTier.yearly),
           isBestValue: true,
-          isEn: isEn,
+          language: language,
           priceOverride: ref
               .read(premiumProvider.notifier)
               .getProductPrice(PremiumTier.yearly),
@@ -641,7 +641,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           tier: PremiumTier.monthly,
           isSelected: _selectedTier == PremiumTier.monthly,
           onTap: () => setState(() => _selectedTier = PremiumTier.monthly),
-          isEn: isEn,
+          language: language,
           priceOverride:
               ref
                   .watch(paywallExperimentProvider)
@@ -1305,7 +1305,7 @@ class _PlanCard extends StatelessWidget {
   final VoidCallback onTap;
   final bool isBestValue;
   final String? priceOverride;
-  final bool isEn;
+  final AppLanguage language;
 
   const _PlanCard({
     required this.tier,
@@ -1313,12 +1313,11 @@ class _PlanCard extends StatelessWidget {
     required this.onTap,
     this.isBestValue = false,
     this.priceOverride,
-    this.isEn = true,
+    this.language = AppLanguage.en,
   });
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return Stack(
       clipBehavior: Clip.none,
       children: [
