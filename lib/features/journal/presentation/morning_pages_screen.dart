@@ -46,6 +46,7 @@ class _MorningPagesScreenState extends ConsumerState<MorningPagesScreen> {
     });
     _focusNode.requestFocus();
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (!mounted) return;
       if (_remainingSeconds <= 0) {
         _timer?.cancel();
         _finish();

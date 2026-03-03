@@ -318,13 +318,15 @@ class PatternsScreen extends ConsumerWidget {
       _hasTriggeredReview = true;
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         final reviewService = await ref.read(reviewServiceProvider.future);
+        if (!context.mounted) return;
         await reviewService.checkAndPromptReview(
           ReviewTrigger.patternDiscovered,
           journalEntryCount: engine.entryCount,
         );
 
         // Show contextual paywall for non-premium users viewing patterns
-        if (!ref.read(isPremiumUserProvider) && context.mounted) {
+        if (!context.mounted) return;
+        if (!ref.read(isPremiumUserProvider)) {
           showContextualPaywall(
             context,
             ref,

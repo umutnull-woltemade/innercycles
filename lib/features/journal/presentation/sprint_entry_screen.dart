@@ -88,6 +88,7 @@ class _SprintEntryScreenState extends ConsumerState<SprintEntryScreen>
     });
 
     // Show summary
+    if (!mounted) return;
     _showSummary(wordCount);
   }
 
@@ -154,7 +155,7 @@ class _SprintEntryScreenState extends ConsumerState<SprintEntryScreen>
                   child: TextButton(
                     onPressed: () {
                       Navigator.of(ctx).pop();
-                      context.pop();
+                      if (context.mounted) context.pop();
                     },
                     child: Text(
                       isEn ? 'Done' : 'Tamam',
@@ -170,6 +171,7 @@ class _SprintEntryScreenState extends ConsumerState<SprintEntryScreen>
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.of(ctx).pop();
+                      if (!context.mounted) return;
                       setState(() {
                         _isFinished = false;
                         _isRunning = false;

@@ -33,7 +33,7 @@ class RitualsScreen extends ConsumerStatefulWidget {
 class _RitualsScreenState extends ConsumerState<RitualsScreen> {
   final _searchController = TextEditingController();
   String _searchQuery = '';
-  String _timeFilter = 'all'; // all, morning, evening, anytime
+  String _timeFilter = 'all'; // all, morning, midday, evening
 
   @override
   void dispose() {
@@ -171,7 +171,7 @@ class _RitualsScreenState extends ConsumerState<RitualsScreen> {
                                 const SizedBox(width: 6),
                                 _buildTimeChip(isEn ? 'Evening' : 'Akşam', 'evening', isDark),
                                 const SizedBox(width: 6),
-                                _buildTimeChip(isEn ? 'Anytime' : 'Her Zaman', 'anytime', isDark),
+                                _buildTimeChip(isEn ? 'Midday' : 'Öğle', 'midday', isDark),
                               ],
                             ),
                           ),
