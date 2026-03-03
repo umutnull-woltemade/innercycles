@@ -42,6 +42,9 @@ class CycleCorrelationScreen extends ConsumerWidget {
               final heatmap = service.getHeatmapData();
 
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn
@@ -675,6 +678,9 @@ class _InsufficientData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      physics: const BouncingScrollPhysics(
+        parent: AlwaysScrollableScrollPhysics(),
+      ),
       slivers: [
         GlassSliverAppBar(
           title: isEn ? 'Cycle Correlation' : 'Döngü Korelasyonu',

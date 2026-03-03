@@ -32,7 +32,16 @@ class BondTouchTimelineScreen extends ConsumerWidget {
         child: SafeArea(
           child: touchServiceAsync.when(
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (e, _) => Center(child: Text('$e')),
+            error: (e, _) => Center(
+              child: Text(
+                isEn ? 'Something went wrong' : 'Bir şeyler ters gitti',
+                style: AppTypography.subtitle(
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                ),
+              ),
+            ),
             data: (touchService) {
               return FutureBuilder<List<Touch>>(
                 future: touchService.getRecentTouches(bondId),
@@ -69,6 +78,9 @@ class BondTouchTimelineScreen extends ConsumerWidget {
                     ..sort((a, b) => b.compareTo(a));
 
                   return CustomScrollView(
+                    physics: const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics(),
+                    ),
                     slivers: [
                       GlassSliverAppBar(
                         title: isEn
@@ -494,6 +506,9 @@ class _EmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      physics: const BouncingScrollPhysics(
+        parent: AlwaysScrollableScrollPhysics(),
+      ),
       slivers: [
         GlassSliverAppBar(
           title: isEn ? 'Touch Timeline' : 'Dokunuş Zaman Çizelgesi',

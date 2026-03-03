@@ -30,20 +30,7 @@ class TimelineEvent {
     this.routeId,
   });
 
-  static Color colorForFocusArea(FocusArea area) {
-    switch (area) {
-      case FocusArea.energy:
-        return const Color(0xFFC8553D); // starGold
-      case FocusArea.focus:
-        return const Color(0xFF6B8FB5); // blue
-      case FocusArea.emotions:
-        return const Color(0xFFB5727A); // pink
-      case FocusArea.decisions:
-        return const Color(0xFF7EB8A8); // green
-      case FocusArea.social:
-        return const Color(0xFF9B8EC4); // purple
-    }
-  }
+  static Color colorForFocusArea(FocusArea area) => area.color;
 
   static Color colorForMood(int mood) {
     switch (mood) {

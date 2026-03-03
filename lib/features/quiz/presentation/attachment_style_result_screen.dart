@@ -43,6 +43,9 @@ class AttachmentStyleResultScreen extends ConsumerWidget {
               final daysLeft = service.daysUntilRetake();
 
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn
@@ -445,6 +448,9 @@ class _NoResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      physics: const BouncingScrollPhysics(
+        parent: AlwaysScrollableScrollPhysics(),
+      ),
       slivers: [
         GlassSliverAppBar(
           title: isEn ? 'Attachment Style' : 'Bağlanma Stili',

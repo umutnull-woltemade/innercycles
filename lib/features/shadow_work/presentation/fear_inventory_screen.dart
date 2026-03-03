@@ -54,6 +54,9 @@ class _FearInventoryScreenState extends ConsumerState<FearInventoryScreen> {
               final resolved = service.getResolvedFears();
 
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn ? 'Fear Inventory' : 'Korku Envanteri',

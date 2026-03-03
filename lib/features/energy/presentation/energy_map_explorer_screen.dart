@@ -37,6 +37,9 @@ class EnergyMapExplorerScreen extends ConsumerWidget {
               }
 
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn
@@ -617,6 +620,9 @@ class _EmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      physics: const BouncingScrollPhysics(
+        parent: AlwaysScrollableScrollPhysics(),
+      ),
       slivers: [
         GlassSliverAppBar(
           title: isEn ? 'Energy Explorer' : 'Enerji Keşfi',

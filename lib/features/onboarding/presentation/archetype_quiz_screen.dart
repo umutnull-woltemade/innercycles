@@ -408,6 +408,9 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
     final archetype = _result!;
 
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(
+        parent: AlwaysScrollableScrollPhysics(),
+      ),
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
       child: Column(
         children: [

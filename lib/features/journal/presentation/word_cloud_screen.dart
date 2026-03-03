@@ -41,6 +41,9 @@ class _WordCloudScreenState extends ConsumerState<WordCloudScreen> {
               final words = service.getTopWords(days: _rangeDays, limit: 30);
 
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn ? 'Word Cloud' : 'Kelime Bulutu',

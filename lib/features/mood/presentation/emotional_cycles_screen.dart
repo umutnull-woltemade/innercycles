@@ -39,6 +39,9 @@ class EmotionalCyclesScreen extends ConsumerWidget {
               final quadrantShifts = _computeQuadrantShifts(entries);
 
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn ? 'Emotional Cycles' : 'Duygusal Döngüler',

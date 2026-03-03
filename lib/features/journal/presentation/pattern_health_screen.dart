@@ -32,6 +32,9 @@ class PatternHealthScreen extends ConsumerWidget {
             error: (e, _) => Center(child: Text('$e')),
             data: (report) {
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn ? 'Pattern Health' : 'Kalıp Sağlığı',

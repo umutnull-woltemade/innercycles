@@ -61,6 +61,9 @@ class _GrowthLettersScreenState extends ConsumerState<GrowthLettersScreen> {
       body: CosmicBackground(
         child: SafeArea(
           child: CustomScrollView(
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
             slivers: [
               GlassSliverAppBar(
                 title: isEn ? 'Growth Letters' : 'B\u00fcy\u00fcme Mektuplar\u0131',

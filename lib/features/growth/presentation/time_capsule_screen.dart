@@ -52,6 +52,9 @@ class _TimeCapsuleScreenState extends ConsumerState<TimeCapsuleScreen> {
               final opened = all.where((c) => c.isOpened).toList();
 
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn ? 'Time Capsule' : 'Zaman Kapsülü',

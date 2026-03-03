@@ -2,6 +2,7 @@
 // JOURNAL ENTRY MODEL - InnerCycles Personal Cycle Tracking
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'package:flutter/material.dart';
 import '../providers/app_providers.dart';
 
 /// Focus areas for journal entries - the 5 personal life cycle dimensions
@@ -44,6 +45,22 @@ enum FocusArea {
   }
 
   String localizedName(AppLanguage language) => language == AppLanguage.en ? displayNameEn : displayNameTr;
+
+  /// Canonical color for this focus area (used across all visualizations)
+  Color get color {
+    switch (this) {
+      case FocusArea.energy:
+        return const Color(0xFFC8553D);
+      case FocusArea.focus:
+        return const Color(0xFF6B8FB5);
+      case FocusArea.emotions:
+        return const Color(0xFFB5727A);
+      case FocusArea.decisions:
+        return const Color(0xFF7EB8A8);
+      case FocusArea.social:
+        return const Color(0xFF9B8EC4);
+    }
+  }
 
   /// Sub-rating keys for this focus area
   List<String> get subRatingKeys {

@@ -45,6 +45,9 @@ class _MoodBoardScreenState extends ConsumerState<MoodBoardScreen> {
                 ..sort((a, b) => a.date.compareTo(b.date));
 
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn ? 'Mood Board' : 'Ruh Hali Panosu',

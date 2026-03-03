@@ -64,6 +64,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
       body: CosmicBackground(
         child: SafeArea(
           child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
             child: Padding(
               padding: const EdgeInsets.all(AppConstants.spacingLg),
               child: Column(

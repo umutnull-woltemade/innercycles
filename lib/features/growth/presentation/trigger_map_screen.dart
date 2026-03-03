@@ -50,6 +50,9 @@ class _TriggerMapScreenState extends ConsumerState<TriggerMapScreen> {
               final topTriggers = service.getTopTriggers();
 
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn ? 'Trigger Map' : 'Tetikleyici Haritası',

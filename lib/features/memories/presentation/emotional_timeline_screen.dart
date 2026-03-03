@@ -139,6 +139,9 @@ class EmotionalTimelineScreen extends ConsumerWidget {
     return Scaffold(
       body: CosmicBackground(
         child: CustomScrollView(
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
           slivers: [
             GlassSliverAppBar(
               title: isEn ? 'Your Timeline' : 'Zaman Çizelgen',

@@ -132,6 +132,9 @@ class _JournalQueryScreenState extends ConsumerState<JournalQueryScreen> {
         child: GestureDetector(
           onTap: () => _focusNode.unfocus(),
           child: CustomScrollView(
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
           slivers: [
             GlassSliverAppBar(
               title: isEn ? 'Ask Your Journal' : 'Günlüğüne Sor',
@@ -437,20 +440,7 @@ class _JournalQueryScreenState extends ConsumerState<JournalQueryScreen> {
     );
   }
 
-  Color _focusAreaColor(FocusArea area) {
-    switch (area) {
-      case FocusArea.energy:
-        return const Color(0xFFC8553D);
-      case FocusArea.focus:
-        return const Color(0xFF6B8FB5);
-      case FocusArea.emotions:
-        return const Color(0xFFB5727A);
-      case FocusArea.decisions:
-        return const Color(0xFF7EB8A8);
-      case FocusArea.social:
-        return const Color(0xFF9B8EC4);
-    }
-  }
+  Color _focusAreaColor(FocusArea area) => area.color;
 }
 
 class _QueryResult {

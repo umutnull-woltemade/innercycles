@@ -49,6 +49,9 @@ class _MoodCompassScreenState extends ConsumerState<MoodCompassScreen> {
               final distribution = service.getQuadrantDistribution(30);
 
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn ? 'Mood Compass' : 'Ruh Hali Pusulası',

@@ -46,6 +46,9 @@ class ProgramCompletionScreen extends ConsumerWidget {
       body: CosmicBackground(
         child: SafeArea(
           child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
             padding: const EdgeInsets.symmetric(
               horizontal: AppConstants.spacingXl,
               vertical: AppConstants.spacingLg,

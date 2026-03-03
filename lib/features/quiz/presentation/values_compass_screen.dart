@@ -56,6 +56,9 @@ class _ValuesCompassScreenState extends ConsumerState<ValuesCompassScreen> {
     ValuesService service,
   ) {
     return CustomScrollView(
+      physics: const BouncingScrollPhysics(
+        parent: AlwaysScrollableScrollPhysics(),
+      ),
       slivers: [
         GlassSliverAppBar(
           title: isEn ? 'Your Values' : 'Değerlerin',
@@ -160,6 +163,9 @@ class _ValuesCompassScreenState extends ConsumerState<ValuesCompassScreen> {
 
   Widget _buildSelectionView(bool isDark, bool isEn, ValuesService service) {
     return CustomScrollView(
+      physics: const BouncingScrollPhysics(
+        parent: AlwaysScrollableScrollPhysics(),
+      ),
       slivers: [
         GlassSliverAppBar(
           title: isEn ? 'Choose Your Values' : 'Değerlerini Seç',

@@ -43,6 +43,9 @@ class _IntentionsScreenState extends ConsumerState<IntentionsScreen> {
           final averages = service.getWeeklyAverages(weeks: 12);
 
           return CustomScrollView(
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
             slivers: [
               GlassSliverAppBar(
                 title: isEn ? 'Intentions' : 'Niyetler',

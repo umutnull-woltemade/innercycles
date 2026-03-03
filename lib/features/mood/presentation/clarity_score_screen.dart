@@ -49,6 +49,9 @@ class ClarityScoreScreen extends ConsumerWidget {
                   .toList();
 
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn ? 'Clarity Score' : 'Berraklık Skoru',

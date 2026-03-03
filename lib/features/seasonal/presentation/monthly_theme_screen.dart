@@ -48,6 +48,9 @@ class _MonthlyThemeScreenState extends ConsumerState<MonthlyThemeScreen> {
               final prompts = isEn ? theme.weeklyPromptsEn : theme.weeklyPromptsTr;
 
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn ? 'Monthly Theme' : 'Ayl\u0131k Tema',

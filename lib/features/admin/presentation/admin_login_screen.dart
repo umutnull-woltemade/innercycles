@@ -100,6 +100,9 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
       body: CosmicBackground(
         child: SafeArea(
           child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -94,6 +94,9 @@ class _InnerDialogueScreenState extends ConsumerState<InnerDialogueScreen> {
       body: CosmicBackground(
         child: SafeArea(
           child: CustomScrollView(
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
             slivers: [
               GlassSliverAppBar(
                 title: isEn ? 'Inner Dialogue' : '\u0130\u00e7 Diyalog',

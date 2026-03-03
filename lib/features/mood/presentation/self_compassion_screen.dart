@@ -37,6 +37,9 @@ class SelfCompassionScreen extends ConsumerWidget {
               final weeklyScores = service.getWeeklyScores(weeks: 8);
 
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn ? 'Self-Compassion' : 'Öz Şefkat',

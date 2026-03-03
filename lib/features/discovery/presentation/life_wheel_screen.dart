@@ -53,6 +53,9 @@ class _LifeWheelScreenState extends ConsumerState<LifeWheelScreen> {
               final delta = service.getDelta();
 
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn ? 'Life Wheel' : 'Ya\u015fam \u00c7ark\u0131',

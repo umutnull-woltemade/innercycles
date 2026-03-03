@@ -32,6 +32,9 @@ class ShiftOutlookScreen extends ConsumerWidget {
             error: (e, _) => Center(child: Text('$e')),
             data: (outlook) {
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn ? 'Shift Outlook' : 'Kayma Görünümü',

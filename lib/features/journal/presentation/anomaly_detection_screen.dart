@@ -45,6 +45,9 @@ class AnomalyDetectionScreen extends ConsumerWidget {
               final trends = engine.detectTrends();
 
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn
@@ -650,6 +653,9 @@ class _InsufficientData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      physics: const BouncingScrollPhysics(
+        parent: AlwaysScrollableScrollPhysics(),
+      ),
       slivers: [
         GlassSliverAppBar(
           title: isEn ? 'Anomaly Radar' : 'Anomali Radarı',

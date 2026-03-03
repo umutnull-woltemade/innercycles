@@ -40,6 +40,9 @@ class DreamCorrelationScreen extends ConsumerWidget {
                   final correlations = snap.data!;
 
                   return CustomScrollView(
+                    physics: const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics(),
+                    ),
                     slivers: [
                       GlassSliverAppBar(
                         title: isEn

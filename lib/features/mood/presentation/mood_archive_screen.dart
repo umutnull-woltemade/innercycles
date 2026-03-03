@@ -93,6 +93,9 @@ class MoodArchiveScreen extends ConsumerWidget {
                 ..sort((a, b) => b.value.compareTo(a.value));
 
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn ? 'Mood Archive' : 'Ruh Hali Arşivi',
@@ -781,6 +784,9 @@ class _EmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      physics: const BouncingScrollPhysics(
+        parent: AlwaysScrollableScrollPhysics(),
+      ),
       slivers: [
         GlassSliverAppBar(
           title: isEn ? 'Mood Archive' : 'Ruh Hali Arşivi',
