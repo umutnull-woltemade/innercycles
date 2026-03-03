@@ -7,6 +7,7 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -839,7 +840,10 @@ class _NoteResultTile extends StatelessWidget {
         : note.content;
 
     return GestureDetector(
-      onTap: () => context.push(Routes.noteDetail, extra: {'noteId': note.id}),
+      onTap: () {
+        HapticFeedback.lightImpact();
+        context.push(Routes.noteDetail, extra: {'noteId': note.id});
+      },
       child: PremiumCard(
         style: PremiumCardStyle.subtle,
         padding: const EdgeInsets.all(14),
@@ -941,7 +945,10 @@ class _DreamResultTile extends StatelessWidget {
         '${dream.dreamDate.day}.${dream.dreamDate.month}.${dream.dreamDate.year}';
 
     return GestureDetector(
-      onTap: () => context.push(Routes.dreamInterpretation),
+      onTap: () {
+        HapticFeedback.lightImpact();
+        context.push(Routes.dreamInterpretation);
+      },
       child: PremiumCard(
         style: PremiumCardStyle.subtle,
         padding: const EdgeInsets.all(14),
@@ -1055,7 +1062,10 @@ class _ToolResultTile extends StatelessWidget {
       hint: L10nService.get('search.global_search.double_tap_to_open', language),
       button: true,
       child: GestureDetector(
-        onTap: () => context.go(tool.route),
+        onTap: () {
+          HapticFeedback.lightImpact();
+          context.go(tool.route);
+        },
         child: PremiumCard(
           style: PremiumCardStyle.subtle,
           padding: const EdgeInsets.symmetric(

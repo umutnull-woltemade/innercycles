@@ -10,6 +10,7 @@ import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
@@ -970,7 +971,10 @@ class _QuickShortcutsRow extends StatelessWidget {
         children: shortcuts.map((s) {
           final (icon, label, route) = s;
           return GestureDetector(
-            onTap: () => context.push(route),
+            onTap: () {
+              HapticFeedback.lightImpact();
+              context.push(route);
+            },
             behavior: HitTestBehavior.opaque,
             child: Column(
               mainAxisSize: MainAxisSize.min,

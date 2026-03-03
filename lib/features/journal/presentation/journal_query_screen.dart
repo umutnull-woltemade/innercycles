@@ -3,6 +3,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -326,10 +327,13 @@ class _JournalQueryScreenState extends ConsumerState<JournalQueryScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 24, vertical: 4),
                       child: GestureDetector(
-                        onTap: () => context.push(
-                          Routes.journalEntryDetail
-                              .replaceFirst(':id', result.entry.id),
-                        ),
+                        onTap: () {
+                          HapticFeedback.lightImpact();
+                          context.push(
+                            Routes.journalEntryDetail
+                                .replaceFirst(':id', result.entry.id),
+                          );
+                        },
                         child: Container(
                           padding: const EdgeInsets.all(14),
                           decoration: BoxDecoration(
