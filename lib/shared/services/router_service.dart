@@ -637,13 +637,13 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.bondDetail,
         builder: (context, state) => BondDetailScreen(
-          bondId: state.pathParameters['bondId']!,
+          bondId: state.pathParameters['bondId'] ?? '',
         ),
       ),
       GoRoute(
         path: Routes.bondMoodCalendar,
         builder: (context, state) => BondMoodCalendarScreen(
-          bondId: state.pathParameters['bondId']!,
+          bondId: state.pathParameters['bondId'] ?? '',
         ),
       ),
       // ════════════════════════════════════════════════════════════════
@@ -1017,7 +1017,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/dreams/:theme',
         pageBuilder: (context, state) {
-          final theme = state.pathParameters['theme']!;
+          final theme = state.pathParameters['theme'] ?? '';
           // Skip non-canonical routes handled above
           if (theme == 'archive') {
             return PageTransitions.fadeSlide(

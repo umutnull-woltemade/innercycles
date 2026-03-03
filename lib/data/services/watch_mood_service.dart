@@ -69,7 +69,7 @@ class WatchMoodService {
 
       final emoji = result['watch_mood_emoji'] as String?;
       final label = result['watch_mood_label'] as String?;
-      final rating = result['watch_mood_rating'] as int?;
+      final rating = (result['watch_mood_rating'] as num?)?.toInt();
       final timestamp = result['watch_mood_timestamp'] as double?;
 
       if (emoji == null || label == null || rating == null) return null;

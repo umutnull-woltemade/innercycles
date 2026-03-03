@@ -272,7 +272,7 @@ class ReferralService {
           .limit(1);
 
       if (result.isNotEmpty) {
-        final serverCount = result.first['referral_count'] as int? ?? 0;
+        final serverCount = (result.first['referral_count'] as num?)?.toInt() ?? 0;
         final localCount = _prefs.getInt(_countKey) ?? 0;
 
         if (serverCount > localCount) {

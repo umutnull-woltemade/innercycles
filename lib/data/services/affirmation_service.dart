@@ -105,9 +105,9 @@ class Affirmation {
   };
 
   factory Affirmation.fromJson(Map<String, dynamic> json) => Affirmation(
-    id: json['id'],
-    textEn: json['textEn'],
-    textTr: json['textTr'],
+    id: json['id'] as String? ?? '',
+    textEn: json['textEn'] as String? ?? '',
+    textTr: json['textTr'] as String? ?? '',
     category: AffirmationCategory.values.firstWhere(
       (c) => c.name == json['category'],
       orElse: () => AffirmationCategory.selfWorth,
@@ -277,7 +277,7 @@ class AffirmationService {
     if (raw == null) return {};
     try {
       final decoded = jsonDecode(raw) as Map<String, dynamic>;
-      return decoded.map((k, v) => MapEntry(k, v as int? ?? 0));
+      return decoded.map((k, v) => MapEntry(k, (v as num?)?.toInt() ?? 0));
     } catch (e) {
       if (kDebugMode) debugPrint('Affirmation: decode engagement map: $e');
       return {};

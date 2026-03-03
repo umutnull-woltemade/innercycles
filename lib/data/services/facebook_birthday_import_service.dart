@@ -39,12 +39,12 @@ class FacebookBirthdayImportService {
 
         if (name == null || name.isEmpty || birthday == null) continue;
 
-        final month = birthday['month'] as int?;
-        final day = birthday['day'] as int?;
+        final month = (birthday['month'] as num?)?.toInt();
+        final day = (birthday['day'] as num?)?.toInt();
         if (month == null || day == null) continue;
         if (month < 1 || month > 12 || day < 1 || day > 31) continue;
 
-        final year = birthday['year'] as int?;
+        final year = (birthday['year'] as num?)?.toInt();
 
         contacts.add(
           BirthdayContact(

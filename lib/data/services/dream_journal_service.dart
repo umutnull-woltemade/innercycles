@@ -785,7 +785,7 @@ class DreamJournalService with SupabaseSyncMixin {
           (e) => e.name == row['dominant_emotion'],
           orElse: () => EmotionalTone.merak,
         ),
-        emotionalIntensity: row['emotional_intensity'] as int? ?? 5,
+        emotionalIntensity: (row['emotional_intensity'] as num?)?.toInt() ?? 5,
         isRecurring: row['is_recurring'] as bool? ?? false,
         isLucid: row['is_lucid'] as bool? ?? false,
         isNightmare: row['is_nightmare'] as bool? ?? false,
