@@ -108,9 +108,8 @@ class _ShareCardGalleryScreenState
     // Premium users get clean cards without promotional watermark.
     if (!mounted) return;
 
-    final boundary =
-        _repaintKey.currentContext?.findRenderObject()
-            as RenderRepaintBoundary?;
+    final renderObject = _repaintKey.currentContext?.findRenderObject();
+    final boundary = renderObject is RenderRepaintBoundary ? renderObject : null;
     if (boundary == null) return;
 
     setState(() => _isSharing = true);
@@ -384,7 +383,6 @@ class _ShareCardGalleryScreenState
     int streak,
     EmotionalCycleAnalysis? cycleAnalysis,
   ) {
-    final language = AppLanguage.fromIsEn(isEn);
     final template = _previewTemplate!;
     final data = _buildDataForTemplate(
       template,
@@ -464,7 +462,6 @@ class _ShareCardGalleryScreenState
     AppLanguage language,
     ShareCardData cardData,
   ) {
-    final language = AppLanguage.fromIsEn(isEn);
     final accent = _previewTemplate != null
         ? ShareCardTemplates.accentColor(_previewTemplate!)
         : AppColors.auroraStart;

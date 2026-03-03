@@ -488,9 +488,11 @@ class _IdentityPageState extends State<_IdentityPage>
 
   void _handleOAuthSuccess(User user) {
     if (!mounted) return;
+    final fullNameRaw = user.userMetadata?['full_name'];
+    final nameRaw = user.userMetadata?['name'];
     final displayName =
-        user.userMetadata?['full_name'] as String? ??
-        user.userMetadata?['name'] as String? ??
+        (fullNameRaw is String ? fullNameRaw : null) ??
+        (nameRaw is String ? nameRaw : null) ??
         user.email?.split('@').first;
 
     _showCosmicWelcome(displayName);
