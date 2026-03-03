@@ -32,7 +32,7 @@ class _DailyAffirmationCardState extends ConsumerState<DailyAffirmationCard> {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(widget.isEn);
+    final language = ref.watch(languageProvider);
     final affirmationAsync = ref.watch(affirmationServiceProvider);
 
     return affirmationAsync.maybeWhen(

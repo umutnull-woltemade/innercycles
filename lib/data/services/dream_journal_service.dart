@@ -134,7 +134,7 @@ class DreamEntry {
       (e) => e.name == json['dominantEmotion'],
       orElse: () => EmotionalTone.merak,
     ),
-    emotionalIntensity: json['emotionalIntensity'] ?? 5,
+    emotionalIntensity: (json['emotionalIntensity'] as num?)?.toInt() ?? 5,
     isRecurring: json['isRecurring'] ?? false,
     isLucid: json['isLucid'] ?? false,
     isNightmare: json['isNightmare'] ?? false,
@@ -169,10 +169,10 @@ class DreamEntry {
         ? (json['locations'] as List).whereType<String>().toList()
         : null,
     dreamSeriesId: json['dreamSeriesId'],
-    clarity: json['clarity'],
-    sleepQuality: json['sleepQuality'],
+    clarity: (json['clarity'] as num?)?.toInt(),
+    sleepQuality: json['sleepQuality'] as String?,
     sleepDuration: json['sleepDuration'] != null
-        ? Duration(minutes: json['sleepDuration'])
+        ? Duration(minutes: (json['sleepDuration'] as num).toInt())
         : null,
     wakeTime: json['wakeTime'] != null
         ? DateTime.tryParse(json['wakeTime'].toString())
@@ -553,7 +553,7 @@ class PersonalSymbolEntry {
     lastAppeared:
         DateTime.tryParse(json['lastAppeared']?.toString() ?? '') ??
         DateTime.now(),
-    occurrenceCount: json['occurrenceCount'] ?? 1,
+    occurrenceCount: (json['occurrenceCount'] as num?)?.toInt() ?? 1,
     evolutionNote: json['evolutionNote'],
     isShadowSymbol: json['isShadowSymbol'] ?? false,
     isKeySymbol: json['isKeySymbol'] ?? false,

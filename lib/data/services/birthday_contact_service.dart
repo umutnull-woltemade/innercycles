@@ -207,9 +207,9 @@ class BirthdayContactService with SupabaseSyncMixin {
       final contact = BirthdayContact(
         id: id,
         name: row['name'] as String? ?? '',
-        birthdayMonth: (row['birthday_month'] as int?) ?? 1,
-        birthdayDay: (row['birthday_day'] as int?) ?? 1,
-        birthYear: row['birth_year'] as int?,
+        birthdayMonth: (row['birthday_month'] as num?)?.toInt() ?? 1,
+        birthdayDay: (row['birthday_day'] as num?)?.toInt() ?? 1,
+        birthYear: (row['birth_year'] as num?)?.toInt(),
         createdAt:
             DateTime.tryParse(row['created_at']?.toString() ?? '') ??
             DateTime.now(),

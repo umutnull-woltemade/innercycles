@@ -169,7 +169,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = AppLanguage.fromIsEn(isEn);
+    final language = ref.read(languageProvider);
     final cycleDay = cycleService.getCurrentCycleDay();
     final cycleLength = cycleService.getAverageCycleLength();
     final phase = cycleService.getCurrentPhase();
@@ -333,7 +333,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = AppLanguage.fromIsEn(isEn);
+    final language = ref.read(languageProvider);
     final daysUntil = cycleService.getDaysUntilNextPeriod();
 
     return GlassPanel(
@@ -577,7 +577,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (correlationService) {
-        final language = AppLanguage.fromIsEn(isEn);
+        final language = ref.read(languageProvider);
         final insight = correlationService.getCurrentPhaseInsight(language);
         if (insight == null) {
           return GlassPanel(
@@ -666,7 +666,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final language = AppLanguage.fromIsEn(isEn);
+    final language = ref.read(languageProvider);
     final cycleLength = cycleService.getAverageCycleLength();
     final currentDay = cycleService.getCurrentCycleDay();
 
@@ -825,7 +825,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
   // ═══════════════════════════════════════════════════════════════════════
 
   Widget _buildLogPeriodFab(BuildContext context, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+    final language = ref.read(languageProvider);
     return Semantics(
       label: L10nService.get('cycle_sync.cycle_sync.log_period_start', language),
       button: true,
@@ -843,7 +843,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
   }
 
   void _showLogPeriodSheet(BuildContext context, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+    final language = ref.read(languageProvider);
     HapticFeedback.lightImpact();
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
@@ -983,7 +983,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     required Widget child,
     required PaywallContext paywallContext,
   }) {
-    final language = AppLanguage.fromIsEn(isEn);
+    final language = ref.read(languageProvider);
     if (isPremium) return child;
 
     return Stack(
