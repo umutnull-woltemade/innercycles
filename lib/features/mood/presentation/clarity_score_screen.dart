@@ -35,7 +35,9 @@ class ClarityScoreScreen extends ConsumerWidget {
               final current = service.getCurrentWeekCached();
               if (current == null) {
                 service.computeCurrentWeek().then((_) {
-                  ref.invalidate(clarityScoreServiceProvider);
+                  if (context.mounted) {
+                    ref.invalidate(clarityScoreServiceProvider);
+                  }
                 });
                 return const Center(child: CircularProgressIndicator());
               }

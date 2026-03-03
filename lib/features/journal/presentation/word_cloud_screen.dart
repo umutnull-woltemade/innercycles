@@ -160,7 +160,7 @@ class _WordCloudScreenState extends ConsumerState<WordCloudScreen> {
                             const SizedBox(height: 10),
                             ...words.take(10).toList().asMap().entries.map((e) {
                               final w = e.value;
-                              final maxCount = words.first.count;
+                              final maxCount = words.first.count.clamp(1, 999999);
                               return Padding(
                                 padding: const EdgeInsets.only(bottom: 6),
                                 child: Row(
@@ -250,7 +250,7 @@ class _WordCloudPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     if (words.isEmpty) return;
 
-    final maxCount = words.first.count;
+    final maxCount = words.first.count.clamp(1, 999999);
     final random = math.Random(42);
     final colors = [
       AppColors.starGold,

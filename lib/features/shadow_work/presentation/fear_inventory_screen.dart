@@ -417,6 +417,7 @@ class _FearInventoryScreenState extends ConsumerState<FearInventoryScreen> {
                         ? null
                         : _reframeController.text.trim(),
                   );
+                  if (!mounted) return;
                   _fearController.clear();
                   _reframeController.clear();
                   ref.invalidate(fearInventoryServiceProvider);

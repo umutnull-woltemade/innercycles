@@ -34,6 +34,9 @@ class DreamMemoryAnalyticsScreen extends ConsumerWidget {
               return FutureBuilder<DreamMemory>(
                 future: service.getDreamMemory(),
                 builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return Center(child: Text('${snapshot.error}'));
+                  }
                   if (!snapshot.hasData) {
                     return const Center(child: CircularProgressIndicator());
                   }

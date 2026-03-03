@@ -34,6 +34,9 @@ class DreamCorrelationScreen extends ConsumerWidget {
               return FutureBuilder<List<DreamMoodCorrelation>>(
                 future: service.analyzeDreamMoodCorrelations(),
                 builder: (context, snap) {
+                  if (snap.hasError) {
+                    return Center(child: Text('${snap.error}'));
+                  }
                   if (!snap.hasData) {
                     return const Center(child: CircularProgressIndicator());
                   }
