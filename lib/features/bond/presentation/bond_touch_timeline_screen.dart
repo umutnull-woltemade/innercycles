@@ -2,6 +2,7 @@
 // BOND TOUCH TIMELINE - Touch history & connection analytics
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,7 +32,7 @@ class BondTouchTimelineScreen extends ConsumerWidget {
       body: CosmicBackground(
         child: SafeArea(
           child: touchServiceAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CupertinoActivityIndicator()),
             error: (e, _) => Center(
               child: Text(
                 isEn ? 'Something went wrong' : 'Bir şeyler ters gitti',
@@ -49,7 +50,7 @@ class BondTouchTimelineScreen extends ConsumerWidget {
                   if (snapshot.connectionState ==
                       ConnectionState.waiting) {
                     return const Center(
-                        child: CircularProgressIndicator());
+                        child: CupertinoActivityIndicator());
                   }
 
                   final touches = snapshot.data ?? [];
