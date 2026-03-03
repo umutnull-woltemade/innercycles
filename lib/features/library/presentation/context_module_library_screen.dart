@@ -9,6 +9,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/content/context_modules_content.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
@@ -370,7 +371,10 @@ class _CategoryChips extends StatelessWidget {
         final isActive = selected == cat;
         final lang = isEn ? AppLanguage.en : AppLanguage.tr;
         return GestureDetector(
-          onTap: () => onSelected(cat),
+          onTap: () {
+            HapticService.selectionTap();
+            onSelected(cat);
+          },
           child: Container(
             padding: const EdgeInsets.symmetric(
                 horizontal: 12, vertical: 6),
@@ -428,7 +432,10 @@ class _DepthChips extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.only(right: 8),
           child: GestureDetector(
-            onTap: () => onSelected(depth),
+            onTap: () {
+              HapticService.selectionTap();
+              onSelected(depth);
+            },
             child: Container(
               padding: const EdgeInsets.symmetric(
                   horizontal: 10, vertical: 5),
