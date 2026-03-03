@@ -30,17 +30,21 @@ class NotificationService {
 
   bool _isInitialized = false;
 
-  /// Cached language preference (true = EN, false = TR)
-  bool _isEn = true;
+  /// Cached language preference
+  AppLanguage _language = AppLanguage.en;
 
   /// Read language preference from SharedPreferences
-  Future<bool> _readIsEn() async {
+  Future<AppLanguage> _readLanguage() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      return (prefs.getInt('app_language') ?? 0) == 0;
+      final index = prefs.getInt('app_language') ?? 0;
+      if (index >= 0 && index < AppLanguage.values.length) {
+        return AppLanguage.values[index];
+      }
+      return AppLanguage.en;
     } catch (e) {
       if (kDebugMode) debugPrint('Notification: read language pref error: $e');
-      return true;
+      return AppLanguage.en;
     }
   }
 
@@ -246,8 +250,8 @@ class NotificationService {
     required int minute,
     String? personalizedMessage,
   }) async {
-    _isEn = await _readIsEn();
-    final language = AppLanguage.fromIsEn(_isEn);
+    _language = await _readLanguage();
+    final language = _language;
     final message =
         personalizedMessage ??
         (L10nService.get('data.services.notification.take_a_moment_to_reflect_on_your_day', language));
@@ -312,8 +316,8 @@ class NotificationService {
     required int hour,
     required int minute,
   }) async {
-    _isEn = await _readIsEn();
-    final language = AppLanguage.fromIsEn(_isEn);
+    _language = await _readLanguage();
+    final language = _language;
 
     // Smart copy based on recent mood
     String body;
@@ -321,11 +325,11 @@ class NotificationService {
       final moodService = await MoodCheckinService.init();
       final todayMood = moodService.getTodayMood();
       if (todayMood != null && todayMood.mood <= 2) {
-        body = _isEn
+        body = _language == AppLanguage.en
             ? 'Tough days deserve reflection too. Your journal is here for you.'
             : 'Zor günler de yansıtmayı hak eder. Günlüğün senin için burada.';
       } else if (todayMood != null && todayMood.mood >= 4) {
-        body = _isEn
+        body = _language == AppLanguage.en
             ? 'Great day? Capture what made it special before it fades.'
             : 'Güzel bir gün mü? Özel kılan şeyleri kaybetmeden kaydet.';
       } else {
@@ -382,8 +386,8 @@ class NotificationService {
     required int hour,
     required int minute,
   }) async {
-    _isEn = await _readIsEn();
-    final language = AppLanguage.fromIsEn(_isEn);
+    _language = await _readLanguage();
+    final language = _language;
 
     // Get today's deterministic prompt
     final promptService = await JournalPromptService.init();
@@ -448,8 +452,8 @@ class NotificationService {
   /// Call this on app launch — it schedules for today at 20:30.
   /// Should be canceled when user saves a journal entry.
   Future<void> scheduleStreakAtRisk({required int currentStreak}) async {
-    _isEn = await _readIsEn();
-    final language = AppLanguage.fromIsEn(_isEn);
+    _language = await _readLanguage();
+    final language = _language;
 
     final now = DateTime.now();
     var scheduledTime = tz.TZDateTime(
@@ -468,8 +472,8 @@ class NotificationService {
     final String title;
     final String body;
     if (currentStreak < 2) {
-      title = _isEn ? 'Your first day!' : 'İlk günün!';
-      body = _isEn
+      title = _language == AppLanguage.en ? 'Your first day!' : 'İlk günün!';
+      body = _language == AppLanguage.en
           ? 'A quick entry tonight starts your journaling streak'
           : 'Bu akşam kısa bir giriş, yazma serini başlatır';
     } else {
@@ -515,8 +519,8 @@ class NotificationService {
   Future<void> scheduleStreakRecovery({required int lostStreak}) async {
     if (lostStreak < 2) return;
 
-    _isEn = await _readIsEn();
-    final language = AppLanguage.fromIsEn(_isEn);
+    _language = await _readLanguage();
+    final language = _language;
 
     final now = DateTime.now();
     final tomorrow = tz.TZDateTime(
@@ -564,8 +568,8 @@ class NotificationService {
   /// Schedule a nostalgia notification for today at 11 AM when user has
   /// entries from the same date in a previous year.
   Future<void> scheduleOnThisDayMemory({required int yearsAgo}) async {
-    _isEn = await _readIsEn();
-    final language = AppLanguage.fromIsEn(_isEn);
+    _language = await _readLanguage();
+    final language = _language;
 
     final now = DateTime.now();
     var scheduledTime = tz.TZDateTime(tz.local, now.year, now.month, now.day, 11, 0);
@@ -606,8 +610,8 @@ class NotificationService {
   Future<void> showReferralRewardNotification({
     required int totalReferrals,
   }) async {
-    _isEn = await _readIsEn();
-    final language = AppLanguage.fromIsEn(_isEn);
+    _language = await _readLanguage();
+    final language = _language;
 
     String title;
     String body;
@@ -651,8 +655,8 @@ class NotificationService {
 
   /// Schedule moon cycle mindfulness reminders
   Future<void> scheduleMoonPhaseNotifications() async {
-    _isEn = await _readIsEn();
-    final language = AppLanguage.fromIsEn(_isEn);
+    _language = await _readLanguage();
+    final language = _language;
     await _notifications.zonedSchedule(
       id: moonCycleId,
       title: L10nService.get('data.services.notification.moon_cycle_awareness', language),
@@ -679,8 +683,8 @@ class NotificationService {
 
   /// Show new moon notification
   Future<void> showNewMoonNotification({String? message}) async {
-    _isEn = await _readIsEn();
-    final language = AppLanguage.fromIsEn(_isEn);
+    _language = await _readLanguage();
+    final language = _language;
     await _notifications.show(
       id: newMoonId,
       title: L10nService.get('data.services.notification._new_moon', language),
@@ -708,8 +712,8 @@ class NotificationService {
 
   /// Show full moon notification
   Future<void> showFullMoonNotification({String? message}) async {
-    _isEn = await _readIsEn();
-    final language = AppLanguage.fromIsEn(_isEn);
+    _language = await _readLanguage();
+    final language = _language;
     await _notifications.show(
       id: fullMoonId,
       title: L10nService.get('data.services.notification._full_moon', language),
@@ -768,8 +772,8 @@ class NotificationService {
     required ReminderFrequency frequency,
   }) async {
     if (kIsWeb) return;
-    _isEn = await _readIsEn();
-    final language = AppLanguage.fromIsEn(_isEn);
+    _language = await _readLanguage();
+    final language = _language;
 
     final title = L10nService.get('data.services.notification.note_reminder', language);
     final body = message ?? noteTitle;
@@ -846,8 +850,8 @@ class NotificationService {
   /// Day-before reminders use range 51000-51799.
   Future<void> scheduleBirthdayNotification(BirthdayContact contact) async {
     if (kIsWeb || !contact.notificationsEnabled) return;
-    _isEn = await _readIsEn();
-    final language = AppLanguage.fromIsEn(_isEn);
+    _language = await _readLanguage();
+    final language = _language;
 
     final notifId = 50000 + (contact.id.hashCode.abs() % 800);
     final now = DateTime.now();
@@ -938,23 +942,22 @@ class NotificationService {
   Future<void> scheduleMonthlyRecapNotification({
     required int lastMonthEntryCount,
   }) async {
-    _isEn = await _readIsEn();
-
+    _language = await _readLanguage();
     final now = DateTime.now();
     // Schedule for the 1st of next month at 10 AM
     final nextMonth = now.month == 12
         ? tz.TZDateTime(tz.local, now.year + 1, 1, 1, 10, 0)
         : tz.TZDateTime(tz.local, now.year, now.month + 1, 1, 10, 0);
 
-    final title = _isEn
+    final title = _language == AppLanguage.en
         ? '\uD83D\uDCCA Your Monthly Recap is Ready'
         : '\uD83D\uDCCA Aylık Özetin Hazır';
 
     final body = lastMonthEntryCount > 0
-        ? (_isEn
+        ? (_language == AppLanguage.en
             ? 'You wrote $lastMonthEntryCount entries last month. See your patterns and insights.'
             : 'Geçen ay $lastMonthEntryCount kayıt yazdın. Örüntülerini ve içgörülerini gör.')
-        : (_isEn
+        : (_language == AppLanguage.en
             ? 'Start the new month with a fresh perspective. Check your recap.'
             : 'Yeni aya taze bir bakış açısıyla başla. Özetine göz at.');
 
@@ -966,8 +969,8 @@ class NotificationService {
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'monthly_recap',
-          _isEn ? 'Monthly Recap' : 'Aylık Özet',
-          channelDescription: _isEn
+          _language == AppLanguage.en ? 'Monthly Recap' : 'Aylık Özet',
+          channelDescription: _language == AppLanguage.en
               ? 'Monthly recap notification'
               : 'Aylık özet bildirimi',
           importance: Importance.defaultImportance,
@@ -1011,8 +1014,8 @@ class NotificationService {
   /// Schedule daily mood check-in reminder at 2 PM.
   Future<void> scheduleMoodCheckinReminder() async {
     if (!_isInitialized) await initialize();
-    _isEn = await _readIsEn();
-    final language = AppLanguage.fromIsEn(_isEn);
+    _language = await _readLanguage();
+    final language = _language;
 
     final title = language == AppLanguage.en
         ? 'How are you feeling?'
@@ -1069,8 +1072,8 @@ class NotificationService {
   /// Schedule daily sleep tracking reminder at 9 AM.
   Future<void> scheduleSleepTrackingReminder() async {
     if (!_isInitialized) await initialize();
-    _isEn = await _readIsEn();
-    final language = AppLanguage.fromIsEn(_isEn);
+    _language = await _readLanguage();
+    final language = _language;
 
     final title = language == AppLanguage.en
         ? 'How did you sleep?'
@@ -1127,8 +1130,8 @@ class NotificationService {
   /// Schedule daily habit completion reminder at 7 PM.
   Future<void> scheduleHabitCompletionReminder() async {
     if (!_isInitialized) await initialize();
-    _isEn = await _readIsEn();
-    final language = AppLanguage.fromIsEn(_isEn);
+    _language = await _readLanguage();
+    final language = _language;
 
     final title = language == AppLanguage.en
         ? 'Complete your daily habits'

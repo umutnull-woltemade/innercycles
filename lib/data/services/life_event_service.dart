@@ -197,7 +197,7 @@ class LifeEventService with SupabaseSyncMixin {
                 ?.map((e) => e.toString())
                 .toList() ??
             [],
-        intensity: (row['intensity'] as int?) ?? 3,
+        intensity: (row['intensity'] as num?)?.toInt() ?? 3,
       );
 
       final remoteUpdatedAt =

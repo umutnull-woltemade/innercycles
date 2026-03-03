@@ -80,7 +80,7 @@ class MoodEntry {
     // Backward-compatible: generate UUID if id missing (old data)
     id: json['id'] as String? ?? const Uuid().v4(),
     date: DateTime.tryParse(json['date']?.toString() ?? '') ?? DateTime.now(),
-    mood: json['mood'] as int? ?? 3,
+    mood: (json['mood'] as num?)?.toInt() ?? 3,
     emoji: json['emoji'] as String? ?? '',
     selectedEmotions: (json['selected_emotions'] as List<dynamic>?)
             ?.map((e) => e.toString())
@@ -88,8 +88,8 @@ class MoodEntry {
         const [],
     quadrant: json['quadrant'] as String?,
     signalId: json['signal_id'] as String?,
-    energy: json['energy'] as int?,
-    pleasantness: json['pleasantness'] as int?,
+    energy: (json['energy'] as num?)?.toInt(),
+    pleasantness: (json['pleasantness'] as num?)?.toInt(),
     createdAt: json['created_at'] != null
         ? DateTime.tryParse(json['created_at'].toString())
         : null,
@@ -298,7 +298,7 @@ class MoodCheckinService with SupabaseSyncMixin {
         id: id,
         date:
             DateTime.tryParse(row['date']?.toString() ?? '') ?? DateTime.now(),
-        mood: row['mood'] as int? ?? 3,
+        mood: (row['mood'] as num?)?.toInt() ?? 3,
         emoji: row['emoji'] as String? ?? '',
         selectedEmotions: (row['selected_emotions'] as List<dynamic>?)
                 ?.map((e) => e.toString())
@@ -306,8 +306,8 @@ class MoodCheckinService with SupabaseSyncMixin {
             const [],
         quadrant: row['quadrant'] as String?,
         signalId: row['signal_id'] as String?,
-        energy: row['energy'] as int?,
-        pleasantness: row['pleasantness'] as int?,
+        energy: (row['energy'] as num?)?.toInt(),
+        pleasantness: (row['pleasantness'] as num?)?.toInt(),
       );
 
       final remoteUpdatedAt =

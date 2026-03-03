@@ -331,7 +331,7 @@ class JournalService with SupabaseSyncMixin {
           (f) => f.name == row['focus_area'],
           orElse: () => FocusArea.emotions,
         ),
-        overallRating: row['overall_rating'] as int? ?? 3,
+        overallRating: (row['overall_rating'] as num?)?.toInt() ?? 3,
         subRatings: row['sub_ratings'] is Map
             ? Map<String, int>.from(
                 (row['sub_ratings'] as Map).map(

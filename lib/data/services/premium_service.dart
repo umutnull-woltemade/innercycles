@@ -311,11 +311,14 @@ class PremiumNotifier extends Notifier<PremiumState> {
         debugPrint('PremiumService: Subscription expired - reverting to free');
       }
 
+      final previousTier = state.tier.name;
+      final previousExpiry = state.expiryDate?.toIso8601String();
+
       await _clearPremium();
 
       _analytics.logEvent('subscription_expired', {
-        'previous_tier': state.tier.name,
-        'expiry_date': state.expiryDate?.toIso8601String(),
+        'previous_tier': previousTier,
+        'expiry_date': previousExpiry,
       });
     }
   }
