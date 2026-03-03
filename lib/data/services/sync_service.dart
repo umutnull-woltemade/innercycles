@@ -551,7 +551,7 @@ class SyncQueueItem {
 
   factory SyncQueueItem.fromJson(Map<String, dynamic> json) => SyncQueueItem(
     id: json['id']?.toString() ?? '',
-    operation: json['operation']?.toString() ?? 'upsert',
+    operation: json['operation']?.toString() ?? 'UPSERT',
     tableName: json['table_name']?.toString() ?? '',
     recordId: json['record_id']?.toString() ?? '',
     payload: json['payload'] is Map
@@ -560,9 +560,9 @@ class SyncQueueItem {
     createdAt:
         DateTime.tryParse(json['created_at']?.toString() ?? '') ??
         DateTime.now(),
-    status: json['status'] ?? 'pending',
-    retryCount: json['retry_count'] ?? 0,
-    lastError: json['last_error'],
+    status: json['status']?.toString() ?? 'pending',
+    retryCount: (json['retry_count'] as num?)?.toInt() ?? 0,
+    lastError: json['last_error']?.toString(),
   );
 
   SyncQueueItem copyWith({

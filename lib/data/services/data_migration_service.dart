@@ -320,7 +320,7 @@ class DataMigrationService {
 
     // Mark migration complete (even if partial — errors are tracked)
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_migratedKey, errors.isEmpty);
+    await prefs.setBool(_migratedKey, true);
 
     // Update sync metadata
     try {

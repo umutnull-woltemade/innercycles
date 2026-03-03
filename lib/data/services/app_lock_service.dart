@@ -12,21 +12,21 @@ class AppLockService {
   final SharedPreferences _prefs;
   final LocalAuthentication _localAuth = LocalAuthentication();
 
-  AppLockService._(this._prefs) {
-    _migrateFromPlaintext();
-  }
+  AppLockService._(this._prefs);
 
   static Future<AppLockService> init() async {
     final prefs = await SharedPreferences.getInstance();
-    return AppLockService._(prefs);
+    final service = AppLockService._(prefs);
+    await service._migrateFromPlaintext();
+    return service;
   }
 
   /// One-time migration: hash any existing plaintext PIN
-  void _migrateFromPlaintext() {
+  Future<void> _migrateFromPlaintext() async {
     final plainPin = _prefs.getString(_pinKey);
     if (plainPin != null) {
-      _prefs.setString(_pinHashKey, _hashPin(plainPin));
-      _prefs.remove(_pinKey);
+      await _prefs.setString(_pinHashKey, _hashPin(plainPin));
+      await _prefs.remove(_pinKey);
     }
   }
 
