@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../data/providers/app_providers.dart';
+import '../../../../data/services/affirmation_service.dart';
 import '../../../../data/services/haptic_service.dart';
 import '../../../../data/content/share_card_templates.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -175,10 +176,10 @@ class _DailyAffirmationCardState extends ConsumerState<DailyAffirmationCard> {
 
   void _showSavedSheet(
     BuildContext context,
-    dynamic service,
+    AffirmationService service,
     AppLanguage language,
   ) {
-    final favorites = service.getFavorites() as List;
+    final favorites = service.getFavorites();
     if (favorites.isEmpty) return;
 
     showModalBottomSheet(

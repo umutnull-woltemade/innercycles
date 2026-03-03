@@ -87,6 +87,7 @@ class _AnimatedTextFieldState extends State<AnimatedTextField>
 
   @override
   void dispose() {
+    _focusNode.removeListener(_onFocusChanged);
     if (widget.focusNode == null) _focusNode.dispose();
     _borderController.dispose();
     super.dispose();

@@ -195,9 +195,9 @@ class WidgetDataService {
 
     try {
       await _channel.invokeMethod('reloadWidgets');
-      debugPrint('[WidgetDataService] All widgets reloaded');
+      if (kDebugMode) debugPrint('[WidgetDataService] All widgets reloaded');
     } catch (e) {
-      debugPrint('[WidgetDataService] Error reloading widgets: $e');
+      if (kDebugMode) debugPrint('[WidgetDataService] Error reloading widgets: $e');
     }
   }
 

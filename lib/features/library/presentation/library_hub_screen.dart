@@ -77,6 +77,24 @@ class LibraryHubScreen extends ConsumerWidget {
         route: Routes.calendarHeatmap,
       ),
       _LibraryCategory(
+        emoji: '\u{1F9E0}',
+        nameEn: 'Insight Modules',
+        nameTr: 'İçgörü Modülleri',
+        route: Routes.contextModuleLibrary,
+      ),
+      _LibraryCategory(
+        emoji: '\u{1F680}',
+        nameEn: 'Programs',
+        nameTr: 'Programlar',
+        route: Routes.programProgression,
+      ),
+      _LibraryCategory(
+        emoji: '\u{1F4CB}',
+        nameEn: 'Quiz History',
+        nameTr: 'Test Geçmişi',
+        route: Routes.quizResultsArchive,
+      ),
+      _LibraryCategory(
         emoji: '\u{1F4E5}',
         nameEn: 'Export Data',
         nameTr: 'Veri D\u0131\u015fa Aktar',

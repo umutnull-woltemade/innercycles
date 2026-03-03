@@ -14,6 +14,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/models/cycle_entry.dart';
+import '../../../data/services/cycle_sync_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -164,7 +165,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
 
   Widget _buildCycleDayCard(
     BuildContext context,
-    dynamic cycleService,
+    CycleSyncService cycleService,
     bool isDark,
     bool isEn,
   ) {
@@ -328,7 +329,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
 
   Widget _buildPhaseCard(
     BuildContext context,
-    dynamic cycleService,
+    CycleSyncService cycleService,
     bool isDark,
     bool isEn,
   ) {
@@ -440,7 +441,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
 
   Widget _buildPhasePromptCard(
     BuildContext context,
-    dynamic cycleService,
+    CycleSyncService cycleService,
     bool isDark,
     bool isEn,
   ) {
@@ -661,13 +662,13 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
 
   Widget _buildPhaseTimeline(
     BuildContext context,
-    dynamic cycleService,
+    CycleSyncService cycleService,
     bool isDark,
     bool isEn,
   ) {
     final language = AppLanguage.fromIsEn(isEn);
-    final cycleLength = cycleService.getAverageCycleLength() as int;
-    final currentDay = cycleService.getCurrentCycleDay() as int?;
+    final cycleLength = cycleService.getAverageCycleLength();
+    final currentDay = cycleService.getCurrentCycleDay();
 
     return GlassPanel(
       elevation: GlassElevation.g2,
@@ -696,7 +697,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   final fraction = _phaseFraction(
                     phase,
                     cycleLength,
-                    cycleService.getAveragePeriodLength() as int,
+                    cycleService.getAveragePeriodLength(),
                   );
                   return Expanded(
                     flex: (fraction * 100).round().clamp(1, 100),

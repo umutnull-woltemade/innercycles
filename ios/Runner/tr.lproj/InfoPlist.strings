@@ -3,3 +3,6 @@ NSCameraUsageDescription = "Kasana fotoğraf eklemek için kamera erişimi gerek
 NSPhotoLibraryUsageDescription = "Kasana fotoğraf eklemek için fotoğraf kütüphanesi erişimi gerekli.";
 NSMicrophoneUsageDescription = "Sesli giriş için mikrofon erişimi gerekli.";
 NSUserTrackingUsageDescription = "InnerCycles bu tanımlayıcıyı ücretsiz sürümde kişiselleştirilmiş reklamlar göstermek için kullanır. Premium kullanıcılar reklam görmez.";
+NSSpeechRecognitionUsageDescription = "InnerCycles sesini yazıya dönüştürmek için konuşma tanıma özelliğini kullanır. İşlem cihazında gerçekleşir.";
+NSFaceIDUsageDescription = "InnerCycles özel kasanı korumak için Face ID kullanır. Biyometrik verilerin cihazından asla çıkmaz.";
+NSPhotoLibraryAddUsageDescription = "InnerCycles paylaşım kartlarını kaydetmek istediğinde fotoğraf kütüphanesine erişim gerekir.";

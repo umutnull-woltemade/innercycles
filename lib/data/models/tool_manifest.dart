@@ -492,7 +492,7 @@ class ToolManifestRegistry {
       intentTags: [IntentTag.discover],
       outputTypes: ['quiz_result'],
       timeToValueSeconds: 120,
-      relatedToolIds: ['archetype', 'blindSpot'],
+      relatedToolIds: ['archetype', 'blindSpot', 'quizResultsArchive'],
     ),
 
     // ── 16. Archetype ──
@@ -639,7 +639,7 @@ class ToolManifestRegistry {
       intentTags: [IntentTag.grow, IntentTag.discover],
       timeToValueSeconds: 60,
       requiresPremium: true,
-      relatedToolIds: ['journal', 'rituals'],
+      relatedToolIds: ['journal', 'rituals', 'programProgression'],
     ),
 
     // ── 25. Weekly Debrief ──
@@ -859,6 +859,56 @@ class ToolManifestRegistry {
       intentTags: [IntentTag.track],
       timeToValueSeconds: 30,
       relatedToolIds: ['lifeTimeline', 'calendarHeatmap'],
+    ),
+    // ── 46. Insight Modules ──
+    ToolManifest(
+      id: 'contextModuleLibrary',
+      nameEn: 'Insight Modules',
+      nameTr: 'İçgörü Modülleri',
+      valuePropositionEn:
+          'Browse 36 educational modules across psychology, neuroscience, and self-awareness.',
+      valuePropositionTr:
+          'Psikoloji, nörobilim ve öz-farkındalık alanında 36 eğitim modülünü keşfet.',
+      route: Routes.contextModuleLibrary,
+      icon: '\u{1F9E0}',
+      category: ToolCategory.reference,
+      intentTags: [IntentTag.discover, IntentTag.grow],
+      timeToValueSeconds: 30,
+      relatedToolIds: ['insightsDiscovery', 'patterns', 'journal'],
+    ),
+
+    // ── 47. Program Progress ──
+    ToolManifest(
+      id: 'programProgression',
+      nameEn: 'Program Progress',
+      nameTr: 'Program İlerlemesi',
+      valuePropositionEn:
+          'Track your progress across all guided programs.',
+      valuePropositionTr:
+          'Tüm rehberli programlardaki ilerlemeni takip et.',
+      route: Routes.programProgression,
+      icon: '\u{1F680}',
+      category: ToolCategory.data,
+      intentTags: [IntentTag.grow, IntentTag.track],
+      timeToValueSeconds: 5,
+      relatedToolIds: ['programs', 'challenges', 'growthDashboard'],
+    ),
+
+    // ── 48. Quiz History ──
+    ToolManifest(
+      id: 'quizResultsArchive',
+      nameEn: 'Quiz History',
+      nameTr: 'Test Geçmişi',
+      valuePropositionEn:
+          'Browse all past quiz results and track dimension evolution.',
+      valuePropositionTr:
+          'Tüm geçmiş test sonuçlarını gör ve boyut gelişimini izle.',
+      route: Routes.quizResultsArchive,
+      icon: '\u{1F4CB}',
+      category: ToolCategory.data,
+      intentTags: [IntentTag.analyze, IntentTag.track],
+      timeToValueSeconds: 5,
+      relatedToolIds: ['quizHub', 'archetype', 'blindSpot'],
     ),
   ];
 }
