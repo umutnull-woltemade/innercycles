@@ -28,6 +28,7 @@ import '../../../data/services/review_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../data/services/widget_data_service.dart';
+import '../../../data/services/journal_service.dart';
 import '../../../data/services/notification_service.dart';
 import '../../streak/presentation/milestone_celebration_modal.dart';
 import '../../milestones/presentation/badge_celebration_modal.dart';
@@ -1622,7 +1623,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     }
   }
 
-  Future<void> _updateNotificationLifecycle(dynamic journalService) async {
+  Future<void> _updateNotificationLifecycle(JournalService journalService) async {
     try {
       final nlcService = await ref.read(
         notificationLifecycleServiceProvider.future,
@@ -1676,10 +1677,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   }
 
   /// Schedule "Your weekly summary is ready" for Sunday 10:00.
-  void _scheduleWeeklyDigestNotification(dynamic service) {
+  void _scheduleWeeklyDigestNotification(JournalService service) {
     try {
       final language = ref.read(languageProvider);
-      final streak = service.getCurrentStreak() as int;
+      final streak = service.getCurrentStreak();
       // Count this week's entries
       final now = DateTime.now();
       final daysSinceMonday = (now.weekday - 1) % 7;
@@ -1687,7 +1688,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           .subtract(Duration(days: daysSinceMonday));
       final weekEntries = service
           .getEntriesByDateRange(weekStart, now)
-          .length as int;
+          .length;
 
       NotificationService().scheduleWeeklyDigest(
         entriesThisWeek: weekEntries,
