@@ -99,6 +99,7 @@ class _BondAcceptScreenState extends ConsumerState<BondAcceptScreen> {
               physics: const BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics(),
               ),
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               slivers: [
                 GlassSliverAppBar(
                   title: isEn ? 'Accept Bond' : 'Bağ Kabul Et',
@@ -382,8 +383,6 @@ class _BondAcceptScreenState extends ConsumerState<BondAcceptScreen> {
   // ═══════════════════════════════════════════════════════════════════════════
 
   void _onDigitChanged(int index, String value) {
-    setState(() => _errorMessage = null);
-
     if (value.isNotEmpty) {
       // Auto-advance to next field
       if (index < _codeLength - 1) {
@@ -392,7 +391,7 @@ class _BondAcceptScreenState extends ConsumerState<BondAcceptScreen> {
         _focusNodes[index].unfocus();
       }
     }
-    setState(() {});
+    setState(() => _errorMessage = null);
   }
 
   void _onBackspace(int index) {

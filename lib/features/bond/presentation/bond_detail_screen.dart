@@ -79,13 +79,32 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
         child: bondsAsync.when(
           loading: () => const Center(child: CupertinoActivityIndicator()),
           error: (e, s) => Center(
-            child: Text(
-              isEn ? 'Could not load bond' : 'Bağ yüklenemedi',
-              style: AppTypography.subtitle(
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  isEn ? 'Could not load bond' : 'Bağ yüklenemedi',
+                  style: AppTypography.subtitle(
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextButton.icon(
+                  onPressed: () => ref.invalidate(activeBondsProvider),
+                  icon: Icon(Icons.refresh_rounded,
+                      size: 16, color: AppColors.starGold),
+                  label: Text(
+                    isEn ? 'Retry' : 'Tekrar Dene',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           data: (bonds) {
@@ -568,7 +587,10 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
 
     return Center(
       child: GestureDetector(
-        onTap: () => _confirmDissolve(bond, isEn),
+        onTap: () {
+          HapticService.buttonPress();
+          _confirmDissolve(bond, isEn);
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 12),
           child: Text(
@@ -624,7 +646,10 @@ class _BondDetailScreenState extends ConsumerState<BondDetailScreen> {
           ),
           const SizedBox(height: 12),
           GestureDetector(
-            onTap: () => _cancelDissolve(bond),
+            onTap: () {
+              HapticService.buttonPress();
+              _cancelDissolve(bond);
+            },
             child: Text(
               isEn ? 'Cancel Dissolution' : 'Çözülmeyi İptal Et',
               style: AppTypography.subtitle(
