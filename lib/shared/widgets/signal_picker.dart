@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_typography.dart';
 import '../../data/content/signal_content.dart';
 import '../../data/providers/app_providers.dart';
 import '../../data/services/haptic_service.dart';
@@ -77,7 +78,11 @@ class _SignalOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return Semantics(
+      button: true,
+      selected: isSelected,
+      label: signal.localizedName(language),
+      child: GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: 200.ms,
@@ -106,17 +111,17 @@ class _SignalOption extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               signal.localizedName(language),
-              style: TextStyle(
+              style: AppTypography.subtitle(
                 fontSize: 12,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
                 color: isSelected
                     ? (isDark ? AppColors.textPrimary : AppColors.lightTextPrimary)
                     : (isDark ? AppColors.textSecondary : AppColors.lightTextSecondary),
-              ),
+              ).copyWith(fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400),
             ),
           ],
         ),
       ),
+    ),
     );
   }
 }

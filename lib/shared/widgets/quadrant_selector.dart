@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_typography.dart';
 import '../../data/content/signal_content.dart';
 import '../../data/providers/app_providers.dart';
 import '../../data/services/haptic_service.dart';
@@ -122,7 +123,11 @@ class _QuadrantCell extends StatelessWidget {
         ? AppColors.starGold
         : (isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.06));
 
-    return GestureDetector(
+    return Semantics(
+      button: true,
+      selected: selected,
+      label: quadrant.localizedName(language),
+      child: GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: 200.ms,
@@ -155,18 +160,18 @@ class _QuadrantCell extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 quadrant.localizedName(language),
-                style: TextStyle(
+                style: AppTypography.subtitle(
                   fontSize: 11,
-                  fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
                   color: selected
                       ? (isDark ? AppColors.textPrimary : AppColors.lightTextPrimary)
                       : (isDark ? AppColors.textSecondary : AppColors.lightTextSecondary),
-                ),
+                ).copyWith(fontWeight: selected ? FontWeight.w600 : FontWeight.w400),
               ),
             ],
           ],
         ),
       ),
+    ),
     );
   }
 }

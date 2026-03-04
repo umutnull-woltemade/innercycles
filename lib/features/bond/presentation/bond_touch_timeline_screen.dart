@@ -52,6 +52,9 @@ class BondTouchTimelineScreen extends ConsumerWidget {
                     return const Center(
                         child: CupertinoActivityIndicator());
                   }
+                  if (snapshot.hasError) {
+                    return _EmptyState(isEn: isEn, isDark: isDark);
+                  }
 
                   final touches = snapshot.data ?? [];
 
