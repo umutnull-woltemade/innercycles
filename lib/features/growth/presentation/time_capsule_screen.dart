@@ -55,6 +55,7 @@ class _TimeCapsuleScreenState extends ConsumerState<TimeCapsuleScreen> {
                 physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics(),
                 ),
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn ? 'Time Capsule' : 'Zaman Kapsülü',

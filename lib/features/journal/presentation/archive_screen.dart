@@ -168,6 +168,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                     physics: const BouncingScrollPhysics(
                       parent: AlwaysScrollableScrollPhysics(),
                     ),
+                    keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                     slivers: [
                       GlassSliverAppBar(
                         title: L10nService.get('journal.archive.archive', language),

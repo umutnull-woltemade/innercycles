@@ -46,6 +46,7 @@ class _IntentionsScreenState extends ConsumerState<IntentionsScreen> {
             physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics(),
             ),
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             slivers: [
               GlassSliverAppBar(
                 title: isEn ? 'Intentions' : 'Niyetler',

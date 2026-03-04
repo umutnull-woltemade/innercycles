@@ -43,6 +43,7 @@ class _BondInviteScreenState extends ConsumerState<BondInviteScreen> {
       body: CosmicBackground(
         child: CupertinoScrollbar(
           child: CustomScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics(),
             ),

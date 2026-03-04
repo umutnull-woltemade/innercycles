@@ -53,6 +53,7 @@ class _TriggerMapScreenState extends ConsumerState<TriggerMapScreen> {
                 physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics(),
                 ),
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn ? 'Trigger Map' : 'Tetikleyici Haritası',

@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/content/signal_content.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/haptic_service.dart';
@@ -70,7 +71,7 @@ class _MoodCompassSheetState extends ConsumerState<MoodCompassSheet> {
           // Title
           Text(
             isEn ? 'Mood Compass' : 'Ruh Hali Pusulası',
-            style: TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 18,
               fontWeight: FontWeight.w600,
               color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
@@ -79,7 +80,7 @@ class _MoodCompassSheetState extends ConsumerState<MoodCompassSheet> {
           const SizedBox(height: 4),
           Text(
             isEn ? 'Tap the signal closest to how you feel' : 'Hissine en yakın sinyale dokun',
-            style: TextStyle(
+            style: AppTypography.subtitle(
               fontSize: 13,
               color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
             ),
@@ -140,6 +141,7 @@ class _MoodCompassSheetState extends ConsumerState<MoodCompassSheet> {
                 onPressed: _selectedId == null
                     ? null
                     : () {
+                        HapticService.success();
                         final signal = getSignalById(_selectedId!);
                         if (signal != null) {
                           Navigator.of(context).pop(signal);
@@ -213,13 +215,12 @@ class _MoodCompassSheetState extends ConsumerState<MoodCompassSheet> {
                     const SizedBox(height: 2),
                     Text(
                       signal.localizedName(language),
-                      style: TextStyle(
-                        fontSize: 9,
-                        fontWeight: FontWeight.w600,
+                      style: AppTypography.subtitle(
+                        fontSize: 10,
                         color: isDark
                             ? AppColors.textPrimary
                             : AppColors.lightTextPrimary,
-                      ),
+                      ).copyWith(fontWeight: FontWeight.w600),
                     ),
                   ],
                 ],
@@ -256,8 +257,8 @@ class _AxisLabel extends StatelessWidget {
           text,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            fontSize: 9,
+          style: AppTypography.elegantAccent(
+            fontSize: 10,
             fontWeight: FontWeight.w500,
             letterSpacing: 0.5,
             color: (isDark ? AppColors.textMuted : AppColors.lightTextMuted)

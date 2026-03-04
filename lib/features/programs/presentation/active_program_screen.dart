@@ -98,6 +98,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
                     physics: const BouncingScrollPhysics(
                       parent: AlwaysScrollableScrollPhysics(),
                     ),
+                    keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                     slivers: [
                       GlassSliverAppBar(
                         title: program.localizedTitle(language),

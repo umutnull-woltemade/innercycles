@@ -198,18 +198,28 @@ class BondTouchTimelineScreen extends ConsumerWidget {
                                         ),
                                       ),
                                     ),
-                                    ...dayTouches.map(
-                                      (touch) => Padding(
+                                    ...dayTouches
+                                        .asMap()
+                                        .entries
+                                        .map(
+                                      (e) => Padding(
                                         padding:
                                             const EdgeInsets
                                                 .only(
                                                 bottom: 6),
                                         child: _TouchRow(
-                                          touch: touch,
+                                          touch: e.value,
                                           isEn: isEn,
                                           isDark: isDark,
                                         ),
-                                      ),
+                                      )
+                                          .animate()
+                                          .fadeIn(
+                                            delay: Duration(
+                                                milliseconds:
+                                                    60 * e.key),
+                                            duration: 250.ms,
+                                          ),
                                     ),
                                     const SizedBox(height: 8),
                                   ],
@@ -231,7 +241,7 @@ class BondTouchTimelineScreen extends ConsumerWidget {
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: 40),
+                              const SizedBox(height: 100),
                             ],
                           ),
                         ),
@@ -295,7 +305,7 @@ class _TouchOverview extends StatelessWidget {
                 Text(
                   isEn ? 'Touches' : 'Dokunuş',
                   style: AppTypography.elegantAccent(
-                    fontSize: 9,
+                    fontSize: 10,
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
@@ -317,7 +327,7 @@ class _TouchOverview extends StatelessWidget {
                   Text(
                     isEn ? 'New' : 'Yeni',
                     style: AppTypography.elegantAccent(
-                      fontSize: 9,
+                      fontSize: 10,
                       color: isDark
                           ? AppColors.textMuted
                           : AppColors.lightTextMuted,
@@ -333,9 +343,9 @@ class _TouchOverview extends StatelessWidget {
                     style: const TextStyle(fontSize: 22),
                   ),
                   Text(
-                    isEn ? 'Most Used' : 'En \u00C7ok',
+                    isEn ? 'Most Used' : 'En Çok',
                     style: AppTypography.elegantAccent(
-                      fontSize: 9,
+                      fontSize: 10,
                       color: isDark
                           ? AppColors.textMuted
                           : AppColors.lightTextMuted,
@@ -395,7 +405,7 @@ class _TouchTypeBreakdown extends StatelessWidget {
               Text(
                 '${(ratio * 100).round()}%',
                 style: AppTypography.subtitle(
-                  fontSize: 9,
+                  fontSize: 10,
                   color: isDark
                       ? AppColors.textMuted
                       : AppColors.lightTextMuted,
@@ -477,7 +487,7 @@ class _TouchRow extends StatelessWidget {
               child: Text(
                 isEn ? 'New' : 'Yeni',
                 style: AppTypography.elegantAccent(
-                  fontSize: 9,
+                  fontSize: 10,
                   color: AppColors.brandPink,
                 ),
               ),

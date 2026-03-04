@@ -7,6 +7,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../data/content/signal_content.dart';
+import '../../../../data/services/haptic_service.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/mood_checkin_service.dart';
 
@@ -56,9 +57,13 @@ class _SignalCalendarState extends State<SignalCalendar> {
             IconButton(
               icon: const Icon(Icons.chevron_left_rounded, size: 20),
               color: widget.isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-              onPressed: () => setState(() {
-                _displayMonth = DateTime(_displayMonth.year, _displayMonth.month - 1);
-              }),
+              tooltip: isEn ? 'Previous month' : 'Önceki ay',
+              onPressed: () {
+                HapticService.selectionTap();
+                setState(() {
+                  _displayMonth = DateTime(_displayMonth.year, _displayMonth.month - 1);
+                });
+              },
             ),
             Text(
               _monthName(_displayMonth, isEn),
@@ -71,11 +76,15 @@ class _SignalCalendarState extends State<SignalCalendar> {
             IconButton(
               icon: const Icon(Icons.chevron_right_rounded, size: 20),
               color: widget.isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              tooltip: isEn ? 'Next month' : 'Sonraki ay',
               onPressed: (_displayMonth.year < DateTime.now().year) ||
                       (_displayMonth.year == DateTime.now().year && _displayMonth.month < DateTime.now().month)
-                  ? () => setState(() {
+                  ? () {
+                      HapticService.selectionTap();
+                      setState(() {
                         _displayMonth = DateTime(_displayMonth.year, _displayMonth.month + 1);
-                      })
+                      });
+                    }
                   : null,
             ),
           ],
@@ -194,7 +203,7 @@ class _CalendarDay extends StatelessWidget {
                 ? Center(
                     child: Text(
                       '$day',
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         fontSize: 10,
                         color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
                       ),
@@ -233,11 +242,10 @@ class _CalendarDay extends StatelessWidget {
           child: Center(
             child: Text(
               '$day',
-              style: TextStyle(
+              style: AppTypography.subtitle(
                 fontSize: 10,
-                fontWeight: FontWeight.w600,
                 color: Colors.white.withValues(alpha: 0.9),
-              ),
+              ).copyWith(fontWeight: FontWeight.w600),
             ),
           ),
         ),

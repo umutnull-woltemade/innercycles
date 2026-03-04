@@ -40,11 +40,19 @@ class _BondHubScreenState extends ConsumerState<BondHubScreen> {
     return Scaffold(
       floatingActionButton: _buildFAB(context, isEn),
       body: CosmicBackground(
-        child: CupertinoScrollbar(
-          child: CustomScrollView(
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-            ),
+        child: RefreshIndicator(
+          color: AppColors.starGold,
+          backgroundColor: isDark ? AppColors.deepSpace : AppColors.lightSurface,
+          onRefresh: () async {
+            ref.invalidate(activeBondsProvider);
+            await Future.delayed(const Duration(milliseconds: 300));
+          },
+          child: CupertinoScrollbar(
+            child: CustomScrollView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
             slivers: [
               GlassSliverAppBar(
                 title: isEn ? 'Bonds' : 'Bağlar',
@@ -109,6 +117,7 @@ class _BondHubScreenState extends ConsumerState<BondHubScreen> {
               const SliverToBoxAdapter(child: SizedBox(height: 100)),
             ],
           ),
+        ),
         ),
       ),
     );
@@ -178,7 +187,19 @@ class _BondHubScreenState extends ConsumerState<BondHubScreen> {
                   context.push(Routes.bondDetail.replaceFirst(':bondId', bond.id));
                 },
               ),
-            );
+            )
+                .animate()
+                .fadeIn(
+                  delay: Duration(milliseconds: 80 * index),
+                  duration: 300.ms,
+                )
+                .slideY(
+                  begin: 0.05,
+                  end: 0,
+                  delay: Duration(milliseconds: 80 * index),
+                  duration: 300.ms,
+                  curve: Curves.easeOut,
+                );
           },
           childCount: bonds.length,
         ),

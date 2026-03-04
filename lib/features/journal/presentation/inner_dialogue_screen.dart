@@ -97,6 +97,7 @@ class _InnerDialogueScreenState extends ConsumerState<InnerDialogueScreen> {
             physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics(),
             ),
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             slivers: [
               GlassSliverAppBar(
                 title: isEn ? 'Inner Dialogue' : '\u0130\u00e7 Diyalog',

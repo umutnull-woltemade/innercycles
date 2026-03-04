@@ -82,6 +82,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                 physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics(),
                 ),
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                 slivers: [
                   GlassSliverAppBar(
                     title: L10nService.get('gratitude.gratitude.gratitude_journal', language),

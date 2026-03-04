@@ -36,7 +36,12 @@ class BondPartnerCard extends ConsumerWidget {
         (isEn ? 'Partner' : 'Partner');
     final partnerMoodAsync = ref.watch(partnerMoodProvider(bond.id));
 
-    return GestureDetector(
+    return Semantics(
+      button: true,
+      label: isEn
+          ? 'View bond with $partnerName'
+          : '$partnerName ile bağı görüntüle',
+      child: GestureDetector(
       onTap: onTap,
       child: PremiumCard(
         style: PremiumCardStyle.amethyst,
@@ -106,16 +111,19 @@ class BondPartnerCard extends ConsumerWidget {
             ),
 
             // Chevron
-            Icon(
-              Icons.chevron_right_rounded,
-              color: isDark
-                  ? AppColors.textMuted
-                  : AppColors.lightTextMuted,
-              size: 22,
+            ExcludeSemantics(
+              child: Icon(
+                Icons.chevron_right_rounded,
+                color: isDark
+                    ? AppColors.textMuted
+                    : AppColors.lightTextMuted,
+                size: 22,
+              ),
             ),
           ],
         ),
       ),
+    ),
     )
         .animate()
         .fadeIn(duration: 400.ms, curve: Curves.easeOut)

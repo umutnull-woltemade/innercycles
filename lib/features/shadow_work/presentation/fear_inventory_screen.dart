@@ -57,6 +57,7 @@ class _FearInventoryScreenState extends ConsumerState<FearInventoryScreen> {
                 physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics(),
                 ),
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn ? 'Fear Inventory' : 'Korku Envanteri',

@@ -184,7 +184,10 @@ class _CheckinViewState extends State<_CheckinView> {
             Column(
               children: [
                 GestureDetector(
-                  onTap: () => setState(() => _selectedQuadrant = null),
+                  onTap: () {
+                    HapticService.selectionTap();
+                    setState(() => _selectedQuadrant = null);
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -442,6 +445,7 @@ class _ThankYouViewState extends ConsumerState<_ThankYouView> {
   }
 
   Future<void> _toggleEmotion(String emotionId) async {
+    HapticService.selectionTap();
     setState(() {
       if (_selected.contains(emotionId)) {
         _selected.remove(emotionId);

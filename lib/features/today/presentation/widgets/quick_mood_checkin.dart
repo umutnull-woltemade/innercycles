@@ -71,7 +71,10 @@ class _QuickMoodCheckinState extends ConsumerState<QuickMoodCheckin> {
             Column(
               children: [
                 GestureDetector(
-                  onTap: () => setState(() => _selectedQuadrant = null),
+                  onTap: () {
+                    HapticService.selectionTap();
+                    setState(() => _selectedQuadrant = null);
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

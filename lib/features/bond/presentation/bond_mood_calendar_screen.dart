@@ -49,13 +49,32 @@ class _BondMoodCalendarScreenState
         child: bondsAsync.when(
           loading: () => const Center(child: CupertinoActivityIndicator()),
           error: (e, s) => Center(
-            child: Text(
-              isEn ? 'Could not load bond' : 'Bağ yüklenemedi',
-              style: AppTypography.subtitle(
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  isEn ? 'Could not load bond' : 'Bağ yüklenemedi',
+                  style: AppTypography.subtitle(
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextButton.icon(
+                  onPressed: () => ref.invalidate(activeBondsProvider),
+                  icon: Icon(Icons.refresh_rounded,
+                      size: 16, color: AppColors.starGold),
+                  label: Text(
+                    isEn ? 'Retry' : 'Tekrar Dene',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           data: (bonds) {

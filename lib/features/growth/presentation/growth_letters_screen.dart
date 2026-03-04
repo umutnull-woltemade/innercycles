@@ -64,6 +64,7 @@ class _GrowthLettersScreenState extends ConsumerState<GrowthLettersScreen> {
             physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics(),
             ),
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             slivers: [
               GlassSliverAppBar(
                 title: isEn ? 'Growth Letters' : 'B\u00fcy\u00fcme Mektuplar\u0131',

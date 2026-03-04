@@ -98,7 +98,13 @@ class _BondTouchButtonState extends State<BondTouchButton>
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final disableAnimations = MediaQuery.of(context).disableAnimations;
 
-    return Column(
+    return Semantics(
+      button: true,
+      enabled: _isActive,
+      label: widget.isEn
+          ? 'Send ${widget.touchType.displayNameEn} touch'
+          : '${widget.touchType.displayNameTr} dokunuş gönder',
+      child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         // Touch button
@@ -190,6 +196,7 @@ class _BondTouchButtonState extends State<BondTouchButton>
           ),
         ),
       ],
+    ),
     );
   }
 

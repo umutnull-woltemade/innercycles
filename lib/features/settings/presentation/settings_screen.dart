@@ -56,6 +56,7 @@ class SettingsScreen extends ConsumerWidget {
               physics: const BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics(),
               ),
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               slivers: [
                 GlassSliverAppBar(
                   title: L10nService.get('settings.title', language),

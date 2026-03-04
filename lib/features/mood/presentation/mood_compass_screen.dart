@@ -229,7 +229,7 @@ class _CompassWidget extends StatelessWidget {
         child: Text(
           text,
           style: AppTypography.elegantAccent(
-            fontSize: 9,
+            fontSize: 10,
             color: (isDark ? AppColors.textMuted : AppColors.lightTextMuted)
                 .withValues(alpha: 0.7),
           ),
@@ -297,7 +297,7 @@ class _CompassWidget extends StatelessWidget {
                     Text(
                       signal.localizedName(language),
                       style: AppTypography.elegantAccent(
-                        fontSize: 9,
+                        fontSize: 10,
                         color: isDark
                             ? AppColors.textPrimary
                             : AppColors.lightTextPrimary,

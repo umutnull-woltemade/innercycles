@@ -110,6 +110,7 @@ class _GratitudeArchiveScreenState extends ConsumerState<GratitudeArchiveScreen>
 
     if (rawEntries.isEmpty) {
       return CustomScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         slivers: [
           GlassSliverAppBar(
             title: L10nService.get('gratitude.gratitude_archive.gratitude_archive', language),
@@ -154,6 +155,7 @@ class _GratitudeArchiveScreenState extends ConsumerState<GratitudeArchiveScreen>
         physics: const BouncingScrollPhysics(
           parent: AlwaysScrollableScrollPhysics(),
         ),
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         slivers: [
           GlassSliverAppBar(
             title: L10nService.get('gratitude.gratitude_archive.gratitude_archive_1', language),

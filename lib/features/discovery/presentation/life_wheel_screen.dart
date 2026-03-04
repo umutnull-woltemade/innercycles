@@ -56,6 +56,7 @@ class _LifeWheelScreenState extends ConsumerState<LifeWheelScreen> {
                 physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics(),
                 ),
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                 slivers: [
                   GlassSliverAppBar(
                     title: isEn ? 'Life Wheel' : 'Ya\u015fam \u00c7ark\u0131',

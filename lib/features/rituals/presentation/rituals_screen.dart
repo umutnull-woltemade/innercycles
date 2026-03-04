@@ -56,6 +56,7 @@ class _RitualsScreenState extends ConsumerState<RitualsScreen> {
               physics: const BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics(),
               ),
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               slivers: [
                 GlassSliverAppBar(title: L10nService.get('rituals.rituals.my_rituals', language)),
                 SliverPadding(

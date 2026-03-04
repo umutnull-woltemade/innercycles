@@ -135,6 +135,7 @@ class _JournalQueryScreenState extends ConsumerState<JournalQueryScreen> {
           physics: const BouncingScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           slivers: [
             GlassSliverAppBar(
               title: isEn ? 'Ask Your Journal' : 'Günlüğüne Sor',
