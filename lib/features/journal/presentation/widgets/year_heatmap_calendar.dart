@@ -143,7 +143,7 @@ class _YearHeatmapCalendarState extends State<YearHeatmapCalendar> {
                       children: List.generate(37, (i) {
                         // 7 weekday columns × ~5 weeks + padding
                         if (i >= daysInMonth + firstWeekday - 1) return const SizedBox(width: 0);
-                        final cellWidth = (MediaQuery.of(context).size.width - 80 - 37) / 37;
+                        final cellWidth = (MediaQuery.sizeOf(context).width - 80 - 37) / 37;
                         if (i < firstWeekday - 1) {
                           return Container(
                             width: cellWidth,

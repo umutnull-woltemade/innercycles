@@ -2,6 +2,7 @@
 // INTENTIONS SCREEN - Weekly intentions board with history
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -85,7 +86,7 @@ class _IntentionsScreenState extends ConsumerState<IntentionsScreen> {
                               lineColor: AppColors.starGold,
                               fillColor:
                                   AppColors.starGold.withValues(alpha: 0.1),
-                              width: MediaQuery.of(context).size.width - 80,
+                              width: MediaQuery.sizeOf(context).width - 80,
                               height: 60,
                             ),
                           ),
@@ -245,7 +246,7 @@ class _IntentionsScreenState extends ConsumerState<IntentionsScreen> {
             ],
           );
         },
-          orElse: () => const Center(child: CircularProgressIndicator()),
+          orElse: () => const Center(child: CupertinoActivityIndicator()),
         ),
       ),
     );

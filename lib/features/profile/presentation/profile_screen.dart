@@ -569,7 +569,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 0.8,
+                  height: MediaQuery.sizeOf(context).height * 0.8,
                   decoration: BoxDecoration(
                     color:
                         (isDark

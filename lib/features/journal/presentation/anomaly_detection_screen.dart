@@ -2,6 +2,7 @@
 // ANOMALY DETECTION SCREEN - Focus area deviations & day-of-week patterns
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -29,7 +30,7 @@ class AnomalyDetectionScreen extends ConsumerWidget {
       body: CosmicBackground(
         child: SafeArea(
           child: engineAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CupertinoActivityIndicator()),
             error: (e, _) => Center(child: Text('$e')),
             data: (engine) {
               if (!engine.hasEnoughData()) {

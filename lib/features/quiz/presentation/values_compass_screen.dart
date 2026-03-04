@@ -3,6 +3,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'dart:math' as math;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -43,7 +44,7 @@ class _ValuesCompassScreenState extends ConsumerState<ValuesCompassScreen> {
             }
             return _buildSelectionView(isDark, isEn, service);
           },
-          orElse: () => const Center(child: CircularProgressIndicator()),
+          orElse: () => const Center(child: CupertinoActivityIndicator()),
         ),
       ),
     );

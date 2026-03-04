@@ -4,6 +4,7 @@
 
 import 'dart:math' as math;
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -43,7 +44,7 @@ class _TriggerMapScreenState extends ConsumerState<TriggerMapScreen> {
       body: CosmicBackground(
         child: SafeArea(
           child: serviceAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CupertinoActivityIndicator()),
             error: (e, _) => Center(child: Text('Error: $e')),
             data: (service) {
               final triggers = service.getAll();

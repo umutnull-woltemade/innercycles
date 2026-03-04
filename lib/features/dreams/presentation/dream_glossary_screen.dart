@@ -786,7 +786,7 @@ class _SymbolDetailSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
+    final screenHeight = MediaQuery.sizeOf(context).height;
 
     return ClipRRect(
       borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
@@ -1424,7 +1424,7 @@ class _PersonalDictionarySheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dreamedSymbols = personalDictionary.getDreamedSymbols();
-    final screenHeight = MediaQuery.of(context).size.height;
+    final screenHeight = MediaQuery.sizeOf(context).height;
 
     return ClipRRect(
       borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),

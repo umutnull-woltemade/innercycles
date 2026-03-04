@@ -2,6 +2,7 @@
 // CROSS-CORRELATION SCREEN - Multi-dimension pattern connections
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,7 +29,7 @@ class CrossCorrelationScreen extends ConsumerWidget {
       body: CosmicBackground(
         child: SafeArea(
           child: correlationsAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CupertinoActivityIndicator()),
             error: (e, _) => Center(child: Text('$e')),
             data: (correlations) {
               if (correlations.isEmpty) {

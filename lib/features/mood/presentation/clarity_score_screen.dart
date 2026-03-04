@@ -2,6 +2,7 @@
 // CLARITY SCORE SCREEN - Weekly wellbeing breakdown with pillar analysis
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -29,7 +30,7 @@ class ClarityScoreScreen extends ConsumerWidget {
       body: CosmicBackground(
         child: SafeArea(
           child: clarityAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CupertinoActivityIndicator()),
             error: (e, _) => Center(child: Text('$e')),
             data: (service) {
               final current = service.getCurrentWeekCached();
@@ -39,7 +40,7 @@ class ClarityScoreScreen extends ConsumerWidget {
                     ref.invalidate(clarityScoreServiceProvider);
                   }
                 });
-                return const Center(child: CircularProgressIndicator());
+                return const Center(child: CupertinoActivityIndicator());
               }
 
               final previous = service.getPreviousWeek();

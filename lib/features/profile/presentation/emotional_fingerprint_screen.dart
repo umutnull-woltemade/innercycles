@@ -2,6 +2,7 @@
 // EMOTIONAL FINGERPRINT SCREEN - Full generative visual identity
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,7 +32,7 @@ class EmotionalFingerprintScreen extends ConsumerWidget {
       body: CosmicBackground(
         child: SafeArea(
           child: journalAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CupertinoActivityIndicator()),
             error: (e, _) => Center(child: Text('$e')),
             data: (journalService) {
               final entries = journalService.getAllEntries();

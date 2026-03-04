@@ -2881,7 +2881,7 @@ class _DreamSymbolsSheet extends ConsumerWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
         child: Container(
-          height: MediaQuery.of(context).size.height * 0.7,
+          height: MediaQuery.sizeOf(context).height * 0.7,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,

@@ -2,6 +2,7 @@
 // MONTHLY THEME SCREEN - Dedicated monthly theme with weekly prompt tracker
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -36,7 +37,7 @@ class _MonthlyThemeScreenState extends ConsumerState<MonthlyThemeScreen> {
       body: CosmicBackground(
         child: SafeArea(
           child: serviceAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CupertinoActivityIndicator()),
             error: (e, _) => Center(child: Text('$e')),
             data: (service) {
               final theme = service.getThemeForMonth(_selectedMonth) ??

@@ -2,6 +2,7 @@
 // ENERGY MAP EXPLORER - Deep dive into energy patterns & heatmap
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -29,7 +30,7 @@ class EnergyMapExplorerScreen extends ConsumerWidget {
       body: CosmicBackground(
         child: SafeArea(
           child: mapAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CupertinoActivityIndicator()),
             error: (e, _) => Center(child: Text('$e')),
             data: (mapData) {
               if (mapData == null) {

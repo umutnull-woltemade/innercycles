@@ -2,6 +2,7 @@
 // FEAR INVENTORY SCREEN - Name, reframe, and resolve fears
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
@@ -47,7 +48,7 @@ class _FearInventoryScreenState extends ConsumerState<FearInventoryScreen> {
       body: CosmicBackground(
         child: SafeArea(
           child: serviceAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CupertinoActivityIndicator()),
             error: (e, _) => Center(child: Text('$e')),
             data: (service) {
               final active = service.getActiveFears();

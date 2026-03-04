@@ -185,7 +185,7 @@ class _WhatsNewSheet extends StatelessWidget {
         filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
         child: Container(
           constraints: BoxConstraints(
-            maxHeight: MediaQuery.of(context).size.height * 0.8,
+            maxHeight: MediaQuery.sizeOf(context).height * 0.8,
           ),
           decoration: BoxDecoration(
             color: bgColor.withValues(alpha: isDark ? 0.85 : 0.92),
@@ -301,7 +301,7 @@ class _WhatsNewSheet extends StatelessWidget {
                           curve: Curves.easeOut,
                         ),
               ),
-              SizedBox(height: MediaQuery.of(context).padding.bottom + 16),
+              SizedBox(height: MediaQuery.paddingOf(context).bottom + 16),
             ],
           ),
         ),

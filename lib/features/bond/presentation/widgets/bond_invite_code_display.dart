@@ -96,7 +96,7 @@ class _BondInviteCodeDisplayState extends State<BondInviteCodeDisplay> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final codeChars = widget.invite.code.split('');
-    final screenWidth = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.sizeOf(context).width;
     final digitWidth = screenWidth < 375 ? 38.0 : 44.0;
     final digitHeight = screenWidth < 375 ? 48.0 : 56.0;
 

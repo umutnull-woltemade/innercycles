@@ -201,7 +201,7 @@ class _CompassWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isEn = language == AppLanguage.en;
-    final compassSize = math.min(MediaQuery.of(context).size.width - 48, 320.0);
+    final compassSize = math.min(MediaQuery.sizeOf(context).width - 48, 320.0);
 
     return SizedBox(
       width: compassSize,

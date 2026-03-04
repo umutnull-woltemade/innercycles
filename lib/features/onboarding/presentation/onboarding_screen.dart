@@ -243,7 +243,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                         return Transform.translate(
                           offset: Offset(
                             value *
-                                MediaQuery.of(context).size.width *
+                                MediaQuery.sizeOf(context).width *
                                 0.3,
                             0,
                           ),
@@ -2688,8 +2688,8 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                 ...List.generate(50, (index) {
                   final random = index * 7.3;
                   return Positioned(
-                    left: (random * 13) % MediaQuery.of(context).size.width,
-                    top: (random * 17) % MediaQuery.of(context).size.height,
+                    left: (random * 13) % MediaQuery.sizeOf(context).width,
+                    top: (random * 17) % MediaQuery.sizeOf(context).height,
                     child: AnimatedBuilder(
                       animation: _starController,
                       builder: (context, child) {

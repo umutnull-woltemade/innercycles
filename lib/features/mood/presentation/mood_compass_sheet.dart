@@ -43,7 +43,7 @@ class _MoodCompassSheetState extends ConsumerState<MoodCompassSheet> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
     final isEn = language == AppLanguage.en;
-    final size = MediaQuery.of(context).size;
+    final size = MediaQuery.sizeOf(context);
     final compassSize = math.min(size.width - 48, 340.0);
 
     return Container(
@@ -52,7 +52,7 @@ class _MoodCompassSheetState extends ConsumerState<MoodCompassSheet> {
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
       padding: EdgeInsets.only(
-        bottom: MediaQuery.of(context).padding.bottom + 16,
+        bottom: MediaQuery.paddingOf(context).bottom + 16,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,

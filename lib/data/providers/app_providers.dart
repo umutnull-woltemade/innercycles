@@ -337,6 +337,12 @@ final todayJournalEntryProvider = FutureProvider<JournalEntry?>((ref) async {
   return service.getTodayEntry();
 });
 
+/// Total journal entry count (lightweight — avoids watching full JournalService)
+final journalEntryCountProvider = FutureProvider<int>((ref) async {
+  final service = await ref.watch(journalServiceProvider.future);
+  return service.getAllEntries().length;
+});
+
 /// Current streak count
 final journalStreakProvider = FutureProvider<int>((ref) async {
   final service = await ref.watch(journalServiceProvider.future);
