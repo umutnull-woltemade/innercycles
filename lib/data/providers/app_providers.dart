@@ -178,8 +178,13 @@ enum AppLanguage {
   es, // Español (Spanish)
   ar; // العربية (Arabic - RTL)
 
+  /// Tracks the actual current language set by the user.
+  static AppLanguage _current = en;
+  static void setCurrent(AppLanguage lang) => _current = lang;
+
   /// Convert legacy bool isEn to AppLanguage.
-  static AppLanguage fromIsEn(bool isEn) => isEn ? en : tr;
+  /// Returns the actual current language instead of hardcoded `tr` for non-EN.
+  static AppLanguage fromIsEn(bool isEn) => isEn ? en : _current;
 }
 
 extension AppLanguageExtension on AppLanguage {

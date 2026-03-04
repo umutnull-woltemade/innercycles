@@ -41,7 +41,7 @@ class CycleWaveChart extends StatefulWidget {
   final Map<FocusArea, List<CycleDataPoint>> areaData;
   final Set<FocusArea> visibleAreas;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
   final int displayDays;
   final double animationProgress;
   final ValueChanged<CycleDataPointInfo?>? onPointSelected;
@@ -51,7 +51,7 @@ class CycleWaveChart extends StatefulWidget {
     required this.areaData,
     required this.visibleAreas,
     required this.isDark,
-    this.isEn = true,
+    this.language = AppLanguage.en,
     required this.displayDays,
     this.animationProgress = 1.0,
     this.onPointSelected,
@@ -66,7 +66,7 @@ class _CycleWaveChartState extends State<CycleWaveChart> {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(widget.isEn);
+    final language = widget.language;
     return GestureDetector(
       onTapDown: (details) => _handleTap(details.localPosition),
       onPanUpdate: (details) => _handleTap(details.localPosition),

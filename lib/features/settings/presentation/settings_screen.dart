@@ -221,6 +221,7 @@ class SettingsScreen extends ConsumerWidget {
                                         HapticFeedback.selectionClick();
                                         // Load translations for the new language before switching
                                         await L10nService.init(lang);
+                                        AppLanguage.setCurrent(lang);
                                         ref
                                                 .read(languageProvider.notifier)
                                                 .state =

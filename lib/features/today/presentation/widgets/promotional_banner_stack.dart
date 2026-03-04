@@ -22,12 +22,12 @@ import '../../../../data/services/introductory_offer_service.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class PromotionalBannerStack extends ConsumerStatefulWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const PromotionalBannerStack({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -48,7 +48,8 @@ class _PromotionalBannerStackState
   bool _widgetRecentlyDismissedCached = false;
   Timer? _countdownTimer;
 
-  bool get isEn => widget.isEn;
+  AppLanguage get language => widget.language;
+  bool get isEn => widget.language == AppLanguage.en;
   bool get isDark => widget.isDark;
 
   @override
@@ -153,7 +154,7 @@ class _PromotionalBannerStackState
     final offerAsync = ref.watch(introductoryOfferProvider);
     return offerAsync.whenOrNull(
       data: (service) {
-        final language = AppLanguage.fromIsEn(isEn);
+    
         if (!service.isOfferActive) return null;
 
         final parts = service.countdownParts;
@@ -285,7 +286,7 @@ class _PromotionalBannerStackState
 
     return remindersAsync.whenOrNull(
       data: (reminders) {
-        final language = AppLanguage.fromIsEn(isEn);
+    
         if (reminders.isEmpty) return null;
 
         return notesServiceAsync.whenOrNull(
@@ -334,7 +335,7 @@ class _PromotionalBannerStackState
                       ),
                       const SizedBox(height: 10),
                       ...upcoming.map((r) {
-                        final language = AppLanguage.fromIsEn(isEn);
+                    
                         final note = service.getNote(r.noteId);
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 6),
@@ -388,7 +389,7 @@ class _PromotionalBannerStackState
 
   // ── RETROSPECTIVE ──
   Widget? _buildRetrospective() {
-    final language = AppLanguage.fromIsEn(isEn);
+
     final journalAsync = ref.watch(journalServiceProvider);
     final retroAsync = ref.watch(retrospectiveDateServiceProvider);
 
@@ -469,7 +470,7 @@ class _PromotionalBannerStackState
 
   // ── WRAPPED (Dec 26 - Jan 7) ──
   Widget? _buildWrapped(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
+
     final now = DateTime.now();
     final isWrappedSeason =
         (now.month == 12 && now.day >= 26) ||
@@ -533,7 +534,7 @@ class _PromotionalBannerStackState
 
   // ── MONTHLY WRAPPED (first 10 days of month) ──
   Widget? _buildMonthlyWrapped(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
+
     final now = DateTime.now();
     if (now.day > 10) return null;
     if ((now.month == 1 && now.day <= 7) ||
@@ -631,7 +632,7 @@ class _PromotionalBannerStackState
 
   // ── WEEKLY SHARE (Sundays only) ──
   Widget? _buildWeeklyShare() {
-    final language = AppLanguage.fromIsEn(isEn);
+
     if (DateTime.now().weekday != DateTime.sunday) return null;
 
     final journalAsync = ref.watch(journalServiceProvider);
@@ -912,7 +913,7 @@ class _PromotionalBannerStackState
 
   // ── INVITE FRIENDS ──
   Widget? _buildInviteFriends() {
-    final language = AppLanguage.fromIsEn(isEn);
+
     if (_inviteDismissed) return null;
 
     final journalAsync = ref.watch(journalServiceProvider);
@@ -990,7 +991,7 @@ class _PromotionalBannerStackState
   }
 
   String _formatTimeLeft(DateTime dt) {
-    final language = AppLanguage.fromIsEn(isEn);
+
     final now = DateTime.now();
     final diff = dt.difference(now);
     if (diff.isNegative) return L10nService.get('today.promotional_stack.now', language);

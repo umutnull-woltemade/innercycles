@@ -18,17 +18,18 @@ import '../../../../shared/widgets/share_nudge_chip.dart';
 import '../../../../shared/widgets/tap_scale.dart';
 
 class AnomalyAlertCard extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const AnomalyAlertCard({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isEn = language == AppLanguage.en;
     final engineAsync = ref.watch(patternEngineServiceProvider);
 
     return engineAsync.maybeWhen(
@@ -38,7 +39,6 @@ class AnomalyAlertCard extends ConsumerWidget {
 
         // Show the most significant anomaly
         final top = anomalies.first;
-        final language = AppLanguage.fromIsEn(isEn);
         final message = top.getMessage(language);
         final isDropping = top.isDrop;
 

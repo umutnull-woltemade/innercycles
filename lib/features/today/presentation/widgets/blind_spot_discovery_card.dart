@@ -11,17 +11,18 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/tap_scale.dart';
 
 class BlindSpotDiscoveryCard extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const BlindSpotDiscoveryCard({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(blindSpotServiceProvider);
 
     return serviceAsync.maybeWhen(
@@ -31,7 +32,6 @@ class BlindSpotDiscoveryCard extends ConsumerWidget {
           return const SizedBox.shrink();
         }
 
-        final language = AppLanguage.fromIsEn(isEn);
         final topSpot = report.blindSpots.first;
         final spotCount = report.blindSpots.length;
 

@@ -22,18 +22,18 @@ import '../../../../data/providers/app_providers.dart';
 class CycleSummaryCard extends StatelessWidget {
   final FocusAreaCycleSummary summary;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const CycleSummaryCard({
     super.key,
     required this.summary,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
+    final isEn = language == AppLanguage.en;
     final color = kAreaColors[summary.area] ?? AppColors.auroraStart;
     final hasData = summary.rawPoints.isNotEmpty;
     final areaName = summary.area.localizedName(language);
@@ -244,7 +244,6 @@ class CycleSummaryCard extends StatelessWidget {
     CyclePhase phase,
     Color areaColor,
   ) {
-    final language = AppLanguage.fromIsEn(isEn);
     final phaseColor = _phaseColor(phase);
     final phaseIcon = _phaseIcon(phase);
     final phaseLabel = phase.label(language);
@@ -275,7 +274,6 @@ class CycleSummaryCard extends StatelessWidget {
   }
 
   Widget _buildTrendIndicator(BuildContext context, CycleTrend trend) {
-    final language = AppLanguage.fromIsEn(isEn);
     final trendColor = _trendColor(trend);
     final trendIcon = _trendIcon(trend);
     final trendLabel = trend.label(language);

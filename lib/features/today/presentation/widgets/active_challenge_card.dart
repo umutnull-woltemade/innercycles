@@ -10,18 +10,20 @@ import '../../../../data/services/growth_challenge_service.dart';
 import '../../../../data/services/haptic_service.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/tap_scale.dart';
+
 class ActiveChallengeCard extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const ActiveChallengeCard({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isEn = language == AppLanguage.en;
     final challengeAsync = ref.watch(growthChallengeServiceProvider);
 
     return challengeAsync.maybeWhen(
@@ -82,7 +84,7 @@ class ActiveChallengeCard extends ConsumerWidget {
                     _ChallengeRow(
                       challenge: shown[i].$1,
                       progress: shown[i].$2,
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                       onIncrement: () async {
                         HapticService.buttonPress();
@@ -110,21 +112,20 @@ class ActiveChallengeCard extends ConsumerWidget {
 class _ChallengeRow extends StatelessWidget {
   final GrowthChallenge challenge;
   final ChallengeProgress progress;
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
   final VoidCallback onIncrement;
 
   const _ChallengeRow({
     required this.challenge,
     required this.progress,
-    required this.isEn,
+    required this.language,
     required this.isDark,
     required this.onIncrement,
   });
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return Row(
       children: [
         Text(challenge.emoji, style: const TextStyle(fontSize: 20)),

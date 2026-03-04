@@ -481,7 +481,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                           phase: analysis.overallPhase!,
                           arc: analysis.overallArc,
                           isDark: isDark,
-                          isEn: isEn,
+                          language: language,
                         ),
                       )
                       .animate()
@@ -560,7 +560,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                         child: CycleSummaryCard(
                           summary: summary,
                           isDark: isDark,
-                          isEn: isEn,
+                          language: language,
                         ),
                       )
                       .animate()
@@ -729,7 +729,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                   areaData: chartData,
                   visibleAreas: _visibleAreas,
                   isDark: isDark,
-                  isEn: isEn,
+                  language: language,
                   displayDays: displayDays,
                   animationProgress: _waveAnimation.value,
                   onPointSelected: (info) =>

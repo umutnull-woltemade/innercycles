@@ -585,6 +585,7 @@ class _AppInitializerState extends State<AppInitializer>
           if (kDebugMode) {
             debugPrint('🎨 Launching InnerCycles with providers...');
           }
+          AppLanguage.setCurrent(result.language);
           return ProviderScope(
             overrides: [
               languageProvider.overrideWith((ref) => result.language),
@@ -952,6 +953,7 @@ class _InnerCyclesAppState extends ConsumerState<InnerCyclesApp>
     final router = ref.watch(routerProvider);
     final themeMode = ref.watch(themeModeProvider);
     final language = ref.watch(languageProvider);
+    AppLanguage.setCurrent(language);
 
     final fontScale = ref.watch(fontSizeScaleProvider);
 

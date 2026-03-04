@@ -516,7 +516,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
                   // 2a. Badge Unlock Banner (conditional)
                   SliverToBoxAdapter(
-                    child: BadgeUnlockBanner(isEn: isEn, isDark: isDark),
+                    child: BadgeUnlockBanner(language: language, isDark: isDark),
                   ),
 
                   // 2b. Draft Continuation Banner (conditional)
@@ -617,7 +617,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 5b. Anomaly Alert (significant deviations from baseline)
                   SliverToBoxAdapter(
                     child: AnomalyAlertCard(
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                     ),
                   ),
@@ -677,7 +677,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
                   // 8c. Active Challenge Card
                   SliverToBoxAdapter(
-                    child: ActiveChallengeCard(isEn: isEn, isDark: isDark),
+                    child: ActiveChallengeCard(language: language, isDark: isDark),
                   ),
 
                   // 8d. Guided Program Quick-Start
@@ -687,7 +687,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
                   // 8e. Blind Spot Discovery
                   SliverToBoxAdapter(
-                    child: BlindSpotDiscoveryCard(isEn: isEn, isDark: isDark),
+                    child: BlindSpotDiscoveryCard(language: language, isDark: isDark),
                   ),
 
                   // 8f. Pattern Loop Card
@@ -898,7 +898,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
                   // 11. Promotional Banner Stack
                   SliverToBoxAdapter(
-                    child: PromotionalBannerStack(isEn: isEn, isDark: isDark),
+                    child: PromotionalBannerStack(language: language, isDark: isDark),
                   ),
 
                   // 12. Social Proof Strip
