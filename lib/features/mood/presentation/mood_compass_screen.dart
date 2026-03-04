@@ -4,6 +4,7 @@
 
 import 'dart:math' as math;
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -40,8 +41,17 @@ class _MoodCompassScreenState extends ConsumerState<MoodCompassScreen> {
       body: CosmicBackground(
         child: SafeArea(
           child: moodAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
-            error: (e, _) => Center(child: Text('$e')),
+            loading: () => const Center(child: CupertinoActivityIndicator()),
+            error: (_, _) => Center(
+              child: Text(
+                isEn ? 'Something went wrong' : 'Bir şeyler ters gitti',
+                style: AppTypography.subtitle(
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                ),
+              ),
+            ),
             data: (service) {
               final entries = service.getAllEntries();
               final signalEntries =

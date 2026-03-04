@@ -66,9 +66,9 @@ class _BondInviteCodeDisplayState extends State<BondInviteCodeDisplay> {
     final minutes = _remaining.inMinutes.remainder(60);
     final seconds = _remaining.inSeconds.remainder(60);
     if (hours > 0) {
-      return '${hours}h ${minutes}m';
+      return widget.isEn ? '${hours}h ${minutes}m' : '${hours}sa ${minutes}dk';
     }
-    return '${minutes}m ${seconds}s';
+    return widget.isEn ? '${minutes}m ${seconds}s' : '${minutes}dk ${seconds}sn';
   }
 
   bool get _isExpired => _remaining == Duration.zero;

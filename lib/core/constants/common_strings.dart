@@ -14,12 +14,6 @@ abstract final class CommonStrings {
   static String errorLoading(AppLanguage lang) =>
       L10nService.get('common.error_loading', lang);
 
-  static String noEntriesYet(AppLanguage lang) =>
-      L10nService.get('common.no_entries_yet', lang);
-
-  static String tryAgain(AppLanguage lang) =>
-      L10nService.get('common.try_again', lang);
-
   static String couldNotShareTryAgain(AppLanguage lang) =>
       L10nService.get('common.could_not_share_try_again', lang);
 
@@ -99,10 +93,4 @@ abstract final class CommonStrings {
       lang == AppLanguage.en ? monthsFullEn : monthsFullTr;
 
   /// Get short month name by 1-based month index.
-  static String monthShort(int month, AppLanguage lang) =>
-      monthsShort(lang)[(month - 1).clamp(0, 11)];
-
-  /// Get full month name by 1-based month index.
-  static String monthFull(int month, AppLanguage lang) =>
-      monthsFull(lang)[(month - 1).clamp(0, 11)];
 }

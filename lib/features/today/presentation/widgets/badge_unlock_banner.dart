@@ -14,12 +14,12 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/tap_scale.dart';
 
 class BadgeUnlockBanner extends ConsumerStatefulWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const BadgeUnlockBanner({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -41,7 +41,7 @@ class _BadgeUnlockBannerState extends ConsumerState<BadgeUnlockBanner> {
   Future<void> _checkBadges() async {
     final milestoneService = await ref.read(milestoneServiceProvider.future);
     final prefs = await SharedPreferences.getInstance();
-    final language = AppLanguage.fromIsEn(widget.isEn);
+    final language = widget.language;
 
     final earned = milestoneService.getEarnedMilestones();
     final unseen = <({String id, String emoji, String name})>[];
@@ -75,6 +75,7 @@ class _BadgeUnlockBannerState extends ConsumerState<BadgeUnlockBanner> {
 
   @override
   Widget build(BuildContext context) {
+    final isEn = widget.language == AppLanguage.en;
     if (!_loaded || _unseen.isEmpty) return const SizedBox.shrink();
 
     return Padding(
@@ -91,7 +92,7 @@ class _BadgeUnlockBannerState extends ConsumerState<BadgeUnlockBanner> {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    widget.isEn
+                    isEn
                         ? 'New Badge${_unseen.length > 1 ? 's' : ''} Unlocked!'
                         : 'Yeni Rozet${_unseen.length > 1 ? 'ler' : ''} A\u{00E7}\u{0131}ld\u{0131}!',
                     style: AppTypography.displayFont.copyWith(
@@ -107,7 +108,7 @@ class _BadgeUnlockBannerState extends ConsumerState<BadgeUnlockBanner> {
                   onTap: () {
                     HapticService.selectionTap();
                     final badgeNames = _unseen.map((b) => '${b.emoji} ${b.name}').join(', ');
-                    final text = widget.isEn
+                    final text = isEn
                         ? 'Just unlocked: $badgeNames in InnerCycles!\n\n${AppConstants.appStoreUrl}'
                         : 'InnerCycles\'da yeni rozet: $badgeNames!\n\n${AppConstants.appStoreUrl}';
                     SharePlus.instance.share(ShareParams(text: text));
@@ -192,7 +193,7 @@ class _BadgeUnlockBannerState extends ConsumerState<BadgeUnlockBanner> {
                 ),
                 child: Center(
                   child: Text(
-                    widget.isEn ? 'View Badges' : 'Rozetleri G\u{00F6}r',
+                    isEn ? 'View Badges' : 'Rozetleri G\u{00F6}r',
                     style: AppTypography.modernAccent(
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
