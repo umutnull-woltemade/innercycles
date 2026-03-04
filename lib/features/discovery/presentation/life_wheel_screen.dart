@@ -48,7 +48,7 @@ class _LifeWheelScreenState extends ConsumerState<LifeWheelScreen> {
         child: SafeArea(
           child: serviceAsync.when(
             loading: () => const Center(child: CupertinoActivityIndicator()),
-            error: (e, _) => Center(child: Text('$e')),
+            error: (_, _) => Center(child: Text('Something went wrong', style: TextStyle(color: Color(0xFF9E8E82)))),
             data: (service) {
               final latest = service.getLatestEntry();
               final delta = service.getDelta();

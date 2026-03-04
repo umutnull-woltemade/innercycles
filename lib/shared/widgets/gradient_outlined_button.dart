@@ -38,7 +38,11 @@ class GradientOutlinedButton extends StatelessWidget {
     final isEnabled = onPressed != null;
     final effectiveAlpha = isEnabled ? 1.0 : 0.4;
 
-    Widget child = GestureDetector(
+    Widget child = Semantics(
+      button: true,
+      label: label,
+      enabled: isEnabled,
+      child: GestureDetector(
       onTap: isEnabled
           ? () {
               HapticFeedback.lightImpact();
@@ -89,6 +93,7 @@ class GradientOutlinedButton extends StatelessWidget {
           ),
         ),
       ),
+    ),
     );
 
     return child;

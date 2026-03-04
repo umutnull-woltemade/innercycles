@@ -221,6 +221,7 @@ class _SprintEntryScreenState extends ConsumerState<SprintEntryScreen>
                 child: Row(
                   children: [
                     IconButton(
+                      tooltip: isEn ? 'Close' : 'Kapat',
                       icon: Icon(Icons.close_rounded, color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary),
                       onPressed: () => context.pop(),
                     ),

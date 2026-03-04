@@ -65,6 +65,7 @@ class _ValuesCompassScreenState extends ConsumerState<ValuesCompassScreen> {
           title: isEn ? 'Your Values' : 'Değerlerin',
           actions: [
             IconButton(
+              tooltip: isEn ? 'Reset' : 'Sıfırla',
               icon: Icon(Icons.refresh_rounded,
                   color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
               onPressed: () => setState(() {

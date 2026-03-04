@@ -30,7 +30,7 @@ class ShiftOutlookScreen extends ConsumerWidget {
         child: SafeArea(
           child: outlookAsync.when(
             loading: () => Center(child: CupertinoActivityIndicator()),
-            error: (e, _) => Center(child: Text('$e')),
+            error: (_, _) => Center(child: Text('Something went wrong', style: TextStyle(color: Color(0xFF9E8E82)))),
             data: (outlook) {
               return CustomScrollView(
                 physics: const BouncingScrollPhysics(

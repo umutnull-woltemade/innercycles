@@ -907,7 +907,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   ),
 
                   // 12. Bottom padding
-                  const SliverToBoxAdapter(child: SizedBox(height: 40)),
+                  const SliverToBoxAdapter(child: SizedBox(height: 100)),
                 ],
               ),
             ),
@@ -970,7 +970,10 @@ class _QuickShortcutsRow extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: shortcuts.map((s) {
           final (icon, label, route) = s;
-          return GestureDetector(
+          return Semantics(
+            button: true,
+            label: label,
+            child: GestureDetector(
             onTap: () {
               HapticFeedback.lightImpact();
               context.push(route);
@@ -1008,6 +1011,7 @@ class _QuickShortcutsRow extends StatelessWidget {
                 ),
               ],
             ),
+          ),
           );
         }).toList(),
       ),

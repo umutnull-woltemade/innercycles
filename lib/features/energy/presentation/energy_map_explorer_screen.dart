@@ -31,7 +31,7 @@ class EnergyMapExplorerScreen extends ConsumerWidget {
         child: SafeArea(
           child: mapAsync.when(
             loading: () => const Center(child: CupertinoActivityIndicator()),
-            error: (e, _) => Center(child: Text('$e')),
+            error: (_, _) => Center(child: Text('Something went wrong', style: TextStyle(color: Color(0xFF9E8E82)))),
             data: (mapData) {
               if (mapData == null) {
                 return _EmptyState(isEn: isEn, isDark: isDark);

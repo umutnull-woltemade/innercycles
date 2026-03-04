@@ -31,7 +31,7 @@ class SelfCompassionScreen extends ConsumerWidget {
         child: SafeArea(
           child: serviceAsync.when(
             loading: () => const Center(child: CupertinoActivityIndicator()),
-            error: (e, _) => Center(child: Text('$e')),
+            error: (_, _) => Center(child: Text('Something went wrong', style: TextStyle(color: Color(0xFF9E8E82)))),
             data: (service) {
               final score7 = service.computeScore(days: 7);
               final score30 = service.computeScore(days: 30);

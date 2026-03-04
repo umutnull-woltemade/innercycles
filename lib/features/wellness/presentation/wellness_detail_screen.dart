@@ -50,6 +50,7 @@ class WellnessDetailScreen extends ConsumerWidget {
                       data: (score) {
                         if (score == null) return const SizedBox.shrink();
                         return IconButton(
+                          tooltip: isEn ? 'Share' : 'Paylaş',
                           icon: Icon(
                             Icons.ios_share_rounded,
                             size: 22,

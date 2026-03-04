@@ -9,12 +9,14 @@ class TapScale extends StatefulWidget {
   final Widget child;
   final VoidCallback? onTap;
   final double scaleDown;
+  final String? semanticsLabel;
 
   const TapScale({
     super.key,
     required this.child,
     this.onTap,
     this.scaleDown = 0.97,
+    this.semanticsLabel,
   });
 
   @override
@@ -56,7 +58,7 @@ class _TapScaleState extends State<TapScale>
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    Widget result = GestureDetector(
       onTapDown: _onTapDown,
       onTapUp: _onTapUp,
       onTapCancel: _onTapCancel,
@@ -66,5 +68,13 @@ class _TapScaleState extends State<TapScale>
         child: widget.child,
       ),
     );
+    if (widget.semanticsLabel != null) {
+      result = Semantics(
+        button: true,
+        label: widget.semanticsLabel,
+        child: result,
+      );
+    }
+    return result;
   }
 }

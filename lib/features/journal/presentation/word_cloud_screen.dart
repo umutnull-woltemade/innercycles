@@ -37,7 +37,7 @@ class _WordCloudScreenState extends ConsumerState<WordCloudScreen> {
         child: SafeArea(
           child: serviceAsync.when(
             loading: () => const Center(child: CupertinoActivityIndicator()),
-            error: (e, _) => Center(child: Text('$e')),
+            error: (_, _) => Center(child: Text('Something went wrong', style: TextStyle(color: Color(0xFF9E8E82)))),
             data: (service) {
               final words = service.getTopWords(days: _rangeDays, limit: 30);
 

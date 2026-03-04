@@ -54,6 +54,7 @@ class SleepDetailScreen extends ConsumerWidget {
                         final summary = service.getWeeklySummary();
                         if (summary.nightsLogged == 0) return const SizedBox.shrink();
                         return IconButton(
+                          tooltip: isEn ? 'Share' : 'Paylaş',
                           icon: Icon(
                             Icons.ios_share_rounded,
                             size: 22,

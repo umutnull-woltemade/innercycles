@@ -36,7 +36,7 @@ class _MoodBoardScreenState extends ConsumerState<MoodBoardScreen> {
         child: SafeArea(
           child: moodAsync.when(
             loading: () => const Center(child: CupertinoActivityIndicator()),
-            error: (e, _) => Center(child: Text('$e')),
+            error: (_, _) => Center(child: Text('Something went wrong', style: TextStyle(color: Color(0xFF9E8E82)))),
             data: (service) {
               final entries = service.getAllEntries();
               final cutoff = DateTime.now().subtract(Duration(days: _rangeDays));

@@ -681,6 +681,7 @@ class _FullScreenPhoto extends StatelessWidget {
                 label: 'Close',
                 button: true,
                 child: IconButton(
+                  tooltip: 'Close',
                   icon: const Icon(CupertinoIcons.xmark_circle_fill,
                       color: Colors.white70, size: 32),
                   onPressed: () => Navigator.pop(context),

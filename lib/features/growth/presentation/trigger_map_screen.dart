@@ -45,7 +45,7 @@ class _TriggerMapScreenState extends ConsumerState<TriggerMapScreen> {
         child: SafeArea(
           child: serviceAsync.when(
             loading: () => const Center(child: CupertinoActivityIndicator()),
-            error: (e, _) => Center(child: Text('Error: $e')),
+            error: (_, _) => Center(child: Text('Something went wrong', style: TextStyle(color: Color(0xFF9E8E82)))),
             data: (service) {
               final triggers = service.getAll();
               final topTriggers = service.getTopTriggers();

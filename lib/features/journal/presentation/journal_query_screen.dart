@@ -174,6 +174,7 @@ class _JournalQueryScreenState extends ConsumerState<JournalQueryScreen> {
                           color: AppColors.amethyst),
                       suffixIcon: _controller.text.isNotEmpty
                           ? IconButton(
+                              tooltip: isEn ? 'Clear' : 'Temizle',
                               icon: Icon(Icons.clear_rounded,
                                   size: 18,
                                   color: isDark

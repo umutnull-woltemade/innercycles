@@ -204,6 +204,7 @@ class _IntentionsScreenState extends ConsumerState<IntentionsScreen> {
                             ),
                           ),
                           IconButton(
+                            tooltip: isEn ? 'Add' : 'Ekle',
                             icon: Icon(Icons.add_circle_rounded,
                                 color: AppColors.starGold),
                             onPressed: () async {

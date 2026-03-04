@@ -123,6 +123,7 @@ class EntryDetailScreen extends ConsumerWidget {
             title: dateStr,
             actions: [
               IconButton(
+                tooltip: L10nService.get('journal.entry_detail.share_entry', language),
                 onPressed: () {
                   HapticService.buttonPress();
                   final stars = '★' * entry.overallRating +
@@ -135,7 +136,6 @@ class EntryDetailScreen extends ConsumerWidget {
                       : '$areaLabel — $stars$noteSnippet\n\nInnerCycles ile yansıma yapıyorum.\n${AppConstants.appStoreUrl}\n#InnerCycles';
                   SharePlus.instance.share(ShareParams(text: msg));
                 },
-                tooltip: L10nService.get('journal.entry_detail.share_entry', language),
                 icon: Icon(
                   Icons.share_rounded,
                   color: AppColors.starGold,

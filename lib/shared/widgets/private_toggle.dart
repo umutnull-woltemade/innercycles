@@ -69,7 +69,10 @@ class PrivateToggle extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final language = AppLanguage.fromIsEn(isEn);
-    return GestureDetector(
+    return Semantics(
+      toggled: isPrivate,
+      label: L10nService.get('shared.private_toggle.save_to_vault', language),
+      child: GestureDetector(
       onTap: () => _handleToggle(context, ref, !isPrivate),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 250),
@@ -131,6 +134,7 @@ class PrivateToggle extends ConsumerWidget {
     ).animate(target: isPrivate ? 1 : 0).shimmer(
       duration: 800.ms,
       color: AppColors.amethyst.withValues(alpha: 0.05),
+    ),
     );
   }
 }
