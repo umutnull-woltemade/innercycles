@@ -223,6 +223,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
   }
 
   void _startPhase() {
+    if (!mounted) return;
     final phases = _preset.phases;
     final phase = phases[_currentPhaseIndex];
 

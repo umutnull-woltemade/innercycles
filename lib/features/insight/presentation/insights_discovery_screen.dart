@@ -761,7 +761,7 @@ class _InsightsDiscoveryScreenState
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            module.localizedScreenshotLine(language)!,
+                            module.localizedScreenshotLine(language) ?? module.screenshotLineEn ?? '',
                             textAlign: TextAlign.center,
                             style: AppTypography.decorativeScript(
                               fontSize: 17,

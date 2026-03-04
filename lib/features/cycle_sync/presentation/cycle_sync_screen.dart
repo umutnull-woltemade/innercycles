@@ -916,7 +916,9 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                         cycleSyncServiceProvider.future,
                       );
                       await service.logPeriodStart(date: DateTime.now());
-                      ref.invalidate(cycleSyncServiceProvider);
+                      if (context.mounted) {
+                        ref.invalidate(cycleSyncServiceProvider);
+                      }
                     },
                     child: Container(
                       width: double.infinity,

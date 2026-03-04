@@ -562,7 +562,7 @@ class _NightCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final emoji = ['', '😴', '😐', '🙂', '😊', '🌟'][entry.quality];
+    final emoji = ['', '😴', '😐', '🙂', '😊', '🌟'][entry.quality.clamp(0, 5)];
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),

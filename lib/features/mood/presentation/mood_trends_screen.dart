@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../../core/constants/app_constants.dart';
@@ -45,47 +44,51 @@ class MoodTrendsScreen extends ConsumerWidget {
     return Scaffold(
       body: CosmicBackground(
         child: serviceAsync.when(
-          loading: () => Padding(
-                padding: const EdgeInsets.all(24),
-                child: Column(
-                  children: [
-                    SkeletonLoader.journalCard(index: 0),
-                    const SizedBox(height: 16),
-                    SkeletonLoader.paragraph(lines: 4, startIndex: 1),
-                  ],
+          loading: () => SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    children: [
+                      SkeletonLoader.journalCard(index: 0),
+                      const SizedBox(height: 16),
+                      SkeletonLoader.paragraph(lines: 4, startIndex: 1),
+                    ],
+                  ),
                 ),
               ),
-          error: (_, _) => Center(
-            child: Padding(
-              padding: const EdgeInsets.all(32),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    CommonStrings.somethingWentWrong(language),
-                    textAlign: TextAlign.center,
-                    style: AppTypography.decorativeScript(
-                      color: isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  TextButton.icon(
-                    onPressed: () =>
-                        ref.invalidate(moodCheckinServiceProvider),
-                    icon: Icon(Icons.refresh_rounded,
-                        size: 16, color: AppColors.starGold),
-                    label: Text(
-                      L10nService.get('mood.mood_trends.retry', language),
-                      style: AppTypography.elegantAccent(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.starGold,
+          error: (_, _) => SafeArea(
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(32),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      CommonStrings.somethingWentWrong(language),
+                      textAlign: TextAlign.center,
+                      style: AppTypography.decorativeScript(
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
                       ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 12),
+                    TextButton.icon(
+                      onPressed: () =>
+                          ref.invalidate(moodCheckinServiceProvider),
+                      icon: Icon(Icons.refresh_rounded,
+                          size: 16, color: AppColors.starGold),
+                      label: Text(
+                        L10nService.get('mood.mood_trends.retry', language),
+                        style: AppTypography.elegantAccent(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.starGold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -258,7 +261,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                 ContentDisclaimer(
                   language: language,
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 100),
               ]),
             ),
           ),
@@ -1200,7 +1203,7 @@ class MoodTrendsScreen extends ConsumerWidget {
   }) {
     return GestureDetector(
       onTap: () {
-        HapticFeedback.selectionClick();
+        HapticService.selectionTap();
         context.push(route);
       },
       child: Semantics(

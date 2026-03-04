@@ -449,6 +449,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
       HapticService.buttonPress();
       final service = await ref.read(notesToSelfServiceProvider.future);
       await service.deleteNote(noteId);
+      if (!mounted) return;
       ref.invalidate(allNotesProvider);
       ref.invalidate(pinnedNotesProvider);
       ref.invalidate(upcomingRemindersProvider);

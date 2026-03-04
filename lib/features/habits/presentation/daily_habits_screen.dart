@@ -765,7 +765,7 @@ class _HabitCheckCard extends StatelessWidget {
                     final day = isEn
                         ? const ['M', 'T', 'W', 'T', 'F', 'S', 'S'][wd - 1]
                         : const ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pa'][wd - 1];
-                    final done = weekData[i];
+                    final done = i < weekData.length ? weekData[i] : false;
 
                     return Padding(
                       padding: const EdgeInsets.only(left: 6),
