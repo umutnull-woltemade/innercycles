@@ -355,7 +355,7 @@ class _ShareCardGalleryScreenState
                       data: data,
                       accent: accent,
                       isDark: isDark,
-                      isEn: isEn,
+                      language: language,
                     )
                     .animate()
                     .fadeIn(duration: 400.ms, delay: (index * 80).ms)
@@ -432,7 +432,7 @@ class _ShareCardGalleryScreenState
                           repaintKey: _repaintKey,
                           isDark: isDark,
                           isPremium: isPremium,
-                          isEn: isEn,
+                          language: language,
                           displaySize: isStory ? 220 : 360,
                         )
                         .animate()
@@ -528,19 +528,18 @@ class _ThumbnailCard extends StatelessWidget {
   final ShareCardData data;
   final Color accent;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const _ThumbnailCard({
     required this.template,
     required this.data,
     required this.accent,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),

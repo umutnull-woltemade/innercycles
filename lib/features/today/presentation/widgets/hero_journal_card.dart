@@ -16,17 +16,17 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class HeroJournalCard extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const HeroJournalCard({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
   /// Detect recent mood trend direction from last 3 moods
-  String? _moodTrendSubtitle(WidgetRef ref) {
+  String? _moodTrendSubtitle(WidgetRef ref, bool isEn) {
     final moodAsync = ref.watch(moodCheckinServiceProvider);
     return moodAsync.whenOrNull(data: (service) {
       final week = service.getWeekMoods();
@@ -55,12 +55,12 @@ class HeroJournalCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isEn = language == AppLanguage.en;
     final promptAsync = ref.watch(journalPromptServiceProvider);
-    final trendSubtitle = _moodTrendSubtitle(ref);
+    final trendSubtitle = _moodTrendSubtitle(ref, isEn);
 
     return promptAsync.maybeWhen(
       data: (service) {
-        final language = AppLanguage.fromIsEn(isEn);
         final prompt = service.getDailyPrompt();
         final questionText = prompt.localizedPrompt(language);
 
@@ -288,7 +288,6 @@ class HeroJournalCard extends ConsumerWidget {
             .glassReveal(context: context, delay: 100.ms);
       },
       orElse: () {
-        final language = AppLanguage.fromIsEn(isEn);
         // Fallback: simple CTA pill + sprint link
         return Column(
           children: [
@@ -360,7 +359,7 @@ class HeroJournalCard extends ConsumerWidget {
                 Icon(Icons.timer_rounded, size: 14, color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
                 const SizedBox(width: 6),
                 Text(
-                  isEn ? '60-second sprint' : '60 saniye sprint',
+                  language == AppLanguage.en ? '60-second sprint' : '60 saniye sprint',
                   style: AppTypography.elegantAccent(
                     fontSize: 12,
                     color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,

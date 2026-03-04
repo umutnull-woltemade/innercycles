@@ -11,17 +11,18 @@ import '../../../../data/services/haptic_service.dart';
 import '../../../../shared/widgets/tap_scale.dart';
 
 class SeasonalProgressRing extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const SeasonalProgressRing({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(seasonalReflectionServiceProvider);
 
     return serviceAsync.maybeWhen(
@@ -31,7 +32,6 @@ class SeasonalProgressRing extends ConsumerWidget {
         final pct = service.getCompletionPercent();
         final completed = progress.completedPrompts.length;
         final total = module.prompts.length;
-        final language = AppLanguage.fromIsEn(isEn);
 
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),

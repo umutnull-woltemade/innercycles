@@ -16,24 +16,24 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class RecentLifeEventsSection extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const RecentLifeEventsSection({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(lifeEventServiceProvider);
 
     return serviceAsync.when(
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (service) {
-        final language = AppLanguage.fromIsEn(isEn);
         final recentEvents = service.getRecentEvents(3);
         if (recentEvents.isEmpty) {
           return _buildRetentionPrompt(context);
@@ -197,7 +197,6 @@ class RecentLifeEventsSection extends ConsumerWidget {
   }
 
   Widget _buildRetentionPrompt(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
       child: Semantics(

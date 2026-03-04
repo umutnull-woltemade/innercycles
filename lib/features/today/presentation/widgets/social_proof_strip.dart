@@ -26,12 +26,12 @@ int _estimatedActiveUsers() {
 
 /// Community social proof strip showing estimated community data + personal milestone.
 class SocialProofStrip extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const SocialProofStrip({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -44,7 +44,6 @@ class SocialProofStrip extends ConsumerWidget {
     // Don't show until user has at least 1 entry
     if (entryCount < 1) return const SizedBox.shrink();
 
-    final language = AppLanguage.fromIsEn(isEn);
     final activeUsers = _estimatedActiveUsers();
 
     // Show community message when user has enough entries, personal milestone otherwise
@@ -88,15 +87,15 @@ class SocialProofStrip extends ConsumerWidget {
   }
 
   /// Estimated community message with deterministic count.
-  String _communityMessage(int count, AppLanguage language) {
-    if (language == AppLanguage.en) {
+  String _communityMessage(int count, AppLanguage lang) {
+    if (lang == AppLanguage.en) {
       return '$count people are journaling with InnerCycles today';
     }
     return 'Bugün $count kişi InnerCycles ile yazıyor';
   }
 
   /// Personal milestone message based on user's own entry count.
-  String _milestoneMessage(int count, AppLanguage language) {
+  String _milestoneMessage(int count, AppLanguage lang) {
     final params = {'count': '$count'};
     String key;
     if (count >= 100) {
@@ -114,6 +113,6 @@ class SocialProofStrip extends ConsumerWidget {
     } else {
       key = 'today.social_proof.milestone_1';
     }
-    return L10nService.getWithParams(key, language, params: params);
+    return L10nService.getWithParams(key, lang, params: params);
   }
 }

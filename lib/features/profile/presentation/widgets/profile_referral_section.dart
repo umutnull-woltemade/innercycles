@@ -14,17 +14,16 @@ import '../../../../data/providers/app_providers.dart';
 
 class ProfileReferralSection extends ConsumerWidget {
   final bool isDark;
-  final bool isEn;
 
   const ProfileReferralSection({
     super.key,
     required this.isDark,
-    required this.isEn,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = AppLanguage.fromIsEn(isEn);
+    final language = ref.watch(languageProvider);
+    final isEn = language == AppLanguage.en;
     final referralAsync = ref.watch(referralServiceProvider);
 
     return Column(
@@ -71,7 +70,6 @@ class ProfileReferralSection extends ConsumerWidget {
                           loading: () => const SizedBox.shrink(),
                           error: (_, _) => const SizedBox.shrink(),
                           data: (service) {
-                            final language = AppLanguage.fromIsEn(isEn);
                             final count = service.referralCount;
                             return Text(
                               count > 0

@@ -16,12 +16,12 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class RecentEntriesSection extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const RecentEntriesSection({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -35,11 +35,11 @@ class RecentEntriesSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isEn = language == AppLanguage.en;
     final journalAsync = ref.watch(journalServiceProvider);
 
     return journalAsync.maybeWhen(
       data: (service) {
-        final language = AppLanguage.fromIsEn(isEn);
         final entries = service.getRecentEntries(5);
         if (entries.isEmpty) {
           return Padding(
@@ -305,6 +305,7 @@ class RecentEntriesSection extends ConsumerWidget {
   }
 
   String _formatDate(DateTime date) {
+    final isEn = language == AppLanguage.en;
     final months = isEn
         ? CommonStrings.monthsShortEn
         : CommonStrings.monthsShortTr;
@@ -312,7 +313,6 @@ class RecentEntriesSection extends ConsumerWidget {
   }
 
   String _focusAreaLabel(FocusArea area) {
-    final language = AppLanguage.fromIsEn(isEn);
     switch (area) {
       case FocusArea.energy:
         return L10nService.get('today.recent_entries.energy', language);

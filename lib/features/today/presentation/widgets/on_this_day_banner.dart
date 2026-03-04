@@ -19,12 +19,12 @@ import '../../../../data/services/l10n_service.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class OnThisDayBanner extends ConsumerStatefulWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const OnThisDayBanner({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -34,6 +34,8 @@ class OnThisDayBanner extends ConsumerStatefulWidget {
 
 class _OnThisDayBannerState extends ConsumerState<OnThisDayBanner> {
   String? _aiReflection;
+
+  AppLanguage get language => widget.language;
 
   @override
   void initState() {
@@ -60,7 +62,7 @@ class _OnThisDayBannerState extends ConsumerState<OnThisDayBanner> {
 
       final entry = onThisDayEntries.first;
       final yearsAgo = now.year - entry.date.year;
-      final language = widget.isEn ? 'en' : 'tr';
+      final langCode = widget.language == AppLanguage.en ? 'en' : 'tr';
 
       // Get current focus trend from pattern engine
       String currentFocus = '';
@@ -88,7 +90,7 @@ class _OnThisDayBannerState extends ConsumerState<OnThisDayBanner> {
           'yearsAgo': yearsAgo,
           'currentFocusArea': currentFocus,
           'currentMoodTrend': currentTrend,
-          'language': language,
+          'language': langCode,
         },
       ).timeout(const Duration(seconds: 5));
 
@@ -108,12 +110,12 @@ class _OnThisDayBannerState extends ConsumerState<OnThisDayBanner> {
 
   @override
   Widget build(BuildContext context) {
+    final isEn = widget.language == AppLanguage.en;
     final journalAsync = ref.watch(journalServiceProvider);
     return journalAsync.when(
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
       data: (service) {
-        final language = AppLanguage.fromIsEn(widget.isEn);
         final allEntries = service.getAllEntries();
         final now = DateTime.now();
         final onThisDayEntries = allEntries.where((e) {
@@ -171,7 +173,7 @@ class _OnThisDayBannerState extends ConsumerState<OnThisDayBanner> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                widget.isEn
+                                isEn
                                     ? 'On This Day — $yearsAgo year${yearsAgo == 1 ? '' : 's'} ago'
                                     : 'Bugün Geçmişte — $yearsAgo yıl önce',
                                 maxLines: 1,
@@ -201,7 +203,7 @@ class _OnThisDayBannerState extends ConsumerState<OnThisDayBanner> {
                               if (onThisDayEntries.length > 1) ...[
                                 const SizedBox(height: 2),
                                 Text(
-                                  widget.isEn
+                                  isEn
                                       ? '+${onThisDayEntries.length - 1} more memories'
                                       : '+${onThisDayEntries.length - 1} anı daha',
                                   style: AppTypography.elegantAccent(
@@ -262,7 +264,7 @@ class _OnThisDayBannerState extends ConsumerState<OnThisDayBanner> {
                     // Share nudge
                     const SizedBox(height: 8),
                     ShareNudgeChip(
-                      label: widget.isEn ? 'Share Memory' : 'Anıyı Paylaş',
+                      label: isEn ? 'Share Memory' : 'Anıyı Paylaş',
                       isDark: widget.isDark,
                       delay: 500.ms,
                       onTap: () {

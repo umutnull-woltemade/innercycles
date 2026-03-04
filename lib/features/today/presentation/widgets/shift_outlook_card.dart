@@ -11,17 +11,18 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/tap_scale.dart';
 
 class ShiftOutlookCard extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const ShiftOutlookCard({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isEn = language == AppLanguage.en;
     final outlookAsync = ref.watch(shiftOutlookProvider);
 
     return outlookAsync.maybeWhen(
@@ -62,7 +63,6 @@ class ShiftOutlookCard extends ConsumerWidget {
           ).animate().fadeIn(delay: 680.ms, duration: 300.ms);
         }
 
-        final language = AppLanguage.fromIsEn(isEn);
         final window = outlook.primaryShiftWindow!;
         final phase = outlook.currentPhase!;
 

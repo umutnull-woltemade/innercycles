@@ -21,7 +21,7 @@ class ProfileStatsDashboard extends StatelessWidget {
   final int moodCount;
   final int sleepNights;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;
 
   const ProfileStatsDashboard({
     super.key,
@@ -35,12 +35,12 @@ class ProfileStatsDashboard extends StatelessWidget {
     this.moodCount = 0,
     this.sleepNights = 0,
     required this.isDark,
-    required this.isEn,
+    required this.language,
   });
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
+    final isEn = language == AppLanguage.en;
 
     final topRow = [
       _StatColumn(

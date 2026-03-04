@@ -58,12 +58,12 @@ class _WelcomeBannerState extends ConsumerState<WelcomeBanner> {
   Widget build(BuildContext context) {
     if (!_loaded || _dismissed) return const SizedBox.shrink();
 
-    final journalAsync = ref.watch(journalServiceProvider);
-    return journalAsync.when(
+    final countAsync = ref.watch(journalEntryCountProvider);
+    return countAsync.when(
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
-      data: (service) {
-        if (service.entryCount > 2) return const SizedBox.shrink();
+      data: (count) {
+        if (count > 2) return const SizedBox.shrink();
 
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),

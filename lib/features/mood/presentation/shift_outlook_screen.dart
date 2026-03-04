@@ -2,6 +2,7 @@
 // SHIFT OUTLOOK SCREEN - Emotional shift window analysis
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,7 +29,7 @@ class ShiftOutlookScreen extends ConsumerWidget {
       body: CosmicBackground(
         child: SafeArea(
           child: outlookAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => Center(child: CupertinoActivityIndicator()),
             error: (e, _) => Center(child: Text('$e')),
             data: (outlook) {
               return CustomScrollView(

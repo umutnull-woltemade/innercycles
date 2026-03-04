@@ -95,7 +95,7 @@ class PostSaveEngagementSheet extends ConsumerWidget {
     final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    final suggestions = _buildSuggestions(ref, isEn);
+    final suggestions = _buildSuggestions(ref, language);
 
     return Container(
       decoration: BoxDecoration(
@@ -303,7 +303,7 @@ class PostSaveEngagementSheet extends ConsumerWidget {
                 _DepthDrillSection(
                   focusArea: focusArea!,
                   entryId: entryId,
-                  isEn: isEn,
+                  language: language,
                   isDark: isDark,
                 ),
                 const SizedBox(height: 14),
@@ -377,8 +377,8 @@ class PostSaveEngagementSheet extends ConsumerWidget {
     );
   }
 
-  List<_Suggestion> _buildSuggestions(WidgetRef ref, bool isEn) {
-    final language = AppLanguage.fromIsEn(isEn);
+  List<_Suggestion> _buildSuggestions(WidgetRef ref, AppLanguage language) {
+    final isEn = language == AppLanguage.en;
     final suggestions = <_Suggestion>[];
 
     // Always suggest mood check-in (quick action)
@@ -555,13 +555,13 @@ class _SuggestionTile extends StatelessWidget {
 class _DepthDrillSection extends StatefulWidget {
   final FocusArea focusArea;
   final String? entryId;
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const _DepthDrillSection({
     required this.focusArea,
     this.entryId,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -581,6 +581,7 @@ class _DepthDrillSectionState extends State<_DepthDrillSection> {
 
   @override
   Widget build(BuildContext context) {
+    final isEn = widget.language == AppLanguage.en;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -610,7 +611,7 @@ class _DepthDrillSectionState extends State<_DepthDrillSection> {
                         size: 16, color: AppColors.amethyst),
                     const SizedBox(width: 8),
                     Text(
-                      widget.isEn ? 'Go Deeper' : 'Derine Dal',
+                      isEn ? 'Go Deeper' : 'Derine Dal',
                       style: AppTypography.subtitle(
                         fontSize: 13,
                         color: widget.isDark
@@ -630,7 +631,7 @@ class _DepthDrillSectionState extends State<_DepthDrillSection> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  _question.text(widget.isEn),
+                  _question.text(isEn),
                   style: AppTypography.decorativeScript(
                     fontSize: 13,
                     color: widget.isDark

@@ -2,6 +2,7 @@
 // CONTEXT MODULE LIBRARY - Browse 36 educational insight modules
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -39,7 +40,7 @@ class _ContextModuleLibraryScreenState
       body: CosmicBackground(
         child: SafeArea(
           child: serviceAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => Center(child: CupertinoActivityIndicator()),
             error: (e, _) => Center(child: Text('$e')),
             data: (service) {
               final allModules = service.getAllModules();

@@ -480,7 +480,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                         final bondCount = ref.watch(bondCountProvider).whenOrNull(data: (v) => v) ?? 0;
                         return HomeHeader(
                           userName: userName,
-                          isEn: isEn,
+                          language: language,
                           isDark: isDark,
                           yesterdayMoodScore: yesterdayMood,
                           hasBond: bondCount > 0,
@@ -511,7 +511,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
                   // 2. Hero Journal Card (promoted to #2)
                   SliverToBoxAdapter(
-                    child: HeroJournalCard(isEn: isEn, isDark: isDark),
+                    child: HeroJournalCard(language: language, isDark: isDark),
                   ),
 
                   // 2a. Badge Unlock Banner (conditional)
@@ -529,14 +529,14 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 3. Mood + Stats Strip
                   SliverToBoxAdapter(
                     child: MoodStatsStrip(
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                     ).glassEntrance(context: context, delay: 180.ms),
                   ),
 
                   // 3b. Quick Mood Check-in (shows only if no mood today)
                   SliverToBoxAdapter(
-                    child: QuickMoodCheckin(isEn: isEn, isDark: isDark),
+                    child: QuickMoodCheckin(language: language, isDark: isDark),
                   ),
 
                   // 3b½. Mood Temporal Insight (best time-of-day)
@@ -561,12 +561,12 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
                   // 3e. Daily Habits Strip
                   SliverToBoxAdapter(
-                    child: DailyHabitsStrip(isEn: isEn, isDark: isDark),
+                    child: DailyHabitsStrip(language: language, isDark: isDark),
                   ),
 
                   // 3f. Seasonal Reflection Progress
                   SliverToBoxAdapter(
-                    child: SeasonalProgressRing(isEn: isEn, isDark: isDark),
+                    child: SeasonalProgressRing(language: language, isDark: isDark),
                   ),
 
                   // Zone 1→2 primary divider
@@ -604,7 +604,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 5. Daily Pulse Card
                   SliverToBoxAdapter(
                     child: DailyPulseCard(
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                     ).glassReveal(context: context, delay: 280.ms),
                   ),
@@ -625,7 +625,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 5b. Weekly Focus Progress
                   SliverToBoxAdapter(
                     child: WeeklyFocusProgress(
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                     ).animate().fadeIn(delay: 320.ms, duration: 400.ms),
                   ),
@@ -638,14 +638,14 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   // 6. Recent Entries
                   SliverToBoxAdapter(
                     child: RecentEntriesSection(
-                      isEn: isEn,
+                      language: language,
                       isDark: isDark,
                     ).glassEntrance(context: context, delay: 400.ms),
                   ),
 
                   // 7. Today's Birthdays (conditional)
                   SliverToBoxAdapter(
-                    child: TodayBirthdayBanner(isEn: isEn, isDark: isDark),
+                    child: TodayBirthdayBanner(language: language, isDark: isDark),
                   ),
 
                   // 7a. Bond Partner Touch Card (conditional)
@@ -660,19 +660,19 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
                   // 7c. On This Day — Anniversary memories
                   SliverToBoxAdapter(
-                    child: OnThisDayBanner(isEn: isEn, isDark: isDark),
+                    child: OnThisDayBanner(language: language, isDark: isDark),
                   ),
 
                   const SliverToBoxAdapter(child: SizedBox(height: 8)),
 
                   // 8. Recent Life Events
                   SliverToBoxAdapter(
-                    child: RecentLifeEventsSection(isEn: isEn, isDark: isDark),
+                    child: RecentLifeEventsSection(language: language, isDark: isDark),
                   ),
 
                   // 8b. Wellness Score Card
                   SliverToBoxAdapter(
-                    child: WellnessScoreCard(isEn: isEn, isDark: isDark),
+                    child: WellnessScoreCard(language: language, isDark: isDark),
                   ),
 
                   // 8c. Active Challenge Card
@@ -682,7 +682,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
                   // 8d. Guided Program Quick-Start
                   SliverToBoxAdapter(
-                    child: GuidedProgramCard(isEn: isEn, isDark: isDark),
+                    child: GuidedProgramCard(language: language, isDark: isDark),
                   ),
 
                   // 8e. Blind Spot Discovery
@@ -692,12 +692,12 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
                   // 8f. Pattern Loop Card
                   SliverToBoxAdapter(
-                    child: PatternLoopCard(isEn: isEn, isDark: isDark),
+                    child: PatternLoopCard(language: language, isDark: isDark),
                   ),
 
                   // 8g. Shift Outlook Card
                   SliverToBoxAdapter(
-                    child: ShiftOutlookCard(isEn: isEn, isDark: isDark),
+                    child: ShiftOutlookCard(language: language, isDark: isDark),
                   ),
 
                   // 8h. Habit Suggestion Card
@@ -762,14 +762,14 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
                   // 9g. Mood-Habit Correlation Insight
                   SliverToBoxAdapter(
-                    child: MoodHabitCorrelationCard(isEn: isEn, isDark: isDark),
+                    child: MoodHabitCorrelationCard(language: language, isDark: isDark),
                   ),
 
                   const SliverToBoxAdapter(child: SizedBox(height: 8)),
 
                   // 9h. Cross-Feature Correlation Insights
                   SliverToBoxAdapter(
-                    child: CrossCorrelationCard(isEn: isEn, isDark: isDark),
+                    child: CrossCorrelationCard(language: language, isDark: isDark),
                   ),
 
                   // 9i. Time Capsule Delivery
@@ -873,7 +873,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
                   // 10. Weekly Digest Mini-Card
                   SliverToBoxAdapter(
-                    child: WeeklyDigestMiniCard(isEn: isEn, isDark: isDark),
+                    child: WeeklyDigestMiniCard(language: language, isDark: isDark),
                   ),
 
                   // 10a2. Weekly Momentum Card
@@ -893,7 +893,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
                   // 10b. Referral Invite Card
                   SliverToBoxAdapter(
-                    child: ReferralInviteCard(isEn: isEn, isDark: isDark),
+                    child: ReferralInviteCard(language: language, isDark: isDark),
                   ),
 
                   // 11. Promotional Banner Stack
@@ -903,7 +903,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 
                   // 12. Social Proof Strip
                   SliverToBoxAdapter(
-                    child: SocialProofStrip(isEn: isEn, isDark: isDark),
+                    child: SocialProofStrip(language: language, isDark: isDark),
                   ),
 
                   // 12. Bottom padding

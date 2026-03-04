@@ -13,12 +13,12 @@ import '../../../../shared/widgets/premium_card.dart';
 /// Shows mood-habit correlation insight on the home feed.
 /// E.g. "On days you completed Morning Walk, your mood averaged 4.2 vs 2.8"
 class MoodHabitCorrelationCard extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const MoodHabitCorrelationCard({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -44,6 +44,7 @@ class MoodHabitCorrelationCard extends ConsumerWidget {
     MoodCheckinService moodService,
     HabitSuggestionService habitService,
   ) {
+    final isEn = language == AppLanguage.en;
     final adoptedHabits = habitService.getAdoptedHabits();
     if (adoptedHabits.isEmpty) {
       return Padding(
@@ -153,7 +154,6 @@ class MoodHabitCorrelationCard extends ConsumerWidget {
       return const SizedBox.shrink();
     }
 
-    final language = AppLanguage.fromIsEn(isEn);
     final habitName = bestCorrelation.habit.localizedTitle(language);
     final avgWith = bestCorrelation.habitDayAvg.toStringAsFixed(1);
     final avgWithout = bestCorrelation.nonHabitDayAvg.toStringAsFixed(1);

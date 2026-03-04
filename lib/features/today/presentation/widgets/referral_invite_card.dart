@@ -12,17 +12,18 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/tap_scale.dart';
 
 class ReferralInviteCard extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const ReferralInviteCard({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(referralServiceProvider);
 
     return serviceAsync.maybeWhen(
@@ -30,7 +31,6 @@ class ReferralInviteCard extends ConsumerWidget {
         final code = service.myCode;
         if (code.isEmpty) return const SizedBox.shrink();
 
-        final language = AppLanguage.fromIsEn(isEn);
         final info = service.info;
 
         return Padding(

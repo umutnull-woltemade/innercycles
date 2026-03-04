@@ -11,18 +11,18 @@ import '../../../../data/services/haptic_service.dart';
 import '../../../../shared/widgets/tap_scale.dart';
 
 class DailyHabitsStrip extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const DailyHabitsStrip({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = AppLanguage.fromIsEn(isEn);
+    final isEn = language == AppLanguage.en;
     final habitAsync = ref.watch(habitSuggestionServiceProvider);
 
     return habitAsync.maybeWhen(

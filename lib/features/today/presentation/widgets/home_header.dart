@@ -16,7 +16,7 @@ import '../../../../data/providers/app_providers.dart';
 
 class HomeHeader extends StatelessWidget {
   final String userName;
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
   final int? yesterdayMoodScore;
   final String? partnerSignalId;
@@ -25,7 +25,7 @@ class HomeHeader extends StatelessWidget {
   const HomeHeader({
     super.key,
     required this.userName,
-    required this.isEn,
+    required this.language,
     required this.isDark,
     this.yesterdayMoodScore,
     this.partnerSignalId,
@@ -33,7 +33,6 @@ class HomeHeader extends StatelessWidget {
   });
 
   String _getGreeting() {
-    final language = AppLanguage.fromIsEn(isEn);
     final hour = DateTime.now().hour;
     if (hour < 12) return L10nService.get('today.home_header.good_morning', language);
     if (hour < 18) return L10nService.get('today.home_header.good_afternoon', language);
@@ -41,14 +40,12 @@ class HomeHeader extends StatelessWidget {
   }
 
   String _getFormattedDate() {
-    final language = AppLanguage.fromIsEn(isEn);
     final now = DateTime.now();
-    final lang = language;
     final dayKeys = ['common.date.day_mon', 'common.date.day_tue', 'common.date.day_wed', 'common.date.day_thu', 'common.date.day_fri', 'common.date.day_sat', 'common.date.day_sun'];
-    final dayName = L10nService.get(dayKeys[now.weekday - 1], lang);
+    final dayName = L10nService.get(dayKeys[now.weekday - 1], language);
     final months = CommonStrings.monthsShort(language);
     final monthName = months[now.month - 1];
-    return L10nService.getWithParams('common.date.format_en', lang, params: {'day': dayName, 'month': monthName, 'date': '${now.day}'});
+    return L10nService.getWithParams('common.date.format_en', language, params: {'day': dayName, 'month': monthName, 'date': '${now.day}'});
   }
 
   String _getInitials() {
@@ -62,7 +59,7 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
+    final isEn = language == AppLanguage.en;
     final greeting = _getGreeting();
     final dateStr = _getFormattedDate();
     final insight = ContentRotationService.getDailyInsight();

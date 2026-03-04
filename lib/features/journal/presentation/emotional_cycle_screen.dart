@@ -1041,7 +1041,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
             ),
             error: (_, _) => const SizedBox.shrink(),
             data: (outlook) =>
-                ShiftOutlookCard(outlook: outlook, isDark: isDark, isEn: isEn),
+                ShiftOutlookCard(outlook: outlook, isDark: isDark, language: language),
           )
         else
           Semantics(
@@ -1109,7 +1109,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
       data: (loopAnalysis) => PatternLoopAnalyzer(
         analysis: loopAnalysis,
         isDark: isDark,
-        isEn: isEn,
+        language: isEn ? AppLanguage.en : AppLanguage.tr,
       ),
     );
   }

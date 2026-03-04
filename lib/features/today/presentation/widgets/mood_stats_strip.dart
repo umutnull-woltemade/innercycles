@@ -14,21 +14,20 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class MoodStatsStrip extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const MoodStatsStrip({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = AppLanguage.fromIsEn(isEn);
     final streakAsync = ref.watch(streakStatsProvider);
     final moodAsync = ref.watch(moodCheckinServiceProvider);
-    final journalAsync = ref.watch(journalServiceProvider);
+    final countAsync = ref.watch(journalEntryCountProvider);
 
     final streakCount =
         streakAsync.whenOrNull(data: (stats) => stats.currentStreak) ?? 0;
@@ -37,11 +36,7 @@ class MoodStatsStrip extends ConsumerWidget {
       data: (service) => service.getTodayMood(),
     );
 
-    final entryCount =
-        journalAsync.whenOrNull(
-          data: (service) => service.getAllEntries().length,
-        ) ??
-        0;
+    final entryCount = countAsync.whenOrNull(data: (c) => c) ?? 0;
 
     final todaySignal = todayMood?.hasSignal == true
         ? getSignalById(todayMood!.signalId!)
@@ -197,7 +192,6 @@ class MoodStatsStrip extends ConsumerWidget {
   }
 
   String _moodCountLabel(WidgetRef ref) {
-    final language = AppLanguage.fromIsEn(isEn);
     final moodAsync = ref.watch(moodCheckinServiceProvider);
     final count = moodAsync.whenOrNull(
           data: (service) => service.getAllEntries().length,
@@ -207,19 +201,17 @@ class MoodStatsStrip extends ConsumerWidget {
   }
 
   String _moodLabel(int mood) {
-    final language = AppLanguage.fromIsEn(isEn);
-    final lang = language;
     switch (mood) {
       case 1:
-        return L10nService.get('today.mood_stats.mood_low', lang);
+        return L10nService.get('today.mood_stats.mood_low', language);
       case 2:
-        return L10nService.get('today.mood_stats.mood_meh', lang);
+        return L10nService.get('today.mood_stats.mood_meh', language);
       case 3:
-        return L10nService.get('today.mood_stats.mood_okay', lang);
+        return L10nService.get('today.mood_stats.mood_okay', language);
       case 4:
-        return L10nService.get('today.mood_stats.mood_good', lang);
+        return L10nService.get('today.mood_stats.mood_good', language);
       case 5:
-        return L10nService.get('today.mood_stats.mood_great', lang);
+        return L10nService.get('today.mood_stats.mood_great', language);
       default:
         return '';
     }

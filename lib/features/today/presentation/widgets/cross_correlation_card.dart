@@ -17,19 +17,19 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/tap_scale.dart';
 
 class CrossCorrelationCard extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const CrossCorrelationCard({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isEn = language == AppLanguage.en;
     final engineAsync = ref.watch(patternEngineServiceProvider);
-    final language = AppLanguage.fromIsEn(isEn);
 
     return engineAsync.maybeWhen(
       data: (engine) {

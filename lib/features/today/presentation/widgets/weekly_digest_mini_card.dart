@@ -10,17 +10,18 @@ import '../../../../data/services/haptic_service.dart';
 import '../../../../shared/widgets/tap_scale.dart';
 
 class WeeklyDigestMiniCard extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const WeeklyDigestMiniCard({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isEn = language == AppLanguage.en;
     final digestAsync = ref.watch(weeklyDigestDataProvider);
 
     return digestAsync.maybeWhen(
@@ -74,7 +75,6 @@ class WeeklyDigestMiniCard extends ConsumerWidget {
           ).animate().fadeIn(delay: 700.ms, duration: 300.ms);
         }
 
-        final language = AppLanguage.fromIsEn(isEn);
         final trendIcon = switch (digest.moodTrend.name) {
           'up' => Icons.trending_up_rounded,
           'down' => Icons.trending_down_rounded,

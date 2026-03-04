@@ -14,18 +14,18 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/tap_scale.dart';
 
 class WellnessScoreCard extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const WellnessScoreCard({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final language = AppLanguage.fromIsEn(isEn);
+    final isEn = language == AppLanguage.en;
     final scoreAsync = ref.watch(wellnessScoreProvider);
     final trendAsync = ref.watch(wellnessTrendProvider);
 
@@ -129,7 +129,7 @@ class WellnessScoreCard extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          isEn ? 'Wellness Score' : 'Sag\u{0131}k Skoru',
+                          isEn ? 'Wellness Score' : 'Sa\u{011F}\u{0131}k Skoru',
                           style: AppTypography.displayFont.copyWith(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -157,7 +157,7 @@ class WellnessScoreCard extends ConsumerWidget {
                             const SizedBox(width: 4),
                             Flexible(
                               child: Text(
-                                _trendLabel(direction, diff),
+                                _trendLabel(direction, diff, isEn),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 12,
                                   color: isDark
@@ -172,7 +172,7 @@ class WellnessScoreCard extends ConsumerWidget {
                         ),
                         const SizedBox(height: 8),
                         // Mini breakdown
-                        _buildBreakdownRow(score, language),
+                        _buildBreakdownRow(score),
                       ],
                     ),
                   ),
@@ -193,7 +193,7 @@ class WellnessScoreCard extends ConsumerWidget {
     );
   }
 
-  Widget _buildBreakdownRow(WellnessScore score, AppLanguage language) {
+  Widget _buildBreakdownRow(WellnessScore score) {
     final breakdown = score.breakdown;
     return Row(
       children: breakdown.map<Widget>((b) {
@@ -231,7 +231,7 @@ class WellnessScoreCard extends ConsumerWidget {
     }
   }
 
-  String _trendLabel(String direction, int diff) {
+  String _trendLabel(String direction, int diff, bool isEn) {
     if (direction == 'up') {
       return isEn ? '+$diff from last week' : 'Ge\u{00E7}en haftadan +$diff';
     } else if (direction == 'down') {
@@ -257,7 +257,7 @@ class _WellnessRingPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
     final radius = size.width / 2 - 4;
-    final strokeWidth = 5.0;
+    const strokeWidth = 5.0;
 
     // Background ring
     final bgPaint = Paint()

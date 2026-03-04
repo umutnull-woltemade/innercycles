@@ -11,17 +11,18 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/tap_scale.dart';
 
 class PatternLoopCard extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const PatternLoopCard({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isEn = language == AppLanguage.en;
     final analysisAsync = ref.watch(patternLoopAnalysisProvider);
 
     return analysisAsync.maybeWhen(
@@ -62,7 +63,6 @@ class PatternLoopCard extends ConsumerWidget {
           ).animate().fadeIn(delay: 650.ms, duration: 300.ms);
         }
 
-        final language = AppLanguage.fromIsEn(isEn);
         // Get strongest loop
         final loop = analysis.detectedLoops.reduce(
           (a, b) => a.strength > b.strength ? a : b,

@@ -12,17 +12,18 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/tap_scale.dart';
 
 class GuidedProgramCard extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const GuidedProgramCard({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(guidedProgramServiceProvider);
 
     return serviceAsync.maybeWhen(
@@ -41,10 +42,9 @@ class GuidedProgramCard extends ConsumerWidget {
 
         if (active == null || activeProgram == null) {
           // No active program — show discovery teaser
-          return _buildDiscoveryTeaser(context);
+          return _buildDiscoveryTeaser(context, isEn);
         }
 
-        final language = AppLanguage.fromIsEn(isEn);
         final completed = active.completedDays.length;
         final total = activeProgram.durationDays;
         final pct = total > 0 ? completed / total : 0.0;
@@ -131,7 +131,7 @@ class GuidedProgramCard extends ConsumerWidget {
     );
   }
 
-  Widget _buildDiscoveryTeaser(BuildContext context) {
+  Widget _buildDiscoveryTeaser(BuildContext context, bool isEn) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
       child: TapScale(

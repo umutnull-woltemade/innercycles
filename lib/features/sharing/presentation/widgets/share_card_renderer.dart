@@ -33,8 +33,8 @@ class ShareCardRenderer extends StatelessWidget {
   /// Whether the user has premium (hides watermark badge)
   final bool isPremium;
 
-  /// Whether the current language is English (false = Turkish)
-  final bool isEn;
+  /// The current language
+  final AppLanguage language;
 
   /// Display size on screen (will be captured at 3x for 1080x1080)
   final double displaySize;
@@ -46,7 +46,7 @@ class ShareCardRenderer extends StatelessWidget {
     this.repaintKey,
     this.isDark = true,
     this.isPremium = false,
-    this.isEn = true,
+    this.language = AppLanguage.en,
     this.displaySize = 360,
   });
 
@@ -63,7 +63,6 @@ class ShareCardRenderer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     final accent = ShareCardTemplates.accentColor(template);
 
     // Use mood gradient override if available, otherwise use template default
@@ -168,7 +167,7 @@ class ShareCardRenderer extends StatelessWidget {
               bottom: 0,
               left: 0,
               right: 0,
-              child: _BottomWatermark(accent: accent, isPremium: isPremium, isEn: isEn),
+              child: _BottomWatermark(accent: accent, isPremium: isPremium, language: language),
             ),
           ],
         ),
@@ -203,7 +202,7 @@ class ShareCardRenderer extends StatelessWidget {
           data: data,
           accent: accent,
           cardWidth: _cardWidth,
-          isEn: isEn,
+          language: language,
         );
     }
   }
@@ -804,12 +803,11 @@ class _StatPill extends StatelessWidget {
 class _BottomWatermark extends StatelessWidget {
   final Color accent;
   final bool isPremium;
-  final bool isEn;
-  const _BottomWatermark({required this.accent, this.isPremium = false, this.isEn = true});
+  final AppLanguage language;
+  const _BottomWatermark({required this.accent, this.isPremium = false, this.language = AppLanguage.en});
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -900,19 +898,18 @@ class _CyclePositionLayout extends StatelessWidget {
   final ShareCardData data;
   final Color accent;
   final double cardWidth;
-  final bool isEn;
+  final AppLanguage language;
 
   const _CyclePositionLayout({
     required this.template,
     required this.data,
     required this.accent,
     required this.cardWidth,
-    this.isEn = true,
+    this.language = AppLanguage.en,
   });
 
   @override
   Widget build(BuildContext context) {
-    final language = AppLanguage.fromIsEn(isEn);
     // Extract cycle day / cycle length from chartValues
     final cycleDay = data.chartValues != null && data.chartValues!.isNotEmpty
         ? data.chartValues![0]
@@ -957,7 +954,6 @@ class _CyclePositionLayout extends StatelessWidget {
           duration: const Duration(milliseconds: 1200),
           curve: Curves.easeOutCubic,
           builder: (context, animatedProgress, child) {
-            final language = AppLanguage.fromIsEn(isEn);
             return SizedBox(
               width: arcSize,
               height: arcSize,

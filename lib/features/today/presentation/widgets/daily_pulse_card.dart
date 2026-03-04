@@ -18,12 +18,12 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class DailyPulseCard extends ConsumerWidget {
-  final bool isEn;
+  final AppLanguage language;
   final bool isDark;
 
   const DailyPulseCard({
     super.key,
-    required this.isEn,
+    required this.language,
     required this.isDark,
   });
 
@@ -53,6 +53,7 @@ class DailyPulseCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isEn = language == AppLanguage.en;
     final engineAsync = ref.watch(patternEngineServiceProvider);
 
     return engineAsync.maybeWhen(
@@ -63,7 +64,7 @@ class DailyPulseCard extends ConsumerWidget {
 
         // Build sections conditionally
         final focusPulseWidget = _buildFocusPulse(context, averages);
-        final insightWidget = _buildInsight(context, ref, engine, hasFull, hasMicro);
+        final insightWidget = _buildInsight(context, ref, engine, hasFull, hasMicro, isEn);
         final promptWidget = _buildPrompt(context, engine, hasFull, averages);
 
         // If nothing to show, collapse
@@ -124,7 +125,6 @@ class DailyPulseCard extends ConsumerWidget {
 
   // ── FOCUS PULSE (compact circles) ──
   Widget? _buildFocusPulse(BuildContext context, Map<FocusArea, double> averages) {
-    final language = AppLanguage.fromIsEn(isEn);
     if (averages.isEmpty) return null;
 
     return Column(
@@ -251,8 +251,8 @@ class DailyPulseCard extends ConsumerWidget {
     PatternEngineService engine,
     bool hasFull,
     bool hasMicro,
+    bool isEn,
   ) {
-    final language = AppLanguage.fromIsEn(isEn);
     String? text;
     IconData icon = Icons.lightbulb_outline;
 
@@ -320,7 +320,7 @@ class DailyPulseCard extends ConsumerWidget {
     bool hasFull,
     Map<FocusArea, double> averages,
   ) {
-    final language = AppLanguage.fromIsEn(isEn);
+    final isEn = language == AppLanguage.en;
     if (!hasFull || averages.isEmpty) return null;
 
     FocusArea weakestArea = averages.keys.first;
@@ -382,7 +382,6 @@ class DailyPulseCard extends ConsumerWidget {
     final archetypeAsync = ref.watch(archetypeServiceProvider);
     return archetypeAsync.maybeWhen(
       data: (archetypeService) {
-        final language = AppLanguage.fromIsEn(isEn);
         String text;
         IconData icon;
         final history = archetypeService.getArchetypeHistory();
@@ -463,7 +462,6 @@ class DailyPulseCard extends ConsumerWidget {
   }
 
   String _areaLabel(FocusArea area) {
-    final language = AppLanguage.fromIsEn(isEn);
     switch (area) {
       case FocusArea.energy:
         return L10nService.get('today.daily_pulse.energy', language);
